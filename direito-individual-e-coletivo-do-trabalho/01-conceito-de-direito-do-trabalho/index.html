@@ -1,54 +1,115 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Conceito de Direito do Trabalho</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Conceito de Direito do Trabalho</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            max-width: 900px;
-            margin: 40px auto;
-            line-height: 1.7;
-            color: #222;
-        }
-        h1 {
-            color: #1f4fd8;
-        }
-        h2 {
-            margin-top: 35px;
-            color: #333;
-        }
-        h3 {
-            margin-top: 25px;
-            color: #444;
-        }
-        p {
-            text-align: justify;
-            margin-top: 12px;
-        }
-        .voltar {
-            margin-top: 40px;
-        }
-        .voltar a {
-            text-decoration: none;
-            color: #1f4fd8;
-            font-weight: bold;
-        }
-    </style>
+  <style>
+    :root{
+      --text:#111;
+      --muted:#555;
+      --bg:#ffffff;
+      --card:#f6f7f9;
+      --link:#1f4fd8;
+    }
+
+    html { -webkit-text-size-adjust: 100%; }
+
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.85;
+      font-size: 18px;
+    }
+
+    .wrap{
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 18px 16px 28px;
+    }
+
+    h1,h2,h3{
+      line-height: 1.25;
+      margin: 22px 0 10px;
+    }
+
+    h1{
+      font-size: 28px;
+      color: var(--link);
+      margin-top: 6px;
+    }
+
+    h2{ font-size: 22px; }
+    h3{ font-size: 19px; }
+
+    p{
+      margin: 0 0 14px;
+      text-align: left;
+    }
+
+    .box{
+      background: var(--card);
+      border: 1px solid rgba(0,0,0,.08);
+      border-radius: 12px;
+      padding: 14px;
+      margin: 18px 0;
+    }
+
+    a{
+      color: var(--link);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    a:hover{ text-decoration: underline; }
+
+    .voltar{
+      margin-top: 26px;
+    }
+
+    .voltar a{
+      display:inline-block;
+      padding: 10px 14px;
+      border: 1px solid rgba(0,0,0,.12);
+      border-radius: 12px;
+      background: #fff;
+    }
+
+    @media (max-width: 420px){
+      body{ font-size: 17px; }
+      h1{ font-size: 26px; }
+      h2{ font-size: 21px; }
+    }
+
+    @media (prefers-color-scheme: dark){
+      :root{
+        --text:#f2f2f2;
+        --muted:#c9c9c9;
+        --bg:#0b1220;
+        --card:#111a2e;
+        --link:#7aa2ff;
+      }
+      .voltar a{ background: transparent; }
+    }
+  </style>
 </head>
 
 <body>
+<div class="wrap">
 
 <h1>1. Conceito de Direito do Trabalho</h1>
 
+<div class="box">
 <p>
 Direito do Trabalho é o ramo da ciência do Direito composto pelo conjunto de normas
 que regulam, no âmbito individual e coletivo, a relação de trabalho subordinado,
 que determinam seus sujeitos (empregado e empregador) e que estruturam as
 organizações destinadas à proteção do trabalhador.
 </p>
+</div>
 
 <h2>1.1 Origem histórica do Direito do Trabalho</h2>
 
@@ -67,13 +128,13 @@ assalariado, sob influência de razões de ordem econômica, política e jurídi
 A principal causa econômica foi a própria Revolução Industrial (fins do século XVIII
 e início do século XIX), que trouxe mudanças tecnológicas como o uso de novos
 materiais básicos (ferro e aço), a descoberta de novas fontes de energia (carvão,
-máquina a vapor, eletricidade), bem como o desenvolvimento da máquina de fiar,
+máquina a vapor, eletricidade), além do desenvolvimento da máquina de fiar,
 do tear mecânico e dos motores de combustão.
 </p>
 
 <p>
 Também se desenvolveram os transportes, como a locomotiva a vapor e o navio,
-e as comunicações, como o telégrafo e o rádio.
+bem como as comunicações, como o telégrafo e o rádio.
 </p>
 
 <p>
@@ -161,9 +222,9 @@ categoria de direitos fundamentais.
 </p>
 
 <div class="voltar">
-    <a href="../index.html">← Voltar aos tópicos da disciplina</a>
+  <a href="../index.html">← Voltar ao índice da disciplina</a>
 </div>
 
+</div>
 </body>
 </html>
-
