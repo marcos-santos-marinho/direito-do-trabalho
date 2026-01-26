@@ -48,37 +48,49 @@
 
 <body>
 
-<header>
-  <h1>
+<header class="header-lattes">
+  <h1>Professor Marcos Marinho</h1>
+  <p class="lattes-link">
     <a href="http://lattes.cnpq.br/9869114671337490" target="_blank" rel="noopener">
-      Professor Marcos Marinho
+      Currículo Lattes
     </a>
-  </h1>
-  
+  </p>
 </header>
 
 <style>
-  header {
-    background-color: #0b1220; /* fundo escuro */
-    padding: 24px 16px;
+  .header-lattes {
+    background-color: #0a1f44; /* azul marinho */
+    padding: 26px 16px;
     text-align: center;
   }
 
-  header h1,
-  header p,
-  header a {
-    color: #ffffff; /* fonte branca */
+  .header-lattes h1 {
+    margin: 0;
+    font-size: 28px;
+    color: #ffffff;
   }
 
-  header a {
+  .header-lattes .lattes-link {
+    margin-top: 8px;
+  }
+
+  .header-lattes .lattes-link a {
+    color: #ffffff;
+    font-weight: 600;
     text-decoration: none;
-    font-weight: 700;
+    border-bottom: 1px solid rgba(255,255,255,0.6);
+    padding-bottom: 2px;
   }
 
-  header a:hover {
-    text-decoration: underline;
+  .header-lattes .lattes-link a:hover {
+    border-bottom: 1px solid #ffffff;
   }
-</style>
+
+  /* ajuste fino para celular */
+  @media (max-width: 420px) {
+    .header-lattes h1 {
+      font-siz
+
 
 
 <main>
@@ -109,6 +121,7 @@
 
 </body>
 </html>
+
 
 
 
