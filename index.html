@@ -6,118 +6,86 @@
   <title>Professor Marcos Marinho</title>
 
   <style>
-    :root{
-      --navy:#0b1e45;
-      --bg:#eef2f6;
-      --card:#ffffff;
-      --btn:#165f7c;
-      --btn2:#0f6b88;
-      --text:#0f172a;
-      --white:#ffffff;
-      --shadow: 0 16px 32px rgba(15, 23, 42, .18);
-      --radius: 22px;
-    }
-
     *{ box-sizing:border-box; }
     html{ -webkit-text-size-adjust:100%; }
     body{
       margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height:1.5;
+      background:#eef2f6;
+      color:#0f172a;
     }
 
-    /* Header */
+    /* Topo */
     header{
-      background: var(--navy);
-      color: var(--white);
-      padding: 18px 16px 16px;
+      background:#0b1e45;
+      color:#fff;
       text-align:center;
+      padding: 22px 16px 16px;
     }
     header h1{
-      margin: 0 0 8px;
-      font-size: 22px;
-      font-weight: 800;
+      margin:0 0 10px;
+      font-size: 26px;
+      font-weight: 900;
       letter-spacing: .2px;
     }
     header a{
-      color: var(--white);
+      color:#fff;
       text-decoration:none;
-      font-weight: 700;
+      font-weight: 800;
       display:inline-block;
-      padding-bottom: 6px;
-      border-bottom: 2px solid rgba(255,255,255,.35);
-    }
-    header a:active, header a:hover{
-      border-bottom-color: rgba(255,255,255,.8);
+      padding-bottom:6px;
+      border-bottom:2px solid rgba(255,255,255,.35);
     }
 
-    /* Container */
+    /* Área central */
     .wrap{
-      max-width: 520px;
+      max-width: 720px;
       margin: 0 auto;
-      padding: 14px 14px 26px;
+      padding: 18px 16px 28px;
     }
 
-    /* White card area (like your screenshot) */
     .panel{
-      background: var(--card);
-      border-radius: 18px;
-      box-shadow: var(--shadow);
-      padding: 18px 14px 16px;
-      margin-top: 12px;
-      border: 1px solid rgba(15, 23, 42, .06);
+      background:#fff;
+      border-radius: 22px;
+      padding: 18px;
+      border: 1px solid rgba(15,23,42,.08);
+      /* sombra leve (não trava) */
+      box-shadow: 0 10px 22px rgba(15,23,42,.12);
     }
 
-    /* Big buttons */
     .menu{
       display:flex;
-      flex-direction: column;
-      gap: 16px;
-      margin-top: 8px;
+      flex-direction:column;
+      gap: 18px;
+      padding: 8px;
     }
 
-    .big-btn{
+    .btn{
       display:flex;
       align-items:center;
       justify-content:center;
       text-align:center;
-      min-height: 108px;
-      padding: 18px 18px;
-      border-radius: 22px;
-      background: linear-gradient(180deg, var(--btn2), var(--btn));
-      color: var(--white);
+      min-height: 112px;
+      padding: 18px;
+      border-radius: 26px;
+      background:#0f6b88;
+      color:#fff;
       text-decoration:none;
       font-weight: 900;
-      font-size: 22px;
-      letter-spacing: .2px;
-      box-shadow: 0 14px 26px rgba(2, 8, 23, .18);
-      border: 2px solid rgba(255,255,255,.14);
-      user-select: none;
+      font-size: 28px;
+      line-height: 1.15;
+      border: 2px solid rgba(255,255,255,.18);
     }
 
-    .big-btn:active{
+    /* toque no celular sem “efeitos pesados” */
+    .btn:active{
+      opacity: .95;
       transform: translateY(1px);
-      filter: brightness(0.98);
     }
 
-    /* Footer badge */
-    .badge{
-      margin: 14px auto 0;
-      width: fit-content;
-      background: rgba(0,0,0,.06);
-      color: rgba(0,0,0,.55);
-      padding: 8px 14px;
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: 13px;
-    }
-
-    /* Small screens tuning */
-    @media (max-width: 380px){
-      header h1{ font-size: 20px; }
-      .big-btn{ font-size: 20px; min-height: 104px; }
+    @media (max-width: 520px){
+      header h1{ font-size: 22px; }
+      .btn{ font-size: 22px; min-height: 104px; }
     }
   </style>
 </head>
@@ -125,31 +93,21 @@
 <body>
   <header>
     <h1>Professor Marcos Marinho</h1>
-    <!-- TROQUE o LINK_DO_LATTES pelo seu link real -->
     <a href="http://lattes.cnpq.br/9869114671337490" target="_blank" rel="noopener">Currículo Lattes</a>
   </header>
 
-  <div class="wrap">
-    <div class="panel">
+  <main class="wrap">
+    <section class="panel">
       <div class="menu">
-        <a class="big-btn" href="direito-individual-e-coletivo-do-trabalho/">
-          Direito do Trabalho
+        <a class="btn" href="direito-individual-e-coletivo-do-trabalho/">Direito do Trabalho</a>
+
+        <a class="btn" href="direito-processual-do-trabalho/">
+          Direito Processual<br>do Trabalho
         </a>
 
-        <a class="big-btn" href="direito-processual-do-trabalho/">
-          Direito Processual<br/>do Trabalho
-        </a>
-
-        <!-- Se sua pasta tiver outro nome, troque no href -->
-        <a class="big-btn" href="pratica-juridica-trabalhista/">
-          Prática Jurídica
-        </a>
+        <a class="btn" href="pratica-juridica-trabalhista/">Prática Jurídica</a>
       </div>
-
-     
-    </div>
-  </div>
+    </section>
+  </main>
 </body>
 </html>
-
-
