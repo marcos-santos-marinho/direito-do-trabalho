@@ -7,15 +7,15 @@
 
   <style>
     *{ box-sizing:border-box; }
-    html{ -webkit-text-size-adjust:100%; }
-    body{
+    html, body{
+      height: 100%;
       margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       background:#eef2f6;
       color:#0f172a;
     }
 
-    /* Topo */
+    /* TOPO */
     header{
       background:#0b1e45;
       color:#fff;
@@ -26,38 +26,38 @@
       margin:0 0 10px;
       font-size: 26px;
       font-weight: 900;
-      letter-spacing: .2px;
     }
     header a{
       color:#fff;
       text-decoration:none;
       font-weight: 800;
-      display:inline-block;
       padding-bottom:6px;
       border-bottom:2px solid rgba(255,255,255,.35);
     }
 
-    /* Área central */
-    .wrap{
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 18px 16px 28px;
+    /* === AQUI ESTÁ A CORREÇÃO PRINCIPAL === */
+    main{
+      min-height: calc(100vh - 120px); /* altura da tela menos o header */
+      display: flex;
+      align-items: center;   /* centraliza verticalmente */
+      justify-content: center;
+      padding: 20px 16px;
     }
 
     .panel{
-      background:#fff;
-      border-radius: 22px;
-      padding: 18px;
+      width: 100%;
+      max-width: 520px;
+      background:#ffffff;
+      border-radius: 24px;
+      padding: 22px 18px;
       border: 1px solid rgba(15,23,42,.08);
-      /* sombra leve (não trava) */
-      box-shadow: 0 10px 22px rgba(15,23,42,.12);
+      box-shadow: 0 14px 28px rgba(15,23,42,.15);
     }
 
     .menu{
       display:flex;
-      flex-direction:column;
-      gap: 18px;
-      padding: 8px;
+      flex-direction: column;
+      gap: 22px;
     }
 
     .btn{
@@ -65,11 +65,11 @@
       align-items:center;
       justify-content:center;
       text-align:center;
-      min-height: 112px;
+      min-height: 120px;
       padding: 18px;
-      border-radius: 26px;
+      border-radius: 28px;
       background:#0f6b88;
-      color:#fff;
+      color:#ffffff;
       text-decoration:none;
       font-weight: 900;
       font-size: 28px;
@@ -77,15 +77,14 @@
       border: 2px solid rgba(255,255,255,.18);
     }
 
-    /* toque no celular sem “efeitos pesados” */
     .btn:active{
-      opacity: .95;
       transform: translateY(1px);
+      opacity: .96;
     }
 
     @media (max-width: 520px){
       header h1{ font-size: 22px; }
-      .btn{ font-size: 22px; min-height: 104px; }
+      .btn{ font-size: 22px; min-height: 108px; }
     }
   </style>
 </head>
@@ -93,22 +92,25 @@
 <body>
   <header>
     <h1>Professor Marcos Marinho</h1>
-    <a href="http://lattes.cnpq.br/9869114671337490" target="_blank" rel="noopener">Currículo Lattes</a>
+    <a href="LINK_DO_LATTES" target="_blank" rel="noopener">Currículo Lattes</a>
   </header>
 
-  <main class="wrap">
+  <main>
     <section class="panel">
       <div class="menu">
-        <a class="btn" href="direito-individual-e-coletivo-do-trabalho/">Direito do Trabalho</a>
+        <a class="btn" href="direito-individual-e-coletivo-do-trabalho/">
+          Direito do Trabalho
+        </a>
 
         <a class="btn" href="direito-processual-do-trabalho/">
           Direito Processual<br>do Trabalho
         </a>
 
-        <a class="btn" href="pratica-juridica-trabalhista/">Prática Jurídica Trabalhista</a>
+        <a class="btn" href="pratica-juridica-trabalhista/">
+          Prática Jurídica<br>Trabalhista
+        </a>
       </div>
     </section>
   </main>
 </body>
 </html>
-
