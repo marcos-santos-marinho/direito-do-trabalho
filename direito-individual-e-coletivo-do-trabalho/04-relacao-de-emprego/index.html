@@ -1,115 +1,146 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Relação de Emprego</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Relação de Emprego</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    :root{
-      --text:#111;
-      --bg:#ffffff;
-      --card:#f6f7f9;
-      --link:#1f4fd8;
-    }
+<style>
+  :root{
+    --bg:#f2f7ff;
+    --text:#0f172a;
+    --title:#1f4fd8;
+    --card:#ffffff;
+    --border:rgba(15,23,42,.15);
+    --shadow:0 8px 18px rgba(15,23,42,.08);
+  }
 
-    html { -webkit-text-size-adjust: 100%; }
+  *{ box-sizing:border-box; }
 
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.85;
-      font-size: 18px;
-    }
+  body{
+    margin:0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.7;
+    font-size:18px;
+  }
 
-    .wrap{
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 18px 16px 28px;
-    }
+  .wrap{
+    max-width:900px;
+    margin:auto;
+    padding:18px 16px 40px;
+  }
 
-    h1,h2,h3{
-      line-height: 1.25;
-      margin: 22px 0 10px;
-    }
+  /* ===== TÍTULO + SLIDES ===== */
+  .title-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+    flex-wrap:wrap;
+  }
 
-    h1{
-      font-size: 28px;
-      color: var(--link);
-      margin-top: 6px;
-    }
+  h1{
+    color:var(--title);
+    font-size:28px;
+    margin:10px 0 16px;
+  }
 
-    h2{ font-size: 22px; }
-    h3{ font-size: 19px; }
+  .slides-btn{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    background:#ffffff;
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:10px 14px;
+    box-shadow:var(--shadow);
+    min-width:90px;
+  }
 
-    p{
-      margin: 0 0 14px;
-      text-align: left;
-    }
+  .slides-icon{
+    font-size:28px;
+    line-height:1;
+  }
 
-    ul{
-      margin: 10px 0 14px 18px;
-    }
-    li{ margin: 8px 0; }
+  .slides-text{
+    margin-top:4px;
+    font-weight:800;
+    font-size:13px;
+    color:#0f172a;
+  }
 
-    .box, .toc{
-      background: var(--card);
-      border: 1px solid rgba(0,0,0,.08);
-      border-radius: 12px;
-      padding: 14px;
-      margin: 18px 0;
-    }
+  /* ===== TEXTO ===== */
+  h2{
+    font-size:22px;
+    margin:28px 0 10px;
+  }
 
-    .toc ul{
-      margin: 10px 0 0 18px;
-      padding: 0;
-    }
+  h3{
+    font-size:20px;
+    margin:22px 0 8px;
+  }
 
-    a{
-      color: var(--link);
-      text-decoration: none;
-      font-weight: 700;
-    }
-    a:hover{ text-decoration: underline; }
+  p{
+    margin:0 0 14px;
+    text-align:justify;
+  }
 
-    .voltar{
-      margin-top: 26px;
-    }
-    .voltar a{
-      display:inline-block;
-      padding: 10px 14px;
-      border: 1px solid rgba(0,0,0,.12);
-      border-radius: 12px;
-      background: #fff;
-    }
+  .box{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:16px;
+    margin:18px 0;
+    box-shadow:var(--shadow);
+  }
 
-    @media (max-width: 420px){
-      body{ font-size: 17px; }
-      h1{ font-size: 26px; }
-      h2{ font-size: 21px; }
-    }
+  ul{
+    margin:8px 0 14px 22px;
+  }
 
-    @media (prefers-color-scheme: dark){
-      :root{
-        --text:#f2f2f2;
-        --bg:#0b1220;
-        --card:#111a2e;
-        --link:#7aa2ff;
-      }
-      .voltar a{ background: transparent; }
-    }
-  </style>
+  li{
+    margin-bottom:10px;
+  }
+
+  /* ===== BOTÃO VOLTAR ===== */
+  .voltar{
+    margin-top:32px;
+  }
+
+  .voltar a{
+    display:block;
+    text-align:center;
+    background:#ffffff;
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:16px;
+    font-weight:800;
+    text-decoration:none;
+    color:#0f172a;
+    box-shadow:var(--shadow);
+  }
+
+  @media (max-width:480px){
+    body{ font-size:17px; }
+    h1{ font-size:24px; }
+    h2{ font-size:21px; }
+    h3{ font-size:19px; }
+  }
+</style>
 </head>
 
 <body>
 <div class="wrap">
 
-<h1>4. Relação de Emprego</h1>
+  <div class="title-row">
+    <h1>4. Relação de Emprego</h1>
 
-  <a class="slides-btn"
-       href="https://drive.google.com/file/d/1jaS-eVjC2EveoCopT6lNT1Eqp5-yNVbs/view?usp=sharing"
+    <a class="slides-btn"
+       href="LINK_GOOGLE_DRIVE_SLIDES"
        target="_blank"
        rel="noopener">
       <div class="slides-icon">🖼️</div>
@@ -117,154 +148,186 @@
     </a>
   </div>
 
-<div class="box">
+  <div class="box">
+    <p>
+      A relação de emprego é a relação jurídica que tem como fato social original o trabalho humano não eventual
+      e subordinado, prestado com pessoalidade, mediante remuneração e que tem como disciplina jurídica o conjunto
+      de normas que compõem o Direito do Trabalho.
+    </p>
+    <p>
+      Na relação de emprego, o vínculo jurídico é estabelecido entre empregado e empregador e é regulado pelas
+      normas jurídicas trabalhistas.
+    </p>
+    <p>
+      Assim, como objeto do Direito do Trabalho, a relação de emprego deve ser analisada a partir do estudo das
+      suas características, de seus sujeitos e de sua natureza jurídica.
+    </p>
+  </div>
+
+  <h2>4.1 Características</h2>
+
   <p>
-    A relação de emprego é a relação jurídica que tem como fato social original o trabalho humano
-    não eventual e subordinado, prestado com pessoalidade, mediante remuneração, e cuja disciplina
-    jurídica é o conjunto de normas que compõem o Direito do Trabalho.
+    Ao contrário da relação de trabalho, que é genérica e que se refere a todas as relações jurídicas fundadas em
+    uma obrigação de fazer consubstanciada no trabalho humano, a relação de emprego, embora também tenha por
+    fundamento o trabalho humano, é específica, possuindo características próprias que a distinguem das demais
+    formas de prestação de serviço.
   </p>
+
   <p>
-    Nessa relação, o vínculo jurídico se estabelece entre empregado e empregador e é regulado pelas
-    normas jurídicas trabalhistas.
+    A relação de trabalho é, deste modo, gênero, que tem, entre uma de suas espécies, a relação de emprego.
   </p>
-</div>
 
-<div class="toc">
-  <strong>Sumário</strong>
-  <ul>
-    <li><a href="#caracteristicas">4.1 Características</a></li>
-    <li><a href="#sujeitos">4.2 Sujeitos</a></li>
-    <li><a href="#natureza">4.3 Natureza jurídica</a></li>
-  </ul>
-</div>
-
-<h2 id="caracteristicas">4.1 Características</h2>
-
-<p>
-Ao contrário da relação de trabalho, que é genérica e se refere a todas as relações jurídicas fundadas
-em uma obrigação de fazer consubstanciada no trabalho humano, a relação de emprego é específica e possui
-características próprias que a distinguem das demais formas de prestação de serviço.
-</p>
-
-<div class="box">
-  <p><strong>Relação de trabalho x Relação de emprego</strong></p>
-  <ul>
-    <li><strong>Relação de trabalho</strong> = gênero (toda obrigação de fazer ligada a trabalho humano).</li>
-    <li><strong>Relação de emprego</strong> = espécie (trabalho com requisitos próprios).</li>
-  </ul>
-</div>
-
-<p>
-Os elementos característicos da relação de emprego decorrem do disposto nos arts. 2º e 3º da CLT.
-</p>
-
-<h3>a) Pessoalidade</h3>
-<p>
-Na relação de emprego, o trabalho prestado tem caráter infungível: quem executa deve realizá-lo pessoalmente,
-não podendo fazer-se substituir por outra pessoa. Trata-se de relação <em>intuitu personae</em>, pois o que se contrata
-não é apenas o resultado do serviço, mas o serviço prestado pessoalmente por alguém.
-</p>
-
-<h3>b) Não eventualidade</h3>
-<p>
-A prestação de serviço é habitual, repetitiva, rotineira. As obrigações das partes se prolongam no tempo, com efeitos
-contínuos. Não é necessário que o serviço seja diário: o essencial é a expectativa de retorno do empregado, ou seja,
-a previsibilidade e continuidade da prestação.
-</p>
-
-<div class="box">
-  <p><strong>Ideia-chave:</strong> o que caracteriza a habitualidade não é a prestação diária, mas o <strong>sentido de permanência</strong>
-  e prolongamento no tempo.</p>
-</div>
-
-<h3>c) Subordinação</h3>
-<p>
-A subordinação deriva da estrutura da relação jurídica de emprego, baseada na transferência, pelo empregado ao empregador,
-do poder de direção sobre o seu trabalho: é a sujeição do empregado às ordens do empregador, o estado de dependência do
-trabalhador em relação ao empregador.
-</p>
-
-<div class="box">
-  <p><strong>Poder de direção do empregador</strong></p>
-  <ul>
-    <li><strong>Poder de organização:</strong> define os contornos da organização do trabalho.</li>
-    <li><strong>Poder de controle:</strong> fiscaliza o cumprimento das ordens e rotinas.</li>
-    <li><strong>Poder disciplinar:</strong> aplica sanções previstas no ordenamento em caso de descumprimento.</li>
-  </ul>
-</div>
-
-<h3>d) Remuneração (onerosidade)</h3>
-<p>
-A relação de emprego não é gratuita: há prestação (serviços) e contraprestação (remuneração). O relevante não é o valor,
-mas o pacto: promessa de prestação de serviços de um lado e promessa de pagamento de salário de outro. Mesmo se o empregador
-não pagar, a obrigação existe; o descumprimento não elimina a onerosidade.
-</p>
-
-<div class="box">
-  <p><strong>Conclusão importante:</strong> só existe relação de emprego quando <strong>todas</strong> as características estiverem presentes
-  ao mesmo tempo. A ausência de algum elemento pode indicar relação de trabalho, mas não relação de emprego.</p>
-</div>
-
-<p>
-Observação: além das quatro características acima, alguns autores destacam a <strong>alteridade</strong> como traço distintivo:
-os serviços são prestados por conta alheia, e o empregador assume os riscos da atividade econômica.
-</p>
-
-<div class="box">
-  <p><strong>Entidades religiosas (CLT, art. 442, §2º e §3º)</strong></p>
   <p>
-    Não existe vínculo empregatício entre entidades religiosas/instituições vocacionais e ministros de confissão religiosa
-    (ou equivalentes), ainda que exerçam atividades administrativas, salvo se houver desvirtuamento da finalidade religiosa
-    e voluntária.
+    Os elementos característicos da relação de emprego decorrem do disposto nos arts. 2º e 3º da CLT e são:
   </p>
-</div>
 
-<h2 id="sujeitos">4.2 Sujeitos</h2>
-
-<p>
-Os sujeitos da relação de emprego são <strong>empregado</strong> e <strong>empregador</strong>.
-</p>
-
-<div class="box">
-  <p><strong>Empregado (CLT, art. 3º)</strong></p>
+  <h3>a) Pessoalidade</h3>
   <p>
-    Pessoa física que presta serviços de natureza não eventual a empregador, sob dependência e mediante salário.
-    A definição é complementada pela prestação pessoal (CLT, art. 2º).
+    Na relação de emprego o trabalho prestado tem caráter infungível, pois quem o executa deve realizá-lo
+    pessoalmente, não podendo fazer-se substituir por outra pessoa. A relação de emprego é, pois, uma relação
+    intuitu personae, sendo tal característica derivada do fato de que neste tipo de relação jurídica o que se
+    contrata não é o serviço como resultado final, mas sim o serviço prestado pessoalmente por alguém.
   </p>
-</div>
 
-<div class="box">
-  <p><strong>Empregador (CLT, art. 2º)</strong></p>
   <p>
-    Empresa, individual ou coletiva, que assume os riscos da atividade econômica, admite, assalaria e dirige a prestação
-    pessoal de serviços.
+    O empregado obriga-se a prestar pessoalmente os serviços contratados, não podendo, por sua iniciativa,
+    fazer-se substituir por terceiros.
   </p>
-</div>
 
-<h2 id="natureza">4.3 Natureza jurídica</h2>
+  <h3>b) Não eventualidade</h3>
+  <p>
+    Na relação de emprego a prestação de serviço é habitual, repetitiva, rotineira. As obrigações das partes se
+    prolongam no tempo, com efeitos contínuos. O trabalho deve, portanto, ser não eventual, o que significa dizer
+    que o empregado se obriga a prestar serviços com continuidade, da mesma forma que as obrigações do empregador
+    em relação aos benefícios trabalhistas assegurados ao empregado permanecem enquanto durar a relação de emprego.
+  </p>
 
-<p>
-A natureza jurídica da relação de emprego é discutida a partir de duas teorias principais.
-</p>
+  <p>
+    Importante ressaltar, porém, que não é necessário que os serviços sejam prestados diariamente. O importante é
+    que haja a expectativa de retorno do empregado ao serviço, isto é, já se sabe que os serviços serão
+    desenvolvidos em determinado dia, por determinada pessoa, e sua ausência acarretará consequências jurídicas.
+  </p>
 
-<h3>a) Teoria contratualista</h3>
-<p>
-Afirma a natureza contratual da relação de emprego: a relação decorre de acordo de vontades e é fundada em contrato.
-É a teoria que prevalece e foi absorvida pelo legislador. O art. 442 da CLT estabelece que contrato individual de trabalho
-é o acordo tácito ou expresso correspondente à relação de emprego.
-</p>
+  <p>
+    O que caracteriza a habitualidade não é a prestação diária de trabalho, mas sim o sentido de permanência e de
+    prolongamento no tempo que a prestação dos serviços tem.
+  </p>
 
-<h3>b) Teoria anticontratualista</h3>
-<p>
-Nega a natureza contratual da relação de emprego. Para essa corrente, a autonomia da vontade não influencia ou não é
-relevante na formação e no desenvolvimento da relação de emprego.
-</p>
+  <h3>c) Subordinação</h3>
+  <p>
+    A subordinação deriva da própria estrutura da relação jurídica de emprego, que se baseia na transferência pelo
+    empregado ao empregador do poder de direção sobre o seu trabalho.
+  </p>
 
-<div class="voltar">
-  <a href="../index.html">← Voltar ao índice da disciplina</a>
-</div>
+  <p>
+    É a sujeição do empregado às ordens do empregador, é o estado de dependência do trabalhador em relação ao seu
+    empregador.
+  </p>
+
+  <p>
+    Com a transferência do poder de direção, o empregador assume os riscos da atividade econômica e passa a
+    estabelecer os contornos da organização do trabalho do empregado (poder de organização), a fiscalizar o
+    cumprimento pelo empregado das ordens dadas no exercício do poder de organização (poder de controle), podendo,
+    em caso de descumprimento pelo empregado das determinações, impor-lhe as sanções previstas no ordenamento
+    jurídico (poder disciplinar).
+  </p>
+
+  <h3>d) Remuneração</h3>
+  <p>
+    A relação de emprego não é gratuita ou voluntária; haverá sempre uma prestação (serviços) e uma contraprestação
+    (remuneração).
+  </p>
+
+  <p>
+    A onerosidade caracteriza-se pelo ajuste da troca de trabalho por salário.
+  </p>
+
+  <p>
+    O que importa não é o quantum a ser pago, mas sim o pacto, a promessa de prestação de serviço de um lado e a
+    promessa de pagamento do salário de outro lado. Ressalte-se que o fato do empregador deixar de pagar o salário
+    não afasta a existência de onerosidade e, portanto, não descaracteriza o contrato de trabalho.
+  </p>
+
+  <p>
+    A existência de relação de emprego somente se verifica quando todas estas características estiverem presentes ao
+    mesmo tempo. A ausência de um ou de alguns destes elementos caracterizadores pode implicar a existência de uma
+    relação de trabalho, mas jamais de uma relação de emprego.
+  </p>
+
+  <div class="box">
+    <p>
+      <strong>Observação:</strong> Além das quatro características acima apontadas, alguns autores ressaltam ser a
+      <strong>alteridade</strong> um outro traço distintivo que pode ser atribuído à relação de emprego. A alteridade
+      decorre do fato de que na relação de emprego os serviços são prestados por conta alheia, ou seja, o empregador
+      é quem assume os riscos da atividade econômica.
+    </p>
+
+    <p>
+      Importante destacar que não existe vínculo empregatício entre entidades religiosas de qualquer denominação ou
+      natureza ou instituições de ensino vocacional e ministros de confissão religiosa, membros de instituto de vida
+      consagrada, de congregação ou de ordem religiosa, ou quaisquer outros que a eles se equiparem, ainda que se
+      dediquem parcial ou integralmente a atividades ligadas à administração da entidade ou instituição a que estejam
+      vinculados ou estejam em formação ou treinamento (art. 442, § 2º, CLT), salvo se verificado desvirtuamento da
+      finalidade religiosa e voluntária (art. 442, § 3º, CLT).
+    </p>
+  </div>
+
+  <h2>4.2 Sujeitos</h2>
+
+  <p>
+    Os sujeitos da relação de emprego são empregado e empregador.
+  </p>
+
+  <p>
+    O conceito legal de empregado está expresso no art. 3º da CLT: toda pessoa física que prestar serviços de
+    natureza não eventual a empregador, sob a dependência deste e mediante salário.
+  </p>
+
+  <p>
+    A definição de empregado deve ser completada por mais um requisito expresso no art. 2º da CLT, qual seja, a
+    prestação pessoal de serviços.
+  </p>
+
+  <div class="box">
+    <p>
+      O conceito legal de empregador está expresso no art. 2º da CLT:
+    </p>
+    <p>
+      Considera-se empregador a empresa, individual ou coletiva, que, assumindo os riscos da atividade econômica,
+      admite, assalaria e dirige a prestação pessoal de serviços.
+    </p>
+  </div>
+
+  <h2>4.3 Natureza jurídica</h2>
+
+  <p>
+    A natureza jurídica da relação de emprego é discutida a partir de duas teorias:
+  </p>
+
+  <h3>a) Teoria contratualista</h3>
+  <p>
+    Afirma a natureza contratual da relação de emprego, ou seja, a relação entre empregado e empregador decorre de
+    acordo de vontades e, portanto, é fundada em um contrato. A relação de emprego é um negócio jurídico que se
+    insere no âmbito da autonomia privada.
+  </p>
+
+  <p>
+    É a teoria que prevalece e que foi absorvida pelo legislador trabalhista. Tendo origem na autonomia da vontade
+    das partes, a relação de emprego tem inegável natureza contratual. Por esta razão, o art. 442 da CLT estabelece
+    que contrato individual de trabalho é o acordo tácito ou expresso correspondente à relação de emprego.
+  </p>
+
+  <h3>b) Teoria anticontratualista</h3>
+  <p>
+    Nega a natureza contratual da relação de emprego. Para os anticontratualistas a autonomia da vontade não tem
+    qualquer influência ou relevância na formação e no desenvolvimento deste tipo específico de relação jurídica
+    denominada de relação de emprego.
+  </p>
+
+  <div class="voltar">
+    <a href="../index.html">← Voltar ao índice da disciplina</a>
+  </div>
 
 </div>
 </body>
 </html>
-
