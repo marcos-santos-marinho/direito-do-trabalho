@@ -1,115 +1,146 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Relação de Trabalho</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Relação de Trabalho</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    :root{
-      --text:#111;
-      --bg:#ffffff;
-      --card:#f6f7f9;
-      --link:#1f4fd8;
-    }
+<style>
+  :root{
+    --bg:#f2f7ff;
+    --text:#0f172a;
+    --title:#1f4fd8;
+    --card:#ffffff;
+    --border:rgba(15,23,42,.15);
+    --shadow:0 8px 18px rgba(15,23,42,.08);
+  }
 
-    html { -webkit-text-size-adjust: 100%; }
+  *{ box-sizing:border-box; }
 
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.85;
-      font-size: 18px;
-    }
+  body{
+    margin:0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.7;
+    font-size:18px;
+  }
 
-    .wrap{
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 18px 16px 28px;
-    }
+  .wrap{
+    max-width:900px;
+    margin:auto;
+    padding:18px 16px 40px;
+  }
 
-    h1,h2,h3{
-      line-height: 1.25;
-      margin: 22px 0 10px;
-    }
+  /* ===== TÍTULO + SLIDES ===== */
+  .title-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+    flex-wrap:wrap;
+  }
 
-    h1{
-      font-size: 28px;
-      color: var(--link);
-      margin-top: 6px;
-    }
+  h1{
+    color:var(--title);
+    font-size:28px;
+    margin:10px 0 16px;
+  }
 
-    h2{ font-size: 22px; }
-    h3{ font-size: 19px; }
+  .slides-btn{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    background:#ffffff;
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:10px 14px;
+    box-shadow:var(--shadow);
+    min-width:90px;
+  }
 
-    p{
-      margin: 0 0 14px;
-      text-align: left;
-    }
+  .slides-icon{
+    font-size:28px;
+    line-height:1;
+  }
 
-    ul{
-      margin: 10px 0 14px 18px;
-    }
-    li{ margin: 8px 0; }
+  .slides-text{
+    margin-top:4px;
+    font-weight:800;
+    font-size:13px;
+    color:#0f172a;
+  }
 
-    .box, .toc{
-      background: var(--card);
-      border: 1px solid rgba(0,0,0,.08);
-      border-radius: 12px;
-      padding: 14px;
-      margin: 18px 0;
-    }
+  /* ===== TEXTO ===== */
+  h2{
+    font-size:22px;
+    margin:28px 0 10px;
+  }
 
-    .toc ul{
-      margin: 10px 0 0 18px;
-      padding: 0;
-    }
+  h3{
+    font-size:20px;
+    margin:22px 0 8px;
+  }
 
-    a{
-      color: var(--link);
-      text-decoration: none;
-      font-weight: 700;
-    }
-    a:hover{ text-decoration: underline; }
+  p{
+    margin:0 0 14px;
+    text-align:justify;
+  }
 
-    .voltar{
-      margin-top: 26px;
-    }
-    .voltar a{
-      display:inline-block;
-      padding: 10px 14px;
-      border: 1px solid rgba(0,0,0,.12);
-      border-radius: 12px;
-      background: #fff;
-    }
+  .box{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:16px;
+    margin:18px 0;
+    box-shadow:var(--shadow);
+  }
 
-    @media (max-width: 420px){
-      body{ font-size: 17px; }
-      h1{ font-size: 26px; }
-      h2{ font-size: 21px; }
-    }
+  ul{
+    margin:8px 0 14px 22px;
+  }
 
-    @media (prefers-color-scheme: dark){
-      :root{
-        --text:#f2f2f2;
-        --bg:#0b1220;
-        --card:#111a2e;
-        --link:#7aa2ff;
-      }
-      .voltar a{ background: transparent; }
-    }
-  </style>
+  li{
+    margin-bottom:10px;
+  }
+
+  /* ===== BOTÃO VOLTAR ===== */
+  .voltar{
+    margin-top:32px;
+  }
+
+  .voltar a{
+    display:block;
+    text-align:center;
+    background:#ffffff;
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:16px;
+    font-weight:800;
+    text-decoration:none;
+    color:#0f172a;
+    box-shadow:var(--shadow);
+  }
+
+  @media (max-width:480px){
+    body{ font-size:17px; }
+    h1{ font-size:24px; }
+    h2{ font-size:21px; }
+    h3{ font-size:19px; }
+  }
+</style>
 </head>
 
 <body>
 <div class="wrap">
 
-<h1>5. Relação de Trabalho</h1>
+  <div class="title-row">
+    <h1>5. Relação de Trabalho</h1>
 
-  <a class="slides-btn"
-       href="https://drive.google.com/file/d/1jaS-eVjC2EveoCopT6lNT1Eqp5-yNVbs/view?usp=sharing"
+    <a class="slides-btn"
+       href="LINK_GOOGLE_DRIVE_SLIDES"
        target="_blank"
        rel="noopener">
       <div class="slides-icon">🖼️</div>
@@ -117,204 +148,194 @@
     </a>
   </div>
 
-<div class="box">
+  <div class="box">
+    <p>
+      Podem ser consideradas como relação de trabalho todas as relações jurídicas fundadas em uma obrigação de fazer
+      consubstanciada no trabalho humano, enquanto somente existirá relação de emprego quando o trabalho humano se
+      desenvolver de forma não eventual e subordinada, sendo prestado com pessoalidade e mediante remuneração.
+    </p>
+    <p>
+      A relação de trabalho é gênero, sendo a relação de emprego uma de suas espécies.
+    </p>
+    <p>
+      Entre as diversas espécies de relação de trabalho, analisaremos as seguintes, buscando identificar suas
+      características específicas que as diferenciam da relação de emprego:
+    </p>
+  </div>
+
+  <h2>5.1 Trabalho autônomo</h2>
   <p>
-    Podem ser consideradas como <strong>relação de trabalho</strong> todas as relações jurídicas fundadas
-    em uma obrigação de fazer consubstanciada no trabalho humano. Já a <strong>relação de emprego</strong>
-    existe quando o trabalho humano se desenvolve de forma <strong>não eventual</strong> e <strong>subordinada</strong>,
-    prestado com <strong>pessoalidade</strong> e mediante <strong>remuneração</strong>.
+    É aquele que se desenvolve por conta própria, sem subordinação, ou seja, o trabalhador autônomo exerce suas
+    atividades com independência, não se subordinando às ordens e ao controle do tomador dos serviços. Considera-se
+    autônomo o prestador de serviços que desenvolve sua atividade sem estar subordinado a horário, livre de
+    fiscalização do destinatário dos serviços e, eventualmente, com auxílio de terceiros.
   </p>
   <p>
-    Assim, a relação de trabalho é <strong>gênero</strong>, sendo a relação de emprego uma de suas <strong>espécies</strong>.
+    O autônomo tem ampla liberdade quanto à forma e ao modo de execução dos serviços, estabelece o preço dos
+    serviços e assume os riscos do empreendimento.
   </p>
-</div>
-
-<div class="toc">
-  <strong>Sumário</strong>
-  <ul>
-    <li><a href="#t51">5.1 Trabalho autônomo</a></li>
-    <li><a href="#t52">5.2 Trabalho eventual</a></li>
-    <li><a href="#t53">5.3 Trabalho temporário</a></li>
-    <li><a href="#t54">5.4 Trabalho avulso</a></li>
-    <li><a href="#t55">5.5 Trabalho voluntário</a></li>
-    <li><a href="#t56">5.6 Estagiário</a></li>
-    <li><a href="#t57">5.7 Cooperativa de trabalho</a></li>
-    <li><a href="#t58">5.8 Terceirização de serviços</a></li>
-  </ul>
-</div>
-
-<h2 id="t51">5.1 Trabalho autônomo</h2>
-<p>
-É aquele que se desenvolve por conta própria, <strong>sem subordinação</strong>. O autônomo exerce suas atividades
-com independência, não se subordinando às ordens e ao controle do tomador dos serviços, sem estar preso a horário,
-livre de fiscalização e, eventualmente, com auxílio de terceiros.
-</p>
-<p>
-O autônomo tem ampla liberdade quanto à forma de execução dos serviços, estabelece o preço e assume os riscos do empreendimento.
-Em regra, insere-se no âmbito do Direito Civil, com contrato de prestação de serviços (arts. 593 a 609 do Código Civil).
-</p>
-
-<div class="box">
-  <p><strong>CLT, art. 442-B (ponto-chave):</strong> a contratação do autônomo, cumpridas as formalidades legais, com ou sem exclusividade,
-  de forma contínua ou não, afasta a qualidade de empregado.</p>
-</div>
-
-<h2 id="t52">5.2 Trabalho eventual</h2>
-<p>
-É o trabalho exercido de forma <strong>esporádica</strong>, <strong>descontínua</strong> e <strong>fortuita</strong>.
-O trabalhador eventual presta serviços de curta duração para vários tomadores, sem habitualidade, não se fixando a uma fonte de trabalho.
-</p>
-
-<h2 id="t53">5.3 Trabalho temporário</h2>
-<p>
-Disciplinado pela <strong>Lei n. 6.019/1974</strong> e regulamentado pelo <strong>Decreto n. 10.854/2021</strong>,
-é uma relação <strong>triangular</strong> entre: (i) empresa tomadora/cliente, (ii) empresa de trabalho temporário e (iii) trabalhador temporário.
-</p>
-
-<div class="box">
-  <p><strong>Quando é permitido (Lei 6.019/74; Decreto 10.854/2021):</strong></p>
-  <ul>
-    <li><strong>Substituição transitória</strong> de pessoal permanente (férias, licenças e outros afastamentos);</li>
-    <li><strong>Demanda complementar</strong> de serviços (acréscimo extraordinário), desde que não seja contínua/permanente.</li>
-  </ul>
-</div>
-
-<p>
-O trabalho temporário pode envolver atividades-meio e atividades-fim na tomadora.
-Não há vínculo de emprego entre a tomadora e o trabalhador temporário, desde que respeitados os requisitos legais.
-</p>
-
-<div class="box">
-  <p><strong>Prazos (resumo):</strong> duração máxima de <strong>180 dias</strong> (consecutivos ou não), prorrogável por até <strong>90 dias</strong>,
-  quando comprovada a manutenção das condições que justificaram a contratação. Nova colocação na mesma tomadora só após
-  <strong>90 dias</strong> do término do contrato anterior; antes disso pode caracterizar vínculo com a tomadora.</p>
-</div>
-
-<div class="box">
-  <p><strong>Direitos do temporário (Lei 6.019/74):</strong></p>
-  <ul>
-    <li>anotação na CTPS (anotações gerais);</li>
-    <li>remuneração equivalente ao empregado substituído (ou do grupo, em acréscimo extraordinário);</li>
-    <li>indenização ao final (40% do FGTS), férias proporcionais + 1/3;</li>
-    <li>jornada 8h/44h, horas extras + 50%, adicional noturno;</li>
-    <li>seguro contra acidente do trabalho e proteção previdenciária;</li>
-    <li>também: FGTS, vale-transporte, seguro-desemprego, DSR (conforme normas indicadas no material).</li>
-  </ul>
-</div>
-
-<p>
-A tomadora é <strong>subsidiariamente responsável</strong> pelas obrigações trabalhistas do período do trabalho temporário
-e, em caso de falência da empresa de trabalho temporário, pode haver responsabilidade <strong>solidária</strong> nas verbas do período.
-</p>
-
-<h2 id="t54">5.4 Trabalho avulso</h2>
-<p>
-É prestado de forma esporádica e a diversos tomadores, sem fixação a um deles, mas com uma característica essencial:
-há <strong>intermediação obrigatória</strong> por entidade específica, formando relação também <strong>triangular</strong>.
-É vedada a contratação direta do trabalhador pelo tomador.
-</p>
-
-<div class="box">
-  <p><strong>Dois exemplos citados no material:</strong></p>
-  <ul>
-    <li><strong>Movimentação de carga urbana/rural</strong> (Lei n. 12.023/2009): intermediação obrigatória do sindicato.</li>
-    <li><strong>Trabalho avulso portuário</strong> (Lei n. 12.815/2013): intermediação via <strong>OGMO</strong> (órgão gestor de mão de obra).</li>
-  </ul>
   <p>
-    A CF/88 assegura aos trabalhadores avulsos os mesmos direitos dos empregados urbanos e rurais (art. 7º, XXXIV).
+    O trabalho autônomo insere-se no âmbito do Direito Civil, sendo o trabalhador contratado mediante contrato de
+    prestação de serviços regido basicamente pelos arts. 593 a 609 do Código Civil.
   </p>
-</div>
-
-<h2 id="t55">5.5 Trabalho voluntário</h2>
-<p>
-É atividade <strong>não remunerada</strong> prestada por pessoa física a entidade pública ou instituição privada sem fins lucrativos,
-com objetivos cívicos, culturais, educacionais, científicos, recreativos ou de assistência à pessoa (Lei n. 9.608/1998).
-</p>
-<p>
-Não gera vínculo empregatício ou previdenciário. A formalização se dá por <strong>Termo de Adesão</strong>.
-A entidade pode ressarcir despesas comprovadas e autorizadas, sem caracterizar remuneração.
-</p>
-
-<h2 id="t56">5.6 Estagiário</h2>
-<p>
-Estágio é ato educativo escolar supervisionado no ambiente de trabalho, visando à preparação para o trabalho produtivo
-(Lei n. 11.788/2008). Não cria vínculo empregatício se atendidos os requisitos legais.
-</p>
-
-<div class="box">
-  <p><strong>Requisitos (Lei 11.788/2008):</strong></p>
-  <ul>
-    <li>matrícula e frequência regular;</li>
-    <li>termo de compromisso;</li>
-    <li>interveniência da instituição de ensino;</li>
-    <li>compatibilidade entre atividades do estágio e as previstas no termo.</li>
-  </ul>
-  <p><strong>Atenção:</strong> descumprimento de obrigação do termo pode caracterizar vínculo com o concedente
-  (ressalva para Administração Pública conforme orientação citada no material).</p>
-</div>
-
-<div class="box">
-  <p><strong>Jornada (máximos):</strong></p>
-  <ul>
-    <li>4h/dia e 20h/semana (educação especial e anos finais do fundamental – EJA profissional);</li>
-    <li>6h/dia e 30h/semana (superior, técnico e médio regular);</li>
-    <li>40h/semana (cursos com alternância teoria/prática, sem aulas presenciais, com previsão no projeto pedagógico).</li>
-  </ul>
   <p>
-    Em períodos de provas, a carga horária deve ser reduzida pelo menos à metade.
+    A contratação do autônomo, cumpridas por este todas as formalidades legais, com ou sem exclusividade, de forma
+    contínua ou não, afasta a qualidade de empregado (art. 442-B, CLT).
   </p>
-</div>
 
-<p>
-Duração máxima na mesma concedente: <strong>2 anos</strong>, exceto estagiário com deficiência.
-Bolsa é facultativa no estágio obrigatório e obrigatória no não obrigatório. Há recesso de 30 dias se ≥ 1 ano (proporcional se menor),
-e recesso remunerado quando houver bolsa.
-</p>
+  <h2>5.2 Trabalho eventual</h2>
+  <p>
+    É aquele exercido de forma esporádica, descontínua, fortuita.
+  </p>
+  <p>
+    O trabalhador eventual presta serviços de curta duração para vários tomadores de serviço, sem habitualidade ou
+    continuidade, não se fixando a uma fonte de trabalho.
+  </p>
 
-<h2 id="t57">5.7 Cooperativa de trabalho</h2>
-<p>
-Sociedade cooperativa é formada por pessoas que se obrigam a contribuir com bens ou serviços para atividade econômica comum,
-sem objetivo de lucro (Lei n. 5.764/1971). A CF/88 estimula o cooperativismo.
-</p>
+  <h2>5.3 Trabalho temporário</h2>
+  <p>
+    É disciplinado pela Lei n. 6.019, de 3-1-1974, regulamentada pelo Decreto n. 10.854, de 10-11-2021, e
+    corresponde a uma relação composta por três partes (relação triangular), que gera vínculos jurídicos distintos
+    e independentes.
+  </p>
 
-<div class="box">
-  <p><strong>CLT, art. 442, §1º:</strong> não existe vínculo de emprego entre a cooperativa e seus associados, nem entre estes e os tomadores,
-  desde que a prestação ocorra efetivamente por cooperativa regular. Se, na prática, aparecerem características de relação de emprego,
-  pode haver reconhecimento do vínculo, com nulidade da contratação fraudulenta (art. 9º, CLT).</p>
-</div>
+  <p>
+    A relação de trabalho temporário é desenvolvida entre uma empresa tomadora de serviços (ou empresa cliente),
+    uma empresa de trabalho temporário e o trabalhador temporário. Há intermediação de mão de obra, rompendo com a
+    simetria tradicional entre empregado e empregador.
+  </p>
 
-<h2 id="t58">5.8 Terceirização de serviços</h2>
-<p>
-É a contratação de trabalhadores por interposta pessoa: relação triangular entre trabalhador, empresa prestadora (terceirizante)
-e tomadora. A Lei n. 6.019/74 (com alterações) define prestação de serviços a terceiros como a transferência da execução de quaisquer
-atividades (inclusive atividade principal) à pessoa jurídica prestadora com capacidade econômica compatível.
-</p>
+  <p>
+    O trabalho temporário pode envolver atividades-meio e atividades-fim (art. 9º, § 3º, Lei n. 6.019/74; art. 59,
+    Decreto n. 10.854/2021). A relação entre a empresa de trabalho temporário e a tomadora é de natureza civil.
+  </p>
 
-<div class="box">
-  <p><strong>STF (ponto central citado no material):</strong> é lícita a terceirização em todas as etapas do processo produtivo (meio ou fim),
-  mantida a responsabilidade subsidiária da contratante (ADPF 324 e RE 958252 – tese de repercussão geral).</p>
-</div>
+  <div class="box">
+    <p><strong>Admissão do trabalho temporário:</strong> somente para atender (art. 2º, Lei n. 6.019/74; art. 41, Decreto n. 10.854/2021):</p>
+    <ul>
+      <li><strong>a)</strong> substituição transitória de pessoal permanente; ou</li>
+      <li><strong>b)</strong> demanda complementar de serviços.</li>
+    </ul>
+    <p>
+      Considera-se complementar a demanda oriunda de fatores imprevisíveis ou, quando previsíveis, de natureza
+      intermitente, periódica e sazonal (§ 2º, art. 2º, Lei n. 6.019/74; art. 43, IV, Decreto n. 10.854/2021).
+      Demandas contínuas/permanentes e abertura de filiais não se enquadram (parágrafo único, art. 43, Decreto n. 10.854/2021).
+    </p>
+  </div>
 
-<p>
-A prestadora contrata, remunera e dirige o trabalho. Em regra, não se forma vínculo entre trabalhador e tomadora, sem prejuízo de
-responsabilidade subsidiária da tomadora e de hipóteses de fraude/irregularidade conforme critérios indicados no material.
-</p>
+  <p>
+    É proibida a contratação de temporário para substituir trabalhadores em greve, salvo nos casos previstos em lei
+    (§ 1º, art. 2º, Lei n. 6.019/74).
+  </p>
 
-<div class="box">
-  <p><strong>Regras e cuidados destacados:</strong></p>
-  <ul>
-    <li>restrição de “pejotização” recente: sócio/titular que foi empregado da contratante nos últimos 18 meses (salvo aposentado) não pode figurar como contratada;</li>
-    <li>empregado demitido não pode voltar pela terceirizada antes de 18 meses;</li>
-    <li>a contratante deve garantir condições de segurança, higiene e salubridade quando o trabalho ocorrer em suas dependências;</li>
-    <li>a contratante é subsidiariamente responsável pelas obrigações trabalhistas do período da prestação.</li>
-  </ul>
-</div>
+  <p>
+    A empresa de trabalho temporário deve ser registrada no Ministério do Trabalho e Previdência (art. 4º, Lei n.
+    6.019/74; art. 47, Decreto n. 10.854/2021). Deve haver contrato escrito entre empresa de trabalho temporário e
+    tomadora, contendo qualificação, motivo, prazo, valor e regras de saúde e segurança (art. 9º, Lei n. 6.019/74;
+    arts. 54 e 71, Decreto n. 10.854/2021).
+  </p>
 
-<div class="voltar">
-  <a href="../index.html">← Voltar ao índice da disciplina</a>
-</div>
+  <p>
+    A tomadora deve garantir condições de segurança, higiene e salubridade, e estender atendimento médico e de
+    refeição existente a seus empregados (§§ 1º e 2º, art. 9º, Lei n. 6.019/74; arts. 55 e 56, Decreto n. 10.854/2021),
+    além de comunicar acidente com temporário (§ 2º, art. 12, Lei n. 6.019/74; art. 75, Decreto n. 10.854/2021).
+  </p>
+
+  <p>
+    Não há vínculo de emprego entre tomadora e temporário (art. 10, Lei n. 6.019/74; art. 57, Decreto n. 10.854/2021).
+    A duração do contrato não pode exceder 180 dias, prorrogáveis por até 90 dias (§§ 1º e 2º, art. 10, Lei n. 6.019/74;
+    art. 66, Decreto n. 10.854/2021).
+  </p>
+
+  <p>
+    Após o término, novo contrato com a mesma tomadora só após 90 dias; caso contrário, caracteriza vínculo com a tomadora
+    (§§ 5º e 6º, art. 10, Lei n. 6.019/74; art. 67, Decreto n. 10.854/2021).
+  </p>
+
+  <div class="box">
+    <p><strong>Direitos do trabalhador temporário</strong> (art. 12, Lei n. 6.019/74), entre outros:</p>
+    <ul>
+      <li>anotação na CTPS;</li>
+      <li>remuneração equivalente à do empregado substituído (ou do grupo);</li>
+      <li>indenização ao final do contrato (40% FGTS – CF, art. 7º, I);</li>
+      <li>férias proporcionais + 1/3;</li>
+      <li>jornada de 8h/44h;</li>
+      <li>horas extras (adicional mínimo 50%);</li>
+      <li>adicional noturno;</li>
+      <li>seguro contra acidente do trabalho;</li>
+      <li>proteção previdenciária.</li>
+    </ul>
+  </div>
+
+  <p>
+    A contratante é subsidiariamente responsável pelas obrigações trabalhistas do período (art. 10, § 7º, Lei n. 6.019/74;
+    art. 74, Decreto n. 10.854/2021). Na falência da empresa de temporário, a tomadora responde solidariamente
+    (art. 16, Lei n. 6.019/74; parágrafo único, art. 74, Decreto n. 10.854/2021).
+  </p>
+
+  <h2>5.4 Trabalho avulso</h2>
+  <p>
+    Trabalho prestado de forma esporádica, de curta duração e a diversos tomadores, sem se fixar a qualquer um deles,
+    mas realizado necessariamente por intermediação de entidade específica, formando relação triangular. É vedada a
+    contratação direta pelo tomador.
+  </p>
+
+  <p>
+    A Lei n. 12.023/2009 regulamentou o avulso na movimentação de carga urbana/rural; a Lei n. 12.815/2013 regula o
+    avulso portuário. A intermediação portuária se dá por OGMO (arts. 32 e 39 da Lei n. 12.815/2013). A CF/88 assegura
+    aos avulsos os mesmos direitos dos empregados urbanos e rurais (art. 7º, XXXIV).
+  </p>
+
+  <h2>5.5 Trabalho voluntário</h2>
+  <p>
+    Atividade não remunerada prestada a entidade pública ou instituição privada sem fins lucrativos com objetivos
+    cívicos, culturais, educacionais, científicos, recreativos ou de assistência (art. 1º, Lei n. 9.608/98).
+    Não gera vínculo empregatício ou previdenciário. Formaliza-se por Termo de Adesão (art. 2º). Pode haver
+    ressarcimento de despesas comprovadas, sem caracterizar remuneração (art. 3º).
+  </p>
+
+  <h2>5.6 Estagiário</h2>
+  <p>
+    Estágio é ato educativo escolar supervisionado (art. 1º, Lei n. 11.788/2008), destinado à preparação para o
+    trabalho produtivo. Não cria vínculo empregatício se observados requisitos como matrícula, termo de compromisso,
+    interveniência da instituição de ensino e compatibilidade das atividades (art. 3º). O descumprimento pode gerar
+    vínculo (art. 3º, caput e § 2º), ressalvada Administração Pública (OJ SDI-1 366, TST).
+  </p>
+
+  <div class="box">
+    <p><strong>Jornada máxima do estágio</strong> (art. 10, Lei n. 11.788/2008):</p>
+    <ul>
+      <li>4h/dia e 20h/semana (educação especial e anos finais do fundamental EJA profissional);</li>
+      <li>6h/dia e 30h/semana (superior, técnico, médio);</li>
+      <li>40h/semana (cursos com alternância teoria/prática, sem aulas presenciais, com previsão no projeto pedagógico).</li>
+    </ul>
+  </div>
+
+  <h2>5.7 Cooperativa de trabalho</h2>
+  <p>
+    Sociedade cooperativa: pessoas contribuem com bens/serviços para atividade econômica de proveito comum, sem lucro
+    (art. 3º, Lei n. 5.764/71). Não há vínculo entre cooperativa e associados, nem entre estes e tomadores
+    (§ 1º, art. 442, CLT). Havendo fraude e presentes elementos da relação de emprego, esta será reconhecida (art. 9º, CLT).
+  </p>
+
+  <h2>5.8 Terceirização de serviços</h2>
+  <p>
+    Contratação por interposta pessoa (relação triangular). A Lei n. 6.019/74 admite terceirização inclusive da
+    atividade principal (art. 4º-A). O STF declarou lícita a terceirização em qualquer etapa (ADPF 324 e RE 958252),
+    mantendo a responsabilidade subsidiária da contratante.
+  </p>
+
+  <p>
+    A contratante é subsidiariamente responsável pelas obrigações trabalhistas no período da prestação
+    (art. 5º-A, § 5º, Lei n. 6.019/74), devendo garantir condições de segurança, higiene e salubridade quando o
+    trabalho ocorrer em suas dependências (§ 3º, art. 5º-A). Há ainda regras sobre “quarentena” de 18 meses para
+    ex-empregados (arts. 5º-C e 5º-D).
+  </p>
+
+  <div class="voltar">
+    <a href="../index.html">← Voltar ao índice da disciplina</a>
+  </div>
 
 </div>
 </body>
 </html>
-
