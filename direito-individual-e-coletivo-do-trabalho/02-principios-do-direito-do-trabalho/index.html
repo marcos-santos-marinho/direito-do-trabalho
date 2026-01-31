@@ -1,154 +1,184 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Princípios do Direito do Trabalho</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Princípios do Direito do Trabalho</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    :root{
-      --text:#111;
-      --muted:#555;
-      --bg:#ffffff;
-      --card:#f6f7f9;
-      --link:#1f4fd8;
-    }
+<style>
+  :root{
+    --bg:#f2f7ff;
+    --text:#0f172a;
+    --title:#1f4fd8;
+    --card:#ffffff;
+    --border:rgba(15,23,42,.15);
+    --shadow:0 8px 18px rgba(15,23,42,.08);
+  }
 
-    html { -webkit-text-size-adjust: 100%; }
+  *{ box-sizing:border-box; }
 
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.85;
-      font-size: 18px;
-    }
+  body{
+    margin:0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.7;
+    font-size:18px;
+  }
 
-    .wrap{
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 18px 16px 28px;
-    }
+  .wrap{
+    max-width:900px;
+    margin:auto;
+    padding:18px 16px 40px;
+  }
 
-    /* ===== TÍTULO + SLIDES ===== */
-    .title-row{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:16px;
-      flex-wrap:wrap;
-    }
+  h1{
+    color:var(--title);
+    font-size:28px;
+    margin:10px 0 16px;
+  }
 
-    h1,h2,h3{
-      line-height: 1.25;
-      margin: 22px 0 10px;
-    }
+  h2{
+    font-size:22px;
+    margin:26px 0 10px;
+  }
 
-    h1{
-      font-size: 28px;
-      color: var(--link);
-      margin-top: 6px;
-    }
+  h3{
+    font-size:20px;
+    margin:22px 0 8px;
+  }
 
-    .slides-btn{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      text-decoration:none;
-      background:#fff;
-      border:1px solid rgba(0,0,0,.12);
-      border-radius:12px;
-      padding:10px 14px;
-    }
+  p{
+    margin:0 0 14px;
+  }
 
-    .slides-icon{ font-size:26px; }
-    .slides-text{
-      font-weight:800;
-      font-size:13px;
-      color:#111;
-    }
+  .box{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:16px;
+    margin:18px 0;
+    box-shadow:var(--shadow);
+  }
 
-    h2{ font-size: 22px; }
-    h3{ font-size: 19px; }
+  ul{
+    margin:8px 0 14px 20px;
+  }
 
-    p{
-      margin: 0 0 14px;
-      text-align: left;
-    }
+  li{
+    margin-bottom:8px;
+  }
 
-    .box{
-      background: var(--card);
-      border: 1px solid rgba(0,0,0,.08);
-      border-radius: 12px;
-      padding: 14px;
-      margin: 18px 0;
-    }
+  .voltar{
+    margin-top:32px;
+  }
 
-    a{
-      color: var(--link);
-      text-decoration: none;
-      font-weight: 700;
-    }
+  .voltar a{
+    display:block;
+    text-align:center;
+    background:#ffffff;
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:16px;
+    font-weight:800;
+    text-decoration:none;
+    color:#0f172a;
+    box-shadow:var(--shadow);
+  }
 
-    .voltar{ margin-top: 26px; }
-    .voltar a{
-      display:inline-block;
-      padding: 10px 14px;
-      border: 1px solid rgba(0,0,0,.12);
-      border-radius: 12px;
-      background: #fff;
-    }
-
-    @media (max-width: 420px){
-      body{ font-size: 17px; }
-      h1{ font-size: 26px; }
-      h2{ font-size: 21px; }
-    }
-
-    @media (prefers-color-scheme: dark){
-      :root{
-        --text:#f2f2f2;
-        --muted:#c9c9c9;
-        --bg:#0b1220;
-        --card:#111a2e;
-        --link:#7aa2ff;
-      }
-      .voltar a{ background: transparent; }
-      .slides-btn{ background: transparent; }
-    }
-  </style>
+  @media (max-width:480px){
+    body{ font-size:17px; }
+    h1{ font-size:24px; }
+    h2{ font-size:21px; }
+    h3{ font-size:19px; }
+  }
+</style>
 </head>
 
 <body>
 <div class="wrap">
 
-  <!-- ✅ TÍTULO CORRIGIDO -->
-  <div class="title-row">
-    <h1>2. Princípios do Direito do Trabalho</h1>
+<h1>2. Princípios do Direito do Trabalho</h1>
 
-    <a class="slides-btn"
-       href="https://drive.google.com/file/d/1jaS-eVjC2EveoCopT6lNT1Eqp5-yNVbs/view"
-       target="_blank">
-      <div class="slides-icon">🖼️</div>
-      <div class="slides-text">Slides</div>
-    </a>
-  </div>
+<div class="box">
+<p>
+Os princípios do Direito do Trabalho se constituem nas linhas diretrizes ou postulados que
+inspiram o sentido das normas trabalhistas e configuram a regulamentação das relações de trabalho.
+</p>
+</div>
 
-  <div class="box">
-    <p>
-      Os princípios do Direito do Trabalho se constituem nas linhas diretrizes ou postulados
-      que inspiram o sentido das normas trabalhistas e configuram a regulamentação das relações
-      de trabalho.
-    </p>
-  </div>
+<p>A doutrina identifica as seguintes funções dos princípios:</p>
 
-  <!-- TODO O RESTANTE PERMANECE IGUAL -->
-  <!-- (conteúdo jurídico preservado) -->
+<ul>
+  <li><strong>Função informadora</strong> – servem de fonte de inspiração ao legislador e de fundamento para as normas jurídicas.</li>
+  <li><strong>Função normativa</strong> – servem como fonte supletiva, nas lacunas ou omissões da lei.</li>
+  <li><strong>Função interpretativa</strong> – servem como critério orientador para os intérpretes e aplicadores da lei.</li>
+</ul>
 
-  <div class="voltar">
-    <a href="../index.html">← Voltar ao índice da disciplina</a>
-  </div>
+<p>
+De acordo com o art. 4º da LINDB, quando a lei for omissa, o juiz decidirá o caso de acordo com a
+analogia, os costumes e os princípios gerais de direito. O art. 8º da CLT disciplina que, na falta
+de disposições legais ou contratuais, o intérprete pode socorrer-se dos princípios do Direito do
+Trabalho.
+</p>
+
+<h2>2.1 Princípios específicos do Direito do Trabalho</h2>
+
+<h3>2.1.1 Princípio protetor</h3>
+
+<p>
+O princípio protetor orienta o Direito do Trabalho no sentido de oferecer amparo preferencial ao
+trabalhador, buscando nivelar as desigualdades existentes na relação de emprego.
+</p>
+
+<p>
+A Reforma Trabalhista (Lei n. 13.467/2017) mitigou esse princípio, ao ampliar a autonomia individual,
+reconhecer o trabalhador hipersuficiente e valorizar a prevalência do negociado sobre o legislado.
+</p>
+
+<h3>2.1.2 Princípio da irrenunciabilidade</h3>
+
+<p>
+Refere-se à impossibilidade de o empregado abrir mão voluntariamente dos direitos que lhe são
+assegurados pela legislação trabalhista.
+</p>
+
+<p>
+A Reforma Trabalhista relativizou esse princípio ao permitir negociações diretas para empregados
+hipersuficientes, ressalvados os direitos constitucionalmente garantidos.
+</p>
+
+<h3>2.1.3 Princípio da continuidade da relação de emprego</h3>
+
+<p>
+Presume que o contrato de trabalho tenha duração por prazo indeterminado, protegendo a estabilidade
+da relação de emprego.
+</p>
+
+<h3>2.1.4 Princípio da primazia da realidade</h3>
+
+<p>
+Determina que, havendo divergência entre a prática e os documentos, prevalecerão os fatos ocorridos
+na realidade da relação de trabalho.
+</p>
+
+<h3>2.1.5 Princípio da razoabilidade</h3>
+
+<p>
+Consiste na aplicação da razão como limite ao exercício de direitos e deveres no contrato de
+trabalho, evitando arbitrariedades.
+</p>
+
+<h3>2.1.6 Princípio da boa-fé</h3>
+
+<p>
+Exige conduta leal e honesta de empregado e empregador no cumprimento das obrigações decorrentes do
+contrato de trabalho.
+</p>
+
+<div class="voltar">
+  <a href="../index.html">← Voltar ao índice da disciplina</a>
+</div>
 
 </div>
 </body>
