@@ -1,229 +1,156 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Conceito de Direito do Trabalho</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Conceito de Direito do Trabalho</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    :root{
-      --text:#111;
-      --muted:#555;
-      --bg:#ffffff;
-      --card:#f6f7f9;
-      --link:#1f4fd8;
+<style>
+  body{
+    margin:0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background:#eef2f6;
+    color:#0f172a;
+    line-height:1.7;
+  }
+
+  .wrap{
+    max-width: 900px;
+    margin: auto;
+    padding: 18px 16px 40px;
+  }
+
+  /* ===== TÍTULO + BOTÃO ===== */
+  .title-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+
+  h1{
+    margin:0;
+    font-size:28px;
+    color:#1f4fd8;
+  }
+
+  .slides-btn{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    background:#ffffff;
+    border:1px solid rgba(15,23,42,.15);
+    border-radius:14px;
+    padding:10px 14px;
+    box-shadow:0 6px 14px rgba(15,23,42,.10);
+    min-width:90px;
+  }
+
+  .slides-icon{
+    font-size:28px;
+    line-height:1;
+  }
+
+  .slides-text{
+    margin-top:4px;
+    font-weight:800;
+    font-size:13px;
+    color:#0f172a;
+  }
+
+  /* ===== CONTEÚDO ===== */
+  .box{
+    background:#ffffff;
+    border-radius:14px;
+    padding:16px;
+    margin:16px 0 24px;
+    border:1px solid rgba(15,23,42,.12);
+  }
+
+  h2{
+    margin-top:28px;
+    font-size:22px;
+  }
+
+  p{
+    margin-bottom:16px;
+  }
+
+  /* ===== MOBILE ===== */
+  @media (max-width: 520px){
+    .title-row{
+      align-items:flex-start;
     }
-
-    html { -webkit-text-size-adjust: 100%; }
-
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.85;
-      font-size: 18px;
-    }
-
-    .wrap{
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 18px 16px 28px;
-    }
-
-    h1,h2,h3{
-      line-height: 1.25;
-      margin: 22px 0 10px;
-    }
-
     h1{
-      font-size: 28px;
-      color: var(--link);
-      margin-top: 6px;
+      font-size:24px;
     }
-
-    h2{ font-size: 22px; }
-    h3{ font-size: 19px; }
-
-    p{
-      margin: 0 0 14px;
-      text-align: left;
+    .slides-btn{
+      align-self:flex-start;
     }
-
-    .box{
-      background: var(--card);
-      border: 1px solid rgba(0,0,0,.08);
-      border-radius: 12px;
-      padding: 14px;
-      margin: 18px 0;
-    }
-
-    a{
-      color: var(--link);
-      text-decoration: none;
-      font-weight: 700;
-    }
-
-    a:hover{ text-decoration: underline; }
-
-    .voltar{
-      margin-top: 26px;
-    }
-
-    .voltar a{
-      display:inline-block;
-      padding: 10px 14px;
-      border: 1px solid rgba(0,0,0,.12);
-      border-radius: 12px;
-      background: #fff;
-    }
-
-    @media (max-width: 420px){
-      body{ font-size: 17px; }
-      h1{ font-size: 26px; }
-      h2{ font-size: 21px; }
-    }
-
-    @media (prefers-color-scheme: dark){
-      :root{
-        --text:#f2f2f2;
-        --muted:#c9c9c9;
-        --bg:#0b1220;
-        --card:#111a2e;
-        --link:#7aa2ff;
-      }
-      .voltar a{ background: transparent; }
-    }
-  </style>
+  }
+</style>
 </head>
 
 <body>
 <div class="wrap">
 
-<h1>1. Conceito de Direito do Trabalho</h1>
+  <!-- TÍTULO COM BOTÃO -->
+  <div class="title-row">
+    <h1>1. Conceito de Direito do Trabalho</h1>
 
-<div class="box">
-<p>
-Direito do Trabalho é o ramo da ciência do Direito composto pelo conjunto de normas
-que regulam, no âmbito individual e coletivo, a relação de trabalho subordinado,
-que determinam seus sujeitos (empregado e empregador) e que estruturam as
-organizações destinadas à proteção do trabalhador.
-</p>
-</div>
+    <!-- TROQUE O LINK PELO SEU GOOGLE DRIVE -->
+    <a class="slides-btn"
+       href="LINK_GOOGLE_DRIVE_SLIDES"
+       target="_blank"
+       rel="noopener">
+      <div class="slides-icon">🖼️</div>
+      <div class="slides-text">Slides</div>
+    </a>
+  </div>
 
-<h2>1.1 Origem histórica do Direito do Trabalho</h2>
+  <div class="box">
+    <p>
+      Direito do Trabalho é o ramo da ciência do Direito composto pelo conjunto de normas
+      que regulam, no âmbito individual e coletivo, a relação de trabalho subordinado,
+      que determinam seus sujeitos (empregado e empregador) e que estruturam as organizações
+      destinadas à proteção do trabalhador.
+    </p>
+  </div>
 
-<p>
-A origem do Direito do Trabalho está vinculada à Revolução Industrial, nome pelo qual
-é conhecida a longa série de mudanças tecnológicas, econômicas, sociais e políticas
-ocorridas no século XIX.
-</p>
+  <h2>1.1 Origem histórica do Direito do Trabalho</h2>
 
-<p>
-O Direito do Trabalho nasce, assim, com a sociedade industrial e o trabalho
-assalariado, sob influência de razões de ordem econômica, política e jurídica.
-</p>
+  <p>
+    A origem do Direito do Trabalho está vinculada à Revolução Industrial, nome pelo qual
+    é conhecida a longa série de mudanças tecnológicas, econômicas, sociais e políticas
+    ocorridas no século XIX.
+  </p>
 
-<p>
-A principal causa econômica foi a própria Revolução Industrial (fins do século XVIII
-e início do século XIX), que trouxe mudanças tecnológicas como o uso de novos
-materiais básicos (ferro e aço), a descoberta de novas fontes de energia (carvão,
-máquina a vapor, eletricidade), além do desenvolvimento da máquina de fiar,
-do tear mecânico e dos motores de combustão.
-</p>
+  <p>
+    O Direito do Trabalho nasce, assim, com a sociedade industrial e o trabalho assalariado,
+    sob influência de razões de ordem econômica, política e jurídica.
+  </p>
 
-<p>
-Também se desenvolveram os transportes, como a locomotiva a vapor e o navio,
-bem como as comunicações, como o telégrafo e o rádio.
-</p>
+  <p>
+    A principal causa econômica foi a própria Revolução Industrial (fins do século XVIII
+    e início do século XIX), que trouxe mudanças tecnológicas como o uso de novos materiais
+    básicos (ferro e aço), a descoberta de novas fontes de energia (carvão, máquina a vapor,
+    eletricidade), além do desenvolvimento da máquina de fiar, do tear mecânico e dos motores
+    de combustão.
+  </p>
 
-<p>
-Essas modificações tecnológicas provocaram profundas transformações econômicas,
-com a substituição da produção artesanal pela produção em larga escala, favorecendo
-o desenvolvimento do comércio, do lucro e da acumulação de riquezas.
-</p>
+  <p>
+    Também se desenvolveram os transportes, como a locomotiva a vapor e o navio, bem como
+    as comunicações, como o telégrafo e o rádio.
+  </p>
 
-<p>
-Com a expansão da indústria e do comércio, houve a substituição do trabalho escravo,
-servil e corporativo pelo trabalho assalariado em larga escala, do mesmo modo que a
-manufatura cedeu lugar à fábrica e, posteriormente, à linha de produção.
-</p>
-
-<p>
-A principal causa política foi a transformação do Estado Liberal, marcado pela plena
-liberdade contratual, em Estado Neoliberal, no qual o Estado passa a intervir na ordem
-econômica e social, limitando a liberdade absoluta das partes.
-</p>
-
-<p>
-As formas extremadas dessa intervenção foram o corporativismo e o socialismo,
-com características fortemente autoritárias, transferindo a ordem trabalhista para
-o âmbito das relações de natureza pública.
-</p>
-
-<p>
-A principal causa jurídica foi a justa reivindicação dos trabalhadores por um sistema
-de proteção jurídica, assegurando direitos básicos e promovendo uma igualdade
-jurídica em uma relação naturalmente desigual entre empregado e empregador.
-</p>
-
-<p>
-Uma consequência importante dessa causa jurídica foi o surgimento do sindicalismo,
-como forma de união dos trabalhadores na busca por melhores condições de trabalho.
-</p>
-
-<p>
-Passa a surgir uma legislação destinada a coibir abusos do empregador e preservar a
-dignidade do trabalhador, em reação às jornadas excessivas, salários ínfimos,
-exploração de menores e mulheres e à ausência de proteção contra acidentes,
-doenças e desemprego.
-</p>
-
-<p>
-Essas transformações representam uma reação à chamada <strong>questão social</strong>,
-introduzindo a ideia de justiça social.
-</p>
-
-<h3>1.1.1 Constitucionalismo social</h3>
-
-<p>
-Constitucionalismo social é o movimento caracterizado pela inserção de direitos
-trabalhistas e sociais fundamentais nos textos constitucionais.
-</p>
-
-<p>
-A Constituição mexicana de 1917 foi a primeira a estruturar de forma significativa
-os direitos sociais dos trabalhadores, seguida pela Constituição alemã de 1919
-(Constituição de Weimar).
-</p>
-
-<p>
-Posteriormente, as Constituições dos Estados democráticos passaram a reproduzir
-esses princípios.
-</p>
-
-<h2>1.2 Direito do Trabalho no Brasil</h2>
-
-<p>
-O Direito do Trabalho no Brasil inicia-se a partir da Revolução de 1930, quando o
-Governo Provisório chefiado por Getúlio Vargas criou o Ministério do Trabalho,
-Indústria e Comércio e deu início à elaboração de uma legislação trabalhista ampla
-e geral.
-</p>
-
-<p>
-Em 1943, é aprovada a Consolidação das Leis do Trabalho (CLT), estruturando a
-legislação trabalhista e assegurando direitos fundamentais aos trabalhadores.
-</p>
-
-<p>
-Com a Constituição Federal de 1988, os direitos dos trabalhadores são elevados à
-categoria de direitos fundamentais.
-</p>
-
-<div class="voltar">
-  <a href="../index.html">← Voltar ao índice da disciplina</a>
-</div>
+  <p>
+    Essas modificações tecnológicas provocaram profundas transformações econômicas, com a
+    substituição da produção artesanal pela produção em larga escala, favorecendo o
+    desenvolvimento do comércio, do lucro e da acumulação de riquezas.
+  </p>
 
 </div>
 </body>
