@@ -1,128 +1,150 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Partes e Procuradores</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Partes e Procuradores</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    :root{
-      --text:#111;
-      --bg:#ffffff;
-      --card:#f6f7f9;
-      --link:#1f4fd8;
-    }
+<style>
+  :root{
+    --bg:#f2f7ff;
+    --text:#0f172a;
+    --title:#1f4fd8;
+    --card:#ffffff;
+    --border:rgba(15,23,42,.15);
+    --shadow:0 8px 18px rgba(15,23,42,.08);
+  }
 
-    html { -webkit-text-size-adjust: 100%; }
+  *{ box-sizing:border-box; }
 
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.85;
-      font-size: 18px;
-    }
+  body{
+    margin:0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.7;
+    font-size:18px;
+  }
 
-    .wrap{
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 18px 16px 28px;
-    }
+  .wrap{
+    max-width:900px;
+    margin:auto;
+    padding:18px 16px 40px;
+  }
 
-    h1,h2,h3{
-      line-height: 1.25;
-      margin: 22px 0 10px;
-    }
+  /* ===== TÍTULO + SLIDES ===== */
+  .title-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+    flex-wrap:wrap;
+  }
 
-    h1{
-      font-size: 28px;
-      color: var(--link);
-      margin-top: 6px;
-    }
+  h1{
+    color:var(--title);
+    font-size:28px;
+    margin:10px 0 16px;
+  }
 
-    h2{ font-size: 22px; }
-    h3{ font-size: 19px; }
+  .slides-btn{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    background:#ffffff;
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:10px 14px;
+    box-shadow:var(--shadow);
+    min-width:90px;
+  }
 
-    p{
-      margin: 0 0 14px;
-      text-align: left;
-    }
+  .slides-icon{
+    font-size:28px;
+    line-height:1;
+  }
 
-    ul{
-      margin: 10px 0 14px 18px;
-    }
-    li{ margin: 8px 0; }
+  .slides-text{
+    margin-top:4px;
+    font-weight:800;
+    font-size:13px;
+    color:#0f172a;
+  }
 
-    .box, .toc{
-      background: var(--card);
-      border: 1px solid rgba(0,0,0,.08);
-      border-radius: 12px;
-      padding: 14px;
-      margin: 18px 0;
-    }
+  /* ===== TEXTO ===== */
+  h2{
+    font-size:22px;
+    margin:30px 0 10px;
+  }
 
-    .toc ul{
-      margin: 10px 0 0 18px;
-      padding: 0;
-    }
+  h3{
+    font-size:20px;
+    margin:24px 0 8px;
+  }
 
-    a{
-      color: var(--link);
-      text-decoration: none;
-      font-weight: 700;
-    }
-    a:hover{ text-decoration: underline; }
+  p{
+    margin:0 0 14px;
+    text-align:justify;
+  }
 
-    .tag{
-      display:inline-block;
-      font-size: 14px;
-      font-weight: 700;
-      padding: 2px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(0,0,0,.12);
-      margin-right: 8px;
-      vertical-align: middle;
-      background: #fff;
-    }
+  .box{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:16px;
+    margin:18px 0;
+    box-shadow:var(--shadow);
+  }
 
-    .voltar{
-      margin-top: 26px;
-    }
-    .voltar a{
-      display:inline-block;
-      padding: 10px 14px;
-      border: 1px solid rgba(0,0,0,.12);
-      border-radius: 12px;
-      background: #fff;
-    }
+  ul{
+    margin:10px 0 14px 22px;
+  }
 
-    @media (max-width: 420px){
-      body{ font-size: 17px; }
-      h1{ font-size: 26px; }
-      h2{ font-size: 21px; }
-    }
+  li{
+    margin-bottom:10px;
+  }
 
-    @media (prefers-color-scheme: dark){
-      :root{
-        --text:#f2f2f2;
-        --bg:#0b1220;
-        --card:#111a2e;
-        --link:#7aa2ff;
-      }
-      .tag{ background: transparent; }
-      .voltar a{ background: transparent; }
-    }
-  </style>
+  .marker{
+    font-weight:900;
+  }
+
+  /* ===== BOTÃO VOLTAR ===== */
+  .voltar{
+    margin-top:32px;
+  }
+
+  .voltar a{
+    display:block;
+    text-align:center;
+    background:#ffffff;
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:16px;
+    font-weight:800;
+    text-decoration:none;
+    color:#0f172a;
+    box-shadow:var(--shadow);
+  }
+
+  @media (max-width:480px){
+    body{ font-size:17px; }
+    h1{ font-size:24px; }
+    h2{ font-size:21px; }
+    h3{ font-size:19px; }
+  }
+</style>
 </head>
 
 <body>
 <div class="wrap">
 
-<h1>4. Partes e procuradores</h1>
+  <div class="title-row">
+    <h1>4. Partes e Procuradores</h1>
 
-  <a class="slides-btn"
-       href="https://drive.google.com/file/d/1jaS-eVjC2EveoCopT6lNT1Eqp5-yNVbs/view?usp=sharing"
+    <a class="slides-btn"
+       href="LINK_GOOGLE_DRIVE_SLIDES"
        target="_blank"
        rel="noopener">
       <div class="slides-icon">🖼️</div>
@@ -130,175 +152,105 @@
     </a>
   </div>
 
-<div class="box">
+  <h2>4.1 Capacidade de ser parte, processual e postulatória</h2>
+
   <p>
-    Este tópico é muito cobrado na OAB porque mistura conceitos de “capacidade”, jus postulandi,
-    procuração (mandato) e regras de honorários e gratuidade no processo do trabalho.
+    Diferenciar as capacidades de ser parte, processual e postulatória é de grande relevância para o
+    Exame da OAB.
   </p>
-</div>
 
-<div class="toc">
-  <strong>Sumário</strong>
-  <ul>
-    <li><a href="#c41">4.1 Capacidade de ser parte, processual e postulatória</a></li>
-    <li><a href="#c42">4.2 Representação por advogado</a></li>
-    <li><a href="#c43">4.3 Honorários advocatícios de sucumbência</a></li>
-    <li><a href="#c44">4.4 Assistência judiciária gratuita</a></li>
-    <li><a href="#c45">4.5 Benefício da justiça gratuita</a></li>
-  </ul>
-</div>
+  <div class="box">
+    <p><span class="marker">■</span> <strong>Capacidade de ser parte:</strong> relaciona-se à personalidade
+    jurídica, que é a aptidão para adquirir direitos e contrair obrigações. A pessoa física adquire
+    personalidade com o nascimento com vida (art. 2º do CC) e a pessoa jurídica com a inscrição de seus
+    atos constitutivos (art. 45 do CC). Assim, mesmo um menor de 14 anos pode ser parte em ação trabalhista,
+    como no contrato de aprendizagem.</p>
 
-<h2 id="c41">4.1 Capacidade de ser parte, processual e postulatória</h2>
+    <p><span class="marker">■</span> <strong>Capacidade processual:</strong> relaciona-se à capacidade civil
+    (arts. 3º e 4º do CC). No Direito do Trabalho, é adquirida aos 18 anos (art. 402 da CLT). O menor,
+    embora possa ser parte, não possui capacidade processual e deve ser representado ou assistido
+    (arts. 70 e 71 do CPC/2015).</p>
 
-<p>
-Diferenciar as capacidades de ser parte, processual e postulatória é essencial (e costuma ser
-“pegadinha” em prova). Veja:
-</p>
+    <p><span class="marker">■</span> <strong>Capacidade postulatória:</strong> é a aptidão para postular em
+    juízo. Em regra, é atribuída ao advogado (art. 133 da CF). No processo do trabalho, contudo, admite-se
+    o jus postulandi, permitindo que as partes postulem pessoalmente em determinadas hipóteses.</p>
+  </div>
 
-<div class="box">
-  <p><span class="tag">Capacidade de ser parte</span></p>
+  <h2>4.2 Representação por advogado</h2>
+
   <p>
-    Relacionada à <strong>personalidade jurídica</strong> (aptidão para adquirir direitos e obrigações).
-    A pessoa física adquire personalidade ao nascer com vida; a pessoa jurídica com a inscrição
-    de seus atos constitutivos.
+    No processo do trabalho, a representação por advogado não é obrigatória em todas as situações.
+    O art. 791 da CLT autoriza as partes a postularem em juízo sem advogado (jus postulandi).
   </p>
-</div>
 
-<div class="box">
-  <p><span class="tag">Capacidade processual</span></p>
+  <div class="box">
+    <p>
+      O TST restringiu o jus postulandi por meio da <strong>Súmula 425</strong>, tornando obrigatória
+      a atuação de advogado nas seguintes hipóteses:
+    </p>
+    <ul>
+      <li>mandado de segurança;</li>
+      <li>ação rescisória;</li>
+      <li>ação cautelar;</li>
+      <li>recursos dirigidos ao TST.</li>
+    </ul>
+  </div>
+
   <p>
-    Relacionada à <strong>capacidade civil</strong> (aptidão para praticar atos processuais).
-    No direito do trabalho, a capacidade plena é adquirida aos <strong>18 anos</strong>.
-    Quem não tem capacidade processual deve ser representado/assistido (pais, tutores ou curadores).
+    A procuração é o instrumento que confere poderes ao advogado. Pode ser expressa ou tácita,
+    sendo esta última reconhecida quando o nome do advogado consta na ata de audiência
+    (<strong>Súmula 383 do TST</strong>).
   </p>
-</div>
 
-<div class="box">
-  <p><span class="tag">Capacidade postulatória</span></p>
+  <h2>4.3 Honorários advocatícios de sucumbência</h2>
+
   <p>
-    É a capacidade de <strong>postular em juízo</strong> (formular pedidos, apresentar defesa e acompanhar o processo).
-    Em regra, está ligada ao advogado (art. 133 da CF), mas no processo do trabalho existe
-    <strong>jus postulandi</strong> em várias hipóteses.
+    A Reforma Trabalhista (Lei n. 13.467/2017) introduziu o sistema da mera sucumbência no processo
+    do trabalho, por meio do art. 791-A da CLT.
   </p>
-</div>
 
-<div class="box">
-  <p><strong>Dica OAB:</strong> um menor pode ter <strong>capacidade de ser parte</strong> (personalidade),
-  mas não ter <strong>capacidade processual</strong> (precisa de representação/assistência).</p>
-</div>
+  <div class="box">
+    <p>
+      Os honorários de sucumbência variam de <strong>5% a 15%</strong> do valor da condenação,
+      do proveito econômico obtido ou do valor atualizado da causa, considerando:
+    </p>
+    <ul>
+      <li>grau de zelo do profissional;</li>
+      <li>lugar da prestação do serviço;</li>
+      <li>natureza e importância da causa;</li>
+      <li>trabalho realizado e tempo exigido.</li>
+    </ul>
+  </div>
 
-<h2 id="c42">4.2 Representação por advogado</h2>
+  <p>
+    O STF declarou inconstitucional a cobrança de honorários do beneficiário da justiça gratuita
+    (ADI 5.766), garantindo o acesso à Justiça.
+  </p>
 
-<p>
-No processo do trabalho, a representação por advogado não é obrigatória em todas as situações.
-O art. 791 da CLT prevê que as partes podem postular em juízo sem advogado, acompanhando suas reclamações até o final
-(<strong>jus postulandi</strong>).
-</p>
+  <p>
+    Conforme a IN n. 41/2018 do TST, os honorários de sucumbência aplicam-se apenas aos processos
+    ajuizados após 11/11/2017.
+  </p>
 
-<div class="box">
-  <p><strong>Jus postulandi foi restringido:</strong> memorize a <strong>Súmula 425 do TST</strong> (cai muito em OAB).</p>
-  <ul>
-    <li><strong>Não se aplica</strong> (advogado obrigatório): mandado de segurança, ação rescisória, ação cautelar e recursos para o TST.</li>
-    <li><strong>Em regra, aplica-se</strong> nas Varas do Trabalho e TRTs.</li>
-  </ul>
-</div>
+  <h2>4.4 Assistência judiciária gratuita</h2>
 
-<h3>Procuração e mandato tácito</h3>
+  <p>
+    Prevista no art. 14 da Lei n. 5.584/70, a assistência judiciária gratuita é prestada pelo
+    sindicato, independentemente de filiação do trabalhador, desde que preenchidos os requisitos legais.
+  </p>
 
-<p>
-Quando a parte está representada por advogado, normalmente existe uma <strong>procuração</strong> (mandato expresso).
-Também pode haver <strong>mandato tácito</strong> quando o nome do advogado constar na ata de audiência,
-permitindo sua atuação em nome da parte (conforme entendimento sumulado pelo TST).
-</p>
+  <h2>4.5 Benefício da justiça gratuita</h2>
 
-<div class="box">
-  <p><strong>Ponto de prova:</strong> “mandato tácito” costuma aparecer como alternativa em questões objetivas.</p>
-</div>
+  <p>
+    Diferentemente da assistência judiciária gratuita, o benefício da justiça gratuita pode ser
+    concedido a qualquer parte que comprove insuficiência econômica, inclusive de ofício pelo juiz,
+    conforme art. 790, §§ 3º e 4º, da CLT.
+  </p>
 
-<h2 id="c43">4.3 Honorários advocatícios de sucumbência</h2>
-
-<p>
-A reforma trabalhista (Lei 13.467/2017) incluiu o art. 791-A na CLT e passou a adotar, no processo do trabalho,
-o sistema de <strong>mera sucumbência</strong> (“perdeu-pagou”): honorários são devidos ao advogado da parte vencedora,
-inclusive se ele atuar em causa própria.
-</p>
-
-<div class="box">
-  <p><strong>Percentual (CLT, art. 791-A):</strong> de <strong>5% a 15%</strong> sobre:</p>
-  <ul>
-    <li>o valor que resultar da liquidação; ou</li>
-    <li>o proveito econômico obtido; ou</li>
-    <li>o valor atualizado da causa.</li>
-  </ul>
-</div>
-
-<div class="box">
-  <p><strong>Critérios para fixação (resumo do §2º):</strong></p>
-  <ul>
-    <li>grau de zelo do profissional;</li>
-    <li>lugar da prestação do serviço;</li>
-    <li>natureza e importância da causa;</li>
-    <li>trabalho realizado e tempo exigido.</li>
-  </ul>
-</div>
-
-<p>
-A condenação também pode ocorrer em ações contra a Fazenda Pública, quando a parte estiver assistida/substituída
-pelo sindicato e na reconvenção.
-</p>
-
-<div class="box">
-  <p><strong>STF (ADI 5.766 – 2021):</strong> beneficiário da justiça gratuita <strong>não</strong> será condenado ao pagamento
-  de honorários sucumbenciais (inconstitucionalidade do §4º do art. 791-A da CLT).</p>
-</div>
-
-<div class="box">
-  <p><strong>Marco temporal (IN 41/2018 – TST):</strong> honorários sucumbenciais só para processos ajuizados após
-  <strong>11/11/2017</strong> (início da vigência da reforma).</p>
-</div>
-
-<h2 id="c44">4.4 Assistência judiciária gratuita</h2>
-
-<p>
-A assistência judiciária gratuita (Lei 5.584/1970) envolve a atuação do <strong>sindicato</strong> na representação judicial,
-com consequências como isenção de custas e regras específicas sobre honorários conforme o modelo histórico do processo do trabalho.
-</p>
-
-<div class="box">
-  <p><strong>Atenção:</strong> assistência judiciária gratuita (sindicato) <strong>não é</strong> a mesma coisa que justiça gratuita
-  (benefício concedido por situação econômica).</p>
-</div>
-
-<p>
-O material destaca que o benefício não depende de filiação ao sindicato quando preenchidos os requisitos legais.
-</p>
-
-<h2 id="c45">4.5 Benefício da justiça gratuita</h2>
-
-<p>
-Diferentemente da assistência prestada pelo sindicato, o benefício da <strong>justiça gratuita</strong> pode ser concedido
-a quem não tem condições de arcar com os custos do processo sem prejuízo da própria subsistência, ainda que esteja com advogado
-particular ou usando jus postulandi.
-</p>
-
-<div class="box">
-  <p><strong>Regras (CLT, art. 790, §§ 3º e 4º – resumo):</strong></p>
-  <ul>
-    <li>presunção de hipossuficiência para quem recebe até <strong>40% do teto</strong> do RGPS;</li>
-    <li>para quem recebe acima disso, pode haver <strong>comprovação</strong> por declaração e/ou elementos de prova.</li>
-  </ul>
-</div>
-
-<p>
-O benefício pode ser concedido <strong>de ofício</strong> ou a requerimento, em qualquer tempo ou grau de jurisdição
-(inclusive em fase recursal), conforme destacado no material.
-</p>
-
-<div class="voltar">
-  <a href="../index.html">← Voltar ao índice da disciplina</a>
-</div>
+  <div class="voltar">
+    <a href="../index.html">← Voltar ao índice da disciplina</a>
+  </div>
 
 </div>
 </body>
 </html>
-
