@@ -1,115 +1,132 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Atos e prazos processuais</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Atos e Prazos Processuais</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    :root{
-      --text:#111;
-      --bg:#ffffff;
-      --card:#f6f7f9;
-      --link:#1f4fd8;
-    }
+<style>
+  :root{
+    --bg:#f2f7ff;
+    --text:#0f172a;
+    --title:#1f4fd8;
+    --card:#ffffff;
+    --border:rgba(15,23,42,.15);
+    --shadow:0 8px 18px rgba(15,23,42,.08);
+  }
 
-    html { -webkit-text-size-adjust: 100%; }
+  *{ box-sizing:border-box; }
 
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.85;
-      font-size: 18px;
-    }
+  body{
+    margin:0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.7;
+    font-size:18px;
+  }
 
-    .wrap{
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 18px 16px 28px;
-    }
+  .wrap{
+    max-width:900px;
+    margin:auto;
+    padding:18px 16px 40px;
+  }
 
-    h1,h2,h3{
-      line-height: 1.25;
-      margin: 22px 0 10px;
-    }
+  /* ===== TÍTULO + SLIDES ===== */
+  .title-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+    flex-wrap:wrap;
+  }
 
-    h1{
-      font-size: 28px;
-      color: var(--link);
-      margin-top: 6px;
-    }
+  h1{
+    color:var(--title);
+    font-size:28px;
+    margin:10px 0 16px;
+  }
 
-    h2{ font-size: 22px; }
-    h3{ font-size: 19px; }
+  .slides-btn{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    background:#ffffff;
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:10px 14px;
+    box-shadow:var(--shadow);
+    min-width:90px;
+  }
 
-    p{
-      margin: 0 0 14px;
-      text-align: left;
-    }
+  .slides-icon{ font-size:28px; line-height:1; }
+  .slides-text{
+    margin-top:4px;
+    font-weight:800;
+    font-size:13px;
+    color:#0f172a;
+  }
 
-    ul{
-      margin: 10px 0 14px 18px;
-    }
-    li{ margin: 8px 0; }
+  /* ===== TEXTO ===== */
+  h2{ font-size:22px; margin:30px 0 10px; }
+  h3{ font-size:20px; margin:24px 0 8px; }
 
-    .box, .toc{
-      background: var(--card);
-      border: 1px solid rgba(0,0,0,.08);
-      border-radius: 12px;
-      padding: 14px;
-      margin: 18px 0;
-    }
+  p{
+    margin:0 0 14px;
+    text-align:justify;
+  }
 
-    .toc ul{
-      margin: 10px 0 0 18px;
-      padding: 0;
-    }
+  .box{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:16px;
+    margin:18px 0;
+    box-shadow:var(--shadow);
+  }
 
-    a{
-      color: var(--link);
-      text-decoration: none;
-      font-weight: 700;
-    }
-    a:hover{ text-decoration: underline; }
+  ul{
+    margin:10px 0 14px 22px;
+  }
 
-    .voltar{
-      margin-top: 26px;
-    }
-    .voltar a{
-      display:inline-block;
-      padding: 10px 14px;
-      border: 1px solid rgba(0,0,0,.12);
-      border-radius: 12px;
-      background: #fff;
-    }
+  li{ margin-bottom:10px; }
 
-    @media (max-width: 420px){
-      body{ font-size: 17px; }
-      h1{ font-size: 26px; }
-      h2{ font-size: 21px; }
-    }
+  .marker{ font-weight:900; }
 
-    @media (prefers-color-scheme: dark){
-      :root{
-        --text:#f2f2f2;
-        --bg:#0b1220;
-        --card:#111a2e;
-        --link:#7aa2ff;
-      }
-      .voltar a{ background: transparent; }
-    }
-  </style>
+  /* ===== BOTÃO VOLTAR ===== */
+  .voltar{ margin-top:32px; }
+  .voltar a{
+    display:block;
+    text-align:center;
+    background:#ffffff;
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:16px;
+    font-weight:800;
+    text-decoration:none;
+    color:#0f172a;
+    box-shadow:var(--shadow);
+  }
+
+  @media (max-width:480px){
+    body{ font-size:17px; }
+    h1{ font-size:24px; }
+    h2{ font-size:21px; }
+    h3{ font-size:19px; }
+  }
+</style>
 </head>
 
 <body>
 <div class="wrap">
 
-<h1>5. Atos e prazos processuais</h1>
+  <div class="title-row">
+    <h1>5. Atos e Prazos Processuais</h1>
 
-  <a class="slides-btn"
-       href="https://drive.google.com/file/d/1jaS-eVjC2EveoCopT6lNT1Eqp5-yNVbs/view?usp=sharing"
+    <a class="slides-btn"
+       href="LINK_GOOGLE_DRIVE_SLIDES"
        target="_blank"
        rel="noopener">
       <div class="slides-icon">🖼️</div>
@@ -117,168 +134,120 @@
     </a>
   </div>
 
-<div class="box">
+  <h2>5.1 Forma e realização dos atos processuais</h2>
+
   <p>
-    Neste tópico você vai revisar: (1) forma/realização dos atos; (2) comunicação dos atos (notificações);
-    (3) prazos processuais (início e contagem); e (4) custas processuais (regras e pontos de prova).
+    Os atos processuais são realizados das 6h às 20h dos dias úteis, conforme art. 770 da CLT,
+    podendo a penhora ocorrer fora desses horários quando houver autorização expressa do juiz,
+    sob pena de nulidade. Trata-se de exceção justificada pela dificuldade do ato.
   </p>
-</div>
 
-<div class="toc">
-  <strong>Sumário</strong>
-  <ul>
-    <li><a href="#s51">5.1 Forma/realização dos atos processuais</a></li>
-    <li><a href="#s52">5.2 Comunicação dos atos processuais</a></li>
-    <li><a href="#s53">5.3 Prazos processuais</a></li>
-    <li><a href="#s54">5.4 Custas processuais</a></li>
-  </ul>
-</div>
+  <p>
+    A audiência segue regra própria: será realizada das 8h às 18h, nos dias úteis, não podendo
+    ultrapassar 5 horas seguidas, salvo matéria urgente (art. 813 da CLT).
+  </p>
 
-<h2 id="s51">5.1 Forma/realização dos atos processuais</h2>
+  <div class="box">
+    <p><strong>Classificação dos atos processuais:</strong></p>
+    <ul>
+      <li><strong>Atos das partes:</strong> petição inicial, defesa, recursos, razões finais.</li>
+      <li><strong>Atos do juiz:</strong> despachos, decisões interlocutórias, sentenças e acórdãos.</li>
+      <li><strong>Atos do escrivão/chefe de secretaria:</strong> autuação e expedição de notificações.</li>
+    </ul>
+  </div>
 
-<p>
-Os atos processuais são realizados das <strong>6h às 20h</strong> dos dias úteis (art. 770, CLT).
-A penhora pode ocorrer fora desse horário se houver <strong>autorização expressa</strong> do juiz,
-sob pena de nulidade do ato.
-</p>
+  <div class="box">
+    <p><strong>Pronunciamentos judiciais (arts. 203 e 204 do CPC):</strong></p>
+    <ul>
+      <li><strong>Despachos:</strong> atos sem conteúdo decisório (art. 1.001, CPC).</li>
+      <li><strong>Decisões interlocutórias:</strong> decidem questões incidentais, sem recurso imediato.</li>
+      <li><strong>Sentenças:</strong> extinguem o processo, com ou sem resolução do mérito.</li>
+      <li><strong>Acórdãos:</strong> decisões colegiadas dos tribunais.</li>
+    </ul>
+  </div>
 
-<div class="box">
-  <p><strong>Ponto de prova:</strong> penhora em domingo/feriado também depende de <strong>autorização expressa</strong> do juiz
-  (não existe “autorização implícita”).</p>
-</div>
+  <p>
+    A IN nº 39/2016 do TST afasta a aplicação do art. 190 do CPC ao processo do trabalho, vedando
+    a negociação processual.
+  </p>
 
-<p>
-A audiência tem regra própria de horário: ocorre das <strong>8h às 18h</strong> (dias úteis) e não pode ultrapassar
-<strong>5 horas seguidas</strong>, salvo matéria urgente (art. 813, CLT).
-</p>
+  <h2>5.2 Comunicação dos atos processuais</h2>
 
-<div class="box">
-  <p><strong>Classificação dos atos processuais:</strong></p>
-  <ul>
-    <li><strong>Atos das partes:</strong> petição inicial, defesa, recursos, razões finais etc.</li>
-    <li><strong>Atos do juiz (pronunciamentos):</strong> despachos, decisões interlocutórias, sentenças e acórdãos (CPC/2015, arts. 203 e 204).</li>
-    <li><strong>Atos do escrivão/chefia:</strong> autuação, expedições e notificações (CPC/2015, art. 206; CLT, art. 841).</li>
-  </ul>
-</div>
+  <p>
+    No processo do trabalho, tanto a citação quanto a intimação recebem a denominação única de
+    <strong>notificação</strong>.
+  </p>
 
-<div class="box">
-  <p><strong>IN 39/2016 (TST):</strong> não se aplica o art. 190 do CPC/2015 (negócio jurídico processual) ao processo do trabalho.
-  Ou seja, as partes não podem “negociar” para mudar o procedimento/forma de prática dos atos.</p>
-</div>
+  <div class="box">
+    <p><strong>Art. 841 da CLT – prazos relevantes:</strong></p>
+    <ul>
+      <li>48h para expedição da notificação;</li>
+      <li>presunção de recebimento em 48h (Súmula 16 do TST);</li>
+      <li>mínimo de 5 dias de antecedência para a audiência;</li>
+      <li>prazo em quádruplo (20 dias) para entes públicos (DL 779/69).</li>
+    </ul>
+  </div>
 
-<h2 id="s52">5.2 Comunicação dos atos processuais</h2>
+  <p>
+    A notificação por edital é vedada no procedimento sumaríssimo (art. 852-B, II, CLT).
+    O Oficial de Justiça atua, em regra, na execução (art. 880, CLT).
+  </p>
 
-<p>
-No processo do trabalho, citação e intimação recebem uma denominação única:
-<strong>notificação</strong>. Ex.: notifica para comparecer à audiência (equivalente à citação) e notifica da sentença
-(equivalente à intimação).
-</p>
+  <p>
+    Súmula 427 do TST: havendo pedido de intimação exclusiva de advogado, a intimação de outro
+    pode gerar nulidade, desde que haja prejuízo.
+  </p>
 
-<h3>Notificação do reclamado (CLT, art. 841)</h3>
+  <p>
+    As testemunhas não são previamente intimadas (art. 825 da CLT), devendo comparecer mediante convite.
+  </p>
 
-<div class="box">
-  <p><strong>Prazos que caem muito:</strong></p>
-  <ul>
-    <li><strong>48 horas</strong> para expedição da notificação após recebimento da petição inicial.</li>
-    <li><strong>48 horas</strong> para presumir o recebimento (Súmula 16, TST) — presunção relativa.</li>
-    <li><strong>5 dias</strong> de antecedência mínima entre o recebimento e a audiência.</li>
-  </ul>
-</div>
+  <h2>5.3 Prazos processuais</h2>
 
-<div class="box">
-  <p><strong>Fazenda Pública na JT:</strong> prazo para defesa em <strong>quádruplo</strong> (DL 779/69),
-  então os 5 dias tornam-se <strong>20 dias</strong> de antecedência para audiência.
-  No processo do trabalho, não se aplica a regra do CPC/2015 de “prazo em dobro” para a Fazenda, porque há norma específica.</p>
-</div>
+  <p>
+    Diferencia-se o início do prazo (ciência do ato) do início da contagem (dia útil seguinte).
+    Exclui-se o primeiro dia e inclui-se o último (art. 775, CLT).
+  </p>
 
-<h3>Modalidades de notificação</h3>
-<ul>
-  <li><strong>Postal:</strong> regra geral (mais rápida e econômica).</li>
-  <li><strong>Edital:</strong> quando não for possível a via postal ou houver dificuldade criada pelo destinatário; mas
-      <strong>é vedada no rito sumaríssimo</strong> (art. 852-B, II, CLT).</li>
-  <li><strong>Oficial de Justiça:</strong> em regra, aparece com mais força na execução (ex.: art. 880, CLT).</li>
-</ul>
+  <p>
+    A Reforma Trabalhista determinou a contagem apenas em dias úteis.
+  </p>
 
-<div class="box">
-  <p><strong>Súmula 427 (TST):</strong> se houver pedido de intimação exclusiva de um advogado, deve ser respeitado.
-  Havendo prejuízo (ex.: perda de prazo), pode haver nulidade.</p>
-</div>
+  <div class="box">
+    <p><strong>Destaques importantes:</strong></p>
+    <ul>
+      <li>Súmula 262 do TST: intimação no sábado presume-se recebida na segunda;</li>
+      <li>prazo em quádruplo para entes públicos (DL 779/69);</li>
+      <li>OJ 310 da SDI-1: não se aplica prazo em dobro por litisconsórcio;</li>
+      <li>suspensão dos prazos de 20/12 a 20/01 (art. 775-A, CLT).</li>
+    </ul>
+  </div>
 
-<div class="box">
-  <p><strong>Testemunhas (CLT, art. 825):</strong> no processo do trabalho, em regra, não há intimação prévia das testemunhas.
-  Elas comparecem por convite da parte; se não vierem, podem ser intimadas para uma próxima audiência.</p>
-</div>
+  <h2>5.4 Custas processuais</h2>
 
-<h2 id="s53">5.3 Prazos processuais</h2>
+  <p>
+    Não há custas prévias na Justiça do Trabalho. O vencido arca ao final (art. 789, §1º, CLT).
+  </p>
 
-<p>
-Atenção para a diferença entre <strong>início do prazo</strong> e <strong>início da contagem do prazo</strong>:
-</p>
+  <p>
+    Honorários periciais são devidos ao final, sendo vedada cobrança antecipada (art. 790-B, §3º, CLT).
+    O STF declarou inconstitucional a cobrança do beneficiário da justiça gratuita.
+  </p>
 
-<div class="box">
-  <ul>
-    <li><strong>Início do prazo:</strong> dia da ciência (recebimento) do ato.</li>
-    <li><strong>Início da contagem:</strong> primeiro <strong>dia útil seguinte</strong> à ciência.</li>
-  </ul>
-  <p><strong>Regra (CLT, art. 775):</strong> exclui o dia do começo e inclui o do vencimento.</p>
-</div>
+  <div class="box">
+    <p><strong>Custas:</strong></p>
+    <ul>
+      <li>2% do valor da condenação, causa ou acordo;</li>
+      <li>valor mínimo: R$ 10,64;</li>
+      <li>valor máximo: 4x o teto do RGPS;</li>
+      <li>isenções previstas no art. 790-A da CLT.</li>
+    </ul>
+  </div>
 
-<div class="box">
-  <p><strong>Reforma trabalhista:</strong> prazos passaram a ser contados em <strong>dias úteis</strong> (CLT, art. 775).
-  Sábados, domingos e feriados não entram na contagem.</p>
-</div>
-
-<p>
-Existe regra específica quando a intimação é recebida no sábado: aplica-se a lógica de considerar a ciência no primeiro dia útil seguinte,
-e a contagem começa no útil subsequente, conforme orientação sumulada (Súmula 262, TST).
-</p>
-
-<div class="box">
-  <p><strong>Litisconsortes com advogados diferentes:</strong> no processo do trabalho os prazos permanecem <strong>simples</strong>
-  (não se aplica o art. 229 do CPC/2015), conforme orientação jurisprudencial citada no material.</p>
-</div>
-
-<div class="box">
-  <p><strong>Suspensão de prazos:</strong> há suspensão entre <strong>20/12 e 20/01</strong> (CLT, art. 775-A):
-  não correm prazos e não se realizam audiências/sessões de julgamento nesse período.</p>
-</div>
-
-<h2 id="s54">5.4 Custas processuais</h2>
-
-<p>
-Na Justiça do Trabalho, em regra, <strong>não há custas prévias</strong>. O pagamento é feito ao final (CLT, art. 789, §1º),
-após o trânsito em julgado, salvo hipóteses de preparo recursal quando exigido.
-</p>
-
-<div class="box">
-  <p><strong>Honorários periciais:</strong></p>
-  <ul>
-    <li>não há cobrança prévia (entendimento consolidado e reforçado pela CLT);</li>
-    <li>regra geral: paga quem sucumbe no objeto da perícia;</li>
-    <li>assistente técnico: paga quem contratou (Súmula 341, TST).</li>
-  </ul>
-</div>
-
-<div class="box">
-  <p><strong>STF (2021):</strong> considerou inconstitucional condenar o beneficiário da justiça gratuita ao pagamento
-  de honorários periciais, por violar o acesso à Justiça (ponto destacado no material).</p>
-</div>
-
-<div class="box">
-  <p><strong>Cálculo das custas (CLT, art. 789):</strong> regra de <strong>2%</strong> conforme o caso (valor da condenação, valor da causa,
-  valor do acordo ou valor fixado pelo juiz). Em acordo, as custas podem ser divididas, mas vale o que estiver previsto no próprio acordo.</p>
-</div>
-
-<div class="box">
-  <p><strong>Isenções (CLT, art. 790-A – resumo):</strong> beneficiários da justiça gratuita, entes de direito público,
-  MPT, Correios e entes estrangeiros, conforme hipóteses legais.</p>
-</div>
-
-<div class="voltar">
-  <a href="../index.html">← Voltar ao índice da disciplina</a>
-</div>
+  <div class="voltar">
+    <a href="../index.html">← Voltar ao índice da disciplina</a>
+  </div>
 
 </div>
 </body>
 </html>
-
