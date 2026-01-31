@@ -1,110 +1,146 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Organização da Justiça do Trabalho</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Organização da Justiça do Trabalho</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    :root{
-      --text:#111;
-      --bg:#ffffff;
-      --card:#f6f7f9;
-      --link:#1f4fd8;
-    }
+<style>
+  :root{
+    --bg:#f2f7ff;
+    --text:#0f172a;
+    --title:#1f4fd8;
+    --card:#ffffff;
+    --border:rgba(15,23,42,.15);
+    --shadow:0 8px 18px rgba(15,23,42,.08);
+  }
 
-    html { -webkit-text-size-adjust: 100%; }
+  *{ box-sizing:border-box; }
 
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.85;
-      font-size: 18px;
-    }
+  body{
+    margin:0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.7;
+    font-size:18px;
+  }
 
-    .wrap{
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 18px 16px 28px;
-    }
+  .wrap{
+    max-width:900px;
+    margin:auto;
+    padding:18px 16px 40px;
+  }
 
-    h1,h2,h3{
-      line-height: 1.25;
-      margin: 22px 0 10px;
-    }
+  /* ===== TÍTULO + SLIDES ===== */
+  .title-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+    flex-wrap:wrap;
+  }
 
-    h1{
-      font-size: 28px;
-      color: var(--link);
-      margin-top: 6px;
-    }
+  h1{
+    color:var(--title);
+    font-size:28px;
+    margin:10px 0 16px;
+  }
 
-    h2{ font-size: 22px; }
-    h3{ font-size: 19px; }
+  .slides-btn{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    background:#ffffff;
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:10px 14px;
+    box-shadow:var(--shadow);
+    min-width:90px;
+  }
 
-    p{
-      margin: 0 0 14px;
-      text-align: left;
-    }
+  .slides-icon{
+    font-size:28px;
+    line-height:1;
+  }
 
-    ul{
-      margin: 10px 0 14px 18px;
-    }
-    li{ margin: 8px 0; }
+  .slides-text{
+    margin-top:4px;
+    font-weight:800;
+    font-size:13px;
+    color:#0f172a;
+  }
 
-    .box, .toc{
-      background: var(--card);
-      border: 1px solid rgba(0,0,0,.08);
-      border-radius: 12px;
-      padding: 14px;
-      margin: 18px 0;
-    }
+  /* ===== TEXTO ===== */
+  h2{
+    font-size:22px;
+    margin:30px 0 10px;
+  }
 
-    a{
-      color: var(--link);
-      text-decoration: none;
-      font-weight: 700;
-    }
-    a:hover{ text-decoration: underline; }
+  h3{
+    font-size:20px;
+    margin:24px 0 8px;
+  }
 
-    .voltar{
-      margin-top: 26px;
-    }
-    .voltar a{
-      display:inline-block;
-      padding: 10px 14px;
-      border: 1px solid rgba(0,0,0,.12);
-      border-radius: 12px;
-      background: #fff;
-    }
+  p{
+    margin:0 0 14px;
+    text-align:justify;
+  }
 
-    @media (max-width: 420px){
-      body{ font-size: 17px; }
-      h1{ font-size: 26px; }
-      h2{ font-size: 21px; }
-    }
+  .box{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:16px;
+    margin:18px 0;
+    box-shadow:var(--shadow);
+  }
 
-    @media (prefers-color-scheme: dark){
-      :root{
-        --text:#f2f2f2;
-        --bg:#0b1220;
-        --card:#111a2e;
-        --link:#7aa2ff;
-      }
-      .voltar a{ background: transparent; }
-    }
-  </style>
+  ul{
+    margin:10px 0 14px 22px;
+  }
+
+  li{
+    margin-bottom:10px;
+  }
+
+  /* ===== BOTÃO VOLTAR ===== */
+  .voltar{
+    margin-top:32px;
+  }
+
+  .voltar a{
+    display:block;
+    text-align:center;
+    background:#ffffff;
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:16px;
+    font-weight:800;
+    text-decoration:none;
+    color:#0f172a;
+    box-shadow:var(--shadow);
+  }
+
+  @media (max-width:480px){
+    body{ font-size:17px; }
+    h1{ font-size:24px; }
+    h2{ font-size:21px; }
+    h3{ font-size:19px; }
+  }
+</style>
 </head>
 
 <body>
 <div class="wrap">
 
-<h1>2. Organização da Justiça do Trabalho</h1>
+  <div class="title-row">
+    <h1>2. Organização da Justiça do Trabalho</h1>
 
-  <a class="slides-btn"
-       href="https://drive.google.com/file/d/1jaS-eVjC2EveoCopT6lNT1Eqp5-yNVbs/view?usp=sharing"
+    <a class="slides-btn"
+       href="LINK_GOOGLE_DRIVE_SLIDES"
        target="_blank"
        rel="noopener">
       <div class="slides-icon">🖼️</div>
@@ -112,139 +148,121 @@
     </a>
   </div>
 
-<div class="box">
+  <div class="box">
+    <p>
+      Os órgãos da Justiça do Trabalho constam no art. 111 da Constituição Federal de 1988, sendo a
+      justiça especializada formada por três graus de jurisdição: Tribunal Superior do Trabalho,
+      Tribunais Regionais do Trabalho e Juízes do Trabalho.
+    </p>
+  </div>
+
+  <h2>2.1 Tribunal Superior do Trabalho</h2>
+
   <p>
-    A Justiça do Trabalho é uma justiça especializada prevista na Constituição Federal,
-    estruturada em três graus de jurisdição: Tribunal Superior do Trabalho,
-    Tribunais Regionais do Trabalho e Juízes do Trabalho.
+    O Tribunal Superior do Trabalho, órgão de cúpula da Justiça do Trabalho, está previsto no art.
+    111-A da CF/88 e possui as seguintes características:
   </p>
-</div>
 
-<div class="toc">
-  <strong>Sumário</strong>
-  <ul>
-    <li><a href="#tst">2.1 Tribunal Superior do Trabalho</a></li>
-    <li><a href="#trt">2.2 Tribunais Regionais do Trabalho</a></li>
-    <li><a href="#juizes">2.3 Juízes do Trabalho</a></li>
-  </ul>
-</div>
+  <div class="box">
+    <ul>
+      <li>27 Ministros;</li>
+      <li>idade entre 35 e 70 anos;</li>
+      <li>nomeação pelo Presidente da República;</li>
+      <li>aprovação pela maioria absoluta do Senado Federal.</li>
+    </ul>
+  </div>
 
-<h2 id="tst">2.1 Tribunal Superior do Trabalho</h2>
-
-<p>
-O Tribunal Superior do Trabalho (TST) é o órgão de cúpula da Justiça do Trabalho,
-previsto no art. 111-A da Constituição Federal.
-</p>
-
-<div class="box">
-  <ul>
-    <li>Composição: <strong>27 Ministros</strong> (número fixo).</li>
-    <li>Idade: mais de <strong>35</strong> e menos de <strong>70</strong> anos.</li>
-    <li>Nomeação pelo <strong>Presidente da República</strong>.</li>
-    <li>Aprovação por <strong>maioria absoluta do Senado Federal</strong> (sabatina).</li>
-  </ul>
-</div>
-
-<p>
-Um quinto das vagas é destinado a membros da Advocacia e do Ministério Público do Trabalho,
-o chamado <strong>quinto constitucional</strong>, garantindo pluralidade na composição do Tribunal.
-</p>
-
-<p>
-A EC n. 45/2004 introduziu órgãos que funcionam junto ao TST:
-</p>
-
-<div class="box">
-  <ul>
-    <li>
-      <strong>Escola Nacional de Formação e Aperfeiçoamento de Magistrados do Trabalho</strong>:
-      responsável pela regulamentação dos cursos oficiais de ingresso e promoção na carreira.
-    </li>
-    <li>
-      <strong>Conselho Superior da Justiça do Trabalho</strong>:
-      exerce supervisão administrativa, orçamentária, financeira e patrimonial,
-      com decisões de efeito vinculante.
-    </li>
-  </ul>
-</div>
-
-<h2 id="trt">2.2 Tribunais Regionais do Trabalho</h2>
-
-<p>
-Os Tribunais Regionais do Trabalho (TRTs) estão previstos no art. 115 da Constituição Federal
-e atuam como segunda instância da Justiça do Trabalho.
-</p>
-
-<div class="box">
-  <ul>
-    <li>Número mínimo de <strong>7 juízes</strong> (não é número fixo).</li>
-    <li>Idade: mais de <strong>30</strong> e menos de <strong>70</strong> anos.</li>
-    <li>Nomeação pelo <strong>Presidente da República</strong>.</li>
-    <li><strong>Não há sabatina</strong> no Senado Federal.</li>
-  </ul>
-</div>
-
-<p>
-A composição também observa o quinto constitucional e os critérios alternados
-de <strong>antiguidade</strong> e <strong>merecimento</strong>.
-</p>
-
-<p>
-Não há TRT em todos os Estados. São Paulo é o único Estado com dois TRTs
-(2ª Região – São Paulo e 15ª Região – Campinas).
-Não possuem TRT os Estados do Tocantins, Amapá, Acre e Roraima.
-</p>
-
-<div class="box">
-  <p><strong>Alterações da EC n. 45/2004:</strong></p>
-  <ul>
-    <li>
-      <strong>Justiça itinerante:</strong> realização de audiências e atos em locais distantes,
-      ampliando o acesso à justiça.
-    </li>
-    <li>
-      <strong>Câmaras regionais:</strong> atuação descentralizada dos TRTs,
-      especialmente em Estados sem tribunal.
-    </li>
-  </ul>
-</div>
-
-<h2 id="juizes">2.3 Juízes do Trabalho</h2>
-
-<p>
-Até a EC n. 24/1999, o primeiro grau era exercido pelas Juntas de Conciliação e Julgamento,
-formadas por um juiz togado e dois juízes classistas.
-A emenda extinguiu a representação classista, criando as <strong>Varas do Trabalho</strong>,
-com atuação do juiz singular.
-</p>
-
-<p>
-Nem todos os municípios possuem Vara do Trabalho. Nessas hipóteses, o art. 112 da CF/88
-autoriza que a competência trabalhista seja exercida por <strong>Juiz de Direito</strong>,
-com recurso dirigido ao <strong>Tribunal Regional do Trabalho</strong> competente
-(e não ao Tribunal de Justiça).
-</p>
-
-<div class="box">
-  <p><strong>Atenção para provas:</strong></p>
   <p>
-    Mesmo que a causa seja julgada por Juiz Estadual,
-    o recurso será dirigido ao TRT.
+    O número de Ministros é fixo (27), não sendo mínimo. A sabatina é realizada exclusivamente pelo
+    Senado Federal, e não pelo Congresso Nacional.
   </p>
-</div>
 
-<p>
-Se for criada Vara do Trabalho durante a tramitação do processo,
-a competência passa imediatamente à Justiça do Trabalho.
-A Súmula 10 do STJ determina a remessa imediata,
-inclusive se o processo estiver em fase de execução.
-</p>
+  <p>
+    Um quinto das vagas é reservado a membros da Advocacia e do Ministério Público do Trabalho,
+    conforme o chamado <strong>quinto constitucional</strong>.
+  </p>
 
-<div class="voltar">
-  <a href="../index.html">← Voltar ao índice da disciplina</a>
-</div>
+  <div class="box">
+    <p>
+      A EC nº 45/2004 instituiu órgãos auxiliares junto ao TST:
+    </p>
+    <ul>
+      <li>
+        <strong>Escola Nacional de Formação e Aperfeiçoamento de Magistrados do Trabalho</strong> –
+        regulamenta os cursos de ingresso e promoção na carreira;
+      </li>
+      <li>
+        <strong>Conselho Superior da Justiça do Trabalho</strong> – exerce supervisão administrativa,
+        orçamentária, financeira e patrimonial, com decisões de efeito vinculante.
+      </li>
+    </ul>
+  </div>
+
+  <h2>2.2 Tribunais Regionais do Trabalho</h2>
+
+  <p>
+    Os Tribunais Regionais do Trabalho são previstos no art. 115 da CF/88 e possuem as seguintes
+    características:
+  </p>
+
+  <div class="box">
+    <ul>
+      <li>mínimo de 7 juízes;</li>
+      <li>idade entre 30 e 70 anos;</li>
+      <li>nomeação pelo Presidente da República;</li>
+      <li>inexistência de sabatina pelo Senado Federal.</li>
+    </ul>
+  </div>
+
+  <p>
+    Diferentemente do TST, os TRTs não possuem número fixo de membros. Também se aplica o quinto
+    constitucional, sendo os juízes nomeados alternadamente por antiguidade e merecimento.
+  </p>
+
+  <p>
+    Não há TRT em todos os Estados. São Paulo possui dois (2ª e 15ª Regiões). Não existem TRTs nos
+    Estados do Tocantins, Amapá, Acre e Roraima.
+  </p>
+
+  <div class="box">
+    <p>
+      A EC nº 45/2004 introduziu:
+    </p>
+    <ul>
+      <li><strong>Justiça itinerante</strong>, levando audiências a locais distantes;</li>
+      <li><strong>Câmaras regionais</strong>, permitindo atuação descentralizada dos TRTs.</li>
+    </ul>
+  </div>
+
+  <h2>2.3 Juízes do Trabalho</h2>
+
+  <p>
+    Até a EC nº 24/1999, o primeiro grau era exercido pelas Juntas de Conciliação e Julgamento,
+    compostas por Juiz do Trabalho e Juízes Classistas. A emenda extinguiu a representação classista,
+    criando as Varas do Trabalho, com juiz singular.
+  </p>
+
+  <p>
+    Como não há Vara do Trabalho em todos os municípios, o art. 112 da CF/88 permite que a
+    jurisdição trabalhista seja exercida por Juiz de Direito, com recurso para o TRT competente.
+  </p>
+
+  <div class="box">
+    <p>
+      Atenção: o recurso contra sentença do Juiz Estadual será dirigido ao Tribunal Regional do
+      Trabalho, e não ao Tribunal de Justiça.
+    </p>
+  </div>
+
+  <p>
+    Caso seja criada Vara do Trabalho durante a tramitação do processo, este será imediatamente
+    remetido à Vara do Trabalho, conforme a Súmula 10 do STJ, ainda que esteja em fase de execução.
+  </p>
+
+  <div class="voltar">
+    <a href="../index.html">← Voltar ao índice da disciplina</a>
+  </div>
 
 </div>
 </body>
 </html>
-
