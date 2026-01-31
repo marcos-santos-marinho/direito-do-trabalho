@@ -32,12 +32,48 @@
     padding:18px 16px 40px;
   }
 
+  /* ===== TÍTULO + SLIDES ===== */
+  .title-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+
   h1{
     color:var(--title);
     font-size:28px;
     margin:10px 0 16px;
   }
 
+  .slides-btn{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    background:#ffffff;
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:10px 14px;
+    box-shadow:var(--shadow);
+    min-width:90px;
+  }
+
+  .slides-icon{
+    font-size:28px;
+    line-height:1;
+  }
+
+  .slides-text{
+    margin-top:4px;
+    font-weight:800;
+    font-size:13px;
+    color:#0f172a;
+  }
+
+  /* ===== TEXTO ===== */
   h2{
     font-size:22px;
     margin:26px 0 10px;
@@ -50,6 +86,7 @@
 
   p{
     margin:0 0 14px;
+    text-align:justify;
   }
 
   .box{
@@ -69,6 +106,7 @@
     margin-bottom:8px;
   }
 
+  /* ===== BOTÃO VOLTAR ===== */
   .voltar{
     margin-top:32px;
   }
@@ -86,6 +124,7 @@
     box-shadow:var(--shadow);
   }
 
+  /* ===== MOBILE ===== */
   @media (max-width:480px){
     body{ font-size:17px; }
     h1{ font-size:24px; }
@@ -98,87 +137,83 @@
 <body>
 <div class="wrap">
 
-<h1>2. Princípios do Direito do Trabalho</h1>
+  <!-- TÍTULO COM BOTÃO DE SLIDES -->
+  <div class="title-row">
+    <h1>2. Princípios do Direito do Trabalho</h1>
 
-<div class="box">
-<p>
-Os princípios do Direito do Trabalho se constituem nas linhas diretrizes ou postulados que
-inspiram o sentido das normas trabalhistas e configuram a regulamentação das relações de trabalho.
-</p>
-</div>
+    <a class="slides-btn"
+       href="LINK_GOOGLE_DRIVE_SLIDES"
+       target="_blank"
+       rel="noopener">
+      <div class="slides-icon">🖼️</div>
+      <div class="slides-text">Slides</div>
+    </a>
+  </div>
 
-<p>A doutrina identifica as seguintes funções dos princípios:</p>
+  <div class="box">
+    <p>
+      Os princípios do Direito do Trabalho se constituem nas linhas diretrizes ou postulados
+      que inspiram o sentido das normas trabalhistas e configuram a regulamentação das relações
+      de trabalho.
+    </p>
+  </div>
 
-<ul>
-  <li><strong>Função informadora</strong> – servem de fonte de inspiração ao legislador e de fundamento para as normas jurídicas.</li>
-  <li><strong>Função normativa</strong> – servem como fonte supletiva, nas lacunas ou omissões da lei.</li>
-  <li><strong>Função interpretativa</strong> – servem como critério orientador para os intérpretes e aplicadores da lei.</li>
-</ul>
+  <p>A doutrina identifica as seguintes funções dos princípios:</p>
 
-<p>
-De acordo com o art. 4º da LINDB, quando a lei for omissa, o juiz decidirá o caso de acordo com a
-analogia, os costumes e os princípios gerais de direito. O art. 8º da CLT disciplina que, na falta
-de disposições legais ou contratuais, o intérprete pode socorrer-se dos princípios do Direito do
-Trabalho.
-</p>
+  <ul>
+    <li><strong>Função informadora</strong> – servem de fonte de inspiração ao legislador e de fundamento para as normas jurídicas.</li>
+    <li><strong>Função normativa</strong> – servem como fonte supletiva, nas lacunas ou omissões da lei.</li>
+    <li><strong>Função interpretativa</strong> – servem como critério orientador para os intérpretes e aplicadores da lei.</li>
+  </ul>
 
-<h2>2.1 Princípios específicos do Direito do Trabalho</h2>
+  <p>
+    De acordo com o art. 4º da LINDB, quando a lei for omissa, o juiz decidirá o caso de acordo com a
+    analogia, os costumes e os princípios gerais de direito. O art. 8º da CLT disciplina que, na
+    falta de disposições legais ou contratuais, o intérprete pode socorrer-se dos princípios do
+    Direito do Trabalho.
+  </p>
 
-<h3>2.1.1 Princípio protetor</h3>
+  <h2>2.1 Princípios específicos do Direito do Trabalho</h2>
 
-<p>
-O princípio protetor orienta o Direito do Trabalho no sentido de oferecer amparo preferencial ao
-trabalhador, buscando nivelar as desigualdades existentes na relação de emprego.
-</p>
+  <h3>2.1.1 Princípio protetor</h3>
+  <p>
+    O princípio protetor orienta o Direito do Trabalho no sentido de oferecer amparo preferencial ao
+    trabalhador, buscando reduzir as desigualdades existentes na relação de emprego.
+  </p>
 
-<p>
-A Reforma Trabalhista (Lei n. 13.467/2017) mitigou esse princípio, ao ampliar a autonomia individual,
-reconhecer o trabalhador hipersuficiente e valorizar a prevalência do negociado sobre o legislado.
-</p>
+  <h3>2.1.2 Princípio da irrenunciabilidade</h3>
+  <p>
+    Refere-se à impossibilidade de o empregado abrir mão voluntariamente dos direitos que lhe são
+    assegurados pela legislação trabalhista.
+  </p>
 
-<h3>2.1.2 Princípio da irrenunciabilidade</h3>
+  <h3>2.1.3 Princípio da continuidade da relação de emprego</h3>
+  <p>
+    Presume que o contrato de trabalho tenha duração por prazo indeterminado, protegendo a
+    estabilidade da relação de emprego.
+  </p>
 
-<p>
-Refere-se à impossibilidade de o empregado abrir mão voluntariamente dos direitos que lhe são
-assegurados pela legislação trabalhista.
-</p>
+  <h3>2.1.4 Princípio da primazia da realidade</h3>
+  <p>
+    Determina que, havendo divergência entre a prática e os documentos, prevalecerão os fatos
+    ocorridos na realidade da relação de trabalho.
+  </p>
 
-<p>
-A Reforma Trabalhista relativizou esse princípio ao permitir negociações diretas para empregados
-hipersuficientes, ressalvados os direitos constitucionalmente garantidos.
-</p>
+  <h3>2.1.5 Princípio da razoabilidade</h3>
+  <p>
+    Consiste na aplicação da razão como limite ao exercício de direitos e deveres no contrato de
+    trabalho.
+  </p>
 
-<h3>2.1.3 Princípio da continuidade da relação de emprego</h3>
+  <h3>2.1.6 Princípio da boa-fé</h3>
+  <p>
+    Exige conduta leal e honesta de empregado e empregador no cumprimento das obrigações decorrentes
+    do contrato de trabalho.
+  </p>
 
-<p>
-Presume que o contrato de trabalho tenha duração por prazo indeterminado, protegendo a estabilidade
-da relação de emprego.
-</p>
-
-<h3>2.1.4 Princípio da primazia da realidade</h3>
-
-<p>
-Determina que, havendo divergência entre a prática e os documentos, prevalecerão os fatos ocorridos
-na realidade da relação de trabalho.
-</p>
-
-<h3>2.1.5 Princípio da razoabilidade</h3>
-
-<p>
-Consiste na aplicação da razão como limite ao exercício de direitos e deveres no contrato de
-trabalho, evitando arbitrariedades.
-</p>
-
-<h3>2.1.6 Princípio da boa-fé</h3>
-
-<p>
-Exige conduta leal e honesta de empregado e empregador no cumprimento das obrigações decorrentes do
-contrato de trabalho.
-</p>
-
-<div class="voltar">
-  <a href="../index.html">← Voltar ao índice da disciplina</a>
-</div>
+  <div class="voltar">
+    <a href="../index.html">← Voltar ao índice da disciplina</a>
+  </div>
 
 </div>
 </body>
