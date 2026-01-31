@@ -1,117 +1,146 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Princípios do Direito Processual do Trabalho</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Princípios do Direito Processual do Trabalho</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    :root{
-      --text:#111;
-      --muted:#555;
-      --bg:#ffffff;
-      --card:#f6f7f9;
-      --link:#1f4fd8;
-    }
+<style>
+  :root{
+    --bg:#f2f7ff;
+    --text:#0f172a;
+    --title:#1f4fd8;
+    --card:#ffffff;
+    --border:rgba(15,23,42,.15);
+    --shadow:0 8px 18px rgba(15,23,42,.08);
+  }
 
-    html { -webkit-text-size-adjust: 100%; }
+  *{ box-sizing:border-box; }
 
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.85;
-      font-size: 18px;
-    }
+  body{
+    margin:0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.7;
+    font-size:18px;
+  }
 
-    .wrap{
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 18px 16px 28px;
-    }
+  .wrap{
+    max-width:900px;
+    margin:auto;
+    padding:18px 16px 40px;
+  }
 
-    h1,h2,h3{
-      line-height: 1.25;
-      margin: 22px 0 10px;
-    }
+  /* ===== TÍTULO + SLIDES ===== */
+  .title-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+    flex-wrap:wrap;
+  }
 
-    h1{
-      font-size: 28px;
-      color: var(--link);
-      margin-top: 6px;
-    }
+  h1{
+    color:var(--title);
+    font-size:28px;
+    margin:10px 0 16px;
+  }
 
-    h2{ font-size: 22px; }
-    h3{ font-size: 19px; }
+  .slides-btn{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    background:#ffffff;
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:10px 14px;
+    box-shadow:var(--shadow);
+    min-width:90px;
+  }
 
-    p{
-      margin: 0 0 14px;
-      text-align: left;
-    }
+  .slides-icon{
+    font-size:28px;
+    line-height:1;
+  }
 
-    .box, .toc{
-      background: var(--card);
-      border: 1px solid rgba(0,0,0,.08);
-      border-radius: 12px;
-      padding: 14px;
-      margin: 18px 0;
-    }
+  .slides-text{
+    margin-top:4px;
+    font-weight:800;
+    font-size:13px;
+    color:#0f172a;
+  }
 
-    .toc ul{
-      margin: 10px 0 0 18px;
-      padding: 0;
-    }
+  /* ===== TEXTO ===== */
+  h2{
+    font-size:22px;
+    margin:30px 0 10px;
+  }
 
-    .toc li{ margin: 8px 0; }
+  h3{
+    font-size:20px;
+    margin:24px 0 8px;
+  }
 
-    a{
-      color: var(--link);
-      text-decoration: none;
-      font-weight: 700;
-    }
-    a:hover{ text-decoration: underline; }
+  p{
+    margin:0 0 14px;
+    text-align:justify;
+  }
 
-    ul{
-      margin: 10px 0 14px 18px;
-    }
-    li{ margin: 8px 0; }
+  .box{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:16px;
+    margin:18px 0;
+    box-shadow:var(--shadow);
+  }
 
-    .voltar{ margin-top: 26px; }
-    .voltar a{
-      display:inline-block;
-      padding: 10px 14px;
-      border: 1px solid rgba(0,0,0,.12);
-      border-radius: 12px;
-      background: #fff;
-    }
+  ul{
+    margin:10px 0 14px 22px;
+  }
 
-    @media (max-width: 420px){
-      body{ font-size: 17px; }
-      h1{ font-size: 26px; }
-      h2{ font-size: 21px; }
-    }
+  li{
+    margin-bottom:10px;
+  }
 
-    @media (prefers-color-scheme: dark){
-      :root{
-        --text:#f2f2f2;
-        --muted:#c9c9c9;
-        --bg:#0b1220;
-        --card:#111a2e;
-        --link:#7aa2ff;
-      }
-      .voltar a{ background: transparent; }
-    }
-  </style>
+  /* ===== BOTÃO VOLTAR ===== */
+  .voltar{
+    margin-top:32px;
+  }
+
+  .voltar a{
+    display:block;
+    text-align:center;
+    background:#ffffff;
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:16px;
+    font-weight:800;
+    text-decoration:none;
+    color:#0f172a;
+    box-shadow:var(--shadow);
+  }
+
+  @media (max-width:480px){
+    body{ font-size:17px; }
+    h1{ font-size:24px; }
+    h2{ font-size:21px; }
+    h3{ font-size:19px; }
+  }
+</style>
 </head>
 
 <body>
 <div class="wrap">
 
-<h1>1. Princípios do Processo do Trabalho</h1>
+  <div class="title-row">
+    <h1>1. Princípios do Direito Processual do Trabalho</h1>
 
-  <a class="slides-btn"
-       href="https://drive.google.com/file/d/1jaS-eVjC2EveoCopT6lNT1Eqp5-yNVbs/view?usp=sharing"
+    <a class="slides-btn"
+       href="LINK_GOOGLE_DRIVE_SLIDES"
        target="_blank"
        rel="noopener">
       <div class="slides-icon">🖼️</div>
@@ -119,148 +148,115 @@
     </a>
   </div>
 
-<div class="box">
+  <h2>1.1 Dispositivo e inquisitivo</h2>
+
   <p>
-    Este tópico apresenta princípios centrais do processo do trabalho e seus reflexos práticos.
+    Os princípios dispositivo e inquisitivo mostram-se como contrários, ou seja, antagônicos. Enquanto
+    o princípio dispositivo está atrelado à necessidade de pedido da parte para que o Poder Judiciário
+    atue, sendo inclusive chamado de princípio da inércia, com previsão no art. 2º do CPC/2015, o
+    princípio inquisitivo está relacionado à atuação de ofício do juiz.
   </p>
-</div>
 
-<div class="toc">
-  <strong>Sumário</strong>
-  <ul>
-    <li><a href="#p11">1.1 Dispositivo e inquisitivo</a></li>
-    <li><a href="#p12">1.2 Proteção</a></li>
-    <li><a href="#p13">1.3 Conciliação</a></li>
-    <li><a href="#p14">1.4 Irrecorribilidade imediata das interlocutórias</a></li>
-    <li><a href="#p15">1.5 Jus postulandi</a></li>
-    <li><a href="#p16">1.6 Oralidade</a></li>
-  </ul>
-</div>
+  <p>
+    Exemplo clássico é o art. 878 da CLT, que prevê o início da execução definitiva de ofício, isto é,
+    por iniciativa do magistrado trabalhista. O princípio inquisitivo, contudo, foi restringido pela
+    Reforma Trabalhista (Lei nº 13.467/2017), que incluiu o parágrafo único no art. 878 da CLT,
+    determinando que a execução somente será iniciada de ofício quando a parte estiver exercendo o
+    jus postulandi.
+  </p>
 
-<h2 id="p11">1.1 Dispositivo e inquisitivo</h2>
+  <p>
+    Caso o exequente possua advogado constituído, caberá a este requerer o início da execução, sob
+    pena de prescrição intercorrente, prevista no art. 11-A da CLT.
+  </p>
 
-<p>
-Os princípios dispositivo e inquisitivo mostram-se como contrários, ou seja, antagônicos.
-Enquanto o princípio dispositivo está atrelado à necessidade de pedido da parte para que o
-Poder Judiciário atue, sendo inclusive chamado de princípio da inércia, com previsão no art. 2º
-do CPC/2015, o princípio inquisitivo está relacionado à atuação de ofício do Juiz, ou seja,
-atuação sem necessidade de pedido, como ocorre na hipótese do art. 878 da CLT, que prevê o
-início da execução definitiva de ofício, isto é, por iniciativa do Magistrado Trabalhista, que,
-ao verificar ter ocorrido o trânsito em julgado, determina a realização dos atos executivos.
-</p>
+  <div class="box">
+    <p>
+      Além da prescrição bienal e quinquenal, deve-se lembrar da prescrição intercorrente, que ocorre
+      quando o processo permanece paralisado por mais de dois anos.
+    </p>
+  </div>
 
-<p>
-Nas provas é bem comum encontrarmos a informação de que o princípio dispositivo é a regra e o
-inquisitivo a sua exceção. Ocorre que o princípio inquisitivo foi restringido pela reforma
-trabalhista – Lei n. 13.467/2017 – que incluiu o parágrafo único no art. 878 da CLT afirmando
-que a execução somente será iniciada de ofício se a parte estiver exercendo o jus postulandi,
-ou seja, se não estiver representada por advogado.
-</p>
+  <h2>1.2 Proteção</h2>
 
-<p>
-Caso o exequente possua advogado constituído nos autos, caberá ao profissional requerer o início
-da execução, sob pena até mesmo de decretação da prescrição intercorrente, que agora passa a ser
-reconhecida no processo do trabalho, conforme art. 11-A da CLT, também incluído pela reforma
-trabalhista.
-</p>
+  <p>
+    Reconhece-se no Direito do Trabalho a hipossuficiência do empregado, fundamento do princípio da
+    proteção. No processo do trabalho, esse princípio se manifesta por regras que facilitam o acesso
+    à Justiça pela parte considerada mais fraca.
+  </p>
 
-<div class="box">
-  <p><strong>Dica de prova:</strong> além da prescrição bienal e quinquenal, lembre da <strong>prescrição intercorrente</strong>,
-  que pode surgir ao longo do processo caso ele permaneça parado por mais de 2 anos.</p>
-</div>
+  <div class="box">
+    <ul>
+      <li>Pagamento de custas ao final (art. 789, § 1º, CLT);</li>
+      <li>Vedação ao pagamento prévio de honorários periciais (OJ 98 SDI-2/TST e art. 790-B, § 3º, CLT);</li>
+      <li>Tratamento diferenciado quanto à ausência das partes à audiência (art. 844, CLT).</li>
+    </ul>
+  </div>
 
-<h2 id="p12">1.2 Proteção</h2>
+  <h2>1.3 Conciliação</h2>
 
-<p>
-No direito do trabalho reconhece-se a hipossuficiência do empregado, importante na aplicação do
-princípio da proteção. No processo do trabalho também há a formulação e aplicação de regras que
-beneficiam aquele que é sempre considerado como parte mais fraca.
-</p>
+  <p>
+    A conciliação é princípio fundamental do processo do trabalho, havendo dois momentos obrigatórios
+    de tentativa de acordo: no início e ao final da audiência (arts. 846 e 850 da CLT).
+  </p>
 
-<div class="box">
-  <p><strong>Exemplos:</strong></p>
-  <ul>
-    <li><strong>Custas ao final:</strong> art. 789, §1º, CLT.</li>
-    <li><strong>Honorários periciais sem adiantamento:</strong> OJ 98 da SDI-2/TST e art. 790-B, §3º, CLT.</li>
-    <li><strong>Ausência à audiência:</strong> art. 844, CLT (consequências diferentes para reclamante e reclamado).</li>
-  </ul>
-</div>
+  <p>
+    A homologação do acordo é faculdade do juiz (Súmula 418, TST). Uma vez homologado, não cabe
+    recurso às partes, sendo possível a desconstituição apenas por ação rescisória (Súmula 259, TST).
+  </p>
 
-<h2 id="p13">1.3 Conciliação</h2>
+  <p>
+    A Reforma Trabalhista introduziu a homologação de acordo extrajudicial (art. 855-B, CLT),
+    reforçando a importância da conciliação.
+  </p>
 
-<p>
-A conciliação é extremamente importante para o processo do trabalho. O legislador prevê dois
-momentos obrigatórios de tentativa de acordo: um no início da audiência (art. 846, CLT) e outro ao
-final (art. 850, CLT). Homologado o acordo, o juiz extingue o feito com resolução do mérito.
-</p>
+  <h2>1.4 Irrecorribilidade imediata das interlocutórias</h2>
 
-<p>
-O magistrado não está obrigado a homologar o acordo (Súmula 418 do TST). Homologado, a sentença não
-comporta recurso pelas partes; a desconstituição ocorre por ação rescisória (Súmula 259 do TST).
-</p>
+  <p>
+    Regra geral, as decisões interlocutórias são irrecorríveis de imediato no processo do trabalho
+    (art. 893, § 1º, CLT), devendo a parte aguardar a decisão final.
+  </p>
 
-<p>
-A sentença homologatória é definitiva e, em regra, recurso apenas pela União (art. 831, CLT).
-A reforma trabalhista inseriu o procedimento de homologação de acordo extrajudicial (art. 855-B, CLT).
-</p>
+  <div class="box">
+    <ul>
+      <li>Incompetência absoluta (art. 799, § 2º, CLT);</li>
+      <li>Hipóteses da Súmula 214 do TST;</li>
+      <li>Incidente de desconsideração da personalidade jurídica (art. 855-A, § 1º, CLT).</li>
+    </ul>
+  </div>
 
-<h2 id="p14">1.4 Irrecorribilidade imediata das interlocutórias</h2>
+  <h2>1.5 Jus postulandi</h2>
 
-<p>
-O art. 893, §1º, da CLT estabelece, em regra, a irrecorribilidade imediata das decisões interlocutórias:
-a parte aguarda a decisão final para recorrer. Isso se liga à celeridade do processo do trabalho.
-</p>
+  <p>
+    Previsto no art. 791 da CLT, permite que as partes atuem sem advogado nas Varas do Trabalho e
+    Tribunais Regionais do Trabalho. A Súmula 425 do TST estabelece exceções, exigindo advogado em
+    determinadas ações e recursos ao TST.
+  </p>
 
-<div class="box">
-  <p><strong>Exceções (resumo):</strong></p>
-  <ul>
-    <li><strong>Art. 799, §2º, CLT:</strong> incompetência absoluta → admite recurso ordinário imediato.</li>
-    <li><strong>Súmula 214 do TST:</strong> hipóteses excepcionais previstas no enunciado.</li>
-    <li><strong>Art. 855-A, §1º, CLT:</strong> decisão no IDPJ (no conhecimento) não admite recurso por ser interlocutória.</li>
-  </ul>
-</div>
+  <p>
+    A Reforma Trabalhista restringiu o jus postulandi na homologação de acordo extrajudicial,
+    exigindo advogado para ambas as partes (art. 855-B, CLT).
+  </p>
 
-<p>
-A Instrução Normativa n. 39/2016 do TST reforça que o princípio se mantém mesmo com o CPC/2015.
-</p>
+  <h2>1.6 Oralidade</h2>
 
-<h2 id="p15">1.5 Jus postulandi</h2>
+  <p>
+    O processo do trabalho valoriza a oralidade, permitindo a prática de diversos atos de forma oral,
+    como petição inicial, defesa, razões finais e protesto em audiência.
+  </p>
 
-<p>
-O art. 791 da CLT prevê a possibilidade de as partes ajuizarem e acompanharem suas ações sem advogado.
-A Súmula 425 do TST traz exceções (mandado de segurança, ação rescisória, ação cautelar e recursos ao TST).
-</p>
+  <div class="box">
+    <ul>
+      <li>Petição inicial oral (art. 840, CLT);</li>
+      <li>Defesa oral (art. 847, CLT);</li>
+      <li>Razões finais orais (art. 850, CLT);</li>
+      <li>Protesto em audiência para evitar preclusão.</li>
+    </ul>
+  </div>
 
-<p>
-Entende-se que o art. 791 da CLT foi recepcionado pela CF/88. Em regra, o jus postulandi aplica-se às
-Varas do Trabalho e aos TRTs.
-</p>
-
-<p>
-A reforma trabalhista criou restrição no acordo extrajudicial: o pedido deve ser assinado por advogado e
-cada parte deve ter seu advogado (art. 855-B, CLT).
-</p>
-
-<h2 id="p16">1.6 Oralidade</h2>
-
-<p>
-Muitos atos processuais podem ser realizados oralmente na Justiça do Trabalho, facilitando e acelerando
-o procedimento, inclusive para partes sem advogado.
-</p>
-
-<div class="box">
-  <p><strong>Exemplos de atos orais:</strong></p>
-  <ul>
-    <li><strong>Petição inicial:</strong> pode ser escrita ou oral (art. 840, CLT).</li>
-    <li><strong>Defesa:</strong> oral em até 20 minutos (art. 847, CLT).</li>
-    <li><strong>Razões finais:</strong> orais, até 10 minutos por parte (art. 850, CLT).</li>
-    <li><strong>Protesto em audiência:</strong> manifestação oral registrada em ata para evitar preclusão.</li>
-  </ul>
-</div>
-
-<div class="voltar">
-  <a href="../index.html">← Voltar ao índice da disciplina</a>
-</div>
+  <div class="voltar">
+    <a href="../index.html">← Voltar ao índice da disciplina</a>
+  </div>
 
 </div>
 </body>
