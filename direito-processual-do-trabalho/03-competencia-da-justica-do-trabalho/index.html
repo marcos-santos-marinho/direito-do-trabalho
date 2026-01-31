@@ -1,115 +1,130 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Competência da Justiça do Trabalho</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Competência da Justiça do Trabalho</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    :root{
-      --text:#111;
-      --bg:#ffffff;
-      --card:#f6f7f9;
-      --link:#1f4fd8;
-    }
+<style>
+  :root{
+    --bg:#f2f7ff;
+    --text:#0f172a;
+    --title:#1f4fd8;
+    --card:#ffffff;
+    --border:rgba(15,23,42,.15);
+    --shadow:0 8px 18px rgba(15,23,42,.08);
+  }
+  *{ box-sizing:border-box; }
 
-    html { -webkit-text-size-adjust: 100%; }
+  body{
+    margin:0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.7;
+    font-size:18px;
+  }
 
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.85;
-      font-size: 18px;
-    }
+  .wrap{
+    max-width:900px;
+    margin:auto;
+    padding:18px 16px 40px;
+  }
 
-    .wrap{
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 18px 16px 28px;
-    }
+  /* ===== TÍTULO + SLIDES ===== */
+  .title-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+    flex-wrap:wrap;
+  }
 
-    h1,h2,h3{
-      line-height: 1.25;
-      margin: 22px 0 10px;
-    }
+  h1{
+    color:var(--title);
+    font-size:28px;
+    margin:10px 0 16px;
+  }
 
-    h1{
-      font-size: 28px;
-      color: var(--link);
-      margin-top: 6px;
-    }
+  .slides-btn{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    background:#ffffff;
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:10px 14px;
+    box-shadow:var(--shadow);
+    min-width:90px;
+  }
+  .slides-icon{ font-size:28px; line-height:1; }
+  .slides-text{
+    margin-top:4px;
+    font-weight:800;
+    font-size:13px;
+    color:#0f172a;
+  }
 
-    h2{ font-size: 22px; }
-    h3{ font-size: 19px; }
+  /* ===== TEXTO ===== */
+  h2{ font-size:22px; margin:30px 0 10px; }
+  h3{ font-size:20px; margin:24px 0 8px; }
 
-    p{
-      margin: 0 0 14px;
-      text-align: left;
-    }
+  p{ margin:0 0 14px; text-align:justify; }
 
-    ul{
-      margin: 10px 0 14px 18px;
-    }
-    li{ margin: 8px 0; }
+  .box{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:16px;
+    margin:18px 0;
+    box-shadow:var(--shadow);
+  }
 
-    .box, .toc{
-      background: var(--card);
-      border: 1px solid rgba(0,0,0,.08);
-      border-radius: 12px;
-      padding: 14px;
-      margin: 18px 0;
-    }
+  ul{
+    margin:10px 0 14px 22px;
+  }
+  li{ margin-bottom:10px; }
 
-    .toc ul{
-      margin: 10px 0 0 18px;
-      padding: 0;
-    }
+  .marker{
+    font-weight:900;
+    display:inline-block;
+    margin-right:8px;
+  }
 
-    a{
-      color: var(--link);
-      text-decoration: none;
-      font-weight: 700;
-    }
-    a:hover{ text-decoration: underline; }
+  /* ===== BOTÃO VOLTAR ===== */
+  .voltar{ margin-top:32px; }
+  .voltar a{
+    display:block;
+    text-align:center;
+    background:#ffffff;
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:16px;
+    font-weight:800;
+    text-decoration:none;
+    color:#0f172a;
+    box-shadow:var(--shadow);
+  }
 
-    .voltar{
-      margin-top: 26px;
-    }
-    .voltar a{
-      display:inline-block;
-      padding: 10px 14px;
-      border: 1px solid rgba(0,0,0,.12);
-      border-radius: 12px;
-      background: #fff;
-    }
-
-    @media (max-width: 420px){
-      body{ font-size: 17px; }
-      h1{ font-size: 26px; }
-      h2{ font-size: 21px; }
-    }
-
-    @media (prefers-color-scheme: dark){
-      :root{
-        --text:#f2f2f2;
-        --bg:#0b1220;
-        --card:#111a2e;
-        --link:#7aa2ff;
-      }
-      .voltar a{ background: transparent; }
-    }
-  </style>
+  @media (max-width:480px){
+    body{ font-size:17px; }
+    h1{ font-size:24px; }
+    h2{ font-size:21px; }
+    h3{ font-size:19px; }
+  }
+</style>
 </head>
 
 <body>
 <div class="wrap">
 
-<h1>3. Competência da Justiça do Trabalho</h1>
+  <div class="title-row">
+    <h1>3. Competência da Justiça do Trabalho</h1>
 
-  <a class="slides-btn"
-       href="https://drive.google.com/file/d/1jaS-eVjC2EveoCopT6lNT1Eqp5-yNVbs/view?usp=sharing"
+    <a class="slides-btn"
+       href="LINK_GOOGLE_DRIVE_SLIDES"
        target="_blank"
        rel="noopener">
       <div class="slides-icon">🖼️</div>
@@ -117,171 +132,137 @@
     </a>
   </div>
 
-<div class="box">
-  <p>
-    Competência indica <strong>o poder de julgar</strong> atribuído a um órgão jurisdicional.
-    No âmbito trabalhista, envolve principalmente: (a) <strong>competência material</strong>
-    (quais ações/conflitos a JT julga) e (b) <strong>competência territorial</strong>
-    (onde a ação deve ser ajuizada).
-  </p>
-</div>
+  <div class="box">
+    <h2 style="margin-top:0">3.1 Competência material</h2>
+    <p>
+      Analisar a competência material da Justiça do Trabalho significa verificar que ações podem ser ajuizadas perante a
+      referida justiça, ou, em outras palavras, que conflitos podem ser julgados pela justiça trabalhista.
+      O dispositivo que trata do tema é, especialmente, o art. 114 da CF/88, amplamente modificado pela EC n. 45/2004,
+      bem como os arts. 652 e 653 da CLT.
+    </p>
+    <p>
+      Nas provas da OAB é mais comum a cobrança do dispositivo da CF/88, bem como das súmulas que decorreram das interpretações
+      dos tribunais (STF, TST e STJ) a respeito do tema. Analisaremos de forma sintética os incisos do art. 114 da CF:
+    </p>
+  </div>
 
-<div class="toc">
-  <strong>Sumário</strong>
-  <ul>
-    <li><a href="#material">3.1 Competência material</a></li>
-    <li><a href="#incisos114">Art. 114 da CF: incisos (resumo)</a></li>
-    <li><a href="#clt652653">CLT (arts. 652 e 653): exemplos</a></li>
-    <li><a href="#territorial">3.2 Competência territorial</a></li>
-    <li><a href="#regras651">Art. 651 da CLT: regra geral e exceções</a></li>
-    <li><a href="#relativa">Competência territorial é relativa</a></li>
-  </ul>
-</div>
+  <div class="box">
+    <p><span class="marker">■</span><strong>Inciso I – Relação de trabalho:</strong>
+      a EC n. 45/2004 alterou o texto constitucional que mencionava “relação de emprego” para “relação de trabalho”, mais ampla.
+      Contudo, o inciso I menciona as pessoas jurídicas de direito público, o que gerou dúvidas e culminou com decisão do STF na
+      ADI 3.345-6, que excluiu da competência da Justiça do Trabalho as ações ajuizadas por servidores estatutários (competência da
+      Justiça comum). A partir de então, apenas as ações propostas por celetistas da administração pública são da competência trabalhista.
+      Também há destaque para a Súmula 363 do STJ, que excluiu da competência trabalhista as ações de cobrança de honorários de profissionais
+      liberais (competência da Justiça comum).
+    </p>
 
-<h2 id="material">3.1 Competência material</h2>
+    <p><span class="marker">■</span><strong>Inciso II – Exercício do direito de greve:</strong>
+      ações decorrentes do exercício do direito de greve (individuais ou coletivas, indenizações, dissídios coletivos ou possessórias)
+      são da competência da Justiça do Trabalho quando relacionadas ao exercício da greve. O STF editou a Súmula Vinculante 23, fixando
+      que ações possessórias são da competência trabalhista quando ajuizadas em decorrência do exercício do direito de greve.
+    </p>
 
-<p>
-Analisar a competência material da Justiça do Trabalho significa verificar <strong>quais ações</strong> podem ser ajuizadas
-perante a JT — ou seja, quais conflitos podem ser julgados pela Justiça trabalhista.
-O tema está, especialmente, no <strong>art. 114 da CF/88</strong> (alterado pela EC 45/2004) e nos <strong>arts. 652 e 653 da CLT</strong>.
-</p>
+    <p><span class="marker">■</span><strong>Inciso III – Representação sindical:</strong>
+      ações sobre representação sindical (entre sindicatos; sindicatos e empregadores; sindicatos e empregados) são de competência trabalhista.
+    </p>
 
-<div class="box">
-  <p><strong>Ponto de prova (OAB):</strong> costuma cair o art. 114 da CF/88 e súmulas/tese dos tribunais (STF, TST e STJ) sobre competência.</p>
-</div>
+    <p><span class="marker">■</span><strong>Inciso IV – Mandados de segurança, habeas corpus e habeas data:</strong>
+      quando relacionados às relações de trabalho, são da competência trabalhista, como quando MS é impetrado contra decisão judicial.
+    </p>
 
-<h2 id="incisos114">Art. 114 da CF/88 (resumo dos incisos)</h2>
+    <p><span class="marker">■</span><strong>Inciso V – Conflitos de competência:</strong>
+      indispensável lembrar a Súmula 420 do TST: não há conflito de competência entre Vara e Tribunal a que esteja vinculada.
+      Ex.: não há conflito entre a 20ª VT de São Paulo e o TRT da 2ª Região, nem entre a 10ª VT de Vitória e o TRT da 17ª Região.
+    </p>
 
-<h3>Inciso I – Relação de trabalho</h3>
-<p>
-A EC 45/2004 ampliou o texto: de “relação de emprego” para <strong>relação de trabalho</strong>.
-Mas o STF, na <strong>ADI 3.345</strong>, excluiu da competência da JT as ações de <strong>servidores estatutários</strong>,
-que devem ir para a Justiça comum. Assim, em regra, apenas ações de <strong>celetistas</strong> da Administração
-Pública vão para a Justiça do Trabalho.
-</p>
+    <p><span class="marker">■</span><strong>Inciso VI – Indenização por dano moral e material:</strong>
+      destaques: Súmula Vinculante 22 do STF (acidente de trabalho: ações do empregado contra empregador são da competência da JT);
+      Súmula 392 do TST (indenização por danos morais e materiais decorrentes do vínculo de emprego é da JT, inclusive se ajuizada por
+      sucessores e dependentes, conforme alteração de 2016).
+    </p>
 
-<div class="box">
-  <p><strong>Atenção:</strong> também se destaca entendimento que exclui da JT a cobrança de <strong>honorários de profissionais liberais</strong>,
-  encaminhando para a Justiça comum, conforme orientação mencionada no material.</p>
-</div>
+    <p><span class="marker">■</span><strong>Inciso VII – Penalidades administrativas:</strong>
+      ações relativas a penalidades administrativas impostas por órgãos de fiscalização das relações de trabalho (ex.: autuações do
+      Ministério do Trabalho) podem ser ajuizadas na Justiça do Trabalho para impugnação/anulação.
+    </p>
 
-<h3>Inciso II – Exercício do direito de greve</h3>
-<p>
-Ações decorrentes do exercício do direito de greve (individuais ou coletivas, indenizatórias, dissídios e possessórias)
-são da competência da JT quando relacionadas à greve. A <strong>Súmula Vinculante 23</strong> do STF afirma a competência
-trabalhista para ações possessórias decorrentes de greve.
-</p>
+    <p><span class="marker">■</span><strong>Inciso VIII – Execução das contribuições sociais:</strong>
+      a JT executa, de ofício, contribuições decorrentes de sentenças condenatórias que proferir (Súmula 368 do TST e Súmula Vinculante 53 do STF).
+      Não há competência para executar contribuições relativas apenas a período de trabalho reconhecido: somente sentenças condenatórias em pecúnia
+      geram contribuições de competência trabalhista; as demais devem ser cobradas na Justiça comum.
+    </p>
+  </div>
 
-<h3>Inciso III – Representação sindical</h3>
-<p>
-Ações sobre representação sindical são da competência trabalhista, incluindo conflitos entre sindicatos,
-sindicatos e empregadores e sindicatos e empregados.
-</p>
+  <div class="box">
+    <p>
+      A competência material também é definida pelos arts. 652 e 653 da CLT, que afirmam ser competência trabalhista, entre outras:
+    </p>
+    <ul>
+      <li>dissídios resultantes do contrato de empreitada;</li>
+      <li>inquérito para apuração de falta grave;</li>
+      <li>ações entre trabalhadores portuários e operadores portuários ou OGMO decorrentes da relação de trabalho;</li>
+      <li>
+        homologação de acordo extrajudicial (Lei n. 13.467/2017): petição ao Juiz do Trabalho do local da prestação dos serviços,
+        prazo de 15 dias para análise, possibilidade de audiência e homologação facultativa (Súmula 418 do TST). Se indeferida,
+        cabe recurso ordinário da sentença ou ajuizamento de ação trabalhista, sem prejuízo do prazo prescricional, pois permanece
+        suspenso enquanto se aguarda a decisão.
+      </li>
+    </ul>
+  </div>
 
-<h3>Inciso IV – MS, HC e HD</h3>
-<p>
-Mandados de segurança, habeas corpus e habeas data, quando relacionados às relações de trabalho,
-são de competência trabalhista (ex.: MS contra decisão judicial em processo trabalhista).
-</p>
+  <div class="box">
+    <h2 style="margin-top:0">3.2 Competência territorial</h2>
 
-<h3>Inciso V – Conflitos de competência</h3>
-<p>
-Ponto clássico de “pegadinha”: a <strong>Súmula 420 do TST</strong> afirma que <strong>não há conflito de competência</strong> entre
-Vara do Trabalho e TRT ao qual ela está vinculada (porque há vínculo hierárquico/institucional).
-</p>
+    <p>
+      Após conhecer os conflitos (ações) que podem ser ajuizados perante a Justiça do Trabalho, devemos conhecer as regras sobre competência territorial,
+      isto é, as regras sobre o local de ajuizamento das ações trabalhistas.
+    </p>
 
-<h3>Inciso VI – Indenização por dano moral e material</h3>
-<p>
-Dois entendimentos importantes:
-</p>
-<ul>
-  <li><strong>Acidente de trabalho:</strong> ações do empregado contra o empregador por acidente são da JT (conforme orientação citada no material).</li>
-  <li><strong>Súmula 392 do TST:</strong> ações de indenização por danos morais/materiais decorrentes do vínculo de emprego são da JT,
-      inclusive se ajuizadas por sucessores/dependentes.</li>
-</ul>
+    <p>
+      Exemplo: João, domiciliado em Vitória/ES, contratado por empresa com sede no Rio de Janeiro/RJ, para trabalhar em Salvador/BA.
+      Se dispensado sem receber verbas trabalhistas, em que local deverá ajuizar a reclamação?
+    </p>
 
-<h3>Inciso VII – Penalidades administrativas (fiscalização)</h3>
-<p>
-A JT é competente para julgar ações contra <strong>penalidades administrativas</strong> impostas por órgãos de fiscalização
-das relações de trabalho (ex.: autuação e multa), quando a empresa busca anular/impugnar o ato.
-</p>
+    <p>
+      A resposta está no art. 651 da CLT. Resumo das regras:
+    </p>
 
-<h3>Inciso VIII – Execução das contribuições sociais</h3>
-<p>
-A JT pode executar, <strong>de ofício</strong>, contribuições sociais decorrentes de <strong>sentenças condenatórias em pecúnia</strong>.
-Não executa contribuições relativas apenas ao <strong>período reconhecido</strong> sem condenação em dinheiro: nesse caso,
-a cobrança segue para a Justiça comum, conforme explicado no material.
-</p>
+    <ul>
+      <li><strong>Regra geral:</strong> ação no local da prestação dos serviços (no exemplo, Salvador).</li>
+      <li><strong>Transferência:</strong> se houve transferências sucessivas, ajuiza-se no último local da prestação.</li>
+      <li><strong>Exceções:</strong></li>
+      <li>
+        <strong>Agente ou viajante comercial</strong> (§ 1º): verifica-se subordinação à sede/filial; se sim, ação nesse local;
+        se não, ação no domicílio do empregado ou na localidade mais próxima.
+      </li>
+      <li>
+        <strong>Atividades fora do lugar do contrato</strong> (ex.: circo) (§ 3º): ação no local da contratação ou no local da prestação.
+      </li>
+      <li>
+        <strong>Empregado brasileiro no exterior</strong> (§ 2º): pode ajuizar no Brasil, salvo convenção internacional em sentido contrário.
+      </li>
+    </ul>
 
-<div class="box">
-  <p><strong>Resumo:</strong> execução na JT → contribuições que nascem de condenação em dinheiro; não → apenas reconhecimento de período.</p>
-</div>
+    <p>
+      Competência territorial é <strong>relativa</strong>: o juiz não pode reconhecer de ofício erro na sua aplicação (Súmula 33 do STJ).
+      Se ajuizada em local errado, somente o réu pode alegar a incompetência em sua defesa, não podendo o juiz remeter de ofício.
+    </p>
 
-<h2 id="clt652653">CLT (arts. 652 e 653): exemplos de competência material</h2>
+    <p>
+      No processo civil, a incompetência relativa é alegada em preliminar de contestação (art. 337, CPC). No processo do trabalho,
+      é alegada por exceção de incompetência (art. 800, CLT).
+    </p>
 
-<p>
-Além da CF, a CLT também traz hipóteses de competência trabalhista, como:
-</p>
+    <p>
+      A IN n. 39/2016 do TST afirma não caber a aplicação do art. 63 do CPC/2015 (foro de eleição) ao processo do trabalho.
+      Assim, cláusula contratual prevendo foro é nula e não produz efeitos.
+    </p>
+  </div>
 
-<ul>
-  <li>dissídios resultantes de contrato de empreitada;</li>
-  <li>inquérito para apuração de falta grave;</li>
-  <li>conflitos entre trabalhadores portuários e operadores/OGMO decorrentes da relação de trabalho;</li>
-  <li>homologação de acordo extrajudicial (art. 855-B, CLT), com análise judicial e possibilidade de audiência.</li>
-</ul>
-
-<div class="box">
-  <p><strong>Atenção:</strong> a homologação do acordo é <strong>facultativa</strong> ao juiz (não é automática), conforme orientação do material.</p>
-</div>
-
-<h2 id="territorial">3.2 Competência territorial</h2>
-
-<p>
-Competência territorial indica <strong>onde</strong> a ação deve ser ajuizada. A regra central está no <strong>art. 651 da CLT</strong>.
-</p>
-
-<h2 id="regras651">Art. 651 da CLT: regra geral e exceções</h2>
-
-<div class="box">
-  <p><strong>Regra geral:</strong> a reclamação trabalhista deve ser ajuizada no <strong>local da prestação dos serviços</strong>.</p>
-</div>
-
-<p>
-Se houve transferência sucessiva, a ação deve ser ajuizada, em regra, no <strong>último local</strong> da prestação dos serviços.
-</p>
-
-<div class="box">
-  <p><strong>Exceções (resumo do material):</strong></p>
-  <ul>
-    <li><strong>Agente/viajante comercial (§1º):</strong> ajuíza onde estiver subordinado (sede/filial). Se não houver, no domicílio ou local mais próximo.</li>
-    <li><strong>Atividade fora do lugar do contrato (§3º):</strong> pode ajuizar no local da contratação ou no local da prestação.</li>
-    <li><strong>Brasileiro no exterior (§2º):</strong> pode ajuizar no Brasil, salvo convenção internacional em sentido contrário.</li>
-  </ul>
-</div>
-
-<h2 id="relativa">Competência territorial é relativa</h2>
-
-<p>
-A competência territorial é <strong>relativa</strong> (interessa às partes). Por isso, o juiz não pode reconhecer
-de ofício eventual erro: se a ação for proposta no local errado, cabe ao réu alegar a incompetência na defesa,
-conforme a lógica destacada no material.
-</p>
-
-<div class="box">
-  <p><strong>Processo do trabalho:</strong> a incompetência territorial é arguida por <strong>exceção de incompetência</strong> (art. 800, CLT),
-  diferentemente do CPC, que trata em preliminar de contestação (art. 337, CPC).</p>
-</div>
-
-<div class="box">
-  <p><strong>IN 39/2016 (TST):</strong> não se aplica o art. 63 do CPC/2015 (foro de eleição) ao processo do trabalho.
-  Logo, cláusula contratual escolhendo foro é nula e não produz efeito.</p>
-</div>
-
-<div class="voltar">
-  <a href="../index.html">← Voltar ao índice da disciplina</a>
-</div>
+  <div class="voltar">
+    <a href="../index.html">← Voltar ao índice da disciplina</a>
+  </div>
 
 </div>
 </body>
 </html>
-
