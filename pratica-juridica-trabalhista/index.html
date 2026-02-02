@@ -1,1 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prática Jurídica Trabalhista</title>
+
+  <style>
+    :root{
+      --bg:#eef6ff;
+      --title:#1f4fd8;
+      --text:#0f172a;
+      --card:#ffffff;
+      --border:rgba(15,23,42,.18);
+      --shadow:0 10px 22px rgba(15,23,42,.08);
+      --green:#1f9a3c;
+    }
+
+    *{ box-sizing:border-box; }
+
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+      font-size:18px;
+    }
+
+    .wrap{
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 16px 14px 36px;
+    }
+
+    h1{
+      margin: 6px 0 12px;
+      color: var(--title);
+      font-size: 30px;
+      letter-spacing: -.2px;
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 14px;
+    }
+
+    /* ===== BOTÕES TOPO (PLANO/LIVRO) ===== */
+    .top-actions{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 10px 0 14px;
+    }
+
+    .mini-btn{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 14px 12px;
+      text-decoration:none;
+      color: var(--text);
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      font-weight: 800;
+    }
+
+    .mini-ico{ font-size: 22px; line-height:1; }
+
+    /* ===== TABELA ===== */
+    h2{
+      margin: 10px 0 10px;
+      font-size: 18px;
+      letter-spacing: .2px;
+      text-transform: uppercase;
+    }
+
+    .table-wrap{
+      overflow-x:auto;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: #fff;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      min-width: 520px;
+      font-size: 15px;
+    }
+
+    th, td{
+      padding: 10px 10px;
+      border-bottom: 1px solid rgba(15,23,42,.10);
+      text-align:left;
+      vertical-align:top;
+    }
+
+    th{
+      background: rgba(31,79,216,.08);
+      font-weight: 900;
+    }
+
+    tr:last-child td{ border-bottom:none; }
+
+    /* ===== LISTA DE ATIVIDADES ===== */
+    .hint{
+      margin: 16px 2px 10px;
+      font-size: 16px;
+      opacity: .9;
+    }
+
+    .topics{
+      display:flex;
+      flex-direction:column;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .topic-btn{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      padding: 16px 16px;
+      border-radius: 16px;
+      text-decoration:none;
+      background: #fff;
+      border: 2px solid rgba(31,154,60,.65); /* contorno verde como no modelo */
+      box-shadow: 0 8px 18px rgba(15,23,42,.06);
+      color: var(--text);
+      font-weight: 900;
+    }
+
+    .topic-left{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .topic-num{
+      width: 26px;
+      height: 26px;
+      border-radius: 8px;
+      background: rgba(31,154,60,.12);
+      color: #0b5a1f;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size: 14px;
+      flex: 0 0 auto;
+    }
+
+    .topic-title{
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .chev{
+      font-weight: 900;
+      opacity: .55;
+      flex: 0 0 auto;
+    }
+
+    /* ===== VOLTAR ===== */
+    .back{
+      margin-top: 16px;
+    }
+
+    .back a{
+      display:block;
+      text-align:center;
+      padding: 16px;
+      border-radius: 16px;
+      text-decoration:none;
+      background:#fff;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      font-weight: 900;
+      color: var(--text);
+    }
+
+    /* ===== RESPONSIVO ===== */
+    @media (max-width:520px){
+      h1{ font-size: 26px; }
+      body{ font-size: 17px; }
+      .top-actions{ grid-template-columns: 1fr 1fr; }
+      .mini-btn{ padding: 13px 10px; font-size: 15px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <h1>Prática Jurídica Trabalhista</h1>
+
+    <div class="top-actions">
+      <a class="mini-btn" href="LINK_PLANO_DE_ENSINO" target="_blank" rel="noopener">
+        <span class="mini-ico">📋</span>
+        <span>Plano de Ensino</span>
+      </a>
+
+      <a class="mini-btn" href="LINK_LIVRO" target="_blank" rel="noopener">
+        <span class="mini-ico">📘</span>
+        <span>Livro</span>
+      </a>
+    </div>
+
+    <div class="card">
+      <h2>Sistema de avaliação da disciplina</h2>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>AVALIAÇÃO</th>
+              <th>PRAZO</th>
+              <th>PONTUAÇÃO</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1ª peça jurídica</td>
+              <td>30 de março</td>
+              <td>5,0 pontos</td>
+            </tr>
+            <tr>
+              <td>2ª peça jurídica</td>
+              <td>18 de maio</td>
+              <td>5,0 pontos</td>
+            </tr>
+            <tr>
+              <td>Sustentações orais</td>
+              <td>No decorrer do semestre</td>
+              <td>5,0 pontos</td>
+            </tr>
+            <tr>
+              <td>Audiência simulada</td>
+              <td>Data a definir</td>
+              <td>5,0 pontos</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="hint">
+        Selecione o tópico abaixo para acessar o conteúdo das atividades:
+      </div>
+
+      <div class="topics">
+        <a class="topic-btn" href="LINK_PRIMEIRA_PECA">
+          <div class="topic-left">
+            <div class="topic-num">1</div>
+            <div class="topic-title">Primeira Peça</div>
+          </div>
+          <div class="chev">›</div>
+        </a>
+
+        <a class="topic-btn" href="LINK_SEGUNDA_PECA">
+          <div class="topic-left">
+            <div class="topic-num">2</div>
+            <div class="topic-title">Segunda Peça</div>
+          </div>
+          <div class="chev">›</div>
+        </a>
+
+        <a class="topic-btn" href="LINK_APRESENTACOES">
+          <div class="topic-left">
+            <div class="topic-num">3</div>
+            <div class="topic-title">Apresentações</div>
+          </div>
+          <div class="chev">›</div>
+        </a>
+
+        <a class="topic-btn" href="LINK_AUDIENCIA_SIMULADA">
+          <div class="topic-left">
+            <div class="topic-num">4</div>
+            <div class="topic-title">Audiência Simulada</div>
+          </div>
+          <div class="chev">›</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="back">
+      <a href="../index.html">← Voltar ao curso</a>
+    </div>
+
+  </div>
+</body>
+</html>
 
