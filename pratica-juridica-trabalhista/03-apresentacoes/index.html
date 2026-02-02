@@ -1,122 +1,190 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Apresentações</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apresentações</title>
 
-<style>
-:root{
-  --bg:#f2f7ff;
-  --title:#1f4fd8;
-  --text:#0f172a;
-  --border:rgba(15,23,42,.18);
-  --shadow:0 10px 22px rgba(15,23,42,.08);
-  --green:#1f9a3c;
-}
+  <style>
+    :root{
+      --bg:#ffffff;
+      --title:#1f4fd8;
+      --text:#0f172a;
+      --green:#1f9a3c;
+      --greenSoft: rgba(31,154,60,.14);
+      --border: rgba(15,23,42,.14);
+      --shadow: 0 10px 22px rgba(15,23,42,.08);
+    }
 
-*{ box-sizing:border-box; }
+    *{ box-sizing:border-box; }
 
-body{
-  margin:0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  font-size:18px;
-}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      font-size:18px;
+      line-height:1.6;
+    }
 
-.wrap{
-  max-width:900px;
-  margin:auto;
-  padding:18px 16px 40px;
-}
+    .wrap{
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 18px 16px 40px;
+    }
 
-h1{
-  color:var(--title);
-  font-size:28px;
-  margin-bottom:14px;
-}
+    h1{
+      margin: 10px 0 14px;
+      color: var(--title);
+      font-size: 28px;
+      letter-spacing: -.2px;
+    }
 
-.subtitle{
-  margin-bottom:16px;
-  font-size:16px;
-}
+    .subtitle{
+      margin: 0 0 16px;
+      font-size: 16px;
+      color: rgba(15,23,42,.85);
+    }
 
-.btn{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:18px;
-  background:#fff;
-  border:2px solid rgba(31,154,60,.7);
-  border-radius:16px;
-  text-decoration:none;
-  color:var(--text);
-  font-weight:900;
-  box-shadow:0 8px 18px rgba(15,23,42,.06);
-}
+    .list{
+      display:flex;
+      flex-direction:column;
+      gap: 14px;
+      margin-top: 10px;
+    }
 
-.left{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
+    .btn{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
 
-.num{
-  width:30px;
-  height:30px;
-  border-radius:10px;
-  background:rgba(31,154,60,.15);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:14px;
-  color:#0b5a1f;
-}
+      text-decoration:none;
+      color: var(--text);
+      background:#fff;
 
-.chev{ opacity:.5; font-size:22px; }
+      border: 2px solid rgba(31,154,60,.7);
+      border-radius: 14px;
 
-.back{
-  margin-top:26px;
-}
+      padding: 16px 16px;
+      font-weight: 900;
 
-.back a{
-  display:block;
-  text-align:center;
-  padding:16px;
-  background:#fff;
-  border:1px solid var(--border);
-  border-radius:16px;
-  text-decoration:none;
-  color:var(--text);
-  font-weight:900;
-  box-shadow:var(--shadow);
-}
-</style>
+      box-shadow: 0 6px 16px rgba(15,23,42,.06);
+    }
+
+    .left{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .num{
+      width: 30px;
+      height: 30px;
+      border-radius: 10px;
+      background: var(--greenSoft);
+      color: #0b5a1f;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size: 14px;
+      flex: 0 0 auto;
+    }
+
+    .text{
+      white-space: normal;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .chev{
+      font-size: 22px;
+      opacity: .45;
+      flex: 0 0 auto;
+    }
+
+    .back{
+      margin-top: 26px;
+      display:flex;
+      justify-content:center;
+    }
+
+    .back a{
+      display:inline-block;
+      text-decoration:none;
+      color: var(--text);
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 18px;
+      font-weight: 900;
+      box-shadow: var(--shadow);
+    }
+
+    @media (max-width:480px){
+      body{ font-size:17px; }
+      h1{ font-size:24px; }
+      .btn{ padding: 15px 14px; }
+    }
+  </style>
 </head>
 
 <body>
-<div class="wrap">
+  <div class="wrap">
 
-  <h1>Apresentações</h1>
+    <h1>Precedentes Vinculantes do Supremo na Área Trabalhista</h1>
 
-  <div class="subtitle">
-    Selecione o conteúdo a ser acessado:
-  </div>
-
-  <!-- LINK PARA OS CASOS DO STF -->
-  <a class="btn" href="casos/index.html">
-    <div class="left">
-      <div class="num">1</div>
-      <div>Casos do STF – Área Trabalhista</div>
+    <div class="subtitle">
+      Selecione o caso abaixo para acessar o conteúdo dos processos:
     </div>
-    <div class="chev">›</div>
-  </a>
 
-  <div class="back">
-    <a href="../index.html">← Voltar à Prática Jurídica Trabalhista</a>
+    <div class="list">
+      <a class="btn" href="LINK_GOOGLE_DRIVE_01" target="_blank" rel="noopener">
+        <div class="left">
+          <div class="num">1</div>
+          <div class="text">Contribuição assistencial a empregados não sindicalizados</div>
+        </div>
+        <div class="chev">›</div>
+      </a>
+
+      <a class="btn" href="LINK_GOOGLE_DRIVE_02" target="_blank" rel="noopener">
+        <div class="left">
+          <div class="num">2</div>
+          <div class="text">Inclusão de empresas do mesmo grupo na fase de execução</div>
+        </div>
+        <div class="chev">›</div>
+      </a>
+
+      <a class="btn" href="LINK_GOOGLE_DRIVE_03" target="_blank" rel="noopener">
+        <div class="left">
+          <div class="num">3</div>
+          <div class="text">Vínculo de emprego com pessoa jurídica</div>
+        </div>
+        <div class="chev">›</div>
+      </a>
+
+      <a class="btn" href="LINK_GOOGLE_DRIVE_04" target="_blank" rel="noopener">
+        <div class="left">
+          <div class="num">4</div>
+          <div class="text">Vínculo empregatício de motorista de aplicativo</div>
+        </div>
+        <div class="chev">›</div>
+      </a>
+
+      <a class="btn" href="LINK_GOOGLE_DRIVE_05" target="_blank" rel="noopener">
+        <div class="left">
+          <div class="num">5</div>
+          <div class="text">Vínculo empregatício de motorista de aplicativo</div>
+        </div>
+        <div class="chev">›</div>
+      </a>
+    </div>
+
+    <div class="back">
+      <a href="../index.html">← Voltar ao índice da disciplina</a>
+    </div>
+
   </div>
-
-</div>
 </body>
 </html>
