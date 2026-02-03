@@ -1,190 +1,121 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Apresentações</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Casos do STF</title>
 
-  <style>
-    :root{
-      --bg:#ffffff;
-      --title:#1f4fd8;
-      --text:#0f172a;
-      --green:#1f9a3c;
-      --greenSoft: rgba(31,154,60,.14);
-      --border: rgba(15,23,42,.14);
-      --shadow: 0 10px 22px rgba(15,23,42,.08);
-    }
-
-    *{ box-sizing:border-box; }
-
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background:var(--bg);
-      color:var(--text);
-      font-size:18px;
-      line-height:1.6;
-    }
-
-    .wrap{
-      max-width: 920px;
-      margin: 0 auto;
-      padding: 18px 16px 40px;
-    }
-
-    h1{
-      margin: 10px 0 14px;
-      color: var(--title);
-      font-size: 28px;
-      letter-spacing: -.2px;
-    }
-
-    .subtitle{
-      margin: 0 0 16px;
-      font-size: 16px;
-      color: rgba(15,23,42,.85);
-    }
-
-    .list{
-      display:flex;
-      flex-direction:column;
-      gap: 14px;
-      margin-top: 10px;
-    }
-
-    .btn{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-
-      text-decoration:none;
-      color: var(--text);
-      background:#fff;
-
-      border: 2px solid rgba(31,154,60,.7);
-      border-radius: 14px;
-
-      padding: 16px 16px;
-      font-weight: 900;
-
-      box-shadow: 0 6px 16px rgba(15,23,42,.06);
-    }
-
-    .left{
-      display:flex;
-      align-items:center;
-      gap: 12px;
-      min-width: 0;
-    }
-
-    .num{
-      width: 30px;
-      height: 30px;
-      border-radius: 10px;
-      background: var(--greenSoft);
-      color: #0b5a1f;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size: 14px;
-      flex: 0 0 auto;
-    }
-
-    .text{
-      white-space: normal;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .chev{
-      font-size: 22px;
-      opacity: .45;
-      flex: 0 0 auto;
-    }
-
-    .back{
-      margin-top: 26px;
-      display:flex;
-      justify-content:center;
-    }
-
-    .back a{
-      display:inline-block;
-      text-decoration:none;
-      color: var(--text);
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 14px 18px;
-      font-weight: 900;
-      box-shadow: var(--shadow);
-    }
-
-    @media (max-width:480px){
-      body{ font-size:17px; }
-      h1{ font-size:24px; }
-      .btn{ padding: 15px 14px; }
-    }
-  </style>
+<style>
+:root{
+  --bg:#ffffff;
+  --title:#1f4fd8;
+  --text:#0f172a;
+  --green:#1f9a3c;
+  --border:rgba(15,23,42,.14);
+  --shadow:0 10px 22px rgba(15,23,42,.08);
+}
+*{ box-sizing:border-box; }
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  font-size:18px;
+  line-height:1.6;
+}
+.wrap{
+  max-width:980px;
+  margin:auto;
+  padding:18px 16px 40px;
+}
+h1{
+  color:var(--title);
+  font-size:32px;
+  margin:8px 0 12px;
+}
+.subtitle{
+  margin:0 0 16px;
+  font-size:16px;
+  color:rgba(15,23,42,.85);
+}
+.list{ display:flex; flex-direction:column; gap:14px; }
+.btn{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:18px 16px;
+  background:#fff;
+  border:2px solid rgba(31,154,60,.7);
+  border-radius:16px;
+  text-decoration:none;
+  color:var(--text);
+  font-weight:900;
+  box-shadow:0 6px 16px rgba(15,23,42,.06);
+}
+.left{ display:flex; align-items:center; gap:12px; min-width:0; }
+.num{
+  width:32px; height:32px; border-radius:10px;
+  background:rgba(31,154,60,.16);
+  display:flex; align-items:center; justify-content:center;
+  font-size:14px; color:#0b5a1f; flex:0 0 auto;
+}
+.text{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.chev{ opacity:.45; font-size:22px; flex:0 0 auto; }
+.back{ margin-top:28px; display:flex; justify-content:center; }
+.back a{
+  display:inline-block;
+  padding:16px 18px;
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:16px;
+  text-decoration:none;
+  color:var(--text);
+  font-weight:900;
+  box-shadow:var(--shadow);
+}
+@media(max-width:520px){
+  h1{ font-size:26px; }
+  .text{ white-space:normal; }
+}
+</style>
 </head>
 
 <body>
-  <div class="wrap">
+<div class="wrap">
+  <h1>Precedentes Vinculantes do Supremo na Área Trabalhista</h1>
+  <div class="subtitle">Selecione o caso abaixo para acessar o conteúdo dos processos:</div>
 
-    <h1>Precedentes Vinculantes do Supremo na Área Trabalhista</h1>
+  <div class="list">
+    <a class="btn" href="01-apresentacao/index.html">
+      <div class="left"><div class="num">1</div><div class="text">Contribuição assistencial a empregados não sindicalizados</div></div>
+      <div class="chev">›</div>
+    </a>
 
-    <div class="subtitle">
-      Selecione o caso abaixo para acessar o conteúdo dos processos:
-    </div>
+    <a class="btn" href="02-apresentacao/index.html">
+      <div class="left"><div class="num">2</div><div class="text">Inclusão de empresas do mesmo grupo na fase de execução</div></div>
+      <div class="chev">›</div>
+    </a>
 
-    <div class="list">
-      <a class="btn" href="LINK_GOOGLE_DRIVE_01" target="_blank" rel="noopener">
-        <div class="left">
-          <div class="num">1</div>
-          <div class="text">Contribuição assistencial a empregados não sindicalizados</div>
-        </div>
-        <div class="chev">›</div>
-      </a>
+    <a class="btn" href="03-apresentacao/index.html">
+      <div class="left"><div class="num">3</div><div class="text">Vínculo de emprego com pessoa jurídica</div></div>
+      <div class="chev">›</div>
+    </a>
 
-      <a class="btn" href="LINK_GOOGLE_DRIVE_02" target="_blank" rel="noopener">
-        <div class="left">
-          <div class="num">2</div>
-          <div class="text">Inclusão de empresas do mesmo grupo na fase de execução</div>
-        </div>
-        <div class="chev">›</div>
-      </a>
+    <a class="btn" href="04-apresentacao/index.html">
+      <div class="left"><div class="num">4</div><div class="text">Vínculo empregatício de motorista de aplicativo</div></div>
+      <div class="chev">›</div>
+    </a>
 
-      <a class="btn" href="LINK_GOOGLE_DRIVE_03" target="_blank" rel="noopener">
-        <div class="left">
-          <div class="num">3</div>
-          <div class="text">Vínculo de emprego com pessoa jurídica</div>
-        </div>
-        <div class="chev">›</div>
-      </a>
-
-      <a class="btn" href="LINK_GOOGLE_DRIVE_04" target="_blank" rel="noopener">
-        <div class="left">
-          <div class="num">4</div>
-          <div class="text">Vínculo empregatício de motorista de aplicativo</div>
-        </div>
-        <div class="chev">›</div>
-      </a>
-
-      <a class="btn" href="LINK_GOOGLE_DRIVE_05" target="_blank" rel="noopener">
-        <div class="left">
-          <div class="num">5</div>
-          <div class="text">Vínculo empregatício de motorista de aplicativo</div>
-        </div>
-        <div class="chev">›</div>
-      </a>
-    </div>
-
-    <div class="back">
-      <a href="../index.html">← Voltar ao índice da disciplina</a>
-    </div>
-
+    <a class="btn" href="05-apresentacao/index.html">
+      <div class="left"><div class="num">5</div><div class="text">Vínculo empregatício de motorista de aplicativo</div></div>
+      <div class="chev">›</div>
+    </a>
   </div>
+
+  <div class="back">
+    <a href="../index.html">← Voltar ao índice da disciplina</a>
+  </div>
+</div>
 </body>
 </html>
