@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Inclusão de empresas do mesmo grupo na fase de execução</title>
+  <title>Grupo Econômico – Decisão do STF</title>
 
   <style>
     :root{
@@ -37,16 +37,22 @@
       color:var(--title);
       font-size:26px;
       margin: 8px 0 14px;
-      letter-spacing: -.2px;
+      letter-spacing:-.2px;
     }
 
-    /* ===== BLOCO DOCUMENTOS ===== */
+    h2{
+      margin: 22px 0 8px;
+      font-size:20px;
+      color:#0b2fb3;
+    }
+
+    /* DOCUMENTOS */
     .docs{
       display:flex;
       flex-direction:column;
       align-items:center;
       gap:10px;
-      margin: 8px 0 18px;
+      margin: 10px 0 22px;
     }
 
     .doc-link{
@@ -59,73 +65,63 @@
     }
 
     .doc-img{
-      width: 170px;
-      max-width: 70vw;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      display:block;
+      width:170px;
+      max-width:70vw;
+      border-radius:12px;
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
     }
 
     .doc-label{
-      font-weight: 900;
-      font-size: 12px;
-      letter-spacing: 1px;
-      opacity: .95;
+      font-weight:900;
+      font-size:12px;
+      letter-spacing:1px;
     }
 
-    /* ===== RESUMO ===== */
+    /* CARD */
     .box{
-      background: var(--card);
-      border: 2px solid rgba(31,154,60,.65);
-      border-radius: 18px;
-      box-shadow: 0 8px 18px rgba(15,23,42,.06);
-      padding: 16px;
-    }
-
-    .box h2{
-      margin: 0 0 10px;
-      font-size: 18px;
-      line-height:1.4;
+      background:var(--card);
+      border:2px solid rgba(31,154,60,.65);
+      border-radius:18px;
+      box-shadow:0 8px 18px rgba(15,23,42,.06);
+      padding:18px;
     }
 
     .box p{
-      margin: 0 0 12px;
-      text-align: justify;
+      margin:0 0 14px;
+      text-align:justify;
     }
 
-    .tese{
-      margin-top: 14px;
-      padding: 14px;
-      border-radius: 14px;
-      border: 1px solid rgba(15,23,42,.14);
-      background: rgba(31,79,216,.06);
-      font-weight: 700;
+    ul{
+      margin: 10px 0 16px 18px;
     }
 
-    /* ===== VOLTAR ===== */
+    li{
+      margin-bottom:8px;
+    }
+
+    /* VOLTAR */
     .back{
-      margin-top: 22px;
+      margin-top:24px;
       display:flex;
       justify-content:center;
     }
 
     .back a{
       display:inline-block;
-      padding: 16px 18px;
+      padding:16px 18px;
       background:#fff;
-      border: 1px solid var(--border);
-      border-radius: 16px;
+      border:1px solid var(--border);
+      border-radius:16px;
       text-decoration:none;
       color:var(--text);
-      font-weight: 900;
-      box-shadow: var(--shadow);
+      font-weight:900;
+      box-shadow:var(--shadow);
     }
 
     @media (max-width:480px){
       body{ font-size:17px; }
       h1{ font-size:24px; }
-      .doc-img{ width: 150px; }
     }
   </style>
 </head>
@@ -133,51 +129,83 @@
 <body>
   <div class="wrap">
 
-    <h1>Inclusão de empresas do mesmo grupo na fase de execução</h1>
+    <h1>Reclamação Trabalhista, Grupo Econômico e Decisão do STF</h1>
 
-    <!-- ✅ LINK PARA PASTA DO GOOGLE DRIVE (VÁRIOS ARQUIVOS) -->
+    <!-- LINK PARA PASTA DO GOOGLE DRIVE -->
     <div class="docs">
       <a class="doc-link"
-         href="https://drive.google.com/drive/folders/1j1Oa_TD9MtUTMRGSbn7a_95Y3Hy3Ffog?usp=sharing"
+         href="COLE_AQUI_O_LINK_DA_PASTA_DO_GOOGLE_DRIVE"
          target="_blank" rel="noopener">
 
         <img class="doc-img"
              src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=900&q=60"
-             alt="Documentos no Google Drive" />
+             alt="Documentos do processo" />
 
         <div class="doc-label">DOCUMENTOS</div>
       </a>
     </div>
 
     <div class="box">
-      <h2>📌 Resumo – ARE 1.018.459 (Tema 935 da Repercussão Geral)</h2>
 
-      <p>O processo teve origem em Ação Civil Pública proposta pelo Ministério Público do Trabalho, que questionou
-      cláusulas de convenções coletivas firmadas por sindicatos profissional e patronais no Paraná. Essas cláusulas
-      instituíam contribuições assistenciais e outras formas de custeio sindical impostas a empregados e empregadores
-      não filiados, inclusive com financiamento direto do sindicato profissional pelas empresas.</p>
+      <p>
+        O processo tem origem em reclamação trabalhista ajuizada por empregado contra a empresa
+        <strong>Alcana Destilaria de Álcool de Nanuque S.A.</strong>, na qual houve condenação ao
+        pagamento de verbas trabalhistas. Na fase de execução, diante da dificuldade de satisfação
+        do crédito, o juízo trabalhista redirecionou a execução para outras empresas, entre elas
+        <strong>Rodovias das Colinas S.A.</strong>, sob o fundamento da existência de grupo econômico.
+      </p>
 
-      <p>Na Justiça do Trabalho, as cláusulas foram consideradas ilegais, por violarem a liberdade sindical
-      (arts. 5º, XX, e 8º, V, da CF), bem como normas da Convenção nº 98 da OIT, que veda ingerência patronal
-      na organização sindical. O entendimento foi mantido no TRT e no TST, com base no Precedente Normativo 119
-      e na OJ 17 da SDC/TST, que vedavam a cobrança de contribuições assistenciais de não filiados.</p>
+      <h2>1. Entendimento da Justiça do Trabalho</h2>
 
-      <p>O sindicato profissional interpôs Recurso Extraordinário, alegando violação à autonomia coletiva e ao
-      art. 513, “e”, da CLT. Em 2017, o Supremo Tribunal Federal, no julgamento do ARE 1.018.459, reconheceu
-      a repercussão geral e reafirmou sua jurisprudência então dominante: era inconstitucional a cobrança compulsória
-      de contribuição assistencial de trabalhadores não sindicalizados.</p>
+      <p>
+        O TRT da 3ª Região manteve a inclusão da empresa na execução, adotando a tese de que, para
+        fins trabalhistas, não seria necessária relação de hierarquia entre as empresas, sendo
+        suficiente a relação de coordenação, a identidade parcial de sócios e a suposta comunhão
+        de interesses econômicos.
+      </p>
 
-      <p>Posteriormente, contudo, no julgamento dos Embargos de Declaração, concluído em setembro de 2023,
-      o STF revisou esse entendimento. Por maioria, fixou nova tese no Tema 935, passando a admitir a cobrança
-      de contribuição assistencial de todos os empregados da categoria, inclusive não filiados, desde que assegurado
-      o direito de oposição individual do trabalhador.</p>
+      <p>
+        Também entendeu desnecessária a instauração do incidente de desconsideração da personalidade
+        jurídica, admitindo a inclusão direta da empresa apenas na fase executiva.
+      </p>
 
-      <div class="tese">
-        <strong>Tese fixada (vigente):</strong><br>
-        “É constitucional a instituição, por acordo ou convenção coletivos, de contribuições assistenciais a serem
-        impostas a todos os empregados da categoria, ainda que não sindicalizados, desde que assegurado o direito
-        de oposição.”
-      </div>
+      <p>
+        O TST, ao apreciar agravos e recursos na fase de execução, manteve o acórdão regional,
+        afastando a existência de violação direta à Constituição Federal, sob o argumento de que
+        eventual ofensa seria reflexa, o que inviabilizaria o conhecimento do recurso extraordinário.
+      </p>
+
+      <h2>2. Teses da empresa recorrente</h2>
+
+      <ul>
+        <li>
+          Violação ao art. 5º, II, da Constituição Federal (princípio da legalidade), pois o art. 2º,
+          §2º, da CLT, em sua redação anterior à Reforma Trabalhista, exigia direção, controle ou
+          hierarquia, e não mera coordenação;
+        </li>
+        <li>
+          Violação ao devido processo legal, contraditório e ampla defesa (art. 5º, LIV e LV, CF),
+          pela inclusão direta na execução, sem participação na fase de conhecimento;
+        </li>
+        <li>
+          Obrigatoriedade de instauração do incidente de desconsideração da personalidade jurídica,
+          nos termos dos arts. 133 a 137 do CPC;
+        </li>
+        <li>
+          Risco à prestação de serviço público, uma vez que se trata de concessionária, com bloqueios
+          milionários sobre receitas vinculadas à atividade essencial.
+        </li>
+      </ul>
+
+      <h2>3. Decisão do STF</h2>
+
+      <p>
+        O caso chegou ao Supremo Tribunal Federal por meio de Recurso Extraordinário, no qual o STF
+        deu provimento ao recurso, reconhecendo a existência de violação direta à Constituição
+        Federal, delimitando os contornos constitucionais da responsabilização de empresas
+        integrantes de grupo econômico na fase de execução trabalhista.
+      </p>
+
     </div>
 
     <div class="back">
@@ -187,4 +215,3 @@
   </div>
 </body>
 </html>
-
