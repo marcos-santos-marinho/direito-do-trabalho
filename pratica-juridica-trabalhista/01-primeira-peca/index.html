@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>1ª Peça – Prática Jurídica Trabalhista</title>
+  <title>1ª Peça – Reclamação Trabalhista</title>
 
   <style>
     :root{
@@ -14,144 +14,181 @@
       --border:rgba(15,23,42,.18);
       --shadow:0 10px 22px rgba(15,23,42,.08);
       --green:#1f9a3c;
+      --greenSoft: rgba(31,154,60,.14);
     }
+
     *{ box-sizing:border-box; }
+
     body{
       margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       background:var(--bg);
       color:var(--text);
       font-size:18px;
-      line-height:1.65;
+      line-height:1.7;
     }
-    .wrap{
-      max-width:920px;
-      margin:auto;
-      padding:18px 16px 40px;
-    }
-    .title-row{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-bottom:6px;
-    }
-    h1{
-      color:var(--title);
-      font-size:28px;
-      margin:8px 0 8px;
-      letter-spacing:-.2px;
-    }
-    .slides-btn{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      text-decoration:none;
-      background:#fff;
-      border:1px solid var(--border);
-      border-radius:14px;
-      padding:10px 14px;
-      box-shadow:var(--shadow);
-      min-width:92px;
-      color:var(--text);
-      font-weight:900;
-    }
-    .slides-icon{ font-size:28px; line-height:1; }
-    .slides-text{ font-size:12px; margin-top:4px; letter-spacing:.6px; }
 
-    .card{
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:18px;
-      box-shadow:var(--shadow);
-      padding:16px;
-      margin-top:12px;
+    .wrap{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 16px 14px 40px;
     }
+
+    /* ===== CABEÇALHO ===== */
+    .header{
+      margin: 6px 0 14px;
+    }
+
+    h1{
+      margin: 6px 0 8px;
+      color: var(--title);
+      font-size: 30px;
+      letter-spacing: -.2px;
+      line-height: 1.2;
+    }
+
     .meta{
       display:flex;
       flex-wrap:wrap;
       gap:10px;
-      margin:6px 0 10px;
-      font-size:15px;
-      color:rgba(15,23,42,.82);
-    }
-    .pill{
-      background:rgba(31,79,216,.08);
-      border:1px solid rgba(31,79,216,.18);
-      padding:6px 10px;
-      border-radius:999px;
-      font-weight:800;
-    }
-    .hint{
-      margin:10px 0 0;
-      font-size:16px;
-      color:rgba(15,23,42,.9);
+      align-items:center;
+      margin-top: 6px;
+      font-size: 15px;
+      color: rgba(15,23,42,.85);
     }
 
-    .topics{
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-      margin-top:14px;
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 10px;
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius: 999px;
+      box-shadow: 0 6px 14px rgba(15,23,42,.06);
+      font-weight: 800;
     }
+
+    /* ===== BOTÕES TOPO ===== */
+    .top-actions{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 14px 0 16px;
+    }
+
+    .mini-btn{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 14px 12px;
+      text-decoration:none;
+      color: var(--text);
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      font-weight: 900;
+    }
+
+    .mini-ico{ font-size:22px; line-height:1; }
+
+    /* ===== CARD ===== */
+    .card{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 16px;
+      margin: 14px 0;
+    }
+
+    .card h2{
+      margin: 0 0 10px;
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: .2px;
+    }
+
+    p{ margin: 0 0 12px; text-align: justify; }
+
+    ul{
+      margin: 10px 0 0 18px;
+      padding: 0;
+    }
+
+    li{ margin: 0 0 10px; }
+
     .topic-btn{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:12px;
-      padding:16px;
-      background:#fff;
-      border:2px solid rgba(31,154,60,.65);
-      border-radius:16px;
+      gap: 12px;
+      padding: 16px 16px;
+      border-radius: 16px;
       text-decoration:none;
-      color:var(--text);
-      font-weight:900;
-      box-shadow:0 8px 18px rgba(15,23,42,.06);
+      background: #fff;
+      border: 2px solid rgba(31,154,60,.65);
+      box-shadow: 0 8px 18px rgba(15,23,42,.06);
+      color: var(--text);
+      font-weight: 900;
+      margin-top: 10px;
     }
-    .left{
+
+    .topic-left{
       display:flex;
       align-items:center;
-      gap:10px;
-      min-width:0;
+      gap: 10px;
+      min-width: 0;
     }
-    .num{
-      width:30px; height:30px;
-      border-radius:10px;
-      background:rgba(31,154,60,.14);
-      display:flex; align-items:center; justify-content:center;
-      color:#0b5a1f;
-      font-size:14px;
-      flex:0 0 auto;
-    }
-    .label{
-      overflow:hidden;
-      text-overflow:ellipsis;
-      white-space:nowrap;
-    }
-    .chev{ font-size:22px; opacity:.5; flex:0 0 auto; }
 
+    .topic-num{
+      width: 28px;
+      height: 28px;
+      border-radius: 10px;
+      background: var(--greenSoft);
+      color: #0b5a1f;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size: 14px;
+      flex: 0 0 auto;
+    }
+
+    .chev{
+      font-size: 22px;
+      opacity: .45;
+      flex: 0 0 auto;
+    }
+
+    /* ===== VOLTAR ===== */
     .back{
-      margin-top:18px;
-    }
-    .back a{
-      display:block;
-      text-align:center;
-      padding:16px;
-      background:#fff;
-      border:1px solid var(--border);
-      border-radius:16px;
-      text-decoration:none;
-      color:var(--text);
-      font-weight:900;
-      box-shadow:var(--shadow);
+      margin-top: 18px;
+      display:flex;
+      justify-content:center;
     }
 
-    @media (max-width:480px){
+    .back a{
+      display:inline-block;
+      text-align:center;
+      padding: 16px 18px;
+      border-radius: 16px;
+      text-decoration:none;
+      background:#fff;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      font-weight: 900;
+      color: var(--text);
+      width: 100%;
+      max-width: 520px;
+    }
+
+    @media (max-width:520px){
       body{ font-size:17px; }
-      h1{ font-size:24px; }
-      .label{ white-space:normal; }
+      h1{ font-size:26px; }
+      .top-actions{ grid-template-columns: 1fr 1fr; }
+      .mini-btn{ padding: 13px 10px; font-size: 15px; }
     }
   </style>
 </head>
@@ -159,38 +196,77 @@
 <body>
   <div class="wrap">
 
-    <div class="title-row">
+    <div class="header">
       <h1>1ª Peça – Reclamação Trabalhista</h1>
+      <div class="meta">
+        <span class="pill">🗓️ Prazo: <strong>30/03/2026</strong></span>
+        <span class="pill">📌 Tema: <strong>Petição inicial (art. 840, §1º, CLT)</strong></span>
+      </div>
+    </div>
 
-      <a class="slides-btn" href="LINK_SLIDES_GOOGLE_DRIVE" target="_blank" rel="noopener">
-        <div class="slides-icon">🖼️</div>
-        <div class="slides-text">SLIDES</div>
+    <!-- ✅ BOTÕES (Drive) -->
+    <div class="top-actions">
+      <a class="mini-btn" href="LINK_GOOGLE_DRIVE_SLIDES" target="_blank" rel="noopener">
+        <span class="mini-ico">🖼️</span>
+        <span>Slides</span>
+      </a>
+
+      <a class="mini-btn" href="LINK_GOOGLE_DRIVE_1A_PECA" target="_blank" rel="noopener">
+        <span class="mini-ico">📄</span>
+        <span>1ª Peça</span>
       </a>
     </div>
 
     <div class="card">
-      <div class="meta">
-        <div class="pill">1ª PEÇA</div>
-        <div class="pill">PRAZO: 30/03/2026</div>
-      </div>
+      <h2>Conceito</h2>
+      <p>
+        A Reclamação Trabalhista é a peça processual inicial que provoca o Poder Judiciário na esfera trabalhista,
+        podendo ser apresentada de forma escrita ou verbal.
+      </p>
+    </div>
 
-      <div class="hint">
-        Selecione abaixo para abrir o conteúdo completo e orientações:
-      </div>
+    <div class="card">
+      <h2>1. Estrutura e requisitos essenciais</h2>
+      <ul>
+        <li><strong>Endereçamento:</strong> definição do juízo competente (em regra, local da prestação do serviço).</li>
+        <li><strong>Qualificação:</strong> identificação completa do reclamante e do reclamado.</li>
+        <li><strong>Causa de pedir:</strong> fatos + fundamentos jurídicos + conclusão (silogismo).</li>
+        <li><strong>Pedidos e valores:</strong> pedidos certos/determinados e com indicação de valor.</li>
+        <li><strong>Requerimentos finais:</strong> notificação, provas, honorários sucumbenciais e valor da causa.</li>
+      </ul>
+    </div>
 
-      <div class="topics">
-        <a class="topic-btn" href="reclamacao-trabalhista/index.html">
-          <div class="left">
-            <div class="num">1</div>
-            <div class="label">1ª Peça – Reclamação Trabalhista (conteúdo)</div>
-          </div>
-          <div class="chev">›</div>
-        </a>
-      </div>
+    <div class="card">
+      <h2>2. Principais teses e direitos pleiteados</h2>
+      <ul>
+        <li><strong>Verbas rescisórias:</strong> saldo de salário, aviso prévio, 13º proporcional, férias + 1/3.</li>
+        <li><strong>Jornada:</strong> horas extras, adicional noturno e intervalo intrajornada.</li>
+        <li><strong>Extinção do contrato:</strong> reversão de justa causa ou rescisão indireta.</li>
+        <li><strong>Indenizações:</strong> danos morais, materiais e estéticos.</li>
+        <li><strong>Estabilidades:</strong> acidente de trabalho e dirigente sindical (quando cabível).</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>3. Aspectos processuais relevantes</h2>
+      <ul>
+        <li><strong>Justiça gratuita:</strong> hipossuficiência (inclusive critério de 40% do teto do RGPS).</li>
+        <li><strong>Responsabilidade:</strong> subsidiária (terceirização) ou solidária (grupo/sucessão).</li>
+        <li><strong>Tutela provisória:</strong> urgência/evidência (ex.: reintegração em estabilidade).</li>
+      </ul>
+
+      <!-- Atalho extra (opcional) - mantém padrão visual -->
+      <a class="topic-btn" href="LINK_GOOGLE_DRIVE_1A_PECA" target="_blank" rel="noopener">
+        <div class="topic-left">
+          <div class="topic-num">✓</div>
+          <div>Baixar/abrir a 1ª peça (Drive)</div>
+        </div>
+        <div class="chev">›</div>
+      </a>
     </div>
 
     <div class="back">
-      <a href="../index.html">← Voltar ao índice da disciplina</a>
+      <a href="../index.html">← Voltar à Prática Jurídica Trabalhista</a>
     </div>
 
   </div>
