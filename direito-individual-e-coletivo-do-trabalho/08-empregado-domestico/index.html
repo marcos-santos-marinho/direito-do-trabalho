@@ -3,25 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Empregado Doméstico</title>
+  <title>8. Empregado Doméstico</title>
 
   <style>
     :root{
-      --bg:#eef6ff;
+      --bg:#eaf3ff;
+      --panel:#f6faff;
       --title:#1f4fd8;
       --text:#0f172a;
+
       --card:#ffffff;
-      --border:rgba(15,23,42,.18);
+      --border:rgba(15,23,42,.14);
       --shadow:0 10px 22px rgba(15,23,42,.08);
-      --green:#1f9a3c;
+
+      --muted:rgba(15,23,42,.78);
     }
 
     *{ box-sizing:border-box; }
 
     body{
       margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background:var(--bg);
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background: radial-gradient(1000px 420px at 30% 0%, #d8ecff 0%, var(--bg) 55%, #eaf3ff 100%);
       color:var(--text);
       font-size:18px;
       line-height:1.75;
@@ -29,190 +32,264 @@
 
     .wrap{
       max-width: 980px;
-      margin:auto;
-      padding: 18px 16px 40px;
+      margin: 22px auto;
+      padding: 18px;
+    }
+
+    .panel{
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: 0 18px 40px rgba(15,23,42,.10);
+      padding: 18px;
+    }
+
+    /* topo: título + botão slides */
+    .topbar{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:14px;
+      margin-bottom: 10px;
     }
 
     h1{
-      color:var(--title);
-      font-size:28px;
-      margin: 6px 0 14px;
-      line-height:1.25;
-      letter-spacing:-.2px;
+      margin: 4px 0 0;
+      font-size: 28px;
+      line-height:1.2;
+      color: var(--title);
+      letter-spacing: -.2px;
     }
 
+    /* botão slides pequeno, canto superior direito */
+    .slideBtn{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:6px;
+      width: 86px;
+      padding: 10px 10px;
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius: 12px;
+      text-decoration:none;
+      color: var(--text);
+      font-weight: 900;
+      box-shadow: var(--shadow);
+      transition: transform .18s ease, box-shadow .18s ease;
+      flex: 0 0 auto;
+    }
+
+    .slideBtn:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 16px 34px rgba(15,23,42,.12);
+    }
+
+    .slideIcon{
+      width: 28px;
+      height: 28px;
+      display:block;
+    }
+
+    .subtitle{
+      margin: 4px 0 14px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    /* cards de texto */
     .card{
-      background:var(--card);
-      border:2px solid rgba(31,154,60,.65);
-      border-radius:18px;
-      padding:18px;
-      box-shadow:0 8px 18px rgba(15,23,42,.06);
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 6px 14px rgba(15,23,42,.06);
+      margin: 12px 0;
     }
 
     p{
-      margin:0 0 14px;
-      text-align:justify;
+      margin:0 0 12px;
+      text-align: justify;
     }
+
+    p:last-child{ margin-bottom:0; }
 
     .bullets{
-      margin: 10px 0 14px 18px;
-      padding:0;
+      margin: 10px 0 0 18px;
+      padding: 0;
     }
+    .bullets li{ margin: 0 0 8px; }
 
-    .bullets li{
-      margin:0 0 10px;
-    }
-
-    .subttl{
-      margin: 18px 0 8px;
-      font-size:20px;
-      color:#0b2fb3;
-      line-height:1.35;
-      font-weight:900;
-    }
-
-    .highlight{
-      margin-top: 14px;
+    .note{
+      margin-top: 10px;
       padding: 14px;
       border-radius: 14px;
-      background: rgba(31,79,216,.08);
       border: 1px solid var(--border);
-      font-weight: 700;
+      background: rgba(31,79,216,.08);
+      font-weight: 800;
     }
 
+    /* botão voltar */
     .back{
-      margin-top:24px;
+      margin-top: 16px;
       display:flex;
       justify-content:center;
     }
 
     .back a{
-      display:inline-block;
-      width:100%;
-      max-width:560px;
+      width: min(560px, 100%);
       text-align:center;
-      padding:14px 18px;
-      border-radius:16px;
-      background:#fff;
-      border:1px solid var(--border);
       text-decoration:none;
-      font-weight:900;
-      color:var(--text);
-      box-shadow:var(--shadow);
+      background:#fff;
+      padding:16px 18px;
+      border-radius:16px;
+      border:1px solid var(--border);
+      box-shadow: var(--shadow);
+      color: var(--text);
+      font-weight: 900;
+      transition: transform .18s ease;
     }
 
-    @media(max-width:480px){
+    .back a:hover{
+      transform: translateY(-2px);
+    }
+
+    @media (max-width:480px){
       body{ font-size:17px; }
       h1{ font-size:24px; }
+      .slideBtn{ width: 82px; }
     }
   </style>
 </head>
 
 <body>
   <div class="wrap">
+    <div class="panel">
 
-    <h1>Empregado Doméstico</h1>
+      <div class="topbar">
+        <h1>8. Empregado Doméstico</h1>
 
-    <div class="card">
-
-      <p>
-        Empregado doméstico é “aquele que presta serviços de forma contínua, subordinada, onerosa e pessoal e de finalidade
-        não lucrativa à pessoa ou à família, no âmbito residencial destas, por mais de 2 (dois) dias por semana”
-        (art. 1º, Lei Complementar n. 150/2015).
-      </p>
-
-      <p class="subttl">Fatores que diferenciam o doméstico dos demais empregados</p>
-
-      <ul class="bullets">
-        <li>trabalho para pessoa ou família;</li>
-        <li>trabalho no âmbito residencial;</li>
-        <li>inexistência de fins lucrativos no trabalho que exerce.</li>
-      </ul>
-
-      <p>
-        <strong>Finalidade não lucrativa</strong> – o trabalho doméstico não visa lucro para o empregador. Não pode ser prestado
-        na exploração de atividade comercial ou industrial, devendo ser realizado tão somente para o desenvolvimento da vida do lar,
-        da vida familiar.
-      </p>
-
-      <p>
-        <strong>Âmbito residencial da família</strong> – relaciona-se com o âmbito da prestação do trabalho, que abrange todo o local
-        onde há o desenvolvimento da vida do lar, incluindo não só a moradia permanente (motorista, jardineiro, mordomo, babá etc.),
-        como também suas extensões, como a chácara recreativa, o sítio de lazer, casa de praia (caseiro).
-      </p>
-
-      <p>
-        O trabalho doméstico, como ocorre em qualquer tipo de relação de emprego, é prestado com pessoalidade, de forma contínua,
-        subordinada e com onerosidade, ou seja, o empregado doméstico presta serviços pessoais, não eventuais e remunerados,
-        sob as ordens do empregador.
-      </p>
-
-      <div class="highlight">
-        É vedada a contratação de menor de 18 anos para desempenho de trabalho doméstico (art. 1º, parágrafo único,
-        Lei Complementar n. 150/2015).
+        <!-- ✅ TROQUE pelo link do Google Drive (slides) -->
+        <a class="slideBtn" href="LINK_SLIDES_GOOGLE_DRIVE" target="_blank" rel="noopener">
+          <!-- ícone tipo “quadro” -->
+          <svg class="slideIcon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 5h16v10H4V5Z" stroke="#1f4fd8" stroke-width="1.7"/>
+            <path d="M8 19h8" stroke="#1f4fd8" stroke-width="1.7" stroke-linecap="round"/>
+            <path d="M12 15v4" stroke="#1f4fd8" stroke-width="1.7" stroke-linecap="round"/>
+            <path d="M7 9l2-2 3 3 2-2 3 3" stroke="#1f4fd8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>Slides</div>
+        </a>
       </div>
 
-      <p class="subttl">Evolução constitucional e ampliação de direitos</p>
+      <div class="subtitle">Conteúdo para leitura no celular</div>
 
-      <p>
-        A Constituição Federal de 1988 foi um marco na proteção trabalhista dos domésticos, à medida que assegurou aos mesmos um leque
-        de direitos muito mais extenso dos que lhe eram conferidos pela legislação existente até então. No entanto, muito embora fosse
-        inegável a melhoria das condições de proteção trabalhista do doméstico a partir da Constituição de 1988, é inescusável a constatação
-        de que o constituinte adotou um critério desigual entre os trabalhadores domésticos e os trabalhadores urbanos e rurais, tendo em vista
-        que o art. 7º previa uma proteção ampla e integral a estes últimos em detrimento da proteção assegurada aos primeiros, que se restringia
-        apenas aos direitos previstos em alguns dos incisos do referido dispositivo.
-      </p>
+      <div class="card">
+        <p>
+          Empregado doméstico é “aquele que presta serviços de forma contínua, subordinada, onerosa e pessoal e de finalidade
+          não lucrativa à pessoa ou à família, no âmbito residencial destas, por mais de 2 (dois) dias por semana”
+          (art. 1º, Lei Complementar n. 150/2015).
+        </p>
+      </div>
 
-      <p>
-        Em resposta às discussões sobre a desigualdade de tratamento constitucional entre os trabalhadores urbanos e rurais e os trabalhadores domésticos,
-        e atendendo aos anseios dessa última categoria, a Emenda Constitucional n. 72/2013 estabeleceu uma nova ampliação aos direitos do empregado doméstico.
-      </p>
+      <div class="card">
+        <p><strong>Fatores que diferenciam o doméstico dos demais empregados</strong></p>
+        <ul class="bullets">
+          <li>trabalho para pessoa ou família;</li>
+          <li>trabalho no âmbito residencial;</li>
+          <li>inexistência de fins lucrativos no trabalho que exerce.</li>
+        </ul>
+      </div>
 
-      <p>
-        Assim, mantendo os direitos já originalmente previstos pela Constituição Federal de 1988 (salário mínimo, irredutibilidade de salário, décimo terceiro salário,
-        repouso semanal remunerado preferencialmente aos domingos, férias anuais remuneradas com pelo menos um terço a mais do que o salário normal, licença-gestante de 120 dias
-        sem prejuízo do emprego e do salário, licença-paternidade, aviso-prévio proporcional ao tempo de serviço, sendo no mínimo de 30 dias, aposentadoria e integração à Previdência Social),
-        o parágrafo único do art. 7º da Constituição Federal passou, com a redação dada pela Emenda Constitucional n. 72/2013, a garantir à categoria dos trabalhadores domésticos os seguintes direitos:
-      </p>
+      <div class="card">
+        <p>
+          <strong>Finalidade não lucrativa</strong> – o trabalho doméstico não visa lucro para o empregador. Não pode ser prestado
+          na exploração de atividade comercial ou industrial, devendo ser realizado tão somente para o desenvolvimento da vida do lar,
+          da vida familiar.
+        </p>
 
-      <ul class="bullets">
-        <li>garantia de salário, nunca inferior ao mínimo, para os que percebem remuneração variável;</li>
-        <li>proteção do salário na forma da lei, constituindo crime sua retenção dolosa;</li>
-        <li>duração do trabalho normal não superior a oito horas diárias e quarenta e quatro semanais, facultada a compensação de horários e a redução da jornada, mediante acordo ou convenção coletiva de trabalho;</li>
-        <li>remuneração do serviço extraordinário superior, no mínimo, em cinquenta por cento à do normal;</li>
-        <li>redução dos riscos inerentes ao trabalho, por meio de normas de saúde, higiene e segurança;</li>
-        <li>reconhecimento das convenções e acordos coletivos de trabalho;</li>
-        <li>proibição de diferença de salários, de exercício de funções e de critério de admissão por motivo de sexo, idade, cor ou estado civil;</li>
-        <li>proibição de qualquer discriminação no tocante a salário e critérios de admissão do trabalhador portador de deficiência;</li>
-        <li>proibição de trabalho noturno, perigoso ou insalubre a menores de dezoito e de qualquer trabalho a menores de dezesseis anos, salvo na condição de aprendiz, a partir de quatorze anos.</li>
-      </ul>
+        <p>
+          <strong>Âmbito residencial da família</strong> – relaciona-se com o âmbito da prestação do trabalho, que abrange todo o local
+          onde há o desenvolvimento da vida do lar, incluindo não só a moradia permanente (motorista, jardineiro, mordomo, babá etc.),
+          como também suas extensões, como a chácara recreativa, o sítio de lazer, casa de praia (caseiro).
+        </p>
 
-      <p>
-        Além disso, atendidas as condições estabelecidas em lei e observada a simplificação do cumprimento das obrigações tributárias, principais e acessórias,
-        decorrentes da relação de trabalho e suas peculiaridades, também se assegurou aos trabalhadores domésticos:
-      </p>
+        <p>
+          O trabalho doméstico, como ocorre em qualquer tipo de relação de emprego, é prestado com pessoalidade, de forma contínua,
+          subordinada e com onerosidade, ou seja, o empregado doméstico presta serviços pessoais, não eventuais e remunerados,
+          sob as ordens do empregador.
+        </p>
 
-      <ul class="bullets">
-        <li>relação de emprego protegida contra despedida arbitrária ou sem justa causa, nos termos de lei complementar, que preverá indenização compensatória, entre outros direitos;</li>
-        <li>seguro-desemprego, em caso de desemprego involuntário;</li>
-        <li>fundo de garantia do tempo de serviço;</li>
-        <li>remuneração do trabalho noturno superior à do diurno;</li>
-        <li>salário-família pago em razão do dependente do trabalhador de baixa renda nos termos da lei;</li>
-        <li>assistência gratuita aos filhos e dependentes desde o nascimento até 5 (cinco) anos de idade em creches e pré-escolas;</li>
-        <li>seguro contra acidentes de trabalho, a cargo do empregador, sem excluir a indenização a que este está obrigado, quando incorrer em dolo ou culpa.</li>
-      </ul>
+        <div class="note">
+          É vedada a contratação de menor de 18 anos para desempenho de trabalho doméstico (art. 1º, parágrafo único,
+          Lei Complementar n. 150/2015).
+        </div>
+      </div>
 
-      <p>
-        Os direitos assegurados constitucionalmente aos domésticos foram regulamentados pela Lei Complementar n. 150/2015.
-      </p>
+      <div class="card">
+        <p>
+          <strong>Evolução constitucional e ampliação de direitos</strong>
+        </p>
+
+        <p>
+          A Constituição Federal de 1988 foi um marco na proteção trabalhista dos domésticos, à medida que assegurou aos mesmos um leque
+          de direitos muito mais extenso dos que lhe eram conferidos pela legislação existente até então. No entanto, muito embora fosse
+          inegável a melhoria das condições de proteção trabalhista do doméstico a partir da Constituição de 1988, é inescusável a constatação
+          de que o constituinte adotou um critério desigual entre os trabalhadores domésticos e os trabalhadores urbanos e rurais, tendo em vista
+          que o art. 7º previa uma proteção ampla e integral a estes últimos em detrimento da proteção assegurada aos primeiros, que se restringia
+          apenas aos direitos previstos em alguns dos incisos do referido dispositivo.
+        </p>
+
+        <p>
+          Em resposta às discussões sobre a desigualdade de tratamento constitucional entre os trabalhadores urbanos e rurais e os trabalhadores domésticos,
+          e atendendo aos anseios dessa última categoria, a Emenda Constitucional n. 72/2013 estabeleceu uma nova ampliação aos direitos do empregado doméstico.
+        </p>
+
+        <p>
+          Assim, mantendo os direitos já originalmente previstos pela Constituição Federal de 1988 (salário mínimo, irredutibilidade de salário, décimo terceiro salário,
+          repouso semanal remunerado preferencialmente aos domingos, férias anuais remuneradas com pelo menos um terço a mais do que o salário normal, licença-gestante de 120 dias
+          sem prejuízo do emprego e do salário, licença-paternidade, aviso-prévio proporcional ao tempo de serviço, sendo no mínimo de 30 dias, aposentadoria e integração à Previdência Social),
+          o parágrafo único do art. 7º da Constituição Federal passou, com a redação dada pela Emenda Constitucional n. 72/2013, a garantir à categoria dos trabalhadores domésticos os seguintes direitos:
+        </p>
+
+        <ul class="bullets">
+          <li>garantia de salário, nunca inferior ao mínimo, para os que percebem remuneração variável;</li>
+          <li>proteção do salário na forma da lei, constituindo crime sua retenção dolosa;</li>
+          <li>duração do trabalho normal não superior a oito horas diárias e quarenta e quatro semanais, facultada a compensação de horários e a redução da jornada, mediante acordo ou convenção coletiva de trabalho;</li>
+          <li>remuneração do serviço extraordinário superior, no mínimo, em cinquenta por cento à do normal;</li>
+          <li>redução dos riscos inerentes ao trabalho, por meio de normas de saúde, higiene e segurança;</li>
+          <li>reconhecimento das convenções e acordos coletivos de trabalho;</li>
+          <li>proibição de diferença de salários, de exercício de funções e de critério de admissão por motivo de sexo, idade, cor ou estado civil;</li>
+          <li>proibição de qualquer discriminação no tocante a salário e critérios de admissão do trabalhador portador de deficiência;</li>
+          <li>proibição de trabalho noturno, perigoso ou insalubre a menores de dezoito e de qualquer trabalho a menores de dezesseis anos, salvo na condição de aprendiz, a partir de quatorze anos.</li>
+        </ul>
+
+        <p>
+          Além disso, atendidas as condições estabelecidas em lei e observada a simplificação do cumprimento das obrigações tributárias, principais e acessórias,
+          decorrentes da relação de trabalho e suas peculiaridades, também se assegurou aos trabalhadores domésticos:
+        </p>
+
+        <ul class="bullets">
+          <li>relação de emprego protegida contra despedida arbitrária ou sem justa causa, nos termos de lei complementar, que preverá indenização compensatória, entre outros direitos;</li>
+          <li>seguro-desemprego, em caso de desemprego involuntário;</li>
+          <li>fundo de garantia do tempo de serviço;</li>
+          <li>remuneração do trabalho noturno superior à do diurno;</li>
+          <li>salário-família pago em razão do dependente do trabalhador de baixa renda nos termos da lei;</li>
+          <li>assistência gratuita aos filhos e dependentes desde o nascimento até 5 (cinco) anos de idade em creches e pré-escolas;</li>
+          <li>seguro contra acidentes de trabalho, a cargo do empregador, sem excluir a indenização a que este está obrigado, quando incorrer em dolo ou culpa.</li>
+        </ul>
+
+        <p>
+          Os direitos assegurados constitucionalmente aos domésticos foram regulamentados pela Lei Complementar n. 150/2015.
+        </p>
+      </div>
+
+      <div class="back">
+        <a href="../index.html">← Voltar ao índice da disciplina</a>
+      </div>
 
     </div>
-
-    <div class="back">
-      <a href="../index.html">← Voltar ao índice da disciplina</a>
-    </div>
-
   </div>
 </body>
 </html>
-
