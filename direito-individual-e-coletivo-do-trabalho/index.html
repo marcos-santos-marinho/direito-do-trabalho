@@ -1,196 +1,151 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <title>Direito do Trabalho</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Direito do Trabalho</title>
 
-  <style>
-    :root{
-      --bg: #dff0ff;          /* azul claro */
-      --title: #1f4fd8;       /* azul do título */
-      --text: #0f172a;
-      --muted: #475569;
-      --card: #ffffff;        /* botões brancos */
-      --border: rgba(15,23,42,.14);
-      --shadow: 0 10px 22px rgba(15,23,42,.10);
-      --radius: 16px;
-    }
+<style>
+:root{
+  --bg:#eaf3ff;
+  --card:#ffffff;
+  --border:#d6dee8;
+  --shadow:0 10px 20px rgba(0,0,0,.08);
+  --title:#1f4fd8;
+}
 
-    *{ box-sizing: border-box; }
-    html{ -webkit-text-size-adjust:100%; }
+*{box-sizing:border-box;}
 
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.5;
-    }
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  background:var(--bg);
+  font-size:18px;
+}
 
-    .wrap{
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 14px 12px 26px;
-    }
+.container{
+  max-width:950px;
+  margin:25px auto;
+  padding:20px;
+  background:#f4f8ff;
+  border-radius:20px;
+  box-shadow:var(--shadow);
+}
 
-    .panel{
-      background: rgba(255,255,255,.65);
-      border: 1px solid rgba(255,255,255,.7);
-      border-radius: 22px;
-      padding: 16px 14px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(4px);
-    }
+h1{
+  color:var(--title);
+  margin-bottom:20px;
+}
 
-    h1{
-      margin: 6px 0 6px;
-      color: var(--title);
-      font-size: 26px;
-      letter-spacing: .2px;
-    }
+/* ===== BOTÕES SUPERIORES ===== */
 
-    .subtitle{
-      margin: 0 0 14px;
-      color: var(--muted);
-      font-size: 15px;
-    }
+.top-buttons{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  flex-wrap:wrap;
+  margin-bottom:25px;
+}
 
-    /* Botões Google Drive (topo) */
-    .drive-row{
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin: 10px 0 14px;
-    }
+.top-btn{
+  width:180px;
+  text-align:center;
+  background:#fff;
+  padding:18px;
+  border-radius:16px;
+  border:1px solid var(--border);
+  text-decoration:none;
+  font-weight:700;
+  color:#111;
+  box-shadow:var(--shadow);
+  transition:.2s;
+}
 
-    .drive-btn{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      text-decoration: none;
-      background: #ffffff;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 12px 10px;
-      box-shadow: 0 6px 14px rgba(15,23,42,.08);
-      min-height: 90px;
-      user-select: none;
-    }
+.top-btn:hover{
+  transform:translateY(-3px);
+}
 
-    .drive-icon{
-      font-size: 26px; /* ícone simples (leve) */
-      line-height: 1;
-    }
+/* ===== LISTA DE TÓPICOS ===== */
 
-    .drive-label{
-      font-weight: 900;
-      font-size: 12px;
-      letter-spacing: .3px;
-      color: var(--text);
-      text-transform: uppercase;
-      text-align: center;
-    }
+.list{
+  margin-top:10px;
+}
 
-    /* Lista de conteúdos */
-    ul{
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: grid;
-      gap: 12px;
-    }
+.item{
+  display:block;
+  text-decoration:none;
+  background:#fff;
+  padding:18px;
+  border-radius:14px;
+  border:1px solid var(--border);
+  margin-bottom:14px;
+  color:#111;
+  font-weight:500;
+  box-shadow:0 4px 10px rgba(0,0,0,.05);
+  transition:.2s;
+}
 
-    .topic{
-      display: block;
-      text-decoration: none;
-      background: var(--card);        /* branco */
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 14px 14px;
-      font-size: 18px;
-      color: #0b1220;
-      box-shadow: 0 6px 14px rgba(15,23,42,.06);
-    }
+.item:hover{
+  background:#f2f6ff;
+}
 
-    .topic:active{
-      transform: translateY(1px);
-    }
+.back{
+  margin-top:20px;
+}
 
-    .footer{
-      margin-top: 16px;
-    }
+.back a{
+  display:block;
+  text-decoration:none;
+  background:#fff;
+  padding:18px;
+  border-radius:14px;
+  border:1px solid var(--border);
+  color:#111;
+  font-weight:700;
+}
 
-    .back{
-      display: block;
-      text-decoration: none;
-      background: #ffffff;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 14px;
-      color: #0b1220;
-      font-weight: 800;
-      text-align: left;
-      box-shadow: 0 6px 14px rgba(15,23,42,.06);
-    }
-
-    /* Mobile */
-    @media (max-width: 420px){
-      h1{ font-size: 24px; }
-      .topic{ font-size: 17px; }
-      .drive-row{ gap: 8px; }
-      .drive-btn{ min-height: 86px; padding: 10px 8px; }
-      .drive-icon{ font-size: 24px; }
-      .drive-label{ font-size: 11px; }
-    }
-  </style>
+@media(max-width:480px){
+  body{font-size:17px;}
+  .top-btn{width:160px;}
+}
+</style>
 </head>
 
 <body>
-  <div class="wrap">
-    <div class="panel">
 
-      <h1>Direito do Trabalho</h1>
+<div class="container">
 
-      <div class="drive-row">
-        <!-- Troque pelos seus links do Google Drive -->
-        <a class="drive-btn" href="LINK_GOOGLE_DRIVE_PLANO" target="_blank" rel="noopener">
-          <div class="drive-icon">📋</div>
-          <div class="drive-label">Plano de Ensino</div>
-        </a>
+<h1>Direito do Trabalho</h1>
 
-        <a class="drive-btn" href="LINK_GOOGLE_DRIVE_LIVRO" target="_blank" rel="noopener">
-          <div class="drive-icon">📘</div>
-          <div class="drive-label">Livro</div>
-        </a>
+<!-- BOTÕES CENTRALIZADOS -->
+<div class="top-buttons">
+  <a class="top-btn" href="LINK_PLANO_DE_ENSINO" target="_blank">
+    📋<br>PLANO DE ENSINO
+  </a>
 
-        <a class="drive-btn" href="LINK_GOOGLE_DRIVE_SLIDES" target="_blank" rel="noopener">
-          <div class="drive-icon">🖼️</div>
-          <div class="drive-label">Slides</div>
-        </a>
-      </div>
+  <a class="top-btn" href="LINK_LIVRO" target="_blank">
+    📘<br>LIVRO
+  </a>
+</div>
 
-      <p class="subtitle">Selecione o tópico abaixo para acessar o conteúdo da disciplina:</p>
+<p>Selecione o tópico abaixo para acessar o conteúdo da disciplina:</p>
 
-      <ul>
-        <li><a class="topic" href="01-conceito-de-direito-do-trabalho/">1. Conceito de Direito do Trabalho</a></li>
-        <li><a class="topic" href="02-principios-do-direito-do-trabalho/">2. Princípios do Direito do Trabalho</a></li>
-        <li><a class="topic" href="03-fontes-do-direito-do-trabalho/">3. Fontes do Direito do Trabalho</a></li>
-        <li><a class="topic" href="04-relacao-de-emprego/">4. Relação de emprego</a></li>
-        <li><a class="topic" href="05-relacao-de-trabalho/">5. Relação de Trabalho</a></li>
-        <li><a class="topic" href="06-empregado/">6. Empregado</a></li>
-        <li><a class="topic" href="07-empregador/">7. Empregador</a></li>
-        <li><a class="topic" href="08-empregado-domestico/">8. Empregado Doméstico</a></li>
-      </ul>
+<div class="list">
+  <a class="item" href="01-conceito-de-direito-do-trabalho/index.html">1. Conceito de Direito do Trabalho</a>
+  <a class="item" href="02-principios-do-direito-do-trabalho/index.html">2. Princípios do Direito do Trabalho</a>
+  <a class="item" href="03-fontes-do-direito-do-trabalho/index.html">3. Fontes do Direito do Trabalho</a>
+  <a class="item" href="04-relacao-de-emprego/index.html">4. Relação de emprego</a>
+  <a class="item" href="05-relacao-de-trabalho/index.html">5. Relação de Trabalho</a>
+  <a class="item" href="06-empregado/index.html">6. Empregado</a>
+  <a class="item" href="07-empregador/index.html">7. Empregador</a>
+  <a class="item" href="08-empregado-domestico/index.html">8. Empregado Doméstico</a>
+</div>
 
-      <div class="footer">
-        <a class="back" href="../index.html">← Voltar ao curso</a>
-      </div>
+<div class="back">
+  <a href="../../index.html">← Voltar ao curso</a>
+</div>
 
-    </div>
-  </div>
+</div>
+
 </body>
 </html>
-
