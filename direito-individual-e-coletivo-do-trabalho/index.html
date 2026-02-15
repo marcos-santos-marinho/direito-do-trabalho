@@ -1,151 +1,265 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Direito do Trabalho</title>
 
 <style>
-:root{
-  --bg:#eaf3ff;
-  --card:#ffffff;
-  --border:#d6dee8;
-  --shadow:0 10px 20px rgba(0,0,0,.08);
-  --title:#1f4fd8;
-}
+  :root{
+    --bg:#eaf3ff;
+    --panel:#f6faff;
+    --card:#ffffff;
+    --title:#1f4fd8;
+    --text:#0f172a;
+    --border:rgba(15,23,42,.14);
+    --shadow: 0 18px 40px rgba(15,23,42,.10);
+    --shadow2: 0 10px 22px rgba(15,23,42,.08);
+    --radius:22px;
+    --green:#1f9a3c;
+  }
 
-*{box-sizing:border-box;}
+  *{ box-sizing:border-box; }
 
-body{
-  margin:0;
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
-  background:var(--bg);
-  font-size:18px;
-}
+  body{
+    margin:0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: radial-gradient(1000px 420px at 30% 0%, #d8ecff 0%, var(--bg) 55%, #eaf3ff 100%);
+    color:var(--text);
+    font-size:18px;
+    line-height:1.6;
+  }
 
-.container{
-  max-width:950px;
-  margin:25px auto;
-  padding:20px;
-  background:#f4f8ff;
-  border-radius:20px;
-  box-shadow:var(--shadow);
-}
+  .container{
+    max-width: 980px;
+    margin: 26px auto;
+    padding: 18px;
+  }
 
-h1{
-  color:var(--title);
-  margin-bottom:20px;
-}
+  .panel{
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 18px;
+  }
 
-/* ===== BOTÕES SUPERIORES ===== */
+  h1{
+    margin: 6px 6px 14px;
+    color: var(--title);
+    font-size: 30px;
+    letter-spacing: -.2px;
+    line-height: 1.2;
+  }
 
-.top-buttons{
-  display:flex;
-  justify-content:center;
-  gap:20px;
-  flex-wrap:wrap;
-  margin-bottom:25px;
-}
+  .subtitle{
+    margin: 0 6px 16px;
+    color: rgba(15,23,42,.75);
+    font-size: 16px;
+  }
 
-.top-btn{
-  width:180px;
-  text-align:center;
-  background:#fff;
-  padding:18px;
-  border-radius:16px;
-  border:1px solid var(--border);
-  text-decoration:none;
-  font-weight:700;
-  color:#111;
-  box-shadow:var(--shadow);
-  transition:.2s;
-}
+  /* ===== PREMIUM TOP BUTTONS ===== */
+  .top-buttons{
+    display:flex;
+    justify-content:center;
+    gap:16px;
+    flex-wrap:wrap;
+    margin: 14px 0 18px;
+  }
 
-.top-btn:hover{
-  transform:translateY(-3px);
-}
+  .top-btn{
+    width: min(360px, 100%);
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:18px 18px;
+    background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+    border: 1px solid rgba(15,23,42,.14);
+    border-radius: 20px;
+    text-decoration:none;
+    color: var(--text);
+    box-shadow: var(--shadow2);
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
 
-/* ===== LISTA DE TÓPICOS ===== */
+  .top-btn:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 22px 44px rgba(15,23,42,.14);
+  }
 
-.list{
-  margin-top:10px;
-}
+  .iconWrap{
+    width:56px;
+    height:56px;
+    border-radius:16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border: 1px solid rgba(15,23,42,.10);
+    background: radial-gradient(140px 60px at 30% 20%, #e7f2ff 0%, #ffffff 60%);
+    flex: 0 0 56px;
+  }
 
-.item{
-  display:block;
-  text-decoration:none;
-  background:#fff;
-  padding:18px;
-  border-radius:14px;
-  border:1px solid var(--border);
-  margin-bottom:14px;
-  color:#111;
-  font-weight:500;
-  box-shadow:0 4px 10px rgba(0,0,0,.05);
-  transition:.2s;
-}
+  .topText{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    min-width:0;
+  }
 
-.item:hover{
-  background:#f2f6ff;
-}
+  .topText .label{
+    font-weight:900;
+    letter-spacing:.3px;
+    font-size:16px;
+  }
 
-.back{
-  margin-top:20px;
-}
+  .topText .desc{
+    font-size:14px;
+    color: rgba(15,23,42,.72);
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
 
-.back a{
-  display:block;
-  text-decoration:none;
-  background:#fff;
-  padding:18px;
-  border-radius:14px;
-  border:1px solid var(--border);
-  color:#111;
-  font-weight:700;
-}
+  /* ===== LIST ===== */
+  .hint{
+    margin: 6px 6px 12px;
+    color: rgba(15,23,42,.78);
+    font-size:16px;
+  }
 
-@media(max-width:480px){
-  body{font-size:17px;}
-  .top-btn{width:160px;}
-}
+  .list{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    margin-top: 10px;
+  }
+
+  .item{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    text-decoration:none;
+    background:#fff;
+    padding:18px;
+    border-radius:16px;
+    border: 1px solid rgba(15,23,42,.14);
+    box-shadow: 0 6px 14px rgba(15,23,42,.06);
+    color:var(--text);
+    transition: transform .15s ease, background .15s ease;
+  }
+
+  .item:hover{
+    transform: translateY(-2px);
+    background:#f7fbff;
+  }
+
+  .item span{
+    font-weight:700;
+  }
+
+  .chev{
+    font-weight:900;
+    color: rgba(15,23,42,.35);
+    font-size: 18px;
+  }
+
+  /* ===== BACK BUTTON ===== */
+  .back{
+    margin-top: 18px;
+    display:flex;
+    justify-content:center;
+  }
+
+  .back a{
+    width: min(560px, 100%);
+    text-align:center;
+    text-decoration:none;
+    background:#fff;
+    padding:16px 18px;
+    border-radius:16px;
+    border:1px solid rgba(15,23,42,.14);
+    box-shadow: var(--shadow2);
+    color: var(--text);
+    font-weight:900;
+    transition: transform .18s ease;
+  }
+
+  .back a:hover{
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 480px){
+    body{ font-size:17px; }
+    h1{ font-size:26px; }
+    .top-btn{ padding:16px; }
+    .iconWrap{ width:52px; height:52px; flex-basis:52px; }
+  }
 </style>
 </head>
 
 <body>
+  <div class="container">
+    <div class="panel">
 
-<div class="container">
+      <h1>Direito do Trabalho</h1>
+      <div class="subtitle">Materiais e tópicos organizados para leitura no celular</div>
 
-<h1>Direito do Trabalho</h1>
+      <!-- BOTÕES PREMIUM (CENTRO) -->
+      <div class="top-buttons">
+        <!-- Troque LINK_PLANO_DE_ENSINO -->
+        <a class="top-btn" href="LINK_PLANO_DE_ENSINO" target="_blank" rel="noopener">
+          <div class="iconWrap" aria-hidden="true">
+            <!-- clipboard svg -->
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+              <path d="M9 3h6l1 2h3v16H5V5h3l1-2Z" stroke="#1f4fd8" stroke-width="1.7" />
+              <path d="M9 7h6" stroke="#1f4fd8" stroke-width="1.7" stroke-linecap="round"/>
+              <path d="M8 11h8" stroke="#1f4fd8" stroke-width="1.7" stroke-linecap="round"/>
+              <path d="M8 15h8" stroke="#1f4fd8" stroke-width="1.7" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="topText">
+            <div class="label">PLANO DE ENSINO</div>
+            <div class="desc">Acesse o plano e cronograma</div>
+          </div>
+        </a>
 
-<!-- BOTÕES CENTRALIZADOS -->
-<div class="top-buttons">
-  <a class="top-btn" href="LINK_PLANO_DE_ENSINO" target="_blank">
-    📋<br>PLANO DE ENSINO
-  </a>
+        <!-- Troque LINK_LIVRO -->
+        <a class="top-btn" href="LINK_LIVRO" target="_blank" rel="noopener">
+          <div class="iconWrap" aria-hidden="true">
+            <!-- book svg -->
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+              <path d="M6 4h10a2 2 0 0 1 2 2v14H8a2 2 0 0 0-2 2V4Z" stroke="#1f4fd8" stroke-width="1.7"/>
+              <path d="M6 18h10" stroke="#1f4fd8" stroke-width="1.7" stroke-linecap="round"/>
+              <path d="M8 7h8" stroke="#1f4fd8" stroke-width="1.7" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="topText">
+            <div class="label">LIVRO</div>
+            <div class="desc">Leitura e materiais de apoio</div>
+          </div>
+        </a>
+      </div>
 
-  <a class="top-btn" href="LINK_LIVRO" target="_blank">
-    📘<br>LIVRO
-  </a>
-</div>
+      <div class="hint">Selecione o tópico abaixo para acessar o conteúdo da disciplina:</div>
 
-<p>Selecione o tópico abaixo para acessar o conteúdo da disciplina:</p>
+      <div class="list">
+        <a class="item" href="01-conceito-de-direito-do-trabalho/index.html"><span>1. Conceito de Direito do Trabalho</span><span class="chev">›</span></a>
+        <a class="item" href="02-principios-do-direito-do-trabalho/index.html"><span>2. Princípios do Direito do Trabalho</span><span class="chev">›</span></a>
+        <a class="item" href="03-fontes-do-direito-do-trabalho/index.html"><span>3. Fontes do Direito do Trabalho</span><span class="chev">›</span></a>
+        <a class="item" href="04-relacao-de-emprego/index.html"><span>4. Relação de emprego</span><span class="chev">›</span></a>
+        <a class="item" href="05-relacao-de-trabalho/index.html"><span>5. Relação de Trabalho</span><span class="chev">›</span></a>
+        <a class="item" href="06-empregado/index.html"><span>6. Empregado</span><span class="chev">›</span></a>
+        <a class="item" href="07-empregador/index.html"><span>7. Empregador</span><span class="chev">›</span></a>
+        <a class="item" href="08-empregado-domestico/index.html"><span>8. Empregado Doméstico</span><span class="chev">›</span></a>
+      </div>
 
-<div class="list">
-  <a class="item" href="01-conceito-de-direito-do-trabalho/index.html">1. Conceito de Direito do Trabalho</a>
-  <a class="item" href="02-principios-do-direito-do-trabalho/index.html">2. Princípios do Direito do Trabalho</a>
-  <a class="item" href="03-fontes-do-direito-do-trabalho/index.html">3. Fontes do Direito do Trabalho</a>
-  <a class="item" href="04-relacao-de-emprego/index.html">4. Relação de emprego</a>
-  <a class="item" href="05-relacao-de-trabalho/index.html">5. Relação de Trabalho</a>
-  <a class="item" href="06-empregado/index.html">6. Empregado</a>
-  <a class="item" href="07-empregador/index.html">7. Empregador</a>
-  <a class="item" href="08-empregado-domestico/index.html">8. Empregado Doméstico</a>
-</div>
+      <!-- ✅ VOLTAR AO CURSO (corrigido com link absoluto) -->
+      <div class="back">
+        <a href="https://marcos-santos-marinho.github.io/">← Voltar ao curso</a>
+      </div>
 
-<div class="back">
-  <a href="../../index.html">← Voltar ao curso</a>
-</div>
-
-</div>
-
+    </div>
+  </div>
 </body>
 </html>
