@@ -1,1 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>9. Empregado Rural</title>
+
+  <style>
+    :root{
+      --bg:#eaf3ff;
+      --panel:#f6faff;
+      --title:#1f4fd8;
+      --text:#0f172a;
+
+      --card:#ffffff;
+      --border:rgba(15,23,42,.14);
+      --shadow:0 10px 22px rgba(15,23,42,.08);
+
+      --muted:rgba(15,23,42,.78);
+    }
+
+    *{ box-sizing:border-box; }
+
+    body{
+      margin:0;
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background: radial-gradient(1000px 420px at 30% 0%, #d8ecff 0%, var(--bg) 55%, #eaf3ff 100%);
+      color:var(--text);
+      font-size:18px;
+      line-height:1.75;
+    }
+
+    .wrap{
+      max-width: 980px;
+      margin: 22px auto;
+      padding: 18px;
+    }
+
+    .panel{
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: 0 18px 40px rgba(15,23,42,.10);
+      padding: 18px;
+    }
+
+    /* topo: título + botão slides */
+    .topbar{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:14px;
+      margin-bottom: 10px;
+    }
+
+    h1{
+      margin: 4px 0 0;
+      font-size: 28px;
+      line-height:1.2;
+      color: var(--title);
+      letter-spacing: -.2px;
+    }
+
+    /* botão slides no canto superior direito */
+    .slideBtn{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:6px;
+      width: 86px;
+      padding: 10px 10px;
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius: 12px;
+      text-decoration:none;
+      color: var(--text);
+      font-weight: 900;
+      box-shadow: var(--shadow);
+      transition: transform .18s ease, box-shadow .18s ease;
+      flex: 0 0 auto;
+    }
+
+    .slideBtn:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 16px 34px rgba(15,23,42,.12);
+    }
+
+    .slideIcon{
+      width: 28px;
+      height: 28px;
+      display:block;
+    }
+
+    /* cards de texto */
+    .card{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 6px 14px rgba(15,23,42,.06);
+      margin: 12px 0;
+    }
+
+    p{
+      margin:0 0 12px;
+      text-align: justify;
+    }
+    p:last-child{ margin-bottom:0; }
+
+    .bullets{
+      margin: 10px 0 0 18px;
+      padding: 0;
+    }
+    .bullets li{ margin: 0 0 8px; }
+
+    .back{
+      margin-top: 16px;
+      display:flex;
+      justify-content:center;
+    }
+
+    .back a{
+      width: min(560px, 100%);
+      text-align:center;
+      text-decoration:none;
+      background:#fff;
+      padding:16px 18px;
+      border-radius:16px;
+      border:1px solid var(--border);
+      box-shadow: var(--shadow);
+      color: var(--text);
+      font-weight: 900;
+      transition: transform .18s ease;
+    }
+
+    .back a:hover{
+      transform: translateY(-2px);
+    }
+
+    @media (max-width:480px){
+      body{ font-size:17px; }
+      h1{ font-size:24px; }
+      .slideBtn{ width: 82px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="panel">
+
+      <div class="topbar">
+        <h1>9. Empregado Rural</h1>
+
+        <!-- ✅ TROQUE pelo link do Google Drive (slides) -->
+        <a class="slideBtn" href="LINK_SLIDES_GOOGLE_DRIVE" target="_blank" rel="noopener">
+          <svg class="slideIcon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 5h16v10H4V5Z" stroke="#1f4fd8" stroke-width="1.7"/>
+            <path d="M8 19h8" stroke="#1f4fd8" stroke-width="1.7" stroke-linecap="round"/>
+            <path d="M12 15v4" stroke="#1f4fd8" stroke-width="1.7" stroke-linecap="round"/>
+            <path d="M7 9l2-2 3 3 2-2 3 3" stroke="#1f4fd8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>Slides</div>
+        </a>
+      </div>
+
+      <div class="card">
+        <p>
+          Empregado rural é o trabalhador que presta serviços subordinados, em propriedade rural ou prédio rústico,
+          continuamente, mediante remuneração.
+        </p>
+      </div>
+
+      <div class="card">
+        <p><strong>O que caracteriza o empregado rural é, basicamente:</strong></p>
+        <ul class="bullets">
+          <li><strong>a)</strong> o local da prestação de serviço – propriedade rural ou prédio rústico; e</li>
+          <li><strong>b)</strong> o exercício de atividade agroeconômica pelo empregador – atividade agrícola ou pecuária, com finalidade lucrativa.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <p>
+          A lei pressupõe, como sujeitos do contrato de trabalho rural, de um lado, o empregador, assim entendida toda pessoa
+          que exerce atividade agroeconômica, inclusive a exploração industrial em estabelecimento agrário, e, de outro lado,
+          o empregado rural (art. 2º, § 4º, Decreto n. 73.626/74).
+        </p>
+
+        <p>
+          Portanto, empregador rural é aquele que explora atividade agrícola ou pecuária com fins lucrativos.
+        </p>
+
+        <p>
+          Destinando-se a atividade econômica à transformação da matéria-prima em produto industrializado, com vistas à comercialização
+          (por exemplo: laranja – suco concentrado; cana de açúcar – álcool/açúcar), a relação de emprego não será rural
+          (art. 84, § 5º, Decreto n. 10.854/2021).
+        </p>
+
+        <p>
+          Equipara-se a empregador rural “a pessoa física ou jurídica que, habitualmente, em caráter profissional, e por conta de terceiros,
+          execute serviços de natureza agrária, mediante utilização do trabalho de outrem” (art. 4º, Lei n. 5.889/73).
+        </p>
+      </div>
+
+      <div class="card">
+        <p>
+          A Lei n. 8.212/91, art. 25-A, equipara ao empregador rural pessoa física o consórcio simplificado de produtores rurais, formado pela união
+          de produtores rurais pessoas físicas, que outorgam a um deles poderes para contratar, gerir e demitir trabalhadores para a prestação de serviços
+          exclusivamente aos seus integrantes, mediante documento registrado em cartório de títulos e documentos. No mesmo sentido, o art. 84, § 1º, II,
+          do Decreto n. 10.854/2021.
+        </p>
+
+        <p>
+          Os produtores rurais integrantes do consórcio serão responsáveis solidários em relação às obrigações previdenciárias
+          (art. 25-A, § 3º, Lei n. 8.212/91) e também em relação às obrigações trabalhistas.
+        </p>
+      </div>
+
+      <div class="card">
+        <p>
+          A Constituição Federal, em seu art. 7º, caput, equipara o trabalhador urbano e o rural, estando este favorecido por todas as normas genéricas
+          das relações de trabalho subordinado, igualando os direitos trabalhistas.
+        </p>
+
+        <p>
+          Assim, a Constituição Federal estabelece os direitos do empregado rural, que são regulamentados pela Lei n. 5.889/73 e pelo Decreto n. 10.854/2021,
+          como normas especiais, e pela CLT e outras leis esparsas, que, de forma supletiva, são aplicáveis aos trabalhadores rurais.
+        </p>
+
+        <p>
+          Os produtores rurais integrantes do consórcio serão responsáveis solidários em relação às obrigações previdenciárias (§ 3º, art. 25-A, Lei n. 8.212/91)
+          e também em relação às obrigações trabalhistas.
+        </p>
+      </div>
+
+      <!-- Ajuste o caminho do voltar conforme onde está seu índice -->
+      <div class="back">
+        <a href="../index.html">← Voltar ao índice da disciplina</a>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
 
