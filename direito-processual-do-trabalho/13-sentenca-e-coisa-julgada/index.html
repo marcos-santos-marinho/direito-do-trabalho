@@ -1,1 +1,399 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>11. Defesa do reclamado</title>
+  <style>
+    :root{
+      --bg:#eef5ff;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#475569;
+
+      --primary:#1d4ed8;
+      --primary2:#2563eb;
+
+      --border:rgba(15,23,42,.10);
+      --shadow: 0 10px 28px rgba(15,23,42,.10);
+      --shadow2: 0 6px 18px rgba(15,23,42,.10);
+
+      --chipBg: rgba(37,99,235,.10);
+      --chipBd: rgba(37,99,235,.18);
+      --chipTx: #0b2a7a;
+
+      --okBd: rgba(22,163,74,.55);
+      --okBg: rgba(22,163,74,.06);
+
+      --warnBg: rgba(245,158,11,.10);
+      --warnBd: rgba(245,158,11,.22);
+      --warnTx: #7c2d12;
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1000px 600px at 50% -120px, rgba(37,99,235,.22), transparent 60%),
+        linear-gradient(180deg, #f7fbff 0%, var(--bg) 100%);
+    }
+
+    .wrap{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 22px 16px 38px;
+    }
+
+    .shell{
+      background: rgba(255,255,255,.55);
+      border: 1px solid rgba(29,78,216,.10);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 18px;
+      backdrop-filter: blur(6px);
+    }
+
+    .topbar{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+
+    h1{
+      margin:0;
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.12;
+      color: var(--primary);
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle{
+      margin: 10px 0 0;
+      font-size: 18px;
+      line-height: 1.65;
+      color: var(--muted);
+      max-width: 72ch;
+    }
+
+    /* Botão Slides */
+    .slide-btn{
+      flex: 0 0 auto;
+      text-decoration:none;
+      color: var(--text);
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: var(--shadow2);
+      padding: 10px 12px;
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      min-width: 150px;
+      transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+    }
+    .slide-btn:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 14px 32px rgba(15,23,42,.12);
+      border-color: rgba(29,78,216,.22);
+    }
+    .slide-ic{
+      width:42px; height:42px;
+      border-radius: 12px;
+      display:grid; place-items:center;
+      background: linear-gradient(180deg, rgba(37,99,235,.14), rgba(37,99,235,.06));
+      border: 1px solid rgba(37,99,235,.20);
+    }
+    .slide-txt{ display:flex; flex-direction:column; line-height:1.1; }
+    .slide-txt strong{ font-size: 14px; }
+    .slide-txt span{ font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+    .grid{
+      display:grid;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow2);
+      padding: 16px;
+    }
+
+    .pill{
+      display:inline-block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--chipTx);
+      background: var(--chipBg);
+      border: 1px solid var(--chipBd);
+      padding: 6px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+
+    .card h2{
+      margin: 0 0 10px;
+      font-size: 22px;
+      letter-spacing: -0.2px;
+    }
+
+    .card p{
+      margin: 0 0 12px;
+      font-size: 18px;
+      line-height: 1.75;
+      color: var(--text);
+    }
+    .card p:last-child{ margin-bottom:0; }
+
+    ul{
+      margin: 0;
+      padding-left: 20px;
+      font-size: 18px;
+      line-height: 1.75;
+    }
+    li{ margin: 8px 0; }
+
+    .box-ok{
+      border: 2px solid var(--okBd);
+      background: linear-gradient(180deg, var(--okBg), rgba(22,163,74,.03));
+      border-radius: 16px;
+      padding: 14px;
+    }
+
+    .box-warn{
+      border: 1px solid var(--warnBd);
+      background: linear-gradient(180deg, var(--warnBg), rgba(245,158,11,.06));
+      border-radius: 14px;
+      padding: 12px 14px;
+      color: var(--warnTx);
+    }
+
+    .note{
+      background: rgba(29,78,216,.06);
+      border: 1px solid rgba(29,78,216,.14);
+      border-radius: 14px;
+      padding: 12px 14px;
+      color: var(--text);
+    }
+
+    .back-wrap{
+      display:flex;
+      justify-content:center;
+      margin-top: 18px;
+    }
+
+    .back{
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      font-weight: 800;
+      color: #0f172a;
+      background: #fff;
+      border: 1px solid rgba(15,23,42,.12);
+      border-radius: 14px;
+      padding: 14px 18px;
+      box-shadow: var(--shadow2);
+      transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+      min-width: 280px;
+      justify-content:center;
+    }
+    .back:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 14px 32px rgba(15,23,42,.12);
+      border-color: rgba(29,78,216,.22);
+    }
+
+    @media (max-width: 640px){
+      .shell{ padding: 16px; }
+      .topbar{ flex-direction:column; align-items:stretch; }
+      .slide-btn{ width: 100%; }
+      .subtitle{ font-size: 17px; }
+      .card p, ul{ font-size: 17px; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+    <section class="shell">
+      <div class="topbar">
+        <div>
+          <h1>11. Defesa do reclamado</h1>
+          <p class="subtitle">
+            No processo do trabalho, a defesa é apresentada em audiência, por ser um dos atos processuais
+            realizados naquela oportunidade, conforme o princípio da concentração dos atos processuais.
+          </p>
+        </div>
+
+        <!-- Troque pelo seu link real -->
+        <a class="slide-btn" href="LINK_SLIDES_GOOGLE_DRIVE" target="_blank" rel="noopener">
+          <div class="slide-ic" aria-hidden="true">
+            <!-- ícone "documento" (mesmo estilo dos anteriores) -->
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M7 3h7l3 3v15a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" stroke="#1d4ed8" stroke-width="1.8"/>
+              <path d="M14 3v3h3" stroke="#1d4ed8" stroke-width="1.8"/>
+              <path d="M8 11h8M8 15h8M8 19h6" stroke="#1d4ed8" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="slide-txt">
+            <strong>Slides</strong>
+            <span>Abrir no Drive</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <span class="pill">11.1 Forma de apresentação da defesa</span>
+          <p>
+            A defesa do reclamado está prevista no art. 847 da CLT. Em regra, a defesa é apresentada
+            <strong>oralmente</strong>, por até <strong>20 minutos</strong> (caput).
+          </p>
+          <p>
+            Com a Reforma Trabalhista, foi incluído o <strong>parágrafo único</strong>:
+            a parte poderá apresentar <strong>defesa escrita</strong> pelo sistema de processo judicial eletrônico
+            <strong>até a audiência</strong>.
+          </p>
+          <div class="box-warn">
+            <strong>Dica para prova (OAB):</strong> a defesa <strong>oral</strong> é apresentada em audiência;
+            a defesa <strong>escrita</strong> deve ser juntada <strong>antes</strong> da audiência pelo PJe.
+          </div>
+        </div>
+
+        <div class="card">
+          <span class="pill">11.2 Contestação</span>
+          <p>
+            A principal peça de defesa é a <strong>contestação</strong>, prevista no art. 335 do CPC/2015,
+            aplicável ao processo do trabalho (quando a CLT não disciplina a matéria).
+          </p>
+
+          <div class="box-ok">
+            <p style="margin:0 0 10px;"><strong>Estrutura geral:</strong></p>
+            <ul>
+              <li><strong>Preliminares</strong> (art. 337 do CPC/2015): vícios processuais que podem impedir a análise do mérito ou dilatar o procedimento.</li>
+              <li><strong>Defesa de mérito</strong>: impugnação dos fatos/pedidos do autor para afastar as pretensões.</li>
+            </ul>
+          </div>
+
+          <p style="margin-top:12px;">
+            As preliminares podem ser classificadas em <strong>peremptórias</strong> (impedem o julgamento do mérito,
+            gerando extinção do processo) e <strong>dilatórias</strong> (apenas alongam o procedimento, como concessão de prazo
+            ou remessa a outro juízo).
+          </p>
+
+          <div class="note">
+            Observação: embora o art. 337 trate de incompetência relativa, no processo do trabalho a
+            <strong>incompetência territorial</strong> segue o procedimento do art. 800 da CLT (Reforma Trabalhista),
+            como visto no tópico de exceções.
+          </div>
+
+          <p style="margin-top:12px;">
+            Na defesa de mérito, o reclamado deve observar dois princípios essenciais:
+          </p>
+          <ul>
+            <li><strong>Princípio da eventualidade</strong> (art. 336 do CPC/2015): alegar todos os fundamentos de defesa de uma só vez, sob pena de preclusão.</li>
+            <li><strong>Impugnação especificada</strong> (art. 341 do CPC/2015): não basta negar genericamente; deve impugnar fato a fato, pedido a pedido.</li>
+          </ul>
+
+          <p style="margin-top:12px;">
+            Regra importante: as peças de defesa devem ser apresentadas em conjunto e no mesmo momento,
+            <strong>com exceção da incompetência territorial</strong>, que deve ser arguida antes da audiência (art. 800 da CLT).
+          </p>
+
+          <p>
+            A arbitragem no contrato de trabalho passou a ser possível em situações específicas após a reforma (art. 507-A da CLT).
+          </p>
+        </div>
+
+        <div class="card">
+          <span class="pill">11.3 Exceções</span>
+          <p>
+            A Reforma Trabalhista alterou o art. 800 da CLT para a <strong>exceção de incompetência territorial</strong>.
+            O reclamado, ao receber a notificação, pode apresentar a exceção no prazo de <strong>5 dias</strong>, antes da audiência.
+            O processo fica suspenso e a audiência não se realiza.
+          </p>
+          <p>
+            Pela Instrução Normativa 41/2018 do TST, a regra se aplica aos processos em curso quando a notificação tiver sido recebida após 11/11/2017.
+          </p>
+
+          <div class="box-ok">
+            <p style="margin:0 0 10px;"><strong>Passos essenciais (art. 800, CLT):</strong></p>
+            <ul>
+              <li>Exceção em 5 dias, antes da audiência;</li>
+              <li>Suspensão do processo e cancelamento da audiência;</li>
+              <li>Prazo de 5 dias para manifestação do exceto (§2º);</li>
+              <li>Se necessário, prova oral com audiência específica, inclusive por carta precatória;</li>
+              <li>Definido o juízo competente, redesignação da audiência no juízo correto.</li>
+            </ul>
+          </div>
+
+          <p style="margin-top:12px;">
+            Há também as exceções de <strong>suspeição</strong> e <strong>impedimento</strong> (arts. 144 e 145 do CPC/2015),
+            com procedimento no art. 146 do CPC/2015. A finalidade é demonstrar ausência de isenção do julgador (ou de outros sujeitos do processo).
+          </p>
+
+          <div class="note">
+            Resumo do procedimento (art. 146, CPC): reconhecimento de ofício pelo juiz; se não, parte argui;
+            juiz pode reconhecer após provocação; se não reconhecer, apresenta defesa e remete ao Tribunal; Tribunal decide
+            (podendo condenar o juiz em custas se reconhecer o vício).
+          </div>
+        </div>
+
+        <div class="card">
+          <span class="pill">11.4 Reconvenção</span>
+          <p>
+            A <strong>reconvenção</strong> é o “contra-ataque” do réu: em vez de apenas se defender, o réu formula um pedido contra o autor.
+            Atualmente, está no art. 343 do CPC/2015 e é aplicável ao processo do trabalho.
+          </p>
+
+          <div class="box-ok">
+            <p style="margin:0 0 10px;"><strong>Pontos importantes:</strong></p>
+            <ul>
+              <li>Com o CPC/2015, a reconvenção passou a ser apresentada na própria contestação (não mais peça autônoma).</li>
+              <li>É possível reconvir mesmo sem contestar (§6º do art. 343, CPC).</li>
+              <li>A ação e a reconvenção são autônomas: desistência/extinção de uma não extingue necessariamente a outra.</li>
+              <li>No processo do trabalho, se a reconvenção for apresentada em audiência, costuma-se designar nova data para a resposta do autor e produção de provas, com julgamento conjunto na mesma sentença.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <span class="pill">11.5 Revelia</span>
+          <p>
+            A ausência do reclamado em audiência importa em <strong>revelia</strong> (art. 844 da CLT),
+            pois não haverá apresentação de defesa, tornando-se, em regra, incontroversos os fatos narrados na petição inicial.
+          </p>
+          <p>
+            A revelia também pode ocorrer se o reclamado estiver presente, mas não apresentar defesa de mérito,
+            ou se apresentar defesa genérica (violando o princípio da impugnação especificada).
+          </p>
+
+          <div class="note">
+            Efeitos clássicos: presunção de veracidade (efeito material — art. 344 do CPC),
+            julgamento antecipado (art. 355 do CPC) e dispensa de intimações ao revel sem advogado (art. 346 do CPC).
+          </div>
+
+          <div class="box-warn" style="margin-top:12px;">
+            <strong>Importante:</strong> o art. 844, §4º, da CLT prevê hipóteses em que a revelia não produz seus efeitos:
+            litisconsorte apresenta defesa; direitos indisponíveis; ausência de documentos indispensáveis; alegações inverossímeis/contraditórias.
+            E, em insalubridade/periculosidade, a prova pericial é obrigatória (art. 195, §2º, CLT), não cabendo presunção automática.
+          </div>
+        </div>
+
+        <div class="back-wrap">
+          <!-- Volta para o índice do curso: direito-processual-do-trabalho/index.html -->
+          <a class="back" href="../index.html">← Voltar ao índice da disciplina</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
 
