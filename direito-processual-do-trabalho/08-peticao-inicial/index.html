@@ -1,1 +1,425 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>08. Petição inicial</title>
+
+  <style>
+    :root{
+      --bg:#eaf3ff;
+      --panel: rgba(255,255,255,.82);
+      --card:#ffffff;
+      --card2:#f7fbff;
+      --text:#0f172a;
+      --muted:#475569;
+      --brand:#2563eb;
+      --brand2:#1d4ed8;
+      --line: rgba(15,23,42,.10);
+      --shadow: 0 18px 50px rgba(2,6,23,.12);
+      --shadow2: 0 10px 24px rgba(2,6,23,.10);
+      --radius: 22px;
+      --radius2: 18px;
+    }
+
+    *{ box-sizing:border-box; }
+
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 20% 0%, rgba(37,99,235,.20), transparent 60%),
+        radial-gradient(900px 500px at 90% 20%, rgba(29,78,216,.12), transparent 55%),
+        var(--bg);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.75;
+    }
+
+    .wrap{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 18px 14px 34px;
+    }
+
+    .shell{
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,.65);
+      border-radius: calc(var(--radius) + 10px);
+      box-shadow: var(--shadow);
+      padding: 16px;
+      backdrop-filter: blur(10px);
+    }
+
+    header{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 14px;
+      padding: 6px 6px 2px;
+    }
+
+    h1{
+      margin: 0;
+      font-size: clamp(28px, 4.8vw, 46px);
+      letter-spacing: -0.02em;
+      line-height: 1.06;
+      color: var(--brand);
+    }
+
+    .subtitle{
+      margin: 10px 6px 16px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.55;
+    }
+
+    /* Botão Slides (premium) */
+    .slidesBtn{
+      text-decoration:none;
+      color: var(--text);
+      background: #fff;
+      border: 1px solid rgba(37,99,235,.18);
+      border-radius: 18px;
+      box-shadow: var(--shadow2);
+      padding: 12px 14px;
+      min-width: 140px;
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      transition: transform .12s ease, box-shadow .12s ease;
+      user-select:none;
+      justify-content:center;
+      flex: 0 0 auto;
+    }
+    .slidesBtn:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 14px 28px rgba(2,6,23,.14);
+    }
+    .slidesIcon{
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display:grid;
+      place-items:center;
+      background: linear-gradient(135deg, rgba(37,99,235,.14), rgba(29,78,216,.08));
+      border: 1px solid rgba(37,99,235,.18);
+      flex: 0 0 auto;
+    }
+    .slidesIcon svg{ width: 22px; height: 22px; }
+    .slidesLbl{
+      display:flex;
+      flex-direction:column;
+      line-height:1.05;
+      text-align:left;
+    }
+    .slidesLbl strong{ font-size: 15px; }
+    .slidesLbl span{ margin-top: 3px; font-size: 12px; color: var(--muted); }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      padding: 8px 6px 6px;
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px 18px;
+      box-shadow: 0 10px 22px rgba(2,6,23,.07);
+    }
+
+    .card h2{
+      margin: 0 0 10px;
+      font-size: clamp(20px, 2.6vw, 26px);
+      letter-spacing: -0.01em;
+      color:#0b1220;
+    }
+
+    .card p{
+      margin: 0 0 12px;
+      font-size: 19px; /* maior para celular */
+      color: #0b1220;
+    }
+
+    .pill{
+      display:inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(29,78,216,.08);
+      border: 1px solid rgba(29,78,216,.18);
+      color: #0b1220;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: .02em;
+      margin-bottom: 10px;
+    }
+
+    .note{
+      margin-top: 10px;
+      padding: 14px 14px;
+      border-radius: var(--radius2);
+      background: var(--card2);
+      border: 1px solid rgba(37,99,235,.14);
+      color: #0b1220;
+      font-size: 18px;
+      line-height: 1.65;
+    }
+
+    ul{
+      margin: 10px 0 0 22px;
+      padding: 0;
+      font-size: 19px;
+      line-height: 1.75;
+    }
+    li{ margin: 6px 0; }
+
+    .footer{
+      display:flex;
+      justify-content:center;
+      padding: 18px 6px 4px;
+    }
+
+    .back{
+      text-decoration:none;
+      background: #fff;
+      color: #0b1220;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: var(--shadow2);
+      padding: 14px 18px;
+      font-size: 18px;
+      font-weight: 900;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      transition: transform .12s ease, box-shadow .12s ease;
+      min-width: min(520px, 100%);
+      justify-content:center;
+    }
+    .back:hover{ transform: translateY(-1px); box-shadow: 0 14px 28px rgba(2,6,23,.14); }
+
+    @media (max-width: 520px){
+      .slidesBtn{ min-width: 124px; padding: 10px 12px; }
+      .card p, ul{ font-size: 17px; }
+      .subtitle{ font-size: 16px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="shell">
+
+      <header>
+        <div>
+          <h1>08. Petição inicial</h1>
+          <div class="subtitle">
+            No processo do trabalho, a petição inicial é o instrumento que provoca o Judiciário e dá início à reclamação trabalhista,
+            com simplicidade e foco na efetividade.
+          </div>
+        </div>
+
+        <!-- Troque pelo link real dos seus slides -->
+        <a class="slidesBtn" href="LINK_GOOGLE_DRIVE_SLIDES" target="_blank" rel="noopener noreferrer" aria-label="Abrir slides no Google Drive">
+          <div class="slidesIcon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M7 4h7l3 3v13a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" stroke="#1d4ed8" stroke-width="1.8"/>
+              <path d="M14 4v3a1 1 0 0 0 1 1h3" stroke="#1d4ed8" stroke-width="1.8"/>
+              <path d="M8 12h8M8 15h8M8 18h6" stroke="#1d4ed8" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="slidesLbl">
+            <strong>Slides</strong>
+            <span>Abrir no Drive</span>
+          </div>
+        </a>
+      </header>
+
+      <div class="grid">
+
+        <section class="card">
+          <div class="pill">Princípio dispositivo e simplicidade</div>
+          <p>
+            Já vimos que no processo do trabalho vige o princípio dispositivo, previsto no art. 2º do CPC/2015,
+            traduzindo a necessidade de provocação do Poder Judiciário para resolução dos conflitos, o que se dará
+            por meio da apresentação da petição inicial, que no processo do trabalho mostra-se essencialmente simples,
+            seja oral ou escrita, conforme art. 840 da CLT.
+          </p>
+
+          <p>
+            Vamos lembrar que o princípio dispositivo é a regra geral, sendo o princípio inquisitivo a exceção.
+            Enquanto a regra é a inércia do Poder Judiciário, a exceção é a prática de atos processuais de ofício.
+          </p>
+
+          <p>
+            Não poderíamos esperar nada diferente na Justiça do Trabalho, que trabalha ao mesmo tempo para tender aos
+            princípios da simplicidade, celeridade e jus postulandi. Assim, a complexidade do ato processual seria
+            um entrave ao acesso ao Poder Judiciário, violando todos os princípios mencionados e que são fundamentais
+            para o processo do trabalho.
+          </p>
+        </section>
+
+        <section class="card">
+          <div class="pill">8.1. Formas de reclamação</div>
+          <p>
+            O acesso facilitado à justiça é uma marca do processo do trabalho, na medida em que o art. 840 da CLT prevê
+            que a petição inicial poderá ser oral ou escrita, podendo o autor optar por uma forma ou outra, salvo poucas
+            exceções como o inquérito para apuração de falta grave e o dissídio coletivo, que devem ser ajuizados por
+            petição escrita.
+          </p>
+
+          <p>
+            Procedimento que deve ser destacado quando o autor opta pela reclamação trabalhista verbal, consta no art. 786
+            da CLT, que prevê que o pedido de reclamação será distribuído a uma das Varas do Trabalho com competência para
+            a demanda, devendo a parte comparecer ao órgão judiciário para o qual foi distribuído o pedido no prazo de 5 dias,
+            sob pena de perempção (art. 731 da CLT). Assim, se o meu pedido for distribuído para a 3ª Vara do Trabalho de Vitória/ES,
+            deverei comparecer àquela em até 5 dias para a redução a termo dos fatos que serão relatados.
+          </p>
+
+          <p>
+            Caso não compareça e não apresente justificativa, incidirá a pena de perempção, que está prevista no art. 731 da CLT
+            e impede o autor de ajuizar novamente a ação trabalhista pelo período de 6 meses (GARCIA, 2012).
+          </p>
+
+          <p>
+            Optando o autor pela petição inicial escrita, deverão ser preenchidos os requisitos do § 1º do mesmo artigo,
+            que serão analisados a seguir.
+          </p>
+
+          <div class="note">
+            <b>Perempção (processo do trabalho):</b> duas são as hipóteses, e é provisória por 6 meses.
+            Arts. 731 e 732 da CLT: (i) faltar à redução a termo da reclamação verbal e (ii) faltar à audiência e gerar
+            o arquivamento do processo por duas vezes seguidas.
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="pill">8.2. Requisitos (art. 840, §1º, CLT)</div>
+          <p>
+            Em comparação com o art. 319 do CPC/2015, o art. 840, § 1º, da CLT é bem simplório, trazendo apenas requisitos mínimos
+            para a viabilidade da petição inicial, sem mencionar diversos requisitos que no processo civil são obrigatórios,
+            como o pedido de citação e a menção às provas (SARAIVA; MANFREDINI, 2016).
+          </p>
+
+          <p><b>Dispõe o § 1º que o autor deverá afirmar:</b></p>
+          <ul>
+            <li>O juízo competente (art. 651 da CLT: local da prestação dos serviços);</li>
+            <li>Qualificação das partes;</li>
+            <li>Breve exposição dos fatos de que resulte o dissídio (causa de pedir: fatos e fundamentos jurídicos);</li>
+            <li>
+              Pedido, que vincula o julgamento (princípio da congruência), devendo ser certo, determinado e
+              com indicação do seu valor;
+            </li>
+            <li>Data e assinatura do reclamante ou de seu representante.</li>
+          </ul>
+
+          <p>
+            Não há no processo do trabalho a obrigação de incluir o pedido de citação e as provas que pretende produzir,
+            que constam como requisitos obrigatórios no processo civil (art. 319 do CPC/2015).
+          </p>
+
+          <div class="note">
+            <b>Por quê?</b><br>
+            • <b>Notificação/citação</b>: é automática (art. 841 da CLT).<br>
+            • <b>Provas</b>: na audiência, o juiz define as necessárias (poderes instrutórios; art. 370 do CPC/2015).<br>
+            • <b>Valor do pedido</b>: passou a ser requisito com a Lei 13.467/2017, com extinção sem mérito se faltar (§3º do art. 840).
+          </div>
+
+          <p>
+            A necessidade do valor do pedido, segundo a IN 41/2018, aplica-se aos processos ajuizados após 11-11-2017.
+          </p>
+
+          <p>
+            Como no sumaríssimo (art. 852-B da CLT) a consequência pela falta do valor é arquivamento/extinção sem mérito,
+            não se fala, para fins de prova (Exame da OAB), em emenda para corrigir ou conversão para rito ordinário.
+          </p>
+        </section>
+
+        <section class="card">
+          <div class="pill">8.3. Emenda da petição inicial</div>
+          <p>
+            O tema emenda da petição inicial ganhou relevância após o CPC/2015 e a alteração (2016) da Súmula 263 do TST,
+            pois o CPC modificou o prazo concedido ao autor e impôs ao juiz a obrigação de indicar o ponto a ser corrigido.
+          </p>
+
+          <div class="note">
+            <b>Súmula 263/TST (em síntese):</b> salvo hipóteses do art. 330 do CPC/2015, o indeferimento por falta de documento indispensável
+            ou requisito só é cabível se, após intimação para suprir em <b>15 dias</b>, com indicação precisa do que corrigir/completar,
+            a parte não o fizer (art. 321 do CPC/2015).
+          </div>
+
+          <p>
+            Percebendo falhas supríveis (ex.: qualificação incompleta), o magistrado deve intimar para corrigir/complementar em 15 dias,
+            apontando o vício. Tema recorrente em prova (MIESSA, 2016).
+          </p>
+
+          <p>
+            Destaque ainda para a Súmula 415 do TST: não cabe emenda no mandado de segurança para juntada de documentos,
+            devendo ser extinta sem resolução do mérito se o documento for indispensável ao direito líquido e certo.
+          </p>
+
+          <p>
+            Isso se explica porque, no mandado de segurança, os fatos devem vir comprovados por documentos já na impetração,
+            sem produção de provas no curso do processo.
+          </p>
+        </section>
+
+        <section class="card">
+          <div class="pill">8.4. Indeferimento da petição inicial</div>
+          <p>
+            As hipóteses de indeferimento são diferentes das hipóteses de emenda: aqui os vícios não podem ser corrigidos,
+            gerando extinção sem resolução do mérito (art. 330 do CPC/2015). Exemplos: ausência de condições da ação,
+            não realização da emenda no prazo, ausência de pedido ou causa de pedir, pedido indeterminado, entre outros.
+          </p>
+
+          <p>
+            Indeferida a inicial, o juiz profere sentença de extinção; no processo do trabalho, cabe recurso ordinário
+            (art. 895 da CLT) em 8 dias, e há juízo de retratação em 5 dias (art. 331 do CPC/2015) (MIESSA, 2016).
+          </p>
+        </section>
+
+        <section class="card">
+          <div class="pill">8.5. Aditamento da petição inicial</div>
+          <p>
+            As regras do aditamento constam no art. 329 do CPC/2015, com adaptação ao processo do trabalho. Aditar é modificar a inicial
+            por vontade do autor (incluir/retirar pedido ou fundamento), e não por erro.
+          </p>
+
+          <p>
+            Exemplo clássico: ajuíza-se pedindo dano material; depois se percebe que também caberia dano moral. Como incluir?
+            Dependendo do estágio, o aditamento pode ser possível.
+          </p>
+
+          <p><b>Estágios e requisitos:</b></p>
+          <ul>
+            <li>
+              <b>Até a apresentação da defesa</b>: pode aditar sem consentimento do réu; novo prazo de defesa será concedido.
+            </li>
+            <li>
+              <b>Após a apresentação da defesa</b>: só com consentimento do reclamado, pois a defesa foi preparada com base nos pedidos originais.
+            </li>
+            <li>
+              <b>Iniciada a instrução (provas)</b>: não poderá aditar, mesmo com consentimento, pois a possibilidade é negada de forma peremptória.
+            </li>
+          </ul>
+        </section>
+
+      </div>
+
+      <div class="footer">
+        <!-- Ajuste se seu índice estiver em outro caminho -->
+        <a class="back" href="../index.html">
+          <span aria-hidden="true">←</span>
+          <span>Voltar ao índice da disciplina</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
 
