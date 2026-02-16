@@ -1,1 +1,319 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>11. Provas</title>
+  <style>
+    :root{
+      --bg:#eef5ff;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#475569;
+      --primary:#1d4ed8;
+      --primary-2:#2563eb;
+      --border:rgba(15,23,42,.10);
+      --shadow: 0 10px 28px rgba(15,23,42,.10);
+      --shadow-2: 0 6px 18px rgba(15,23,42,.10);
+      --green:#16a34a;
+      --green-2: rgba(22,163,74,.16);
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background: radial-gradient(1000px 600px at 50% -100px, rgba(37,99,235,.20), transparent 60%),
+                  linear-gradient(180deg, #f7fbff 0%, var(--bg) 100%);
+    }
+
+    .wrap{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 22px 16px 38px;
+    }
+
+    .shell{
+      background: rgba(255,255,255,.55);
+      border: 1px solid rgba(29,78,216,.10);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 18px;
+      backdrop-filter: blur(6px);
+    }
+
+    .topbar{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+
+    h1{
+      margin:0;
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.12;
+      color: var(--primary);
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle{
+      margin: 10px 0 0;
+      font-size: 18px;
+      line-height: 1.55;
+      color: var(--muted);
+      max-width: 68ch;
+    }
+
+    /* Botão Slides (mesmo padrão “cartão premium”) */
+    .slide-btn{
+      flex: 0 0 auto;
+      text-decoration:none;
+      color: var(--text);
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: var(--shadow-2);
+      padding: 10px 12px;
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      min-width: 150px;
+      transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+    }
+    .slide-btn:hover{ transform: translateY(-1px); box-shadow: 0 14px 32px rgba(15,23,42,.12); border-color: rgba(29,78,216,.22); }
+    .slide-ic{
+      width:42px; height:42px;
+      border-radius: 12px;
+      display:grid; place-items:center;
+      background: linear-gradient(180deg, rgba(37,99,235,.14), rgba(37,99,235,.06));
+      border: 1px solid rgba(37,99,235,.20);
+    }
+    .slide-txt{ display:flex; flex-direction:column; line-height:1.1; }
+    .slide-txt strong{ font-size: 14px; }
+    .slide-txt span{ font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+    .grid{
+      display:grid;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow-2);
+      padding: 16px;
+    }
+
+    .pill{
+      display:inline-block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #0b2a7a;
+      background: rgba(37,99,235,.10);
+      border: 1px solid rgba(37,99,235,.18);
+      padding: 6px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+
+    .card h2{
+      margin: 0 0 10px;
+      font-size: 22px;
+      letter-spacing: -0.2px;
+    }
+
+    .card p{
+      margin: 0 0 10px;
+      font-size: 18px;
+      line-height: 1.7;
+      color: #0f172a;
+    }
+
+    .card p:last-child{ margin-bottom:0; }
+
+    ul{
+      margin: 0;
+      padding-left: 20px;
+      font-size: 18px;
+      line-height: 1.7;
+    }
+    li{ margin: 8px 0; }
+
+    .note{
+      background: rgba(29,78,216,.06);
+      border: 1px solid rgba(29,78,216,.14);
+      border-radius: 14px;
+      padding: 12px 14px;
+      color: #0f172a;
+    }
+
+    .green-box{
+      border: 2px solid rgba(22,163,74,.55);
+      background: linear-gradient(180deg, rgba(22,163,74,.06), rgba(22,163,74,.03));
+      border-radius: 16px;
+      padding: 14px;
+    }
+
+    .back-wrap{
+      display:flex;
+      justify-content:center;
+      margin-top: 18px;
+    }
+
+    .back{
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      font-weight: 800;
+      color: #0f172a;
+      background: #fff;
+      border: 1px solid rgba(15,23,42,.12);
+      border-radius: 14px;
+      padding: 14px 18px;
+      box-shadow: var(--shadow-2);
+      transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+      min-width: 260px;
+      justify-content:center;
+    }
+    .back:hover{ transform: translateY(-1px); box-shadow: 0 14px 32px rgba(15,23,42,.12); border-color: rgba(29,78,216,.22); }
+
+    /* Mobile */
+    @media (max-width: 640px){
+      .shell{ padding: 16px; }
+      .topbar{ flex-direction:column; align-items:stretch; }
+      .slide-btn{ width: 100%; justify-content:flex-start; }
+      .subtitle{ font-size: 17px; }
+      .card p, ul{ font-size: 17px; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+    <section class="shell">
+      <div class="topbar">
+        <div>
+          <h1>11. Provas</h1>
+          <p class="subtitle">
+            As provas são produzidas para demonstrar a veracidade dos fatos controvertidos (fatos duvidosos).
+            Fatos incontroversos (confessados ou não impugnados) dispensam prova. Em regra, a prova incide sobre fatos,
+            e não sobre o direito (iura novit curia), com ressalvas para normas não federais, estrangeiras, municipais e consuetudinárias.
+          </p>
+        </div>
+
+        <!-- Troque o link abaixo pelo link real dos SLIDES no Google Drive -->
+        <a class="slide-btn" href="LINK_SLIDES_GOOGLE_DRIVE" target="_blank" rel="noopener">
+          <div class="slide-ic" aria-hidden="true">
+            <!-- ícone "documento" -->
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M7 3h7l3 3v15a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" stroke="#1d4ed8" stroke-width="1.8"/>
+              <path d="M14 3v3h3" stroke="#1d4ed8" stroke-width="1.8"/>
+              <path d="M8 11h8M8 15h8M8 19h6" stroke="#1d4ed8" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="slide-txt">
+            <strong>Slides</strong>
+            <span>Abrir no Drive</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <span class="pill">Visão geral</span>
+          <p>
+            Exemplo típico: se o reclamante afirma ter laborado 2 horas extras por dia e o reclamado impugna,
+            cada parte buscará produzir provas: o reclamante para demonstrar o labor extraordinário e a empresa para desqualificá-lo.
+            Se o fato não for impugnado ou for confessado, ele se torna incontroverso e, em regra, não exige prova.
+          </p>
+        </div>
+
+        <div class="card">
+          <span class="pill">11.1 Poderes instrutórios do juiz</span>
+          <p>
+            O juiz comanda a produção da prova (art. 370 do CPC/2015), definindo o que será produzido e indeferindo o que for desnecessário,
+            considerando que ele é o destinatário da prova.
+          </p>
+          <div class="note">
+            Exemplo: se uma parte pede perícia (prova mais cara e demorada), mas o fato pode ser demonstrado por documentos
+            ou prova testemunhal, o juiz pode indeferir a perícia e privilegiar os meios mais adequados.
+          </div>
+        </div>
+
+        <div class="card">
+          <span class="pill">11.2 Ônus da prova</span>
+          <p>
+            A distribuição do ônus da prova se orienta principalmente pelo art. 818 da CLT e art. 373 do CPC/2015:
+            quem alega um fato deve prová-lo. Assim, o autor prova fatos constitutivos; o réu prova fatos impeditivos, modificativos e extintivos.
+          </p>
+
+          <div class="green-box">
+            <p style="margin-bottom:10px;"><strong>Teoria estática (regra geral):</strong></p>
+            <ul>
+              <li><strong>Autor:</strong> fatos constitutivos do direito alegado.</li>
+              <li><strong>Réu:</strong> fatos impeditivos, modificativos ou extintivos.</li>
+            </ul>
+          </div>
+
+          <div style="height:10px;"></div>
+
+          <div class="green-box">
+            <p style="margin-bottom:10px;"><strong>Teoria dinâmica (distribuição diferenciada):</strong></p>
+            <p>
+              O juiz pode atribuir o ônus à parte que tiver melhores condições de produzir a prova, para facilitar a apuração dos fatos.
+              A decisão deve ser fundamentada e proferida antes do início da instrução, evitando surpresa, podendo haver adiamento,
+              conforme as regras do art. 818, §§ 1º a 3º, da CLT.
+            </p>
+            <p style="margin:0;">
+              Importante: a modificação do ônus da prova ocorre por determinação judicial, e não por simples acordo das partes.
+            </p>
+          </div>
+        </div>
+
+        <div class="card">
+          <span class="pill">11.3 Meios de prova</span>
+          <p>
+            São admitidos todos os meios lícitos (art. 369 do CPC/2015). Entre os meios usuais no processo do trabalho:
+          </p>
+          <ul>
+            <li><strong>Prova documental:</strong> documentos em geral, registros, controles, comunicações etc.</li>
+            <li><strong>Prova testemunhal:</strong> oitiva de testemunhas sobre fatos controvertidos.</li>
+            <li><strong>Prova pericial:</strong> avaliação técnica (por exemplo, insalubridade e periculosidade – art. 195, §2º, CLT como regra geral).</li>
+            <li><strong>Prova técnica simplificada:</strong> em hipóteses de menor complexidade, com oitiva de especialista (CPC/2015).</li>
+            <li><strong>Depoimento pessoal:</strong> oitiva da parte, normalmente requerida pela parte contrária, visando confissão.</li>
+            <li><strong>Inspeção judicial:</strong> diligência do juiz sobre pessoas/coisas para esclarecer fatos (art. 481 do CPC/2015).</li>
+          </ul>
+          <div class="note" style="margin-top:12px;">
+            Observação: o juiz tem liberdade para analisar o laudo pericial, podendo concordar ou discordar (art. 479 do CPC/2015),
+            desde que fundamente.
+          </div>
+        </div>
+
+        <div class="card">
+          <span class="pill">11.4 Encerramento da instrução</span>
+          <p>
+            Finalizada a produção de provas e não havendo necessidade de outras, a CLT prevê a abertura de prazo para alegações finais
+            (art. 850, CLT), em que cada parte tenta convencer o juiz quanto à sua versão dos fatos.
+          </p>
+          <p>
+            Em seguida, o juiz renova a tentativa de conciliação (momento obrigatório). Não havendo acordo, o magistrado profere a sentença,
+            observando os requisitos essenciais (relatório, fundamentação e dispositivo), nos termos das regras aplicáveis.
+          </p>
+        </div>
+
+        <div class="back-wrap">
+          <!-- Ajuste o caminho conforme a estrutura do seu repositório -->
+          <a class="back" href="../index.html">← Voltar ao índice da disciplina</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
 
