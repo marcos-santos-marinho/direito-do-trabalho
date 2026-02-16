@@ -1,1 +1,375 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>13. Salário e Remuneração</title>
+  <style>
+    :root{
+      --bg: #eaf3ff;
+      --panel: #ffffff;
+      --panel2:#f7fbff;
+      --text:#0f172a;
+      --muted:#475569;
+      --blue:#1d4ed8;
+      --blue2:#2563eb;
+      --shadow: 0 12px 30px rgba(15,23,42,.10);
+      --shadow2: 0 8px 18px rgba(15,23,42,.10);
+      --radius: 18px;
+      --radius2: 14px;
+      --green:#22c55e;
+      --greenSoft:#dcfce7;
+      --line:#dbeafe;
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background: radial-gradient(1200px 600px at 50% -10%, #ffffff 0%, var(--bg) 45%, #e9f2ff 100%);
+      line-height:1.7;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .wrap{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 18px 14px 32px;
+    }
+
+    .topbar{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      margin-top:6px;
+    }
+
+    h1{
+      margin:0;
+      font-size: clamp(28px, 4.8vw, 46px);
+      line-height:1.08;
+      letter-spacing:-.02em;
+      color: var(--blue2);
+    }
+
+    .subtitle{
+      margin: 10px 0 0;
+      font-size: clamp(16px, 2.2vw, 18px);
+      color: var(--muted);
+    }
+
+    /* Botão Slides (mesma “cara” premium) */
+    .slidesBtn{
+      flex: 0 0 auto;
+      text-decoration:none;
+      color: var(--text);
+      background: rgba(255,255,255,.85);
+      border: 1px solid rgba(37,99,235,.20);
+      border-radius: 16px;
+      padding: 10px 10px;
+      box-shadow: var(--shadow2);
+      display:flex;
+      align-items:center;
+      gap:10px;
+      transition: transform .12s ease, box-shadow .12s ease;
+      min-width: 140px;
+      justify-content:center;
+    }
+    .slidesBtn:hover{ transform: translateY(-1px); box-shadow: var(--shadow); }
+    .slidesIcon{
+      width: 34px; height: 34px;
+      border-radius: 10px;
+      display:grid;
+      place-items:center;
+      background: linear-gradient(180deg, #eff6ff, #dbeafe);
+      border: 1px solid rgba(37,99,235,.20);
+    }
+    .slidesIcon svg{ width:20px; height:20px; }
+    .slidesText{
+      display:flex;
+      flex-direction:column;
+      line-height:1.15;
+      text-align:left;
+    }
+    .slidesText strong{ font-size: 14px; }
+    .slidesText span{ font-size: 12px; color: var(--muted); }
+
+    .panel{
+      margin-top: 16px;
+      background: rgba(255,255,255,.85);
+      border: 1px solid rgba(37,99,235,.12);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      padding: 16px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .card{
+      background: var(--panel);
+      border: 1px solid rgba(15,23,42,.08);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 18px rgba(15,23,42,.06);
+      padding: 16px;
+    }
+
+    .card h2{
+      margin:0 0 10px 0;
+      font-size: 22px;
+      letter-spacing:-.01em;
+    }
+    .card h3{
+      margin: 14px 0 8px;
+      font-size: 18px;
+      color: #0b1b3a;
+    }
+    .card p{ margin: 10px 0; font-size: 18px; }
+    .card ul{
+      margin: 10px 0 0 20px;
+      padding:0;
+      font-size: 18px;
+    }
+    .card li{ margin: 6px 0; }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      background: #eef2ff;
+      border: 1px solid rgba(37,99,235,.15);
+      color:#1e3a8a;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .note{
+      background: var(--panel2);
+      border: 1px solid rgba(37,99,235,.15);
+      border-radius: var(--radius2);
+      padding: 12px 12px;
+      font-size: 17px;
+      color: #0b1b3a;
+    }
+
+    .twoCols{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .kpi{
+      background: #ffffff;
+      border: 1px solid rgba(15,23,42,.08);
+      border-radius: 16px;
+      padding: 14px;
+      box-shadow: 0 8px 18px rgba(15,23,42,.06);
+    }
+    .kpi b{ color:#0b1b3a; }
+    .kpi p{ margin:6px 0 0; font-size: 17px; color: var(--muted); }
+
+    .backWrap{
+      display:flex;
+      justify-content:center;
+      margin-top: 18px;
+    }
+    .backBtn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 14px 18px;
+      border-radius: 16px;
+      text-decoration:none;
+      color: var(--text);
+      background: rgba(255,255,255,.90);
+      border: 1px solid rgba(15,23,42,.10);
+      box-shadow: var(--shadow2);
+      font-weight: 700;
+      min-width: 280px;
+      transition: transform .12s ease, box-shadow .12s ease;
+      font-size: 16px;
+    }
+    .backBtn:hover{ transform: translateY(-1px); box-shadow: var(--shadow); }
+
+    /* Melhor leitura no celular */
+    @media (min-width: 900px){
+      .grid{ grid-template-columns: 1fr; }
+      .twoCols{ grid-template-columns: 1fr 1fr; }
+      .panel{ padding: 18px; }
+      .card p, .card ul{ font-size: 18px; }
+    }
+
+    @media (max-width: 520px){
+      .slidesBtn{ min-width: 120px; padding: 9px 9px; }
+      .slidesText strong{ font-size: 13px; }
+      .slidesText span{ font-size: 11px; }
+      .card p, .card ul{ font-size: 17px; }
+      .backBtn{ min-width: 100%; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <div class="topbar">
+      <div>
+        <h1>13. Salário e Remuneração</h1>
+        <p class="subtitle">
+          Entenda os conceitos, as verbas que integram (ou não) o salário, as formas de pagamento e as principais regras de proteção.
+        </p>
+      </div>
+
+      <!-- Troque LINK_GOOGLE_DRIVE_SLIDES pelo link real dos seus slides no Drive -->
+      <a class="slidesBtn" href="LINK_GOOGLE_DRIVE_SLIDES" target="_blank" rel="noopener noreferrer" aria-label="Abrir slides no Google Drive">
+        <div class="slidesIcon" aria-hidden="true">
+          <!-- Ícone estilo “slides” (sem arquivos externos) -->
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M7 4h7l3 3v13a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" stroke="#1d4ed8" stroke-width="1.8" />
+            <path d="M14 4v3a1 1 0 0 0 1 1h3" stroke="#1d4ed8" stroke-width="1.8"/>
+            <path d="M8 12h8M8 15h8M8 18h6" stroke="#1d4ed8" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="slidesText">
+          <strong>Slides</strong>
+          <span>Abrir no Drive</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="panel">
+      <div class="grid">
+
+        <section class="card">
+          <div class="pill">Visão geral</div>
+          <h2>Conceitos fundamentais</h2>
+
+          <p>
+            <b>Remuneração</b> é o gênero: reúne todas as parcelas recebidas pelo empregado como contraprestação do trabalho,
+            incluindo valores pagos diretamente pelo empregador e valores pagos por terceiros (como <b>gorjetas</b>).
+          </p>
+
+          <p>
+            <b>Salário</b> é a espécie: é a parte da remuneração paga diretamente pelo empregador ao empregado, como
+            contraprestação pelos serviços.
+          </p>
+
+          <div class="note">
+            <b>Gorjeta</b>: pode ser tanto o valor espontaneamente dado pelo cliente quanto o valor cobrado pela empresa como taxa/serviço,
+            destinado à distribuição aos empregados.
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="pill">Art. 457 e art. 458 (CLT)</div>
+          <h2>O que integra (e o que não integra) o salário</h2>
+
+          <div class="twoCols">
+            <div class="kpi">
+              <b>Integram o salário (exemplos)</b>
+              <p>Comissões e algumas gratificações legais (quando previstas em lei, como certas gratificações por exercício de função).</p>
+            </div>
+            <div class="kpi">
+              <b>Não integram o salário (mesmo habituais)</b>
+              <p>Ajuda de custo, auxílio-alimentação (vedado em dinheiro), prêmios/bônus, abonos e diárias de viagem (conforme regras legais).</p>
+            </div>
+          </div>
+
+          <h3>Salário-utilidade (pagamento “in natura”)</h3>
+          <p>
+            O salário pode ser pago parte em dinheiro e parte em utilidades. Para a utilidade ser considerada salário,
+            em regra, ela deve ser concedida <b>habitualmente</b>, <b>gratuitamente</b> e <b>pelo trabalho</b>.
+          </p>
+
+          <div class="note">
+            Utilidades fornecidas para <b>viabilizar/facilitar a execução do trabalho</b> (por serem indispensáveis ao serviço)
+            não têm natureza salarial e não integram a remuneração.
+          </div>
+
+          <h3>Exemplos de utilidades que não são salário (CLT)</h3>
+          <ul>
+            <li>Vestuários, equipamentos e acessórios usados no local de trabalho.</li>
+            <li>Educação (matrícula, mensalidade, material didático etc.).</li>
+            <li>Transporte de ida e volta.</li>
+            <li>Assistência médica/odontológica (inclusive reembolsos e planos).</li>
+            <li>Seguro de vida e acidentes pessoais; previdência privada; vale-cultura.</li>
+          </ul>
+
+          <div class="note">
+            <b>Regra prática:</b> o salário não pode ser pago integralmente em utilidades — deve haver pagamento mínimo em dinheiro.
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="pill">Pagamentos</div>
+          <h2>Meios de pagamento do salário</h2>
+
+          <ul>
+            <li><b>Moeda corrente</b>: é a forma normal de pagamento (evita vales/cupons/títulos como substituição).</li>
+            <li><b>Cheque ou depósito bancário</b>: são admitidos, desde que em conta em nome do empregado.</li>
+            <li><b>Utilidades</b>: podem compor parte da remuneração, observadas as regras do salário-utilidade.</li>
+          </ul>
+        </section>
+
+        <section class="card">
+          <div class="pill">Proteção ao salário</div>
+          <h2>Regras de proteção ao salário</h2>
+
+          <p>
+            O salário tem natureza alimentar e, por isso, o ordenamento prevê um conjunto de mecanismos de proteção
+            contra atrasos, retenções e práticas que dificultem o recebimento.
+          </p>
+
+          <h3>Periodicidade</h3>
+          <div class="note">
+            O salário deve ser pago em períodos máximos de <b>um mês</b> e, como regra, até o <b>5º dia útil</b> do mês subsequente ao vencido.
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="pill">13º e adicionais</div>
+          <h2>Décimo terceiro e adicionais de remuneração</h2>
+
+          <h3>13º salário</h3>
+          <p>
+            O 13º salário é uma gratificação paga normalmente em dezembro, podendo ser parcelada em duas etapas, conforme regras de calendário.
+            Pode ser devido proporcionalmente em hipóteses como dispensa sem justa causa, pedido de demissão, término de contrato a prazo,
+            aposentadoria e morte do empregado (com pagamento a dependentes/herdeiros).
+          </p>
+
+          <h3>Adicionais (visão geral)</h3>
+          <ul>
+            <li><b>Horas extras</b>: acréscimo mínimo constitucional e integração na remuneração quando habitual.</li>
+            <li><b>Adicional noturno</b>: trabalho em horário noturno com adicional; pode integrar a remuneração quando habitual.</li>
+          </ul>
+
+          <div class="note">
+            <b>Dica:</b> em muitos temas trabalhistas, “habitualidade” é chave para definir integração na remuneração e reflexos (férias, 13º, FGTS etc.).
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Voltar ao índice da disciplina -->
+      <div class="backWrap">
+        <!-- Ajuste o href se sua estrutura for diferente -->
+        <a class="backBtn" href="../index.html">← Voltar ao índice da disciplina</a>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
 
