@@ -1,146 +1,295 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Casos do STF</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>03. Apresentações</title>
 
-<style>
-:root{
-  --bg:#ffffff;
-  --title:#1f4fd8;
-  --text:#0f172a;
-  --green:#1f9a3c;
-  --border:rgba(15,23,42,.14);
-  --shadow:0 10px 22px rgba(15,23,42,.08);
-}
-*{ box-sizing:border-box; }
-body{
-  margin:0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  font-size:18px;
-  line-height:1.6;
-}
-.wrap{
-  max-width:980px;
-  margin:auto;
-  padding:18px 16px 40px;
-}
-h1{
-  color:var(--title);
-  font-size:32px;
-  margin:8px 0 12px;
-}
-.subtitle{
-  margin:0 0 16px;
-  font-size:16px;
-  color:rgba(15,23,42,.85);
-}
-.list{ display:flex; flex-direction:column; gap:14px; }
-.btn{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  padding:18px 16px;
-  background:#fff;
-  border:2px solid rgba(31,154,60,.7);
-  border-radius:16px;
-  text-decoration:none;
-  color:var(--text);
-  font-weight:900;
-  box-shadow:0 6px 16px rgba(15,23,42,.06);
-}
-.left{ display:flex; align-items:center; gap:12px; min-width:0; }
-.num{
-  width:32px; height:32px; border-radius:10px;
-  background:rgba(31,154,60,.16);
-  display:flex; align-items:center; justify-content:center;
-  font-size:14px; color:#0b5a1f; flex:0 0 auto;
-}
-.text{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-.chev{ opacity:.45; font-size:22px; flex:0 0 auto; }
-.back{ margin-top:28px; display:flex; justify-content:center; }
-.back a{
-  display:inline-block;
-  padding:16px 18px;
-  background:#fff;
-  border:1px solid var(--border);
-  border-radius:16px;
-  text-decoration:none;
-  color:var(--text);
-  font-weight:900;
-  box-shadow:var(--shadow);
-}
-@media(max-width:520px){
-  h1{ font-size:26px; }
-  .text{ white-space:normal; }
-}
-</style>
+  <style>
+    :root{
+      --bg:#eaf3ff;
+      --panel: rgba(255,255,255,.82);
+      --card:#ffffff;
+      --card2:#f7fbff;
+      --text:#0f172a;
+      --muted:#475569;
+      --brand:#2563eb;
+      --line: rgba(15,23,42,.10);
+      --shadow: 0 18px 50px rgba(2,6,23,.12);
+      --shadow2: 0 10px 24px rgba(2,6,23,.10);
+      --radius: 22px;
+      --radius2: 18px;
+    }
+
+    *{ box-sizing:border-box; }
+
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 20% 0%, rgba(37,99,235,.20), transparent 60%),
+        radial-gradient(900px 500px at 90% 20%, rgba(29,78,216,.12), transparent 55%),
+        var(--bg);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.75;
+    }
+
+    .wrap{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 18px 14px 34px;
+    }
+
+    .shell{
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,.65);
+      border-radius: calc(var(--radius) + 10px);
+      box-shadow: var(--shadow);
+      padding: 16px;
+      backdrop-filter: blur(10px);
+    }
+
+    h1{
+      margin: 6px 6px 0;
+      font-size: clamp(28px, 4.8vw, 46px);
+      letter-spacing: -0.02em;
+      line-height: 1.06;
+      color: var(--brand);
+      text-align:center;
+    }
+
+    .subtitle{
+      margin: 10px 6px 14px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.55;
+      text-align:center;
+    }
+
+    /* Botão topo centralizado (Drive) */
+    .topCenter{
+      display:flex;
+      justify-content:center;
+      padding: 10px 6px 6px;
+    }
+
+    .driveBtn{
+      text-decoration:none;
+      color: var(--text);
+      background: #fff;
+      border: 1px solid rgba(37,99,235,.18);
+      border-radius: 20px;
+      box-shadow: var(--shadow2);
+      padding: 14px 18px;
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      transition: transform .12s ease, box-shadow .12s ease;
+      user-select:none;
+      min-width: min(560px, 100%);
+      justify-content:center;
+      font-weight: 900;
+      font-size: 18px;
+    }
+    .driveBtn:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 14px 28px rgba(2,6,23,.14);
+    }
+    .driveIcon{
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      display:grid;
+      place-items:center;
+      background: linear-gradient(135deg, rgba(37,99,235,.14), rgba(29,78,216,.08));
+      border: 1px solid rgba(37,99,235,.18);
+      flex: 0 0 auto;
+    }
+    .driveIcon svg{ width: 24px; height: 24px; }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      padding: 10px 6px 6px;
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px 18px;
+      box-shadow: 0 10px 22px rgba(2,6,23,.07);
+    }
+
+    .pill{
+      display:inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(29,78,216,.08);
+      border: 1px solid rgba(29,78,216,.18);
+      color: #0b1220;
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: .02em;
+      margin-bottom: 10px;
+    }
+
+    .card h2{
+      margin: 0 0 10px;
+      font-size: clamp(20px, 2.6vw, 26px);
+      letter-spacing: -0.01em;
+      color:#0b1220;
+    }
+
+    .card p{
+      margin: 0 0 12px;
+      font-size: 19px;
+      color: #0b1220;
+    }
+    .card p:last-child{ margin-bottom:0; }
+
+    /* Botões internos (apresentações 01..10) */
+    .btnGrid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .miniBtn{
+      text-decoration:none;
+      background: #fff;
+      color: #0b1220;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: 0 10px 22px rgba(2,6,23,.08);
+      padding: 14px 14px;
+      font-weight: 900;
+      font-size: 16px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+      text-align:center;
+    }
+    .miniBtn:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 14px 28px rgba(2,6,23,.12);
+      border-color: rgba(37,99,235,.22);
+    }
+
+    .footer{
+      display:flex;
+      justify-content:center;
+      padding: 18px 6px 4px;
+    }
+
+    .back{
+      text-decoration:none;
+      background: #fff;
+      color: #0b1220;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: var(--shadow2);
+      padding: 14px 18px;
+      font-size: 18px;
+      font-weight: 900;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      transition: transform .12s ease, box-shadow .12s ease;
+      min-width: min(520px, 100%);
+      justify-content:center;
+    }
+    .back:hover{ transform: translateY(-1px); box-shadow: 0 14px 28px rgba(2,6,23,.14); }
+
+    @media (max-width: 560px){
+      .subtitle{ font-size: 16px; }
+      .card p{ font-size: 17px; }
+      .driveBtn{ font-size: 16px; padding: 12px 14px; }
+      .btnGrid{ grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 
 <body>
-<div class="wrap">
-  <h1>Precedentes do Supremo na Área Trabalhista</h1>
-  <div class="subtitle">Selecione o caso abaixo para acessar o conteúdo dos processos:</div>
+  <div class="wrap">
+    <div class="shell">
 
-  <div class="list">
-    <a class="btn" href="01-apresentacao/index.html">
-      <div class="left"><div class="num">1</div><div class="text">Contribuição assistencial a empregados não sindicalizados</div></div>
-      <div class="chev">›</div>
-    </a>
+      <h1>03. Apresentações</h1>
+      <div class="subtitle">Acesse a pasta principal no Drive ou escolha uma apresentação abaixo.</div>
 
-    <a class="btn" href="02-apresentacao/index.html">
-      <div class="left"><div class="num">2</div><div class="text">Inclusão de empresas do mesmo grupo na fase de execução</div></div>
-      <div class="chev">›</div>
-    </a>
+      <!-- BOTÃO TOPO CENTRALIZADO PARA A PASTA NO GOOGLE DRIVE -->
+      <div class="topCenter">
+        <a class="driveBtn" href="LINK_GOOGLE_DRIVE_APRESENTACOES" target="_blank" rel="noopener noreferrer">
+          <span class="driveIcon" aria-hidden="true">
+            <!-- ícone simples “pasta” -->
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M3.5 7.5a2 2 0 0 1 2-2h4.2l1.6 1.8h7.2a2 2 0 0 1 2 2v8.2a2 2 0 0 1-2 2H5.5a2 2 0 0 1-2-2V7.5Z"
+                stroke="#1d4ed8" stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="M3.7 10h16.6" stroke="#1d4ed8" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </span>
+          Abrir pasta das apresentações no Google Drive
+        </a>
+      </div>
 
-    <a class="btn" href="03-apresentacao/index.html">
-      <div class="left"><div class="num">3</div><div class="text">Prova sobre a fiscalização de terceirizados por ente público</div></div>
-      <div class="chev">›</div>
-    </a>
+      <div class="grid">
 
-    <a class="btn" href="04-apresentacao/index.html">
-      <div class="left"><div class="num">4</div><div class="text">Vínculo de emprego com pessoa jurídica</div></div>
-      <div class="chev">›</div>
-    </a>
+        <!-- Botões para as subpáginas (ajuste se seus nomes forem diferentes) -->
+        <section class="card">
+          <div class="pill">Apresentações</div>
+          <p>Selecione a apresentação:</p>
 
-    <a class="btn" href="05-apresentacao/index.html">
-      <div class="left"><div class="num">5</div><div class="text">Vínculo empregatício de motorista de aplicativo</div></div>
-      <div class="chev">›</div>
-    </a>
+          <div class="btnGrid">
+            <a class="miniBtn" href="./01-apresentacao/index.html">01 • Apresentação</a>
+            <a class="miniBtn" href="./02-apresentacao/index.html">02 • Apresentação</a>
+            <a class="miniBtn" href="./03-apresentacao/index.html">03 • Apresentação</a>
+            <a class="miniBtn" href="./04-apresentacao/index.html">04 • Apresentação</a>
+            <a class="miniBtn" href="./05-apresentacao/index.html">05 • Apresentação</a>
+            <a class="miniBtn" href="./06-apresentacao/index.html">06 • Apresentação</a>
+            <a class="miniBtn" href="./07-apresentacao/index.html">07 • Apresentação</a>
+            <a class="miniBtn" href="./08-apresentacao/index.html">08 • Apresentação</a>
+            <a class="miniBtn" href="./09-apresentacao/index.html">09 • Apresentação</a>
+            <a class="miniBtn" href="./10-apresentacao/index.html">10 • Apresentação</a>
+          </div>
+        </section>
 
-    <a class="btn" href="06-apresentacao/index.html">
-      <div class="left"><div class="num">6</div><div class="text">Equiparação entre terceirizados e empregados da contratante</div></div>
-      <div class="chev">›</div>
-    </a>
+        <!-- Conteúdo do arquivo anexo -->
+        <section class="card">
+          <div class="pill">Meu Grupo</div>
+          <h2>Meu Grupo</h2>
+          <p>
+            Use este espaço para registrar os integrantes do grupo, temas atribuídos e combinados de apresentação.
+            (Se quiser, eu coloco aqui um quadro com campos “Nome / Função / Tema / Data”).
+          </p>
+        </section>
 
-    <a class="btn" href="07-apresentacao/index.html">
-      <div class="left"><div class="num">7</div><div class="text">Responsabilização do empregador por acidentes de trabalho</div></div>
-      <div class="chev">›</div>
-    </a>
+        <section class="card">
+          <div class="pill">Critérios de Avaliação</div>
+          <h2>Critérios de Avaliação</h2>
+          <p>
+            Use este espaço para apresentar os critérios de avaliação das apresentações (clareza, domínio do tema,
+            organização, fundamentação, tempo, participação, etc.).
+            (Se quiser, eu monto uma rubrica pronta em tabela — bem bonita no celular).
+          </p>
+        </section>
 
-    <a class="btn" href="08-apresentacao/index.html">
-      <div class="left"><div class="num">8</div><div class="text">Despedida imotivada de empregados de Empresa Pública</div></div>
-      <div class="chev">›</div>
-    </a>
+      </div>
 
-    <a class="btn" href="09-apresentacao/index.html">
-      <div class="left"><div class="num">9</div><div class="text">Responsabilização por danos de doenças ocupacionais</div></div>
-      <div class="chev">›</div>
-    </a>
+      <div class="footer">
+        <!-- volta para: pratica-juridica-trabalhista/index.html -->
+        <a class="back" href="../index.html">
+          <span aria-hidden="true">←</span>
+          <span>Voltar ao índice da disciplina</span>
+        </a>
+      </div>
 
-    <a class="btn" href="10-apresentacao/index.html">
-      <div class="left"><div class="num">10</div><div class="text">Salário-maternidade para mãe não gestante</div></div>
-      <div class="chev">›</div>
-    </a>
+    </div>
   </div>
-
-  <div class="back">
-    <a href="../index.html">← Voltar ao índice da disciplina</a>
-  </div>
-</div>
 </body>
 </html>
