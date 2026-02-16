@@ -1,1 +1,345 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>14. Procedimento sumário e sumaríssimo</title>
+
+  <style>
+    :root{
+      --bg:#eaf3ff;
+      --panel: rgba(255,255,255,.82);
+      --card:#ffffff;
+      --card2:#f7fbff;
+      --text:#0f172a;
+      --muted:#475569;
+      --brand:#2563eb;
+      --line: rgba(15,23,42,.10);
+      --shadow: 0 18px 50px rgba(2,6,23,.12);
+      --shadow2: 0 10px 24px rgba(2,6,23,.10);
+      --radius: 22px;
+      --radius2: 18px;
+    }
+
+    *{ box-sizing:border-box; }
+
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 20% 0%, rgba(37,99,235,.20), transparent 60%),
+        radial-gradient(900px 500px at 90% 20%, rgba(29,78,216,.12), transparent 55%),
+        var(--bg);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.78;
+    }
+
+    .wrap{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 18px 14px 34px;
+    }
+
+    .shell{
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,.65);
+      border-radius: calc(var(--radius) + 10px);
+      box-shadow: var(--shadow);
+      padding: 16px;
+      backdrop-filter: blur(10px);
+    }
+
+    header{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 14px;
+      padding: 6px 6px 2px;
+    }
+
+    h1{
+      margin: 0;
+      font-size: clamp(28px, 4.8vw, 46px);
+      letter-spacing: -0.02em;
+      line-height: 1.06;
+      color: var(--brand);
+    }
+
+    .subtitle{
+      margin: 10px 6px 16px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.55;
+      max-width: 70ch;
+    }
+
+    /* Botão Slides (premium) */
+    .slidesBtn{
+      text-decoration:none;
+      color: var(--text);
+      background: #fff;
+      border: 1px solid rgba(37,99,235,.18);
+      border-radius: 18px;
+      box-shadow: var(--shadow2);
+      padding: 12px 14px;
+      min-width: 140px;
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      transition: transform .12s ease, box-shadow .12s ease;
+      user-select:none;
+      justify-content:center;
+      flex: 0 0 auto;
+    }
+    .slidesBtn:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 14px 28px rgba(2,6,23,.14);
+    }
+    .slidesIcon{
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display:grid;
+      place-items:center;
+      background: linear-gradient(135deg, rgba(37,99,235,.14), rgba(29,78,216,.08));
+      border: 1px solid rgba(37,99,235,.18);
+      flex: 0 0 auto;
+    }
+    .slidesIcon svg{ width: 22px; height: 22px; }
+    .slidesLbl{
+      display:flex;
+      flex-direction:column;
+      line-height:1.05;
+      text-align:left;
+    }
+    .slidesLbl strong{ font-size: 15px; }
+    .slidesLbl span{ margin-top: 3px; font-size: 12px; color: var(--muted); }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      padding: 8px 6px 6px;
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px 18px;
+      box-shadow: 0 10px 22px rgba(2,6,23,.07);
+    }
+
+    .card h2{
+      margin: 0 0 10px;
+      font-size: clamp(20px, 2.6vw, 26px);
+      letter-spacing: -0.01em;
+      color:#0b1220;
+    }
+
+    .card p{
+      margin: 0 0 12px;
+      font-size: 19px;
+      color: #0b1220;
+    }
+    .card p:last-child{ margin-bottom:0; }
+
+    ul{
+      margin: 10px 0 0 22px;
+      padding: 0;
+      font-size: 19px;
+      line-height: 1.75;
+    }
+    li{ margin: 6px 0; }
+
+    .pill{
+      display:inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(29,78,216,.08);
+      border: 1px solid rgba(29,78,216,.18);
+      color: #0b1220;
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: .02em;
+      margin-bottom: 10px;
+    }
+
+    .note{
+      margin-top: 10px;
+      padding: 14px 14px;
+      border-radius: var(--radius2);
+      background: var(--card2);
+      border: 1px solid rgba(37,99,235,.14);
+      color: #0b1220;
+      font-size: 18px;
+      line-height: 1.65;
+    }
+
+    .quote{
+      margin-top: 12px;
+      padding: 14px 14px;
+      border-radius: var(--radius2);
+      background: #ffffff;
+      border: 1px solid rgba(15,23,42,.10);
+      box-shadow: 0 8px 18px rgba(2,6,23,.06);
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    .footer{
+      display:flex;
+      justify-content:center;
+      padding: 18px 6px 4px;
+    }
+
+    .back{
+      text-decoration:none;
+      background: #fff;
+      color: #0b1220;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: var(--shadow2);
+      padding: 14px 18px;
+      font-size: 18px;
+      font-weight: 900;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      transition: transform .12s ease, box-shadow .12s ease;
+      min-width: min(520px, 100%);
+      justify-content:center;
+    }
+    .back:hover{ transform: translateY(-1px); box-shadow: 0 14px 28px rgba(2,6,23,.14); }
+
+    @media (max-width: 520px){
+      .slidesBtn{ min-width: 124px; padding: 10px 12px; }
+      .card p, ul{ font-size: 17px; }
+      .subtitle{ font-size: 16px; }
+      .quote{ font-size: 16.5px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="shell">
+
+      <header>
+        <div>
+          <h1>14. Procedimento sumário e sumaríssimo</h1>
+          <div class="subtitle">
+            Ritos especiais no processo do trabalho: o <b>sumário</b> (Lei 5.584/70) e o <b>sumaríssimo</b> (arts. 852-A a 852-I da CLT),
+            cobrados com frequência em provas (especialmente o sumaríssimo).
+          </div>
+        </div>
+
+        <!-- Troque pelo link real dos seus slides -->
+        <a class="slidesBtn" href="LINK_SLIDES_GOOGLE_DRIVE" target="_blank" rel="noopener noreferrer" aria-label="Abrir slides no Google Drive">
+          <div class="slidesIcon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M7 4h7l3 3v13a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" stroke="#1d4ed8" stroke-width="1.8"/>
+              <path d="M14 4v3a1 1 0 0 0 1 1h3" stroke="#1d4ed8" stroke-width="1.8"/>
+              <path d="M8 12h8M8 15h8M8 18h6" stroke="#1d4ed8" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="slidesLbl">
+            <strong>Slides</strong>
+            <span>Abrir no Drive</span>
+          </div>
+        </a>
+      </header>
+
+      <div class="grid">
+
+        <!-- 14.1 SUMÁRIO -->
+        <section class="card">
+          <div class="pill">14.1 Sumário</div>
+
+          <p>
+            Não muito comum no dia a dia, mas passível de ser cobrado no Exame da OAB, o rito sumário encontra-se previsto
+            na Lei nº 5.584/70, em seu art. 2º, para os dissídios de até 2 salários mínimos na data de ajuizamento.
+            Para essas ações, algumas restrições serão sentidas, principalmente no âmbito recursal, pois não caberá recurso
+            das sentenças, a não ser que haja violação de norma da Constituição Federal, hipótese em que caberá o recurso
+            extraordinário para o STF, conforme Súmula 640 do STF.
+          </p>
+
+          <div class="quote">
+            <b>Súmula 640 do STF</b><br><br>
+            É cabível recurso extraordinário contra decisão proferida por juiz de primeiro grau nas causas de alçada,
+            ou por turma recursal de juizado especial cível e criminal.
+          </div>
+
+          <p>
+            Tal rito não se aplica ao procedimento do mandado de segurança e ação rescisória, conforme Súmula 365 do TST,
+            na medida em que são ações especiais, seguindo procedimento regulado por normas do CPC e leis especiais.
+          </p>
+        </section>
+
+        <!-- 14.2 SUMARÍSSIMO -->
+        <section class="card">
+          <div class="pill">14.2 Sumaríssimo</div>
+
+          <p>
+            Um dos pontos mais cobrados nos Exames de Ordem, o rito sumaríssimo é visualizado no cotidiano da Justiça do Trabalho,
+            sendo bastante explorado nas provas em virtude de sua utilidade prática. Pontos que devem ser lembrados:
+          </p>
+
+          <h2>Checklist do rito sumaríssimo</h2>
+          <ul>
+            <li>
+              <b>Competência:</b> ações de até <b>40 salários mínimos</b> seguem o rito sumaríssimo (art. 852-A, CLT),
+              <b>exceto</b> quando houver ente de direito público (União, Estados, Municípios, autarquias e fundações de direito público),
+              que ficam excluídos do procedimento.
+            </li>
+            <li>
+              <b>Petição inicial:</b> deve trazer <b>valor da causa</b> e <b>endereço completo e correto do reclamado</b>
+              (art. 852-B, CLT), sob pena de <b>arquivamento</b> (extinção sem resolução do mérito).
+            </li>
+            <li>
+              <b>Produção de provas:</b> o juiz determinará a prova necessária ao julgamento (art. 852-D, CLT).
+            </li>
+            <li>
+              <b>Conciliação:</b> o juiz buscará conciliar em todas as fases da audiência; havendo acordo, homologa e extingue com resolução do mérito (art. 852-E, CLT).
+            </li>
+            <li>
+              <b>Audiência:</b> em regra, deve ocorrer em até <b>15 dias</b>, em <b>sessão única</b> (art. 852-B, III, CLT),
+              com produção concentrada de provas; documentos devem ser enfrentados <b>de imediato</b>, sob pena de preclusão;
+              perícia é possível quando necessária (art. 852-H, §4º, CLT).
+            </li>
+            <li>
+              <b>Prova testemunhal:</b> cada parte tem até <b>2 testemunhas</b>. O juiz só intimará testemunha faltante se a parte provar que a convidou
+              (art. 852-H, §§ 2º e 3º, CLT).
+            </li>
+            <li>
+              <b>Sentença:</b> pode ser mais simples; o art. 852-I da CLT dispensa o <b>relatório</b>, podendo conter apenas fundamentação e dispositivo.
+            </li>
+            <li>
+              <b>Recursos:</b> há restrições. O recurso ordinário não tem revisor e o MPT emite parecer oral (art. 895, §1º, CLT).
+              No recurso de revista, só se admite alegação de violação da CF, súmula do TST e súmula vinculante do STF (art. 896, §9º, CLT),
+              e não cabe alegação por violação de OJ (Súmula 442 do TST).
+            </li>
+          </ul>
+
+          <div class="note">
+            Nos Exames da OAB, atenção especial a: (i) limites da prova testemunhal (art. 852-H, §§ 2º e 3º, CLT);
+            (ii) restrições do recurso ordinário (art. 895, §1º, CLT) e do recurso de revista (art. 896, §9º, CLT).
+          </div>
+        </section>
+
+      </div>
+
+      <div class="footer">
+        <a class="back" href="../index.html">
+          <span aria-hidden="true">←</span>
+          <span>Voltar ao índice da disciplina</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
 
