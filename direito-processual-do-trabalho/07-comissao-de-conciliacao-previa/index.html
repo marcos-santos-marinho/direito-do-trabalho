@@ -1,1 +1,335 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>07. Comissão de Conciliação Prévia</title>
+
+  <style>
+    :root{
+      --bg:#eaf3ff;
+      --panel: rgba(255,255,255,.82);
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#475569;
+      --brand:#2563eb;
+      --brand2:#1d4ed8;
+      --line: rgba(15,23,42,.10);
+      --shadow: 0 18px 50px rgba(2,6,23,.12);
+      --shadow2: 0 10px 24px rgba(2,6,23,.10);
+      --radius: 22px;
+    }
+
+    *{ box-sizing:border-box; }
+
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 20% 0%, rgba(37,99,235,.20), transparent 60%),
+        radial-gradient(900px 500px at 90% 20%, rgba(29,78,216,.12), transparent 55%),
+        var(--bg);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .wrap{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 18px 14px 34px;
+    }
+
+    .shell{
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,.65);
+      border-radius: calc(var(--radius) + 10px);
+      box-shadow: var(--shadow);
+      padding: 16px;
+      backdrop-filter: blur(10px);
+    }
+
+    header{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 14px;
+      padding: 6px 6px 2px;
+    }
+
+    h1{
+      margin: 0;
+      font-size: clamp(28px, 4.8vw, 46px);
+      letter-spacing: -0.02em;
+      line-height: 1.06;
+      color: var(--brand);
+    }
+
+    .subtitle{
+      margin: 10px 6px 16px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.55;
+    }
+
+    /* Botão Slides (premium) */
+    .slidesBtn{
+      text-decoration:none;
+      color: var(--text);
+      background: #fff;
+      border: 1px solid rgba(37,99,235,.18);
+      border-radius: 18px;
+      box-shadow: var(--shadow2);
+      padding: 12px 14px;
+      min-width: 140px;
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      transition: transform .12s ease, box-shadow .12s ease;
+      user-select:none;
+      justify-content:center;
+      flex: 0 0 auto;
+    }
+    .slidesBtn:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 14px 28px rgba(2,6,23,.14);
+    }
+    .slidesIcon{
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display:grid;
+      place-items:center;
+      background: linear-gradient(135deg, rgba(37,99,235,.14), rgba(29,78,216,.08));
+      border: 1px solid rgba(37,99,235,.18);
+      flex: 0 0 auto;
+    }
+    .slidesIcon svg{ width: 22px; height: 22px; }
+    .slidesLbl{
+      display:flex;
+      flex-direction:column;
+      line-height:1.05;
+      text-align:left;
+    }
+    .slidesLbl strong{ font-size: 15px; }
+    .slidesLbl span{ margin-top: 3px; font-size: 12px; color: var(--muted); }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      padding: 8px 6px 6px;
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px 18px;
+      box-shadow: 0 10px 22px rgba(2,6,23,.07);
+    }
+
+    .card h2{
+      margin: 0 0 10px;
+      font-size: clamp(20px, 2.6vw, 26px);
+      letter-spacing: -0.01em;
+      color:#0b1220;
+    }
+
+    .card p{
+      margin: 0 0 12px;
+      font-size: 19px; /* fonte maior para celular */
+      line-height: 1.78;
+      color: #0b1220;
+    }
+
+    .pill{
+      display:inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(29,78,216,.08);
+      border: 1px solid rgba(29,78,216,.18);
+      color: #0b1220;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: .02em;
+      margin-bottom: 10px;
+    }
+
+    .note{
+      margin-top: 10px;
+      padding: 14px 14px;
+      border-radius: 18px;
+      background: rgba(37,99,235,.06);
+      border: 1px solid rgba(37,99,235,.14);
+      color: #0b1220;
+      font-size: 18px;
+      line-height: 1.65;
+    }
+
+    ul{
+      margin: 10px 0 0 22px;
+      padding: 0;
+      font-size: 19px;
+      line-height: 1.75;
+    }
+    li{ margin: 6px 0; }
+
+    .footer{
+      display:flex;
+      justify-content:center;
+      padding: 18px 6px 4px;
+    }
+
+    .back{
+      text-decoration:none;
+      background: #fff;
+      color: #0b1220;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: var(--shadow2);
+      padding: 14px 18px;
+      font-size: 18px;
+      font-weight: 800;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      transition: transform .12s ease, box-shadow .12s ease;
+      min-width: min(520px, 100%);
+      justify-content:center;
+    }
+    .back:hover{ transform: translateY(-1px); box-shadow: 0 14px 28px rgba(2,6,23,.14); }
+
+    @media (max-width: 520px){
+      .slidesBtn{ min-width: 124px; padding: 10px 12px; }
+      .card p, ul{ font-size: 17px; }
+      .subtitle{ font-size: 16px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="shell">
+
+      <header>
+        <div>
+          <h1>07. Comissão de Conciliação Prévia</h1>
+          <div class="subtitle">
+            Regras, funcionamento, efeitos processuais e entendimento do STF sobre a obrigatoriedade de submissão prévia.
+          </div>
+        </div>
+
+        <!-- Troque o link abaixo pelo seu Google Drive -->
+        <a class="slidesBtn" href="LINK_GOOGLE_DRIVE_SLIDES" target="_blank" rel="noopener noreferrer" aria-label="Abrir slides no Google Drive">
+          <div class="slidesIcon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M7 4h7l3 3v13a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" stroke="#1d4ed8" stroke-width="1.8"/>
+              <path d="M14 4v3a1 1 0 0 0 1 1h3" stroke="#1d4ed8" stroke-width="1.8"/>
+              <path d="M8 12h8M8 15h8M8 18h6" stroke="#1d4ed8" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="slidesLbl">
+            <strong>Slides</strong>
+            <span>Abrir no Drive</span>
+          </div>
+        </a>
+      </header>
+
+      <div class="grid">
+
+        <section class="card">
+          <div class="pill">Previsão legal e finalidade</div>
+          <p>
+            Previstas nos arts. 625-A a 625-H da CLT, as Comissões de Conciliação Prévia (CCP) foram criadas no ano de 2000
+            para estimular a conciliação antes do ajuizamento das ações trabalhistas, buscando evitar demandas que poderiam
+            ser resolvidas por acordo entre as partes.
+          </p>
+
+          <p>
+            A intenção original do legislador foi estabelecer a passagem obrigatória pela CCP antes do ajuizamento da reclamação
+            trabalhista (art. 625-D, CLT), criando mais uma condição para o exercício do direito de ação.
+          </p>
+
+          <div class="note">
+            <b>Importante:</b> o STF, nas ADI 2.139 e 2.160, entendeu ser <b>inconstitucional</b> a obrigatoriedade de submissão prévia,
+            por violação ao art. 5º, XXXV, da CF/88 (inafastabilidade da jurisdição).
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="pill">Inafastabilidade do controle jurisdicional</div>
+          <p>
+            O art. 5º, XXXV, da CF/88 prevê que “a lei não excluirá da apreciação judicial lesão ou ameaça a direito”.
+            Assim, impor a passagem obrigatória pela CCP funcionaria como entrave ao acesso ao Judiciário, criando uma barreira
+            ao exercício do direito de ação.
+          </p>
+        </section>
+
+        <section class="card">
+          <div class="pill">Formação e funcionamento</div>
+          <p>
+            Sobre a formação e funcionamento, destacam-se os arts. 625-B e 625-C da CLT, que tratam, respectivamente,
+            das comissões na empresa e nos sindicatos:
+          </p>
+
+          <h2>Art. 625-B (CCP na empresa)</h2>
+          <ul>
+            <li>Número mínimo de <b>2</b> e máximo de <b>10</b> membros;</li>
+            <li>Representação <b>paritária</b> (mesmo número de representantes eleitos pelos empregados e indicados pelos empregadores);</li>
+            <li>Os representantes eleitos pelos empregados têm <b>estabilidade provisória</b> até 1 ano após o término do mandato.</li>
+          </ul>
+
+          <h2 style="margin-top:14px;">Art. 625-C (CCP no sindicato)</h2>
+          <p>
+            As comissões criadas no âmbito dos sindicatos devem observar as regras previstas na convenção ou acordo coletivo
+            que as instituir.
+          </p>
+        </section>
+
+        <section class="card">
+          <div class="pill">Procedimento, prazo e prescrição</div>
+          <p>
+            Uma vez provocada a comissão, a sessão de conciliação deve ser realizada dentro do prazo de <b>10 dias</b>.
+            Nesse período, a <b>prescrição fica suspensa</b>.
+          </p>
+
+          <p>
+            Se houver acordo, o termo será homologado, assinado pelas partes e seus representantes, gerando um
+            <b>título executivo extrajudicial</b>.
+          </p>
+
+          <p>
+            Não havendo acordo, ou não ocorrendo a sessão no prazo de 10 dias, o empregado fica liberado para ajuizar ação
+            perante a Justiça do Trabalho.
+          </p>
+        </section>
+
+        <section class="card">
+          <div class="pill">Efeitos do termo de acordo</div>
+          <p>
+            O termo de acordo firmado na CCP, por ser título executivo extrajudicial, permite ao credor ajuizar
+            <b>ação de execução</b> (e não ação de conhecimento), pois o crédito já está reconhecido em documento.
+          </p>
+
+          <div class="note">
+            O CPC/2015 admite que, mesmo havendo título executivo extrajudicial, a parte possa optar por ajuizar
+            <b>ação de conhecimento</b> para obter um título executivo judicial.
+          </div>
+        </section>
+
+      </div>
+
+      <div class="footer">
+        <!-- Ajuste o caminho se seu índice ficar em outro lugar -->
+        <a class="back" href="../index.html">
+          <span aria-hidden="true">←</span>
+          <span>Voltar ao índice da disciplina</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
 
