@@ -1,1 +1,362 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>10. Audiências trabalhistas</title>
+
+  <style>
+    :root{
+      --bg:#eaf3ff;
+      --panel: rgba(255,255,255,.82);
+      --card:#ffffff;
+      --card2:#f7fbff;
+      --text:#0f172a;
+      --muted:#475569;
+      --brand:#2563eb;
+      --brand2:#1d4ed8;
+      --line: rgba(15,23,42,.10);
+      --shadow: 0 18px 50px rgba(2,6,23,.12);
+      --shadow2: 0 10px 24px rgba(2,6,23,.10);
+      --radius: 22px;
+      --radius2: 18px;
+    }
+
+    *{ box-sizing:border-box; }
+
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 20% 0%, rgba(37,99,235,.20), transparent 60%),
+        radial-gradient(900px 500px at 90% 20%, rgba(29,78,216,.12), transparent 55%),
+        var(--bg);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.78;
+    }
+
+    .wrap{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 18px 14px 34px;
+    }
+
+    .shell{
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,.65);
+      border-radius: calc(var(--radius) + 10px);
+      box-shadow: var(--shadow);
+      padding: 16px;
+      backdrop-filter: blur(10px);
+    }
+
+    header{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 14px;
+      padding: 6px 6px 2px;
+    }
+
+    h1{
+      margin: 0;
+      font-size: clamp(28px, 4.8vw, 46px);
+      letter-spacing: -0.02em;
+      line-height: 1.06;
+      color: var(--brand);
+    }
+
+    .subtitle{
+      margin: 10px 6px 16px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.55;
+    }
+
+    /* Botão Slides (premium) */
+    .slidesBtn{
+      text-decoration:none;
+      color: var(--text);
+      background: #fff;
+      border: 1px solid rgba(37,99,235,.18);
+      border-radius: 18px;
+      box-shadow: var(--shadow2);
+      padding: 12px 14px;
+      min-width: 140px;
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      transition: transform .12s ease, box-shadow .12s ease;
+      user-select:none;
+      justify-content:center;
+      flex: 0 0 auto;
+    }
+    .slidesBtn:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 14px 28px rgba(2,6,23,.14);
+    }
+    .slidesIcon{
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display:grid;
+      place-items:center;
+      background: linear-gradient(135deg, rgba(37,99,235,.14), rgba(29,78,216,.08));
+      border: 1px solid rgba(37,99,235,.18);
+      flex: 0 0 auto;
+    }
+    .slidesIcon svg{ width: 22px; height: 22px; }
+    .slidesLbl{
+      display:flex;
+      flex-direction:column;
+      line-height:1.05;
+      text-align:left;
+    }
+    .slidesLbl strong{ font-size: 15px; }
+    .slidesLbl span{ margin-top: 3px; font-size: 12px; color: var(--muted); }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      padding: 8px 6px 6px;
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px 18px;
+      box-shadow: 0 10px 22px rgba(2,6,23,.07);
+    }
+
+    .card h2{
+      margin: 0 0 10px;
+      font-size: clamp(20px, 2.6vw, 26px);
+      letter-spacing: -0.01em;
+      color:#0b1220;
+    }
+
+    .card p{
+      margin: 0 0 12px;
+      font-size: 19px; /* maior para celular */
+      color: #0b1220;
+    }
+
+    ul{
+      margin: 10px 0 0 22px;
+      padding: 0;
+      font-size: 19px;
+      line-height: 1.75;
+    }
+    li{ margin: 6px 0; }
+
+    .pill{
+      display:inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(29,78,216,.08);
+      border: 1px solid rgba(29,78,216,.18);
+      color: #0b1220;
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: .02em;
+      margin-bottom: 10px;
+    }
+
+    .note{
+      margin-top: 10px;
+      padding: 14px 14px;
+      border-radius: var(--radius2);
+      background: var(--card2);
+      border: 1px solid rgba(37,99,235,.14);
+      color: #0b1220;
+      font-size: 18px;
+      line-height: 1.65;
+    }
+
+    .quote{
+      margin-top: 12px;
+      padding: 14px 14px;
+      border-radius: var(--radius2);
+      background: #ffffff;
+      border: 1px solid rgba(15,23,42,.10);
+      box-shadow: 0 8px 18px rgba(2,6,23,.06);
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    .footer{
+      display:flex;
+      justify-content:center;
+      padding: 18px 6px 4px;
+    }
+
+    .back{
+      text-decoration:none;
+      background: #fff;
+      color: #0b1220;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: var(--shadow2);
+      padding: 14px 18px;
+      font-size: 18px;
+      font-weight: 900;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      transition: transform .12s ease, box-shadow .12s ease;
+      min-width: min(520px, 100%);
+      justify-content:center;
+    }
+    .back:hover{ transform: translateY(-1px); box-shadow: 0 14px 28px rgba(2,6,23,.14); }
+
+    @media (max-width: 520px){
+      .slidesBtn{ min-width: 124px; padding: 10px 12px; }
+      .card p, ul{ font-size: 17px; }
+      .subtitle{ font-size: 16px; }
+      .quote{ font-size: 16.5px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="shell">
+
+      <header>
+        <div>
+          <h1>10. Audiências trabalhistas</h1>
+          <div class="subtitle">
+            O dia da audiência é o mais importante do processo trabalhista, pois nele se concentram diversos atos processuais
+            (princípio da concentração). :contentReference[oaicite:1]{index=1}
+          </div>
+        </div>
+
+        <!-- Troque pelo link real dos seus slides -->
+        <a class="slidesBtn" href="LINK_GOOGLE_DRIVE_SLIDES" target="_blank" rel="noopener noreferrer" aria-label="Abrir slides no Google Drive">
+          <div class="slidesIcon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M7 4h7l3 3v13a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" stroke="#1d4ed8" stroke-width="1.8"/>
+              <path d="M14 4v3a1 1 0 0 0 1 1h3" stroke="#1d4ed8" stroke-width="1.8"/>
+              <path d="M8 12h8M8 15h8M8 18h6" stroke="#1d4ed8" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="slidesLbl">
+            <strong>Slides</strong>
+            <span>Abrir no Drive</span>
+          </div>
+        </a>
+      </header>
+
+      <div class="grid">
+
+        <section class="card">
+          <div class="pill">10.1 Normas sobre realização da audiência</div>
+          <p>
+            Embora os atos processuais em geral sejam praticados em dias úteis, das 6h às 20h (art. 770, CLT),
+            a audiência tem regra específica: deve ocorrer em dias úteis, das 8h às 18h, e não pode ultrapassar
+            5 horas seguidas, salvo matéria urgente (art. 813, CLT). :contentReference[oaicite:2]{index=2}
+          </p>
+        </section>
+
+        <section class="card">
+          <div class="pill">10.2 Comparecimento das partes</div>
+          <p>
+            O comparecimento é, como regra, <b>pessoal</b>, nos termos dos arts. 843 e 844 da CLT.
+            A presença somente do advogado não supre a ausência da parte, porque o advogado é facultativo no processo do trabalho
+            (jus postulandi), ao passo que as partes devem comparecer. :contentReference[oaicite:3]{index=3}
+          </p>
+
+          <h2>Exceções relevantes</h2>
+          <ul>
+            <li>
+              <b>Ações plúrimas</b> (litisconsórcio) e <b>ações de cumprimento</b>: pode haver representação, inclusive por sindicato. :contentReference[oaicite:4]{index=4}
+            </li>
+            <li>
+              <b>Preposto do empregador</b>: o empregador pode ser representado por preposto. Após a Reforma Trabalhista, o preposto
+              <b>não precisa ser empregado</b>, mas deve ter conhecimento dos fatos; suas declarações obrigam o proponente. :contentReference[oaicite:5]{index=5}
+            </li>
+            <li>
+              <b>Reclamante impossibilitado</b> (doença ou justificativa séria): pode ser representado por outro empregado da mesma profissão
+              ou pelo sindicato apenas para justificar a ausência e evitar arquivamento (art. 843, §2º, CLT). :contentReference[oaicite:6]{index=6}
+            </li>
+          </ul>
+
+          <div class="note">
+            <b>Preposto (atenção à prova):</b> a regra de “não precisa ser empregado” aplica-se a audiências após 11-11-2017 (IN 41/2018). :contentReference[oaicite:7]{index=7}
+          </div>
+
+          <h2>Consequências da ausência (art. 844, CLT)</h2>
+          <ul>
+            <li>
+              <b>Ausência do reclamante:</b> arquivamento (extinção sem mérito) e custas, ainda que beneficiário da justiça gratuita; pode justificar em 15 dias. :contentReference[oaicite:8]{index=8}
+            </li>
+            <li>
+              <b>Ausência do reclamado:</b> revelia e confissão quanto à matéria de fato (presunção de veracidade). :contentReference[oaicite:9]{index=9}
+            </li>
+            <li>
+              <b>Ausência de ambos:</b> arquivamento, pois o pregão chama primeiro o reclamante e, faltando, o processo é arquivado. :contentReference[oaicite:10]{index=10}
+            </li>
+          </ul>
+
+          <div class="quote">
+            <b>CLT, art. 844 (trecho central):</b><br><br>
+            “O não comparecimento do reclamante à audiência importa o arquivamento da reclamação, e o não comparecimento do reclamado
+            importa revelia, além de confissão quanto à matéria de fato.”
+          </div>
+
+          <div class="note">
+            <b>Súmula 9 do TST (audiência em prosseguimento):</b> se a instrução for adiada <b>após</b> a contestação,
+            a ausência do reclamante na audiência de prosseguimento <b>não</b> importa arquivamento. :contentReference[oaicite:11]{index=11}
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="pill">10.3 Atraso das partes e do juiz</div>
+          <p>
+            O legislador trata de forma diferente o atraso do juiz e o atraso das partes.
+            Para o juiz, há regra legal; para as partes, a jurisprudência é rígida. :contentReference[oaicite:12]{index=12}
+          </p>
+
+          <h2>Atraso do juiz (art. 815, CLT)</h2>
+          <ul>
+            <li>
+              Em regra, as partes devem aguardar até <b>15 minutos</b>; ultrapassado, podem se retirar. :contentReference[oaicite:13]{index=13}
+            </li>
+            <li>
+              Se o atraso decorrer de outro ato processual (ex.: audiência anterior), não se aplica automaticamente a saída.
+            </li>
+            <li>
+              Com a Lei 14.657/2023 (agosto/2023), os §§ 2º e 3º do art. 815 passaram a prever a possibilidade de retirada das partes
+              sem penalidade quando o atraso for <b>injustificado</b> e superior a <b>30 minutos</b>. :contentReference[oaicite:14]{index=14}
+            </li>
+          </ul>
+
+          <h2>Atraso das partes (OJ 245 da SDI-1/TST)</h2>
+          <div class="note">
+            <b>Regra “dura” de prova:</b> não existe tolerância legal para atraso das partes — não é “15 minutos”.
+            Se chegou depois, assume as consequências (OJ 245). :contentReference[oaicite:15]{index=15}
+          </div>
+
+          <div class="note">
+            <b>IN 39/2016 do TST:</b> não se aplica subsidiariamente o art. 362 do CPC/2015 (adiamento por atraso). :contentReference[oaicite:16]{index=16}
+          </div>
+        </section>
+
+      </div>
+
+      <div class="footer">
+        <a class="back" href="../index.html">
+          <span aria-hidden="true">←</span>
+          <span>Voltar ao índice da disciplina</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
 
