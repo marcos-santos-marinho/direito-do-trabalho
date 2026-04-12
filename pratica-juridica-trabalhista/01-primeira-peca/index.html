@@ -13,7 +13,10 @@
       --card:#ffffff;
       --border:rgba(15,23,42,.18);
       --shadow:0 10px 22px rgba(15,23,42,.08);
-      --green:#1f9a3c;
+      --green:#1f7a2e;
+      --green-border:#4aa154;
+      --bluebtn:#1f5f86;
+      --bluebtn-border:#123d56;
     }
 
     *{ box-sizing:border-box; }
@@ -33,45 +36,73 @@
       padding: 16px 14px 40px;
     }
 
-    h1{
-      margin: 8px 0 6px;
-      color: var(--title);
+    /* Faixa verde do título */
+    .hero-title{
+      background: var(--green);
+      color: #fff;
+      text-align: center;
       font-size: 30px;
-      letter-spacing: -.2px;
+      font-weight: 900;
       line-height: 1.2;
+      padding: 14px 16px;
+      border: 2px solid #165b22;
+      box-shadow: var(--shadow);
+      margin: 0 0 18px;
     }
 
-    .sub{
-      margin: 0 0 14px;
-      color: rgba(15,23,42,.85);
-      font-size: 15px;
-      font-weight: 800;
-    }
-
-    /* ===== BOTÕES TOPO (apenas 2) ===== */
+    /* ===== 3 BOTÕES TOPO ===== */
     .top-actions{
       display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin: 12px 0 16px;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 18px;
+      align-items: stretch;
+      margin: 10px auto 22px;
+      max-width: 860px;
+    }
+
+    .top-link{
+      text-decoration:none;
     }
 
     .mini-btn{
+      min-height: 74px;
       display:flex;
       align-items:center;
       justify-content:center;
-      gap:10px;
+      text-align:center;
       padding: 14px 12px;
-      text-decoration:none;
-      color: var(--text);
-      background:#fff;
-      border:1px solid var(--border);
-      border-radius: 16px;
+      border-radius: 12px;
       box-shadow: var(--shadow);
       font-weight: 900;
+      font-size: 16px;
+      transition: transform .12s ease, box-shadow .12s ease;
     }
 
-    .mini-ico{ font-size:22px; line-height:1; }
+    .mini-btn:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 14px 28px rgba(15,23,42,.12);
+    }
+
+    .mini-btn.slides{
+      background:#fff;
+      color:#111;
+      border:2px solid var(--green-border);
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+
+    .mini-btn.slides .mini-ico{
+      font-size: 22px;
+      line-height:1;
+    }
+
+    .mini-btn.blue{
+      background: var(--bluebtn);
+      color:#fff;
+      border:2px solid var(--bluebtn-border);
+      letter-spacing:.2px;
+    }
 
     /* ===== CARD ===== */
     .card{
@@ -128,11 +159,21 @@
       max-width: 520px;
     }
 
+    @media (max-width:760px){
+      .top-actions{
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .hero-title{
+        font-size: 26px;
+      }
+    }
+
     @media (max-width:520px){
       body{ font-size:17px; }
-      h1{ font-size:26px; }
-      .top-actions{ grid-template-columns: 1fr 1fr; }
-      .mini-btn{ padding: 13px 10px; font-size: 15px; }
+      .hero-title{ font-size:24px; }
+      .mini-btn{ font-size:15px; min-height:68px; }
     }
   </style>
 </head>
@@ -140,18 +181,22 @@
 <body>
   <div class="wrap">
 
-    <h1>Reclamação Trabalhista</h1>
-    
-    <!-- ✅ APENAS 2 BOTÕES NO TOPO (Drive) -->
+    <div class="hero-title">Reclamação Trabalhista</div>
+
     <div class="top-actions">
-      <a class="mini-btn" href="https://drive.google.com/file/d/147Im8rPUvSjgS-4yCep35kRjZCENr0CK/view?usp=sharing" target="_blank" rel="noopener">
-        <span class="mini-ico">🖼️</span>
-        <span>Slides</span>
+      <a class="top-link" href="LINK_SLIDES" target="_blank" rel="noopener">
+        <div class="mini-btn slides">
+          <span class="mini-ico">🖼️</span>
+          <span>Slides</span>
+        </div>
       </a>
 
-      <a class="mini-btn" href="https://drive.google.com/file/d/1N8QePKn3X3fL-yD662WVtXNTKJmYqbf1/view?usp=sharing" target="_blank" rel="noopener">
-        <span class="mini-ico">📄</span>
-        <span>1ª Peça</span>
+      <a class="top-link" href="LINK_PECA_SALA" target="_blank" rel="noopener">
+        <div class="mini-btn blue">PEÇA SALA DE AULA</div>
+      </a>
+
+      <a class="top-link" href="LINK_PECA_AVA" target="_blank" rel="noopener">
+        <div class="mini-btn blue">PEÇA AVA</div>
       </a>
     </div>
 
