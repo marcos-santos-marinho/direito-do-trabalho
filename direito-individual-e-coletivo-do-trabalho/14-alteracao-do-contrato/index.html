@@ -43,22 +43,39 @@
 
     .driveBtn {
       display: inline-flex;
+      flex-direction: column; /* Alinha ícone e texto verticalmente */
       align-items: center;
-      gap: 8px;
+      gap: 4px; /* Espaço pequeno entre ícone e texto */
       background: #ffffff;
       border: 1px solid #dadce0;
-      padding: 8px 16px;
-      border-radius: 20px;
+      padding: 10px 16px; /* Ajuste leve no padding */
+      border-radius: 12px; /* Cantos um pouco menos arredondados para combinar com o estilo do PPT */
       color: #3c4043;
-      font-size: 14px;
-      font-weight: 500;
+      font-size: 12px; /* Texto menor para a legenda "SLIDES" */
+      font-weight: 600; /* Texto mais negrito */
       text-decoration: none;
       box-shadow: 0 1px 2px rgba(60,64,67,0.3);
-      transition: background 0.2s;
+      transition: background 0.2s, transform 0.1s;
       white-space: nowrap;
+      min-width: 80px; /* Garante um tamanho mínimo para o botão */
     }
-    .driveBtn:hover { background: #f1f3f4; }
-    .driveBtn img { width: 18px; height: 18px; }
+    .driveBtn:hover { background: #f1f3f4; transform: translateY(-1px); }
+    .driveBtn:active { transform: translateY(0px); box-shadow: 0 1px 1px rgba(60,64,67,0.3); }
+
+    /* Estilo para o ícone que lembra o PowerPoint (P laranja) */
+    .ppt-icon {
+      width: 24px;
+      height: 24px;
+      background-color: #D24726; /* Cor laranja característica do PowerPoint */
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px; /* Cantos levemente arredondados no ícone */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte mais corporativa para o 'P' */
+    }
 
     .panel{ background: rgba(255,255,255,.9); border: 1px solid rgba(37,99,235,.1); border-radius: 24px; box-shadow: var(--shadow); padding: 20px; }
 
@@ -92,9 +109,7 @@
   <div class="topbar">
     <h1>14. Alteração do Contrato de Trabalho</h1>
     <a href="#" class="driveBtn">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/1/12/Google_Drive_icon_%282020%29.svg" alt="Drive">
-      Salvar no Drive
-    </a>
+      <div class="ppt-icon">P</div> <span>SLIDES</span> </a>
   </div>
 
   <div class="panel">
