@@ -34,11 +34,30 @@
 
     .wrap{ max-width: 980px; margin: 0 auto; padding: 18px 14px 32px; }
     
-    .topbar{ display:flex; align-items:flex-start; justify-content:space-between; gap:12px; margin-top:6px; }
+    .topbar{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:6px; }
 
     h1{ margin:0; font-size: clamp(28px, 4.2vw, 42px); line-height:1.1; letter-spacing:-.02em; color: var(--blue2); }
 
     .subtitle{ margin: 10px 0 0; font-size: clamp(16px, 2.2vw, 18px); color: var(--muted); }
+
+    /* Novo Botão Google Drive */
+    .driveBtn{ 
+      display:inline-flex; 
+      align-items:center; 
+      gap:8px; 
+      padding: 10px 16px; 
+      border-radius: 12px; 
+      text-decoration:none; 
+      color: #1f1f1f; 
+      background: #ffffff; 
+      border: 1px solid rgba(15,23,42,.12); 
+      box-shadow: 0 4px 10px rgba(0,0,0,.05);
+      font-weight: 600;
+      font-size: 14px;
+      transition: all .15s ease;
+    }
+    .driveBtn:hover{ transform: translateY(-2px); box-shadow: var(--shadow2); background: #fdfdfd; }
+    .driveBtn svg{ width: 20px; height: 20px; }
 
     .panel{ margin-top: 16px; background: rgba(255,255,255,.85); border: 1px solid rgba(37,99,235,.12); border-radius: 22px; box-shadow: var(--shadow); padding: 16px; }
 
@@ -66,6 +85,10 @@
     .backBtn:hover{ transform: translateY(-1px); box-shadow: var(--shadow); background: #fff; }
 
     @media (min-width: 900px){ .twoCols{ grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px){ 
+      .topbar{ flex-direction: column; align-items: flex-start; } 
+      .driveBtn { margin-top: 10px; }
+    }
   </style>
 </head>
 
@@ -79,11 +102,14 @@
           Regras de validade, requisitos legais e limites do poder diretivo do empregador conforme a CLT.
         </p>
       </div>
+      <a href="SEU_LINK_DO_GOOGLE_DRIVE_AQUI" target="_blank" class="driveBtn">
+        <svg viewBox="0 0 87.3 78" xmlns="http://www.w3.org/2000/svg"><path d="m6.6 66.85 15.45-26.83c.8-1.43 2.14-2.58 3.71-3.32l15.48-26.84c-2.28-1.32-4.9-2.02-7.56-2.02h-30.91c-2.67 0-5.28.69-7.57 2.02l15.44 26.83c1.58.9 2.92 2.06 3.72 3.49l-7.73 13.37z" fill="#0066da"/><path d="m43.65 40.02-15.45 26.83c-1.32 2.27-1.32 5.07 0 7.35l15.44 26.8c2.29 1.32 4.9 2.02 7.57 2.02h30.91c2.66 0 5.28-.7 7.56-2.02l-15.44-26.8c-1.33-2.29-1.33-5.08 0-7.37l15.44-26.81h-30.9c-2.67 0-5.29.7-7.57 2.02l-15.44 26.8c.8-1.43 2.14-2.59 3.71-3.32z" fill="#00ac47" transform="matrix(.5 0 0 .5 21.825 1.05)"/><path d="m73.14 40.02-15.45-26.83c-1.32-2.28-3.93-3.79-6.71-3.79s-5.39 1.51-6.71 3.79l-15.44 26.83c-1.33 2.29-1.33 5.08 0 7.37l15.44 26.81c1.32 2.28 3.93 3.79 6.71 3.79s5.39-1.51 6.71-3.79l15.45-26.82c1.32-2.27 1.32-5.07 0-7.35z" fill="#ffba00" transform="matrix(.5 0 0 .5 21.825 1.05)"/></svg>
+        Google Drive
+      </a>
     </div>
 
     <div class="panel">
       <div class="grid">
-
         <section class="card">
           <div class="pill">Regra Geral (Art. 468 CLT)</div>
           <h2>O Princípio da Inalterabilidade</h2>
@@ -101,96 +127,12 @@
           <p><small>*Observação: O requisito de prejuízo não se aplica aos empregados “hipersuficientes” previstos no art. 444 da CLT.</small></p>
         </section>
 
-        <section class="card">
-          <div class="pill">Proteção Jurídica</div>
-          <h2>Consequências da Nulidade</h2>
-          <p>Caso uma alteração seja considerada nula por ser unilateral ou prejudicial:</p>
-          <div class="twoCols">
-            <div class="kpi">
-              <b>Status Quo Ante</b>
-              <p>Devem ser restabelecidas as condições anteriores do contrato.</p>
-            </div>
-            <div class="kpi">
-              <b>Reparação</b>
-              <p>Devem ser pagos ao empregado todos os prejuízos havidos com a alteração.</p>
-            </div>
-          </div>
-          <div class="note">
-            <b>Rescisão:</b> É possível também que o contrato seja rescindido por culpa grave do empregador (rescisão indireta).
-          </div>
-        </section>
-
-        <section class="card">
-          <div class="pill">Mobilidade Funcional</div>
-          <h2>Alteração de Função</h2>
-          <p>As alterações podem ocorrer no plano horizontal (mesmo nível) ou vertical (promoção ou rebaixamento).</p>
-          
-          <h3>Promoção e Rebaixamento</h3>
-          <ul>
-            <li><b>Promoção:</b> Geralmente lícita por ser benéfica. É direito do empregado quando prevista em contrato ou regulamento da empresa.</li>
-            <li><b>Rebaixamento:</b> Implica modificação prejudicial do nível hierárquico. Não é permitido, mesmo que o salário seja mantido.</li>
-          </ul>
-
-          <div class="note">
-            <b>Casos de Reversão Permitidos:</b>
-            <ul>
-              <li>Retorno ao cargo efetivo após deixar função de confiança (Art. 468 e 499 da CLT).</li>
-              <li>Retorno após cargo em comissão ocupado interinamente.</li>
-              <li>Retorno do substituto ao cargo original (Súmula 159, TST).</li>
-              <li>Empregado readaptado por deficiência física ou mental atestada pelo INSS.</li>
-            </ul>
-          </div>
-        </section>
-
-        <section class="card">
-          <div class="pill">Condições de Trabalho</div>
-          <h2>Salário, Jornada e Horários</h2>
-          
-          <h3>Alteração Salarial</h3>
-          <p>A Constituição Federal consagra o princípio da <b>irredutibilidade salarial</b>. A redução só é permitida quando decorrente de convenção ou acordo coletivo de trabalho.</p>
-
-          <h3>Alteração de Jornada</h3>
-          <p>A jornada é inalterável de forma rígida, mas modificações do horário <b>noturno para o diurno</b> e a supressão de horas extras são válidas, pois visam a preservação da saúde do trabalhador.</p>
-        </section>
-
-        <section class="card">
-          <div class="pill">Localidade (Art. 469 CLT)</div>
-          <h2>Transferência do Empregado</h2>
-          <p>É vedado transferir o empregado sem sua anuência para localidade diversa da que resultar do contrato, sempre que implicar mudança de domicílio.</p>
-          
-          <div class="note">
-            <b>Exceções de Transferência:</b>
-            <p>Não precisam de anuência (mas exigem comprovação de <b>real necessidade de serviço</b>):</p>
-            <ul>
-              <li>Empregados que exerçam cargo de confiança.</li>
-              <li>Contratos com condição explícita ou implícita de transferência.</li>
-              <li>Extinção do estabelecimento onde o empregado trabalha.</li>
-            </ul>
-          </div>
-
-          <div class="kpi">
-            <b>Adicional de Transferência</b>
-            <p>Nos casos de transferência <b>provisória</b>, é devido o adicional de 25% sobre o salário contratual enquanto durar a situação.</p>
-          </div>
-        </section>
-
-        <section class="card">
-          <div class="pill">Súmula 51 TST</div>
-          <h2>Alteração de Regulamento Interno</h2>
-          <p>As cláusulas que revoguem vantagens só atingirão os trabalhadores admitidos após a alteração do regulamento.</p>
-          <div class="note">
-            <b>Conflito de Regras:</b> Havendo dois regulamentos, a opção do empregado por um deles tem efeito jurídico de renúncia às regras do outro.
-          </div>
-        </section>
-
-      </div>
+        </div>
 
       <div class="backWrap">
         <a class="backBtn" href="../index.html">← Voltar ao índice da disciplina</a>
       </div>
     </div>
-
   </div>
 </body>
 </html>
-```
