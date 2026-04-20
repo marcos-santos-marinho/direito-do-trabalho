@@ -1,1 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>15. Suspensão e Interrupção do Contrato de Trabalho</title>
+  <style>
+    :root{
+      --bg: #eaf3ff;
+      --panel: #ffffff;
+      --panel2:#f7fbff;
+      --text:#0f172a;
+      --muted:#475569;
+      --blue:#1d4ed8;
+      --blue2:#2563eb;
+      --shadow: 0 12px 30px rgba(15,23,42,.10);
+      --shadow2: 0 8px 18px rgba(15,23,42,.10);
+      --radius: 18px;
+      --radius2: 14px;
+      --line:#dbeafe;
+    }
 
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background: radial-gradient(1200px 600px at 50% -10%, #ffffff 0%, var(--bg) 45%, #e9f2ff 100%);
+      line-height:1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap{ max-width: 980px; margin: 0 auto; padding: 20px 15px 40px; }
+    
+    .topbar{ 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      margin-bottom: 20px; 
+      gap: 15px;
+    }
+    h1{ margin:0; font-size: clamp(22px, 3.5vw, 34px); line-height:1.2; color: var(--blue2); letter-spacing:-.02em; }
+
+    .driveBtn {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      background: #ffffff;
+      border: 1px solid #dadce0;
+      padding: 10px 16px;
+      border-radius: 12px;
+      color: #3c4043;
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 1px 2px rgba(60,64,67,0.3);
+      transition: background 0.2s, transform 0.1s;
+      white-space: nowrap;
+      min-width: 80px;
+    }
+    .driveBtn:hover { background: #f1f3f4; transform: translateY(-1px); }
+
+    .ppt-icon {
+      width: 24px;
+      height: 24px;
+      background-color: #D24726;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .panel{ background: rgba(255,255,255,.9); border: 1px solid rgba(37,99,235,.1); border-radius: 24px; box-shadow: var(--shadow); padding: 20px; }
+
+    .card{ background: var(--panel); border: 1px solid rgba(15,23,42,.08); border-radius: var(--radius); padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+    .card:last-child{ margin-bottom: 0; }
+
+    .pill{ display:inline-block; padding: 6px 12px; border-radius: 99px; font-size: 12px; background: #eef2ff; border: 1px solid #dbeafe; color:#1e3a8a; margin-bottom: 12px; font-weight: 700; text-transform: uppercase; }
+
+    h2{ margin:0 0 15px 0; font-size: 22px; color: var(--blue); border-bottom: 2px solid var(--line); padding-bottom: 8px; }
+    h3{ margin: 20px 0 10px; font-size: 18px; color: #1e293b; font-weight: 700; }
+    
+    p, li{ font-size: 17px; margin-bottom: 10px; }
+    ul{ padding-left: 20px; }
+    
+    .note{ background: var(--panel2); border-left: 4px solid var(--blue2); padding: 15px; margin: 15px 0; border-radius: 0 var(--radius2) var(--radius2) 0; font-style: italic; }
+    
+    b { color: #0f172a; }
+
+    /* Estilo para a tabela comparativa */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 12px 15px;
+      text-align: left;
+    }
+    th {
+      background-color: var(--blue2);
+      color: white;
+      text-transform: uppercase;
+      font-size: 14px;
+    }
+    tr:nth-child(even) { background-color: #f8fafc; }
+
+    .backWrap{ display:flex; justify-content:center; margin-top: 30px; }
+    .backBtn{ padding: 12px 24px; border-radius: 12px; text-decoration:none; color: var(--text); background: #fff; border: 1px solid #ddd; font-weight: 600; transition: all 0.2s; }
+    .backBtn:hover{ background: #f8fafc; transform: translateY(-2px); }
+
+    @media (max-width: 600px) {
+      .topbar { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="topbar">
+    <h1>15. Suspensão e Interrupção do Contrato</h1>
+    <a href="#" class="driveBtn">
+      <div class="ppt-icon">P</div> <span>SLIDES</span> </a>
+  </div>
+
+  <div class="panel">
+    
+    <section class="card">
+      <div class="pill">Conceito</div>
+      <p>Referem-se a <b>paralisações dos efeitos</b> do contrato de trabalho. Em ambas as hipóteses o contrato de trabalho continua vigente, mas as principais obrigações dele decorrentes não são temporariamente exigíveis de forma total (suspensão) ou de forma parcial (interrupção).</p>
+      
+      <h3>Diferenças Fundamentais:</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Suspensão</th>
+            <th>Interrupção</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Não há trabalho</td>
+            <td>Não há trabalho</td>
+          </tr>
+          <tr>
+            <td>Não há salário</td>
+            <td>Há salário</td>
+          </tr>
+          <tr>
+            <td>Não conta tempo de serviço</td>
+            <td>Conta tempo de serviço</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card">
+      <div class="pill">Classificação</div>
+      
+      <h2>Hipóteses de Interrupção</h2>
+      <p>O contrato é interrompido quando o empregado não trabalha, mas o período é remunerado e computado como tempo de serviço:</p>
+      <ul>
+        <li>Descanso semanal remunerado e feriados;</li>
+        <li>Férias;</li>
+        <li>Faltas justificadas;</li>
+        <li>Licença-paternidade e Licença-maternidade;</li>
+        <li>Afastamento por doença ou acidente (<b>15 primeiros dias</b>);</li>
+        <li>Período de greve, quando esta não for considerada abusiva pelo Tribunal.</li>
+      </ul>
+
+      <h2>Hipóteses de Suspensão</h2>
+      <p>O contrato é suspenso quando não há prestação de serviço, nem pagamento de salário e nem contagem de tempo:</p>
+      <ul>
+        <li>Licença não remunerada;</li>
+        <li>Afastamento por doença ou acidente (<b>após o 16º dia</b>);</li>
+        <li>Suspensão disciplinar e faltas injustificadas;</li>
+        <li>Período de participação em curso ou programa de qualificação profissional oferecido pelo empregador (art. 476-A, CLT);</li>
+        <li>Período de greve, quando considerada abusiva pelo Tribunal;</li>
+        <li>Aposentadoria por invalidez (art. 475, CLT).</li>
+      </ul>
+      
+      <div class="note">
+        A suspensão é excepcional e não pode ser estipulada livremente por acordo se prejudicar direitos fundamentais, visto que o empregado deixa de receber salário e computar tempo.
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="pill">Observações Específicas</div>
+      
+      <h3>Acidente de Trabalho e FGTS</h3>
+      <p>No caso de suspensão do contrato por motivo de acidente do trabalho, o empregador permanece com a obrigação de <b>depositar o FGTS</b> (art. 15, § 5º, Lei n. 8.036/90), e tal período é computado para fins de indenização e estabilidade (art. 4º, § 1º, CLT).</p>
+
+      <h3>Cargo de Diretor</h3>
+      <p>O empregado eleito para ocupar cargo de diretor tem seu contrato suspenso, não computando o tempo de serviço, salvo se permanecer a subordinação jurídica inerente à relação de emprego (Súmula 269, TST).</p>
+    </section>
+
+    <div class="backWrap">
+      <a class="backBtn" href="../index.html">← Voltar ao índice da disciplina</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
