@@ -16,7 +16,6 @@
       --brand:#2563eb;
       --line: rgba(15,23,42,.10);
       --shadow: 0 18px 50px rgba(2,6,23,.12);
-      --shadow2: 0 10px 24px rgba(2,6,23,.10);
       --radius: 22px;
       --radius2: 18px;
     }
@@ -31,8 +30,6 @@
         radial-gradient(1200px 600px at 20% 0%, rgba(37,99,235,.20), transparent 60%),
         radial-gradient(900px 500px at 90% 20%, rgba(29,78,216,.12), transparent 55%),
         var(--bg);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
       line-height: 1.78;
     }
 
@@ -52,169 +49,204 @@
     }
 
     header{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap: 14px;
-      padding: 6px 6px 2px;
+      padding: 10px 10px 20px;
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-return {
+      background: var(--card);
+      color: var(--brand);
+      border: 1px solid var(--line);
+    }
+
+    .btn-slide {
+      background: var(--brand);
+      color: white;
+      border: none;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
     h1{
       margin: 0;
-      font-size: clamp(28px, 4.8vw, 46px);
+      font-size: clamp(28px, 4.8vw, 42px);
       letter-spacing: -0.02em;
-      line-height: 1.06;
       color: var(--brand);
     }
 
     .subtitle{
-      margin: 10px 6px 16px;
+      margin: 10px 0;
       color: var(--muted);
       font-size: 18px;
-      line-height: 1.55;
-      max-width: 70ch;
     }
 
     .grid{
       display:grid;
       grid-template-columns: 1fr;
-      gap: 14px;
-      padding: 8px 6px 6px;
+      gap: 16px;
     }
 
     .card{
       background: var(--card);
       border: 1px solid var(--line);
       border-radius: var(--radius);
-      padding: 18px 18px;
-      box-shadow: 0 10px 22px rgba(2,6,23,.07);
+      padding: 24px;
+      box-shadow: 0 10px 22px rgba(2,6,23,.05);
     }
 
     .card h2{
-      margin: 0 0 10px;
-      font-size: clamp(20px, 2.6vw, 26px);
-      letter-spacing: -0.01em;
-      color:#0b1220;
+      margin: 0 0 15px;
+      font-size: 24px;
+      color: #0b1220;
+      border-bottom: 2px solid var(--bg);
+      padding-bottom: 8px;
     }
 
-    .card p{
-      margin: 0 0 12px;
+    .card h3 {
       font-size: 19px;
-      color: #0b1220;
+      color: var(--brand);
+      margin: 20px 0 10px;
     }
 
     ul{
-      margin: 10px 0 0 22px;
-      padding: 0;
-      font-size: 19px;
-      line-height: 1.75;
+      margin: 10px 0;
+      padding-left: 20px;
     }
-    li{ margin: 6px 0; }
+
+    li{ margin-bottom: 8px; }
 
     .pill{
       display:inline-block;
-      padding: 6px 10px;
+      padding: 4px 12px;
       border-radius: 999px;
       background: rgba(29,78,216,.08);
-      border: 1px solid rgba(29,78,216,.18);
-      color: #0b1220;
-      font-size: 14px;
-      font-weight: 900;
-      letter-spacing: .02em;
-      margin-bottom: 10px;
+      color: var(--brand);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 8px;
     }
 
     .note{
-      margin-top: 10px;
-      padding: 14px 14px;
+      margin-top: 15px;
+      padding: 16px;
       border-radius: var(--radius2);
-      background: var(--card2);
-      border: 1px solid rgba(37,99,235,.14);
-      color: #0b1220;
-      font-size: 18px;
-      line-height: 1.65;
+      background: #f0f7ff;
+      border-left: 4px solid var(--brand);
+      font-size: 17px;
     }
 
-    .footer{
-      display:flex;
-      justify-content:center;
-      margin-top: 24px;
-      padding: 10px;
+    strong { color: #1e293b; }
+
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 13px;
       color: var(--muted);
-      font-size: 14px;
-    }
-
-    @media (max-width: 640px) {
-      header{ flex-direction: column; }
     }
   </style>
 </head>
 <body>
 
-  <div class="wrap">
-    <div class="shell">
+<div class="wrap">
+  <div class="shell">
+    
+    <header>
+      <div class="nav-buttons">
+        <a href="index.html" class="btn btn-return">← Voltar à Disciplina</a>
+        <a href="#" class="btn btn-slide">📊 Ver Slides</a>
+      </div>
+      <span class="pill">OAB - Direito do Trabalho</span>
+      <h1>15. Recursos Trabalhistas</h1>
+      <p class="subtitle">Teoria Geral e Recursos em Espécie no Processo do Trabalho.</p>
+    </header>
+
+    <main class="grid">
       
-      <header>
-        <div>
-          <span class="pill">DIREITO DO TRABALHO</span>
-          <h1>15. Recursos Trabalhistas</h1>
-          <p class="subtitle">
-            Estudo da teoria geral e recursos em espécie, com foco nos pressupostos de admissibilidade e efeitos. [cite: 1]
-          </p>
+      <section class="card">
+        <h2>15.1. Peculiaridades dos Recursos Trabalhistas</h2>
+        <p>Os recursos no processo do trabalho possuem traços distintivos do processo civil:</p>
+        <ul>
+          <li><strong>Irrecorribilidade imediata das decisões interlocutórias:</strong> Conforme art. 893, § 1º da CLT. A parte deve aguardar a decisão final para recorrer, salvo exceções da Súmula 214 do TST.</li>
+          <li><strong>Simplicidade (Inexigibilidade de fundamentação):</strong> Embora o art. 899 mencione "simples petição", o TST (Súmula 422) exige fundamentação técnica para recursos de natureza extraordinária.</li>
+          <li><strong>Efeito meramente devolutivo:</strong> Em regra, não suspendem a execução (art. 899, CLT), permitindo a execução provisória até a penhora.</li>
+          <li><strong>Prazo Uniforme:</strong> A maioria dos recursos possui prazo de <strong>8 dias úteis</strong> (exceto Embargos de Declaração, que são 5 dias).</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>15.2. Juízo de Admissibilidade (Pressupostos)</h2>
+        <h3>Pressupostos Intrínsecos (Subjetivos)</h3>
+        <ul>
+          <li><strong>Cabimento:</strong> O recurso deve estar previsto em lei para aquele ato.</li>
+          <li><strong>Legitimidade:</strong> Partes, terceiros prejudicados ou Ministério Público do Trabalho.</li>
+          <li><strong>Interesse Recursal:</strong> Necessidade de haver "sucumbência" (perda total ou parcial).</li>
+          <li><strong>Inexistência de fatos impeditivos/extintivos:</strong> Como desistência ou renúncia.</li>
+        </ul>
+
+        <h3>Pressupostos Extrínsecos (Objetivos)</h3>
+        <ul>
+          <li><strong>Tempestividade:</strong> Observância do prazo legal.</li>
+          <li><strong>Representação Processual:</strong> Necessidade de advogado com procuração nos autos (Súmula 383, TST).</li>
+          <li><strong>Preparo:</strong> Composto por <strong>Custas</strong> (natureza tributária) e <strong>Depósito Recursal</strong> (natureza de garantia do juízo).</li>
+        </ul>
+
+        <div class="note">
+          <strong>Depósito Recursal:</strong> É exigido apenas do empregador. Isentos: Beneficiários da justiça gratuita, entidades filantrópicas e empresas em recuperação judicial. Reduzido pela metade para: Entidades sem fins lucrativos, empregadores domésticos, ME e EPP.
         </div>
-      </header>
+      </section>
 
-      <main class="grid">
+      <section class="card">
+        <h2>15.3. Efeitos dos Recursos</h2>
+        <ul>
+          <li><strong>Devolutivo:</strong> Limita a atuação do Tribunal à matéria impugnada ("Tantum devolutum quantum appellatum").</li>
+          <li><strong>Suspensivo:</strong> É exceção. Pode ser concedido via tutela provisória se houver risco de dano grave e probabilidade do direito.</li>
+          <li><strong>Translativo:</strong> Possibilidade de conhecer matérias de ordem pública de ofício (ex: incompetência absoluta).</li>
+          <li><strong>Regressivo (ou de Retratação):</strong> Permite ao juiz voltar atrás em sua decisão (comum em Agravos).</li>
+          <li><strong>Substitutivo:</strong> O julgamento do tribunal substitui a decisão recorrida naquilo que foi objeto do recurso (Art. 1.008 CPC).</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>15.4. Recursos em Espécie</h2>
+        <h3>Recurso Ordinário (RO) - Art. 895, CLT</h3>
+        <p>Equivalente à apelação cível. Cabível contra decisões definitivas ou terminativas das Varas ou Tribunais (em processos de competência originária).</p>
         
-        <section class="card">
-          <h2>15.1. Peculiaridades dos Recursos Trabalhistas</h2>
-          <p>Diferente do sistema cível, o processo do trabalho possui características próprias: [cite: 1]</p>
-          <ul>
-            <li>
-              <b>Irrecorribilidade imediata:</b> decisões interlocutórias não admitem recurso de imediato (art. 893, §1º, CLT), salvo exceções como incompetência absoluta ou contrariedade à Súmula do TST (Súmula 214, TST). [cite: 1]
-            </li>
-            <li>
-              <b>Inexigibilidade de fundamentação:</b> a CLT prevê interposição por simples petição (art. 899), embora a Súmula 422 do TST relativize isso para recursos ao TST. [cite: 1]
-            </li>
-            <li>
-              <b>Efeito meramente devolutivo:</b> a interposição não suspende a execução da sentença (regra geral), permitindo execução provisória (art. 899, CLT). [cite: 1]
-            </li>
-          </ul>
-        </section>
+        <h3>Recurso de Revista (RR) - Art. 896, CLT</h3>
+        <p>Recurso de natureza extraordinária para o TST. Visa a uniformização da jurisprudência e o respeito à lei federal e à Constituição.</p>
 
-        <section class="card">
-          <h2>15.2. Juízo de Admissibilidade</h2>
-          <p>A análise dos requisitos é feita tanto pelo juízo <i>a quo</i> quanto pelo <i>ad quem</i>: [cite: 1]</p>
-          <ul>
-            <li><b>Cabimento:</b> adequação do recurso ao ato impugnado. [cite: 1]</li>
-            <li><b>Legitimidade:</b> parte vencida, terceiro prejudicado ou MP. [cite: 1]</li>
-            <li><b>Tempestividade:</b> prazo uniforme de <b>8 dias</b> (exceto ED que são 5 dias). [cite: 1]</li>
-            <li><b>Preparo:</b> custas processuais e depósito recursal (este último apenas para o empregador). [cite: 1]</li>
-          </ul>
-          <div class="note">
-            <b>Atenção:</b> O depósito recursal é reduzido pela metade para entidades sem fins lucrativos, ME e EPP; e isento para beneficiários da justiça gratuita e empresas em recuperação judicial (art. 899, §§ 9º e 10, CLT). [cite: 1]
-          </div>
-        </section>
+        <h3>Agravo de Instrumento (AI) - Art. 897, 'b', CLT</h3>
+        <p>No processo do trabalho, serve <strong>exclusivamente</strong> para destravar recurso que teve seguimento negado.</p>
+      </section>
 
-        <section class="card">
-          <h2>15.3. Efeitos dos Recursos</h2>
-          <ul>
-            <li><b>Devolutivo:</b> devolve a matéria ao tribunal na medida da impugnação. [cite: 1]</li>
-            <li><b>Suspensivo:</b> excepcional na justiça do trabalho, exige pedido e demonstração de risco (Súmula 414, TST). [cite: 1]</li>
-            <li><b>Translativo:</b> permite ao tribunal reconhecer matérias de ordem pública de ofício. [cite: 1]</li>
-            <li><b>Regressivo:</b> possibilita o juízo de retratação (típico de Agravos). [cite: 1]</li>
-            <li><b>Substitutivo:</b> a decisão do recurso substitui a decisão recorrida no que foi objeto de julgamento (art. 1.008, CPC). [cite: 1]</li>
-          </ul>
-        </section>
+    </main>
 
-      </main>
+    <footer>
+      Material de Estudo - 15. Recursos Trabalhistas - Organizado para Gustavo França Costa
+    </footer>
 
-      <footer class="footer">
-        Material de apoio para OAB - Conteúdo baseado em 15. Recursos.docx
-      </footer>
-
-    </div>
   </div>
+</div>
 
 </body>
 </html>
