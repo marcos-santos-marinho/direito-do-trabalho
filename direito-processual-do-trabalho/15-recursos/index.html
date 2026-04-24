@@ -52,34 +52,38 @@
       padding: 10px 10px 20px;
     }
 
-    .nav-buttons {
+    .nav-header {
       display: flex;
-      gap: 10px;
+      justify-content: flex-start;
       margin-bottom: 20px;
     }
 
     .btn {
       text-decoration: none;
-      padding: 8px 16px;
+      padding: 10px 20px;
       border-radius: 12px;
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 600;
       transition: all 0.2s ease;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-    }
-
-    .btn-return {
-      background: var(--card);
-      color: var(--brand);
-      border: 1px solid var(--line);
+      cursor: pointer;
     }
 
     .btn-slide {
       background: var(--brand);
       color: white;
       border: none;
+    }
+
+    .btn-return {
+      background: var(--card);
+      color: var(--brand);
+      border: 1px solid var(--line);
+      margin: 30px auto 10px;
+      display: flex;
+      width: fit-content;
     }
 
     .btn:hover {
@@ -122,18 +126,7 @@
       padding-bottom: 8px;
     }
 
-    .card h3 {
-      font-size: 19px;
-      color: var(--brand);
-      margin: 20px 0 10px;
-    }
-
-    ul{
-      margin: 10px 0;
-      padding-left: 20px;
-    }
-
-    li{ margin-bottom: 8px; }
+    .card p { margin-bottom: 15px; }
 
     .pill{
       display:inline-block;
@@ -147,23 +140,14 @@
       margin-bottom: 8px;
     }
 
-    .note{
-      margin-top: 15px;
-      padding: 16px;
-      border-radius: var(--radius2);
-      background: #f0f7ff;
-      border-left: 4px solid var(--brand);
-      font-size: 17px;
-    }
-
-    strong { color: #1e293b; }
-
     footer {
       text-align: center;
-      margin-top: 30px;
+      margin-top: 20px;
       font-size: 13px;
       color: var(--muted);
     }
+
+    strong { color: #1e293b; }
   </style>
 </head>
 <body>
@@ -172,77 +156,65 @@
   <div class="shell">
     
     <header>
-      <div class="nav-buttons">
-        <a href="index.html" class="btn btn-return">← Voltar à Disciplina</a>
+      <div class="nav-header">
         <a href="#" class="btn btn-slide">📊 Ver Slides</a>
       </div>
       <span class="pill">OAB - Direito do Trabalho</span>
-      <h1>15. Recursos Trabalhistas</h1>
-      <p class="subtitle">Teoria Geral e Recursos em Espécie no Processo do Trabalho.</p>
+      <h1>15. Recursos trabalhistas</h1>
+      <p class="subtitle">Teoria geral e recursos em espécie.</p>
     </header>
 
     <main class="grid">
       
       <section class="card">
-        <h2>15.1. Peculiaridades dos Recursos Trabalhistas</h2>
-        <p>Os recursos no processo do trabalho possuem traços distintivos do processo civil:</p>
-        <ul>
-          <li><strong>Irrecorribilidade imediata das decisões interlocutórias:</strong> Conforme art. 893, § 1º da CLT. A parte deve aguardar a decisão final para recorrer, salvo exceções da Súmula 214 do TST.</li>
-          <li><strong>Simplicidade (Inexigibilidade de fundamentação):</strong> Embora o art. 899 mencione "simples petição", o TST (Súmula 422) exige fundamentação técnica para recursos de natureza extraordinária.</li>
-          <li><strong>Efeito meramente devolutivo:</strong> Em regra, não suspendem a execução (art. 899, CLT), permitindo a execução provisória até a penhora.</li>
-          <li><strong>Prazo Uniforme:</strong> A maioria dos recursos possui prazo de <strong>8 dias úteis</strong> (exceto Embargos de Declaração, que são 5 dias).</li>
-        </ul>
-      </section>
-
-      <section class="card">
-        <h2>15.2. Juízo de Admissibilidade (Pressupostos)</h2>
-        <h3>Pressupostos Intrínsecos (Subjetivos)</h3>
-        <ul>
-          <li><strong>Cabimento:</strong> O recurso deve estar previsto em lei para aquele ato.</li>
-          <li><strong>Legitimidade:</strong> Partes, terceiros prejudicados ou Ministério Público do Trabalho.</li>
-          <li><strong>Interesse Recursal:</strong> Necessidade de haver "sucumbência" (perda total ou parcial).</li>
-          <li><strong>Inexistência de fatos impeditivos/extintivos:</strong> Como desistência ou renúncia.</li>
-        </ul>
-
-        <h3>Pressupostos Extrínsecos (Objetivos)</h3>
-        <ul>
-          <li><strong>Tempestividade:</strong> Observância do prazo legal.</li>
-          <li><strong>Representação Processual:</strong> Necessidade de advogado com procuração nos autos (Súmula 383, TST).</li>
-          <li><strong>Preparo:</strong> Composto por <strong>Custas</strong> (natureza tributária) e <strong>Depósito Recursal</strong> (natureza de garantia do juízo).</li>
-        </ul>
-
-        <div class="note">
-          <strong>Depósito Recursal:</strong> É exigido apenas do empregador. Isentos: Beneficiários da justiça gratuita, entidades filantrópicas e empresas em recuperação judicial. Reduzido pela metade para: Entidades sem fins lucrativos, empregadores domésticos, ME e EPP.
-        </div>
-      </section>
-
-      <section class="card">
-        <h2>15.3. Efeitos dos Recursos</h2>
-        <ul>
-          <li><strong>Devolutivo:</strong> Limita a atuação do Tribunal à matéria impugnada ("Tantum devolutum quantum appellatum").</li>
-          <li><strong>Suspensivo:</strong> É exceção. Pode ser concedido via tutela provisória se houver risco de dano grave e probabilidade do direito.</li>
-          <li><strong>Translativo:</strong> Possibilidade de conhecer matérias de ordem pública de ofício (ex: incompetência absoluta).</li>
-          <li><strong>Regressivo (ou de Retratação):</strong> Permite ao juiz voltar atrás em sua decisão (comum em Agravos).</li>
-          <li><strong>Substitutivo:</strong> O julgamento do tribunal substitui a decisão recorrida naquilo que foi objeto do recurso (Art. 1.008 CPC).</li>
-        </ul>
-      </section>
-
-      <section class="card">
-        <h2>15.4. Recursos em Espécie</h2>
-        <h3>Recurso Ordinário (RO) - Art. 895, CLT</h3>
-        <p>Equivalente à apelação cível. Cabível contra decisões definitivas ou terminativas das Varas ou Tribunais (em processos de competência originária).</p>
+        <p>Estamos iniciando o estudo do tópico mais cobrado até hoje nos Exames da OAB, sendo o estudo dividido em teoria geral e recursos em espécie, devendo o examinando conhecer os pressupostos de admissibilidade e efeitos, em especial, bem como os recursos em espécie.</p>
         
-        <h3>Recurso de Revista (RR) - Art. 896, CLT</h3>
-        <p>Recurso de natureza extraordinária para o TST. Visa a uniformização da jurisprudência e o respeito à lei federal e à Constituição.</p>
+        <h2>15.1. Peculiaridades dos recursos trabalhistas</h2>
+        <p>Se compararmos os recursos trabalhistas e os recursos cíveis, vamos perceber algumas diferenças entre os dois sistemas, que aqui chamamos de peculiaridades dos recursos trabalhistas. Dentre as diferenças existentes e que são bastante destacadas na doutrina, temos:</p>
+        
+        <ul>
+          <li><strong>Irrecorribilidade imediata das decisões interlocutórias:</strong> a regra está prevista no art. 893, § 1º, da CLT. A parte prejudicada deverá aguardar a decisão final para recorrer. Exceções previstas no art. 799, § 2º, da CLT e na Súmula 214 do TST (ex: decisão que reconhece incompetência absoluta da Justiça do Trabalho).</li>
+          <li><strong>Simplicidade (ou inexigibilidade de fundamentação):</strong> o art. 899 da CLT menciona "simples petição". Contudo, a Súmula 422 do TST exige a impugnação específica dos fundamentos da decisão recorrida.</li>
+          <li><strong>Efeito meramente devolutivo:</strong> os recursos não possuem efeito suspensivo automático (art. 899, CLT), permitindo a execução provisória até a penhora.</li>
+          <li><strong>Prazo de 8 dias:</strong> no processo do trabalho, quase todos os recursos possuem prazo de 8 dias úteis, com exceção dos embargos de declaração (5 dias úteis).</li>
+        </ul>
+      </section>
 
-        <h3>Agravo de Instrumento (AI) - Art. 897, 'b', CLT</h3>
-        <p>No processo do trabalho, serve <strong>exclusivamente</strong> para destravar recurso que teve seguimento negado.</p>
+      <section class="card">
+        <h2>15.2. Juízo de admissibilidade</h2>
+        <p>Consiste na análise dos pressupostos recursais, divididos em intrínsecos e extrínsecos:</p>
+        <ul>
+          <li><strong>Intrínsecos (Subjetivos):</strong> Cabimento, Legitimidade, Interesse Recursal e Inexistência de fatos impeditivos/extintivos.</li>
+          <li><strong>Extrínsecos (Objetivos):</strong> Tempestividade, Representação Processual e Preparo (Custas + Depósito Recursal).</li>
+        </ul>
+        <p><strong>Depósito Recursal:</strong> Tem natureza de garantia do juízo. Isentos: beneficiários da justiça gratuita, entidades filantrópicas e empresas em recuperação judicial. Reduzido pela metade para: entidades sem fins lucrativos, empregadores domésticos, ME e EPP.</p>
+      </section>
+
+      <section class="card">
+        <h2>15.3. Efeitos dos recursos</h2>
+        <ul>
+          <li><strong>Devolutivo:</strong> devolve ao tribunal o conhecimento da matéria impugnada.</li>
+          <li><strong>Suspensivo:</strong> impede a execução da decisão. É excepcional na Justiça do Trabalho.</li>
+          <li><strong>Translativo:</strong> possibilidade de reconhecimento de normas de ordem pública pelo Tribunal, de ofício.</li>
+          <li><strong>Regressivo:</strong> possibilidade de o juiz exercer o juízo de retratação (típico de agravos).</li>
+          <li><strong>Substitutivo:</strong> o julgamento do recurso substitui a decisão recorrida (art. 1.008, CPC).</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>15.4. Recursos em espécie</h2>
+        <p><strong>Recurso Ordinário (art. 895, CLT):</strong> Cabível de decisões definitivas das Varas ou dos TRTs em processos de competência originária.</p>
+        <p><strong>Recurso de Revista (art. 896, CLT):</strong> Recurso de natureza extraordinária, para o TST, visando uniformizar a jurisprudência.</p>
+        <p><strong>Agravo de Instrumento (art. 897, 'b', CLT):</strong> Destinado exclusivamente a destrancar recurso que teve seguimento negado.</p>
+        <p><strong>Agravo de Petição (art. 897, 'a', CLT):</strong> Recurso cabível na fase de execução.</p>
       </section>
 
     </main>
 
+    <a href="index.html" class="btn btn-return">← Voltar à Disciplina</a>
+
     <footer>
-      Material de Estudo - 15. Recursos Trabalhistas - Organizado para Gustavo França Costa
+      Material Baseado em 15. Recursos.docx
     </footer>
 
   </div>
