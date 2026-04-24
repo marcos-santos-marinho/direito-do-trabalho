@@ -1,165 +1,201 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<title>Direito Processual do Trabalho</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>15. Recursos Trabalhistas</title>
 
-<style>
-  :root{
-    --bg:#dff0ff;
-    --title:#1f4fd8;
-    --text:#0f172a;
-    --muted:#475569;
-    --card:#ffffff;
-    --border:rgba(15,23,42,.14);
-    --shadow:0 10px 22px rgba(15,23,42,.10);
-    --radius:16px;
-  }
+  <style>
+    :root{
+      --bg:#eaf3ff;
+      --panel: rgba(255,255,255,.82);
+      --card:#ffffff;
+      --card2:#f7fbff;
+      --text:#0f172a;
+      --muted:#475569;
+      --brand:#2563eb;
+      --line: rgba(15,23,42,.10);
+      --shadow: 0 18px 50px rgba(2,6,23,.12);
+      --radius: 22px;
+      --radius2: 18px;
+    }
 
-  *{ box-sizing:border-box; }
-  body{
-    margin:0;
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    background:var(--bg);
-    color:var(--text);
-  }
+    *{ box-sizing:border-box; }
 
-  .wrap{
-    max-width:720px;
-    margin:auto;
-    padding:14px 12px 26px;
-  }
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 20% 0%, rgba(37,99,235,.20), transparent 60%),
+        radial-gradient(900px 500px at 90% 20%, rgba(29,78,216,.12), transparent 55%),
+        var(--bg);
+      line-height: 1.78;
+    }
 
-  .panel{
-    background:rgba(255,255,255,.7);
-    border-radius:22px;
-    padding:16px 14px;
-    box-shadow:var(--shadow);
-  }
+    .wrap{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 18px 14px 34px;
+    }
 
-  h1{
-    margin:6px 0 10px;
-    color:var(--title);
-    font-size:26px;
-  }
+    .shell{
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,.65);
+      border-radius: calc(var(--radius) + 10px);
+      box-shadow: var(--shadow);
+      padding: 16px;
+      backdrop-filter: blur(10px);
+    }
 
-  /* === BOTÕES TOPO (AJUSTADOS) === */
-  .drive-row{
-    display:flex;                 /* flex em vez de grid */
-    justify-content:center;       /* centraliza */
-    gap:16px;
-    margin:10px 0 16px;
-  }
+    header{
+      padding: 10px 10px 20px;
+    }
 
-  .drive-btn{
-    background:#fff;
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    padding:14px 18px;
-    min-width:140px;
-    text-align:center;
-    text-decoration:none;
-    box-shadow:0 6px 14px rgba(15,23,42,.08);
-    color:var(--text);
-    font-weight:900;
-  }
+    .nav-header {
+      display: flex;
+      justify-content: flex-start;
+      margin-bottom: 20px;
+    }
 
-  .drive-icon{
-    font-size:26px;
-    margin-bottom:6px;
-  }
+    .btn {
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
 
-  .subtitle{
-    color:var(--muted);
-    margin-bottom:14px;
-  }
+    .btn-slide {
+      background: var(--brand);
+      color: white;
+      border: none;
+    }
 
-  /* === LISTA DE TÓPICOS === */
-  ul{
-    list-style:none;
-    padding:0;
-    margin:0;
-    display:grid;
-    gap:12px;
-  }
+    .btn-return {
+      background: var(--card);
+      color: var(--brand);
+      border: 1px solid var(--line);
+      margin: 30px auto 10px;
+      display: flex;
+      width: fit-content;
+    }
 
-  .topic{
-    display:block;
-    background:#fff;
-    border:1px solid var(--border);
-    border-radius:12px;
-    padding:14px;
-    text-decoration:none;
-    color:#0b1220;
-    font-size:18px;
-    box-shadow:0 6px 14px rgba(15,23,42,.06);
-  }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
 
-  .back{
-    margin-top:16px;
-    display:block;
-    background:#fff;
-    border:1px solid var(--border);
-    border-radius:12px;
-    padding:14px;
-    text-decoration:none;
-    font-weight:800;
-    color:#0b1220;
-  }
+    h1{
+      margin: 0;
+      font-size: clamp(28px, 4.8vw, 42px);
+      letter-spacing: -0.02em;
+      color: var(--brand);
+    }
 
-  @media(max-width:420px){
-    h1{ font-size:24px; }
-    .drive-btn{ min-width:120px; padding:12px; }
-    .topic{ font-size:17px; }
-  }
-</style>
+    .subtitle{
+      margin: 10px 0;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: 0 10px 22px rgba(2,6,23,.05);
+    }
+
+    .card h2{
+      margin: 25px 0 15px;
+      font-size: 24px;
+      color: #0b1220;
+      border-bottom: 2px solid var(--bg);
+      padding-bottom: 8px;
+    }
+
+    .card p { margin-bottom: 15px; }
+
+    ul{
+      margin: 10px 0;
+      padding-left: 20px;
+    }
+
+    li{ margin-bottom: 12px; }
+
+    strong { color: #1e293b; }
+  </style>
 </head>
-
 <body>
+
 <div class="wrap">
-  <div class="panel">
+  <div class="shell">
+    
+    <header>
+      <div class="nav-header">
+        <a href="#" class="btn btn-slide">📊 Ver Slides</a>
+      </div>
+      <h1>15. Recursos trabalhistas</h1>
+      <p class="subtitle">Teoria geral e recursos em espécie.</p>
+    </header>
 
-    <h1>Direito Processual do Trabalho</h1>
+    <main class="grid">
+      
+      <section class="card">
+        <p>Estamos iniciando o estudo do tópico mais cobrado até hoje nos Exames da OAB, sendo o estudo dividido em teoria geral e recursos em espécie, devendo o examinando conhecer os pressupostos de admissibilidade e efeitos, em especial, bem como os recursos em espécie.</p>
+        
+        <h2>15.1. Peculiaridades dos recursos trabalhistas</h2>
+        <p>Se compararmos os recursos trabalhistas e os recursos cíveis, vamos perceber algumas diferenças entre os dois sistemas, que aqui chamamos de peculiaridades dos recursos trabalhistas. Dentre as diferenças existentes e que são bastante destacadas na doutrina, podendo ser objeto de questionamento, temos:</p>
+        
+        <ul>
+          <li><strong>Irrecorribilidade imediata das decisões interlocutórias:</strong> a regra está prevista no art. 893, § 1º, da CLT, restringindo a utilização de recursos quando a decisão objeto de questionamento é interlocutória, ou seja, proferida no curso do processo. Na hipótese, prevê o dispositivo celetista que a parte prejudicada com a decisão interlocutória deverá aguardar ser proferida a decisão final, para dela recorrer. A reforma trabalhista inseriu mais uma hipótese de decisão interlocutória irrecorrível, nos termos do art. 855-A da CLT, que trata do procedimento para desconsideração da personalidade jurídica, quando proferida no curso do processo de conhecimento. Contudo, existem algumas importantes exceções, previstas no art. 799, § 2º, da CLT e na Súmula 214 do TST, a saber: decisão interlocutória que reconhece a incompetência absoluta da Justiça do Trabalho; decisão que contraria Súmula ou Orientação Jurisprudencial do TST; decisão que admite recurso para o próprio tribunal.</li>
+          <li><strong>Simplicidade (ou inexigibilidade de fundamentação):</strong> o art. 899 da CLT menciona que os recursos serão interpostos por "simples petição". Contudo, essa simplicidade é mitigada pela Súmula 422 do TST, que exige a impugnação específica dos fundamentos da decisão recorrida, sob pena de não conhecimento do recurso (princípio da dialeticidade).</li>
+          <li><strong>Efeito meramente devolutivo:</strong> como regra geral, os recursos trabalhistas não possuem efeito suspensivo automático (art. 899, CLT). Isso significa que a interposição do recurso não impede o início da execução provisória da sentença, que pode prosseguir até a penhora de bens.</li>
+          <li><strong>Prazo de 8 dias:</strong> diferentemente do processo civil, onde os prazos são variados, no processo do trabalho quase todos os recursos possuem prazo de 8 dias úteis (Recurso Ordinário, Recurso de Revista, Agravo de Instrumento, Agravo de Petição), com exceção dos embargos de declaração, que mantêm o prazo de 5 dias úteis.</li>
+        </ul>
 
-    <!-- ✅ APENAS DOIS BOTÕES, CENTRALIZADOS -->
-    <div class="drive-row">
-      <a class="drive-btn" href="https://drive.google.com/file/d/1fWt6RNYwxPX5pENsANJgtJW5MakMPnm3/view?usp=sharing" target="_blank">
-        <div class="drive-icon">📋</div>
-        Plano de Ensino
-      </a>
+        <h2>15.2. Juízo de admissibilidade</h2>
+        <p>O juízo de admissibilidade consiste na análise do preenchimento dos requisitos legais para que o recurso possa ser conhecido e julgado em seu mérito. Esses pressupostos são divididos pela doutrina em:</p>
+        <ul>
+          <li><strong>Pressupostos Intrínsecos (Subjetivos):</strong> referem-se à própria existência do direito de recorrer. São eles: cabimento (previsão legal do recurso), legitimidade (partes, MP ou terceiro prejudicado), interesse recursal (necessidade de ter havido sucumbência) e inexistência de fatos impeditivos ou extintivos (desistência, renúncia ou preclusão).</li>
+          <li><strong>Pressupostos Extrínsecos (Objetivos):</strong> referem-se ao exercício do direito de recorrer. São eles: tempestividade (prazo), representação processual (advogado habilitado) e preparo.</li>
+        </ul>
+        <p><strong>Preparo:</strong> Compreende as custas processuais (natureza tributária) e o depósito recursal (garantia do juízo). O depósito recursal é exigido apenas do empregador. São isentos do depósito: beneficiários da justiça gratuita, entidades filantrópicas e empresas em recuperação judicial. O valor é reduzido pela metade para entidades sem fins lucrativos, empregadores domésticos, microempreendedores individuais, microempresas e empresas de pequeno porte.</p>
 
-      <a class="drive-btn" href="https://drive.google.com/file/d/1bLvzgYxQo_fmpCZtTftdXurEgnj389rC/view?usp=sharing" target="_blank">
-        <div class="drive-icon">📘</div>
-        Livro
-      </a>
-    </div>
+        <h2>15.3. Efeitos dos recursos</h2>
+        <ul>
+          <li><strong>Devolutivo:</strong> devolve ao tribunal o conhecimento da matéria impugnada. Segundo o princípio "tantum devolutum quantum appellatum", o tribunal está limitado ao que foi objeto de recurso.</li>
+          <li><strong>Suspensivo:</strong> impede que a decisão recorrida produza efeitos imediatos. Na Justiça do Trabalho, é excepcional e depende de concessão pelo relator mediante demonstração de risco de dano grave.</li>
+          <li><strong>Translativo:</strong> permite ao Tribunal reconhecer matérias de ordem pública (como incompetência absoluta, litispendência ou coisa julgada) mesmo que não tenham sido mencionadas no recurso.</li>
+          <li><strong>Regressivo:</strong> permite ao juiz prolator da decisão reconsiderar sua posição ao receber o recurso (juízo de retratação), típico dos agravos.</li>
+          <li><strong>Substitutivo:</strong> previsto no art. 1.008 do CPC, a decisão do tribunal substitui a decisão recorrida naquilo que foi objeto de julgamento.</li>
+        </ul>
 
-    <p class="subtitle">
-      Selecione o tópico abaixo para acessar o conteúdo da disciplina:
-    </p>
+        <h2>15.4. Recursos em espécie</h2>
+        <p><strong>Recurso Ordinário (art. 895, CLT):</strong> É o recurso por excelência contra sentenças definitivas ou terminativas das Varas do Trabalho, ou contra decisões em processos de competência originária dos Tribunais.</p>
+        <p><strong>Recurso de Revista (art. 896, CLT):</strong> Recurso de natureza extraordinária interposto perante o TST, com o objetivo principal de uniformizar a interpretação da lei do trabalho no país.</p>
+        <p><strong>Agravo de Instrumento (art. 897, 'b', CLT):</strong> Possui finalidade específica e única de "destrancar" recurso cujo seguimento foi negado pelo juízo a quo.</p>
+        <p><strong>Agravo de Petição (art. 897, 'a', CLT):</strong> Recurso exclusivo da fase de execução, cabível contra decisões que resolvem incidentes nesta fase, desde que delimitadas as matérias e valores impugnados.</p>
+      </section>
 
-    <ul>
-      <li><a class="topic" href="01-principios-do-direito-processual-do-trabalho/">1. Princípios do Direito Processual do Trabalho</a></li>
-      <li><a class="topic" href="02-organizacao-da-justica-do-trabalho/">2. Organização da Justiça do Trabalho</a></li>
-      <li><a class="topic" href="03-competencia-da-justica-do-trabalho/">3. Competência da Justiça do Trabalho</a></li>
-      <li><a class="topic" href="04-partes-e-procuradores/">4. Partes e procuradores</a></li>
-      <li><a class="topic" href="05-atos-e-prazos-processuais/">5. Atos e prazos processuais</a></li>
-      <li><a class="topic" href="06-nulidades-processuais/">6. Nulidades processuais</a></li>
-      <li><a class="topic" href="07-comissao-de-conciliacao-previa/">7. Comissão de Conciliação Prévia</a></li>
-      <li><a class="topic" href="08-peticao-inicial/">8. Petição Inicial</a></li>
-      <li><a class="topic" href="09-notificacao-do-reclamado/">9. Notificação do Reclamado</a></li>
-      <li><a class="topic" href="10-audiencias-trabalhistas/">10. Audiências Trabalhistas</a></li>
-      <li><a class="topic" href="11-defesa-do-reclamado/">11. Defesa do Reclamado</a></li>
-      <li><a class="topic" href="12-provas/">12. Provas</a></li>
-      <li><a class="topic" href="13-sentenca-e-coisa-julgada/">13. Sentença e Coisa Julgada</a></li>
-      <li><a class="topic" href="14-sumario-e-sumarissimo/">14. Sumário e Sumaríssimo</a></li>
-      <li><a class="topic" href="15-recursos/">15. Recursos</a></li>
-    </ul>
+    </main>
 
-    <a class="back" href="../index.html">← Voltar ao curso</a>
+    <a href="direito-processual-do-trabalho/index.html" class="btn btn-return">← Voltar à Disciplina</a>
 
   </div>
 </div>
+
 </body>
 </html>
