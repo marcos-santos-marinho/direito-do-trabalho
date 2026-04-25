@@ -1,1 +1,371 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>17. Recurso de Revista</title>
 
+<style>
+:root{
+  --bg:#eaf3ff;
+  --panel:#f8fbff;
+  --card:#ffffff;
+  --title:#1f4fd8;
+  --text:#0f172a;
+  --muted:#475569;
+  --border:rgba(15,23,42,.14);
+  --shadow:0 14px 34px rgba(15,23,42,.12);
+  --blueSoft:#e8f0ff;
+  --greenSoft:#ecfdf5;
+  --orangeSoft:#fff7ed;
+  --purpleSoft:#f5f3ff;
+  --redSoft:#fef2f2;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background:radial-gradient(900px 420px at 30% 0%, #d8ecff 0%, var(--bg) 60%);
+  color:var(--text);
+  font-size:19px;
+  line-height:1.8;
+}
+
+.wrap{
+  max-width:980px;
+  margin:auto;
+  padding:18px 14px 40px;
+}
+
+.panel{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:24px;
+  box-shadow:var(--shadow);
+  padding:18px;
+}
+
+h1{
+  color:var(--title);
+  font-size:34px;
+  line-height:1.15;
+  margin:6px 0 14px;
+  text-align:center;
+}
+
+h2{
+  color:#0b2fb3;
+  font-size:24px;
+  margin:22px 0 12px;
+}
+
+p{
+  margin:0 0 14px;
+  text-align:justify;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  box-shadow:0 8px 20px rgba(15,23,42,.08);
+  padding:18px;
+  margin:14px 0;
+}
+
+.section-blue{
+  border-left:7px solid #2563eb;
+}
+
+.section-green{
+  border-left:7px solid #16a34a;
+}
+
+.section-orange{
+  border-left:7px solid #f97316;
+}
+
+.section-purple{
+  border-left:7px solid #7c3aed;
+}
+
+.section-red{
+  border-left:7px solid #dc2626;
+}
+
+.box{
+  padding:14px;
+  border-radius:14px;
+  margin:14px 0;
+  border:1px solid var(--border);
+}
+
+.oab{
+  background:var(--orangeSoft);
+  border-left:6px solid #f97316;
+}
+
+.sumula{
+  background:var(--greenSoft);
+  border-left:6px solid #16a34a;
+}
+
+.artigo{
+  background:var(--blueSoft);
+  border-left:6px solid #2563eb;
+}
+
+.obs{
+  background:var(--purpleSoft);
+  border-left:6px solid #7c3aed;
+}
+
+.alerta{
+  background:var(--redSoft);
+  border-left:6px solid #dc2626;
+}
+
+.bullet{
+  margin:10px 0 14px;
+  padding-left:0;
+  list-style:none;
+}
+
+.bullet li{
+  margin:10px 0;
+  padding:12px 14px;
+  background:#fff;
+  border-radius:14px;
+  border:1px solid var(--border);
+  box-shadow:0 5px 12px rgba(15,23,42,.05);
+}
+
+.bullet li::before{
+  content:"■ ";
+  color:#1f4fd8;
+  font-weight:900;
+}
+
+.letter-list{
+  margin:10px 0 14px;
+  padding-left:0;
+  list-style:none;
+}
+
+.letter-list li{
+  margin:10px 0;
+  padding:12px 14px;
+  background:#fff;
+  border-radius:14px;
+  border:1px solid var(--border);
+  box-shadow:0 5px 12px rgba(15,23,42,.05);
+}
+
+.slides-area{
+  display:flex;
+  justify-content:center;
+  margin:10px 0 22px;
+}
+
+.slides-btn{
+  text-decoration:none;
+  color:var(--text);
+  background:#fff;
+  border:1px solid rgba(37,99,235,.22);
+  border-radius:22px;
+  box-shadow:var(--shadow);
+  padding:16px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  min-width:min(420px,100%);
+  font-weight:900;
+  transition:.18s;
+}
+
+.slides-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 20px 42px rgba(15,23,42,.16);
+}
+
+.icon{
+  width:54px;
+  height:54px;
+  border-radius:18px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,#dbeafe,#ffffff);
+  border:1px solid rgba(37,99,235,.24);
+}
+
+.icon svg{
+  width:30px;
+  height:30px;
+}
+
+.slides-text{
+  display:flex;
+  flex-direction:column;
+  line-height:1.15;
+}
+
+.slides-text strong{
+  font-size:20px;
+}
+
+.slides-text span{
+  font-size:14px;
+  color:var(--muted);
+}
+
+.back{
+  display:flex;
+  justify-content:center;
+  margin-top:20px;
+}
+
+.back a{
+  width:min(560px,100%);
+  text-align:center;
+  text-decoration:none;
+  background:#fff;
+  padding:16px 18px;
+  border-radius:16px;
+  border:1px solid var(--border);
+  box-shadow:0 8px 20px rgba(15,23,42,.08);
+  color:var(--text);
+  font-weight:900;
+}
+
+@media(max-width:520px){
+  body{
+    font-size:17px;
+  }
+
+  h1{
+    font-size:28px;
+  }
+
+  h2{
+    font-size:21px;
+  }
+
+  .slides-btn{
+    padding:14px;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+<div class="panel">
+
+<h1>17. Recurso de Revista</h1>
+
+<div class="slides-area">
+  <a class="slides-btn" href="LINK_SLIDES_GOOGLE_DRIVE" target="_blank" rel="noopener">
+    <span class="icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none">
+        <rect x="3" y="4" width="18" height="12" rx="2" stroke="#1f4fd8" stroke-width="1.8"/>
+        <path d="M8 20h8M12 16v4" stroke="#1f4fd8" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M7 9h10M7 12h7" stroke="#1f4fd8" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    </span>
+    <span class="slides-text">
+      <strong>Slides</strong>
+      <span>Abrir no Google Drive</span>
+    </span>
+  </a>
+</div>
+
+<div class="card section-blue">
+<h2>15.5.3. Recurso de revista</h2>
+
+<p>O recurso de revista é o mais complexo do processo do trabalho, seja em relação aos requisitos de admissibilidade, seja no tocante ao procedimento. Por isso devemos ter atenção especial ao mesmo.</p>
+
+<div class="box oab">
+<strong>Caixa OAB:</strong> atenção especial ao recurso de revista, especialmente aos fundamentos de cabimento, hipóteses excepcionais, prequestionamento e transcendência.
+</div>
+
+<p>Previsto no art. 896 da CLT, possui o seu cabimento contra acórdãos do TRT que julgam recursos ordinários interpostos em dissídios individuais, ou, em outras palavras, o recurso surge como a forma de se chegar ao TST em uma ação trabalhista ajuizada perante a Vara do Trabalho. Digamos que João tenha ajuizado uma reclamação trabalhista perante uma das Varas do Trabalho de São Paulo, tendo o juízo proferido sentença de improcedência. Desta decisão João poderá interpor recurso ordinário (art. 895 da CLT), que será julgado pelo TRT/SP. Caso o recurso seja julgado pelo colegiado (turma do TRT), será proferido um acórdão que poderá ser objeto de recurso de revista, desde que o fundamento do recurso seja um dos previstos nas alíneas do próprio art. 896 da CLT, a saber:</p>
+
+<ol class="letter-list">
+<li><strong>a)</strong> divergência jurisprudencial entre TRTs em relação à lei federal, violação de súmula ou jurisprudência uniforme do TST, violação de súmula vinculante do STF;</li>
+
+<li><strong>b)</strong> divergência jurisprudencial entre TRTs em relação à lei estadual, convenção ou acordo coletivo, sentença normativa ou regulamento empresarial de observância obrigatória em área de mais de um tribunal;</li>
+
+<li><strong>c)</strong> violação de lei federal e afronta direta e literal da Constituição Federal.</li>
+</ol>
+
+<div class="box artigo">
+<strong>Referência do próprio texto:</strong> art. 896 da CLT.
+</div>
+
+<p>Em relação à divergência apontada, cabe menção ao § 7º do art. 896 da CLT, que diz que a divergência entre tribunais que enseja a admissibilidade do recurso tem que ser atual, não se podendo falar mais em divergência quando a matéria já tiver sido objeto de súmula do TST ou STF ou jurisprudência dominante, na medida em que aquela já se mostraria pacificada (MOURA, 2015).</p>
+</div>
+
+<div class="card section-orange">
+<h2>Situações excepcionais</h2>
+
+<p>Duas situações excepcionais devem ser anotadas, pois são as mais cobradas nas provas, já tendo sido objeto de questionamento em Exames da OAB:</p>
+
+<ul class="bullet">
+<li>§ 2º: processo de execução: o recurso de revista interposto no processo de execução somente pode versar sobre afronta direta e literal da Constituição Federal. Este é o único fundamento que pode ser objeto de questionamento na hipótese. A Súmula 266 do TST também deixa clara a necessidade de adequação ao que foi dito.</li>
+</ul>
+
+<div class="box artigo">
+<p><strong>§ 2º</strong> Das decisões proferidas pelos Tribunais Regionais do Trabalho ou por suas Turmas, em execução de sentença, inclusive em processo incidente de embargos de terceiro, não caberá Recurso de Revista, salvo na hipótese de ofensa direta e literal de norma da Constituição Federal.</p>
+</div>
+
+<div class="box sumula">
+<strong>Súmula 266 do TST:</strong> o texto destaca a necessidade de adequação ao entendimento de que, no processo de execução, o recurso de revista somente pode versar sobre afronta direta e literal da Constituição Federal.
+</div>
+
+<ul class="bullet">
+<li>§ 9º: procedimento sumaríssimo: se a ação for de rito sumaríssimo (art. 852-A da CLT – ações de até 40 salários mínimos), os únicos fundamentos que poderão ser objeto do recurso de revista são: violação de lei federal, afronta à súmula do TST e súmula vinculante do STF. O TST possui entendimento no sentido de que não cabe violação à OJ do TST, mas tão somente às suas súmulas, conforme entendimento expresso na Súmula 442 daquele tribunal.</li>
+</ul>
+
+<div class="box artigo">
+<p><strong>§ 9º</strong> Nas causas sujeitas ao procedimento sumaríssimo, somente será admitido recurso de revista por contrariedade a súmula de jurisprudência uniforme do Tribunal Superior do Trabalho ou a súmula vinculante do Supremo Tribunal Federal e por violação direta da Constituição Federal.</p>
+</div>
+
+<div class="box sumula">
+<strong>Súmula 442 do TST:</strong> o texto destaca que, no procedimento sumaríssimo, o TST entende que não cabe violação à OJ do TST, mas tão somente às suas súmulas.
+</div>
+
+<div class="box oab">
+<strong>Caixa OAB:</strong> no processo de execução, o fundamento é afronta direta e literal da Constituição Federal; no sumaríssimo, atenção às restrições do § 9º e à Súmula 442 do TST.
+</div>
+</div>
+
+<div class="card section-green">
+<h2>Procedimento, admissibilidade e pressupostos específicos</h2>
+
+<p>Sobre o procedimento, dispõe o § 1º do art. 896 da CLT que o recurso terá efeito tão somente devolutivo, sendo interposto perante o Presidente do TRT, a quem cabe realizar o primeiro juízo de admissibilidade, podendo admitir ou inadmitir por decisão fundamentada.</p>
+
+<p>Sobre o juízo de admissibilidade, prevê o § 1º-A que é ônus da parte, sob pena de inadmissão do recurso, demonstrar que a matéria está prequestionada, ou seja, decidida efetivamente na decisão recorrida, além de indicar de maneira explícita e fundamentada qual é a violação à lei, súmula ou orientação jurisprudencial do TST. Por fim, deve o recorrente impugnar todos os fundamentos que foram utilizados pelo prolator da decisão, demonstrando sob todas as óticas que a decisão está equivocada e deve ser modificada pelo TST (MIESSA, 2016).</p>
+
+<div class="box obs">
+<strong>Marcação de prova:</strong> prequestionamento, indicação explícita e fundamentada da violação e impugnação de todos os fundamentos da decisão.
+</div>
+
+<p>A reforma trabalhista – Lei n. 13.467/2017 – inseriu o § 14 no art. 896 da CLT, afirmando a possibilidade de o recurso de revista ser inadmitido pelo relator, por decisão monocrática, quando o apelo for intempestivo, deserto, carecer de regularidade de representação ou pela ausência de qualquer outro pressuposto recursal.</p>
+
+<p>Importante norma que trata do procedimento do recurso de revista consta no § 11 do art. 896 da CLT, relacionada à desconsideração de vícios formais, quando o recurso seja tempestivo, pois o mais importante é proceder ao julgamento do mérito recursal.</p>
+</div>
+
+<div class="card section-purple">
+<h2>Transcendência</h2>
+
+<p>Por fim, também a reforma trabalhista incluiu no art. 896-A, § 1º, da CLT, os indicadores da presença da transcendência, pressuposto específico do recurso em estudo, que demonstra ser o recurso importante para a coletividade, não apenas para o recorrente. Vejamos:</p>
+
+<ul class="bullet">
+<li>I – econômica, o elevado valor da causa;</li>
+
+<li>
