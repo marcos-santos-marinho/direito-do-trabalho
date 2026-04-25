@@ -1,224 +1,745 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>15. Recursos Trabalhistas</title>
 
 <style>
 :root{
   --bg:#eaf3ff;
+  --panel:#f8fbff;
   --card:#ffffff;
   --title:#1f4fd8;
   --text:#0f172a;
-  --line:#dbeafe;
-  --shadow:0 12px 30px rgba(0,0,0,.12);
-  --oab:#fff7ed;
-  --oab-border:#f97316;
-  --sumula:#f0fdf4;
-  --sumula-border:#22c55e;
+  --muted:#475569;
+  --border:rgba(15,23,42,.14);
+  --shadow:0 14px 34px rgba(15,23,42,.12);
+  --blueSoft:#e8f0ff;
+  --greenSoft:#ecfdf5;
+  --orangeSoft:#fff7ed;
+  --purpleSoft:#f5f3ff;
 }
+
+*{box-sizing:border-box;}
 
 body{
   margin:0;
-  font-family: system-ui;
-  background:var(--bg);
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background:radial-gradient(900px 420px at 30% 0%, #d8ecff 0%, var(--bg) 60%);
   color:var(--text);
   font-size:19px;
   line-height:1.8;
 }
 
 .wrap{
-  max-width:1000px;
+  max-width:980px;
   margin:auto;
+  padding:18px 14px 40px;
+}
+
+.panel{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:24px;
+  box-shadow:var(--shadow);
   padding:18px;
 }
 
-/* BOTÃO SLIDES */
-.top{
-  display:flex;
-  justify-content:flex-end;
-  margin-bottom:12px;
-}
-
-.btn{
-  background:#fff;
-  padding:12px 16px;
-  border-radius:12px;
-  text-decoration:none;
-  font-weight:900;
-  border:1px solid #ccc;
-  box-shadow:var(--shadow);
-}
-
-/* TÍTULO */
 h1{
   color:var(--title);
-  font-size:30px;
-  margin-bottom:12px;
-}
-
-/* CARDS */
-.card{
-  background:var(--card);
-  padding:18px;
-  border-radius:16px;
-  box-shadow:var(--shadow);
-  margin-bottom:16px;
+  font-size:34px;
+  line-height:1.15;
+  margin:6px 0 14px;
+  text-align:center;
 }
 
 h2{
   color:#0b2fb3;
-  margin-top:10px;
+  font-size:24px;
+  margin:22px 0 12px;
 }
 
-/* LISTAS */
-ul{
-  margin-left:22px;
+p{
+  margin:0 0 14px;
+  text-align:justify;
 }
-li{ margin-bottom:10px; }
 
-/* CAIXA OAB */
-.oab{
-  background:var(--oab);
-  border-left:6px solid var(--oab-border);
-  padding:14px;
-  border-radius:10px;
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  box-shadow:0 8px 20px rgba(15,23,42,.08);
+  padding:18px;
   margin:14px 0;
 }
 
-/* CAIXA SÚMULA */
-.sumula{
-  background:var(--sumula);
-  border-left:6px solid var(--sumula-border);
+.section-blue{border-left:7px solid #2563eb;}
+.section-green{border-left:7px solid #16a34a;}
+.section-orange{border-left:7px solid #f97316;}
+.section-purple{border-left:7px solid #7c3aed;}
+
+.box{
   padding:14px;
-  border-radius:10px;
+  border-radius:14px;
   margin:14px 0;
+  border:1px solid var(--border);
 }
 
-/* VOLTAR */
+.oab{background:var(--orangeSoft); border-left:6px solid #f97316;}
+.sumula{background:var(--greenSoft); border-left:6px solid #16a34a;}
+.artigo{background:var(--blueSoft); border-left:6px solid #2563eb;}
+.obs{background:var(--purpleSoft); border-left:6px solid #7c3aed;}
+
+.bullet{
+  margin:10px 0 14px;
+  padding-left:0;
+  list-style:none;
+}
+
+.bullet li{
+  margin:10px 0;
+  padding:12px 14px;
+  background:#fff;
+  border-radius:14px;
+  border:1px solid var(--border);
+  box-shadow:0 5px 12px rgba(15,23,42,.05);
+}
+
+.bullet li::before{
+  content:"■ ";
+  color:#1f4fd8;
+  font-weight:900;
+}
+
+.slides-area{
+  display:flex;
+  justify-content:center;
+  margin:10px 0 22px;
+}
+
+.slides-btn{
+  text-decoration:none;
+  color:var(--text);
+  background:#fff;
+  border:1px solid rgba(37,99,235,.22);
+  border-radius:22px;
+  box-shadow:var(--shadow);
+  padding:16px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  min-width:min(420px,100%);
+  font-weight:900;
+  transition:.18s;
+}
+
+.slides-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 20px 42px rgba(15,23,42,.16);
+}
+
+.icon{
+  width:54px;
+  height:54px;
+  border-radius:18px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,#dbeafe,#ffffff);
+  border:1px solid rgba(37,99,235,.24);
+}
+
+.icon svg{
+  width:30px;
+  height:30px;
+}
+
+.slides-text{
+  display:flex;
+  flex-direction:column;
+  line-height:1.15;
+}
+
+.slides-text strong{
+  font-size:20px;
+}
+
+.slides-text span{
+  font-size:14px;
+  color:var(--muted);
+}
+
 .back{
-  text-align:center;
+  display:flex;
+  justify-content:center;
   margin-top:20px;
 }
 
 .back a{
-  display:inline-block;
-  padding:14px;
-  border-radius:12px;
-  background:#fff;
+  width:min(560px,100%);
+  text-align:center;
   text-decoration:none;
+  background:#fff;
+  padding:16px 18px;
+  border-radius:16px;
+  border:1px solid var(--border);
+  box-shadow:0 8px 20px rgba(15,23,42,.08);
+  color:var(--text);
   font-weight:900;
-  box-shadow:var(--shadow);
+}
+
+@media(max-width:520px){
+  body{font-size:17px;}
+  h1{font-size:28px;}
+  h2{font-size:21px;}
+  .slides-btn{padding:14px;}
 }
 </style>
 </head>
 
 <body>
-
 <div class="wrap">
-
-<div class="top">
-<a class="btn" href="LINK_SLIDES_GOOGLE_DRIVE" target="_blank">📊 Slides</a>
-</div>
+<div class="panel">
 
 <h1>15. Recursos trabalhistas</h1>
 
-<div class="card">
+<div class="slides-area">
+  <a class="slides-btn" href="LINK_SLIDES_GOOGLE_DRIVE" target="_blank" rel="noopener">
+    <span class="icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none">
+        <rect x="3" y="4" width="18" height="12" rx="2" stroke="#1f4fd8" stroke-width="1.8"/>
+        <path d="M8 20h8M12 16v4" stroke="#1f4fd8" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M7 9h10M7 12h7" stroke="#1f4fd8" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    </span>
+    <span class="slides-text">
+      <strong>Slides</strong>
+      <span>Abrir no Google Drive</span>
+    </span>
+  </a>
+</div>
 
+<div class="card section-blue">
 <p>Estamos iniciando o estudo do tópico mais cobrado até hoje nos Exames da OAB, sendo o estudo dividido em teoria geral e recursos em espécie, devendo o examinando conhecer os pressupostos de admissibilidade e efeitos, em especial, bem como os recursos em espécie.</p>
+</div>
 
+<div class="card section-green">
 <h2>15.1. Peculiaridades dos recursos trabalhistas</h2>
 
 <p>Se compararmos os recursos trabalhistas e os recursos cíveis, vamos perceber algumas diferenças entre os dois sistemas, que aqui chamamos de peculiaridades dos recursos trabalhistas.</p>
 
 <p>Dentre as diferenças existentes e que são bastante destacadas na doutrina, podendo ser objeto de questionamento, temos:</p>
 
-<ul>
-<li>Irrecorribilidade imediata das decisões interlocutórias...</li>
-<li>Decisão interlocutória que reconhece a incompetência absoluta...</li>
-<li>Decisão do TRT contrária à súmula...</li>
-<li>Decisão passível de recursos para o próprio tribunal...</li>
-<li>Decisão que reconhece a incompetência e remete autos...</li>
-<li>Inexigibilidade de fundamentação...</li>
-<li>Efeito meramente devolutivo...</li>
+<ul class="bullet">
+<li>Irrecorribilidade imediata das decisões interlocutórias: a regra está prevista no art. 893, § 1º, da CLT, restringindo a utilização de recursos quando a decisão objeto de questionamento é interlocutória, ou seja, proferida no curso do processo. Na hipótese, prevê o dispositivo celetista que a parte prejudicada com a decisão interlocutória deverá aguardar ser proferida a decisão final, para dela recorrer. A reforma trabalhista inseriu mais uma hipótese de decisão interlocutória irrecorrível, nos termos do art. 855-A da CLT, que trata do procedimento para desconsideração da personalidade jurídica, quando proferida no curso do processo de conhecimento. Contudo, existem algumas importantes exceções, previstas no art. 799, § 2º, da CLT e na Súmula 214 do TST, a saber:</li>
+
+<li>Decisão interlocutória que reconhece a incompetência absoluta da Justiça do Trabalho: a hipótese está prevista no art. 799, § 2º, da CLT, e prevê o cabimento do Recurso Ordinário em face de tal decisão, já que a mesma é terminativa em relação à Justiça do Trabalho, e determina a remessa do processo para outra justiça.</li>
+
+<li>Decisão do TRT contrária à súmula ou orientação jurisprudencial do TST: na hipótese, prevista na alínea “a” da Súmula 214 do TST, caberá o recurso de revista para o TST para que o mesmo modifique a decisão na medida em que se mostra presumidamente errada, pois contrária aos entendimentos do tribunal superior.</li>
+
+<li>Decisão passível de recursos para o próprio tribunal: a hipótese prevista na alínea “b” da Súmula 214 do TST afirma a possibilidade de interposição de recurso interno, ou seja, para o próprio tribunal, já que o princípio visa evitar que sejam interpostos recursos para órgãos de hierarquia superior, o que não ocorre no caso em análise.</li>
+
+<li>Decisão que reconhece a incompetência e determina a remessa dos autos para Vara do Trabalho vinculada a outro TRT: a situação, prevista na alínea “c” da Súmula 214 do TST, é a mais comum no dia a dia e nas provas, cabendo recurso quando o réu alega a incompetência territorial e tem a sua alegação reconhecida, com determinação de remessa dos autos para Vara do Trabalho vinculada a outro TRT. O recurso cabível é o ordinário, previsto no art. 895 da CLT.</li>
+
+<li>Inexigibilidade de fundamentação: a segunda particularidade dos recursos trabalhistas está prevista no art. 899 da CLT e na Súmula 422 do TST. A CLT prevê que os recursos trabalhistas serão interpostos por simples petição, sendo que a expressão sempre foi entendida como sinônimo de ausência de fundamentação. Não se exige, portanto, à luz da CLT, respeito à dialeticidade. Contudo, o princípio foi relativizado pela Súmula 422 do TST, que passou a exigir a fundamentação nos recursos interpostos perante o TST, não havendo necessidade de fundamentação para o recurso ordinário de competência do TRT. Contudo, não se confunde recursos sem fundamentação com recurso com “qualquer fundamentação”. A própria súmula deixa claro que eventual motivação externada pela parte não pode ser dissociada dos fundamentos da sentença.</li>
 </ul>
 
-<div class="oab">
-💡 <b>OAB:</b> Regra importante — recurso trabalhista NÃO tem efeito suspensivo automático.
+<div class="box artigo">
+<p><strong>Art. 899.</strong> Os recursos serão interpostos por simples petição e terão efeito meramente devolutivo, salvo as exceções previstas neste Título, permitida a execução provisória até a penhora.</p>
 </div>
 
-<div class="sumula">
-<b>Art. 899 da CLT</b><br><br>
-Os recursos serão interpostos por simples petição e terão efeito meramente devolutivo.
+<ul class="bullet">
+<li>Efeito meramente devolutivo: também prevista no art. 899 da CLT, a regra prevê que os recursos trabalhistas possuem apenas efeito devolutivo, o que significa dizer que não possuem efeito suspensivo, como geralmente ocorre no processo civil. A interposição do recurso não suspende os efeitos da sentença. Assim, se uma empresa é condenada ao pagamento de R$ 100.000,00 e interpõe o recurso ordinário (art. 895 da CLT), a sentença já poderá ser executada provisoriamente, pois, apesar de ter sido interposto recurso, ele não suspendeu os efeitos da decisão. A execução que pode ser iniciada é a provisória, que depende de requerimento do credor, não sendo automática. Afirmou-se que o recurso não possui efeito suspensivo automático, mas o mesmo pode ser concedido caso haja pedido do recorrente, que pode ser realizado no próprio recurso, ao tribunal, conforme nova redação da Súmula 414, I, do TST.</li>
+</ul>
+
+<div class="box oab">
+<strong>Caixa OAB:</strong> atenção para a regra do efeito meramente devolutivo e para as exceções da irrecorribilidade imediata das decisões interlocutórias.
+</div>
 </div>
 
+<div class="card section-orange">
 <h2>15.2. Juízo de admissibilidade e pressupostos recursais</h2>
 
-<p>Quando a parte sucumbente interpõe um recurso, duas análises são feitas pelo Poder Judiciário...</p>
+<p>Quando a parte sucumbente interpõe um recurso, duas análises são feitas pela Poder Judiciário, a saber: 1. São analisados os pressupostos (requisitos) para a utilização do recurso, no denominado juízo de admissibilidade recursal; 2. Caso presente todos os pressupostos, passará o Poder Judiciário a analisar se o pedido de modificação da decisão deve ser aceito ou não, no denominado juízo de mérito, que será estudado posteriormente.</p>
 
-<ul>
-<li><b>Cabimento</b></li>
-<li><b>Legitimidade</b></li>
-<li><b>Interesse recursal</b></li>
-<li><b>Tempestividade</b></li>
-<li><b>Regularidade formal</b></li>
-<li><b>Preparo</b></li>
-<li><b>Regularidade de representação</b></li>
+<p>Mas quem realiza o juízo de admissibilidade? A análise acerca dos pressupostos recursais é realizada pelos juízos a quo e ad quem, que respectivamente são o juízo que profere a decisão e recebe o recurso, e o juízo hierarquicamente superior, que julgará o mérito do recurso. Assim, para exemplificar, digamos que a 3ª Vara do Trabalho de Vitória/ES tenha proferida sentença, devidamente impugnada por recurso ordinário. O referido recurso será interposto perante a 3ª Vara do Trabalho, que fará o primeiro juízo de admissibilidade na qualidade de juízo a quo. Se presentes todos os pressupostos, ou seja, sendo positivo o primeiro juízo, os autos serão remetidos para o juízo ad quem, que realizará novamente a análise dos pressupostos recursais. Continuando a entender pela presença de todos os pressupostos, julgará o juízo ad quem o mérito do recurso, decidindo pela manutenção ou modificação da sentença. Importante destacar a Súmula 435 do TST que dispõe acerca da possibilidade de o Relator proferir decisão monocrática nos tribunais, inclusive no juízo de admissibilidade.</p>
+
+<p>Mas quais são os pressupostos recursais? Vejamos:</p>
+
+<ul class="bullet">
+<li>Cabimento: consiste na análise sobre a recorribilidade do ato e adequação do recurso interposto, ou seja, se a decisão objeto do recurso é recorrível e se a parte interpôs o recurso adequado. Acaso proferida uma sentença, deverá a parte interpor o recurso ordinário (art. 895 da CLT), pois a sentença é um ato recorrível e o recurso ordinário está previsto para a hipótese.</li>
+
+<li>Legitimidade: dispõe o art. 996 do CPC/2015 que o recurso pode ser interposto pela parte vencida, pelo terceiro prejudicado e pelo Ministério Público, tendo atuado como parte ou fiscal da lei.</li>
+
+<li>Interesse recursal: está atrelado à sucumbência, ou seja, a uma situação desfavorável criada pela decisão a determinada parte. Se sou condenado ao pagamento de R$ 100.000,00, afirmo ter sido sucumbente, com interesse em recorrer. Se busco a condenação da empresa ao pagamento de R$ 100.000,00, mas a sentença condena ao pagamento de R$ 90.000,00, também sou sucumbente, pois a decisão foi desfavorável aos meus interesses por não ter reconhecido na integralidade o meu pedido.</li>
+
+<li>Tempestividade: no processo do trabalho o prazo recursal é marcado pela regra da uniformidade, prevista na Lei n. 5.584/70, sendo de 8 dias o prazo para interpor e contra-arrazoar, salvo nos embargos de declaração, que são opostos em 5 dias, conforme art. 897-A da CLT. Situações excepcionais podem ocorrer em relação à contagem do prazo recursal, que pode sofrer suspensão ou interrupção. Na primeira hipótese o prazo recursal volta a ser contado do ponto em que parou, enquanto na segunda o prazo recomeça a ser contado do início (é zerado).</li>
+
+<li>Regularidade formal: está atrelada ao preenchimento dos requisitos de forma do recursal, sendo destacada a OJ n. 120 da SDI-1 do TST, que trata da falta de assinatura como impeditivo para a admissibilidade do apelo. Caso as duas petições do recurso (interposição e razões) não estejam assinadas, o recurso será inadmitido. Caso uma delas apenas esteja assinada, não haverá qualquer vício. Conforme alteração realizada em setembro de 2016 na mencionada Orientação Jurisprudencial, deve o magistrado conceder prazo de 5 dias para a regulação do vício, antes de inadmitir o recurso.</li>
+
+<li>Preparo: para os Exames da OAB é o pressuposto de admissibilidade mais importante, com o maior número de súmulas do TST que devem ser conhecidas. Quando se fala em preparo, nos vem à mente a necessidade de pagamento de quantia, que pode consistir no pagamento de custas processuais e depósito recursal, a depender do recorrente. Caso o empregado esteja recorrente, realizará apenas o pagamento das custas processuais que foram fixadas na sentença. Sendo o empregador o recorrente, realizará o pagamento das custas e do depósito recursal, cujo valor é fixado pelo TST, havendo um limite por recurso que é fixado por aquele tribunal. A depender do recurso, o depósito pode ser de quase R$ 9.000,00 (recurso ordinário) ou R$ 18.000,00 (recurso de revista). A ausência de preparo gera a inadmissão por deserção, que é o nome técnico que certamente aparecerá no Exame da OAB. A reforma trabalhista trouxe importantes alterações no art. 899 da CLT, que trata do depósito recursal, reduzindo-o para a metade em algumas situações e isentando em outras, conforme será verificado a seguir:</li>
+
+<li>Depósito recursal pela metade: § 9º – entidades sem fins lucrativos, empregadores domésticos, microempreendedores individuais, microempresas e empresas de pequeno porte.</li>
+
+<li>Isenção do depósito recursal: § 10 – beneficiários da justiça gratuita, as entidades filantrópicas e as empresas em recuperação judicial.</li>
 </ul>
 
-<div class="oab">
-🔥 <b>Mais cobrado na OAB:</b> PREPARO (custas + depósito recursal)
+<p>Além disso, o depósito recursal não mais será realizado na conta vinculada ao FGTS, devendo ser realizado em conta vinculada ao juízo, com a correção pelos índices da poupança, conforme § 4º do art. 899 da CLT, podendo ainda ser substituído por fiança bancária ou seguro garantia judicial, conforme § 11 do mesmo dispositivo legal.</p>
+
+<p>Sobre o depósito recursal, algumas súmulas e OJs devem ser destacadas:</p>
+
+<div class="box sumula">
+<p><strong>Súmula 161 do TST</strong></p>
+<p>Prevê que o depósito recursal somente será necessário quando o recurso tiver por objeto decisão que tenha condenado ao pagamento de quantia, ou seja, de condenação pecuniária.</p>
 </div>
 
-<div class="sumula">
-<b>Súmula 161 do TST:</b> depósito recursal apenas quando há condenação em dinheiro.
+<div class="box sumula">
+<p><strong>Súmula 128 do TST</strong></p>
+<p>Trata dos limites do depósito recursal, que são dois: o valor da condenação e o valor máximo fixado pelo TST para o recurso. Não haverá necessidade da parte depositar quantia superior ao valor da condenação, assim como ninguém será levado a depositar quantia superior ao teto fixado pelo TST.</p>
 </div>
 
-<div class="sumula">
-<b>Súmula 128 do TST:</b> limite = valor da condenação OU teto do TST.
+<div class="box sumula">
+<p><strong>Súmula 245 do TST</strong></p>
+<p>Geralmente os recursos são interpostos no último dia, oportunidade em que também é comprovada a realização do depósito recursal. Mas, se houver a interposição antecipada do recurso, também deverá ser antecipada a comprovação do depósito? Não. A súmula afirma que a parte continua tendo até o último dia para comprovar a realização do preparo, não havendo necessidade de antecipação do mesmo.</p>
 </div>
 
-<div class="sumula">
-<b>Súmula 245 do TST:</b> depósito pode ser comprovado até o último dia do prazo.
+<div class="box sumula">
+<p><strong>Súmula 426 do TST</strong></p>
+<p>O depósito recursal deve ser realizado por meio da Guia GFIP, que é a guia de FGTS e informações à previdência. Somente não será utilizada a referida guia se a relação jurídica em discussão não for submetida ao regime do FGTS, hipótese em que o depósito será feito por guia bancária comum.</p>
 </div>
 
-<div class="sumula">
-<b>OJ 140 SDI-1:</b> possibilidade de complementar preparo em 5 dias.
+<div class="box sumula">
+<p><strong>OJ n. 140 da SDI-1 do TST</strong></p>
+<p>A nova redação da OJ, de abril de 2017, prevê a necessidade de intimação do recorrente para complementação das custas processuais e depósito recursal, caso tenha realizado o pagamento a menor. Assim, deverá o recorrente ser intimado para complementar aqueles no prazo de cinco dias, sob pena de deserção. Cuidado apenas com um detalhe: se não houver preparo, o recurso será imediatamente considerado deserto, já que a concessão de prazo é apenas para complementação, ou seja, quando é feito a menor.</p>
 </div>
 
+<ul class="bullet">
+<li>Regularidade de representação: prevista na Súmula 383 do TST, alterada em 2016, diz que o recurso deve ser interposto por Advogado com procuração nos autos, caso a parte não se tenha valido do jus postulandi. Assim, se a parte optou por contratar Advogado, a procuração deverá estar nos autos, salvo na hipótese de mandato tácito, hipótese em que o Advogado não terá uma procuração “formal”, mas terá a sua representação comprovada pela ata de audiência, na qual constará o nome e número da OAB do Advogado. Excepcionalmente admite-se a interposição de recurso sem procuração, para evitar prescrição, decadência ou preclusão (art. 104 do CPC/2015), devendo o instrumento ser juntado em 5 dias, prorrogável por mais 5 dias. Não sendo cumprida a norma, o recurso será inadmitido ou as contrarrazões serão desentranhadas (retiradas) do processo. Por ser considerada uma alteração importante, transcreve-se a súmula em estudo:</li>
+</ul>
+
+<div class="box sumula">
+<p>I – É inadmissível recurso firmado por advogado sem procuração juntada aos autos até o momento da sua interposição, salvo mandato tácito. Em caráter excepcional (art. 104 do CPC de 2015), admite-se que o advogado, independentemente de intimação, exiba a procuração no prazo de 5 (cinco) dias após a interposição do recurso, prorrogável por igual período mediante despacho do juiz. Caso não a exiba, considera-se ineficaz o ato praticado e não se conhece do recurso.</p>
+
+<p>II – Verificada a irregularidade de representação da parte em fase recursal, em procuração ou substabelecimento já constante dos autos, o relator ou o órgão competente para julgamento do recurso designará prazo de 5 (cinco) dias para que seja sanado o vício. Descumprida a determinação, o relator não conhecerá do recurso, se a providência couber ao recorrente, ou determinará o desentranhamento das contrarrazões, se a providência couber ao recorrido (art. 76, § 2º, do CPC de 2015).</p>
+</div>
+
+<p>Em relação à regularidade de representação, o mandato tácito continua sendo aplicado ao processo do trabalho, tratado atualmente na Súmula 383 do TST. O Advogado portador daquela espécie de mandato pode atuar regularmente, não havendo necessidade de juntada de procuração “em papel”.</p>
+
+<div class="box oab">
+<strong>Caixa OAB:</strong> preparo, deserção, depósito recursal e regularidade de representação são pontos recorrentes em prova.
+</div>
+</div>
+
+<div class="card section-purple">
 <h2>15.3. Juízo de mérito</h2>
 
-<p>No juízo de mérito o órgão ad quem irá analisar reforma ou anulação da decisão.</p>
+<p>Como já dito anteriormente, o juízo de mérito será alcançado após o juízo positivo de admissibilidade, em que é constatada a presença de todos os pressupostos de admissibilidade pelos juízos a quo e ad quem (GARCIA, 2012).</p>
 
-<ul>
-<li>Erro de julgamento → reforma</li>
-<li>Erro de procedimento → anulação</li>
-</ul>
+<p>No juízo de mérito o órgão ad quem irá analisar um dos pedidos que podem ser formulados pelo recorrente, a saber: reforma e anulação. O primeiro está relacionado ao error in judicando, que é o mais comum no dia a dia, que consiste no erro de julgamento, hipótese em que o Magistrado se equivoca ao julgar, ao analisar as provas etc. No segundo pedido – anulação – o Tribunal analisará se houve ou não o error in procedendo, que é o erro de procedimento, a violação a normas que tratam da realização dos atos processuais.</p>
 
-<h2>15.4. Efeitos</h2>
-
-<ul>
-<li><b>Devolutivo</b></li>
-<li><b>Suspensivo</b></li>
-<li><b>Translativo</b></li>
-<li><b>Regressivo</b></li>
-<li><b>Substitutivo</b></li>
-</ul>
-
-<div class="oab">
-📌 <b>Resumo OAB:</b>  
-Regra → efeito devolutivo  
-Exceção → pode pedir efeito suspensivo
+<p>Reconhecendo o erro de julgamento, o Tribunal dará provimento ao recurso e proferirá uma nova decisão de mérito, que substituirá a anterior, nos termos do art. 1.008 do CPC/2015. Caso reconheça o erro de procedimento, o Tribunal dará provimento para anular a decisão, determinando a remessa dos autos ao juízo a quo para que os atos processuais sejam novamente realizados.</p>
 </div>
 
+<div class="card section-blue">
+<h2>15.4. Efeitos</h2>
+
+<p>Os denominados “efeitos” dos recursos são as consequências de sua utilização. O que ocorre com o processo ao ser interposto um recurso? Produzirá a decisão os seus efeitos normalmente? Poderá o Magistrado retratar-se da decisão? O julgamento do recurso substituirá a decisão recorrida? Todas as perguntas são respondidas quando analisados os efeitos ou consequências da interposição dos recursos. Passamos à análise dos principais efeitos para o Exame da OAB:</p>
+
+<ul class="bullet">
+<li>Devolutivo: o recurso devolve a apreciação da matéria ao Poder Judiciário, na medida em que o recorrente entende que a decisão não está correta e deve ser modificada. A devolução pode ser parcial ou total, a depender da vontade da parte, pois o efeito devolutivo pode incidir sobre um ou mais capítulos da decisão.</li>
+
+<li>Suspensivo: a interposição de um recurso trabalhista não suspende os efeitos da decisão, que já pode ser objeto de execução mesmo antes do trânsito em julgado, tratando-se da execução provisória. A regra a ser lembrada é: os recursos trabalhistas não possuem efeito suspensivo, já que o art. 899 da CLT prevê o efeito “apenas devolutivo”. Excepcionalmente pode-se conseguir o efeito suspensivo através de pedido formulado pelo recorrente. Assim, a parte interpõe o recurso e requer a atribuição do efeito suspensivo àquele.</li>
+
+<li>Translativo: o efeito está atrelado à possibilidade de reconhecimento, pelo Tribunal, das normas de ordem pública, sem necessidade de alegação ou requerimento das partes. Assim, ao ser interposto um recurso, abre-se ao Tribunal a possibilidade de ser reconhecida uma norma de ordem pública, como a existência de litispendência, coisa julgada, perempção, ausência de condições da ação, dentre outros vícios que podem ser reconhecidos de oficio, em qualquer momento e grau de jurisdição.</li>
+
+<li>Regressivo: o efeito regressivo está relacionado à possibilidade do Magistrado prolator da decisão impugnada de retratar-se, de exercer o denominado juízo de retratação ao receber o recurso. O efeito é típico dos recursos de agravo (instrumento, petição, interno), também sendo vislumbrado em algumas situações no recurso ordinário, como nas sentenças que extinguem o processo sem resolução do mérito, sentença de indeferimento da petição inicial e sentença de improcedência liminar.</li>
+
+<li>Substitutivo: previsto no art. 1.008 do CPC/2015, decorre do julgamento de mérito do recurso, que gera a substituição da decisão recorrida pela decisão proferida no recurso. Assim, o acórdão que julga o recurso ordinário substituiu a sentença, o acórdão proferido no recurso de revista substituiu o acórdão do TRT etc. Atenção apenas para a necessidade de que o mérito do recurso tenha sido julgado para que haja a substituição estudada (SCHIAVI, 2015).</li>
+</ul>
+
+<div class="box oab">
+<strong>Caixa OAB:</strong> a regra nos recursos trabalhistas é o efeito devolutivo. O efeito suspensivo depende de pedido específico.
+</div>
 </div>
 
 <div class="back">
-<a href="../index.html">← Voltar ao índice</a>
+<a href="../index.html">← Voltar ao índice da disciplina</a>
 </div>
 
 </div>
+</div>
+</body>
+</html><!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>15. Recursos Trabalhistas</title>
 
+<style>
+:root{
+  --bg:#eaf3ff;
+  --panel:#f8fbff;
+  --card:#ffffff;
+  --title:#1f4fd8;
+  --text:#0f172a;
+  --muted:#475569;
+  --border:rgba(15,23,42,.14);
+  --shadow:0 14px 34px rgba(15,23,42,.12);
+  --blueSoft:#e8f0ff;
+  --greenSoft:#ecfdf5;
+  --orangeSoft:#fff7ed;
+  --purpleSoft:#f5f3ff;
+}
+
+*{box-sizing:border-box;}
+
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background:radial-gradient(900px 420px at 30% 0%, #d8ecff 0%, var(--bg) 60%);
+  color:var(--text);
+  font-size:19px;
+  line-height:1.8;
+}
+
+.wrap{
+  max-width:980px;
+  margin:auto;
+  padding:18px 14px 40px;
+}
+
+.panel{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:24px;
+  box-shadow:var(--shadow);
+  padding:18px;
+}
+
+h1{
+  color:var(--title);
+  font-size:34px;
+  line-height:1.15;
+  margin:6px 0 14px;
+  text-align:center;
+}
+
+h2{
+  color:#0b2fb3;
+  font-size:24px;
+  margin:22px 0 12px;
+}
+
+p{
+  margin:0 0 14px;
+  text-align:justify;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  box-shadow:0 8px 20px rgba(15,23,42,.08);
+  padding:18px;
+  margin:14px 0;
+}
+
+.section-blue{border-left:7px solid #2563eb;}
+.section-green{border-left:7px solid #16a34a;}
+.section-orange{border-left:7px solid #f97316;}
+.section-purple{border-left:7px solid #7c3aed;}
+
+.box{
+  padding:14px;
+  border-radius:14px;
+  margin:14px 0;
+  border:1px solid var(--border);
+}
+
+.oab{background:var(--orangeSoft); border-left:6px solid #f97316;}
+.sumula{background:var(--greenSoft); border-left:6px solid #16a34a;}
+.artigo{background:var(--blueSoft); border-left:6px solid #2563eb;}
+.obs{background:var(--purpleSoft); border-left:6px solid #7c3aed;}
+
+.bullet{
+  margin:10px 0 14px;
+  padding-left:0;
+  list-style:none;
+}
+
+.bullet li{
+  margin:10px 0;
+  padding:12px 14px;
+  background:#fff;
+  border-radius:14px;
+  border:1px solid var(--border);
+  box-shadow:0 5px 12px rgba(15,23,42,.05);
+}
+
+.bullet li::before{
+  content:"■ ";
+  color:#1f4fd8;
+  font-weight:900;
+}
+
+.slides-area{
+  display:flex;
+  justify-content:center;
+  margin:10px 0 22px;
+}
+
+.slides-btn{
+  text-decoration:none;
+  color:var(--text);
+  background:#fff;
+  border:1px solid rgba(37,99,235,.22);
+  border-radius:22px;
+  box-shadow:var(--shadow);
+  padding:16px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  min-width:min(420px,100%);
+  font-weight:900;
+  transition:.18s;
+}
+
+.slides-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 20px 42px rgba(15,23,42,.16);
+}
+
+.icon{
+  width:54px;
+  height:54px;
+  border-radius:18px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,#dbeafe,#ffffff);
+  border:1px solid rgba(37,99,235,.24);
+}
+
+.icon svg{
+  width:30px;
+  height:30px;
+}
+
+.slides-text{
+  display:flex;
+  flex-direction:column;
+  line-height:1.15;
+}
+
+.slides-text strong{
+  font-size:20px;
+}
+
+.slides-text span{
+  font-size:14px;
+  color:var(--muted);
+}
+
+.back{
+  display:flex;
+  justify-content:center;
+  margin-top:20px;
+}
+
+.back a{
+  width:min(560px,100%);
+  text-align:center;
+  text-decoration:none;
+  background:#fff;
+  padding:16px 18px;
+  border-radius:16px;
+  border:1px solid var(--border);
+  box-shadow:0 8px 20px rgba(15,23,42,.08);
+  color:var(--text);
+  font-weight:900;
+}
+
+@media(max-width:520px){
+  body{font-size:17px;}
+  h1{font-size:28px;}
+  h2{font-size:21px;}
+  .slides-btn{padding:14px;}
+}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+<div class="panel">
+
+<h1>15. Recursos trabalhistas</h1>
+
+<div class="slides-area">
+  <a class="slides-btn" href="LINK_SLIDES_GOOGLE_DRIVE" target="_blank" rel="noopener">
+    <span class="icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none">
+        <rect x="3" y="4" width="18" height="12" rx="2" stroke="#1f4fd8" stroke-width="1.8"/>
+        <path d="M8 20h8M12 16v4" stroke="#1f4fd8" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M7 9h10M7 12h7" stroke="#1f4fd8" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    </span>
+    <span class="slides-text">
+      <strong>Slides</strong>
+      <span>Abrir no Google Drive</span>
+    </span>
+  </a>
+</div>
+
+<div class="card section-blue">
+<p>Estamos iniciando o estudo do tópico mais cobrado até hoje nos Exames da OAB, sendo o estudo dividido em teoria geral e recursos em espécie, devendo o examinando conhecer os pressupostos de admissibilidade e efeitos, em especial, bem como os recursos em espécie.</p>
+</div>
+
+<div class="card section-green">
+<h2>15.1. Peculiaridades dos recursos trabalhistas</h2>
+
+<p>Se compararmos os recursos trabalhistas e os recursos cíveis, vamos perceber algumas diferenças entre os dois sistemas, que aqui chamamos de peculiaridades dos recursos trabalhistas.</p>
+
+<p>Dentre as diferenças existentes e que são bastante destacadas na doutrina, podendo ser objeto de questionamento, temos:</p>
+
+<ul class="bullet">
+<li>Irrecorribilidade imediata das decisões interlocutórias: a regra está prevista no art. 893, § 1º, da CLT, restringindo a utilização de recursos quando a decisão objeto de questionamento é interlocutória, ou seja, proferida no curso do processo. Na hipótese, prevê o dispositivo celetista que a parte prejudicada com a decisão interlocutória deverá aguardar ser proferida a decisão final, para dela recorrer. A reforma trabalhista inseriu mais uma hipótese de decisão interlocutória irrecorrível, nos termos do art. 855-A da CLT, que trata do procedimento para desconsideração da personalidade jurídica, quando proferida no curso do processo de conhecimento. Contudo, existem algumas importantes exceções, previstas no art. 799, § 2º, da CLT e na Súmula 214 do TST, a saber:</li>
+
+<li>Decisão interlocutória que reconhece a incompetência absoluta da Justiça do Trabalho: a hipótese está prevista no art. 799, § 2º, da CLT, e prevê o cabimento do Recurso Ordinário em face de tal decisão, já que a mesma é terminativa em relação à Justiça do Trabalho, e determina a remessa do processo para outra justiça.</li>
+
+<li>Decisão do TRT contrária à súmula ou orientação jurisprudencial do TST: na hipótese, prevista na alínea “a” da Súmula 214 do TST, caberá o recurso de revista para o TST para que o mesmo modifique a decisão na medida em que se mostra presumidamente errada, pois contrária aos entendimentos do tribunal superior.</li>
+
+<li>Decisão passível de recursos para o próprio tribunal: a hipótese prevista na alínea “b” da Súmula 214 do TST afirma a possibilidade de interposição de recurso interno, ou seja, para o próprio tribunal, já que o princípio visa evitar que sejam interpostos recursos para órgãos de hierarquia superior, o que não ocorre no caso em análise.</li>
+
+<li>Decisão que reconhece a incompetência e determina a remessa dos autos para Vara do Trabalho vinculada a outro TRT: a situação, prevista na alínea “c” da Súmula 214 do TST, é a mais comum no dia a dia e nas provas, cabendo recurso quando o réu alega a incompetência territorial e tem a sua alegação reconhecida, com determinação de remessa dos autos para Vara do Trabalho vinculada a outro TRT. O recurso cabível é o ordinário, previsto no art. 895 da CLT.</li>
+
+<li>Inexigibilidade de fundamentação: a segunda particularidade dos recursos trabalhistas está prevista no art. 899 da CLT e na Súmula 422 do TST. A CLT prevê que os recursos trabalhistas serão interpostos por simples petição, sendo que a expressão sempre foi entendida como sinônimo de ausência de fundamentação. Não se exige, portanto, à luz da CLT, respeito à dialeticidade. Contudo, o princípio foi relativizado pela Súmula 422 do TST, que passou a exigir a fundamentação nos recursos interpostos perante o TST, não havendo necessidade de fundamentação para o recurso ordinário de competência do TRT. Contudo, não se confunde recursos sem fundamentação com recurso com “qualquer fundamentação”. A própria súmula deixa claro que eventual motivação externada pela parte não pode ser dissociada dos fundamentos da sentença.</li>
+</ul>
+
+<div class="box artigo">
+<p><strong>Art. 899.</strong> Os recursos serão interpostos por simples petição e terão efeito meramente devolutivo, salvo as exceções previstas neste Título, permitida a execução provisória até a penhora.</p>
+</div>
+
+<ul class="bullet">
+<li>Efeito meramente devolutivo: também prevista no art. 899 da CLT, a regra prevê que os recursos trabalhistas possuem apenas efeito devolutivo, o que significa dizer que não possuem efeito suspensivo, como geralmente ocorre no processo civil. A interposição do recurso não suspende os efeitos da sentença. Assim, se uma empresa é condenada ao pagamento de R$ 100.000,00 e interpõe o recurso ordinário (art. 895 da CLT), a sentença já poderá ser executada provisoriamente, pois, apesar de ter sido interposto recurso, ele não suspendeu os efeitos da decisão. A execução que pode ser iniciada é a provisória, que depende de requerimento do credor, não sendo automática. Afirmou-se que o recurso não possui efeito suspensivo automático, mas o mesmo pode ser concedido caso haja pedido do recorrente, que pode ser realizado no próprio recurso, ao tribunal, conforme nova redação da Súmula 414, I, do TST.</li>
+</ul>
+
+<div class="box oab">
+<strong>Caixa OAB:</strong> atenção para a regra do efeito meramente devolutivo e para as exceções da irrecorribilidade imediata das decisões interlocutórias.
+</div>
+</div>
+
+<div class="card section-orange">
+<h2>15.2. Juízo de admissibilidade e pressupostos recursais</h2>
+
+<p>Quando a parte sucumbente interpõe um recurso, duas análises são feitas pela Poder Judiciário, a saber: 1. São analisados os pressupostos (requisitos) para a utilização do recurso, no denominado juízo de admissibilidade recursal; 2. Caso presente todos os pressupostos, passará o Poder Judiciário a analisar se o pedido de modificação da decisão deve ser aceito ou não, no denominado juízo de mérito, que será estudado posteriormente.</p>
+
+<p>Mas quem realiza o juízo de admissibilidade? A análise acerca dos pressupostos recursais é realizada pelos juízos a quo e ad quem, que respectivamente são o juízo que profere a decisão e recebe o recurso, e o juízo hierarquicamente superior, que julgará o mérito do recurso. Assim, para exemplificar, digamos que a 3ª Vara do Trabalho de Vitória/ES tenha proferida sentença, devidamente impugnada por recurso ordinário. O referido recurso será interposto perante a 3ª Vara do Trabalho, que fará o primeiro juízo de admissibilidade na qualidade de juízo a quo. Se presentes todos os pressupostos, ou seja, sendo positivo o primeiro juízo, os autos serão remetidos para o juízo ad quem, que realizará novamente a análise dos pressupostos recursais. Continuando a entender pela presença de todos os pressupostos, julgará o juízo ad quem o mérito do recurso, decidindo pela manutenção ou modificação da sentença. Importante destacar a Súmula 435 do TST que dispõe acerca da possibilidade de o Relator proferir decisão monocrática nos tribunais, inclusive no juízo de admissibilidade.</p>
+
+<p>Mas quais são os pressupostos recursais? Vejamos:</p>
+
+<ul class="bullet">
+<li>Cabimento: consiste na análise sobre a recorribilidade do ato e adequação do recurso interposto, ou seja, se a decisão objeto do recurso é recorrível e se a parte interpôs o recurso adequado. Acaso proferida uma sentença, deverá a parte interpor o recurso ordinário (art. 895 da CLT), pois a sentença é um ato recorrível e o recurso ordinário está previsto para a hipótese.</li>
+
+<li>Legitimidade: dispõe o art. 996 do CPC/2015 que o recurso pode ser interposto pela parte vencida, pelo terceiro prejudicado e pelo Ministério Público, tendo atuado como parte ou fiscal da lei.</li>
+
+<li>Interesse recursal: está atrelado à sucumbência, ou seja, a uma situação desfavorável criada pela decisão a determinada parte. Se sou condenado ao pagamento de R$ 100.000,00, afirmo ter sido sucumbente, com interesse em recorrer. Se busco a condenação da empresa ao pagamento de R$ 100.000,00, mas a sentença condena ao pagamento de R$ 90.000,00, também sou sucumbente, pois a decisão foi desfavorável aos meus interesses por não ter reconhecido na integralidade o meu pedido.</li>
+
+<li>Tempestividade: no processo do trabalho o prazo recursal é marcado pela regra da uniformidade, prevista na Lei n. 5.584/70, sendo de 8 dias o prazo para interpor e contra-arrazoar, salvo nos embargos de declaração, que são opostos em 5 dias, conforme art. 897-A da CLT. Situações excepcionais podem ocorrer em relação à contagem do prazo recursal, que pode sofrer suspensão ou interrupção. Na primeira hipótese o prazo recursal volta a ser contado do ponto em que parou, enquanto na segunda o prazo recomeça a ser contado do início (é zerado).</li>
+
+<li>Regularidade formal: está atrelada ao preenchimento dos requisitos de forma do recursal, sendo destacada a OJ n. 120 da SDI-1 do TST, que trata da falta de assinatura como impeditivo para a admissibilidade do apelo. Caso as duas petições do recurso (interposição e razões) não estejam assinadas, o recurso será inadmitido. Caso uma delas apenas esteja assinada, não haverá qualquer vício. Conforme alteração realizada em setembro de 2016 na mencionada Orientação Jurisprudencial, deve o magistrado conceder prazo de 5 dias para a regulação do vício, antes de inadmitir o recurso.</li>
+
+<li>Preparo: para os Exames da OAB é o pressuposto de admissibilidade mais importante, com o maior número de súmulas do TST que devem ser conhecidas. Quando se fala em preparo, nos vem à mente a necessidade de pagamento de quantia, que pode consistir no pagamento de custas processuais e depósito recursal, a depender do recorrente. Caso o empregado esteja recorrente, realizará apenas o pagamento das custas processuais que foram fixadas na sentença. Sendo o empregador o recorrente, realizará o pagamento das custas e do depósito recursal, cujo valor é fixado pelo TST, havendo um limite por recurso que é fixado por aquele tribunal. A depender do recurso, o depósito pode ser de quase R$ 9.000,00 (recurso ordinário) ou R$ 18.000,00 (recurso de revista). A ausência de preparo gera a inadmissão por deserção, que é o nome técnico que certamente aparecerá no Exame da OAB. A reforma trabalhista trouxe importantes alterações no art. 899 da CLT, que trata do depósito recursal, reduzindo-o para a metade em algumas situações e isentando em outras, conforme será verificado a seguir:</li>
+
+<li>Depósito recursal pela metade: § 9º – entidades sem fins lucrativos, empregadores domésticos, microempreendedores individuais, microempresas e empresas de pequeno porte.</li>
+
+<li>Isenção do depósito recursal: § 10 – beneficiários da justiça gratuita, as entidades filantrópicas e as empresas em recuperação judicial.</li>
+</ul>
+
+<p>Além disso, o depósito recursal não mais será realizado na conta vinculada ao FGTS, devendo ser realizado em conta vinculada ao juízo, com a correção pelos índices da poupança, conforme § 4º do art. 899 da CLT, podendo ainda ser substituído por fiança bancária ou seguro garantia judicial, conforme § 11 do mesmo dispositivo legal.</p>
+
+<p>Sobre o depósito recursal, algumas súmulas e OJs devem ser destacadas:</p>
+
+<div class="box sumula">
+<p><strong>Súmula 161 do TST</strong></p>
+<p>Prevê que o depósito recursal somente será necessário quando o recurso tiver por objeto decisão que tenha condenado ao pagamento de quantia, ou seja, de condenação pecuniária.</p>
+</div>
+
+<div class="box sumula">
+<p><strong>Súmula 128 do TST</strong></p>
+<p>Trata dos limites do depósito recursal, que são dois: o valor da condenação e o valor máximo fixado pelo TST para o recurso. Não haverá necessidade da parte depositar quantia superior ao valor da condenação, assim como ninguém será levado a depositar quantia superior ao teto fixado pelo TST.</p>
+</div>
+
+<div class="box sumula">
+<p><strong>Súmula 245 do TST</strong></p>
+<p>Geralmente os recursos são interpostos no último dia, oportunidade em que também é comprovada a realização do depósito recursal. Mas, se houver a interposição antecipada do recurso, também deverá ser antecipada a comprovação do depósito? Não. A súmula afirma que a parte continua tendo até o último dia para comprovar a realização do preparo, não havendo necessidade de antecipação do mesmo.</p>
+</div>
+
+<div class="box sumula">
+<p><strong>Súmula 426 do TST</strong></p>
+<p>O depósito recursal deve ser realizado por meio da Guia GFIP, que é a guia de FGTS e informações à previdência. Somente não será utilizada a referida guia se a relação jurídica em discussão não for submetida ao regime do FGTS, hipótese em que o depósito será feito por guia bancária comum.</p>
+</div>
+
+<div class="box sumula">
+<p><strong>OJ n. 140 da SDI-1 do TST</strong></p>
+<p>A nova redação da OJ, de abril de 2017, prevê a necessidade de intimação do recorrente para complementação das custas processuais e depósito recursal, caso tenha realizado o pagamento a menor. Assim, deverá o recorrente ser intimado para complementar aqueles no prazo de cinco dias, sob pena de deserção. Cuidado apenas com um detalhe: se não houver preparo, o recurso será imediatamente considerado deserto, já que a concessão de prazo é apenas para complementação, ou seja, quando é feito a menor.</p>
+</div>
+
+<ul class="bullet">
+<li>Regularidade de representação: prevista na Súmula 383 do TST, alterada em 2016, diz que o recurso deve ser interposto por Advogado com procuração nos autos, caso a parte não se tenha valido do jus postulandi. Assim, se a parte optou por contratar Advogado, a procuração deverá estar nos autos, salvo na hipótese de mandato tácito, hipótese em que o Advogado não terá uma procuração “formal”, mas terá a sua representação comprovada pela ata de audiência, na qual constará o nome e número da OAB do Advogado. Excepcionalmente admite-se a interposição de recurso sem procuração, para evitar prescrição, decadência ou preclusão (art. 104 do CPC/2015), devendo o instrumento ser juntado em 5 dias, prorrogável por mais 5 dias. Não sendo cumprida a norma, o recurso será inadmitido ou as contrarrazões serão desentranhadas (retiradas) do processo. Por ser considerada uma alteração importante, transcreve-se a súmula em estudo:</li>
+</ul>
+
+<div class="box sumula">
+<p>I – É inadmissível recurso firmado por advogado sem procuração juntada aos autos até o momento da sua interposição, salvo mandato tácito. Em caráter excepcional (art. 104 do CPC de 2015), admite-se que o advogado, independentemente de intimação, exiba a procuração no prazo de 5 (cinco) dias após a interposição do recurso, prorrogável por igual período mediante despacho do juiz. Caso não a exiba, considera-se ineficaz o ato praticado e não se conhece do recurso.</p>
+
+<p>II – Verificada a irregularidade de representação da parte em fase recursal, em procuração ou substabelecimento já constante dos autos, o relator ou o órgão competente para julgamento do recurso designará prazo de 5 (cinco) dias para que seja sanado o vício. Descumprida a determinação, o relator não conhecerá do recurso, se a providência couber ao recorrente, ou determinará o desentranhamento das contrarrazões, se a providência couber ao recorrido (art. 76, § 2º, do CPC de 2015).</p>
+</div>
+
+<p>Em relação à regularidade de representação, o mandato tácito continua sendo aplicado ao processo do trabalho, tratado atualmente na Súmula 383 do TST. O Advogado portador daquela espécie de mandato pode atuar regularmente, não havendo necessidade de juntada de procuração “em papel”.</p>
+
+<div class="box oab">
+<strong>Caixa OAB:</strong> preparo, deserção, depósito recursal e regularidade de representação são pontos recorrentes em prova.
+</div>
+</div>
+
+<div class="card section-purple">
+<h2>15.3. Juízo de mérito</h2>
+
+<p>Como já dito anteriormente, o juízo de mérito será alcançado após o juízo positivo de admissibilidade, em que é constatada a presença de todos os pressupostos de admissibilidade pelos juízos a quo e ad quem (GARCIA, 2012).</p>
+
+<p>No juízo de mérito o órgão ad quem irá analisar um dos pedidos que podem ser formulados pelo recorrente, a saber: reforma e anulação. O primeiro está relacionado ao error in judicando, que é o mais comum no dia a dia, que consiste no erro de julgamento, hipótese em que o Magistrado se equivoca ao julgar, ao analisar as provas etc. No segundo pedido – anulação – o Tribunal analisará se houve ou não o error in procedendo, que é o erro de procedimento, a violação a normas que tratam da realização dos atos processuais.</p>
+
+<p>Reconhecendo o erro de julgamento, o Tribunal dará provimento ao recurso e proferirá uma nova decisão de mérito, que substituirá a anterior, nos termos do art. 1.008 do CPC/2015. Caso reconheça o erro de procedimento, o Tribunal dará provimento para anular a decisão, determinando a remessa dos autos ao juízo a quo para que os atos processuais sejam novamente realizados.</p>
+</div>
+
+<div class="card section-blue">
+<h2>15.4. Efeitos</h2>
+
+<p>Os denominados “efeitos” dos recursos são as consequências de sua utilização. O que ocorre com o processo ao ser interposto um recurso? Produzirá a decisão os seus efeitos normalmente? Poderá o Magistrado retratar-se da decisão? O julgamento do recurso substituirá a decisão recorrida? Todas as perguntas são respondidas quando analisados os efeitos ou consequências da interposição dos recursos. Passamos à análise dos principais efeitos para o Exame da OAB:</p>
+
+<ul class="bullet">
+<li>Devolutivo: o recurso devolve a apreciação da matéria ao Poder Judiciário, na medida em que o recorrente entende que a decisão não está correta e deve ser modificada. A devolução pode ser parcial ou total, a depender da vontade da parte, pois o efeito devolutivo pode incidir sobre um ou mais capítulos da decisão.</li>
+
+<li>Suspensivo: a interposição de um recurso trabalhista não suspende os efeitos da decisão, que já pode ser objeto de execução mesmo antes do trânsito em julgado, tratando-se da execução provisória. A regra a ser lembrada é: os recursos trabalhistas não possuem efeito suspensivo, já que o art. 899 da CLT prevê o efeito “apenas devolutivo”. Excepcionalmente pode-se conseguir o efeito suspensivo através de pedido formulado pelo recorrente. Assim, a parte interpõe o recurso e requer a atribuição do efeito suspensivo àquele.</li>
+
+<li>Translativo: o efeito está atrelado à possibilidade de reconhecimento, pelo Tribunal, das normas de ordem pública, sem necessidade de alegação ou requerimento das partes. Assim, ao ser interposto um recurso, abre-se ao Tribunal a possibilidade de ser reconhecida uma norma de ordem pública, como a existência de litispendência, coisa julgada, perempção, ausência de condições da ação, dentre outros vícios que podem ser reconhecidos de oficio, em qualquer momento e grau de jurisdição.</li>
+
+<li>Regressivo: o efeito regressivo está relacionado à possibilidade do Magistrado prolator da decisão impugnada de retratar-se, de exercer o denominado juízo de retratação ao receber o recurso. O efeito é típico dos recursos de agravo (instrumento, petição, interno), também sendo vislumbrado em algumas situações no recurso ordinário, como nas sentenças que extinguem o processo sem resolução do mérito, sentença de indeferimento da petição inicial e sentença de improcedência liminar.</li>
+
+<li>Substitutivo: previsto no art. 1.008 do CPC/2015, decorre do julgamento de mérito do recurso, que gera a substituição da decisão recorrida pela decisão proferida no recurso. Assim, o acórdão que julga o recurso ordinário substituiu a sentença, o acórdão proferido no recurso de revista substituiu o acórdão do TRT etc. Atenção apenas para a necessidade de que o mérito do recurso tenha sido julgado para que haja a substituição estudada (SCHIAVI, 2015).</li>
+</ul>
+
+<div class="box oab">
+<strong>Caixa OAB:</strong> a regra nos recursos trabalhistas é o efeito devolutivo. O efeito suspensivo depende de pedido específico.
+</div>
+</div>
+
+<div class="back">
+<a href="../index.html">← Voltar ao índice da disciplina</a>
+</div>
+
+</div>
+</div>
 </body>
 </html>
