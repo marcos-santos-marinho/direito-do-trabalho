@@ -1,1 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>15.5.2. Recurso ordinário</title>
 
+<style>
+:root{
+  --bg:#eaf3ff;
+  --panel:#f8fbff;
+  --card:#ffffff;
+  --title:#1f4fd8;
+  --text:#0f172a;
+  --muted:#475569;
+  --border:rgba(15,23,42,.14);
+  --shadow:0 14px 34px rgba(15,23,42,.12);
+  --blueSoft:#e8f0ff;
+  --greenSoft:#ecfdf5;
+  --orangeSoft:#fff7ed;
+  --purpleSoft:#f5f3ff;
+  --redSoft:#fef2f2;
+}
+
+*{box-sizing:border-box;}
+
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background:radial-gradient(900px 420px at 30% 0%, #d8ecff 0%, var(--bg) 60%);
+  color:var(--text);
+  font-size:19px;
+  line-height:1.8;
+}
+
+.wrap{
+  max-width:980px;
+  margin:auto;
+  padding:18px 14px 40px;
+}
+
+.panel{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:24px;
+  box-shadow:var(--shadow);
+  padding:18px;
+}
+
+h1{
+  color:var(--title);
+  font-size:34px;
+  line-height:1.15;
+  margin:6px 0 14px;
+  text-align:center;
+}
+
+h2{
+  color:#0b2fb3;
+  font-size:24px;
+  margin:22px 0 12px;
+}
+
+p{
+  margin:0 0 14px;
+  text-align:justify;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  box-shadow:0 8px 20px rgba(15,23,42,.08);
+  padding:18px;
+  margin:14px 0;
+}
+
+.section-blue{border-left:7px solid #2563eb;}
+.section-green{border-left:7px solid #16a34a;}
+.section-orange{border-left:7px solid #f97316;}
+.section-purple{border-left:7px solid #7c3aed;}
+.section-red{border-left:7px solid #dc2626;}
+
+.box{
+  padding:14px;
+  border-radius:14px;
+  margin:14px 0;
+  border:1px solid var(--border);
+}
+
+.oab{background:var(--orangeSoft); border-left:6px solid #f97316;}
+.sumula{background:var(--greenSoft); border-left:6px solid #16a34a;}
+.artigo{background:var(--blueSoft); border-left:6px solid #2563eb;}
+.obs{background:var(--purpleSoft); border-left:6px solid #7c3aed;}
+.alerta{background:var(--redSoft); border-left:6px solid #dc2626;}
+
+.bullet{
+  margin:10px 0 14px;
+  padding-left:0;
+  list-style:none;
+}
+
+.bullet li{
+  margin:10px 0;
+  padding:12px 14px;
+  background:#fff;
+  border-radius:14px;
+  border:1px solid var(--border);
+  box-shadow:0 5px 12px rgba(15,23,42,.05);
+}
+
+.bullet li::before{
+  content:"■ ";
+  color:#1f4fd8;
+  font-weight:900;
+}
+
+.slides-area{
+  display:flex;
+  justify-content:center;
+  margin:10px 0 22px;
+}
+
+.slides-btn{
+  text-decoration:none;
+  color:var(--text);
+  background:#fff;
+  border:1px solid rgba(37,99,235,.22);
+  border-radius:22px;
+  box-shadow:var(--shadow);
+  padding:16px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  min-width:min(420px,100%);
+  font-weight:900;
+  transition:.18s;
+}
+
+.slides-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 20px 42px rgba(15,23,42,.16);
+}
+
+.icon{
+  width:54px;
+  height:54px;
+  border-radius:18px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,#dbeafe,#ffffff);
+  border:1px solid rgba(37,99,235,.24);
+}
+
+.icon svg{
+  width:30px;
+  height:30px;
+}
+
+.slides-text{
+  display:flex;
+  flex-direction:column;
+  line-height:1.15;
+}
+
+.slides-text strong{
+  font-size:20px;
+}
+
+.slides-text span{
+  font-size:14px;
+  color:var(--muted);
+}
+
+.back{
+  display:flex;
+  justify-content:center;
+  margin-top:20px;
+}
+
+.back a{
+  width:min(560px,100%);
+  text-align:center;
+  text-decoration:none;
+  background:#fff;
+  padding:16px 18px;
+  border-radius:16px;
+  border:1px solid var(--border);
+  box-shadow:0 8px 20px rgba(15,23,42,.08);
+  color:var(--text);
+  font-weight:900;
+}
+
+@media(max-width:520px){
+  body{font-size:17px;}
+  h1{font-size:28px;}
+  h2{font-size:21px;}
+  .slides-btn{padding:14px;}
+}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+<div class="panel">
+
+<h1>15.5.2. Recurso ordinário</h1>
+
+<div class="slides-area">
+  <a class="slides-btn" href="LINK_SLIDES_GOOGLE_DRIVE" target="_blank" rel="noopener">
+    <span class="icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none">
+        <rect x="3" y="4" width="18" height="12" rx="2" stroke="#1f4fd8" stroke-width="1.8"/>
+        <path d="M8 20h8M12 16v4" stroke="#1f4fd8" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M7 9h10M7 12h7" stroke="#1f4fd8" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    </span>
+    <span class="slides-text">
+      <strong>Slides</strong>
+      <span>Abrir no Google Drive</span>
+    </span>
+  </a>
+</div>
+
+<div class="card section-blue">
+<h2>15.5.2. Recurso ordinário</h2>
+
+<p>O recurso ordinário, previsto no art. 895 da CLT, apesar de ser o recurso mais utilizado no dia a dia da Justiça do Trabalho, não é o mais importante para os Exames da OAB, sendo dificilmente cobrado nas provas. Talvez o ponto mais importante e que deve ser lembrado pelos examinandos, seja o cabimento, já que há uma tendência de se lembrar apenas da principal hipótese de cabimento, esquecendo-se das demais. Vejamos em que situações o RO pode ser utilizado:</p>
+
+<div class="box oab">
+<strong>Caixa OAB:</strong> o ponto mais importante do recurso ordinário é o cabimento, especialmente porque ele não se limita apenas às sentenças.
+</div>
+
+<ul class="bullet">
+<li>Sentença – art. 895, I, da CLT: trata-se da hipótese mais comum de cabimento do recurso ordinário e por muitos o único lembrado, aqui residindo o risco. Não se pode dizer que o RO só cabe de sentença, assim como está errado afirmar que o RO é sempre julgado pelo TRT, já que existem outras hipóteses de cabimento que fogem às situações geralmente utilizadas no dia a dia. A sentença é uma das decisões passíveis de impugnação por recurso ordinário, independentemente de seu conteúdo, ou seja, se é uma sentença definitiva (que extinguiu o processo com resolução do mérito) ou terminativa (que extinguiu o processo sem resolução do mérito).</li>
+
+<li>Acórdão – art. 895, II, da CLT: a hipótese é bem específica, pois o RO cabe de acórdãos proferidos em ações de competência originária dos TRTs, ou seja, processos que têm o início já naquele tribunal, como, por exemplo, os mandados de segurança, dissídios coletivos, ações rescisórias e ação cautelares, que já são ajuizadas perante o TRT por conterem regras específicas de competência. Assim, as ações referidas serão decididas por acórdão, cabendo o RO que será dirigido e julgado pelo TST.</li>
+
+<li>Decisões interlocutórias – art. 799, § 2º, da CLT e Súmula 214, c, do TST: as situações são aquelas excepcionais em que cabe recurso de imediato contra decisões interlocutórias, sendo o recurso cabível o ordinário. Assim, se o Juiz do Trabalho reconhecer a incompetência absoluta da Justiça do Trabalho e determinar a remessa dos autos para outra justiça, caberá RO da decisão interlocutória, visando a que o processo permaneça na Justiça do trabalho. Caso o Juiz do Trabalho, após provocado pela parte, reconheça a incompetência territorial e determine a remessa dos autos para outra Vara do Trabalho vinculada a outro TRT, caberá o RO em face da decisão para que o processo permaneça na mesma Vara do Trabalho.</li>
+</ul>
+
+<div class="box artigo">
+<strong>Artigos-chave:</strong> art. 895, I, da CLT; art. 895, II, da CLT; art. 799, § 2º, da CLT; Súmula 214, c, do TST.
+</div>
+</div>
+
+<div class="card section-green">
+<h2>Prazo, admissibilidade e julgamento</h2>
+
+<p>O recurso será interposto no prazo de 8 dias, seguindo-se a regra da uniformidade dos prazos recursais, sendo interposto perante o juízo a quo, ou seja, aquele que proferiu a decisão e que, ao receber o recurso, realizará o primeiro juízo de admissibilidade, analisando a presença ou ausência dos pressupostos recursais (tempestividade, legitimidade, preparo etc.). Presentes os referidos pressupostos, isto é, sendo positivo o juízo, o Magistrado intima a parte contrária para apresentação de contrarrazões no prazo de 8 dias, que não são obrigatórias, mas surgem como uma ótima oportunidade para demonstrar que a decisão impugnada está correta e deve ser mantida. Após o prazo das contrarrazões, com ou sem a sua apresentação, os autos serão remetidos para o juízo ad quem, que realizará o segundo juízo de admissibilidade e, se também positivo, julgará o recurso pelo colegiado ou monocraticamente (SARAIVA; MANFREDINI, 2016). Qual é a diferença entre os julgamentos?</p>
+
+<div class="box obs">
+<strong>Prazo:</strong> recurso ordinário em 8 dias; contrarrazões em 8 dias.
+</div>
+
+<ul class="bullet">
+<li>Decisão colegiada: é a regra geral dos julgamentos dos tribunais, havendo a reunião de Magistrados para, em conjunto, analisarem a situação, proferindo um acórdão, que nos termos do art. 204 do CPC/2015 é o pronunciamento colegiado dos Tribunais.</li>
+
+<li>Decisão monocrática: excepcionalmente admite-se que o julgamento seja feito por um único Magistrado nos tribunais, que é denominado Relator, que assume a função de decidir o mérito, além da tradicional função de realizar o juízo de admissibilidade. O art. 932 do CPC/2015 atribuiu ao Relator tal função, sendo admitida tal espécie de julgamento na Súmula 435 do TST.</li>
+</ul>
+
+<div class="box sumula">
+<strong>Box elegante — Súmula 435 do TST:</strong> o texto destaca a possibilidade de julgamento monocrático pelo Relator, inclusive em relação ao juízo de admissibilidade.
+</div>
+
+<div class="box oab">
+<strong>Caixa OAB:</strong> cuidado com duas pegadinhas: afirmar que o recurso ordinário só cabe contra sentença e afirmar que ele sempre é julgado pelo TRT.
+</div>
+</div>
+
+<div class="back">
+<a href="../index.html">← Voltar ao índice da disciplina</a>
+</div>
+
+</div>
+</div>
+</body>
+</html>
