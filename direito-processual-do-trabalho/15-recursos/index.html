@@ -1,97 +1,130 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>15. Recursos Trabalhistas</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>15. Recursos Trabalhistas</title>
 
-  <style>
-    body{
-      margin:0;
-      font-family: Arial, Helvetica, sans-serif;
-      background:#eef4ff;
-      color:#0f172a;
-      font-size:18px;
-      line-height:1.7;
-    }
+<style>
+:root{
+  --bg:#eaf3ff;
+  --card:#ffffff;
+  --title:#1f4fd8;
+  --text:#0f172a;
+  --line:#dbeafe;
+  --shadow:0 12px 30px rgba(0,0,0,.12);
+  --oab:#fff7ed;
+  --oab-border:#f97316;
+  --sumula:#f0fdf4;
+  --sumula-border:#22c55e;
+}
 
-    .wrap{
-      max-width:900px;
-      margin:auto;
-      padding:16px;
-    }
+body{
+  margin:0;
+  font-family: system-ui;
+  background:var(--bg);
+  color:var(--text);
+  font-size:19px;
+  line-height:1.8;
+}
 
-    h1{
-      color:#1f4fd8;
-      font-size:28px;
-      margin-bottom:10px;
-    }
+.wrap{
+  max-width:1000px;
+  margin:auto;
+  padding:18px;
+}
 
-    .slides{
-      display:flex;
-      justify-content:flex-end;
-      margin-bottom:15px;
-    }
+/* BOTÃO SLIDES */
+.top{
+  display:flex;
+  justify-content:flex-end;
+  margin-bottom:12px;
+}
 
-    .slides a{
-      text-decoration:none;
-      background:#fff;
-      padding:10px 14px;
-      border-radius:10px;
-      border:1px solid #ccc;
-      font-weight:bold;
-      box-shadow:0 4px 10px rgba(0,0,0,.1);
-    }
+.btn{
+  background:#fff;
+  padding:12px 16px;
+  border-radius:12px;
+  text-decoration:none;
+  font-weight:900;
+  border:1px solid #ccc;
+  box-shadow:var(--shadow);
+}
 
-    .card{
-      background:#fff;
-      padding:16px;
-      border-radius:12px;
-      box-shadow:0 6px 16px rgba(0,0,0,.1);
-      margin-bottom:14px;
-    }
+/* TÍTULO */
+h1{
+  color:var(--title);
+  font-size:30px;
+  margin-bottom:12px;
+}
 
-    h2{
-      color:#0b2fb3;
-      margin-top:10px;
-      font-size:20px;
-    }
+/* CARDS */
+.card{
+  background:var(--card);
+  padding:18px;
+  border-radius:16px;
+  box-shadow:var(--shadow);
+  margin-bottom:16px;
+}
 
-    ul{
-      margin-left:20px;
-    }
+h2{
+  color:#0b2fb3;
+  margin-top:10px;
+}
 
-    li{
-      margin-bottom:8px;
-    }
+/* LISTAS */
+ul{
+  margin-left:22px;
+}
+li{ margin-bottom:10px; }
 
-    .back{
-      text-align:center;
-      margin-top:20px;
-    }
+/* CAIXA OAB */
+.oab{
+  background:var(--oab);
+  border-left:6px solid var(--oab-border);
+  padding:14px;
+  border-radius:10px;
+  margin:14px 0;
+}
 
-    .back a{
-      display:inline-block;
-      padding:12px 16px;
-      background:#fff;
-      border-radius:12px;
-      text-decoration:none;
-      font-weight:bold;
-      box-shadow:0 4px 12px rgba(0,0,0,.1);
-    }
-  </style>
+/* CAIXA SÚMULA */
+.sumula{
+  background:var(--sumula);
+  border-left:6px solid var(--sumula-border);
+  padding:14px;
+  border-radius:10px;
+  margin:14px 0;
+}
+
+/* VOLTAR */
+.back{
+  text-align:center;
+  margin-top:20px;
+}
+
+.back a{
+  display:inline-block;
+  padding:14px;
+  border-radius:12px;
+  background:#fff;
+  text-decoration:none;
+  font-weight:900;
+  box-shadow:var(--shadow);
+}
+</style>
 </head>
 
 <body>
-  <div class="wrap">
 
-    <div class="slides">
-      <a href="LINK_SLIDES_GOOGLE_DRIVE" target="_blank">📊 Slides</a>
-    </div>
+<div class="wrap">
 
-    <h1>15. Recursos trabalhistas</h1>
+<div class="top">
+<a class="btn" href="LINK_SLIDES_GOOGLE_DRIVE" target="_blank">📊 Slides</a>
+</div>
 
-    <div class="card">
+<h1>15. Recursos trabalhistas</h1>
+
+<div class="card">
 
 <p>Estamos iniciando o estudo do tópico mais cobrado até hoje nos Exames da OAB, sendo o estudo dividido em teoria geral e recursos em espécie, devendo o examinando conhecer os pressupostos de admissibilidade e efeitos, em especial, bem como os recursos em espécie.</p>
 
@@ -102,25 +135,27 @@
 <p>Dentre as diferenças existentes e que são bastante destacadas na doutrina, podendo ser objeto de questionamento, temos:</p>
 
 <ul>
-<li><b>Irrecorribilidade imediata das decisões interlocutórias:</b> prevista no art. 893, §1º da CLT...</li>
-
-<li><b>Exceções:</b>
-<ul>
-<li>Decisão que reconhece incompetência absoluta → cabe recurso ordinário</li>
-<li>Decisão contrária à súmula do TST → cabe recurso de revista</li>
-<li>Decisão com recurso interno → possível no próprio tribunal</li>
-<li>Remessa para outro TRT → cabe recurso ordinário</li>
+<li>Irrecorribilidade imediata das decisões interlocutórias...</li>
+<li>Decisão interlocutória que reconhece a incompetência absoluta...</li>
+<li>Decisão do TRT contrária à súmula...</li>
+<li>Decisão passível de recursos para o próprio tribunal...</li>
+<li>Decisão que reconhece a incompetência e remete autos...</li>
+<li>Inexigibilidade de fundamentação...</li>
+<li>Efeito meramente devolutivo...</li>
 </ul>
-</li>
 
-<li><b>Inexigibilidade de fundamentação:</b> prevista no art. 899 da CLT...</li>
+<div class="oab">
+💡 <b>OAB:</b> Regra importante — recurso trabalhista NÃO tem efeito suspensivo automático.
+</div>
 
-<li><b>Efeito meramente devolutivo:</b> o recurso não suspende a execução...</li>
-</ul>
+<div class="sumula">
+<b>Art. 899 da CLT</b><br><br>
+Os recursos serão interpostos por simples petição e terão efeito meramente devolutivo.
+</div>
 
 <h2>15.2. Juízo de admissibilidade e pressupostos recursais</h2>
 
-<p>Quando a parte interpõe recurso, há duas análises: admissibilidade e mérito.</p>
+<p>Quando a parte sucumbente interpõe um recurso, duas análises são feitas pelo Poder Judiciário...</p>
 
 <ul>
 <li><b>Cabimento</b></li>
@@ -129,21 +164,39 @@
 <li><b>Tempestividade</b></li>
 <li><b>Regularidade formal</b></li>
 <li><b>Preparo</b></li>
-<li><b>Representação</b></li>
+<li><b>Regularidade de representação</b></li>
 </ul>
 
-<p>O preparo é o mais importante para a OAB.</p>
+<div class="oab">
+🔥 <b>Mais cobrado na OAB:</b> PREPARO (custas + depósito recursal)
+</div>
+
+<div class="sumula">
+<b>Súmula 161 do TST:</b> depósito recursal apenas quando há condenação em dinheiro.
+</div>
+
+<div class="sumula">
+<b>Súmula 128 do TST:</b> limite = valor da condenação OU teto do TST.
+</div>
+
+<div class="sumula">
+<b>Súmula 245 do TST:</b> depósito pode ser comprovado até o último dia do prazo.
+</div>
+
+<div class="sumula">
+<b>OJ 140 SDI-1:</b> possibilidade de complementar preparo em 5 dias.
+</div>
 
 <h2>15.3. Juízo de mérito</h2>
 
-<p>Após admissibilidade, o tribunal analisa:</p>
+<p>No juízo de mérito o órgão ad quem irá analisar reforma ou anulação da decisão.</p>
 
 <ul>
 <li>Erro de julgamento → reforma</li>
 <li>Erro de procedimento → anulação</li>
 </ul>
 
-<h2>15.4. Efeitos dos recursos</h2>
+<h2>15.4. Efeitos</h2>
 
 <ul>
 <li><b>Devolutivo</b></li>
@@ -153,12 +206,19 @@
 <li><b>Substitutivo</b></li>
 </ul>
 
-    </div>
+<div class="oab">
+📌 <b>Resumo OAB:</b>  
+Regra → efeito devolutivo  
+Exceção → pode pedir efeito suspensivo
+</div>
 
-    <div class="back">
-      <a href="../index.html">← Voltar ao índice</a>
-    </div>
+</div>
 
-  </div>
+<div class="back">
+<a href="../index.html">← Voltar ao índice</a>
+</div>
+
+</div>
+
 </body>
 </html>
