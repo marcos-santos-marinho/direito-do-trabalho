@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>16. Recurso ordinário</title>
+<title>15.5.2. Recurso ordinário</title>
 
 <style>
 :root{
@@ -22,7 +22,9 @@
   --redSoft:#fef2f2;
 }
 
-*{box-sizing:border-box;}
+*{
+  box-sizing:border-box;
+}
 
 body{
   margin:0;
@@ -75,11 +77,25 @@ p{
   margin:14px 0;
 }
 
-.section-blue{border-left:7px solid #2563eb;}
-.section-green{border-left:7px solid #16a34a;}
-.section-orange{border-left:7px solid #f97316;}
-.section-purple{border-left:7px solid #7c3aed;}
-.section-red{border-left:7px solid #dc2626;}
+.section-blue{
+  border-left:7px solid #2563eb;
+}
+
+.section-green{
+  border-left:7px solid #16a34a;
+}
+
+.section-orange{
+  border-left:7px solid #f97316;
+}
+
+.section-purple{
+  border-left:7px solid #7c3aed;
+}
+
+.section-red{
+  border-left:7px solid #dc2626;
+}
 
 .box{
   padding:14px;
@@ -192,6 +208,22 @@ p{
   color:var(--muted);
 }
 
+/* IMAGEM FINAL ALINHADA AO TEXTO */
+.imagem-final{
+  display:flex;
+  justify-content:center;
+  margin:24px auto 18px;
+}
+
+.imagem-final img{
+  width:100%;
+  max-width:860px;
+  height:auto;
+  display:block;
+  border-radius:18px;
+  box-shadow:0 8px 20px rgba(15,23,42,.10);
+}
+
 .back{
   display:flex;
   justify-content:center;
@@ -212,10 +244,26 @@ p{
 }
 
 @media(max-width:520px){
-  body{font-size:17px;}
-  h1{font-size:28px;}
-  h2{font-size:21px;}
-  .slides-btn{padding:14px;}
+  body{
+    font-size:17px;
+  }
+
+  h1{
+    font-size:28px;
+  }
+
+  h2{
+    font-size:21px;
+  }
+
+  .slides-btn{
+    padding:14px;
+  }
+
+  .imagem-final img{
+    max-width:100%;
+    border-radius:14px;
+  }
 }
 </style>
 </head>
@@ -224,7 +272,7 @@ p{
 <div class="wrap">
 <div class="panel">
 
-<h1>16. Recurso ordinário</h1>
+<h1>15.5.2. Recurso ordinário</h1>
 
 <div class="slides-area">
   <a class="slides-btn" href="LINK_SLIDES_GOOGLE_DRIVE" target="_blank" rel="noopener">
@@ -243,7 +291,7 @@ p{
 </div>
 
 <div class="card section-blue">
-<h2>16. Recurso Ordinário</h2>
+<h2>15.5.2. Recurso ordinário</h2>
 
 <p>O recurso ordinário, previsto no art. 895 da CLT, apesar de ser o recurso mais utilizado no dia a dia da Justiça do Trabalho, não é o mais importante para os Exames da OAB, sendo dificilmente cobrado nas provas. Talvez o ponto mais importante e que deve ser lembrado pelos examinandos, seja o cabimento, já que há uma tendência de se lembrar apenas da principal hipótese de cabimento, esquecendo-se das demais. Vejamos em que situações o RO pode ser utilizado:</p>
 
@@ -287,11 +335,17 @@ p{
 <strong>Caixa OAB:</strong> cuidado com duas afirmações incorretas: dizer que o recurso ordinário só cabe de sentença e dizer que o recurso ordinário é sempre julgado pelo TRT.
 </div>
 </div>
- <!-- IMAGEM NO FINAL DA PÁGINA, ANTES DO BOTÃO DE RETORNO -->
+
+<!-- IMAGEM FINAL ALINHADA AO TEXTO -->
 <div class="imagem-final">
-  <img src="recurso-ordinario.png" alt="Imagem final da página">
+  <img src="recurso-ordinario.png" alt="Mapa mental sobre recurso ordinário">
 </div>
 
 <div class="back">
 <a href="../index.html">← Voltar ao índice da disciplina</a>
 </div>
+
+</div>
+</div>
+</body>
+</html>
