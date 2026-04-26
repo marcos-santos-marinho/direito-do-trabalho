@@ -1,1 +1,426 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>16. Extinção do Contrato de Trabalho</title>
 
+<style>
+:root{
+  --bg:#eaf3ff;
+  --panel:#f8fbff;
+  --card:#ffffff;
+  --title:#1f4fd8;
+  --text:#0f172a;
+  --muted:#475569;
+  --border:rgba(15,23,42,.14);
+  --shadow:0 14px 34px rgba(15,23,42,.12);
+  --blueSoft:#e8f0ff;
+  --greenSoft:#ecfdf5;
+  --orangeSoft:#fff7ed;
+  --purpleSoft:#f5f3ff;
+  --redSoft:#fef2f2;
+}
+
+*{ box-sizing:border-box; }
+
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background:radial-gradient(900px 420px at 30% 0%, #d8ecff 0%, var(--bg) 60%);
+  color:var(--text);
+  font-size:19px;
+  line-height:1.8;
+}
+
+.wrap{
+  max-width:980px;
+  margin:auto;
+  padding:18px 14px 40px;
+}
+
+.panel{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:24px;
+  box-shadow:var(--shadow);
+  padding:18px;
+}
+
+h1{
+  color:var(--title);
+  font-size:34px;
+  line-height:1.15;
+  margin:6px 0 14px;
+  text-align:center;
+}
+
+h2{
+  color:#0b2fb3;
+  font-size:24px;
+  margin:22px 0 12px;
+}
+
+p{
+  margin:0 0 14px;
+  text-align:justify;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  box-shadow:0 8px 20px rgba(15,23,42,.08);
+  padding:18px;
+  margin:14px 0;
+}
+
+.section-blue{ border-left:7px solid #2563eb; }
+.section-green{ border-left:7px solid #16a34a; }
+.section-orange{ border-left:7px solid #f97316; }
+.section-purple{ border-left:7px solid #7c3aed; }
+.section-red{ border-left:7px solid #dc2626; }
+
+.box{
+  padding:14px;
+  border-radius:14px;
+  margin:14px 0;
+  border:1px solid var(--border);
+}
+
+.oab{ background:var(--orangeSoft); border-left:6px solid #f97316; }
+.sumula{ background:var(--greenSoft); border-left:6px solid #16a34a; }
+.artigo{ background:var(--blueSoft); border-left:6px solid #2563eb; }
+.obs{ background:var(--purpleSoft); border-left:6px solid #7c3aed; }
+.alerta{ background:var(--redSoft); border-left:6px solid #dc2626; }
+
+.bullet{
+  margin:10px 0 14px;
+  padding-left:0;
+  list-style:none;
+}
+
+.bullet li{
+  margin:10px 0;
+  padding:12px 14px;
+  background:#fff;
+  border-radius:14px;
+  border:1px solid var(--border);
+  box-shadow:0 5px 12px rgba(15,23,42,.05);
+}
+
+.bullet li::before{
+  content:"■ ";
+  color:#1f4fd8;
+  font-weight:900;
+}
+
+.slides-area{
+  display:flex;
+  justify-content:center;
+  margin:10px 0 22px;
+}
+
+.slides-btn{
+  text-decoration:none;
+  color:var(--text);
+  background:#fff;
+  border:1px solid rgba(37,99,235,.22);
+  border-radius:22px;
+  box-shadow:var(--shadow);
+  padding:16px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  min-width:min(420px,100%);
+  font-weight:900;
+  transition:.18s;
+}
+
+.slides-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 20px 42px rgba(15,23,42,.16);
+}
+
+.icon{
+  width:54px;
+  height:54px;
+  border-radius:18px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,#dbeafe,#ffffff);
+  border:1px solid rgba(37,99,235,.24);
+}
+
+.icon svg{ width:30px; height:30px; }
+
+.slides-text{
+  display:flex;
+  flex-direction:column;
+  line-height:1.15;
+}
+
+.slides-text strong{ font-size:20px; }
+.slides-text span{ font-size:14px; color:var(--muted); }
+
+.back{
+  display:flex;
+  justify-content:center;
+  margin-top:20px;
+}
+
+.back a{
+  width:min(560px,100%);
+  text-align:center;
+  text-decoration:none;
+  background:#fff;
+  padding:16px 18px;
+  border-radius:16px;
+  border:1px solid var(--border);
+  box-shadow:0 8px 20px rgba(15,23,42,.08);
+  color:var(--text);
+  font-weight:900;
+}
+
+@media(max-width:520px){
+  body{font-size:17px;}
+  h1{font-size:28px;}
+  h2{font-size:21px;}
+  .slides-btn{padding:14px;}
+}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+<div class="panel">
+
+<h1>16. Extinção do Contrato de Trabalho</h1>
+
+<div class="slides-area">
+  <a class="slides-btn" href="LINK_SLIDES_GOOGLE_DRIVE" target="_blank" rel="noopener">
+    <span class="icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none">
+        <rect x="3" y="4" width="18" height="12" rx="2" stroke="#1f4fd8" stroke-width="1.8"/>
+        <path d="M8 20h8M12 16v4" stroke="#1f4fd8" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M7 9h10M7 12h7" stroke="#1f4fd8" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    </span>
+    <span class="slides-text">
+      <strong>Slides</strong>
+      <span>Abrir no Google Drive</span>
+    </span>
+  </a>
+</div>
+
+<div class="card section-blue">
+<h2>16.EXTINÇÃO DO CONTRATO DE TRABALHO</h2>
+</div>
+
+<div class="card section-green">
+<h2>16.1. Extinção do contrato de trabalho por prazo determinado</h2>
+
+<p>A extinção se dá em decorrência do cumprimento integral, quer pelo término do prazo, quer pelo advento da condição resolutiva (art. 443, § 1º, CLT).</p>
+
+<p>Verbas rescisórias devidas: saldo de salário, 13º salário proporcional, férias proporcionais + 1/3, levantamento do FGTS.</p>
+
+<p>Rescisão antecipada: não havendo cumprimento integral do contrato porque houve decisão de uma das partes em rescindi-lo antecipadamente, o legislador impõe punição à parte que assim agir:</p>
+
+<ul class="bullet">
+<li>a) por iniciativa do empregador: este será obrigado a pagar ao empregado, a título de indenização, a metade do valor da remuneração a que o mesmo teria direito até o término do contrato (art. 479, CLT). Trata-se de indenização por perdas e danos decorrentes da violação do pactuado;</li>
+
+<li>b) por iniciativa do empregado: este deverá indenizar o empregador dos prejuízos que desse fato lhe resultarem, em valor que não poderá ser superior ao que o empregador lhe pagaria se tivesse sido daquele a iniciativa da rescisão antecipada (art. 480, CLT).</li>
+</ul>
+
+<div class="box artigo">
+<p><strong>Observação:</strong> a indenização prevista nos arts. 479 e 480 da CLT não será devida quando o contrato por prazo determinado contiver cláusula assecuratória do direito recíproco de rescisão antecipada. Neste caso, se exercida a faculdade prevista na cláusula por qualquer uma das partes, a rescisão será regida pelas mesmas regras de extinção previstas para os contratos por prazo indeterminado (art. 481, CLT).</p>
+</div>
+</div>
+
+<div class="card section-orange">
+<h2>16.2. Extinção do contrato por prazo indeterminado</h2>
+
+<p>A extinção pode ocorrer por iniciativa do empregado, por iniciativa do empregador, ou por fatos alheios à vontade das partes.</p>
+
+<h2>Por iniciativa do empregado:</h2>
+
+<ul class="bullet">
+<li>a) Pedido de demissão: é a comunicação do empregado ao empregador de que não pretende dar mais continuidade ao contrato de trabalho.</li>
+</ul>
+
+<p>Não tem forma prevista em lei, mas como o pedido de demissão precisa ser provado pelo empregador (presume-se que a rescisão do contrato de trabalho se deu por iniciativa do empregador, salvo se houver prova em sentido contrário – Súmula 212, TST), costuma-se exigir que seja feito por escrito.</p>
+
+<div class="box sumula">
+<p><strong>Súmula 212, TST:</strong> o texto menciona que se presume que a rescisão do contrato de trabalho se deu por iniciativa do empregador, salvo se houver prova em sentido contrário.</p>
+</div>
+
+<p>Verbas rescisórias: saldo de salário, 13º salário proporcional, férias proporcionais + 1/3 (mesmo que o empregado tenha menos de 12 meses de serviço – Súmula 261, TST). O empregado não pode levantar o FGTS. O aviso-prévio somente será pago se for cumprido pelo empregado. Recusando-se o empregado a cumpri-lo, o empregador pode descontar o salário correspondente ao período respectivo.</p>
+
+<div class="box sumula">
+<p><strong>Súmula 261, TST:</strong> o texto menciona férias proporcionais + 1/3 mesmo que o empregado tenha menos de 12 meses de serviço.</p>
+</div>
+
+<ul class="bullet">
+<li>b) Dispensa indireta: é a rescisão contratual pelo empregado, tendo em vista justa causa praticada pelo empregador.</li>
+</ul>
+
+<p>As faltas graves do empregador são previstas no art. 483, CLT:</p>
+
+<ul class="bullet">
+<li>1. exigência de serviços superiores às forças do empregado, defesos por lei, contrários aos bons costumes, ou alheios ao contrato;</li>
+<li>2. rigor excessivo contra o empregado;</li>
+<li>3. exposição do empregado a perigo manifesto de mal considerável;</li>
+<li>4. descumprimento de obrigações contratuais;</li>
+<li>5. prática pelo empregador ou por seus prepostos de atos lesivos à honra e à boa fama do empregado ou de seus familiares;</li>
+<li>6. prática pelo empregador ou por seus prepostos de ofensas físicas ao empregado, salvo legítima defesa;</li>
+<li>7. redução injustificada do trabalho do empregado, quando este for realizado por produção ou por tarefa, de modo a diminuir sensivelmente sua remuneração.</li>
+</ul>
+
+<p>Verbas rescisórias: o empregado receberá todas as verbas rescisórias que receberia caso tivesse sido dispensado sem justa causa.</p>
+</div>
+
+<div class="card section-purple">
+<h2>Por iniciativa do empregador:</h2>
+
+<ul class="bullet">
+<li>a) Dispensa sem justa causa: é a ruptura do contrato de trabalho por ato unilateral e imediato do empregador, independentemente da vontade do empregado.</li>
+</ul>
+
+<p>A dispensa sem justa causa não é vedada por lei. No entanto, a relação de emprego é protegida contra dispensa arbitrária ou sem justa causa, sendo devida indenização compensatória em favor do empregado (art. 7º, I, CF). A indenização corresponde a 40% dos depósitos do FGTS efetuados durante a vigência do contrato de trabalho (art. 18, § 1º, Lei n. 8.036/90).</p>
+
+<p>Verbas rescisórias: saldo de salário, aviso-prévio, 13º salário proporcional, férias proporcionais + 1/3, 40% do FGTS. O empregado pode levantar o valor do FGTS depositado em sua conta vinculada.</p>
+
+<ul class="bullet">
+<li>b) Dispensa por justa causa: é a rescisão do contrato de trabalho em decorrência da prática de falta grave pelo empregado. A prática da justa causa torna insustentável a manutenção do vínculo de emprego, levando à imediata rescisão do contrato e desonerando o empregador de algumas reparações econômicas que seriam devidas caso o contrato tivesse sido rescindido sem justa causa.</li>
+</ul>
+
+<p>Caracterização e limitações da justa causa:</p>
+
+<ul class="bullet">
+<li>legalidade – somente podem ser consideradas justa causa hipóteses expressamente previstas em lei (o art. 482 da CLT prevê as hipóteses gerais de justa causa; outros dispositivos legais podem prever hipóteses específicas de justa causa);</li>
+<li>taxatividade – as hipóteses de justa causa são taxativamente previstas em lei; a enumeração não é meramente exemplificativa;</li>
+<li>imediatidade – a reação do empregador, dando por rescindido o contrato, deve ser imediata, o que não afasta o decurso de tempo razoável para apuração dos fatos, variando tal prazo de acordo com a complexidade organizacional da empresa. A falta da imediatidade faz presumir perdão tácito;</li>
+<li>perdão – inexistência de perdão tácito ou expresso;</li>
+<li>causalidade – que o fato seja efetivamente determinante da rescisão (nexo causal);</li>
+<li>non bis in idem – não se admite que um mesmo fato possa ser punido mais de uma vez. Se o fato já foi punido com advertência ou com suspensão, não pode ser aplicada justa causa. Caso o empregado pratique novamente um fato idêntico ao primeiro, para este segundo fato, se não foi aplicada nenhuma outra punição, pode o contrato ser rescindido por justa causa.</li>
+</ul>
+
+<div class="box oab">
+<p><strong>Caixa OAB:</strong> atenção aos limites da justa causa: legalidade, taxatividade, imediatidade, perdão, causalidade e non bis in idem.</p>
+</div>
+
+<p>Observações: a punição não pode ser excessiva; deve haver proporcionalidade entre a gravidade da falta e a gravidade da punição aplicada. Caso a falta tenha sido praticada por diversos empregados ao mesmo tempo, o empregado tem de ser punido da mesma forma que os outros envolvidos na prática da falta. A ausência de isonomia descaracteriza a punição.</p>
+</div>
+
+<div class="card section-red">
+<h2>Hipóteses de justa causa (art. 482, CLT):</h2>
+
+<ul class="bullet">
+<li>1. Ato de improbidade – atentado contra o patrimônio do empregador ou de terceiros ligados ao trabalho (ex.: colegas de trabalho, clientes, fornecedores). É o ato desonesto, malicioso, que foi praticado intencionalmente pelo empregado (dolo).</li>
+
+<li>2. Incontinência de conduta ou mau procedimento – a incontinência de conduta caracteriza-se pela conduta irregular do empregado, incompatível com a moral sexual; o mau procedimento é o comportamento irregular do empregado, incompatível com as normas exigidas pelo senso comum do homem médio.</li>
+
+<li>3. Negociação habitual – é o ato de concorrência desleal para com o empregador ou o exercício do comércio em paralelo com o exercício da função decorrente do contrato de trabalho, ou quando for prejudicial ao serviço. A autorização tácita ou expressa do empregador descaracteriza a justa causa.</li>
+
+<li>4. Condenação criminal sem direito a suspensão da execução da pena – o fato de o empregado estar respondendo processo criminal não permite a caracterização de justa causa. É necessário que tenha havido condenação criminal, já transitada em julgado, e, ainda, que não caiba suspensão da execução da pena.</li>
+
+<li>5. Desídia – é o desempenho das funções com negligência, desleixo, descaso. É a baixa produtividade e perfeição técnica do trabalho decorrente da falta de interesse do empregado. Requer habitualidade e, ainda, punições para as práticas anteriores (o empregado já praticou este tipo de falta anteriormente e foi punido com advertência ou com suspensão, ou seja, o empregado já tem histórico faltoso).</li>
+
+<li>6. Embriaguez habitual ou em serviço – haverá embriaguez sempre que o empregado, sob o efeito de álcool ou de outra substância entorpecente, perde o governo de suas faculdades a ponto de tornar-se incapaz de executar as tarefas a que está obrigado. Embriaguez habitual = é a embriaguez constante, fora do serviço, mas que reflete diretamente no comportamento do empregado no ambiente de trabalho.</li>
+</ul>
+
+<p>Embriaguez em serviço = é a que ocorre durante a jornada de trabalho e que impede que o empregado cumpra suas tarefas de forma adequada e, ainda, coloca em risco a integridade dele ou de terceiros.</p>
+
+<ul class="bullet">
+<li>7. Violação de segredo – divulgação não autorizada de informação, fato ou dado de uso e conhecimento exclusivo do empregador. Para que possa ser caracterizada a justa causa, é necessário que a informação seja realmente sigilosa e que o empregado tenha tomado conhecimento da mesma em decorrência de sua função, tendo o dever de sigilo em relação à mesma.</li>
+
+<li>8. Indisciplina – descumprimento de ordens gerais de serviço, dirigidas impessoalmente a todos os empregados.</li>
+
+<li>9. Insubordinação – descumprimento de ordens pessoais de serviço, que foram dadas diretamente ao empregado.</li>
+
+<li>10. Abandono de emprego – é caracterizado por dois requisitos: a) o decurso de um período determinado de ausência injustificada ao serviço, fixado pela jurisprudência em 30 dias (as faltas injustificadas por mais de 30 dias presumem abandono de emprego); b) intenção manifesta do empregado em romper o contrato. O empregador precisa diligenciar no sentido de comprovadamente convocar o empregado para retornar ao trabalho (por carta, telegrama, notificação por cartório etc.).</li>
+</ul>
+
+<div class="box sumula">
+<p><strong>Súmula 32, TST:</strong> Presume-se o abandono de emprego se o trabalhador não retornar ao serviço no prazo de 30 dias após a cessação do benefício previdenciário nem justificar o motivo de não o fazer.</p>
+</div>
+
+<ul class="bullet">
+<li>11. Ato lesivo à honra e à boa fama – é a ofensa à honra, do empregador ou de terceiro ligado ao serviço (colegas de trabalho, clientes, fornecedores), caracterizando injúria, difamação ou calúnia, salvo hipótese de legítima defesa, própria ou de outrem.</li>
+
+<li>12. Ofensas físicas – prática de agressão, tentada ou consumada, contra o empregador, superior hierárquico, colegas ou terceiros, no local de trabalho ou situação de estreita relação com o serviço (não ocorreu nas dependências da empresa, mas teve relação com o serviço em si), salvo hipótese de legítima defesa, própria ou de outrem.</li>
+
+<li>13. Prática constante de jogos de azar – jogos de azar são os jogos de aposta, que não dependem de habilidade do jogador, mas de sua sorte. Refere-se a aposta em dinheiro. Para caracterização da justa causa é necessário que a prática ocorra no ambiente de trabalho.</li>
+
+<li>14. Perda da habilitação ou dos requisitos estabelecidos em lei para o exercício da profissão, em decorrência de conduta dolosa do empregado – trata-se de hipótese de empregado que precisa de habilitação ou precisa preencher um requisito específico para poder exercer sua atividade profissional. Somente restará caracterizada a justa causa se a perda decorrer de conduta dolosa do empregado. Negligência, imprudência ou imperícia (culpa) não caracterizam justa causa.</li>
+</ul>
+</div>
+
+<div class="card section-blue">
+<h2>Outras hipóteses de justa causa:</h2>
+
+<ul class="bullet">
+<li>1. Empregado que se recusa a atender normas de segurança no trabalho e a usar equipamentos de proteção individual (EPI) – (art. 158, CLT).</li>
+<li>2. Ferroviário que recusa prorrogação de horário em certos casos (art. 240, CLT).</li>
+<li>3. Falta disciplinar grave do aprendiz (art. 433, CLT).</li>
+<li>4. Grevista que praticar excessos e não respeitar os limites previstos em lei para o exercício do direito de greve (Lei n. 7.783/89).</li>
+</ul>
+
+<p>Verbas rescisórias: o empregado dispensado por justa causa não tem direito a 13º salário proporcional, a férias proporcionais, a aviso-prévio, a 40% do FGTS. Não pode levantar o FGTS.</p>
+
+<p>Culpa recíproca: decorre da prática simultânea, pelo empregado e pelo empregador, de falta grave.</p>
+
+<p>No caso de culpa recíproca, o empregado tem direito de receber metade da indenização a que teria direito (20% do FGTS), metade do aviso-prévio, das férias proporcionais e do 13º salário proporcional (art. 484, CLT, e Súmula 14, TST).</p>
+
+<div class="box sumula">
+<p><strong>Súmula 14, TST:</strong> o texto menciona que, no caso de culpa recíproca, o empregado tem direito de receber metade da indenização, metade do aviso-prévio, das férias proporcionais e do 13º salário proporcional.</p>
+</div>
+</div>
+
+<div class="card section-green">
+<h2>Por acordo entre empregado e empregador:</h2>
+
+<p>Não havendo mais interesse recíproco na manutenção da relação de emprego, empregado e empregador podem, por comum acordo, extinguir o contrato de trabalho, na forma prevista no art. 484-A, CLT.</p>
+
+<p>Verbas rescisórias: saldo de salário; 50% do valor do aviso-prévio; 13º salário proporcional; férias vencidas, acrescidas de 1/3, se houver; férias proporcionais acrescidas de 1/3; indenização de 20% dos depósitos do FGTS.</p>
+
+<p>Essa modalidade de extinção do contrato de trabalho permite a movimentação da conta vinculada do trabalhador no FGTS, ficando limitada a 80% do valor dos depósitos efetuados ao longo da vigência do contrato de trabalho (art. 484-A, § 1º, CLT), mas não autoriza o ingresso no Programa de Seguro-Desemprego (art. 484-A, § 2º, CLT).</p>
+</div>
+
+<div class="card section-orange">
+<h2>Por fatos alheios à vontade das partes:</h2>
+
+<ul class="bullet">
+<li>a) Morte do empregado: tendo em vista que o contrato de trabalho é pessoal em relação ao sujeito empregado, o desaparecimento deste implica necessariamente a rescisão do liame contratual.</li>
+</ul>
+
+<p>Pagamento das verbas rescisórias: será efetuado aos dependentes do empregado falecido, indicados perante a Previdência Social. Na falta de dependentes, o pagamento será feito aos herdeiros, na forma da lei civil.</p>
+
+<p>Verbas rescisórias: saldo de salário, 13º salário proporcional, férias proporcionais + 1/3. Autorizado o levantamento do FGTS. Indevidos aviso-prévio e 40% do FGTS.</p>
+
+<ul class="bullet">
+<li>b) Factum principis: a rescisão do contrato de trabalho decorre de ato de autoridade municipal, estadual ou federal, ou, ainda, de promulgação de lei ou de resolução que impossibilite a continuidade da atividade.</li>
+</ul>
+
+<p>Verbas rescisórias: saldo de salário, 13º salário proporcional, férias proporcionais + 1/3, aviso-prévio. Autorizado o levantamento do FGTS. A indenização de 40% do FGTS ficará a cargo do Governo responsável pela determinação que levou à rescisão do contrato de trabalho (art. 486, CLT).</p>
+
+<div class="box obs">
+<p><strong>Observação:</strong> Aposentadoria do empregado – A aposentadoria só é considerada causa de extinção do contrato de trabalho se o empregado deixar de trabalhar para o empregador.</p>
+</div>
+
+<p>A aposentadoria espontânea não é causa de extinção do contrato de trabalho se o empregado permanece prestando serviços ao empregador após a jubilação. Assim, por ocasião da sua dispensa imotivada, o empregado tem direito à multa de 40% do FGTS sobre a totalidade dos depósitos efetuados no curso do pacto laboral (OJ SDI-1 361, TST).</p>
+
+<div class="box sumula">
+<p><strong>OJ SDI-1 361, TST:</strong> a aposentadoria espontânea não extingue o contrato se o empregado permanece prestando serviços; na dispensa imotivada, há direito à multa de 40% do FGTS sobre a totalidade dos depósitos.</p>
+</div>
+</div>
+
+<div class="back">
+<a href="../index.html">← Voltar ao índice da disciplina</a>
+</div>
+
+</div>
+</div>
+</body>
+</html>
