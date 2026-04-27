@@ -1,203 +1,288 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>14. Alteração do Contrato de Trabalho</title>
-  <style>
-    :root{
-      --bg: #eaf3ff;
-      --panel: #ffffff;
-      --panel2:#f7fbff;
-      --text:#0f172a;
-      --muted:#475569;
-      --blue:#1d4ed8;
-      --blue2:#2563eb;
-      --shadow: 0 12px 30px rgba(15,23,42,.10);
-      --shadow2: 0 8px 18px rgba(15,23,42,.10);
-      --radius: 18px;
-      --radius2: 14px;
-      --line:#dbeafe;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>14. Alteração do Contrato de Trabalho</title>
 
-    *{ box-sizing:border-box; }
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color:var(--text);
-      background: radial-gradient(1200px 600px at 50% -10%, #ffffff 0%, var(--bg) 45%, #e9f2ff 100%);
-      line-height:1.6;
-      -webkit-font-smoothing: antialiased;
-    }
+<style>
+:root{
+  --bg:#eaf3ff;
+  --panel:#f8fbff;
+  --card:#ffffff;
+  --title:#1f4fd8;
+  --text:#0f172a;
+  --muted:#475569;
+  --border:rgba(15,23,42,.14);
+  --shadow:0 14px 34px rgba(15,23,42,.12);
+  --blueSoft:#e8f0ff;
+  --greenSoft:#ecfdf5;
+  --orangeSoft:#fff7ed;
+  --purpleSoft:#f5f3ff;
+  --redSoft:#fef2f2;
+}
 
-    .wrap{ max-width: 980px; margin: 0 auto; padding: 20px 15px 40px; }
-    
-    .topbar{ 
-      display: flex; 
-      justify-content: space-between; 
-      align-items: center; 
-      margin-bottom: 20px; 
-      gap: 15px;
-    }
-    h1{ margin:0; font-size: clamp(22px, 3.5vw, 34px); line-height:1.2; color: var(--blue2); letter-spacing:-.02em; }
+*{
+  box-sizing:border-box;
+}
 
-    .driveBtn {
-      display: inline-flex;
-      flex-direction: column; /* Alinha ícone e texto verticalmente */
-      align-items: center;
-      gap: 4px; /* Espaço pequeno entre ícone e texto */
-      background: #ffffff;
-      border: 1px solid #dadce0;
-      padding: 10px 16px; /* Ajuste leve no padding */
-      border-radius: 12px; /* Cantos um pouco menos arredondados para combinar com o estilo do PPT */
-      color: #3c4043;
-      font-size: 12px; /* Texto menor para a legenda "SLIDES" */
-      font-weight: 600; /* Texto mais negrito */
-      text-decoration: none;
-      box-shadow: 0 1px 2px rgba(60,64,67,0.3);
-      transition: background 0.2s, transform 0.1s;
-      white-space: nowrap;
-      min-width: 80px; /* Garante um tamanho mínimo para o botão */
-    }
-    .driveBtn:hover { background: #f1f3f4; transform: translateY(-1px); }
-    .driveBtn:active { transform: translateY(0px); box-shadow: 0 1px 1px rgba(60,64,67,0.3); }
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background:radial-gradient(900px 420px at 30% 0%, #d8ecff 0%, var(--bg) 60%);
+  color:var(--text);
+  font-size:19px;
+  line-height:1.8;
+}
 
-    /* Estilo para o ícone que lembra o PowerPoint (P laranja) */
-    .ppt-icon {
-      width: 24px;
-      height: 24px;
-      background-color: #D24726; /* Cor laranja característica do PowerPoint */
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 4px; /* Cantos levemente arredondados no ícone */
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte mais corporativa para o 'P' */
-    }
+.wrap{
+  max-width:980px;
+  margin:auto;
+  padding:18px 14px 40px;
+}
 
-    .panel{ background: rgba(255,255,255,.9); border: 1px solid rgba(37,99,235,.1); border-radius: 24px; box-shadow: var(--shadow); padding: 20px; }
+.panel{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:24px;
+  box-shadow:var(--shadow);
+  padding:18px;
+}
 
-    .card{ background: var(--panel); border: 1px solid rgba(15,23,42,.08); border-radius: var(--radius); padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
-    .card:last-child{ margin-bottom: 0; }
+h1{
+  color:var(--title);
+  font-size:34px;
+  line-height:1.15;
+  margin:6px 0 14px;
+  text-align:center;
+}
 
-    .pill{ display:inline-block; padding: 6px 12px; border-radius: 99px; font-size: 12px; background: #eef2ff; border: 1px solid #dbeafe; color:#1e3a8a; margin-bottom: 12px; font-weight: 700; text-transform: uppercase; }
+h2{
+  color:#0b2fb3;
+  font-size:24px;
+  margin:22px 0 12px;
+}
 
-    h2{ margin:0 0 15px 0; font-size: 22px; color: var(--blue); border-bottom: 2px solid var(--line); padding-bottom: 8px; }
-    h3{ margin: 20px 0 10px; font-size: 18px; color: #1e293b; font-weight: 700; }
-    
-    p, li{ font-size: 17px; margin-bottom: 10px; }
-    ul{ padding-left: 20px; }
-    
-    .note{ background: var(--panel2); border-left: 4px solid var(--blue2); padding: 15px; margin: 15px 0; border-radius: 0 var(--radius2) var(--radius2) 0; font-style: italic; }
-    
-    b { color: #0f172a; }
+p{
+  margin:0 0 14px;
+  text-align:justify;
+}
 
-    .backWrap{ display:flex; justify-content:center; margin-top: 30px; }
-    .backBtn{ padding: 12px 24px; border-radius: 12px; text-decoration:none; color: var(--text); background: #fff; border: 1px solid #ddd; font-weight: 600; transition: all 0.2s; }
-    .backBtn:hover{ background: #f8fafc; transform: translateY(-2px); }
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  box-shadow:0 8px 20px rgba(15,23,42,.08);
+  padding:18px;
+  margin:14px 0;
+}
 
-    @media (max-width: 600px) {
-      .topbar { flex-direction: column; align-items: flex-start; }
-    }
-  </style>
+.section-blue{border-left:7px solid #2563eb;}
+.section-green{border-left:7px solid #16a34a;}
+.section-orange{border-left:7px solid #f97316;}
+.section-purple{border-left:7px solid #7c3aed;}
+.section-red{border-left:7px solid #dc2626;}
+
+.box{
+  padding:14px;
+  border-radius:14px;
+  margin:14px 0;
+  border:1px solid var(--border);
+}
+
+.oab{background:var(--orangeSoft); border-left:6px solid #f97316;}
+.sumula{background:var(--greenSoft); border-left:6px solid #16a34a;}
+.artigo{background:var(--blueSoft); border-left:6px solid #2563eb;}
+.obs{background:var(--purpleSoft); border-left:6px solid #7c3aed;}
+.alerta{background:var(--redSoft); border-left:6px solid #dc2626;}
+
+.bullet{
+  margin:10px 0 14px;
+  padding-left:0;
+  list-style:none;
+}
+
+.bullet li{
+  margin:10px 0;
+  padding:12px 14px;
+  background:#fff;
+  border-radius:14px;
+  border:1px solid var(--border);
+  box-shadow:0 5px 12px rgba(15,23,42,.05);
+}
+
+.bullet li::before{
+  content:"■ ";
+  color:#1f4fd8;
+  font-weight:900;
+}
+
+.slides-area{
+  display:flex;
+  justify-content:center;
+  margin:10px 0 22px;
+}
+
+.slides-btn{
+  text-decoration:none;
+  color:var(--text);
+  background:#fff;
+  border:1px solid rgba(37,99,235,.22);
+  border-radius:22px;
+  box-shadow:var(--shadow);
+  padding:16px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  min-width:min(420px,100%);
+  font-weight:900;
+  transition:.18s;
+}
+
+.slides-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 20px 42px rgba(15,23,42,.16);
+}
+
+.icon{
+  width:54px;
+  height:54px;
+  border-radius:18px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,#dbeafe,#ffffff);
+  border:1px solid rgba(37,99,235,.24);
+}
+
+.icon svg{
+  width:30px;
+  height:30px;
+}
+
+.slides-text{
+  display:flex;
+  flex-direction:column;
+  line-height:1.15;
+}
+
+.slides-text strong{
+  font-size:20px;
+}
+
+.slides-text span{
+  font-size:14px;
+  color:var(--muted);
+}
+
+.back{
+  display:flex;
+  justify-content:center;
+  margin-top:20px;
+}
+
+.back a{
+  width:min(560px,100%);
+  text-align:center;
+  text-decoration:none;
+  background:#fff;
+  padding:16px 18px;
+  border-radius:16px;
+  border:1px solid var(--border);
+  box-shadow:0 8px 20px rgba(15,23,42,.08);
+  color:var(--text);
+  font-weight:900;
+}
+
+@media(max-width:520px){
+  body{font-size:17px;}
+  h1{font-size:28px;}
+  h2{font-size:21px;}
+  .slides-btn{padding:14px;}
+}
+</style>
 </head>
+
 <body>
-
 <div class="wrap">
-  <div class="topbar">
-    <h1>14. Alteração do Contrato de Trabalho</h1>
-    <a href="#" class="driveBtn">
-      <div class="ppt-icon">P</div> <span>SLIDES</span> </a>
-  </div>
+<div class="panel">
 
-  <div class="panel">
-    
-    <section class="card">
-      <div class="pill">Fundamentação Legal</div>
-      <p>O <b>art. 468 da CLT</b> estabelece que no contrato individual de trabalho só é lícita a alteração das respectivas condições por mútuo consentimento, e ainda assim desde que não resultem, direta ou indiretamente, prejuízos ao empregado, sob pena de nulidade da cláusula infringente desta garantia.</p>
-      
-      <h3>Requisitos para validade da alteração do contrato de trabalho:</h3>
-      <ul>
-        <li><b>a) mútuo consentimento</b> (concordância do empregado);</li>
-        <li><b>b) inexistência de qualquer tipo de prejuízo para o empregado</b> (esse requisito não se aplica aos empregados “hipersuficientes” previstos no parágrafo único do art. 444 da CLT – para esses trabalhadores, basta a sua simples concordância para que a alteração seja considerada lícita).</li>
-      </ul>
-      
-      <p>Portanto, nenhuma condição de trabalho pode ser modificada unilateralmente pelo empregador e, até mesmo a alteração bilateral é vedada se dela resultarem prejuízos para o trabalhador.</p>
-      
-      <div class="note">
-        Alteração unilateral ou alteração que gere prejuízo para o empregado → nulidade.
-      </div>
+<h1>14. Alteração do Contrato de Trabalho</h1>
 
-      <h3>Consequências da nulidade:</h3>
-      <ul>
-        <li><b>a) devem ser restabelecidas as condições anteriores</b>, com o retorno das partes ao <i>status quo ante</i>;</li>
-        <li><b>b) devem ser pagos ao empregado os prejuízos havidos</b> com a alteração prejudicial;</li>
-        <li><b>c) é possível também que o contrato de trabalho seja rescindido por culpa grave do empregador</b>, com pagamento das verbas daí decorrentes.</li>
-      </ul>
-    </section>
-
-    <section class="card">
-      <div class="pill">Principais Alterações</div>
-      <p>As alterações do contrato de trabalho podem ser de diversas ordens. No entanto, merecem destaque a alteração de função, a alteração salarial, a alteração de jornada e horários de trabalho e a alteração do local de trabalho.</p>
-
-      <h2>Alteração de Função</h2>
-      <p>A alteração de função pode ocorrer no plano horizontal (dentro do mesmo nível hierárquico) ou vertical (ascendente ou descendente).</p>
-      
-      <p><b>Promoção (alteração ascendente)</b>: é a passagem do empregado para um cargo de nível hierárquico superior. Geralmente é lícita, pois traz benefícios ao empregado. O empregador tem o poder discricionário de promover, mas havendo regulamento que preveja critérios, o empregado terá direito se preenchê-los.</p>
-
-      <p><b>Rebaixamento (alteração descendente)</b>: é a passagem para cargo de nível hierárquico inferior. É proibido, mesmo que não haja redução salarial, pois implica modificação prejudicial do nível hierárquico (perda de status).</p>
-
-      <div class="note">
-        <b>Exceções de Reversão Permitida:</b>
-        <ul>
-          <li>Retorno ao cargo efetivo de quem deixa função de confiança (Art. 468, § 1º e 499 da CLT). Não há direito à manutenção da gratificação, independentemente do tempo de exercício.</li>
-          <li>Retorno de quem ocupava cargo em comissão ocupado interinamente.</li>
-          <li>Retorno do substituto ao cargo anterior após a volta do titular.</li>
-          <li>Readaptação do empregado por deficiência física ou mental (atestada pelo INSS).</li>
-        </ul>
-      </div>
-
-      <h2>Alteração Salarial</h2>
-      <p>Regida pelo princípio da <b>irredutibilidade salarial</b> (Art. 7º, VI, CF). A redução salarial só é permitida se decorrente de convenção ou acordo coletivo de trabalho.</p>
-
-      <h2>Alteração de Jornada e Horários</h2>
-      <p>A jornada de trabalho contratada é inalterável de forma rígida, a menos que traga benefício. Alterar do horário noturno para o diurno é considerado benéfico (saúde). A supressão de horas extras é permitida (Súmula 291, TST), gerando indenização se pagas por mais de um ano.</p>
-    </section>
-
-    <section class="card">
-      <div class="pill">Local de Trabalho</div>
-      <h2>Transferência do Empregado (Art. 469 CLT)</h2>
-      <p>É vedado transferir o empregado sem sua anuência para localidade diversa da que resultar do contrato, sempre que implicar mudança de domicílio.</p>
-      
-      <p>A mudança que não exige mudança de domicílio não é considerada transferência (variação do local de trabalho), mas obriga ao pagamento de suplemento salarial em caso de acréscimo de despesa de transporte (Súmula 29, TST).</p>
-
-      <h3>Transferência sem anuência (Exceções):</h3>
-      <ul>
-        <li>Empregados que exerçam cargo de confiança;</li>
-        <li>Contratos com condição implícita ou explícita de transferência;</li>
-        <li>Extinção do estabelecimento em que o empregado trabalha.</li>
-      </ul>
-      <p>Em todos os casos acima, a transferência exige a comprovação de <b>real necessidade de serviço</b>. Sem essa prova, o empregado pode pleitear liminar judicial (Art. 659, IX, CLT) para evitar a mudança.</p>
-
-      <div class="note">
-        <b>Adicional de Transferência:</b> Nos casos de transferência <b>provisória</b>, será devido o adicional de 25% sobre o salário contratual enquanto durar a situação (§ 3º, art. 469, CLT).
-      </div>
-    </section>
-
-    <section class="card">
-      <div class="pill">Regulamento Interno</div>
-      <h2>Alteração de Regulamento Interno da Empresa</h2>
-      <p>As cláusulas que revoguem ou alterem vantagens deferidas anteriormente só atingirão os trabalhadores admitidos <b>após</b> a alteração do regulamento (Súmula 51, I, TST).</p>
-      <p>Havendo a coexistência de dois regulamentos, a opção do empregado por um deles tem efeito jurídico de renúncia às regras do sistema do outro (Súmula 51, II, TST).</p>
-    </section>
-
-    <div class="backWrap">
-      <a class="backBtn" href="../index.html">← Voltar ao índice da disciplina</a>
-    </div>
-  </div>
+<div class="slides-area">
+  <a class="slides-btn" href="LINK_SLIDES_GOOGLE_DRIVE" target="_blank" rel="noopener">
+    <span class="icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none">
+        <rect x="3" y="4" width="18" height="12" rx="2" stroke="#1f4fd8" stroke-width="1.8"/>
+        <path d="M8 20h8M12 16v4" stroke="#1f4fd8" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M7 9h10M7 12h7" stroke="#1f4fd8" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    </span>
+    <span class="slides-text">
+      <strong>Slides</strong>
+      <span>Abrir no Google Drive</span>
+    </span>
+  </a>
 </div>
 
-</body>
-</html>
+<div class="card section-blue">
+<h2>14.ALTERAÇÃO DO CONTRATO DE TRABALHO</h2>
+
+<p>O art. 468 da CLT estabelece que no contrato individual de trabalho só é lícita a alteração das respectivas condições por mútuo consentimento, e ainda assim desde que não resultem, direta ou indiretamente, prejuízos ao empregado, sob pena de nulidade da cláusula infringente desta garantia”.</p>
+
+<div class="box artigo">
+<p><strong>Artigo central:</strong> art. 468 da CLT.</p>
+</div>
+
+<p>Requisitos para validade da alteração do contrato de trabalho:</p>
+
+<ul class="bullet">
+<li>a) mútuo consentimento (concordância do empregado);</li>
+
+<li>b) inexistência de qualquer tipo de prejuízo para o empregado (esse requisito não se aplica aos empregados “hipersuficientes” previstos no parágrafo único do art. 444 da CLT – para esses trabalhadores, basta a sua simples concordância para que a alteração seja considerada lícita).</li>
+</ul>
+
+<p>Portanto, nenhuma condição de trabalho pode ser modificada unilateralmente pelo empregador e, até mesmo a alteração bilateral é vedada se dela resultarem prejuízos para o trabalhador.</p>
+
+<div class="box oab">
+<p><strong>Caixa OAB:</strong> alteração unilateral ou alteração que gere prejuízo para o empregado → nulidade.</p>
+</div>
+
+<p>Alteração unilateral ou alteração que gere prejuízo para o empregado → nulidade.</p>
+
+<p>Consequências da nulidade:</p>
+
+<ul class="bullet">
+<li>a) devem ser restabelecidas as condições anteriores, com o retorno das partes ao status quo ante;</li>
+
+<li>b) devem ser pagos ao empregado os prejuízos havidos com a alteração prejudicial;</li>
+
+<li>c) é possível também que o contrato de trabalho seja rescindido por culpa grave do empregador, com pagamento das verbas daí decorrentes.</li>
+</ul>
+
+<p>As alterações do contrato de trabalho podem ser de diversas ordens. No entanto, merecem destaque a alteração de função, a alteração salarial, a alteração de jornada e a alteração de localidade da prestação dos serviços (transferência).</p>
+</div>
+
+<div class="card section-green">
+<h2>Alteração de função</h2>
+
+<p>Alteração de função: pode ocorrer no plano horizontal (mudança dentro do mesmo nível hierárquico) ou no plano vertical (ocorre entre níveis hierárquicos diferentes e pode ser ascendente – promoção, ou descendente – rebaixamento, reversão ou retorno).</p>
+
+<ul class="bullet">
+<li>a) Promoção: só será direito do empregado quando contratualmente prevista ou quando o regulamento de empresa contenha disposição sobre as condições para sua ocorrência e o empregado preencha tais condições. Caso contrário, a promoção insere-se no poder discricionário do empregador.</li>
+</ul>
+
+<p>Como regra, a promoção é mais benéfica para o empregado, sendo, portanto, uma alteração contratual lícita. Havendo comprovação de eventual prejuízo para o empregado, a mesma não será válida.</p>
+
+<ul class="bullet">
+<li>b) Rebaixamento: implica modificação do nível hierárquico que o empregado ocupa na empresa, sendo prejudicial ao mesmo. Não é permitido, mesmo que dele não resulte diminuição do salário.</li>
+</ul>
+
+<div class="box alerta">
+<p><strong>Atenção:</strong> rebaixamento não é permitido, mesmo que dele não resulte diminuição do salário.</p>
+</div>
+
+<p>Permissões legais de alteração vertical descendente de função:</p>
+
+<ul class="bullet">
+<li>1. reversão ao cargo efetivo, anteriormente ocupado, deixando o exercício de função de confiança (art. 468, parágrafo único, e art. 499, CLT). A reversão, com ou sem
