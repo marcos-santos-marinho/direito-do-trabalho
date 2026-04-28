@@ -1,1 +1,398 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>18. Liquidação de Sentença</title>
 
+<style>
+:root{
+  --bg:#eaf3ff;
+  --panel:#f8fbff;
+  --card:#ffffff;
+  --title:#1f4fd8;
+  --text:#0f172a;
+  --muted:#475569;
+  --border:rgba(15,23,42,.14);
+  --shadow:0 14px 34px rgba(15,23,42,.12);
+  --blueSoft:#e8f0ff;
+  --greenSoft:#ecfdf5;
+  --orangeSoft:#fff7ed;
+  --purpleSoft:#f5f3ff;
+  --redSoft:#fef2f2;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background:radial-gradient(900px 420px at 30% 0%, #d8ecff 0%, var(--bg) 60%);
+  color:var(--text);
+  font-size:19px;
+  line-height:1.8;
+}
+
+.wrap{
+  max-width:980px;
+  margin:auto;
+  padding:18px 14px 40px;
+}
+
+.panel{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:24px;
+  box-shadow:var(--shadow);
+  padding:18px;
+}
+
+h1{
+  color:var(--title);
+  font-size:34px;
+  line-height:1.15;
+  margin:6px 0 14px;
+  text-align:center;
+}
+
+h2{
+  color:#0b2fb3;
+  font-size:24px;
+  margin:22px 0 12px;
+}
+
+p{
+  margin:0 0 14px;
+  text-align:justify;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  box-shadow:0 8px 20px rgba(15,23,42,.08);
+  padding:18px;
+  margin:14px 0;
+}
+
+.section-blue{
+  border-left:7px solid #2563eb;
+}
+
+.section-green{
+  border-left:7px solid #16a34a;
+}
+
+.section-orange{
+  border-left:7px solid #f97316;
+}
+
+.section-purple{
+  border-left:7px solid #7c3aed;
+}
+
+.section-red{
+  border-left:7px solid #dc2626;
+}
+
+.box{
+  padding:14px;
+  border-radius:14px;
+  margin:14px 0;
+  border:1px solid var(--border);
+}
+
+.oab{
+  background:var(--orangeSoft);
+  border-left:6px solid #f97316;
+}
+
+.sumula{
+  background:var(--greenSoft);
+  border-left:6px solid #16a34a;
+}
+
+.artigo{
+  background:var(--blueSoft);
+  border-left:6px solid #2563eb;
+}
+
+.obs{
+  background:var(--purpleSoft);
+  border-left:6px solid #7c3aed;
+}
+
+.alerta{
+  background:var(--redSoft);
+  border-left:6px solid #dc2626;
+}
+
+.bullet{
+  margin:10px 0 14px;
+  padding-left:0;
+  list-style:none;
+}
+
+.bullet li{
+  margin:10px 0;
+  padding:12px 14px;
+  background:#fff;
+  border-radius:14px;
+  border:1px solid var(--border);
+  box-shadow:0 5px 12px rgba(15,23,42,.05);
+}
+
+.bullet li::before{
+  content:"■ ";
+  color:#1f4fd8;
+  font-weight:900;
+}
+
+.letter-list{
+  margin:10px 0 14px;
+  padding-left:0;
+  list-style:none;
+}
+
+.letter-list li{
+  margin:10px 0;
+  padding:12px 14px;
+  background:#fff;
+  border-radius:14px;
+  border:1px solid var(--border);
+  box-shadow:0 5px 12px rgba(15,23,42,.05);
+}
+
+.slides-area{
+  display:flex;
+  justify-content:center;
+  margin:10px 0 22px;
+}
+
+.slides-btn{
+  text-decoration:none;
+  color:var(--text);
+  background:#fff;
+  border:1px solid rgba(37,99,235,.22);
+  border-radius:22px;
+  box-shadow:var(--shadow);
+  padding:16px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  min-width:min(420px,100%);
+  font-weight:900;
+  transition:.18s;
+}
+
+.slides-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 20px 42px rgba(15,23,42,.16);
+}
+
+.icon{
+  width:54px;
+  height:54px;
+  border-radius:18px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,#dbeafe,#ffffff);
+  border:1px solid rgba(37,99,235,.24);
+}
+
+.icon svg{
+  width:30px;
+  height:30px;
+}
+
+.slides-text{
+  display:flex;
+  flex-direction:column;
+  line-height:1.15;
+}
+
+.slides-text strong{
+  font-size:20px;
+}
+
+.slides-text span{
+  font-size:14px;
+  color:var(--muted);
+}
+
+.back{
+  display:flex;
+  justify-content:center;
+  margin-top:20px;
+}
+
+.back a{
+  width:min(560px,100%);
+  text-align:center;
+  text-decoration:none;
+  background:#fff;
+  padding:16px 18px;
+  border-radius:16px;
+  border:1px solid var(--border);
+  box-shadow:0 8px 20px rgba(15,23,42,.08);
+  color:var(--text);
+  font-weight:900;
+}
+
+@media(max-width:520px){
+  body{
+    font-size:17px;
+  }
+
+  h1{
+    font-size:28px;
+  }
+
+  h2{
+    font-size:21px;
+  }
+
+  .slides-btn{
+    padding:14px;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+<div class="panel">
+
+<h1>18. Liquidação de Sentença</h1>
+
+<div class="slides-area">
+  <a class="slides-btn" href="#" target="_blank" rel="noopener">
+    <span class="icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none">
+        <rect x="3" y="4" width="18" height="12" rx="2" stroke="#1f4fd8" stroke-width="1.8"/>
+        <path d="M8 20h8M12 16v4" stroke="#1f4fd8" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M7 9h10M7 12h7" stroke="#1f4fd8" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    </span>
+    <span class="slides-text">
+      <strong>Slides</strong>
+      <span>Abrir no Google Drive</span>
+    </span>
+  </a>
+</div>
+
+<!-- CARD 1: Conceito e Cabimento -->
+<div class="card section-blue">
+<h2>Conceito e Cabimento</h2>
+
+<p>O procedimento de liquidação de sentença, previsto no art. 879 da CLT, mostra-se indispensável para se proceder ao início do processo de execução, uma vez que o título executivo deve ser certo, líquido e exigível, devendo a decisão já afirmar o que é devido e a quantidade devida. Por vezes a decisão é proferida afirmando apenas o que é devido (3 horas extras por dia), sem trazer desde logo o valor devido. Na hipótese a sentença é ilíquida, devendo ser objeto de liquidação, para, na hipótese, através de cálculos aritméticos, apurar-se o <em>quantum debeatur</em> (MOURA, 2015).</p>
+
+<div class="box artigo">
+<strong>Referência da legislação:</strong> art. 879 da CLT.
+</div>
+
+<p>Ocorre que a liquidação não será realizada em todos os procedimentos, pois no rito sumaríssimo a sentença tem que ser obrigatoriamente líquida, uma vez que o autor da ação tem que formular pedido certo, determinado e líquido. Não faria sentido impor ao autor da ação tal obrigação e permitir ao Juiz o proferimento de sentença ilíquida.</p>
+
+<p>Como pode ser percebido, a liquidação é um procedimento preparatório à execução, realizado após o processo de conhecimento. Assim sendo, não possui por finalidade rediscutir matérias que foram objeto de questionamento e provas no processo de conhecimento, sendo vedada pelo § 1º do art. 879 da CLT tal rediscussão. Se a sentença proferida condenou a empresa ao pagamento de 3 horas extras diárias, na liquidação não poderá ser discutido se foram 3 ou 2 horas, pois tal matéria já foi objeto de análise pelo Poder Judiciário, estando decidida, não cabendo rediscussão, a não ser pela via recursal.</p>
+
+<div class="box oab">
+<strong>Caixa OAB:</strong> a liquidação é procedimento preparatório da execução e é vedada a rediscussão de matérias já decididas no processo de conhecimento (§ 1º do art. 879 da CLT). Atenção especial ao rito sumaríssimo, onde a sentença deve ser obrigatoriamente líquida.
+</div>
+</div>
+
+<!-- CARD 2: Modalidades de Liquidação -->
+<div class="card section-orange">
+<h2>Modalidades de Liquidação</h2>
+
+<p>Dependendo da situação encontrada nos autos, a liquidação seguirá um procedimento diverso, já que várias são as modalidades previstas para a liquidação, a saber:</p>
+
+<ul class="bullet">
+  <li><strong>Cálculos:</strong> é a modalidade mais simples de liquidação, sendo realizada na grande maioria das vezes na Justiça do Trabalho, pois a fixação do valor final da condenação depende apenas de cálculos aritméticos, apresentados pelas partes ou feitos por serventuário da própria Justiça do Trabalho.</li>
+  <li><strong>Arbitramento:</strong> na hipótese, há a necessidade de realização de perícia para se apurar o valor da condenação, sendo uma situação mais complexa, prevista no art. 509 do CPC/2015. O dispositivo afirma que será realizada a liquidação desta forma quando determinado por sentença, convencionado entre as partes e quando a natureza do objeto exigir, ou seja, quando somente por perícia for possível encontrar o valor devido.</li>
+  <li><strong>Artigos:</strong> a liquidação mais complexa e menos usual do processo do trabalho será realizada quando houver a necessidade de se provar fatos novos (os denominados "artigos de liquidação"), que serão objeto de conhecimento e prova perante o Poder Judiciário, em verdadeira "segunda ação dentro da primeira", já que a liquidação seguirá o procedimento ordinário, com contraditório, instrução e decisão sobre os fatos novos. Prevista no art. 509, II, do CPC/2015, é a <strong>única forma de liquidação que não pode ser iniciada de ofício</strong>, dependendo sempre de requerimento do credor.</li>
+</ul>
+
+<div class="box artigo">
+<strong>Referência da legislação:</strong> art. 509, II, do CPC/2015 — liquidação por artigos; art. 509 do CPC/2015 — liquidação por arbitramento.
+</div>
+</div>
+
+<!-- CARD 3: Pedido e Condenação Implícitos -->
+<div class="card section-green">
+<h2>Pontos Fundamentais: Súmulas e Pedido Implícito</h2>
+
+<p>Antes de adentrarmos no procedimento da liquidação por cálculos, mais importantes para o Exame da OAB, vamos lembrar dois pontos fundamentais.</p>
+
+<p>Em primeiro lugar, há o entendimento da <strong>Súmula 344 do STJ</strong> no sentido de que não fere a coisa julgada a alteração de forma de liquidação que foi estabelecida em sentença. Assim, mesmo que a sentença fixe que a futura liquidação será realizada por arbitramento, não obsta que o Magistrado, ao liquidar, o faça por cálculos. O trânsito em julgado da decisão não incide sobre a forma de liquidação, que pode ser modificada.</p>
+
+<p>Além disso, mesmo que a sentença não tenha condenado o réu explicitamente ao pagamento de juros e correção monetária, os valores podem ser incluídos na liquidação, por serem considerados pedido e condenação implícitos (MIESSA, 2016). Vejamos os exemplos:</p>
+
+<ul class="bullet">
+  <li><strong>Pedido implícito:</strong> João ajuizou reclamação trabalhista em face da empresa Alfa, pedindo a condenação tão somente ao pagamento das horas extraordinárias trabalhadas. O Juiz, ao reconhecer o direito ao recebimento daquela parcela, condenará ao seguinte: horas extras + juros + correção monetária, pois as duas últimas parcelas são pedidos implícitos.</li>
+  <li><strong>Condenação implícita:</strong> se o Juiz condenar apenas ao pagamento das horas extraordinárias, poderá incluir na liquidação os valores relacionados a: horas extras + juros + correção monetária, pois também são considerados como parcelas implícitas da condenação, nos termos da Súmula 211 do TST.</li>
+</ul>
+
+<div class="box sumula">
+  <strong>Súmula 211 do TST:</strong> Os juros de mora e a correção monetária incluem-se na liquidação, ainda que omisso o pedido inicial ou a condenação.
+</div>
+
+<div class="box sumula">
+  <strong>Súmula 344 do STJ:</strong> Não fere a coisa julgada a alteração da forma de liquidação estabelecida em sentença. A forma de liquidação pode ser modificada pelo Magistrado, mesmo após o trânsito em julgado.
+</div>
+</div>
+
+<!-- CARD 4: Procedimento da Liquidação por Cálculos -->
+<div class="card section-purple">
+<h2>Procedimento da Liquidação por Cálculos (Art. 879 da CLT)</h2>
+
+<p>A respeito do procedimento da liquidação por cálculos, temos que analisar alguns aspectos do art. 879 da CLT, especialmente os §§ 2º e 3º, com destaque para o § 2º, alterado substancialmente pela reforma trabalhista – Lei n. 13.467/2017.</p>
+
+<ul class="bullet">
+  <li>
+    <strong>Em relação às partes – § 2º:</strong> a reforma trabalhista retirou a possibilidade de homologação dos cálculos sem oitiva prévia das partes, como ocorria anteriormente. O atual texto legal afirma que o Juiz <strong>deverá intimar as partes para manifestação</strong> acerca dos cálculos apresentados, não mais havendo a possibilidade de intimar ou não. A intimação é obrigatória. O prazo para manifestação das partes também foi alterado, cabendo a impugnação no prazo de <strong>8 dias</strong>. Caso não seja apresentada a manifestação no prazo legal, haverá <strong>preclusão</strong>, tornando impossível qualquer discussão posterior sobre o assunto.
+  </li>
+  <li>
+    <strong>Em relação à União – § 3º:</strong> em relação à União, o legislador agiu de maneira diversa, determinando a intimação obrigatória do ente para manifestação, no mesmo prazo de <strong>10 dias</strong>, sob pena de preclusão. Não há, portanto, a faculdade de o Juiz intimar ou não a União, sendo obrigatória a comunicação ao ente público, que possui interesse na análise dos cálculos de liquidação, uma vez que neles constam os valores de contribuições previdenciárias decorrentes da condenação imposta (LEITE, 2015).
+  </li>
+</ul>
+
+<div class="box obs">
+  <strong>Atenção — IN n. 41/2018 do TST:</strong> a redução do prazo para a manifestação das partes somente se aplica às liquidações iniciadas após o dia 11-11-2017, data da entrada em vigor da reforma trabalhista.
+</div>
+
+<div class="box oab">
+  <strong>Caixa OAB:</strong> atenção aos prazos — 8 dias para as partes (§ 2º) e 10 dias para a União (§ 3º), ambos sob pena de preclusão. A intimação das partes é obrigatória com a reforma trabalhista (Lei n. 13.467/2017).
+</div>
+</div>
+
+<!-- CARD 5: Recorribilidade -->
+<div class="card section-red">
+<h2>Recorribilidade da Decisão de Liquidação</h2>
+
+<p>Por fim, cabe a análise sobre a recorribilidade da decisão de liquidação. Por tratar-se de <strong>decisão interlocutória</strong>, não cabe impugnação imediata por recurso, podendo aquela ser discutida posteriormente, em momento oportuno previsto no art. 884 da CLT.</p>
+
+<ul class="bullet">
+  <li><strong>Executado:</strong> poderá discutir o conteúdo da decisão de liquidação nos <strong>embargos à execução</strong>, alegando equívocos na realização do cálculo, excesso de execução e outras matérias.</li>
+  <li><strong>Exequente:</strong> poderá manifestar-se nos termos do § 3º do art. 884 da CLT, que permite àquele, no prazo dos embargos, impugnar a decisão de liquidação.</li>
+</ul>
+
+<div class="box alerta">
+  <strong>Importante:</strong> as partes somente poderão impugnar a decisão de liquidação posteriormente se o Juiz as tiver intimado nos termos do § 2º do art. 879 da CLT, <strong>e</strong> se a manifestação tiver sido apresentada naquele momento adequado. Sem prévia intimação e manifestação, perde-se o direito à impugnação.
+</div>
+
+<div class="box artigo">
+  <strong>Referência da legislação:</strong> art. 884 e §§ da CLT — recorribilidade e embargos à execução; art. 879, §§ 2º e 3º, da CLT — intimação das partes e da União.
+</div>
+</div>
+
+<div class="back">
+  <a href="../index.html">← Voltar ao índice da disciplina</a>
+</div>
+
+</div>
+</div>
+</body>
+</html>
