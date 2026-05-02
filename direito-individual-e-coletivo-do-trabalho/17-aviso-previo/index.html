@@ -1,1 +1,431 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>17. Aviso-Prévio</title>
 
+<style>
+:root{
+  --bg:#eaf3ff;
+  --panel:#f8fbff;
+  --card:#ffffff;
+  --title:#1f4fd8;
+  --text:#0f172a;
+  --muted:#475569;
+  --border:rgba(15,23,42,.14);
+  --shadow:0 14px 34px rgba(15,23,42,.12);
+  --blueSoft:#e8f0ff;
+  --greenSoft:#ecfdf5;
+  --orangeSoft:#fff7ed;
+  --purpleSoft:#f5f3ff;
+  --redSoft:#fef2f2;
+}
+
+*{ box-sizing:border-box; }
+
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background:radial-gradient(900px 420px at 30% 0%, #d8ecff 0%, var(--bg) 60%);
+  color:var(--text);
+  font-size:19px;
+  line-height:1.8;
+}
+
+.wrap{
+  max-width:980px;
+  margin:auto;
+  padding:18px 14px 40px;
+}
+
+.panel{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:24px;
+  box-shadow:var(--shadow);
+  padding:18px;
+}
+
+h1{
+  color:var(--title);
+  font-size:34px;
+  line-height:1.15;
+  margin:6px 0 14px;
+  text-align:center;
+}
+
+h2{
+  color:#0b2fb3;
+  font-size:24px;
+  margin:22px 0 12px;
+}
+
+p{ margin:0 0 14px; text-align:justify; }
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  box-shadow:0 8px 20px rgba(15,23,42,.08);
+  padding:18px;
+  margin:14px 0;
+}
+
+.section-blue   { border-left:7px solid #2563eb; }
+.section-green  { border-left:7px solid #16a34a; }
+.section-orange { border-left:7px solid #f97316; }
+.section-purple { border-left:7px solid #7c3aed; }
+.section-red    { border-left:7px solid #dc2626; }
+.section-teal   { border-left:7px solid #0d9488; }
+.section-indigo { border-left:7px solid #4f46e5; }
+.section-rose   { border-left:7px solid #e11d48; }
+.section-amber  { border-left:7px solid #d97706; }
+
+.box{
+  padding:14px;
+  border-radius:14px;
+  margin:14px 0;
+  border:1px solid var(--border);
+}
+
+.oab    { background:var(--orangeSoft); border-left:6px solid #f97316; }
+.sumula { background:var(--greenSoft);  border-left:6px solid #16a34a; }
+.artigo { background:var(--blueSoft);   border-left:6px solid #2563eb; }
+.obs    { background:var(--purpleSoft); border-left:6px solid #7c3aed; }
+.alerta { background:var(--redSoft);    border-left:6px solid #dc2626; }
+
+.bullet{
+  margin:10px 0 14px;
+  padding-left:0;
+  list-style:none;
+}
+
+.bullet li{
+  margin:10px 0;
+  padding:12px 14px;
+  background:#fff;
+  border-radius:14px;
+  border:1px solid var(--border);
+  box-shadow:0 5px 12px rgba(15,23,42,.05);
+}
+
+.bullet li::before{
+  content:"■ ";
+  color:#1f4fd8;
+  font-weight:900;
+}
+
+.letter-list{
+  margin:10px 0 14px;
+  padding-left:0;
+  list-style:none;
+}
+
+.letter-list li{
+  margin:10px 0;
+  padding:12px 14px;
+  background:#fff;
+  border-radius:14px;
+  border:1px solid var(--border);
+  box-shadow:0 5px 12px rgba(15,23,42,.05);
+}
+
+.slides-area{
+  display:flex;
+  justify-content:center;
+  margin:10px 0 22px;
+}
+
+.slides-btn{
+  text-decoration:none;
+  color:var(--text);
+  background:#fff;
+  border:1px solid rgba(37,99,235,.22);
+  border-radius:22px;
+  box-shadow:var(--shadow);
+  padding:16px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  min-width:min(420px,100%);
+  font-weight:900;
+  transition:.18s;
+}
+
+.slides-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 20px 42px rgba(15,23,42,.16);
+}
+
+.icon{
+  width:54px; height:54px;
+  border-radius:18px;
+  display:grid; place-items:center;
+  background:linear-gradient(135deg,#dbeafe,#ffffff);
+  border:1px solid rgba(37,99,235,.24);
+}
+
+.icon svg{ width:30px; height:30px; }
+
+.slides-text{ display:flex; flex-direction:column; line-height:1.15; }
+.slides-text strong{ font-size:20px; }
+.slides-text span{ font-size:14px; color:var(--muted); }
+
+.back{
+  display:flex;
+  justify-content:center;
+  margin-top:20px;
+}
+
+.back a{
+  width:min(560px,100%);
+  text-align:center;
+  text-decoration:none;
+  background:#fff;
+  padding:16px 18px;
+  border-radius:16px;
+  border:1px solid var(--border);
+  box-shadow:0 8px 20px rgba(15,23,42,.08);
+  color:var(--text);
+  font-weight:900;
+}
+
+@media(max-width:520px){
+  body{ font-size:17px; }
+  h1{ font-size:28px; }
+  h2{ font-size:21px; }
+  .slides-btn{ padding:14px; }
+}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+<div class="panel">
+
+<h1>17. Aviso-Prévio</h1>
+
+<div class="slides-area">
+  <a class="slides-btn" href="#" target="_blank" rel="noopener">
+    <span class="icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none">
+        <rect x="3" y="4" width="18" height="12" rx="2" stroke="#1f4fd8" stroke-width="1.8"/>
+        <path d="M8 20h8M12 16v4" stroke="#1f4fd8" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M7 9h10M7 12h7" stroke="#1f4fd8" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    </span>
+    <span class="slides-text">
+      <strong>Slides</strong>
+      <span>Abrir no Google Drive</span>
+    </span>
+  </a>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- CARD 1 — Conceito e Cabimento              -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="card section-blue">
+<h2>Conceito e Cabimento</h2>
+
+<p>Aviso-prévio é a notificação dada por uma das partes do contrato de trabalho à outra parte, comunicando sua intenção de rescindir o contrato de trabalho sem justa causa, de acordo com o prazo previsto em lei, sob pena de pagar indenização substitutiva. É direito do empregado, previsto no <strong>art. 7º, XXI, da Constituição Federal</strong>.</p>
+
+<p>É figura típica dos <strong>contratos por prazo indeterminado</strong> e tem por finalidade evitar a surpresa da ruptura abrupta do contrato de trabalho.</p>
+
+<p>Deve ser dado pelo empregador quando este rescinde o contrato sem justa causa, e pelo empregado quando este pede demissão (<strong>reciprocidade – art. 487, CLT</strong>). É devido nos seguintes casos:</p>
+
+<ul class="bullet">
+  <li>Dispensa indireta (art. 487, § 4º, CLT).</li>
+  <li>Rescisão do contrato por <em>factum principis</em>.</li>
+  <li>Cessação das atividades da empresa (Súmula 44, TST).</li>
+</ul>
+
+<div class="box artigo">
+  <strong>Base legal:</strong> art. 7º, XXI, CF — art. 487, CLT (reciprocidade, dispensa indireta, desconto por falta do empregado) — art. 488, CLT (redução de jornada) — art. 489, CLT (reconsideração e efetividade da rescisão) — art. 490 e 491, CLT (justa causa no curso do aviso).
+</div>
+
+<div class="box oab">
+  <strong>Caixa OAB:</strong> o aviso-prévio é obrigação <em>recíproca</em> — tanto o empregador quanto o empregado devem concedê-lo. A falta de aviso gera consequências distintas para cada parte.
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- CARD 2 — Duração e Proporcionalidade       -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="card section-orange">
+<h2>Duração e Proporcionalidade</h2>
+
+<p>A duração do aviso-prévio é <strong>proporcional ao tempo de serviço</strong>, sendo, no mínimo, de <strong>30 dias</strong> (art. 7º, XXI, CF). A proporcionalidade foi regulamentada pela <strong>Lei n. 12.506/2011</strong>, que prevê:</p>
+
+<ol class="letter-list">
+  <li><strong>a)</strong> o aviso prévio será concedido na proporção de <strong>30 dias</strong> aos empregados que tenham até um ano de serviço na empresa;</li>
+  <li><strong>b)</strong> ao aviso prévio de 30 dias serão acrescidos <strong>3 dias por ano de serviço</strong> prestado à empresa, até o máximo de mais 60 dias, perfazendo uma duração total de até <strong>90 dias</strong>.</li>
+</ol>
+
+<div class="box sumula">
+  <strong>Súmula 380 do TST:</strong> aplica-se a regra prevista no caput do art. 132 do Código Civil à contagem do prazo do aviso-prévio, <strong>excluindo-se o dia do começo e incluindo-se o dia do vencimento</strong>.
+</div>
+
+<p><strong>Forma:</strong> não há formalidade prevista em lei, mas como é necessário que seja provada sua concessão, é conveniente que seja dado <strong>por escrito</strong>.</p>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- CARD 3 — Efeitos do Aviso-Prévio           -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="card section-green">
+<h2>Efeitos do Aviso-Prévio</h2>
+
+<p>A rescisão do contrato de trabalho torna-se efetiva <strong>depois de expirado o prazo do aviso-prévio</strong> (art. 489, CLT). Em decorrência disso:</p>
+
+<ul class="bullet">
+  <li>Integra o <strong>tempo de serviço</strong> para todos os efeitos legais, ainda que indenizado.</li>
+  <li>A <strong>data de saída</strong> a ser anotada na CTPS do empregado deve corresponder à data do término do aviso-prévio, ainda que indenizado (OJ SDI-1 82, TST).</li>
+  <li>A <strong>prescrição</strong> começa a fluir no final da data do término do aviso-prévio, ainda que indenizado (OJ SDI-1 83, TST).</li>
+</ul>
+
+<p>Outros efeitos relevantes:</p>
+
+<ol class="letter-list">
+  <li>
+    <strong>b)</strong> Se no curso do aviso-prévio houver <strong>reajuste salarial coletivo</strong>, o empregado deve receber tal reajuste (§ 6º, art. 487, CLT).
+  </li>
+  <li>
+    <strong>c) Redução do horário de trabalho</strong> quando o aviso-prévio for concedido pelo empregador: <strong>duas horas por dia</strong> ou <strong>sete dias corridos</strong> (art. 488, CLT). Não se aplica à hipótese de aviso-prévio dado pelo empregado.
+  </li>
+</ol>
+
+<div class="box sumula">
+  <strong>Súmula 230 do TST:</strong> é <strong>ilegal</strong> substituir o período que se reduz da jornada de trabalho, no aviso-prévio, pelo pagamento das horas correspondentes.
+</div>
+
+<div class="box oab">
+  <strong>Caixa OAB:</strong> a redução de jornada durante o aviso-prévio (2h/dia ou 7 dias corridos) é um direito do empregado quando o aviso é dado pelo <strong>empregador</strong>. Se o aviso for dado pelo próprio empregado, não há redução. A substituição por pagamento das horas é ilegal — Súmula 230 do TST.
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- CARD 4 — Falta do Aviso-Prévio             -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="card section-red">
+<h2>Falta do Aviso-Prévio</h2>
+
+<ol class="letter-list">
+  <li>
+    <strong>a) Falta do aviso-prévio pelo empregador:</strong> dá ao empregado o direito aos salários correspondentes ao prazo do aviso (<strong>aviso-prévio indenizado</strong>), garantida sempre a integração deste período ao seu tempo de serviço (art. 487, § 1º, CLT).
+  </li>
+  <li>
+    <strong>b) Falta de aviso-prévio pelo empregado:</strong> dá ao empregador o direito de <strong>descontar os salários correspondentes</strong> ao prazo respectivo (art. 487, § 2º, CLT).
+  </li>
+</ol>
+
+<div class="box artigo">
+  <strong>Art. 487, § 1º e § 2º, CLT:</strong> as consequências da falta do aviso-prévio são assimétricas — enquanto o empregador deve pagar o equivalente ao período, o empregado tem o valor descontado de suas verbas rescisórias.
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- CARD 5 — Reconsideração                    -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="card section-teal">
+<h2>Reconsideração do Aviso-Prévio</h2>
+
+<p>A parte que deu o aviso-prévio à outra pode <strong>reconsiderar o ato antes do seu término</strong>, mas tal reconsideração somente vai gerar efeito se a <strong>outra parte aceitar</strong>. É faculdade da outra parte aceitar ou não a reconsideração (art. 489, CLT):</p>
+
+<ul class="bullet">
+  <li>Se <strong>aceitar</strong>: o contrato volta ao seu curso normal e não será extinto.</li>
+  <li>Se <strong>não aceitar</strong>: o aviso-prévio chegará ao seu termo e o contrato de trabalho será rescindido.</li>
+</ul>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- CARD 6 — Valor do Aviso-Prévio             -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="card section-purple">
+<h2>Valor do Aviso-Prévio</h2>
+
+<p>A remuneração do aviso-prévio equivale à <strong>remuneração normal do empregado</strong> no respectivo período. Regras específicas de cálculo:</p>
+
+<ul class="bullet">
+  <li>Em se tratando de <strong>salário pago por produção ou por tarefa</strong>, o cálculo do aviso-prévio será feito de acordo com a <strong>média dos últimos 12 meses</strong> (art. 487, § 3º, CLT).</li>
+  <li>O valor das <strong>horas extras habituais integra</strong> o aviso-prévio indenizado (art. 487, § 5º, CLT).</li>
+  <li><strong>Reajustamentos salariais coletivos</strong> no curso do aviso-prévio beneficiam o empregado, <strong>ainda que o aviso seja indenizado</strong> (§ 6º, art. 487, CLT).</li>
+</ul>
+
+<div class="box sumula">
+  <strong>Súmula 305 do TST:</strong> sobre a remuneração do aviso-prévio, <strong>ainda que indenizado</strong>, incide <strong>FGTS</strong>.
+</div>
+
+<div class="box oab">
+  <strong>Caixa OAB:</strong> atenção ao aviso-prévio indenizado — mesmo sem trabalho efetivo no período, há incidência de FGTS (Súmula 305/TST), integração das horas extras habituais (art. 487, § 5º, CLT) e aproveitamento de reajuste coletivo concedido no curso do prazo (art. 487, § 6º, CLT).
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- CARD 7 — Justa Causa no Curso do Aviso-Prévio  -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="card section-amber">
+<h2>Justa Causa no Curso do Aviso-Prévio</h2>
+
+<ol class="letter-list">
+  <li>
+    <strong>a) Justa causa praticada pelo empregado:</strong> implica a <strong>perda do direito ao restante do aviso-prévio</strong> (art. 491, CLT) e de qualquer direito às verbas rescisórias de natureza indenizatória (Súmula 73, TST).
+  </li>
+  <li>
+    <strong>b) Justa causa praticada pelo empregador:</strong> implica o <strong>pagamento ao empregado da remuneração correspondente ao período do aviso-prévio</strong>, sem prejuízo da indenização que for devida (art. 490, CLT).
+  </li>
+</ol>
+
+<div class="box sumula">
+  <strong>Súmula 73 do TST:</strong> a prática de justa causa pelo empregado no curso do aviso-prévio dado pelo empregador implica a perda do direito às verbas rescisórias de natureza indenizatória.
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- CARD 8 — Aviso-Prévio e Estabilidade no Emprego    -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="card section-indigo">
+<h2>Aviso-Prévio e Estabilidade no Emprego</h2>
+
+<ul class="bullet">
+  <li>
+    É <strong>inválida</strong> a concessão de aviso-prévio na fluência de garantia de emprego, ante a incompatibilidade dos dois institutos (<strong>Súmula 348, TST</strong>).
+  </li>
+  <li>
+    O <strong>registro da candidatura</strong> do empregado a cargo de dirigente sindical durante o período de aviso-prévio, ainda que indenizado, <strong>não lhe assegura a estabilidade</strong> (<strong>Súmula 369, V, TST</strong>).
+  </li>
+  <li>
+    A <strong>confirmação da gravidez</strong> durante o aviso-prévio trabalhado ou indenizado <strong>garante à empregada a estabilidade</strong> (art. 391-A, CLT).
+  </li>
+</ul>
+
+<div class="box oab">
+  <strong>Caixa OAB:</strong> aviso-prévio e estabilidade são institutos <strong>incompatíveis</strong> (Súmula 348/TST). Exceção importante: a confirmação de gravidez durante o aviso-prévio — trabalhado ou indenizado — garante a estabilidade gestante (art. 391-A, CLT). Candidatura sindical no aviso-prévio não gera estabilidade (Súmula 369, V/TST).
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- CARD 9 — Aviso-Prévio e Doença ou Acidente do Trabalho   -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<div class="card section-rose">
+<h2>Aviso-Prévio e Doença ou Acidente do Trabalho</h2>
+
+<p>A projeção para o futuro do contrato de trabalho, pela concessão do aviso-prévio indenizado, tem <strong>efeitos limitados às vantagens econômicas</strong> obtidas no período do pré-aviso, ou seja, salário, reflexos e verbas rescisórias.</p>
+
+<div class="box sumula">
+  <strong>Súmula 371 do TST:</strong> no caso de concessão de <strong>auxílio-doença</strong> no curso do aviso-prévio, todavia, só se concretizam os efeitos da dispensa <strong>depois de expirado o benefício previdenciário</strong>. Ou seja, o aviso-prévio fica suspenso enquanto durar o auxílio-doença, e a rescisão somente se efetiva ao término do benefício.
+</div>
+
+<div class="box obs">
+  <strong>Observação prática:</strong> caso o empregador não queira que o empregado trabalhe no período do aviso-prévio, deverá <strong>indenizá-lo</strong>, pagando os salários correspondentes ao prazo, sem a exigência de prestação de serviços.
+</div>
+</div>
+
+<div class="back">
+  <a href="../index.html">← Voltar ao índice da disciplina</a>
+</div>
+
+</div>
+</div>
+</body>
+</html>
