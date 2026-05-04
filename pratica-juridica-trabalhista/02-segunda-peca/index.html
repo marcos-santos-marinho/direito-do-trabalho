@@ -1,1 +1,432 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2ª Peça — Contestação Trabalhista</title>
 
+<style>
+:root{
+  --bg:#eaf3ff;
+  --panel:#f8fbff;
+  --card:#ffffff;
+  --title:#1f4fd8;
+  --text:#0f172a;
+  --muted:#475569;
+  --border:rgba(15,23,42,.14);
+  --shadow:0 14px 34px rgba(15,23,42,.12);
+  --blueSoft:#e8f0ff;
+  --greenSoft:#ecfdf5;
+  --orangeSoft:#fff7ed;
+  --purpleSoft:#f5f3ff;
+  --redSoft:#fef2f2;
+}
+
+*{ box-sizing:border-box; }
+
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background:radial-gradient(900px 420px at 30% 0%, #d8ecff 0%, var(--bg) 60%);
+  color:var(--text);
+  font-size:19px;
+  line-height:1.8;
+}
+
+.wrap{
+  max-width:980px;
+  margin:auto;
+  padding:18px 14px 40px;
+}
+
+.panel{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:24px;
+  box-shadow:var(--shadow);
+  padding:18px;
+}
+
+h1{
+  color:var(--title);
+  font-size:34px;
+  line-height:1.15;
+  margin:6px 0 4px;
+  text-align:center;
+}
+
+.prazo{
+  text-align:center;
+  font-size:17px;
+  font-weight:700;
+  color:#dc2626;
+  margin:0 0 18px;
+  letter-spacing:.02em;
+}
+
+h2{
+  color:#0b2fb3;
+  font-size:24px;
+  margin:22px 0 12px;
+}
+
+p{ margin:0 0 14px; text-align:justify; }
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  box-shadow:0 8px 20px rgba(15,23,42,.08);
+  padding:18px;
+  margin:14px 0;
+}
+
+.section-blue   { border-left:7px solid #2563eb; }
+.section-green  { border-left:7px solid #16a34a; }
+.section-orange { border-left:7px solid #f97316; }
+.section-purple { border-left:7px solid #7c3aed; }
+.section-red    { border-left:7px solid #dc2626; }
+.section-teal   { border-left:7px solid #0d9488; }
+.section-indigo { border-left:7px solid #4f46e5; }
+.section-amber  { border-left:7px solid #d97706; }
+
+.box{
+  padding:14px;
+  border-radius:14px;
+  margin:14px 0;
+  border:1px solid var(--border);
+}
+
+.oab    { background:var(--orangeSoft); border-left:6px solid #f97316; }
+.sumula { background:var(--greenSoft);  border-left:6px solid #16a34a; }
+.artigo { background:var(--blueSoft);   border-left:6px solid #2563eb; }
+.obs    { background:var(--purpleSoft); border-left:6px solid #7c3aed; }
+.alerta { background:var(--redSoft);    border-left:6px solid #dc2626; }
+
+.bullet{
+  margin:10px 0 14px;
+  padding-left:0;
+  list-style:none;
+}
+
+.bullet li{
+  margin:10px 0;
+  padding:12px 14px;
+  background:#fff;
+  border-radius:14px;
+  border:1px solid var(--border);
+  box-shadow:0 5px 12px rgba(15,23,42,.05);
+}
+
+.bullet li::before{
+  content:"■ ";
+  color:#1f4fd8;
+  font-weight:900;
+}
+
+.letter-list{
+  margin:10px 0 14px;
+  padding-left:0;
+  list-style:none;
+}
+
+.letter-list li{
+  margin:10px 0;
+  padding:12px 14px;
+  background:#fff;
+  border-radius:14px;
+  border:1px solid var(--border);
+  box-shadow:0 5px 12px rgba(15,23,42,.05);
+}
+
+/* ── Área dos dois botões ── */
+.btns-area{
+  display:flex;
+  gap:14px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin:10px 0 26px;
+}
+
+.drive-btn{
+  text-decoration:none;
+  color:var(--text);
+  background:#fff;
+  border:1px solid rgba(37,99,235,.22);
+  border-radius:22px;
+  box-shadow:var(--shadow);
+  padding:16px 22px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  flex:1 1 220px;
+  max-width:340px;
+  font-weight:900;
+  transition:.18s;
+  text-align:center;
+}
+
+.drive-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 20px 42px rgba(15,23,42,.16);
+}
+
+.drive-btn .btn-top{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.drive-btn .btn-label{
+  font-size:13px;
+  color:var(--muted);
+  font-weight:500;
+  margin-top:2px;
+}
+
+/* ícone azul — slides */
+.icon-slides{
+  width:54px; height:54px;
+  border-radius:18px;
+  display:grid; place-items:center;
+  background:linear-gradient(135deg,#dbeafe,#ffffff);
+  border:1px solid rgba(37,99,235,.24);
+  flex-shrink:0;
+}
+
+/* ícone verde — enunciado */
+.icon-enunciado{
+  width:54px; height:54px;
+  border-radius:18px;
+  display:grid; place-items:center;
+  background:linear-gradient(135deg,#d1fae5,#ffffff);
+  border:1px solid rgba(22,163,74,.28);
+  flex-shrink:0;
+}
+
+.icon-slides svg,
+.icon-enunciado svg{ width:30px; height:30px; }
+
+.btn-text{
+  display:flex;
+  flex-direction:column;
+  line-height:1.15;
+  text-align:left;
+}
+
+.btn-text strong{ font-size:19px; }
+.btn-text span{ font-size:14px; color:var(--muted); }
+
+.back{
+  display:flex;
+  justify-content:center;
+  margin-top:20px;
+}
+
+.back a{
+  width:min(560px,100%);
+  text-align:center;
+  text-decoration:none;
+  background:#fff;
+  padding:16px 18px;
+  border-radius:16px;
+  border:1px solid var(--border);
+  box-shadow:0 8px 20px rgba(15,23,42,.08);
+  color:var(--text);
+  font-weight:900;
+}
+
+@media(max-width:560px){
+  body{ font-size:17px; }
+  h1{ font-size:26px; }
+  h2{ font-size:21px; }
+  .drive-btn{ padding:14px; }
+}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+<div class="panel">
+
+<h1>2ª Peça — Contestação Trabalhista</h1>
+<p class="prazo">⏱ PRAZO: 18/05/2026</p>
+
+<!-- ── Dois botões lado a lado ── -->
+<div class="btns-area">
+
+  <!-- Botão Slides -->
+  <a class="drive-btn" href="#" target="_blank" rel="noopener">
+    <div class="btn-top">
+      <span class="icon-slides" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <rect x="3" y="4" width="18" height="12" rx="2" stroke="#1f4fd8" stroke-width="1.8"/>
+          <path d="M8 20h8M12 16v4" stroke="#1f4fd8" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M7 9h10M7 12h7" stroke="#1f4fd8" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span class="btn-text">
+        <strong>Slides</strong>
+        <span>Abrir no Google Drive</span>
+      </span>
+    </div>
+    <span class="btn-label">Material de apoio em slides</span>
+  </a>
+
+  <!-- Botão Enunciado da Peça -->
+  <a class="drive-btn" href="#" target="_blank" rel="noopener">
+    <div class="btn-top">
+      <span class="icon-enunciado" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <rect x="4" y="3" width="16" height="18" rx="2" stroke="#16a34a" stroke-width="1.8"/>
+          <path d="M8 8h8M8 12h8M8 16h5" stroke="#16a34a" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span class="btn-text">
+        <strong>Enunciado da Peça</strong>
+        <span>Abrir no Google Drive</span>
+      </span>
+    </div>
+    <span class="btn-label">Questão oficial da prova</span>
+  </a>
+
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- CARD 1 — O que é a Contestação Trabalhista        -->
+<!-- ══════════════════════════════════════════════════ -->
+<div class="card section-blue">
+<h2>1. O que é a Contestação Trabalhista?</h2>
+
+<p>A contestação é a <strong>principal forma de defesa do reclamado</strong> no processo do trabalho. Ela encontra seu fundamento legal no <strong>art. 847 da CLT</strong> e, de forma subsidiária e supletiva, nos <strong>arts. 336 a 341 do CPC</strong>.</p>
+
+<p>Para dominar esta peça, você deve conhecer dois princípios básicos:</p>
+
+<ul class="bullet">
+  <li>
+    <strong>Princípio da Eventualidade (ou Concentração):</strong> o réu deve apresentar <strong>todas as suas teses defensivas em uma única peça</strong>, pois esta é sua única oportunidade de defesa.
+  </li>
+  <li>
+    <strong>Princípio da Impugnação Especificada dos Fatos:</strong> o réu tem o dever de impugnar <strong>cada fato alegado pelo reclamante de forma específica</strong>, sob pena de serem presumidos verdadeiros.
+  </li>
+</ul>
+
+<div class="box artigo">
+  <strong>Base legal:</strong> art. 847 da CLT (contestação no processo do trabalho) — arts. 336 a 341 do CPC (contestação, aplicação subsidiária e supletiva).
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- CARD 2 — Estrutura Passo a Passo da Peça          -->
+<!-- ══════════════════════════════════════════════════ -->
+<div class="card section-orange">
+<h2>2. Estrutura Passo a Passo da Peça</h2>
+
+<p>Siga este roteiro para garantir que nenhum requisito obrigatório fique de fora:</p>
+
+<ol class="letter-list">
+  <li>
+    <strong>A) Endereçamento e Número do Processo</strong><br>
+    O endereçamento deve ser feito ao juízo onde a ação <strong>já tramita</strong>. Se o enunciado indicar a vara, você deve mencioná-la; caso contrário, deixe a lacuna.<br>
+    <em>Exemplo:</em> AO JUÍZO DA ... VARA DO TRABALHO DE....
+  </li>
+  <li>
+    <strong>B) Qualificação e Fundamentação</strong><br>
+    Aqui, você qualifica a empresa (reclamada) e indica a base legal da peça.<br>
+    — <strong>Atenção:</strong> nunca crie dados que não estejam no enunciado.<br>
+    — <strong>Fundamento:</strong> art. 847 da CLT e arts. 336 a 341 do CPC.<br>
+    — <strong>Verbo correto:</strong> o réu vem <em>apresentar</em> ou <em>oferecer</em> a contestação.
+  </li>
+  <li>
+    <strong>C) Benefícios da Justiça Gratuita</strong><br>
+    O reclamado também pode solicitar a gratuidade de justiça se comprovar insuficiência econômica, conforme autorizado pelo <strong>art. 790, § 4º, da CLT</strong>.
+  </li>
+</ol>
+
+<div class="box oab">
+  <strong>Caixa OAB:</strong> nunca invente dados que não estejam no enunciado na qualificação das partes. O verbo de apresentação da peça é sempre <em>apresentar</em> ou <em>oferecer</em> — nunca <em>interpor</em>, que é verbo próprio de recurso.
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- CARD 3 — Teses Jurídicas e Silogismo              -->
+<!-- ══════════════════════════════════════════════════ -->
+<div class="card section-purple">
+<h2>3. Teses Jurídicas e Silogismo</h2>
+
+<p>A <strong>ordem de apresentação das teses</strong> é fundamental para a lógica processual. Utilize sempre o <strong>silogismo jurídico: Fato, Fundamento e Pedido</strong>.</p>
+
+<ul class="bullet">
+  <li>
+    <strong>Preliminares de Mérito (art. 337 do CPC):</strong> servem para atacar vícios processuais, como inépcia da inicial, incompetência absoluta ou litispendência. O objetivo é a <strong>extinção do processo sem resolução do mérito</strong>.
+  </li>
+  <li>
+    <strong>Prejudiciais de Mérito (Prescrição):</strong> ocorrem quando o tempo para exercer o direito expirou. Pode ser a:
+    <ul style="margin:8px 0 0 18px; list-style:disc;">
+      <li style="margin:4px 0;"><strong>Prescrição bienal:</strong> 2 anos após o fim do contrato.</li>
+      <li style="margin:4px 0;"><strong>Prescrição quinquenal:</strong> 5 anos anteriores ao ajuizamento da ação.</li>
+    </ul>
+  </li>
+  <li>
+    <strong>Teses de Defesa de Mérito:</strong> é o momento de rebater os pedidos do autor (ex.: horas extras, adicionais, verbas rescisórias). Sugere-se <strong>abrir um tópico para cada pedido</strong> contestado.
+  </li>
+</ul>
+
+<div class="box artigo">
+  <strong>Ordem lógica das teses:</strong> 1º Preliminares (vícios processuais) → 2º Prejudiciais de mérito (prescrição) → 3º Mérito propriamente dito (impugnação dos pedidos). Inverter essa ordem pode comprometer a coerência processual da peça.
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- CARD 4 — Pedidos e Requerimentos Finais            -->
+<!-- ══════════════════════════════════════════════════ -->
+<div class="card section-green">
+<h2>4. Pedidos e Requerimentos Finais</h2>
+
+<p>Ao final da peça, você deve consolidar suas solicitações:</p>
+
+<ul class="bullet">
+  <li>Acolhimento das <strong>preliminares e prejudiciais de mérito</strong>.</li>
+  <li><strong>Improcedência total</strong> dos pedidos do reclamante.</li>
+  <li>Condenação do autor em <strong>honorários advocatícios de sucumbência</strong> (5% a 15%), nos termos do <strong>art. 791-A da CLT</strong>.</li>
+  <li>Requerimento de <strong>produção de todas as provas</strong> admitidas em direito.</li>
+</ul>
+
+<div class="box artigo">
+  <strong>Art. 791-A da CLT:</strong> ao advogado, ainda que atue em causa própria, serão devidos honorários de sucumbência, fixados entre o mínimo de 5% e o máximo de 15% sobre o valor que resultar da liquidação da sentença, do proveito econômico obtido ou, não sendo possível mensurá-lo, sobre o valor atualizado da causa.
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- CARD 5 — Dicas de Ouro para a Prova               -->
+<!-- ══════════════════════════════════════════════════ -->
+<div class="card section-amber">
+<h2>5. Dicas de Ouro para a Prova</h2>
+
+<ul class="bullet">
+  <li>
+    <strong>Compensação:</strong> se houver dívidas de natureza trabalhista do autor para com a empresa, peça a compensação no limite da condenação, conforme o <strong>art. 767 da CLT</strong>.
+  </li>
+  <li>
+    <strong>Reconvenção:</strong> se a empresa quiser processar o empregado por algo conexo ao contrato no mesmo processo, utilize a reconvenção (<strong>art. 343 do CPC</strong>).
+  </li>
+  <li>
+    <strong>Não se identifique:</strong> no encerramento (Local, Data, Advogado...), <strong>nunca assine ou invente nomes</strong>, para não anular sua prova.
+  </li>
+</ul>
+
+<div class="box oab">
+  <strong>Caixa OAB:</strong> lembre-se — a prática leva à perfeição. Estude os gabaritos anteriores para entender o que a banca FGV costuma pontuar com mais peso. A compensação (art. 767, CLT) e a reconvenção (art. 343, CPC) são institutos que aparecem com frequência nos enunciados e devem ser identificados com agilidade.
+</div>
+</div>
+
+<div class="back">
+  <a href="../index.html">← Voltar ao índice da disciplina</a>
+</div>
+
+</div>
+</div>
+</body>
+</html>
