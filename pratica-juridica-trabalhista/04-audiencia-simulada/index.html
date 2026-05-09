@@ -1,1 +1,674 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Audiência Trabalhista</title>
 
+<style>
+:root{
+  --bg:#eaf3ff;
+  --panel:#f8fbff;
+  --card:#ffffff;
+  --title:#1f4fd8;
+  --text:#0f172a;
+  --muted:#475569;
+  --border:rgba(15,23,42,.14);
+  --shadow:0 14px 34px rgba(15,23,42,.12);
+  --blueSoft:#e8f0ff;
+  --greenSoft:#ecfdf5;
+  --orangeSoft:#fff7ed;
+  --purpleSoft:#f5f3ff;
+  --redSoft:#fef2f2;
+  --tealSoft:#f0fdfa;
+}
+
+*{ box-sizing:border-box; }
+
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background:radial-gradient(900px 420px at 30% 0%, #d8ecff 0%, var(--bg) 60%);
+  color:var(--text);
+  font-size:19px;
+  line-height:1.8;
+}
+
+.wrap{
+  max-width:980px;
+  margin:auto;
+  padding:18px 14px 40px;
+}
+
+.panel{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:24px;
+  box-shadow:var(--shadow);
+  padding:18px;
+}
+
+h1{
+  color:var(--title);
+  font-size:34px;
+  line-height:1.15;
+  margin:6px 0 4px;
+  text-align:center;
+}
+
+.subtitle{
+  text-align:center;
+  color:var(--muted);
+  font-size:16px;
+  margin:0 0 22px;
+  font-weight:500;
+  letter-spacing:.02em;
+}
+
+h2{
+  color:#0b2fb3;
+  font-size:24px;
+  margin:22px 0 12px;
+}
+
+p{ margin:0 0 14px; text-align:justify; }
+
+/* ── Área dos dois botões ── */
+.btns-area{
+  display:flex;
+  gap:14px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin:10px 0 28px;
+}
+
+.drive-btn{
+  text-decoration:none;
+  color:var(--text);
+  background:#fff;
+  border:1px solid rgba(37,99,235,.22);
+  border-radius:22px;
+  box-shadow:var(--shadow);
+  padding:16px 22px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  flex:1 1 220px;
+  max-width:340px;
+  font-weight:900;
+  transition:.18s;
+  text-align:center;
+}
+
+.drive-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 20px 42px rgba(15,23,42,.16);
+}
+
+.drive-btn .btn-top{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.drive-btn .btn-label{
+  font-size:13px;
+  color:var(--muted);
+  font-weight:500;
+  margin-top:2px;
+}
+
+.icon-blue{
+  width:54px; height:54px;
+  border-radius:18px;
+  display:grid; place-items:center;
+  background:linear-gradient(135deg,#dbeafe,#ffffff);
+  border:1px solid rgba(37,99,235,.24);
+  flex-shrink:0;
+}
+
+.icon-green{
+  width:54px; height:54px;
+  border-radius:18px;
+  display:grid; place-items:center;
+  background:linear-gradient(135deg,#d1fae5,#ffffff);
+  border:1px solid rgba(22,163,74,.28);
+  flex-shrink:0;
+}
+
+.icon-blue svg,
+.icon-green svg{ width:30px; height:30px; }
+
+.btn-text{
+  display:flex;
+  flex-direction:column;
+  line-height:1.15;
+  text-align:left;
+}
+
+.btn-text strong{ font-size:18px; }
+.btn-text span{ font-size:13px; color:var(--muted); }
+
+/* ── Cards ── */
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  box-shadow:0 8px 20px rgba(15,23,42,.08);
+  padding:18px;
+  margin:14px 0;
+}
+
+.section-blue   { border-left:7px solid #2563eb; }
+.section-green  { border-left:7px solid #16a34a; }
+.section-orange { border-left:7px solid #f97316; }
+.section-purple { border-left:7px solid #7c3aed; }
+.section-red    { border-left:7px solid #dc2626; }
+.section-teal   { border-left:7px solid #0d9488; }
+.section-indigo { border-left:7px solid #4f46e5; }
+.section-amber  { border-left:7px solid #d97706; }
+.section-rose   { border-left:7px solid #e11d48; }
+
+/* ── Boxes ── */
+.box{
+  padding:14px;
+  border-radius:14px;
+  margin:14px 0;
+  border:1px solid var(--border);
+}
+
+.obs    { background:var(--purpleSoft); border-left:6px solid #7c3aed; }
+.alerta { background:var(--redSoft);    border-left:6px solid #dc2626; }
+.dica   { background:var(--greenSoft);  border-left:6px solid #16a34a; }
+.info   { background:var(--blueSoft);   border-left:6px solid #2563eb; }
+.destaque { background:var(--orangeSoft); border-left:6px solid #f97316; }
+
+/* ── Linha de personagem ── */
+.personagem{
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+  margin:14px 0;
+  padding:14px 16px;
+  background:#fff;
+  border-radius:14px;
+  border:1px solid var(--border);
+  box-shadow:0 5px 12px rgba(15,23,42,.05);
+}
+
+.persona-tag{
+  flex-shrink:0;
+  padding:4px 12px;
+  border-radius:20px;
+  font-size:13px;
+  font-weight:800;
+  letter-spacing:.03em;
+  white-space:nowrap;
+  margin-top:3px;
+}
+
+.tag-juiz    { background:#dbeafe; color:#1e40af; }
+.tag-escrivao{ background:#fef9c3; color:#854d0e; }
+.tag-recl-adv{ background:#dcfce7; color:#166534; }
+.tag-recl    { background:#f0fdf4; color:#166534; border:1px solid #bbf7d0; }
+.tag-recl-d  { background:#ede9fe; color:#5b21b6; }
+.tag-preposto{ background:#fce7f3; color:#9d174d; }
+.tag-test    { background:#fff7ed; color:#92400e; }
+
+.persona-content{
+  flex:1;
+  font-size:0.97em;
+  line-height:1.75;
+}
+
+.campo{
+  display:inline-block;
+  min-width:220px;
+  border-bottom:2px solid #94a3b8;
+  margin-left:4px;
+  vertical-align:bottom;
+  height:22px;
+}
+
+/* ── Lista bala ── */
+.bullet{
+  margin:10px 0 14px;
+  padding-left:0;
+  list-style:none;
+}
+
+.bullet li{
+  margin:10px 0;
+  padding:12px 14px;
+  background:#fff;
+  border-radius:14px;
+  border:1px solid var(--border);
+  box-shadow:0 5px 12px rgba(15,23,42,.05);
+}
+
+.bullet li::before{
+  content:"■ ";
+  color:#1f4fd8;
+  font-weight:900;
+}
+
+/* ── Numeração de etapa ── */
+.etapa-num{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:36px; height:36px;
+  border-radius:50%;
+  background:#1f4fd8;
+  color:#fff;
+  font-weight:900;
+  font-size:16px;
+  flex-shrink:0;
+  margin-right:10px;
+  vertical-align:middle;
+}
+
+/* ── Voltar ── */
+.back{
+  display:flex;
+  justify-content:center;
+  margin-top:20px;
+}
+
+.back a{
+  width:min(560px,100%);
+  text-align:center;
+  text-decoration:none;
+  background:#fff;
+  padding:16px 18px;
+  border-radius:16px;
+  border:1px solid var(--border);
+  box-shadow:0 8px 20px rgba(15,23,42,.08);
+  color:var(--text);
+  font-weight:900;
+}
+
+@media(max-width:560px){
+  body{ font-size:17px; }
+  h1{ font-size:26px; }
+  h2{ font-size:20px; }
+  .drive-btn{ padding:14px; max-width:100%; }
+  .personagem{ flex-direction:column; gap:8px; }
+  .campo{ min-width:140px; }
+}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+<div class="panel">
+
+<h1>Audiência Trabalhista</h1>
+<p class="subtitle">Audiência de Instrução e Julgamento — Roteiro para Atividade Simulada</p>
+
+<!-- ── Dois botões lado a lado ── -->
+<div class="btns-area">
+
+  <a class="drive-btn" href="#" target="_blank" rel="noopener">
+    <div class="btn-top">
+      <span class="icon-blue" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <rect x="4" y="3" width="16" height="18" rx="2" stroke="#1f4fd8" stroke-width="1.8"/>
+          <path d="M8 8h8M8 12h8M8 16h5" stroke="#1f4fd8" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span class="btn-text">
+        <strong>Reclamação Trabalhista</strong>
+        <span>Abrir no Google Drive</span>
+      </span>
+    </div>
+    <span class="btn-label">Peça do reclamante</span>
+  </a>
+
+  <a class="drive-btn" href="#" target="_blank" rel="noopener">
+    <div class="btn-top">
+      <span class="icon-green" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <rect x="4" y="3" width="16" height="18" rx="2" stroke="#16a34a" stroke-width="1.8"/>
+          <path d="M8 8h8M8 12h8M8 16h5" stroke="#16a34a" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span class="btn-text">
+        <strong>Contestação Trabalhista</strong>
+        <span>Abrir no Google Drive</span>
+      </span>
+    </div>
+    <span class="btn-label">Peça da reclamada</span>
+  </a>
+
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- CARD 1 — ETAPA 1: PREGÃO                          -->
+<!-- ══════════════════════════════════════════════════ -->
+<div class="card section-blue">
+<h2><span class="etapa-num">1</span> Pregão</h2>
+
+<div class="personagem">
+  <span class="persona-tag tag-escrivao">ESCRIVÃO</span>
+  <div class="persona-content">
+    <span class="campo"></span>
+    <p style="margin:10px 0 0;">Anunciar o início da audiência, informando o <strong>número da Vara</strong>, o <strong>horário da audiência</strong> e o <strong>nome das partes</strong>.</p>
+  </div>
+</div>
+
+<div class="box info">
+  <strong>Posicionamento na sala:</strong> partes e advogados entram na sala de audiência e se sentam no lugar correto.<br><br>
+  — Advogado da <strong>reclamada</strong> e o <strong>preposto</strong> ao <strong>lado direito</strong> do Juiz.<br>
+  — Advogado do <strong>reclamante</strong> e o <strong>reclamante</strong> ao <strong>lado esquerdo</strong> do Juiz.
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- CARD 2 — ETAPA 2: QUALIFICAÇÃO                    -->
+<!-- ══════════════════════════════════════════════════ -->
+<div class="card section-green">
+<h2><span class="etapa-num">2</span> Qualificação</h2>
+
+<p>As partes entregam seus documentos e os dados são registrados em ata.</p>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- CARD 3 — ETAPA 3: TENTATIVA DE CONCILIAÇÃO        -->
+<!-- ══════════════════════════════════════════════════ -->
+<div class="card section-orange">
+<h2><span class="etapa-num">3</span> Tentativa de Conciliação</h2>
+
+<div class="personagem">
+  <span class="persona-tag tag-juiz">JUIZ</span>
+  <div class="persona-content">
+    <span class="campo"></span>
+    <p style="margin:10px 0 0;">O juiz pergunta se há acordo, conversa com as partes, faz alguns cálculos e tenta chegar em um meio termo.</p>
+  </div>
+</div>
+
+<div class="box dica">
+  <strong>Se houver acordo:</strong> todos os dados são registrados em ata — valor, data e forma de pagamento, eventuais parcelas, multa em caso de descumprimento etc.<br><br>
+  Verifique com o seu cliente se ele pretende fazer um acordo. Em caso positivo, veja o <strong>valor máximo que ele pode pagar</strong> e tente a melhor negociação (até porque sobre o valor do acordo seu cliente ainda recolherá <strong>IR e INSS</strong>, de acordo com a matéria). Se estiver pelo reclamante, veja o <strong>valor mínimo que ele aceita</strong>.
+</div>
+
+<div class="box alerta">
+  <strong>NÃO TEM ACORDO.</strong> O procedimento prossegue para a etapa seguinte.
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- CARD 4 — ETAPA 4: ENTREGA DA DEFESA               -->
+<!-- ══════════════════════════════════════════════════ -->
+<div class="card section-purple">
+<h2><span class="etapa-num">4</span> Entrega da Defesa</h2>
+
+<div class="personagem">
+  <span class="persona-tag tag-recl-d">ADV. RECLAMADA</span>
+  <div class="persona-content">
+    <span class="campo"></span>
+    <p style="margin:10px 0 0;">Entrega a contestação ao juízo.</p>
+  </div>
+</div>
+
+<p>O juiz <strong>retira o sigilo da defesa</strong>, dá uma olhada rápida na contestação e passa para a parte contrária examinar. Em seguida, pede que o reclamante se manifeste sobre a defesa.</p>
+
+<div class="personagem">
+  <span class="persona-tag tag-recl-adv">ADV. RECLAMANTE</span>
+  <div class="persona-content">
+    <span class="campo"></span>
+    <p style="margin:10px 0 0;">Manifesta-se sobre a defesa apresentada.</p>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- CARD 5 — ETAPA 5: INSTRUÇÃO                       -->
+<!-- ══════════════════════════════════════════════════ -->
+<div class="card section-teal">
+<h2><span class="etapa-num">5</span> Instrução</h2>
+
+<div class="personagem">
+  <span class="persona-tag tag-juiz">JUIZ</span>
+  <div class="persona-content">
+    Pergunta ao advogado da reclamada se pretende ouvir o reclamante.
+  </div>
+</div>
+
+<div class="personagem">
+  <span class="persona-tag tag-recl-d">ADV. RECLAMADA</span>
+  <div class="persona-content">
+    Confirma que quer a oitiva do reclamante.
+  </div>
+</div>
+
+<!-- 5.1 -->
+<div class="box info" style="margin-top:20px;">
+  <strong>5.1 — Oitiva do Reclamante</strong>
+</div>
+
+<div class="personagem">
+  <span class="persona-tag tag-recl">RECLAMANTE</span>
+  <div class="persona-content">
+    <span class="campo"></span>
+    <p style="margin:10px 0 0;">O juiz pedirá para o reclamante se sentar na cadeira em frente ao escrivão.</p>
+  </div>
+</div>
+
+<div class="box alerta">
+  <strong>⚠ RECLAMANTE E SEU ADVOGADO NÃO PODEM SE COMUNICAR</strong> durante a oitiva.
+</div>
+
+<div class="personagem">
+  <span class="persona-tag tag-juiz">JUIZ</span>
+  <div class="persona-content">
+    Faz as perguntas que julgar necessárias ao reclamante.
+  </div>
+</div>
+
+<div class="personagem">
+  <span class="persona-tag tag-recl-d">ADV. RECLAMADA</span>
+  <div class="persona-content">
+    Endereça as perguntas que achar necessárias ao Juiz, que, achando pertinente, as repassa ao reclamante. <strong>Todas as perguntas devem ser formuladas para o Juiz.</strong>
+  </div>
+</div>
+
+<!-- 5.2 -->
+<div class="box obs" style="margin-top:20px;">
+  <strong>5.2 — Oitiva da Reclamada (Preposto)</strong>
+</div>
+
+<div class="personagem">
+  <span class="persona-tag tag-preposto">PREPOSTO</span>
+  <div class="persona-content">
+    <span class="campo"></span>
+    <p style="margin:10px 0 0;">O juiz pedirá para o preposto se sentar na cadeira em frente ao escrivão.</p>
+  </div>
+</div>
+
+<div class="box alerta">
+  <strong>⚠ PREPOSTO E SEU ADVOGADO NÃO PODEM SE COMUNICAR</strong> durante a oitiva.
+</div>
+
+<div class="personagem">
+  <span class="persona-tag tag-juiz">JUIZ</span>
+  <div class="persona-content">
+    Faz as perguntas que julgar necessárias ao preposto.
+  </div>
+</div>
+
+<div class="personagem">
+  <span class="persona-tag tag-recl-adv">ADV. RECLAMANTE</span>
+  <div class="persona-content">
+    Endereça as perguntas que achar necessárias ao Juiz, que, achando pertinente, as repassa ao preposto. <strong>Todas as perguntas devem ser formuladas para o Juiz.</strong>
+  </div>
+</div>
+
+<!-- 5.3 -->
+<div class="box destaque" style="margin-top:20px;">
+  <strong>5.3 — Oitiva das Testemunhas</strong>
+</div>
+
+<p>Cada testemunha será chamada pelo nome e, após entrar na sala, se sentará na cadeira em frente ao escrivão. A testemunha será <strong>qualificada</strong> (nome, endereço etc.).</p>
+
+<p>Para cada testemunha, o Juiz deve perguntar:</p>
+<ul class="bullet">
+  <li>Se há algum <strong>grau de parentesco</strong> com alguma das partes.</li>
+  <li>Se há <strong>amizade íntima ou inimizade</strong> com alguma das partes.</li>
+  <li>Se a testemunha tem algum <strong>interesse no resultado do processo</strong>.</li>
+</ul>
+
+<p>Em seguida, o Juiz deve alertar a testemunha de que ela está depondo em juízo, que deve falar apenas a verdade, pois se mentir pode responder por <strong>crime de falso testemunho</strong> e até ser presa.</p>
+
+<!-- 5.4 Testemunhas do Reclamante -->
+<div class="box info" style="margin-top:20px;">
+  <strong>5.4 — Testemunhas do Reclamante</strong> (até 3)
+</div>
+
+<div class="personagem">
+  <span class="persona-tag tag-test">TESTEMUNHA 1</span>
+  <div class="persona-content"><span class="campo"></span></div>
+</div>
+
+<div class="personagem">
+  <span class="persona-tag tag-test">TESTEMUNHA 2</span>
+  <div class="persona-content"><span class="campo"></span></div>
+</div>
+
+<div class="personagem">
+  <span class="persona-tag tag-test">TESTEMUNHA 3</span>
+  <div class="persona-content"><span class="campo"></span></div>
+</div>
+
+<div class="personagem">
+  <span class="persona-tag tag-juiz">JUIZ</span>
+  <div class="persona-content">Faz as perguntas que achar necessárias.</div>
+</div>
+
+<div class="personagem">
+  <span class="persona-tag tag-recl-adv">ADV. RECLAMANTE</span>
+  <div class="persona-content">
+    Faz suas perguntas ao juiz que avaliará e, se concordar, repassará para a testemunha. <strong>Fazer uma pergunta de cada vez.</strong>
+  </div>
+</div>
+
+<div class="personagem">
+  <span class="persona-tag tag-recl-d">ADV. RECLAMADA</span>
+  <div class="persona-content">
+    Faz suas perguntas ao juiz que avaliará e, se concordar, repassará para a testemunha. <strong>Fazer uma pergunta de cada vez.</strong>
+  </div>
+</div>
+
+<!-- 5.5 Testemunhas da Reclamada -->
+<div class="box obs" style="margin-top:20px;">
+  <strong>Testemunhas da Reclamada</strong> (até 3)
+</div>
+
+<div class="personagem">
+  <span class="persona-tag tag-test">TESTEMUNHA 1</span>
+  <div class="persona-content"><span class="campo"></span></div>
+</div>
+
+<div class="personagem">
+  <span class="persona-tag tag-test">TESTEMUNHA 2</span>
+  <div class="persona-content"><span class="campo"></span></div>
+</div>
+
+<div class="personagem">
+  <span class="persona-tag tag-test">TESTEMUNHA 3</span>
+  <div class="persona-content"><span class="campo"></span></div>
+</div>
+
+<div class="personagem">
+  <span class="persona-tag tag-juiz">JUIZ</span>
+  <div class="persona-content">Faz as perguntas que achar necessárias.</div>
+</div>
+
+<div class="personagem">
+  <span class="persona-tag tag-recl-d">ADV. RECLAMADA</span>
+  <div class="persona-content">
+    Faz suas perguntas ao juiz que avaliará e, se concordar, repassará para a testemunha. <strong>Fazer uma pergunta de cada vez.</strong>
+  </div>
+</div>
+
+<div class="personagem">
+  <span class="persona-tag tag-recl-adv">ADV. RECLAMANTE</span>
+  <div class="persona-content">
+    Faz suas perguntas ao juiz que avaliará e, se concordar, repassará para a testemunha. <strong>Fazer uma pergunta de cada vez.</strong>
+  </div>
+</div>
+
+</div><!-- fim card instrução -->
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- CARD 6 — ETAPA 6: ENCERRAMENTO DA INSTRUÇÃO       -->
+<!-- ══════════════════════════════════════════════════ -->
+<div class="card section-indigo">
+<h2><span class="etapa-num">6</span> Encerramento da Instrução</h2>
+
+<p>Nesse momento, fica <strong>encerrada a instrução</strong>, não podendo ser produzidas mais provas.</p>
+
+<div class="personagem">
+  <span class="persona-tag tag-juiz">JUIZ</span>
+  <div class="persona-content">
+    "Razões Finais, Doutores?"
+  </div>
+</div>
+
+<div class="personagem">
+  <span class="persona-tag tag-recl-adv">ADV. RECLAMANTE</span>
+  <div class="persona-content">
+    Resumir os principais pontos. Ao final, <strong>reiterar os termos da inicial</strong> e pedir a <strong>procedência da ação</strong>.
+  </div>
+</div>
+
+<div class="personagem">
+  <span class="persona-tag tag-recl-d">ADV. RECLAMADA</span>
+  <div class="persona-content">
+    Resumir os principais pontos. Ao final, <strong>reiterar os termos da contestação</strong> e pedir a <strong>improcedência da ação</strong>.
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- CARD 7 — ETAPA 7: ÚLTIMA TENTATIVA DE CONCILIAÇÃO          -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<div class="card section-orange">
+<h2><span class="etapa-num">7</span> Última Tentativa de Conciliação</h2>
+
+<div class="personagem">
+  <span class="persona-tag tag-juiz">JUIZ</span>
+  <div class="persona-content">
+    Segunda proposta de acordo. O juiz confirma se realmente não há acordo.
+  </div>
+</div>
+
+<div class="box alerta">
+  <strong>AS PARTES CONFIRMAM QUE NÃO HÁ ACORDO.</strong>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- CARD 8 — ETAPAS 8, 9 e 10: ASSINATURA, SENTENÇA E FIM      -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<div class="card section-rose">
+<h2><span class="etapa-num">8</span> Assinatura e Dispensa</h2>
+<p>Para finalizar, os advogados <strong>conferem a ata</strong>.</p>
+
+<h2><span class="etapa-num">9</span> Julgamento</h2>
+<p>O juiz <strong>fixa a data para a sentença</strong>.</p>
+
+<h2><span class="etapa-num">10</span> Fim</h2>
+<p><strong>Todos assinam a ata</strong> e saem da sala.</p>
+</div>
+
+<div class="back">
+  <a href="../index.html">← Voltar ao índice da disciplina</a>
+</div>
+
+</div>
+</div>
+</body>
+</html>
