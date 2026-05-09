@@ -1,1 +1,368 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>19. FGTS</title>
 
+<style>
+:root{
+  --bg:#eaf3ff;
+  --panel:#f8fbff;
+  --card:#ffffff;
+  --title:#1f4fd8;
+  --text:#0f172a;
+  --muted:#475569;
+  --border:rgba(15,23,42,.14);
+  --shadow:0 14px 34px rgba(15,23,42,.12);
+  --blueSoft:#e8f0ff;
+  --greenSoft:#ecfdf5;
+  --orangeSoft:#fff7ed;
+  --purpleSoft:#f5f3ff;
+  --redSoft:#fef2f2;
+}
+
+*{ box-sizing:border-box; }
+
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background:radial-gradient(900px 420px at 30% 0%, #d8ecff 0%, var(--bg) 60%);
+  color:var(--text);
+  font-size:19px;
+  line-height:1.8;
+}
+
+.wrap{
+  max-width:980px;
+  margin:auto;
+  padding:18px 14px 40px;
+}
+
+.panel{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:24px;
+  box-shadow:var(--shadow);
+  padding:18px;
+}
+
+h1{
+  color:var(--title);
+  font-size:34px;
+  line-height:1.15;
+  margin:6px 0 14px;
+  text-align:center;
+}
+
+h2{
+  color:#0b2fb3;
+  font-size:24px;
+  margin:22px 0 12px;
+}
+
+p{ margin:0 0 14px; text-align:justify; }
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  box-shadow:0 8px 20px rgba(15,23,42,.08);
+  padding:18px;
+  margin:14px 0;
+}
+
+.section-blue   { border-left:7px solid #2563eb; }
+.section-green  { border-left:7px solid #16a34a; }
+.section-orange { border-left:7px solid #f97316; }
+.section-purple { border-left:7px solid #7c3aed; }
+.section-red    { border-left:7px solid #dc2626; }
+.section-teal   { border-left:7px solid #0d9488; }
+.section-indigo { border-left:7px solid #4f46e5; }
+.section-amber  { border-left:7px solid #d97706; }
+
+.box{
+  padding:14px;
+  border-radius:14px;
+  margin:14px 0;
+  border:1px solid var(--border);
+}
+
+.oab    { background:var(--orangeSoft); border-left:6px solid #f97316; }
+.sumula { background:var(--greenSoft);  border-left:6px solid #16a34a; }
+.artigo { background:var(--blueSoft);   border-left:6px solid #2563eb; }
+.obs    { background:var(--purpleSoft); border-left:6px solid #7c3aed; }
+.alerta { background:var(--redSoft);    border-left:6px solid #dc2626; }
+
+.bullet{
+  margin:10px 0 14px;
+  padding-left:0;
+  list-style:none;
+}
+
+.bullet li{
+  margin:10px 0;
+  padding:12px 14px;
+  background:#fff;
+  border-radius:14px;
+  border:1px solid var(--border);
+  box-shadow:0 5px 12px rgba(15,23,42,.05);
+}
+
+.bullet li::before{
+  content:"■ ";
+  color:#1f4fd8;
+  font-weight:900;
+}
+
+.bullet-green li::before{ color:#16a34a; }
+.bullet-orange li::before{ color:#f97316; }
+.bullet-red li::before{ color:#dc2626; }
+.bullet-purple li::before{ color:#7c3aed; }
+
+.slides-area{
+  display:flex;
+  justify-content:center;
+  margin:10px 0 22px;
+}
+
+.slides-btn{
+  text-decoration:none;
+  color:var(--text);
+  background:#fff;
+  border:1px solid rgba(37,99,235,.22);
+  border-radius:22px;
+  box-shadow:var(--shadow);
+  padding:16px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  min-width:min(420px,100%);
+  font-weight:900;
+  transition:.18s;
+}
+
+.slides-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 20px 42px rgba(15,23,42,.16);
+}
+
+.icon{
+  width:54px; height:54px;
+  border-radius:18px;
+  display:grid; place-items:center;
+  background:linear-gradient(135deg,#dbeafe,#ffffff);
+  border:1px solid rgba(37,99,235,.24);
+}
+
+.icon svg{ width:30px; height:30px; }
+
+.slides-text{ display:flex; flex-direction:column; line-height:1.15; }
+.slides-text strong{ font-size:20px; }
+.slides-text span{ font-size:14px; color:var(--muted); }
+
+.back{
+  display:flex;
+  justify-content:center;
+  margin-top:20px;
+}
+
+.back a{
+  width:min(560px,100%);
+  text-align:center;
+  text-decoration:none;
+  background:#fff;
+  padding:16px 18px;
+  border-radius:16px;
+  border:1px solid var(--border);
+  box-shadow:0 8px 20px rgba(15,23,42,.08);
+  color:var(--text);
+  font-weight:900;
+}
+
+@media(max-width:520px){
+  body{ font-size:17px; }
+  h1{ font-size:28px; }
+  h2{ font-size:21px; }
+  .slides-btn{ padding:14px; }
+}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+<div class="panel">
+
+<h1>19. FGTS</h1>
+
+<div class="slides-area">
+  <a class="slides-btn" href="#" target="_blank" rel="noopener">
+    <span class="icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none">
+        <rect x="3" y="4" width="18" height="12" rx="2" stroke="#1f4fd8" stroke-width="1.8"/>
+        <path d="M8 20h8M12 16v4" stroke="#1f4fd8" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M7 9h10M7 12h7" stroke="#1f4fd8" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    </span>
+    <span class="slides-text">
+      <strong>Slides</strong>
+      <span>Abrir no Google Drive</span>
+    </span>
+  </a>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- CARD 1 — Conceito, Base Legal e Regulamentação     -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="card section-blue">
+<h2>Conceito, Base Legal e Regulamentação</h2>
+
+<p>O <strong>art. 7º, III, da Constituição Federal</strong> indica o Fundo de Garantia do Tempo de Serviço – FGTS como um dos direitos dos trabalhadores.</p>
+
+<p>Com a CF/88, o FGTS deixou de ser o regime jurídico do trabalhador que por ele optasse para transformar-se no <strong>regime genérico de garantia do tempo de serviço para todos os trabalhadores urbanos e rurais</strong>. Ao assim prever, a Constituição extinguiu definitivamente o regime de estabilidade definitiva no emprego, que era alcançada aos dez anos de serviço (estabilidade decenal).</p>
+
+<p>A partir da <strong>Emenda Constitucional n. 72/2013</strong> o FGTS passou a ser previsto como direito dos <strong>trabalhadores domésticos</strong>, tendo sido regulamentada sua concessão pela <strong>Lei Complementar n. 150/2015</strong>.</p>
+
+<p>O FGTS é regulamentado pela <strong>Lei n. 8.036/90</strong>, que prevê as seguintes regras:</p>
+
+<ul class="bullet">
+  <li>
+    <strong>Valor do FGTS:</strong> <strong>8% da remuneração mensal</strong> do empregado, incluídas todas as parcelas que têm natureza salarial. O FGTS incide também sobre a <strong>gratificação de Natal (13º salário)</strong> (art. 15).
+  </li>
+  <li>
+    <strong>Forma de pagamento:</strong> depósito pelo empregador em <strong>conta vinculada do empregado junto à Caixa Econômica Federal</strong>, até o <strong>vigésimo dia de cada mês</strong>, considerando-se a remuneração do mês anterior (art. 15). O pagamento não efetuado no prazo sofrerá incidência de <strong>juros, correção monetária e multa</strong> (art. 22).
+  </li>
+</ul>
+
+<div class="box obs">
+  <strong>Observação (art. 15, § 5º, Lei n. 8.036/90):</strong> no caso de <strong>suspensão do contrato de trabalho em decorrência de prestação de serviço militar e de acidente do trabalho</strong>, o empregador permanece com a obrigação de depositar o FGTS.
+</div>
+
+<div class="box sumula">
+  <strong>OJ SDI-1 232 do TST:</strong> o FGTS incide sobre todas as parcelas de natureza salarial pagas ao empregado em virtude de prestação de serviços no exterior.
+</div>
+
+<div class="box artigo">
+  <strong>Art. 25 da Lei n. 8.036/90:</strong> o trabalhador, seus dependentes e sucessores ou, ainda, o Sindicato a que estiver vinculado, poderão ajuizar ação perante a Justiça do Trabalho para compelir o empregador a efetuar os depósitos do FGTS. A Caixa Econômica Federal e o Ministério do Trabalho deverão ser notificados da propositura da reclamação, para que tomem as medidas administrativas cabíveis.
+</div>
+
+<div class="box oab">
+  <strong>Caixa OAB:</strong> atenção à alíquota de <strong>8%</strong> sobre a remuneração (incluído o 13º salário) e ao prazo de depósito: até o <strong>20º dia do mês seguinte</strong>. O atraso gera juros, correção monetária e multa. A suspensão por serviço militar ou acidente do trabalho <strong>não exime</strong> o empregador de depositar o FGTS.
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- CARD 2 — Hipóteses de Movimentação da Conta Vinculada  -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="card section-green">
+<h2>Hipóteses de Movimentação da Conta Vinculada</h2>
+
+<p>A conta vinculada do FGTS somente poderá ser movimentada pelo trabalhador nas <strong>hipóteses expressamente previstas em lei</strong> (art. 20, Lei n. 8.036/90). São elas:</p>
+
+<p><strong>Hipóteses relacionadas ao contrato de trabalho:</strong></p>
+<ul class="bullet bullet-green">
+  <li>Dispensa <strong>sem justa causa</strong>.</li>
+  <li>Extinção do contrato de trabalho por <strong>acordo entre empregado e empregador</strong> (limitada a até <strong>80% do valor dos depósitos</strong> – art. 484-A, § 1º, CLT).</li>
+  <li><strong>Dispensa indireta</strong>.</li>
+  <li>Rescisão do contrato por <strong>culpa recíproca ou por força maior</strong>.</li>
+  <li>Extinção total da empresa, fechamento de quaisquer de seus estabelecimentos, filiais ou agências ou supressão de parte de suas atividades, sempre que destas situações decorra a <strong>extinção do contrato de trabalho</strong>.</li>
+  <li><strong>Morte do empregador individual</strong>, se dela decorrer a extinção do contrato de trabalho do empregado.</li>
+  <li>Declaração de <strong>nulidade do contrato de trabalho</strong> de empregado contratado pela Administração Pública sem prévia aprovação em concurso público (art. 37, § 2º, CF, e Súmula 363, TST).</li>
+  <li><strong>Aposentadoria</strong>.</li>
+  <li><strong>Falecimento do empregado</strong> (pagamento será feito aos dependentes indicados perante a Previdência Social ou, na falta destes, aos herdeiros na forma da lei civil).</li>
+  <li>Extinção normal do <strong>contrato por prazo determinado</strong>.</li>
+  <li>Supressão total do <strong>trabalho avulso</strong> por período superior a <strong>90 dias</strong>.</li>
+  <li>Quando o trabalhador permanecer <strong>3 anos ininterruptos fora do regime do FGTS</strong>.</li>
+</ul>
+
+<p><strong>Hipóteses relacionadas à moradia:</strong></p>
+<ul class="bullet bullet-orange">
+  <li>Para pagamento de parte das prestações decorrentes de <strong>financiamento habitacional concedido no âmbito do SFH</strong> – Sistema Financeiro da Habitação, de acordo com os limites previstos na Lei n. 8.036/90.</li>
+  <li>Para <strong>liquidação ou amortização extraordinária do saldo devedor</strong> de financiamento imobiliário, na forma prevista na Lei n. 8.036/90.</li>
+  <li>Para pagamento total ou parcial do <strong>preço da aquisição de moradia própria</strong>, observadas as condições previstas na Lei n. 8.036/90.</li>
+</ul>
+
+<p><strong>Hipóteses relacionadas à saúde:</strong></p>
+<ul class="bullet bullet-red">
+  <li>Quando o trabalhador ou qualquer de seus dependentes for acometido de <strong>neoplasia maligna (câncer)</strong>.</li>
+  <li>Quando o trabalhador ou qualquer de seus dependentes for <strong>portador do vírus HIV</strong>.</li>
+  <li>Quando o trabalhador ou qualquer dos seus dependentes estiver em <strong>estágio terminal, em razão de doença grave</strong>.</li>
+  <li>Quando o trabalhador com deficiência, por prescrição, necessite adquirir <strong>órtese ou prótese</strong> para promoção de acessibilidade e de inclusão social.</li>
+  <li>Quando o trabalhador ou qualquer de seus dependentes for, nos termos do regulamento, <strong>pessoa com doença rara</strong>, consideradas doenças raras aquelas assim reconhecidas pelo Ministério da Saúde.</li>
+</ul>
+
+<p><strong>Hipóteses diversas:</strong></p>
+<ul class="bullet bullet-purple">
+  <li>Quando o trabalhador tiver <strong>idade igual ou superior a 70 anos</strong>.</li>
+  <li>Necessidade pessoal, cuja urgência decorra de <strong>desastre natural</strong>, de acordo com as condições estabelecidas pela Lei n. 8.036/90.</li>
+  <li>Para aplicação em <strong>quotas de Fundos Mútuos de Privatização</strong> ou para integralização de cotas do <strong>FI-FGTS</strong> (hipóteses de aplicação financeira do valor do FGTS).</li>
+  <li><strong>Anualmente, no mês de aniversário do trabalhador</strong>, por meio da aplicação dos valores constantes do Anexo da Lei, observado o disposto no art. 20-D da Lei.</li>
+  <li>A qualquer tempo, quando seu saldo for <strong>inferior a R$ 80,00</strong> e não houver ocorrido depósitos ou saques por, no mínimo, <strong>1 ano</strong>, exceto na hipótese prevista no inciso I do § 5º do art. 13 da Lei.</li>
+</ul>
+
+<div class="box oab">
+  <strong>Caixa OAB:</strong> o rol de hipóteses de movimentação é <strong>taxativo</strong> — somente nas situações previstas em lei o trabalhador pode sacar o FGTS. O empregado que pede demissão ou é dispensado por justa causa <strong>não pode levantar o FGTS</strong> na rescisão: a conta se torna inativa e o valor é corrigido monetariamente até que surja uma hipótese legal de saque.
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- CARD 3 — Conta Inativa: Demissão e Justa Causa            -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<div class="card section-orange">
+<h2>Conta Inativa: Pedido de Demissão e Justa Causa</h2>
+
+<p>O empregado que <strong>pede demissão</strong> ou que é <strong>dispensado por justa causa</strong> não pode levantar o FGTS por ocasião da rescisão do contrato de trabalho.</p>
+
+<p>Nestas hipóteses, a conta do FGTS do empregado se torna <strong>inativa</strong> e o valor nela existente passa a ser <strong>corrigido monetariamente</strong>, até que possa ser levantado pelo trabalhador — por exemplo:</p>
+
+<ul class="bullet">
+  <li>Quando o trabalhador ficar por mais de <strong>3 anos fora do sistema do FGTS</strong>.</li>
+  <li>Quando o trabalhador <strong>se aposentar</strong>.</li>
+  <li>Quando o trabalhador <strong>completar 70 anos</strong>.</li>
+  <li>Demais hipóteses previstas no art. 20 da Lei n. 8.036/90.</li>
+</ul>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- CARD 4 — Multa Rescisória (Indenização do FGTS)               -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="card section-red">
+<h2>Multa Rescisória (Indenização do FGTS)</h2>
+
+<p>Nas hipóteses de <strong>dispensa sem justa causa</strong> e de <strong>dispensa indireta</strong>, o empregador depositará na conta vinculada do trabalhador importância igual a <strong>40% do montante de todos os depósitos feitos na conta vinculada durante a vigência do contrato de trabalho</strong>, devidamente atualizados. Trata-se da <strong>indenização decorrente do art. 7º, I, da CF</strong>.</p>
+
+<p>Os percentuais variam conforme a hipótese de rescisão:</p>
+
+<ul class="bullet">
+  <li>
+    <strong>Dispensa sem justa causa / Dispensa indireta:</strong> multa de <strong>40%</strong> sobre os depósitos atualizados do FGTS (art. 18, § 1º, Lei n. 8.036/90).
+  </li>
+  <li>
+    <strong>Culpa recíproca ou força maior:</strong> multa de <strong>20%</strong> sobre os depósitos atualizados do FGTS (art. 18, § 2º, Lei n. 8.036/90).
+  </li>
+  <li>
+    <strong>Extinção do contrato por acordo entre empregado e empregador (art. 484-A, CLT):</strong> indenização de <strong>20%</strong> dos depósitos atualizados do FGTS (art. 484-A, I, b, CLT).
+  </li>
+</ul>
+
+<div class="box artigo">
+  <strong>Art. 18, §§ 1º e 2º, da Lei n. 8.036/90 c/c art. 484-A, I, b, CLT:</strong><br>
+  — Dispensa sem justa causa e dispensa indireta → <strong>40%</strong><br>
+  — Culpa recíproca ou força maior → <strong>20%</strong><br>
+  — Distrato (acordo mútuo) → <strong>20%</strong> + saque limitado a 80% dos depósitos
+</div>
+
+<div class="box oab">
+  <strong>Caixa OAB:</strong> a multa rescisória é calculada sobre o <strong>total dos depósitos atualizados</strong>, não sobre o saldo atual da conta (que pode ter sofrido saques anteriores). A tabela dos percentuais é ponto frequente em provas: <strong>40%</strong> na dispensa sem justa causa e dispensa indireta; <strong>20%</strong> na culpa recíproca, força maior e distrato (art. 484-A, CLT).
+</div>
+</div>
+
+<div class="back">
+  <a href="../index.html">← Voltar ao índice da disciplina</a>
+</div>
+
+</div>
+</div>
+</body>
+</html>
