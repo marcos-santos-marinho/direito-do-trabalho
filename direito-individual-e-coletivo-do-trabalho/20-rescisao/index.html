@@ -1,1 +1,325 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>20. Rescisão do Contrato de Trabalho — Formalidades</title>
 
+<style>
+:root{
+  --bg:#eaf3ff;
+  --panel:#f8fbff;
+  --card:#ffffff;
+  --title:#1f4fd8;
+  --text:#0f172a;
+  --muted:#475569;
+  --border:rgba(15,23,42,.14);
+  --shadow:0 14px 34px rgba(15,23,42,.12);
+  --blueSoft:#e8f0ff;
+  --greenSoft:#ecfdf5;
+  --orangeSoft:#fff7ed;
+  --purpleSoft:#f5f3ff;
+  --redSoft:#fef2f2;
+}
+
+*{ box-sizing:border-box; }
+
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background:radial-gradient(900px 420px at 30% 0%, #d8ecff 0%, var(--bg) 60%);
+  color:var(--text);
+  font-size:19px;
+  line-height:1.8;
+}
+
+.wrap{
+  max-width:980px;
+  margin:auto;
+  padding:18px 14px 40px;
+}
+
+.panel{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:24px;
+  box-shadow:var(--shadow);
+  padding:18px;
+}
+
+h1{
+  color:var(--title);
+  font-size:34px;
+  line-height:1.15;
+  margin:6px 0 14px;
+  text-align:center;
+}
+
+h2{
+  color:#0b2fb3;
+  font-size:24px;
+  margin:22px 0 12px;
+}
+
+p{ margin:0 0 14px; text-align:justify; }
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  box-shadow:0 8px 20px rgba(15,23,42,.08);
+  padding:18px;
+  margin:14px 0;
+}
+
+.section-blue   { border-left:7px solid #2563eb; }
+.section-green  { border-left:7px solid #16a34a; }
+.section-orange { border-left:7px solid #f97316; }
+.section-purple { border-left:7px solid #7c3aed; }
+.section-red    { border-left:7px solid #dc2626; }
+.section-teal   { border-left:7px solid #0d9488; }
+.section-amber  { border-left:7px solid #d97706; }
+
+.box{
+  padding:14px;
+  border-radius:14px;
+  margin:14px 0;
+  border:1px solid var(--border);
+}
+
+.oab    { background:var(--orangeSoft); border-left:6px solid #f97316; }
+.sumula { background:var(--greenSoft);  border-left:6px solid #16a34a; }
+.artigo { background:var(--blueSoft);   border-left:6px solid #2563eb; }
+.obs    { background:var(--purpleSoft); border-left:6px solid #7c3aed; }
+.alerta { background:var(--redSoft);    border-left:6px solid #dc2626; }
+
+.bullet{
+  margin:10px 0 14px;
+  padding-left:0;
+  list-style:none;
+}
+
+.bullet li{
+  margin:10px 0;
+  padding:12px 14px;
+  background:#fff;
+  border-radius:14px;
+  border:1px solid var(--border);
+  box-shadow:0 5px 12px rgba(15,23,42,.05);
+}
+
+.bullet li::before{
+  content:"■ ";
+  color:#1f4fd8;
+  font-weight:900;
+}
+
+.slides-area{
+  display:flex;
+  justify-content:center;
+  margin:10px 0 22px;
+}
+
+.slides-btn{
+  text-decoration:none;
+  color:var(--text);
+  background:#fff;
+  border:1px solid rgba(37,99,235,.22);
+  border-radius:22px;
+  box-shadow:var(--shadow);
+  padding:16px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  min-width:min(420px,100%);
+  font-weight:900;
+  transition:.18s;
+}
+
+.slides-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 20px 42px rgba(15,23,42,.16);
+}
+
+.icon{
+  width:54px; height:54px;
+  border-radius:18px;
+  display:grid; place-items:center;
+  background:linear-gradient(135deg,#dbeafe,#ffffff);
+  border:1px solid rgba(37,99,235,.24);
+}
+
+.icon svg{ width:30px; height:30px; }
+
+.slides-text{ display:flex; flex-direction:column; line-height:1.15; }
+.slides-text strong{ font-size:20px; }
+.slides-text span{ font-size:14px; color:var(--muted); }
+
+.back{
+  display:flex;
+  justify-content:center;
+  margin-top:20px;
+}
+
+.back a{
+  width:min(560px,100%);
+  text-align:center;
+  text-decoration:none;
+  background:#fff;
+  padding:16px 18px;
+  border-radius:16px;
+  border:1px solid var(--border);
+  box-shadow:0 8px 20px rgba(15,23,42,.08);
+  color:var(--text);
+  font-weight:900;
+}
+
+@media(max-width:520px){
+  body{ font-size:17px; }
+  h1{ font-size:26px; }
+  h2{ font-size:21px; }
+  .slides-btn{ padding:14px; }
+}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+<div class="panel">
+
+<h1>20. Rescisão do Contrato de Trabalho — Formalidades</h1>
+
+<div class="slides-area">
+  <a class="slides-btn" href="#" target="_blank" rel="noopener">
+    <span class="icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none">
+        <rect x="3" y="4" width="18" height="12" rx="2" stroke="#1f4fd8" stroke-width="1.8"/>
+        <path d="M8 20h8M12 16v4" stroke="#1f4fd8" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M7 9h10M7 12h7" stroke="#1f4fd8" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    </span>
+    <span class="slides-text">
+      <strong>Slides</strong>
+      <span>Abrir no Google Drive</span>
+    </span>
+  </a>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- CARD 1 — Recibo de Quitação / Termo de Rescisão (TRCT)      -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<div class="card section-blue">
+<h2>1. Recibo de Quitação / Termo de Rescisão do Contrato de Trabalho (TRCT)</h2>
+
+<p>A extinção do contrato de trabalho, <strong>qualquer que seja sua causa</strong>, gera para o empregado o direito de recebimento das <strong>verbas rescisórias</strong>.</p>
+
+<p>As verbas rescisórias devidas serão <strong>diferentes conforme o tipo de rescisão</strong> da qual se trate. Os valores das referidas verbas deverão ser apurados considerando-se a <strong>remuneração do empregado à data da rescisão</strong> do contrato.</p>
+
+<p>Assim, quando da rescisão do contrato de trabalho é necessário que seja feita a <strong>especificação de cada parcela rescisória</strong> paga ao empregado, com a discriminação de seus respectivos valores, em instrumento de rescisão ou recibo de quitação.</p>
+
+<div class="box artigo">
+  <strong>Art. 477, § 5º, CLT:</strong> qualquer compensação de valores a ser feita em relação às verbas rescisórias <strong>não poderá exceder do valor correspondente a um mês de remuneração</strong> do empregado.
+</div>
+
+<div class="box oab">
+  <strong>Caixa OAB:</strong> o TRCT deve discriminar cada parcela e seu valor individualmente. O limite de compensação de créditos do empregador sobre as verbas rescisórias é de <strong>um mês de remuneração</strong> — qualquer desconto superior a esse teto é ilegal (art. 477, § 5º, CLT).
+</div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- CARD 2 — Formalidades a Serem Cumpridas pelo Empregador -->
+<!-- ════════════════════════════════════════════════════════ -->
+<div class="card section-green">
+<h2>2. Formalidades a Serem Cumpridas pelo Empregador</h2>
+
+<p>O empregador deverá (art. 477, caput, da CLT):</p>
+
+<ul class="bullet">
+  <li>Proceder à <strong>anotação na CTPS</strong>.</li>
+  <li><strong>Comunicar a dispensa</strong> aos órgãos competentes.</li>
+  <li>Realizar o <strong>pagamento das verbas rescisórias</strong> no prazo e na forma previstos em lei.</li>
+  <li><strong>Entregar ao empregado os documentos respectivos</strong> no prazo de até <strong>dez dias</strong> contados a partir do término do contrato (art. 477, § 6º, da CLT).</li>
+</ul>
+
+<div class="box artigo">
+  <strong>Art. 500 da CLT:</strong> o pedido de demissão de <strong>empregado estável</strong> só será válido quando feito com <strong>assistência do respectivo sindicato</strong> ou, se não houver, perante o órgão do <strong>Ministério do Trabalho</strong>.
+</div>
+
+<div class="box oab">
+  <strong>Caixa OAB:</strong> atenção ao prazo único de <strong>10 dias</strong> (art. 477, § 6º, CLT) tanto para o pagamento das verbas quanto para a entrega dos documentos rescisórios após o término do contrato. O pedido de demissão de empregado estável sem a assistência do sindicato ou do Ministério do Trabalho é <strong>inválido</strong>.
+</div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- CARD 3 — Pagamento das Verbas Rescisórias               -->
+<!-- ════════════════════════════════════════════════════════ -->
+<div class="card section-purple">
+<h2>3. Pagamento das Verbas Rescisórias</h2>
+
+<p>O pagamento das verbas rescisórias deve ser realizado no <strong>prazo de até dez dias</strong> contados a partir do término do contrato (art. 477, § 6º, CLT).</p>
+
+<p>O pagamento deve ser feito (art. 477, § 4º, da CLT):</p>
+
+<ul class="bullet">
+  <li>Em <strong>dinheiro, depósito bancário ou cheque visado</strong>, conforme acordarem as partes.</li>
+  <li>Em <strong>dinheiro ou depósito bancário</strong> quando o empregado for <strong>analfabeto</strong>.</li>
+</ul>
+
+<div class="box sumula">
+  <strong>OJ SDI-1 162 do TST:</strong> a contagem do prazo de dez dias para quitação das verbas rescisórias <strong>exclui o dia da notificação da dispensa</strong> e <strong>inclui o dia do vencimento</strong>, conforme o disposto no art. 132 do Código Civil.
+</div>
+
+<div class="box oab">
+  <strong>Caixa OAB:</strong> o empregado analfabeto tem forma de pagamento restrita — somente em <strong>dinheiro ou depósito bancário</strong>; cheque visado não é admitido nessa hipótese. A contagem do prazo de 10 dias segue a OJ SDI-1 162/TST: exclui o primeiro dia (notificação) e inclui o último (vencimento).
+</div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- CARD 4 — Multa pelo Atraso no Pagamento das Verbas          -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<div class="card section-red">
+<h2>4. Multa pelo Atraso no Pagamento das Verbas Rescisórias</h2>
+
+<p>Não sendo respeitado pelo empregador o prazo para pagamento das verbas rescisórias previsto no § 6º do art. 477 da CLT, este deverá pagar ao empregado <strong>multa no valor equivalente ao seu salário, devidamente corrigido</strong>, salvo quando comprovadamente o <strong>trabalhador der causa à mora</strong> (art. 477, § 8º, CLT).</p>
+
+<p>O empregador deverá pagar, ainda, <strong>multa administrativa imposta pelo Ministério do Trabalho</strong>, que não reverte ao empregado.</p>
+
+<div class="box sumula">
+  <strong>Súmula 388 do TST:</strong> havendo <strong>decretação da falência</strong> do empregador, <strong>não será devida</strong> a multa do § 8º do art. 477 da CLT.
+</div>
+
+<div class="box sumula">
+  <strong>OJ SDI-1 238 do TST:</strong> a multa do § 8º do art. 477 da CLT <strong>aplica-se à pessoa jurídica de direito público</strong> que não observa o prazo para pagamento das verbas rescisórias, pois nivela-se a qualquer particular em direitos e obrigações, despojando-se do jus imperii ao celebrar um contrato de emprego.
+</div>
+
+<div class="box oab">
+  <strong>Caixa OAB:</strong> a multa pelo atraso (art. 477, § 8º, CLT) equivale a <strong>1 salário do empregado</strong> e é devida ao trabalhador — distinta da multa administrativa que vai ao Ministério do Trabalho. Duas exceções relevantes: (1) se o próprio trabalhador der causa à mora, a multa não é devida; (2) na falência do empregador, a multa também não é devida (Súmula 388/TST). A multa <strong>se aplica ao ente público</strong> empregador (OJ SDI-1 238/TST).
+</div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<!-- CARD 5 — Pagamento das Verbas Rescisórias em Juízo          -->
+<!-- ════════════════════════════════════════════════════════════ -->
+<div class="card section-amber">
+<h2>5. Pagamento das Verbas Rescisórias em Juízo</h2>
+
+<p>Em caso de rescisão do contrato de trabalho, havendo <strong>controvérsia sobre o montante das verbas rescisórias</strong>, o empregador é obrigado a pagar ao trabalhador, à data do comparecimento à Justiça do Trabalho, a <strong>parte incontroversa</strong> dessas verbas, <strong>sob pena de pagá-las acrescidas de 50%</strong> (art. 467, CLT).</p>
+
+<div class="box artigo">
+  <strong>Art. 467 da CLT:</strong> em caso de rescisão do contrato de trabalho, havendo controvérsia sobre o montante das verbas rescisórias, o empregador é obrigado a pagar ao trabalhador, à data do comparecimento à Justiça do Trabalho, a parte incontroversa dessas verbas, sob pena de pagá-las acrescidas de 50%.
+</div>
+
+<div class="box oab">
+  <strong>Caixa OAB:</strong> o art. 467 da CLT impõe ao empregador o pagamento imediato da <strong>parte incontroversa</strong> das verbas rescisórias na data do comparecimento à Justiça do Trabalho. A sanção pelo descumprimento é severa: <strong>acréscimo de 50%</strong> sobre o valor das verbas não pagas tempestivamente. Trata-se de regra autônoma, independente da multa do art. 477, § 8º, CLT.
+</div>
+</div>
+
+<div class="back">
+  <a href="../index.html">← Voltar ao índice da disciplina</a>
+</div>
+
+</div>
+</div>
+</body>
+</html>
