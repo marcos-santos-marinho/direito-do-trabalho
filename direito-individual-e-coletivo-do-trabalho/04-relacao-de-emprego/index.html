@@ -2,153 +2,52 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Relação de Emprego</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-  :root{
-    --bg:#f2f7ff;
-    --text:#0f172a;
-    --title:#1f4fd8;
-    --card:#ffffff;
-    --border:rgba(15,23,42,.15);
-    --shadow:0 8px 18px rgba(15,23,42,.08);
-  }
-
-  *{ box-sizing:border-box; }
-
-  body{
-    margin:0;
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    line-height:1.7;
-    font-size:18px;
-  }
-
-  .wrap{
-    max-width:900px;
-    margin:auto;
-    padding:18px 16px 40px;
-  }
-
-  /* ===== TÍTULO + SLIDES ===== */
-  .title-row{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:16px;
-    flex-wrap:wrap;
-  }
-
-  h1{
-    color:var(--title);
-    font-size:28px;
-    margin:10px 0 16px;
-  }
-
-  .slides-btn{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    text-decoration:none;
-    background:#ffffff;
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:10px 14px;
-    box-shadow:var(--shadow);
-    min-width:90px;
-  }
-
-  .slides-icon{
-    font-size:28px;
-    line-height:1;
-  }
-
-  .slides-text{
-    margin-top:4px;
-    font-weight:800;
-    font-size:13px;
-    color:#0f172a;
-  }
-
-  /* ===== TEXTO ===== */
-  h2{
-    font-size:22px;
-    margin:28px 0 10px;
-  }
-
-  h3{
-    font-size:20px;
-    margin:22px 0 8px;
-  }
-
-  p{
-    margin:0 0 14px;
-    text-align:justify;
-  }
-
-  .box{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:16px;
-    margin:18px 0;
-    box-shadow:var(--shadow);
-  }
-
-  ul{
-    margin:8px 0 14px 22px;
-  }
-
-  li{
-    margin-bottom:10px;
-  }
-
-  /* ===== BOTÃO VOLTAR ===== */
-  .voltar{
-    margin-top:32px;
-  }
-
-  .voltar a{
-    display:block;
-    text-align:center;
-    background:#ffffff;
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:16px;
-    font-weight:800;
-    text-decoration:none;
-    color:#0f172a;
-    box-shadow:var(--shadow);
-  }
-
-  @media (max-width:480px){
-    body{ font-size:17px; }
-    h1{ font-size:24px; }
-    h2{ font-size:21px; }
-    h3{ font-size:19px; }
-  }
-</style>
+<title>Relação de Emprego</title>
+<meta name="description" content="Relação de Emprego - Direito Individual e Coletivo do Trabalho. Material didático do Prof. Marcos Santos Marinho.">
+<link rel="stylesheet" href="../../assets/estilo.css">
 </head>
 
 <body>
-<div class="wrap">
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../../">Prof. Marcos Marinho</a>
+    <nav>
+      <a href="../../">Início</a>
+      <a class="active" href="../../direito-individual-e-coletivo-do-trabalho/">Direito do Trabalho</a>
+      <a href="../../direito-processual-do-trabalho/">Processual do Trabalho</a>
+      <a href="../../pratica-juridica-trabalhista/">Prática Trabalhista</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" id="conteudo">
+
+  <p class="crumbs"><a href="../../">Início</a> › <a href="../">Direito Individual e Coletivo do Trabalho</a></p>
 
   <div class="title-row">
     <h1>4. Relação de Emprego</h1>
 
-    <a class="slides-btn"
-       href="https://drive.google.com/file/d/17Q60c8GwDeYKJoanF_paYna44W61rmKn/view?usp=sharing"
-       target="_blank"
-       rel="noopener">
+    <a class="slides-btn" href="https://drive.google.com/file/d/17Q60c8GwDeYKJoanF_paYna44W61rmKn/view?usp=sharing" target="_blank" rel="noopener">
       <div class="slides-icon">🖼️</div>
       <div class="slides-text">Slides</div>
     </a>
   </div>
 
-  <div class="box">
+  <p class="meta">Tópico 4 de 20 · Direito Individual e Coletivo do Trabalho</p>
+
+  <nav class="toc"><strong>Neste tópico</strong>
+    <ul>
+      <li><a href="#s1">4.1 Características</a></li>
+      <li><a href="#s2">4.2 Sujeitos</a></li>
+      <li><a href="#s3">4.3 Natureza jurídica</a></li>
+    </ul>
+  </nav>
+
+  <article>
+<div class="box">
     <p>
       A relação de emprego é a relação jurídica que tem como fato social original o trabalho humano não eventual
       e subordinado, prestado com pessoalidade, mediante remuneração e que tem como disciplina jurídica o conjunto
@@ -164,7 +63,7 @@
     </p>
   </div>
 
-  <h2>4.1 Características</h2>
+  <h2 id="s1">4.1 Características</h2>
 
   <p>
     Ao contrário da relação de trabalho, que é genérica e que se refere a todas as relações jurídicas fundadas em
@@ -272,7 +171,7 @@
     </p>
   </div>
 
-  <h2>4.2 Sujeitos</h2>
+  <h2 id="s2">4.2 Sujeitos</h2>
 
   <p>
     Os sujeitos da relação de emprego são empregado e empregador.
@@ -298,7 +197,7 @@
     </p>
   </div>
 
-  <h2>4.3 Natureza jurídica</h2>
+  <h2 id="s3">4.3 Natureza jurídica</h2>
 
   <p>
     A natureza jurídica da relação de emprego é discutida a partir de duas teorias:
@@ -323,11 +222,20 @@
     qualquer influência ou relevância na formação e no desenvolvimento deste tipo específico de relação jurídica
     denominada de relação de emprego.
   </p>
+  </article>
 
-  <div class="voltar">
-    <a href="../index.html">← Voltar ao índice da disciplina</a>
-  </div>
+  <nav class="pager">
+    <a href="../03-fontes-do-direito-do-trabalho/">← 3. Fontes do Direito do Trabalho</a>
+    <a href="../">Índice</a>
+    <a href="../05-relacao-de-trabalho/">5. Relação de trabalho →</a>
+  </nav>
 
-</div>
+  <p class="meta">Material de apoio às aulas; não substitui a leitura da legislação, da doutrina e da jurisprudência atualizadas.</p>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">Prof. Marcos Santos Marinho · Conteúdo sob licença CC BY-SA 4.0 · <a href="https://github.com/marcos-santos-marinho/direito-do-trabalho">código-fonte no GitHub</a></div>
+</footer>
 </body>
 </html>
