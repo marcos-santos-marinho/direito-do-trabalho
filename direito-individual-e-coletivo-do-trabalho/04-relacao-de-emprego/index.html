@@ -5,329 +5,711 @@
 <title>Relação de Emprego</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
 <style>
   :root{
-    --bg:#f2f7ff;
-    --text:#0f172a;
-    --title:#1f4fd8;
-    --card:#ffffff;
-    --border:rgba(15,23,42,.15);
-    --shadow:0 8px 18px rgba(15,23,42,.08);
+    --ink:#1b2436;
+    --ink-soft:#414a5c;
+    --paper:#edece5;
+    --surface:#fbfaf7;
+    --accent:#7a2e37;
+    --accent-soft:#a2545f;
+    --iron:#8b8579;
+    --line:rgba(27,36,54,.13);
+    --line-strong:rgba(27,36,54,.22);
+    --display:"Fraunces", Georgia, "Times New Roman", serif;
+    --body:"Spectral", Georgia, serif;
+    --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
   }
 
-  *{ box-sizing:border-box; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
 
   body{
-    margin:0;
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    line-height:1.7;
-    font-size:18px;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:19px;
+    line-height:1.78;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
   }
 
-  .wrap{
-    max-width:900px;
-    margin:auto;
-    padding:18px 16px 40px;
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0 0 auto 0;
+    height:4px;
+    background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 34%,var(--ink) 34%,var(--ink) 100%);
+    z-index:50;
   }
 
-  /* ===== TÍTULO + SLIDES ===== */
-  .title-row{
+  .wrap{ max-width:760px; margin:0 auto; padding:0 22px 72px; }
+
+  /* ===== CABEÇALHO ===== */
+  .masthead{
+    padding:56px 0 30px;
+    border-bottom:1px solid var(--line-strong);
+    animation:rise .7s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:600;
+    margin-bottom:20px;
     display:flex;
-    justify-content:space-between;
     align-items:center;
-    gap:16px;
+    gap:12px;
     flex-wrap:wrap;
   }
+  .eyebrow::before{ content:""; width:26px; height:2px; background:var(--accent); display:inline-block; }
+  .eyebrow .dot{ color:var(--line-strong); }
 
+  .title-row{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:28px;
+    flex-wrap:wrap;
+  }
   h1{
-    color:var(--title);
-    font-size:28px;
-    margin:10px 0 16px;
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(2.5rem,7vw,4.1rem);
+    line-height:1.02;
+    letter-spacing:-.015em;
+    max-width:14ch;
+  }
+  h1 .art{
+    display:block;
+    font-size:.42em;
+    font-weight:600;
+    letter-spacing:.02em;
+    color:var(--accent);
+    font-family:var(--mono);
+    text-transform:uppercase;
+    margin-bottom:.5em;
   }
 
   .slides-btn{
+    flex-shrink:0;
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    background:var(--ink);
+    color:#f4f2ec;
+    border-radius:4px;
+    padding:13px 18px;
+    font-family:var(--mono);
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    box-shadow:0 8px 22px -12px rgba(27,36,54,.7);
+    transition:transform .25s cubic-bezier(.2,.7,.2,1), box-shadow .25s, background .25s;
+  }
+  .slides-btn .ico{ font-size:16px; line-height:1; transform:translateY(-1px); }
+  .slides-btn .arw{ transition:transform .25s; }
+  .slides-btn:hover{ background:var(--accent); transform:translateY(-2px); box-shadow:0 14px 28px -12px rgba(122,46,55,.75); }
+  .slides-btn:hover .arw{ transform:translateX(4px); }
+  .slides-btn:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:3px; }
+
+  /* ===== DEFINIÇÃO ===== */
+  .verbete{
+    margin:44px 0 8px;
+    padding:6px 0 6px 30px;
+    border-left:3px solid var(--accent);
+    animation:rise .7s .1s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .verbete .tag{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:block;
+    margin-bottom:14px;
+  }
+  .verbete p{
+    font-family:var(--display);
+    font-weight:400;
+    font-size:clamp(1.25rem,3.2vw,1.6rem);
+    line-height:1.45;
+    letter-spacing:-.01em;
+    color:var(--ink);
+    margin:0;
+  }
+
+  /* ===== SEÇÕES ===== */
+  .sec-head{
+    display:flex;
+    gap:16px;
+    align-items:baseline;
+    margin:46px 0 12px;
+    padding-top:26px;
+    border-top:1px solid var(--line);
+  }
+  .sec-head .num{
+    font-family:var(--mono);
+    font-size:15px;
+    font-weight:600;
+    color:var(--accent);
+    letter-spacing:.02em;
+    flex-shrink:0;
+    padding-top:.35em;
+  }
+  h2{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(1.6rem,4vw,2rem);
+    line-height:1.14;
+    letter-spacing:-.01em;
+    color:var(--ink);
+  }
+  p{ margin-bottom:16px; }
+  .body-text{ color:var(--ink-soft); }
+
+  /* ===== DISTINÇÃO RELAÇÃO TRABALHO × EMPREGO ===== */
+  .distincao{
+    margin:18px 0 10px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:3px;
+  }
+  .dist-col{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:20px 22px;
+  }
+  .dist-col .d-lbl{
+    font-family:var(--mono);
+    font-size:11.5px;
+    font-weight:600;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    margin-bottom:10px;
+    display:block;
+  }
+  .dist-col.genero .d-lbl{ color:var(--iron); }
+  .dist-col.especie .d-lbl{ color:var(--accent); }
+  .dist-col p{ font-size:.93em; color:var(--ink-soft); margin:0; line-height:1.65; }
+
+  /* ref legal inline */
+  .ref{
+    font-family:var(--mono);
+    font-size:.82em;
+    color:var(--iron);
+    background:rgba(139,133,121,.12);
+    padding:2px 7px;
+    border-radius:3px;
+    white-space:nowrap;
+  }
+
+  /* ===== QUATRO ELEMENTOS (assinatura) ===== */
+  .elementos{
+    margin:18px 0 4px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:3px;
+  }
+  .elem{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
     display:flex;
     flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    text-decoration:none;
-    background:#ffffff;
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:10px 14px;
-    box-shadow:var(--shadow);
-    min-width:90px;
   }
-
-  .slides-icon{
-    font-size:28px;
-    line-height:1;
+  .elem-head{
+    padding:16px 20px 12px;
+    border-bottom:1px solid var(--line);
+    display:flex;
+    align-items:flex-start;
+    gap:14px;
   }
-
-  .slides-text{
-    margin-top:4px;
-    font-weight:800;
-    font-size:13px;
-    color:#0f172a;
-  }
-
-  /* ===== TEXTO ===== */
-  h2{
+  .elem-letra{
+    font-family:var(--mono);
+    font-weight:700;
     font-size:22px;
-    margin:28px 0 10px;
+    color:var(--accent);
+    line-height:1;
+    flex-shrink:0;
+    margin-top:2px;
+  }
+  .elem-nome{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:1.15rem;
+    line-height:1.2;
+    color:var(--ink);
+  }
+  .elem-fundamento{
+    font-family:var(--mono);
+    font-size:10.5px;
+    color:var(--iron);
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    margin-top:4px;
+    display:block;
+  }
+  .elem-body{
+    padding:16px 20px;
+    flex:1;
+  }
+  .elem-body p{ font-size:.92em; color:var(--ink-soft); line-height:1.68; margin:0; }
+  .elem-body p + p{ margin-top:10px; }
+
+  /* cumulatividade */
+  .cumulativa{
+    margin:16px 0 4px;
+    padding:16px 22px;
+    background:var(--surface);
+    border:1px solid var(--line-strong);
+    border-radius:6px;
+    font-size:.93em;
+    color:var(--ink-soft);
+    line-height:1.65;
+  }
+  .cumulativa strong{ color:var(--accent); }
+
+  /* alteridade + igrejas */
+  .obs-grid{
+    margin:10px 0 4px;
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+  }
+  .obs-item{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-left:3px solid var(--iron);
+    border-radius:0 6px 6px 0;
+    padding:14px 20px;
+    font-size:.92em;
+    color:var(--ink-soft);
+    line-height:1.65;
+  }
+  .obs-item strong{ color:var(--ink); }
+
+  /* ===== SUJEITOS ===== */
+  .sujeitos{
+    margin:18px 0 4px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:3px;
+  }
+  .sujeito{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+  }
+  .suj-head{
+    font-family:var(--mono);
+    font-size:11.5px;
+    font-weight:600;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    padding:12px 18px;
+    border-bottom:1px solid var(--line);
+    background:rgba(122,46,55,.05);
+    color:var(--accent);
+  }
+  .suj-body{
+    padding:16px 18px;
+  }
+  .suj-body .clt-ref{
+    font-family:var(--mono);
+    font-size:.84em;
+    color:var(--iron);
+    display:block;
+    margin-bottom:8px;
+  }
+  .suj-body p{ font-size:.93em; color:var(--ink-soft); margin:0; line-height:1.65; }
+  .suj-body .req{
+    margin-top:10px;
+    padding-top:10px;
+    border-top:1px solid var(--line);
+    font-size:.88em;
+    color:var(--ink-soft);
+  }
+  .suj-body .req span{
+    font-family:var(--mono);
+    font-size:.9em;
+    color:var(--iron);
   }
 
-  h3{
-    font-size:20px;
-    margin:22px 0 8px;
+  /* ===== NATUREZA JURÍDICA — confronto ===== */
+  .teorias{
+    margin:18px 0 4px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:3px;
   }
+  .teoria{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+  }
+  .teoria-head{
+    padding:14px 18px;
+    border-bottom:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .teoria-head .t-lbl{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+  }
+  .teoria.prevalente .teoria-head{ background:rgba(122,46,55,.06); }
+  .teoria.prevalente .teoria-head .t-lbl{ color:var(--accent); }
+  .teoria.neg .teoria-head{ background:rgba(139,133,121,.08); }
+  .teoria.neg .teoria-head .t-lbl{ color:var(--iron); }
+  .teoria-badge{
+    font-family:var(--mono);
+    font-size:10px;
+    font-weight:600;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    padding:2px 7px;
+    border-radius:3px;
+    margin-left:auto;
+  }
+  .teoria.prevalente .teoria-badge{ background:var(--accent); color:#fff; }
+  .teoria.neg .teoria-badge{ background:rgba(139,133,121,.18); color:var(--iron); }
+  .teoria-body{
+    padding:16px 18px;
+  }
+  .teoria-body p{ font-size:.93em; color:var(--ink-soft); margin-bottom:12px; line-height:1.68; }
+  .teoria-body p:last-child{ margin:0; }
 
-  p{
-    margin:0 0 14px;
-    text-align:justify;
+  /* art. 442 */
+  .clt-box{
+    margin:12px 0 0;
+    padding:12px 16px;
+    background:var(--paper);
+    border:1px dashed var(--line-strong);
+    border-radius:5px;
+    font-size:.88em;
+    color:var(--ink-soft);
+    font-style:italic;
+    line-height:1.6;
   }
-
-  .box{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:16px;
-    margin:18px 0;
-    box-shadow:var(--shadow);
-  }
-
-  ul{
-    margin:8px 0 14px 22px;
-  }
-
-  li{
-    margin-bottom:10px;
-  }
+  .clt-box strong{ font-style:normal; color:var(--ink); }
 
   /* ===== BOTÃO VOLTAR ===== */
-  .voltar{
-    margin-top:32px;
-  }
-
-  .voltar a{
-    display:block;
-    text-align:center;
-    background:#ffffff;
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:16px;
-    font-weight:800;
+  .back{
+    margin-top:56px;
+    display:flex;
+    align-items:center;
+    gap:14px;
     text-decoration:none;
-    color:#0f172a;
-    box-shadow:var(--shadow);
+    color:var(--ink);
+    background:var(--surface);
+    border:1px solid var(--line-strong);
+    border-radius:6px;
+    padding:20px 22px;
+    font-family:var(--mono);
+    font-size:14px;
+    letter-spacing:.04em;
+    transition:border-color .25s, transform .25s;
+  }
+  .back .arw{ color:var(--accent); transition:transform .25s; font-size:18px; }
+  .back:hover{ border-color:var(--accent); transform:translateY(-2px); }
+  .back:hover .arw{ transform:translateX(-4px); }
+  .back:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:3px; }
+
+  @keyframes rise{
+    from{ opacity:0; transform:translateY(18px); }
+    to{ opacity:1; transform:none; }
+  }
+  .reveal{ opacity:0; transform:translateY(14px); }
+  .reveal.in{
+    opacity:1; transform:none;
+    transition:opacity .55s ease, transform .55s cubic-bezier(.2,.7,.2,1);
   }
 
-  @media (max-width:480px){
-    body{ font-size:17px; }
-    h1{ font-size:24px; }
-    h2{ font-size:21px; }
-    h3{ font-size:19px; }
+  @media (max-width:560px){
+    body{ font-size:17.5px; }
+    .masthead{ padding:40px 0 24px; }
+    .title-row{ align-items:stretch; }
+    .slides-btn{ width:100%; justify-content:center; }
+    .verbete{ padding-left:20px; }
+    .distincao, .elementos, .sujeitos, .teorias{ grid-template-columns:1fr; }
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{ animation:none !important; scroll-behavior:auto; }
+    .reveal{ opacity:1; transform:none; }
+    .reveal.in{ transition:none; }
   }
 </style>
 </head>
-
 <body>
 <div class="wrap">
 
-  <div class="title-row">
-    <h1>4. Relação de Emprego</h1>
-
-    <a class="slides-btn"
-       href="https://drive.google.com/file/d/17Q60c8GwDeYKJoanF_paYna44W61rmKn/view?usp=sharing"
-       target="_blank"
-       rel="noopener">
-      <div class="slides-icon">🖼️</div>
-      <div class="slides-text">Slides</div>
-    </a>
-  </div>
-
-  <div class="box">
-    <p>
-      A relação de emprego é a relação jurídica que tem como fato social original o trabalho humano não eventual
-      e subordinado, prestado com pessoalidade, mediante remuneração e que tem como disciplina jurídica o conjunto
-      de normas que compõem o Direito do Trabalho.
+  <!-- CABEÇALHO -->
+  <header class="masthead">
+    <p class="eyebrow">
+      Direito do Trabalho
+      <span class="dot">·</span> Unidade 1
+      <span class="dot">·</span> Objeto do Direito do Trabalho
     </p>
-    <p>
-      Na relação de emprego, o vínculo jurídico é estabelecido entre empregado e empregador e é regulado pelas
-      normas jurídicas trabalhistas.
-    </p>
-    <p>
-      Assim, como objeto do Direito do Trabalho, a relação de emprego deve ser analisada a partir do estudo das
-      suas características, de seus sujeitos e de sua natureza jurídica.
-    </p>
-  </div>
+    <div class="title-row">
+      <h1>
+        <span class="art">Item 4</span>
+        Relação de Emprego
+      </h1>
+      <a class="slides-btn"
+         href="https://drive.google.com/file/d/17Q60c8GwDeYKJoanF_paYna44W61rmKn/view?usp=sharing"
+         target="_blank" rel="noopener">
+        <span class="ico">▮</span>
+        <span>Slides da aula</span>
+        <span class="arw">→</span>
+      </a>
+    </div>
 
-  <h2>4.1 Características</h2>
+    <div class="verbete">
+      <span class="tag">Definição</span>
+      <p>
+        A relação de emprego é a relação jurídica que tem como fato social original o trabalho humano
+        não eventual e subordinado, prestado com pessoalidade, mediante remuneração, e que tem como
+        disciplina jurídica o conjunto de normas que compõem o Direito do Trabalho.
+      </p>
+    </div>
+  </header>
 
-  <p>
-    Ao contrário da relação de trabalho, que é genérica e que se refere a todas as relações jurídicas fundadas em
-    uma obrigação de fazer consubstanciada no trabalho humano, a relação de emprego, embora também tenha por
-    fundamento o trabalho humano, é específica, possuindo características próprias que a distinguem das demais
-    formas de prestação de serviço.
-  </p>
+  <!-- § 4.1 CARACTERÍSTICAS -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 4.1</span>
+      <h2>Características</h2>
+    </div>
 
-  <p>
-    A relação de trabalho é, deste modo, gênero, que tem, entre uma de suas espécies, a relação de emprego.
-  </p>
+    <div class="distincao reveal">
+      <div class="dist-col genero">
+        <span class="d-lbl">Relação de trabalho — gênero</span>
+        <p>Genérica; refere-se a todas as relações jurídicas fundadas em uma obrigação de fazer
+        consubstanciada no trabalho humano.</p>
+      </div>
+      <div class="dist-col especie">
+        <span class="d-lbl">Relação de emprego — espécie</span>
+        <p>Específica; embora também tenha por fundamento o trabalho humano, possui características
+        próprias que a distinguem das demais formas de prestação de serviço.</p>
+      </div>
+    </div>
 
-  <p>
-    Os elementos característicos da relação de emprego decorrem do disposto nos arts. 2º e 3º da CLT e são:
-  </p>
-
-  <h3>a) Pessoalidade</h3>
-  <p>
-    Na relação de emprego o trabalho prestado tem caráter infungível, pois quem o executa deve realizá-lo
-    pessoalmente, não podendo fazer-se substituir por outra pessoa. A relação de emprego é, pois, uma relação
-    intuitu personae, sendo tal característica derivada do fato de que neste tipo de relação jurídica o que se
-    contrata não é o serviço como resultado final, mas sim o serviço prestado pessoalmente por alguém.
-  </p>
-
-  <p>
-    O empregado obriga-se a prestar pessoalmente os serviços contratados, não podendo, por sua iniciativa,
-    fazer-se substituir por terceiros.
-  </p>
-
-  <h3>b) Não eventualidade</h3>
-  <p>
-    Na relação de emprego a prestação de serviço é habitual, repetitiva, rotineira. As obrigações das partes se
-    prolongam no tempo, com efeitos contínuos. O trabalho deve, portanto, ser não eventual, o que significa dizer
-    que o empregado se obriga a prestar serviços com continuidade, da mesma forma que as obrigações do empregador
-    em relação aos benefícios trabalhistas assegurados ao empregado permanecem enquanto durar a relação de emprego.
-  </p>
-
-  <p>
-    Importante ressaltar, porém, que não é necessário que os serviços sejam prestados diariamente. O importante é
-    que haja a expectativa de retorno do empregado ao serviço, isto é, já se sabe que os serviços serão
-    desenvolvidos em determinado dia, por determinada pessoa, e sua ausência acarretará consequências jurídicas.
-  </p>
-
-  <p>
-    O que caracteriza a habitualidade não é a prestação diária de trabalho, mas sim o sentido de permanência e de
-    prolongamento no tempo que a prestação dos serviços tem.
-  </p>
-
-  <h3>c) Subordinação</h3>
-  <p>
-    A subordinação deriva da própria estrutura da relação jurídica de emprego, que se baseia na transferência pelo
-    empregado ao empregador do poder de direção sobre o seu trabalho.
-  </p>
-
-  <p>
-    É a sujeição do empregado às ordens do empregador, é o estado de dependência do trabalhador em relação ao seu
-    empregador.
-  </p>
-
-  <p>
-    Com a transferência do poder de direção, o empregador assume os riscos da atividade econômica e passa a
-    estabelecer os contornos da organização do trabalho do empregado (poder de organização), a fiscalizar o
-    cumprimento pelo empregado das ordens dadas no exercício do poder de organização (poder de controle), podendo,
-    em caso de descumprimento pelo empregado das determinações, impor-lhe as sanções previstas no ordenamento
-    jurídico (poder disciplinar).
-  </p>
-
-  <h3>d) Remuneração</h3>
-  <p>
-    A relação de emprego não é gratuita ou voluntária; haverá sempre uma prestação (serviços) e uma contraprestação
-    (remuneração).
-  </p>
-
-  <p>
-    A onerosidade caracteriza-se pelo ajuste da troca de trabalho por salário.
-  </p>
-
-  <p>
-    O que importa não é o quantum a ser pago, mas sim o pacto, a promessa de prestação de serviço de um lado e a
-    promessa de pagamento do salário de outro lado. Ressalte-se que o fato do empregador deixar de pagar o salário
-    não afasta a existência de onerosidade e, portanto, não descaracteriza o contrato de trabalho.
-  </p>
-
-  <p>
-    A existência de relação de emprego somente se verifica quando todas estas características estiverem presentes ao
-    mesmo tempo. A ausência de um ou de alguns destes elementos caracterizadores pode implicar a existência de uma
-    relação de trabalho, mas jamais de uma relação de emprego.
-  </p>
-
-  <div class="box">
-    <p>
-      <strong>Observação:</strong> Além das quatro características acima apontadas, alguns autores ressaltam ser a
-      <strong>alteridade</strong> um outro traço distintivo que pode ser atribuído à relação de emprego. A alteridade
-      decorre do fato de que na relação de emprego os serviços são prestados por conta alheia, ou seja, o empregador
-      é quem assume os riscos da atividade econômica.
+    <p class="body-text reveal" style="margin-top:14px;">
+      Os elementos característicos da relação de emprego decorrem do disposto nos
+      <span class="ref">arts. 2º e 3º da CLT</span> e devem estar presentes <em>cumulativamente</em>:
     </p>
 
-    <p>
-      Importante destacar que não existe vínculo empregatício entre entidades religiosas de qualquer denominação ou
-      natureza ou instituições de ensino vocacional e ministros de confissão religiosa, membros de instituto de vida
-      consagrada, de congregação ou de ordem religiosa, ou quaisquer outros que a eles se equiparem, ainda que se
-      dediquem parcial ou integralmente a atividades ligadas à administração da entidade ou instituição a que estejam
-      vinculados ou estejam em formação ou treinamento (art. 442, § 2º, CLT), salvo se verificado desvirtuamento da
-      finalidade religiosa e voluntária (art. 442, § 3º, CLT).
-    </p>
-  </div>
+    <!-- QUATRO ELEMENTOS -->
+    <div class="elementos reveal">
 
-  <h2>4.2 Sujeitos</h2>
+      <div class="elem">
+        <div class="elem-head">
+          <div class="elem-letra">a)</div>
+          <div>
+            <div class="elem-nome">Pessoalidade</div>
+            <span class="elem-fundamento">Relação intuitu personae</span>
+          </div>
+        </div>
+        <div class="elem-body">
+          <p>O trabalho prestado tem caráter infungível — quem o executa deve realizá-lo pessoalmente,
+          não podendo fazer-se substituir por outra pessoa.</p>
+          <p>O que se contrata não é o serviço como resultado final, mas o serviço prestado
+          pessoalmente por alguém. O empregado não pode, por sua iniciativa, fazer-se substituir
+          por terceiros.</p>
+        </div>
+      </div>
 
-  <p>
-    Os sujeitos da relação de emprego são empregado e empregador.
-  </p>
+      <div class="elem">
+        <div class="elem-head">
+          <div class="elem-letra">b)</div>
+          <div>
+            <div class="elem-nome">Não eventualidade</div>
+            <span class="elem-fundamento">Habitualidade e permanência</span>
+          </div>
+        </div>
+        <div class="elem-body">
+          <p>A prestação de serviço é habitual, repetitiva, rotineira. As obrigações se prolongam
+          no tempo, com efeitos contínuos.</p>
+          <p>Não é necessário que os serviços sejam prestados diariamente — o que importa é a
+          expectativa de retorno do empregado e o sentido de permanência no tempo, não a prestação
+          diária.</p>
+        </div>
+      </div>
 
-  <p>
-    O conceito legal de empregado está expresso no art. 3º da CLT: toda pessoa física que prestar serviços de
-    natureza não eventual a empregador, sob a dependência deste e mediante salário.
-  </p>
+      <div class="elem">
+        <div class="elem-head">
+          <div class="elem-letra">c)</div>
+          <div>
+            <div class="elem-nome">Subordinação</div>
+            <span class="elem-fundamento">Poder de direção do empregador</span>
+          </div>
+        </div>
+        <div class="elem-body">
+          <p>Deriva da transferência pelo empregado ao empregador do poder de direção sobre seu
+          trabalho — sujeição às ordens do empregador.</p>
+          <p>Com esse poder, o empregador organiza o trabalho (poder de organização), fiscaliza
+          o cumprimento das ordens (poder de controle) e pode impor sanções pelo descumprimento
+          (poder disciplinar).</p>
+        </div>
+      </div>
 
-  <p>
-    A definição de empregado deve ser completada por mais um requisito expresso no art. 2º da CLT, qual seja, a
-    prestação pessoal de serviços.
-  </p>
+      <div class="elem">
+        <div class="elem-head">
+          <div class="elem-letra">d)</div>
+          <div>
+            <div class="elem-nome">Remuneração</div>
+            <span class="elem-fundamento">Onerosidade — troca trabalho por salário</span>
+          </div>
+        </div>
+        <div class="elem-body">
+          <p>A relação de emprego não é gratuita: haverá sempre uma prestação (serviços) e uma
+          contraprestação (remuneração).</p>
+          <p>O que importa é o pacto — a promessa recíproca de serviço e de salário. O não
+          pagamento do salário não descaracteriza o contrato: a obrigação existe, apenas não
+          está sendo cumprida.</p>
+        </div>
+      </div>
 
-  <div class="box">
-    <p>
-      O conceito legal de empregador está expresso no art. 2º da CLT:
-    </p>
-    <p>
-      Considera-se empregador a empresa, individual ou coletiva, que, assumindo os riscos da atividade econômica,
-      admite, assalaria e dirige a prestação pessoal de serviços.
-    </p>
-  </div>
+    </div>
 
-  <h2>4.3 Natureza jurídica</h2>
+    <div class="cumulativa reveal">
+      <strong>Cumulatividade obrigatória:</strong> a existência de relação de emprego somente se
+      verifica quando <strong>todos</strong> estes elementos estiverem presentes ao mesmo tempo.
+      A ausência de um ou mais pode implicar a existência de uma relação de trabalho, mas jamais
+      de uma relação de emprego.
+    </div>
 
-  <p>
-    A natureza jurídica da relação de emprego é discutida a partir de duas teorias:
-  </p>
+    <!-- OBSERVAÇÕES -->
+    <div class="obs-grid reveal">
+      <div class="obs-item">
+        <strong>Alteridade (5º elemento doutrinário) —</strong> alguns autores ressaltam ser a
+        alteridade outro traço distintivo da relação de emprego: os serviços são prestados por
+        conta alheia, ou seja, o empregador é quem assume os riscos da atividade econômica.
+      </div>
+      <div class="obs-item">
+        <strong>Entidades religiosas —</strong> não existe vínculo empregatício entre entidades
+        religiosas ou instituições de ensino vocacional e ministros de confissão religiosa, membros
+        de institutos de vida consagrada, congregação ou ordem religiosa, ainda que se dediquem a
+        atividades administrativas da entidade
+        (<span class="ref">art. 442, § 2º, CLT</span>), salvo se verificado desvirtuamento da
+        finalidade religiosa e voluntária (<span class="ref">art. 442, § 3º, CLT</span>).
+      </div>
+    </div>
+  </section>
 
-  <h3>a) Teoria contratualista</h3>
-  <p>
-    Afirma a natureza contratual da relação de emprego, ou seja, a relação entre empregado e empregador decorre de
-    acordo de vontades e, portanto, é fundada em um contrato. A relação de emprego é um negócio jurídico que se
-    insere no âmbito da autonomia privada.
-  </p>
+  <!-- § 4.2 SUJEITOS -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 4.2</span>
+      <h2>Sujeitos</h2>
+    </div>
 
-  <p>
-    É a teoria que prevalece e que foi absorvida pelo legislador trabalhista. Tendo origem na autonomia da vontade
-    das partes, a relação de emprego tem inegável natureza contratual. Por esta razão, o art. 442 da CLT estabelece
-    que contrato individual de trabalho é o acordo tácito ou expresso correspondente à relação de emprego.
-  </p>
+    <p class="body-text reveal">Os sujeitos da relação de emprego são <strong style="color:var(--ink)">empregado</strong> e <strong style="color:var(--ink)">empregador</strong>.</p>
 
-  <h3>b) Teoria anticontratualista</h3>
-  <p>
-    Nega a natureza contratual da relação de emprego. Para os anticontratualistas a autonomia da vontade não tem
-    qualquer influência ou relevância na formação e no desenvolvimento deste tipo específico de relação jurídica
-    denominada de relação de emprego.
-  </p>
+    <div class="sujeitos reveal">
+      <div class="sujeito">
+        <div class="suj-head">Empregado</div>
+        <div class="suj-body">
+          <span class="clt-ref">Art. 3º da CLT</span>
+          <p>Toda pessoa física que prestar serviços de natureza não eventual a empregador, sob a
+          dependência deste e mediante salário.</p>
+          <div class="req">
+            Requisito complementar — <span>art. 2º, CLT</span>: prestação <em>pessoal</em> de serviços.
+          </div>
+        </div>
+      </div>
+      <div class="sujeito">
+        <div class="suj-head">Empregador</div>
+        <div class="suj-body">
+          <span class="clt-ref">Art. 2º da CLT</span>
+          <p>"Considera-se empregador a empresa, individual ou coletiva, que, assumindo os riscos da
+          atividade econômica, admite, assalaria e dirige a prestação pessoal de serviços."</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <div class="voltar">
-    <a href="../index.html">← Voltar ao índice da disciplina</a>
-  </div>
+  <!-- § 4.3 NATUREZA JURÍDICA -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 4.3</span>
+      <h2>Natureza jurídica</h2>
+    </div>
+
+    <p class="body-text reveal">A natureza jurídica da relação de emprego é discutida a partir de duas teorias em confronto:</p>
+
+    <div class="teorias reveal">
+      <div class="teoria prevalente">
+        <div class="teoria-head">
+          <div class="t-lbl">Teoria contratualista</div>
+          <span class="teoria-badge">Prevalente</span>
+        </div>
+        <div class="teoria-body">
+          <p>Afirma a natureza contratual da relação de emprego: a relação entre empregado e
+          empregador decorre de acordo de vontades e, portanto, é fundada em um contrato. A
+          relação de emprego é um negócio jurídico que se insere no âmbito da autonomia privada.</p>
+          <p>É a teoria absorvida pelo legislador trabalhista.</p>
+          <div class="clt-box">
+            <strong>Art. 442, CLT:</strong> "Contrato individual de trabalho é o acordo tácito ou
+            expresso correspondente à relação de emprego."
+          </div>
+        </div>
+      </div>
+
+      <div class="teoria neg">
+        <div class="teoria-head">
+          <div class="t-lbl">Teoria anticontratualista</div>
+          <span class="teoria-badge">Minoritária</span>
+        </div>
+        <div class="teoria-body">
+          <p>Nega a natureza contratual da relação de emprego. Para os anticontratualistas, a
+          autonomia da vontade não tem qualquer influência ou relevância na formação e no
+          desenvolvimento deste tipo específico de relação jurídica.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <a class="back" href="../index.html">
+    <span class="arw">←</span>
+    <span>Voltar ao índice da disciplina</span>
+  </a>
 
 </div>
+
+<script>
+  (function(){
+    var items = document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window)){
+      items.forEach(function(el){ el.classList.add('in'); }); return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold:.1, rootMargin:'0px 0px -4% 0px' });
+    items.forEach(function(el, i){
+      el.style.transitionDelay = (i * 45) + 'ms';
+      io.observe(el);
+    });
+  })();
+</script>
 </body>
 </html>
