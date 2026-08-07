@@ -5,337 +5,908 @@
 <title>Relação de Trabalho</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
 <style>
   :root{
-    --bg:#f2f7ff;
-    --text:#0f172a;
-    --title:#1f4fd8;
-    --card:#ffffff;
-    --border:rgba(15,23,42,.15);
-    --shadow:0 8px 18px rgba(15,23,42,.08);
+    --ink:#1b2436;
+    --ink-soft:#414a5c;
+    --paper:#edece5;
+    --surface:#fbfaf7;
+    --accent:#7a2e37;
+    --accent-soft:#a2545f;
+    --iron:#8b8579;
+    --line:rgba(27,36,54,.13);
+    --line-strong:rgba(27,36,54,.22);
+    --display:"Fraunces", Georgia, "Times New Roman", serif;
+    --body:"Spectral", Georgia, serif;
+    --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
   }
 
-  *{ box-sizing:border-box; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
 
   body{
-    margin:0;
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    line-height:1.7;
-    font-size:18px;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:19px;
+    line-height:1.78;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
   }
 
-  .wrap{
-    max-width:900px;
-    margin:auto;
-    padding:18px 16px 40px;
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0 0 auto 0;
+    height:4px;
+    background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 34%,var(--ink) 34%,var(--ink) 100%);
+    z-index:50;
   }
 
-  /* ===== TÍTULO + SLIDES ===== */
-  .title-row{
+  .wrap{ max-width:760px; margin:0 auto; padding:0 22px 72px; }
+
+  /* ===== CABEÇALHO ===== */
+  .masthead{
+    padding:56px 0 30px;
+    border-bottom:1px solid var(--line-strong);
+    animation:rise .7s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:600;
+    margin-bottom:20px;
     display:flex;
-    justify-content:space-between;
     align-items:center;
-    gap:16px;
+    gap:12px;
     flex-wrap:wrap;
   }
+  .eyebrow::before{ content:""; width:26px; height:2px; background:var(--accent); display:inline-block; }
+  .eyebrow .dot{ color:var(--line-strong); }
 
+  .title-row{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:28px;
+    flex-wrap:wrap;
+  }
   h1{
-    color:var(--title);
-    font-size:28px;
-    margin:10px 0 16px;
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(2.5rem,7vw,4.1rem);
+    line-height:1.02;
+    letter-spacing:-.015em;
+    max-width:13ch;
+  }
+  h1 .art{
+    display:block;
+    font-size:.42em;
+    font-weight:600;
+    letter-spacing:.02em;
+    color:var(--accent);
+    font-family:var(--mono);
+    text-transform:uppercase;
+    margin-bottom:.5em;
+  }
+  .slides-btn{
+    flex-shrink:0;
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    background:var(--ink);
+    color:#f4f2ec;
+    border-radius:4px;
+    padding:13px 18px;
+    font-family:var(--mono);
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    box-shadow:0 8px 22px -12px rgba(27,36,54,.7);
+    transition:transform .25s cubic-bezier(.2,.7,.2,1), box-shadow .25s, background .25s;
+  }
+  .slides-btn .ico{ font-size:16px; line-height:1; transform:translateY(-1px); }
+  .slides-btn .arw{ transition:transform .25s; }
+  .slides-btn:hover{ background:var(--accent); transform:translateY(-2px); box-shadow:0 14px 28px -12px rgba(122,46,55,.75); }
+  .slides-btn:hover .arw{ transform:translateX(4px); }
+  .slides-btn:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:3px; }
+
+  /* ===== DEFINIÇÃO ===== */
+  .verbete{
+    margin:44px 0 8px;
+    padding:6px 0 6px 30px;
+    border-left:3px solid var(--accent);
+    animation:rise .7s .1s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .verbete .tag{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:block;
+    margin-bottom:14px;
+  }
+  .verbete p{
+    font-family:var(--display);
+    font-weight:400;
+    font-size:clamp(1.2rem,3vw,1.55rem);
+    line-height:1.45;
+    letter-spacing:-.01em;
+    color:var(--ink);
+    margin:0;
   }
 
-  .slides-btn{
+  /* ===== SEÇÕES ===== */
+  .sec-head{
+    display:flex;
+    gap:16px;
+    align-items:baseline;
+    margin:46px 0 14px;
+    padding-top:26px;
+    border-top:1px solid var(--line);
+  }
+  .sec-head .num{
+    font-family:var(--mono);
+    font-size:15px;
+    font-weight:600;
+    color:var(--accent);
+    letter-spacing:.02em;
+    flex-shrink:0;
+    padding-top:.35em;
+  }
+  h2{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(1.6rem,4vw,2rem);
+    line-height:1.14;
+    letter-spacing:-.01em;
+    color:var(--ink);
+  }
+  p{ margin-bottom:16px; }
+  .body-text{ color:var(--ink-soft); }
+
+  /* ref legal inline */
+  .ref{
+    font-family:var(--mono);
+    font-size:.8em;
+    color:var(--iron);
+    background:rgba(139,133,121,.12);
+    padding:2px 7px;
+    border-radius:3px;
+    white-space:nowrap;
+  }
+
+  /* ===== GÊNERO/ESPÉCIE (intro) ===== */
+  .genero-box{
+    margin:20px 0 10px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:3px;
+  }
+  .gen-col{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:18px 20px;
+  }
+  .gen-col .g-lbl{
+    font-family:var(--mono);
+    font-size:11.5px;
+    font-weight:600;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    margin-bottom:8px;
+    display:block;
+  }
+  .gen-col.genero .g-lbl{ color:var(--iron); }
+  .gen-col.especie .g-lbl{ color:var(--accent); }
+  .gen-col p{ font-size:.92em; color:var(--ink-soft); margin:0; line-height:1.6; }
+
+  /* ===== CARDS DE ESPÉCIES ===== */
+  .especies{
     display:flex;
     flex-direction:column;
+    gap:3px;
+    margin-top:4px;
+  }
+  .card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+    transition:box-shadow .2s;
+  }
+  .card:hover{ box-shadow:0 4px 18px -8px rgba(27,36,54,.2); }
+
+  .card-btn{
+    width:100%;
+    background:none;
+    border:none;
+    cursor:pointer;
+    display:grid;
+    grid-template-columns:52px 1fr 34px;
+    align-items:center;
+    padding:0;
+    text-align:left;
+    color:inherit;
+  }
+  .card-btn:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:-3px; border-radius:5px; }
+
+  .card-icon{
+    display:flex;
     align-items:center;
     justify-content:center;
-    text-decoration:none;
-    background:#ffffff;
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:10px 14px;
-    box-shadow:var(--shadow);
-    min-width:90px;
-  }
-
-  .slides-icon{
-    font-size:28px;
-    line-height:1;
-  }
-
-  .slides-text{
-    margin-top:4px;
-    font-weight:800;
+    min-height:62px;
+    height:100%;
+    border-right:1px solid var(--line);
+    font-family:var(--mono);
+    font-weight:600;
     font-size:13px;
-    color:#0f172a;
+    color:var(--accent);
+    background:rgba(122,46,55,.05);
+    letter-spacing:.02em;
   }
-
-  /* ===== TEXTO ===== */
-  h2{
-    font-size:22px;
-    margin:28px 0 10px;
+  .card-head{ padding:16px 18px; }
+  .card-num{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--iron);
+    display:block;
+    margin-bottom:3px;
   }
-
-  h3{
-    font-size:20px;
-    margin:22px 0 8px;
+  .card-title{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:1.08rem;
+    line-height:1.2;
+    color:var(--ink);
   }
-
-  p{
-    margin:0 0 14px;
-    text-align:justify;
+  .card-chevron{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding-right:16px;
+    color:var(--iron);
+    font-size:13px;
+    transition:transform .3s cubic-bezier(.2,.7,.2,1), color .2s;
   }
+  .card.open .card-chevron{ transform:rotate(180deg); color:var(--accent); }
 
-  .box{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:16px;
-    margin:18px 0;
-    box-shadow:var(--shadow);
+  .card-body{
+    display:none;
+    padding:20px 22px 22px;
+    border-top:1px solid var(--line);
   }
+  .card.open .card-body{ display:block; }
+  .card-body > p{ color:var(--ink-soft); font-size:.94em; line-height:1.72; }
 
-  ul{
-    margin:8px 0 14px 22px;
+  /* sub-bloco dentro do card */
+  .sub{
+    margin:14px 0 6px;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:5px;
+    padding:14px 18px;
   }
-
-  li{
+  .sub-lbl{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:block;
     margin-bottom:10px;
+  }
+  .sub p{ font-size:.91em; color:var(--ink-soft); margin-bottom:8px; line-height:1.65; }
+  .sub p:last-child{ margin:0; }
+
+  /* lista de direitos */
+  .direitos{
+    margin:10px 0 6px;
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+  }
+  .dir-item{
+    display:grid;
+    grid-template-columns:22px 1fr;
+    gap:10px;
+    font-size:.9em;
+    color:var(--ink-soft);
+    line-height:1.55;
+    padding:5px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .dir-item:last-child{ border-bottom:none; }
+  .dir-item .bul{
+    color:var(--accent);
+    font-family:var(--mono);
+    font-size:.85em;
+    padding-top:2px;
+  }
+
+  /* lista de requisitos (estagiário) */
+  .req-list{
+    margin:10px 0 6px;
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+  }
+  .req-list li{
+    display:grid;
+    grid-template-columns:20px 1fr;
+    gap:8px;
+    font-size:.9em;
+    color:var(--ink-soft);
+    padding:5px 0;
+    border-bottom:1px solid var(--line);
+    line-height:1.55;
+  }
+  .req-list li:last-child{ border-bottom:none; }
+  .req-list li::before{ content:"✓"; color:var(--accent); font-size:.85em; padding-top:1px; }
+
+  /* tabela de jornadas */
+  .jornadas{
+    margin:10px 0 6px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    overflow:hidden;
+    background:var(--surface);
+  }
+  .jorn-row{
+    display:grid;
+    grid-template-columns:110px 1fr;
+    border-bottom:1px solid var(--line);
+    font-size:.88em;
+  }
+  .jorn-row:last-child{ border-bottom:none; }
+  .jorn-h{
+    padding:10px 14px;
+    font-family:var(--mono);
+    font-weight:600;
+    font-size:.88em;
+    color:var(--accent);
+    background:rgba(122,46,55,.05);
+    border-right:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    line-height:1.3;
+  }
+  .jorn-d{
+    padding:10px 14px;
+    color:var(--ink-soft);
+    display:flex;
+    align-items:center;
+    line-height:1.5;
+  }
+
+  /* tese STF */
+  .tese{
+    margin:12px 0 4px;
+    padding:14px 18px;
+    border-left:2px solid var(--iron);
+    background:var(--paper);
+    border-radius:0 4px 4px 0;
+    font-style:italic;
+    font-size:.88em;
+    color:var(--ink-soft);
+    line-height:1.6;
+  }
+  .tese strong{ font-style:normal; font-size:.85em; font-family:var(--mono); letter-spacing:.08em; text-transform:uppercase; color:var(--iron); display:block; margin-bottom:6px; }
+
+  /* proibição */
+  .proib{
+    margin:12px 0 4px;
+    padding:12px 16px;
+    background:rgba(122,46,55,.06);
+    border-left:3px solid var(--accent);
+    border-radius:0 5px 5px 0;
+    font-size:.9em;
+    color:var(--ink);
+    line-height:1.6;
   }
 
   /* ===== BOTÃO VOLTAR ===== */
-  .voltar{
-    margin-top:32px;
-  }
-
-  .voltar a{
-    display:block;
-    text-align:center;
-    background:#ffffff;
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:16px;
-    font-weight:800;
+  .back{
+    margin-top:56px;
+    display:flex;
+    align-items:center;
+    gap:14px;
     text-decoration:none;
-    color:#0f172a;
-    box-shadow:var(--shadow);
+    color:var(--ink);
+    background:var(--surface);
+    border:1px solid var(--line-strong);
+    border-radius:6px;
+    padding:20px 22px;
+    font-family:var(--mono);
+    font-size:14px;
+    letter-spacing:.04em;
+    transition:border-color .25s, transform .25s;
+  }
+  .back .arw{ color:var(--accent); transition:transform .25s; font-size:18px; }
+  .back:hover{ border-color:var(--accent); transform:translateY(-2px); }
+  .back:hover .arw{ transform:translateX(-4px); }
+  .back:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:3px; }
+
+  @keyframes rise{
+    from{ opacity:0; transform:translateY(18px); }
+    to{ opacity:1; transform:none; }
+  }
+  .reveal{ opacity:0; transform:translateY(14px); }
+  .reveal.in{
+    opacity:1; transform:none;
+    transition:opacity .5s ease, transform .5s cubic-bezier(.2,.7,.2,1);
   }
 
-  @media (max-width:480px){
-    body{ font-size:17px; }
-    h1{ font-size:24px; }
-    h2{ font-size:21px; }
-    h3{ font-size:19px; }
+  @media (max-width:560px){
+    body{ font-size:17.5px; }
+    .masthead{ padding:40px 0 24px; }
+    .title-row{ align-items:stretch; }
+    .slides-btn{ width:100%; justify-content:center; }
+    .verbete{ padding-left:20px; }
+    .genero-box{ grid-template-columns:1fr; }
+    .card-btn{ grid-template-columns:44px 1fr 30px; }
+    .jorn-row{ grid-template-columns:90px 1fr; }
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{ animation:none !important; scroll-behavior:auto; }
+    .reveal{ opacity:1; transform:none; }
+    .reveal.in{ transition:none; }
+    .card-chevron{ transition:none; }
   }
 </style>
 </head>
-
 <body>
 <div class="wrap">
 
-  <div class="title-row">
-    <h1>5. Relação de Trabalho</h1>
-
-    <a class="slides-btn"
-       href="https://drive.google.com/file/d/15oWKoYmYRMdKlJ_Wljc4qEJ9JpIDviaB/view?usp=sharing"
-       target="_blank"
-       rel="noopener">
-      <div class="slides-icon">🖼️</div>
-      <div class="slides-text">Slides</div>
-    </a>
-  </div>
-
-  <div class="box">
-    <p>
-      Podem ser consideradas como relação de trabalho todas as relações jurídicas fundadas em uma obrigação de fazer
-      consubstanciada no trabalho humano, enquanto somente existirá relação de emprego quando o trabalho humano se
-      desenvolver de forma não eventual e subordinada, sendo prestado com pessoalidade e mediante remuneração.
+  <!-- CABEÇALHO -->
+  <header class="masthead">
+    <p class="eyebrow">
+      Direito do Trabalho
+      <span class="dot">·</span> Unidade 1
+      <span class="dot">·</span> Espécies de relação de trabalho
     </p>
-    <p>
-      A relação de trabalho é gênero, sendo a relação de emprego uma de suas espécies.
+    <div class="title-row">
+      <h1>
+        <span class="art">Item 5</span>
+        Relação de Trabalho
+      </h1>
+      <a class="slides-btn"
+         href="https://drive.google.com/file/d/15oWKoYmYRMdKlJ_Wljc4qEJ9JpIDviaB/view?usp=sharing"
+         target="_blank" rel="noopener">
+        <span class="ico">▮</span>
+        <span>Slides da aula</span>
+        <span class="arw">→</span>
+      </a>
+    </div>
+
+    <div class="verbete">
+      <span class="tag">Definição</span>
+      <p>
+        Podem ser consideradas como relação de trabalho todas as relações jurídicas fundadas em uma
+        obrigação de fazer consubstanciada no trabalho humano. A relação de trabalho é gênero, sendo
+        a relação de emprego uma de suas espécies.
+      </p>
+    </div>
+  </header>
+
+  <!-- GÊNERO / ESPÉCIE -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 5</span>
+      <h2>Gênero e espécie</h2>
+    </div>
+
+    <div class="genero-box reveal">
+      <div class="gen-col genero">
+        <span class="g-lbl">Relação de trabalho — gênero</span>
+        <p>Toda relação jurídica fundada em obrigação de fazer consubstanciada no trabalho humano,
+        em qualquer de suas formas.</p>
+      </div>
+      <div class="gen-col especie">
+        <span class="g-lbl">Relação de emprego — espécie</span>
+        <p>Somente existirá quando o trabalho humano se desenvolver de forma não eventual e
+        subordinada, com pessoalidade e mediante remuneração.</p>
+      </div>
+    </div>
+
+    <p class="body-text reveal" style="margin-top:14px;">
+      As demais espécies de relação de trabalho distinguem-se da relação de emprego justamente pela
+      ausência de um ou mais desses elementos. São elas:
     </p>
-    <p>
-      Entre as diversas espécies de relação de trabalho, analisaremos as seguintes, buscando identificar suas
-      características específicas que as diferenciam da relação de emprego:
-    </p>
-  </div>
+  </section>
 
-  <h2>5.1 Trabalho autônomo</h2>
-  <p>
-    É aquele que se desenvolve por conta própria, sem subordinação, ou seja, o trabalhador autônomo exerce suas
-    atividades com independência, não se subordinando às ordens e ao controle do tomador dos serviços. Considera-se
-    autônomo o prestador de serviços que desenvolve sua atividade sem estar subordinado a horário, livre de
-    fiscalização do destinatário dos serviços e, eventualmente, com auxílio de terceiros.
-  </p>
-  <p>
-    O autônomo tem ampla liberdade quanto à forma e ao modo de execução dos serviços, estabelece o preço dos
-    serviços e assume os riscos do empreendimento.
-  </p>
-  <p>
-    O trabalho autônomo insere-se no âmbito do Direito Civil, sendo o trabalhador contratado mediante contrato de
-    prestação de serviços regido basicamente pelos arts. 593 a 609 do Código Civil.
-  </p>
-  <p>
-    A contratação do autônomo, cumpridas por este todas as formalidades legais, com ou sem exclusividade, de forma
-    contínua ou não, afasta a qualidade de empregado (art. 442-B, CLT).
-  </p>
+  <!-- ESPÉCIES -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 5.1–5.8</span>
+      <h2>Espécies de relação de trabalho</h2>
+    </div>
 
-  <h2>5.2 Trabalho eventual</h2>
-  <p>
-    É aquele exercido de forma esporádica, descontínua, fortuita.
-  </p>
-  <p>
-    O trabalhador eventual presta serviços de curta duração para vários tomadores de serviço, sem habitualidade ou
-    continuidade, não se fixando a uma fonte de trabalho.
-  </p>
+    <div class="especies">
 
-  <h2>5.3 Trabalho temporário</h2>
-  <p>
-    É disciplinado pela Lei n. 6.019, de 3-1-1974, regulamentada pelo Decreto n. 10.854, de 10-11-2021, e
-    corresponde a uma relação composta por três partes (relação triangular), que gera vínculos jurídicos distintos
-    e independentes.
-  </p>
+      <!-- 5.1 AUTÔNOMO -->
+      <div class="card reveal">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">5.1</div>
+          <div class="card-head">
+            <span class="card-num">Sem subordinação</span>
+            <span class="card-title">Trabalho autônomo</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            Trabalho que se desenvolve por conta própria, sem subordinação — o trabalhador autônomo
+            exerce suas atividades com independência, sem se subordinar a horário, livre de
+            fiscalização do tomador e, eventualmente, com auxílio de terceiros.
+          </p>
+          <p>
+            O autônomo tem ampla liberdade quanto à forma e ao modo de execução dos serviços,
+            estabelece o preço e assume os riscos do empreendimento. Insere-se no âmbito do
+            <strong>Direito Civil</strong>, regido pelos <span class="ref">arts. 593 a 609 do CC</span>.
+          </p>
+          <div class="sub">
+            <span class="sub-lbl">Efeito sobre o vínculo de emprego</span>
+            <p>
+              A contratação do autônomo, cumpridas por este todas as formalidades legais, com ou sem
+              exclusividade, de forma contínua ou não, <strong>afasta a qualidade de empregado</strong>
+              (<span class="ref">art. 442-B, CLT</span>).
+            </p>
+          </div>
+        </div>
+      </div>
 
-  <p>
-    A relação de trabalho temporário é desenvolvida entre uma empresa tomadora de serviços (ou empresa cliente),
-    uma empresa de trabalho temporário e o trabalhador temporário. Há intermediação de mão de obra, rompendo com a
-    simetria tradicional entre empregado e empregador.
-  </p>
+      <!-- 5.2 EVENTUAL -->
+      <div class="card reveal">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">5.2</div>
+          <div class="card-head">
+            <span class="card-num">Sem habitualidade</span>
+            <span class="card-title">Trabalho eventual</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            Trabalho exercido de forma esporádica, descontínua, fortuita. O trabalhador eventual
+            presta serviços de curta duração para vários tomadores, sem habitualidade ou
+            continuidade, não se fixando a uma fonte de trabalho.
+          </p>
+        </div>
+      </div>
 
-  <p>
-    O trabalho temporário pode envolver atividades-meio e atividades-fim (art. 9º, § 3º, Lei n. 6.019/74; art. 59,
-    Decreto n. 10.854/2021). A relação entre a empresa de trabalho temporário e a tomadora é de natureza civil.
-  </p>
+      <!-- 5.3 TEMPORÁRIO -->
+      <div class="card reveal">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">5.3</div>
+          <div class="card-head">
+            <span class="card-num">Relação triangular</span>
+            <span class="card-title">Trabalho temporário</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            Disciplinado pela <span class="ref">Lei n. 6.019/74</span> e regulamentado pelo
+            <span class="ref">Decreto n. 10.854/2021</span>. Corresponde a uma relação triangular
+            composta por empresa tomadora de serviços, empresa de trabalho temporário e trabalhador
+            temporário, gerando vínculos jurídicos distintos e independentes.
+          </p>
+          <p>
+            A relação entre a empresa de trabalho temporário e a tomadora é de natureza civil. A
+            relação entre o trabalhador temporário e a empresa de trabalho temporário é majoritariamente
+            considerada relação de emprego, havendo contrato de trabalho expresso em lei.
+          </p>
 
-  <div class="box">
-    <p><strong>Admissão do trabalho temporário:</strong> somente para atender (art. 2º, Lei n. 6.019/74; art. 41, Decreto n. 10.854/2021):</p>
-    <ul>
-      <li><strong>a)</strong> substituição transitória de pessoal permanente; ou</li>
-      <li><strong>b)</strong> demanda complementar de serviços.</li>
-    </ul>
-    <p>
-      Considera-se complementar a demanda oriunda de fatores imprevisíveis ou, quando previsíveis, de natureza
-      intermitente, periódica e sazonal (§ 2º, art. 2º, Lei n. 6.019/74; art. 43, IV, Decreto n. 10.854/2021).
-      Demandas contínuas/permanentes e abertura de filiais não se enquadram (parágrafo único, art. 43, Decreto n. 10.854/2021).
-    </p>
-  </div>
+          <div class="sub">
+            <span class="sub-lbl">Hipóteses de admissão (<span class="ref" style="text-transform:none;letter-spacing:0">art. 2º, Lei n. 6.019/74</span>)</span>
+            <p><strong>a)</strong> Substituição transitória de pessoal permanente (férias, licenças e outros afastamentos previstos em lei).</p>
+            <p><strong>b)</strong> Demanda complementar de serviços — aquela oriunda de fatores imprevisíveis ou, quando previsíveis, de natureza intermitente, periódica e sazonal. Não se enquadram demandas contínuas, permanentes ou decorrentes de abertura de filiais.</p>
+          </div>
 
-  <p>
-    É proibida a contratação de temporário para substituir trabalhadores em greve, salvo nos casos previstos em lei
-    (§ 1º, art. 2º, Lei n. 6.019/74).
-  </p>
+          <div class="proib">
+            ⊘ É <strong>proibida</strong> a contratação de trabalho temporário para substituição de trabalhadores em greve, salvo nos casos previstos em lei (<span class="ref">§ 1º, art. 2º, Lei n. 6.019/74</span>).
+          </div>
 
-  <p>
-    A empresa de trabalho temporário deve ser registrada no Ministério do Trabalho e Previdência (art. 4º, Lei n.
-    6.019/74; art. 47, Decreto n. 10.854/2021). Deve haver contrato escrito entre empresa de trabalho temporário e
-    tomadora, contendo qualificação, motivo, prazo, valor e regras de saúde e segurança (art. 9º, Lei n. 6.019/74;
-    arts. 54 e 71, Decreto n. 10.854/2021).
-  </p>
+          <div class="sub" style="margin-top:14px;">
+            <span class="sub-lbl">Prazos e renovação</span>
+            <p>Duração máxima: <strong>180 dias</strong> (consecutivos ou não), prorrogável por até <strong>90 dias</strong> quando comprovada a manutenção das condições (<span class="ref">§§ 1º e 2º, art. 10, Lei n. 6.019/74</span>).</p>
+            <p>Após o término, novo contrato com a mesma tomadora somente após <strong>90 dias</strong>; contratação em período inferior caracteriza vínculo de emprego com a tomadora (<span class="ref">§§ 5º e 6º, art. 10</span>).</p>
+            <p>Não se aplica ao temporário o contrato de experiência da CLT nem a indenização do <span class="ref">art. 479, CLT</span> (<span class="ref">§ 4º, art. 10</span>).</p>
+          </div>
 
-  <p>
-    A tomadora deve garantir condições de segurança, higiene e salubridade, e estender atendimento médico e de
-    refeição existente a seus empregados (§§ 1º e 2º, art. 9º, Lei n. 6.019/74; arts. 55 e 56, Decreto n. 10.854/2021),
-    além de comunicar acidente com temporário (§ 2º, art. 12, Lei n. 6.019/74; art. 75, Decreto n. 10.854/2021).
-  </p>
+          <div class="sub">
+            <span class="sub-lbl">Direitos do trabalhador temporário (<span class="ref" style="text-transform:none;letter-spacing:0">art. 12, Lei n. 6.019/74</span>)</span>
+            <div class="direitos">
+              <div class="dir-item"><span class="bul">▸</span><span>Anotação do contrato na CTPS (parte "anotações gerais")</span></div>
+              <div class="dir-item"><span class="bul">▸</span><span>Remuneração equivalente à do empregado substituído ou do grupo em caso de acréscimo de serviços</span></div>
+              <div class="dir-item"><span class="bul">▸</span><span>Indenização ao final do contrato (40% dos depósitos do FGTS — <span class="ref">CF, art. 7º, I</span>)</span></div>
+              <div class="dir-item"><span class="bul">▸</span><span>Férias proporcionais + 1/3 (<span class="ref">CF, art. 7º, XVII</span>)</span></div>
+              <div class="dir-item"><span class="bul">▸</span><span>Jornada de 8h diárias e 44h semanais (<span class="ref">CF, art. 7º, XIII</span>); horas extras com adicional de 50%</span></div>
+              <div class="dir-item"><span class="bul">▸</span><span>Adicional noturno mínimo de 20% (<span class="ref">art. 62, Decreto n. 10.854/2021</span>)</span></div>
+              <div class="dir-item"><span class="bul">▸</span><span>Seguro contra acidente do trabalho e proteção previdenciária</span></div>
+              <div class="dir-item"><span class="bul">▸</span><span>FGTS (<span class="ref">art. 15, § 2º, Lei n. 8.036/90</span>)</span></div>
+              <div class="dir-item"><span class="bul">▸</span><span>Vale-transporte (<span class="ref">Decreto n. 95.247/87</span>)</span></div>
+              <div class="dir-item"><span class="bul">▸</span><span>Seguro-desemprego (<span class="ref">art. 3º, Lei n. 7.998/90</span>)</span></div>
+              <div class="dir-item"><span class="bul">▸</span><span>Descanso semanal remunerado (<span class="ref">Lei n. 605/49</span>)</span></div>
+            </div>
+          </div>
 
-  <p>
-    Não há vínculo de emprego entre tomadora e temporário (art. 10, Lei n. 6.019/74; art. 57, Decreto n. 10.854/2021).
-    A duração do contrato não pode exceder 180 dias, prorrogáveis por até 90 dias (§§ 1º e 2º, art. 10, Lei n. 6.019/74;
-    art. 66, Decreto n. 10.854/2021).
-  </p>
+          <div class="sub">
+            <span class="sub-lbl">Responsabilidade</span>
+            <p>A contratante é <strong>subsidiariamente</strong> responsável pelas obrigações trabalhistas do período (<span class="ref">art. 10, § 7º, Lei n. 6.019/74</span>).</p>
+            <p>Na <strong>falência</strong> da empresa de temporário, a tomadora responde <strong>solidariamente</strong> (<span class="ref">art. 16, Lei n. 6.019/74</span>).</p>
+          </div>
+        </div>
+      </div>
 
-  <p>
-    Após o término, novo contrato com a mesma tomadora só após 90 dias; caso contrário, caracteriza vínculo com a tomadora
-    (§§ 5º e 6º, art. 10, Lei n. 6.019/74; art. 67, Decreto n. 10.854/2021).
-  </p>
+      <!-- 5.4 AVULSO -->
+      <div class="card reveal">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">5.4</div>
+          <div class="card-head">
+            <span class="card-num">Intermediação obrigatória</span>
+            <span class="card-title">Trabalho avulso</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            Trabalho prestado de forma esporádica, de curta duração e a diversos tomadores, sem se
+            fixar a qualquer um deles, realizado <strong>necessariamente</strong> por intermediação
+            de entidade específica, formando relação triangular. É vedada a contratação direta pelo
+            tomador.
+          </p>
+          <div class="sub">
+            <span class="sub-lbl">Modalidades</span>
+            <p><strong>Movimentação de carga urbana/rural</strong> — regulada pela <span class="ref">Lei n. 12.023/2009</span>. A intermediação é obrigatória pelo sindicato da categoria, por meio de acordo ou convenção coletiva. Não há vínculo de emprego entre o tomador e os trabalhadores, nem entre estes e o sindicato.</p>
+            <p><strong>Trabalho avulso portuário</strong> — regulado pela <span class="ref">Lei n. 12.815/2013</span>. Tomadores são navios, armazéns, importadoras, exportadoras e operadores portuários. A intermediação se dá pelo OGMO (Órgão Gestor de Mão de Obra), entidade de utilidade pública, sem fins lucrativos (<span class="ref">arts. 32 e 39, Lei n. 12.815/2013</span>).</p>
+          </div>
+          <div class="sub">
+            <span class="sub-lbl">Proteção constitucional</span>
+            <p>A <span class="ref">CF/88, art. 7º, XXXIV</span> garante aos avulsos os mesmos direitos previstos para os empregados urbanos e rurais.</p>
+          </div>
+        </div>
+      </div>
 
-  <div class="box">
-    <p><strong>Direitos do trabalhador temporário</strong> (art. 12, Lei n. 6.019/74), entre outros:</p>
-    <ul>
-      <li>anotação na CTPS;</li>
-      <li>remuneração equivalente à do empregado substituído (ou do grupo);</li>
-      <li>indenização ao final do contrato (40% FGTS – CF, art. 7º, I);</li>
-      <li>férias proporcionais + 1/3;</li>
-      <li>jornada de 8h/44h;</li>
-      <li>horas extras (adicional mínimo 50%);</li>
-      <li>adicional noturno;</li>
-      <li>seguro contra acidente do trabalho;</li>
-      <li>proteção previdenciária.</li>
-    </ul>
-  </div>
+      <!-- 5.5 VOLUNTÁRIO -->
+      <div class="card reveal">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">5.5</div>
+          <div class="card-head">
+            <span class="card-num">Sem remuneração</span>
+            <span class="card-title">Trabalho voluntário</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            Atividade não remunerada prestada por pessoa física a entidade pública ou instituição
+            privada de fins não lucrativos com objetivos cívicos, culturais, educacionais, científicos,
+            recreativos ou de assistência à pessoa (<span class="ref">art. 1º, Lei n. 9.608/98</span>).
+            O trabalhador voluntário age por convicção pessoal, sem expectativa de salário.
+          </p>
+          <p>
+            <strong>Não gera vínculo empregatício ou previdenciário.</strong>
+          </p>
+          <div class="sub">
+            <span class="sub-lbl">Formalização e ressarcimento</span>
+            <p>Formaliza-se por <strong>Termo de Adesão</strong> assinado pelas partes, com objeto e condições do exercício (<span class="ref">art. 2º</span>).</p>
+            <p>A contratante pode ressarcir despesas devidamente comprovadas sem que isso caracterize remuneração, desde que as despesas estejam expressamente autorizadas pela entidade (<span class="ref">art. 3º</span>).</p>
+          </div>
+        </div>
+      </div>
 
-  <p>
-    A contratante é subsidiariamente responsável pelas obrigações trabalhistas do período (art. 10, § 7º, Lei n. 6.019/74;
-    art. 74, Decreto n. 10.854/2021). Na falência da empresa de temporário, a tomadora responde solidariamente
-    (art. 16, Lei n. 6.019/74; parágrafo único, art. 74, Decreto n. 10.854/2021).
-  </p>
+      <!-- 5.6 ESTAGIÁRIO -->
+      <div class="card reveal">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">5.6</div>
+          <div class="card-head">
+            <span class="card-num">Ato educativo</span>
+            <span class="card-title">Estagiário</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            Estágio é ato educativo escolar supervisionado, desenvolvido no ambiente de trabalho,
+            visando à preparação para o trabalho produtivo de alunos do ensino superior, educação
+            profissional, ensino médio, educação especial e anos finais do fundamental na modalidade
+            EJA profissional (<span class="ref">art. 1º, Lei n. 11.788/2008</span>).
+          </p>
+          <p>
+            O estágio <strong>não cria vínculo empregatício</strong> desde que preenchidos
+            cumulativamente os seguintes requisitos:
+          </p>
+          <ul class="req-list">
+            <li>Matrícula e frequência regular do estudante na escola</li>
+            <li>Celebração de Termo de Compromisso</li>
+            <li>Interveniência da instituição de ensino</li>
+            <li>Compatibilidade entre as atividades do estágio e as do termo de compromisso</li>
+          </ul>
+          <p style="color:var(--ink-soft);font-size:.92em;">
+            O descumprimento de qualquer obrigação do termo caracteriza vínculo de emprego
+            (<span class="ref">art. 3º, Lei n. 11.788/2008</span>), exceto quando a parte concedente
+            for ente da Administração Pública direta ou indireta
+            (<span class="ref">OJ SDI-1 366, TST</span>).
+          </p>
 
-  <h2>5.4 Trabalho avulso</h2>
-  <p>
-    Trabalho prestado de forma esporádica, de curta duração e a diversos tomadores, sem se fixar a qualquer um deles,
-    mas realizado necessariamente por intermediação de entidade específica, formando relação triangular. É vedada a
-    contratação direta pelo tomador.
-  </p>
+          <div class="sub">
+            <span class="sub-lbl">Partes concedentes — podem oferecer estágio (<span class="ref" style="text-transform:none;letter-spacing:0">art. 9º</span>)</span>
+            <p>Pessoas jurídicas de direito privado; órgãos da Administração Pública direta, autárquica e fundacional de qualquer dos Poderes; profissionais liberais de nível superior registrados nos respectivos conselhos.</p>
+          </div>
 
-  <p>
-    A Lei n. 12.023/2009 regulamentou o avulso na movimentação de carga urbana/rural; a Lei n. 12.815/2013 regula o
-    avulso portuário. A intermediação portuária se dá por OGMO (arts. 32 e 39 da Lei n. 12.815/2013). A CF/88 assegura
-    aos avulsos os mesmos direitos dos empregados urbanos e rurais (art. 7º, XXXIV).
-  </p>
+          <div class="sub">
+            <span class="sub-lbl">Jornada máxima (<span class="ref" style="text-transform:none;letter-spacing:0">art. 10, Lei n. 11.788/2008</span>)</span>
+            <div class="jornadas">
+              <div class="jorn-row">
+                <div class="jorn-h">4h/dia · 20h/sem</div>
+                <div class="jorn-d">Educação especial e anos finais do fundamental — EJA profissional</div>
+              </div>
+              <div class="jorn-row">
+                <div class="jorn-h">6h/dia · 30h/sem</div>
+                <div class="jorn-d">Ensino superior, educação profissional de nível médio e ensino médio regular</div>
+              </div>
+              <div class="jorn-row">
+                <div class="jorn-h">40h/sem</div>
+                <div class="jorn-d">Cursos com alternância teoria/prática, sem aulas presenciais, com previsão no projeto pedagógico</div>
+              </div>
+            </div>
+            <p style="font-size:.88em;color:var(--iron);margin-top:8px;">Em período de verificações de aprendizagem (provas), a carga horária será reduzida ao menos à metade.</p>
+          </div>
 
-  <h2>5.5 Trabalho voluntário</h2>
-  <p>
-    Atividade não remunerada prestada a entidade pública ou instituição privada sem fins lucrativos com objetivos
-    cívicos, culturais, educacionais, científicos, recreativos ou de assistência (art. 1º, Lei n. 9.608/98).
-    Não gera vínculo empregatício ou previdenciário. Formaliza-se por Termo de Adesão (art. 2º). Pode haver
-    ressarcimento de despesas comprovadas, sem caracterizar remuneração (art. 3º).
-  </p>
+          <div class="sub">
+            <span class="sub-lbl">Remuneração e recesso</span>
+            <p><strong>Bolsa:</strong> facultativa no estágio obrigatório; compulsória no estágio não obrigatório.</p>
+            <p><strong>Recesso:</strong> para estágios com duração ≥ 1 ano, assegura-se período de 30 dias, preferencialmente nas férias escolares; proporcional para estágios inferiores a 1 ano. Remunerado quando houver bolsa (<span class="ref">art. 13</span>).</p>
+            <p><strong>Duração máxima</strong> na mesma entidade: 2 anos, salvo estagiário com deficiência (<span class="ref">art. 11</span>).</p>
+            <p style="margin:0;">A eventual concessão de benefícios de transporte, alimentação e saúde não caracteriza vínculo empregatício.</p>
+          </div>
+        </div>
+      </div>
 
-  <h2>5.6 Estagiário</h2>
-  <p>
-    Estágio é ato educativo escolar supervisionado (art. 1º, Lei n. 11.788/2008), destinado à preparação para o
-    trabalho produtivo. Não cria vínculo empregatício se observados requisitos como matrícula, termo de compromisso,
-    interveniência da instituição de ensino e compatibilidade das atividades (art. 3º). O descumprimento pode gerar
-    vínculo (art. 3º, caput e § 2º), ressalvada Administração Pública (OJ SDI-1 366, TST).
-  </p>
+      <!-- 5.7 COOPERATIVA -->
+      <div class="card reveal">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">5.7</div>
+          <div class="card-head">
+            <span class="card-num">Proveito comum</span>
+            <span class="card-title">Cooperativa de trabalho</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            Celebram contrato de sociedade cooperativa as pessoas que reciprocamente se obrigam a
+            contribuir com bens ou serviços para o exercício de uma atividade econômica de proveito
+            comum, sem objetivo de lucro (<span class="ref">art. 3º, Lei n. 5.764/71</span>).
+            Também reguladas pelos <span class="ref">arts. 1.093 a 1.096 do CC/2002</span>.
+          </p>
+          <p>
+            Independentemente do ramo de atividade da sociedade cooperativa, <strong>não existe
+            vínculo de emprego</strong> entre ela e seus associados, nem entre estes e os tomadores
+            de serviços (<span class="ref">§ 1º, art. 442, CLT</span>).
+          </p>
+          <div class="proib" style="border-left-color:var(--iron); background:rgba(139,133,121,.08); color:var(--ink-soft);">
+            ⚠ Se constatadas na prática as características da relação de emprego, esta será
+            reconhecida e a contratação por meio da cooperativa será nula nos termos do
+            <span class="ref">art. 9º da CLT</span>.
+          </div>
+        </div>
+      </div>
 
-  <div class="box">
-    <p><strong>Jornada máxima do estágio</strong> (art. 10, Lei n. 11.788/2008):</p>
-    <ul>
-      <li>4h/dia e 20h/semana (educação especial e anos finais do fundamental EJA profissional);</li>
-      <li>6h/dia e 30h/semana (superior, técnico, médio);</li>
-      <li>40h/semana (cursos com alternância teoria/prática, sem aulas presenciais, com previsão no projeto pedagógico).</li>
-    </ul>
-  </div>
+      <!-- 5.8 TERCEIRIZAÇÃO -->
+      <div class="card reveal">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">5.8</div>
+          <div class="card-head">
+            <span class="card-num">Subcontratação</span>
+            <span class="card-title">Terceirização de serviços</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            Contratação de trabalhadores por interposta pessoa — relação triangular entre o
+            trabalhador, a empresa terceirizante (prestadora) e a tomadora dos serviços. A
+            <span class="ref">Lei n. 6.019/74</span> admite terceirização inclusive da
+            <strong>atividade principal</strong> (<span class="ref">art. 4º-A</span>).
+          </p>
 
-  <h2>5.7 Cooperativa de trabalho</h2>
-  <p>
-    Sociedade cooperativa: pessoas contribuem com bens/serviços para atividade econômica de proveito comum, sem lucro
-    (art. 3º, Lei n. 5.764/71). Não há vínculo entre cooperativa e associados, nem entre estes e tomadores
-    (§ 1º, art. 442, CLT). Havendo fraude e presentes elementos da relação de emprego, esta será reconhecida (art. 9º, CLT).
-  </p>
+          <div class="tese">
+            <strong>STF — ADPF 324 e RE 958.252 (repercussão geral)</strong>
+            "É lícita a terceirização ou qualquer outra forma de divisão do trabalho entre pessoas
+            jurídicas distintas, independentemente do objeto social das empresas envolvidas, mantida
+            a responsabilidade subsidiária da empresa contratante."
+          </div>
 
-  <h2>5.8 Terceirização de serviços</h2>
-  <p>
-    Contratação por interposta pessoa (relação triangular). A Lei n. 6.019/74 admite terceirização inclusive da
-    atividade principal (art. 4º-A). O STF declarou lícita a terceirização em qualquer etapa (ADPF 324 e RE 958252),
-    mantendo a responsabilidade subsidiária da contratante.
-  </p>
+          <div class="sub" style="margin-top:14px;">
+            <span class="sub-lbl">Vínculo e fiscalização</span>
+            <p>Não se configura vínculo empregatício entre os trabalhadores da prestadora e a contratante (<span class="ref">§ 2º, art. 4º-A, Lei n. 6.019/74</span>). A verificação de infrações trabalhistas é feita contra a prestadora, exceto quanto à responsabilidade subsidiária da contratante ou quando comprovada fraude na contratação (<span class="ref">§ 3º, art. 39, Decreto n. 10.845/2021</span>).</p>
+            <p>A mera identificação do trabalhador na cadeia produtiva da contratante ou o uso de ferramentas e métodos organizacionais por ela estabelecidos <strong>não implica vínculo empregatício</strong> (<span class="ref">§ 5º, art. 39, Decreto n. 10.845/2021</span>). A subordinação jurídica deve ser demonstrada caso a caso (<span class="ref">§ 6º, art. 39</span>).</p>
+          </div>
 
-  <p>
-    A contratante é subsidiariamente responsável pelas obrigações trabalhistas no período da prestação
-    (art. 5º-A, § 5º, Lei n. 6.019/74), devendo garantir condições de segurança, higiene e salubridade quando o
-    trabalho ocorrer em suas dependências (§ 3º, art. 5º-A). Há ainda regras sobre “quarentena” de 18 meses para
-    ex-empregados (arts. 5º-C e 5º-D).
-  </p>
+          <div class="sub">
+            <span class="sub-lbl">Responsabilidades da contratante</span>
+            <p><strong>Subsidiária:</strong> pelas obrigações trabalhistas referentes ao período da prestação de serviços (<span class="ref">art. 5º-A, § 5º, Lei n. 6.019/74</span>).</p>
+            <p><strong>Segurança e saúde:</strong> deve garantir condições de segurança, higiene e salubridade quando o trabalho for realizado em suas dependências (<span class="ref">§ 3º, art. 5º-A</span>).</p>
+            <p><strong>Igualdade de condições:</strong> os empregados da prestadora que trabalhem nas dependências da contratante têm direito às mesmas condições de alimentação, transporte e atendimento médico disponíveis aos empregados desta (<span class="ref">art. 4º-C, Lei n. 6.019/74</span>).</p>
+          </div>
 
-  <div class="voltar">
-    <a href="../index.html">← Voltar ao índice da disciplina</a>
-  </div>
+          <div class="sub">
+            <span class="sub-lbl">Quarentena de 18 meses</span>
+            <p>Não pode figurar como contratada pessoa jurídica cujos titulares ou sócios tenham prestado serviços à contratante, como empregados ou sem vínculo, nos últimos <strong>18 meses</strong> (<span class="ref">art. 5º-C, Lei n. 6.019/74</span>), salvo se aposentados.</p>
+            <p>Empregado demitido não pode prestar serviços à mesma empresa como terceirizado antes de decorridos <strong>18 meses</strong> da demissão (<span class="ref">art. 5º-D, Lei n. 6.019/74</span>).</p>
+          </div>
+
+          <div class="sub">
+            <span class="sub-lbl">Requisitos da prestadora (<span class="ref" style="text-transform:none;letter-spacing:0">art. 4º-B, Lei n. 6.019/74</span>)</span>
+            <p>CNPJ; registro na Junta Comercial; capital social compatível com o número de empregados conforme parâmetros da Lei.</p>
+            <p style="margin:0; font-size:.9em; color:var(--iron);">Empresas de vigilância e transporte de valores continuam reguladas por legislação especial, subsidiariamente pela CLT (<span class="ref">art. 19-B, Lei n. 6.019/74</span>).</p>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /especies -->
+  </section>
+
+  <a class="back" href="../index.html">
+    <span class="arw">←</span>
+    <span>Voltar ao índice da disciplina</span>
+  </a>
 
 </div>
+
+<script>
+  (function(){
+    var items = document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window)){
+      items.forEach(function(el){ el.classList.add('in'); }); return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold:.08, rootMargin:'0px 0px -3% 0px' });
+    items.forEach(function(el, i){
+      el.style.transitionDelay = (i * 35) + 'ms';
+      io.observe(el);
+    });
+  })();
+
+  (function(){
+    var cards = document.querySelectorAll('.card');
+    cards.forEach(function(card){
+      var btn = card.querySelector('.card-btn');
+      btn.addEventListener('click', function(){
+        var isOpen = card.classList.contains('open');
+        cards.forEach(function(c){
+          c.classList.remove('open');
+          c.querySelector('.card-btn').setAttribute('aria-expanded','false');
+        });
+        if(!isOpen){
+          card.classList.add('open');
+          btn.setAttribute('aria-expanded','true');
+        }
+      });
+    });
+  })();
+</script>
 </body>
 </html>
