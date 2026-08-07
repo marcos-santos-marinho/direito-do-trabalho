@@ -5,216 +5,921 @@
 <title>Princípios do Direito do Trabalho</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
 <style>
   :root{
-    --bg:#f2f7ff;
-    --text:#0f172a;
-    --title:#1f4fd8;
-    --card:#ffffff;
-    --border:rgba(15,23,42,.15);
-    --shadow:0 8px 18px rgba(15,23,42,.08);
+    --ink:#1b2436;
+    --ink-soft:#414a5c;
+    --paper:#edece5;
+    --surface:#fbfaf7;
+    --accent:#7a2e37;
+    --accent-soft:#a2545f;
+    --iron:#8b8579;
+    --reform:#4a3a00;        /* tom âmbar escuro — alerta reforma */
+    --reform-bg:#fdf8e8;
+    --reform-border:#c9a227;
+    --line:rgba(27,36,54,.13);
+    --line-strong:rgba(27,36,54,.22);
+
+    --display:"Fraunces", Georgia, "Times New Roman", serif;
+    --body:"Spectral", Georgia, serif;
+    --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
   }
 
-  *{ box-sizing:border-box; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
 
   body{
-    margin:0;
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    line-height:1.7;
-    font-size:18px;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:19px;
+    line-height:1.78;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0 0 auto 0;
+    height:4px;
+    background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 34%,var(--ink) 34%,var(--ink) 100%);
+    z-index:50;
   }
 
   .wrap{
-    max-width:900px;
-    margin:auto;
-    padding:18px 16px 40px;
+    max-width:760px;
+    margin:0 auto;
+    padding:0 22px 72px;
   }
 
-  /* ===== TÍTULO + SLIDES ===== */
+  /* ===== CABEÇALHO ===== */
+  .masthead{
+    padding:56px 0 30px;
+    border-bottom:1px solid var(--line-strong);
+    animation:rise .7s cubic-bezier(.2,.7,.2,1) both;
+  }
+
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:600;
+    margin-bottom:20px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .eyebrow::before{
+    content:"";
+    width:26px; height:2px;
+    background:var(--accent);
+    display:inline-block;
+  }
+  .eyebrow .dot{ color:var(--line-strong); }
+
   .title-row{
     display:flex;
+    align-items:flex-end;
     justify-content:space-between;
-    align-items:center;
-    gap:16px;
+    gap:28px;
     flex-wrap:wrap;
   }
 
   h1{
-    color:var(--title);
-    font-size:28px;
-    margin:10px 0 16px;
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(2.5rem,7vw,4.1rem);
+    line-height:1.02;
+    letter-spacing:-.015em;
+    max-width:14ch;
+  }
+  h1 .art{
+    display:block;
+    font-size:.42em;
+    font-weight:600;
+    letter-spacing:.02em;
+    color:var(--accent);
+    font-family:var(--mono);
+    text-transform:uppercase;
+    margin-bottom:.5em;
   }
 
   .slides-btn{
+    flex-shrink:0;
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    background:var(--ink);
+    color:#f4f2ec;
+    border-radius:4px;
+    padding:13px 18px;
+    font-family:var(--mono);
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    box-shadow:0 8px 22px -12px rgba(27,36,54,.7);
+    transition:transform .25s cubic-bezier(.2,.7,.2,1), box-shadow .25s, background .25s;
+  }
+  .slides-btn .ico{ font-size:16px; line-height:1; transform:translateY(-1px); }
+  .slides-btn .arw{ transition:transform .25s; }
+  .slides-btn:hover{
+    background:var(--accent);
+    transform:translateY(-2px);
+    box-shadow:0 14px 28px -12px rgba(122,46,55,.75);
+  }
+  .slides-btn:hover .arw{ transform:translateX(4px); }
+  .slides-btn:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:3px; }
+
+  /* ===== DEFINIÇÃO ===== */
+  .verbete{
+    margin:44px 0 8px;
+    padding:6px 0 6px 30px;
+    border-left:3px solid var(--accent);
+    animation:rise .7s .1s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .verbete .tag{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:block;
+    margin-bottom:14px;
+  }
+  .verbete p{
+    font-family:var(--display);
+    font-weight:400;
+    font-size:clamp(1.35rem,3.4vw,1.7rem);
+    line-height:1.45;
+    letter-spacing:-.01em;
+    color:var(--ink);
+  }
+
+  /* ===== SEÇÕES ===== */
+  .sec-head{
+    display:flex;
+    gap:16px;
+    align-items:baseline;
+    margin:46px 0 12px;
+    padding-top:26px;
+    border-top:1px solid var(--line);
+  }
+  .sec-head .num{
+    font-family:var(--mono);
+    font-size:15px;
+    font-weight:600;
+    color:var(--accent);
+    letter-spacing:.02em;
+    flex-shrink:0;
+    padding-top:.35em;
+  }
+  h2{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(1.6rem,4vw,2rem);
+    line-height:1.14;
+    letter-spacing:-.01em;
+    color:var(--ink);
+  }
+
+  p{ margin-bottom:16px; }
+  .lead{ color:var(--ink); }
+  .body-text{ color:var(--ink-soft); }
+
+  /* ===== FUNÇÕES ===== */
+  .funcoes{
+    margin:20px 0 10px;
+    border:1px solid var(--line-strong);
+    border-radius:6px;
+    overflow:hidden;
+    background:var(--surface);
+  }
+  .funcao{
+    display:grid;
+    grid-template-columns:168px 1fr;
+    border-bottom:1px solid var(--line);
+  }
+  .funcao:last-child{ border-bottom:none; }
+  .funcao-lbl{
+    font-family:var(--mono);
+    font-size:12.5px;
+    font-weight:600;
+    color:var(--accent);
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    padding:18px 20px;
+    border-right:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    background:rgba(122,46,55,.04);
+    line-height:1.3;
+  }
+  .funcao-txt{
+    padding:18px 22px;
+    font-size:.94em;
+    color:var(--ink-soft);
+    display:flex;
+    align-items:center;
+    line-height:1.65;
+  }
+  .funcao-txt p{ margin:0; }
+
+  /* base legal */
+  .base-legal{
+    margin:14px 0 6px;
+    padding:16px 22px;
+    border-left:3px solid var(--iron);
+    background:var(--surface);
+    border-radius:0 6px 6px 0;
+  }
+  .base-legal p{ margin:0; color:var(--ink-soft); font-size:.93em; line-height:1.65; }
+  .base-legal strong{ color:var(--ink); }
+
+  /* nota constitucional */
+  .nota-cf{
+    margin:14px 0 6px;
+    padding:14px 20px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:6px;
+    font-size:.9em;
+    color:var(--ink-soft);
+    line-height:1.6;
+  }
+  .nota-cf p{ margin:0; }
+  .nota-cf strong{ color:var(--ink); }
+
+  /* ===== CARDS DOS PRINCÍPIOS ===== */
+  .principios{
+    margin:12px 0;
     display:flex;
     flex-direction:column;
+    gap:3px;
+  }
+
+  .card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+    transition:box-shadow .25s;
+  }
+  .card:hover{ box-shadow:0 6px 20px -10px rgba(27,36,54,.22); }
+
+  .card-btn{
+    width:100%;
+    background:none;
+    border:none;
+    cursor:pointer;
+    display:grid;
+    grid-template-columns:56px 1fr 36px;
+    align-items:center;
+    padding:0;
+    text-align:left;
+    color:inherit;
+  }
+  .card-btn:focus-visible{
+    outline:3px solid var(--accent-soft);
+    outline-offset:-3px;
+    border-radius:5px;
+  }
+
+  .card-icon{
+    display:flex;
     align-items:center;
     justify-content:center;
-    text-decoration:none;
-    background:#ffffff;
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:10px 14px;
-    box-shadow:var(--shadow);
-    min-width:90px;
+    min-height:64px;
+    background:rgba(122,46,55,.06);
+    border-right:1px solid var(--line);
+    font-family:var(--mono);
+    font-weight:600;
+    font-size:14px;
+    color:var(--accent);
+    letter-spacing:.02em;
+    height:100%;
   }
 
-  .slides-icon{
-    font-size:28px;
-    line-height:1;
+  .card-head{
+    padding:18px 20px;
+  }
+  .card-num{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--iron);
+    display:block;
+    margin-bottom:4px;
+  }
+  .card-title{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:1.12rem;
+    line-height:1.2;
+    color:var(--ink);
   }
 
-  .slides-text{
-    margin-top:4px;
-    font-weight:800;
-    font-size:13px;
-    color:#0f172a;
+  .card-chevron{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding-right:18px;
+    color:var(--iron);
+    transition:transform .3s cubic-bezier(.2,.7,.2,1), color .2s;
+    font-size:14px;
+  }
+  .card.open .card-chevron{
+    transform:rotate(180deg);
+    color:var(--accent);
   }
 
-  /* ===== TEXTO ===== */
-  h2{
-    font-size:22px;
-    margin:26px 0 10px;
+  .card-body{
+    display:none;
+    padding:20px 24px 24px;
+    border-top:1px solid var(--line);
   }
+  .card.open .card-body{ display:block; }
+  .card-body p{ color:var(--ink-soft); font-size:.95em; line-height:1.72; }
 
-  h3{
-    font-size:20px;
-    margin:22px 0 8px;
+  /* sub-regras dentro do card */
+  .regras{
+    margin:16px 0 8px;
+    display:flex;
+    flex-direction:column;
+    gap:2px;
   }
-
-  p{
-    margin:0 0 14px;
-    text-align:justify;
+  .regra{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:5px;
+    padding:16px 20px;
   }
-
-  .box{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:16px;
-    margin:18px 0;
-    box-shadow:var(--shadow);
+  .regra-lbl{
+    font-family:var(--mono);
+    font-size:11.5px;
+    font-weight:600;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:8px;
+    display:block;
   }
+  .regra p{ font-size:.92em; margin-bottom:10px; }
+  .regra p:last-child{ margin-bottom:0; }
 
-  ul{
-    margin:8px 0 14px 20px;
+  /* nota de diferença (renúncia vs transação) */
+  .diferenca{
+    margin:16px 0 4px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:2px;
   }
-
-  li{
+  .dif-col{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:5px;
+    padding:14px 18px;
+  }
+  .dif-col .dif-lbl{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--iron);
+    display:block;
     margin-bottom:8px;
   }
+  .dif-col p{ font-size:.9em; margin:0; }
+
+  /* alerta reforma trabalhista */
+  .reforma{
+    margin:18px 0 8px;
+    padding:16px 20px;
+    background:var(--reform-bg);
+    border-left:3px solid var(--reform-border);
+    border-radius:0 5px 5px 0;
+    font-size:.91em;
+    color:var(--reform);
+    line-height:1.65;
+  }
+  .reforma-lbl{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    margin-bottom:8px;
+    display:block;
+    color:var(--reform-border);
+  }
+  .reforma p{ margin-bottom:10px; color:var(--reform); }
+  .reforma p:last-child{ margin-bottom:0; }
+
+  /* tese STF */
+  .tese{
+    margin:12px 0;
+    padding:14px 18px;
+    border-left:2px solid var(--iron);
+    background:var(--surface);
+    border-radius:0 4px 4px 0;
+    font-style:italic;
+    font-size:.9em;
+    color:var(--ink-soft);
+    line-height:1.6;
+  }
+  .tese strong{ font-style:normal; font-size:.85em; font-family:var(--mono); letter-spacing:.08em; text-transform:uppercase; color:var(--iron); display:block; margin-bottom:6px; }
+
+  /* art. CLT */
+  .clt-box{
+    margin:12px 0;
+    padding:14px 18px;
+    background:var(--surface);
+    border:1px dashed var(--line-strong);
+    border-radius:5px;
+    font-size:.9em;
+    color:var(--ink-soft);
+    font-style:italic;
+    line-height:1.65;
+  }
+  .clt-box strong{ font-style:normal; color:var(--ink); }
 
   /* ===== BOTÃO VOLTAR ===== */
-  .voltar{
-    margin-top:32px;
-  }
-
-  .voltar a{
-    display:block;
-    text-align:center;
-    background:#ffffff;
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:16px;
-    font-weight:800;
+  .back{
+    margin-top:56px;
+    display:flex;
+    align-items:center;
+    gap:14px;
     text-decoration:none;
-    color:#0f172a;
-    box-shadow:var(--shadow);
+    color:var(--ink);
+    background:var(--surface);
+    border:1px solid var(--line-strong);
+    border-radius:6px;
+    padding:20px 22px;
+    font-family:var(--mono);
+    font-size:14px;
+    letter-spacing:.04em;
+    transition:border-color .25s, transform .25s;
+  }
+  .back .arw{ color:var(--accent); transition:transform .25s; font-size:18px; }
+  .back:hover{ border-color:var(--accent); transform:translateY(-2px); }
+  .back:hover .arw{ transform:translateX(-4px); }
+  .back:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:3px; }
+
+  @keyframes rise{
+    from{ opacity:0; transform:translateY(18px); }
+    to{ opacity:1; transform:none; }
+  }
+  .reveal{ opacity:0; transform:translateY(14px); }
+  .reveal.in{
+    opacity:1; transform:none;
+    transition:opacity .55s ease, transform .55s cubic-bezier(.2,.7,.2,1);
   }
 
-  /* ===== MOBILE ===== */
-  @media (max-width:480px){
-    body{ font-size:17px; }
-    h1{ font-size:24px; }
-    h2{ font-size:21px; }
-    h3{ font-size:19px; }
+  @media (max-width:560px){
+    body{ font-size:17.5px; line-height:1.72; }
+    .masthead{ padding:40px 0 24px; }
+    .title-row{ align-items:stretch; }
+    .slides-btn{ width:100%; justify-content:center; }
+    .verbete{ padding-left:20px; }
+    .funcao{ grid-template-columns:1fr; }
+    .funcao-lbl{ border-right:none; border-bottom:1px solid var(--line); padding:12px 16px; }
+    .funcao-txt{ padding:12px 16px; }
+    .card-btn{ grid-template-columns:46px 1fr 32px; }
+    .diferenca{ grid-template-columns:1fr; }
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{ animation:none !important; scroll-behavior:auto; }
+    .reveal{ opacity:1; transform:none; }
+    .reveal.in{ transition:none; }
+    .card-chevron{ transition:none; }
   }
 </style>
 </head>
-
 <body>
 <div class="wrap">
 
-  <!-- TÍTULO COM BOTÃO DE SLIDES -->
-  <div class="title-row">
-    <h1>2. Princípios do Direito do Trabalho</h1>
-
-    <a class="slides-btn"
-       href="https://drive.google.com/file/d/1BFrdKbVYQR1s0j4rc1hNpPq4_CfLnHDV/view?usp=sharing"
-       target="_blank"
-       rel="noopener">
-      <div class="slides-icon">🖼️</div>
-      <div class="slides-text">Slides</div>
-    </a>
-  </div>
-
-  <div class="box">
-    <p>
-      Os princípios do Direito do Trabalho se constituem nas linhas diretrizes ou postulados
-      que inspiram o sentido das normas trabalhistas e configuram a regulamentação das relações
-      de trabalho.
+  <!-- CABEÇALHO -->
+  <header class="masthead">
+    <p class="eyebrow">
+      Direito do Trabalho
+      <span class="dot">·</span> Unidade 1
+      <span class="dot">·</span> Fundamentos normativos
     </p>
-  </div>
 
-  <p>A doutrina identifica as seguintes funções dos princípios:</p>
+    <div class="title-row">
+      <h1>
+        <span class="art">Item 2</span>
+        Princípios do Direito do Trabalho
+      </h1>
 
-  <ul>
-    <li><strong>Função informadora</strong> – servem de fonte de inspiração ao legislador e de fundamento para as normas jurídicas.</li>
-    <li><strong>Função normativa</strong> – servem como fonte supletiva, nas lacunas ou omissões da lei.</li>
-    <li><strong>Função interpretativa</strong> – servem como critério orientador para os intérpretes e aplicadores da lei.</li>
-  </ul>
+      <a class="slides-btn"
+         href="https://drive.google.com/file/d/1BFrdKbVYQR1s0j4rc1hNpPq4_CfLnHDV/view?usp=sharing"
+         target="_blank" rel="noopener">
+        <span class="ico">▮</span>
+        <span>Slides da aula</span>
+        <span class="arw">→</span>
+      </a>
+    </div>
 
-  <p>
-    De acordo com o art. 4º da LINDB, quando a lei for omissa, o juiz decidirá o caso de acordo com a
-    analogia, os costumes e os princípios gerais de direito. O art. 8º da CLT disciplina que, na
-    falta de disposições legais ou contratuais, o intérprete pode socorrer-se dos princípios do
-    Direito do Trabalho.
-  </p>
+    <div class="verbete">
+      <span class="tag">Definição</span>
+      <p>
+        Os princípios do Direito do Trabalho se constituem nas linhas diretrizes ou postulados
+        que inspiram o sentido das normas trabalhistas e configuram a regulamentação das relações
+        de trabalho.
+      </p>
+    </div>
+  </header>
 
-  <h2>2.1 Princípios específicos do Direito do Trabalho</h2>
+  <!-- FUNÇÕES -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 2</span>
+      <h2>Funções dos princípios</h2>
+    </div>
 
-  <h3>2.1.1 Princípio protetor</h3>
-  <p>
-    O princípio protetor orienta o Direito do Trabalho no sentido de oferecer amparo preferencial ao
-    trabalhador, buscando reduzir as desigualdades existentes na relação de emprego.
-  </p>
+    <p class="body-text reveal">A doutrina identifica três funções para os princípios do Direito do Trabalho:</p>
 
-  <h3>2.1.2 Princípio da irrenunciabilidade</h3>
-  <p>
-    Refere-se à impossibilidade de o empregado abrir mão voluntariamente dos direitos que lhe são
-    assegurados pela legislação trabalhista.
-  </p>
+    <div class="funcoes reveal">
+      <div class="funcao">
+        <div class="funcao-lbl">Informadora</div>
+        <div class="funcao-txt"><p>Servem de fonte de inspiração ao legislador e de fundamento para as normas jurídicas.</p></div>
+      </div>
+      <div class="funcao">
+        <div class="funcao-lbl">Normativa</div>
+        <div class="funcao-txt"><p>Servem como fonte supletiva nas lacunas ou nas omissões da lei.</p></div>
+      </div>
+      <div class="funcao">
+        <div class="funcao-lbl">Interpretativa</div>
+        <div class="funcao-txt"><p>Servem como critério orientador para os intérpretes e aplicadores da lei.</p></div>
+      </div>
+    </div>
 
-  <h3>2.1.3 Princípio da continuidade da relação de emprego</h3>
-  <p>
-    Presume que o contrato de trabalho tenha duração por prazo indeterminado, protegendo a
-    estabilidade da relação de emprego.
-  </p>
+    <div class="base-legal reveal">
+      <p>
+        De acordo com o <strong>art. 4º da LINDB</strong>, quando a lei for omissa, o juiz decidirá o
+        caso de acordo com a analogia, os costumes e os princípios gerais de direito. O
+        <strong>art. 8º da CLT</strong> disciplina claramente que, na falta de disposições legais ou
+        contratuais, o intérprete pode socorrer-se dos princípios do Direito do Trabalho.
+      </p>
+    </div>
 
-  <h3>2.1.4 Princípio da primazia da realidade</h3>
-  <p>
-    Determina que, havendo divergência entre a prática e os documentos, prevalecerão os fatos
-    ocorridos na realidade da relação de trabalho.
-  </p>
+    <div class="nota-cf reveal">
+      <p>
+        <strong>Nota constitucional —</strong> A Constituição Federal de 1988 não enumerou expressamente
+        os princípios do Direito do Trabalho. No entanto, é inquestionável a existência no texto
+        constitucional de princípios que lhe são aplicáveis (art. 1º, III e IV; art. 193; art. 170,
+        <em>caput</em>, III e VIII; art. 5º, <em>caput</em>, I, X, XIII, XVII a XX, XLI e XLII).
+      </p>
+    </div>
+  </section>
 
-  <h3>2.1.5 Princípio da razoabilidade</h3>
-  <p>
-    Consiste na aplicação da razão como limite ao exercício de direitos e deveres no contrato de
-    trabalho.
-  </p>
+  <!-- PRINCÍPIOS ESPECÍFICOS -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 2.1</span>
+      <h2>Princípios específicos do Direito do Trabalho</h2>
+    </div>
 
-  <h3>2.1.6 Princípio da boa-fé</h3>
-  <p>
-    Exige conduta leal e honesta de empregado e empregador no cumprimento das obrigações decorrentes
-    do contrato de trabalho.
-  </p>
+    <div class="principios" role="list">
 
-  <div class="voltar">
-    <a href="../index.html">← Voltar ao índice da disciplina</a>
-  </div>
+      <!-- 2.1.1 PROTETOR -->
+      <div class="card reveal" role="listitem">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon" aria-hidden="true">§ I</div>
+          <div class="card-head">
+            <span class="card-num">2.1.1</span>
+            <span class="card-title">Princípio protetor</span>
+          </div>
+          <div class="card-chevron" aria-hidden="true">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            Refere-se a um critério fundamental orientador do Direito do Trabalho: em vez de inspirar-se
+            em um propósito de igualdade, baseia-se em um amparo preferencial a uma das partes da
+            relação de emprego — o trabalhador. O fundamento deste princípio está ligado à própria razão
+            de ser do Direito do Trabalho: nivelar desigualdades.
+          </p>
 
-</div>
+          <div class="reforma">
+            <span class="reforma-lbl">⚠ Impacto da Reforma Trabalhista — Lei n. 13.467/2017</span>
+            <p>
+              Embora não tenha sido extinto, o princípio protetor foi significativamente afetado pela
+              Reforma Trabalhista, que ampliou a autonomia individual do trabalhador, criou a figura do
+              trabalhador "hipersuficiente" (art. 444, parágrafo único, CLT) e consagrou a prevalência
+              do negociado sobre o legislado (art. 611-A, CLT).
+            </p>
+          </div>
+
+          <p style="margin-top:16px;">
+            A proteção do trabalhador permanece sendo o fundamento e o mais importante princípio do
+            Direito do Trabalho, analisada a partir de três regras:
+          </p>
+
+          <div class="regras">
+            <div class="regra">
+              <span class="regra-lbl">a) Regra da norma mais favorável</span>
+              <p>
+                É regra de <em>aplicação</em> de norma jurídica: sempre que existirem várias normas
+                aplicáveis a uma mesma situação jurídica, deve-se aplicar a norma mais favorável ao
+                trabalhador. No Direito do Trabalho não se considera uma ordem hierárquica rígida de normas.
+              </p>
+              <p>
+                Pela <strong>teoria do conglobamento</strong>, as normas devem ser comparadas em conjunto,
+                ou seja, na sua integralidade, não sendo possível extrair de cada uma apenas as disposições
+                mais favoráveis.
+              </p>
+              <p style="margin:0; font-size:.9em; color:var(--iron);">
+                ⚠ A redação do art. 620 da CLT, dada pela Lei n. 13.467/2017, fragiliza esta regra ao
+                estabelecer que as condições do acordo coletivo sempre prevalecerão sobre a convenção
+                coletiva de trabalho.
+              </p>
+            </div>
+
+            <div class="regra">
+              <span class="regra-lbl">b) Regra do <em>in dubio pro operario</em></span>
+              <p>
+                É regra de <em>interpretação</em> de norma jurídica: entre duas ou mais interpretações
+                viáveis de uma norma, o intérprete deve optar pela mais favorável ao trabalhador.
+              </p>
+              <p style="margin:0; font-size:.9em; color:var(--iron);">
+                ⚠ Mitigada pela Reforma Trabalhista, em especial pela restrição de interpretação imposta
+                à Justiça do Trabalho sobre o conteúdo de convenções e acordos coletivos (art. 8º, § 3º
+                e art. 611-A, § 1º, CLT).
+              </p>
+            </div>
+
+            <div class="regra">
+              <span class="regra-lbl">c) Regra da condição mais benéfica</span>
+              <p>
+                Pressupõe a existência de uma situação concreta anteriormente reconhecida e determina que
+                ela deve ser respeitada na medida em que for mais favorável ao trabalhador do que a nova
+                norma aplicável.
+              </p>
+              <div class="tese">
+                <strong>Súmula 51, TST</strong>
+                I – As cláusulas regulamentares que revoguem ou alterem vantagens deferidas anteriormente
+                só atingirão os trabalhadores admitidos após a revogação ou alteração do regulamento.
+                II – Havendo a coexistência de dois regulamentos de empresa, a opção do empregado por um
+                deles tem efeito jurídico de renúncia às regras do sistema do outro.
+              </div>
+            </div>
+          </div>
+
+          <div class="tese" style="margin-top:18px;">
+            <strong>Tema 1.046 STF — julgado em 2-6-2022</strong>
+            "São constitucionais os acordos e as convenções coletivos que, ao considerarem a adequação
+            setorial negociada, pactuam limitações ou afastamentos de direitos trabalhistas,
+            independentemente da explicitação especificada de vantagens compensatórias, desde que
+            respeitados os direitos absolutamente indisponíveis."
+          </div>
+        </div>
+      </div>
+
+      <!-- 2.1.2 IRRENUNCIABILIDADE -->
+      <div class="card reveal" role="listitem">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon" aria-hidden="true">§ II</div>
+          <div class="card-head">
+            <span class="card-num">2.1.2</span>
+            <span class="card-title">Princípio da irrenunciabilidade</span>
+          </div>
+          <div class="card-chevron" aria-hidden="true">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            Refere-se à impossibilidade de o empregado abrir mão voluntariamente dos direitos que lhe
+            são concedidos pela legislação trabalhista. Tendo em vista que as normas trabalhistas são,
+            em sua maioria, de ordem pública e, portanto, inderrogáveis, as renúncias que ocorrerem são
+            absolutamente ineficazes — nulas de pleno direito.
+          </p>
+
+          <div class="reforma">
+            <span class="reforma-lbl">⚠ Reforma Trabalhista — Lei n. 13.467/2017</span>
+            <p>
+              A irrenunciabilidade foi mitigada com a previsão do trabalhador "hipersuficiente"
+              (art. 444, parágrafo único, CLT), que pode negociar condições menos benéficas do que
+              as previstas na legislação, salvo os garantidos pela Constituição Federal.
+            </p>
+          </div>
+
+          <p style="margin-top:16px;"><strong>Distinção essencial:</strong></p>
+          <div class="diferenca">
+            <div class="dif-col">
+              <span class="dif-lbl">Renúncia</span>
+              <p>Ato <em>unilateral</em> pelo qual o titular de um direito certo desiste dele. A
+              renúncia pelo empregado de direitos assegurados por normas de ordem pública
+              <strong>não é permitida</strong>.</p>
+            </div>
+            <div class="dif-col">
+              <span class="dif-lbl">Transação</span>
+              <p>Ato <em>bilateral</em> pelo qual as partes, fazendo concessões recíprocas, extinguem
+              obrigações litigiosas ou duvidosas. É permitida de forma restrita — sua validade
+              depende da inexistência de prejuízo ao empregado.</p>
+            </div>
+          </div>
+
+          <div class="clt-box" style="margin-top:14px;">
+            <strong>Art. 468, CLT:</strong> "Nos contratos individuais de trabalho só é lícita a
+            alteração das respectivas condições por mútuo consentimento, e ainda assim desde que não
+            resultem, direta ou indiretamente, prejuízos ao empregado, sob pena de nulidade da cláusula
+            infringente desta garantia."
+          </div>
+        </div>
+      </div>
+
+      <!-- 2.1.3 CONTINUIDADE -->
+      <div class="card reveal" role="listitem">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon" aria-hidden="true">§ III</div>
+          <div class="card-head">
+            <span class="card-num">2.1.3</span>
+            <span class="card-title">Princípio da continuidade da relação de emprego</span>
+          </div>
+          <div class="card-chevron" aria-hidden="true">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            Expressa a tendência do Direito do Trabalho de atribuir à relação de emprego a mais ampla
+            duração, sob todos os aspectos. Presume-se que o contrato de trabalho terá validade por prazo
+            indeterminado. Tudo o que vise à conservação da fonte de trabalho gera benefício não só ao
+            trabalhador, mas também à empresa e à sociedade.
+          </p>
+          <p>
+            O ônus de provar o término do contrato por iniciativa do obreiro é do empregador, pois o
+            princípio da continuidade constitui presunção favorável ao empregado (<strong>Súmula 212, TST</strong>).
+          </p>
+
+          <div class="reforma">
+            <span class="reforma-lbl">⚠ Reforma Trabalhista — Lei n. 13.467/2017</span>
+            <p>
+              O princípio foi relativizado, por exemplo, com a previsão da rescisão por comum acordo
+              (art. 484-A, CLT) e a possibilidade mais facilitada de dispensas coletivas ou plúrimas sem
+              necessidade de autorização prévia do sindicato (art. 477-A, CLT).
+            </p>
+          </div>
+
+          <div class="tese" style="margin-top:14px;">
+            <strong>Tema 638 STF — julgado em 8-6-2022</strong>
+            "A intervenção sindical prévia é exigência procedimental imprescindível para a dispensa em
+            massa de trabalhadores, que não se confunde com autorização prévia por parte da entidade
+            sindical ou celebração de convenção ou acordo coletivo."
+          </div>
+        </div>
+      </div>
+
+      <!-- 2.1.4 PRIMAZIA DA REALIDADE -->
+      <div class="card reveal" role="listitem">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon" aria-hidden="true">§ IV</div>
+          <div class="card-head">
+            <span class="card-num">2.1.4</span>
+            <span class="card-title">Princípio da primazia da realidade</span>
+          </div>
+          <div class="card-chevron" aria-hidden="true">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            Significa que, em caso de discordância entre o que ocorre na prática e o que emerge de
+            documentos ou acordos, deve-se dar preferência aos fatos (<em>contrato-realidade</em>).
+            Em matéria de trabalho, o que vai importar é o que ocorre na prática, muito mais do que
+            aquilo que conste em documentos, formulários e instrumentos de controle.
+          </p>
+          <p>
+            Com fundamento no <strong>art. 9º da CLT</strong>, se o documento foi formalmente elaborado
+            com o intuito de, encobrindo a realidade dos fatos, fraudar as normas trabalhistas, será
+            nulo de pleno direito.
+          </p>
+
+          <div class="regras" style="margin-top:14px;">
+            <div class="regra">
+              <span class="regra-lbl">Exemplos práticos</span>
+              <p style="margin:0; font-size:.91em;">
+                a) Contrato escrito como autônomo / realidade: empregado;<br>
+                b) Carteira Profissional com data de ingresso em 15-9-2022 / realidade: ingresso em 15-9-2021;<br>
+                c) Recibo de férias assinado pelo empregado / realidade: não recebeu nem gozou férias;<br>
+                d) Cartões de ponto sem horas extras / testemunhas: comprovam horas extras realizadas.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2.1.5 RAZOABILIDADE -->
+      <div class="card reveal" role="listitem">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon" aria-hidden="true">§ V</div>
+          <div class="card-head">
+            <span class="card-num">2.1.5</span>
+            <span class="card-title">Princípio da razoabilidade</span>
+          </div>
+          <div class="card-chevron" aria-hidden="true">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            Consiste na afirmação de que o ser humano, em suas relações trabalhistas, procede e deve
+            proceder conforme a razão. Trata-se de um limite formal a ser aplicado nas áreas do
+            comportamento onde a norma não pode prescrever limites muito rígidos nem prever a
+            infinidade de circunstâncias possíveis.
+          </p>
+          <p>No Direito do Trabalho, o princípio tem duas grandes formas de aplicação:</p>
+          <div class="regras">
+            <div class="regra">
+              <span class="regra-lbl">a) Critério de verossimilhança</span>
+              <p style="margin:0; font-size:.92em;">Serve para medir a verossimilhança de determinada aplicação ou solução jurídica.</p>
+            </div>
+            <div class="regra">
+              <span class="regra-lbl">b) Obstáculo à arbitrariedade</span>
+              <p style="margin:0; font-size:.92em;">Atua como limite de certas faculdades cuja amplitude pode prestar-se à arbitrariedade.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2.1.6 BOA-FÉ -->
+      <div class="card reveal" role="listitem">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon" aria-hidden="true">§ VI</div>
+          <div class="card-head">
+            <span class="card-num">2.1.6</span>
+            <span class="card-title">Princípio da boa-fé</span>
+          </div>
+          <div class="card-chevron" aria-hidden="true">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            O trabalhador deve cumprir o contrato de boa-fé, enquanto o empregador deve cumprir
+            lealmente suas obrigações. Trata-se de princípio que abrange <em>ambas</em> as partes do
+            contrato, e não apenas uma delas.
+          </p>
+          <p>
+            É visto como princípio geral que deve ser levado em conta para a aplicação de todos os
+            direitos e obrigações decorrentes do contrato de trabalho, com características de postulado
+            moral e jurídico. A boa-fé refere-se à conduta da pessoa que cumpre realmente com seu dever,
+            pressupondo honestidade e honradez na relação jurídica — implica a consciência de não enganar,
+            não prejudicar, nem causar danos.
+          </p>
+        </div>
+      </div>
+
+    </div><!-- /principios -->
+  </section>
+
+  <a class="back" href="../index.html">
+    <span class="arw">←</span>
+    <span>Voltar ao índice da disciplina</span>
+  </a>
+
+</div><!-- /wrap -->
+
+<script>
+  (function(){
+    var items = document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window)){
+      items.forEach(function(el){ el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold:.12, rootMargin:'0px 0px -4% 0px' });
+    items.forEach(function(el, i){
+      el.style.transitionDelay = (i * 45) + 'ms';
+      io.observe(el);
+    });
+  })();
+
+  (function(){
+    var cards = document.querySelectorAll('.card');
+    cards.forEach(function(card){
+      var btn = card.querySelector('.card-btn');
+      btn.addEventListener('click', function(){
+        var isOpen = card.classList.contains('open');
+        cards.forEach(function(c){
+          c.classList.remove('open');
+          c.querySelector('.card-btn').setAttribute('aria-expanded','false');
+        });
+        if(!isOpen){
+          card.classList.add('open');
+          btn.setAttribute('aria-expanded','true');
+        }
+      });
+    });
+  })();
+</script>
 </body>
 </html>
