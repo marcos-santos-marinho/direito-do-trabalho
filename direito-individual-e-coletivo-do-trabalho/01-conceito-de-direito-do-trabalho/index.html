@@ -5,91 +5,386 @@
 <title>Conceito de Direito do Trabalho</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
 <style>
+  :root{
+    --ink:#1b2436;
+    --ink-soft:#414a5c;
+    --paper:#edece5;
+    --surface:#fbfaf7;
+    --accent:#7a2e37;      /* bordô — gravidade jurídica */
+    --accent-soft:#a2545f;
+    --iron:#8b8579;        /* cinza-ferro, era industrial */
+    --line:rgba(27,36,54,.13);
+    --line-strong:rgba(27,36,54,.22);
+
+    --display:"Fraunces", Georgia, "Times New Roman", serif;
+    --body:"Spectral", Georgia, serif;
+    --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+  }
+
+  *{ box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
   body{
     margin:0;
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    background:#eef2f6;
-    color:#0f172a;
-    line-height:1.7;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:19px;
+    line-height:1.78;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+
+  /* fio superior — "borda encadernada" do documento */
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0 0 auto 0;
+    height:4px;
+    background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 34%,var(--ink) 34%,var(--ink) 100%);
+    z-index:50;
   }
 
   .wrap{
-    max-width: 900px;
-    margin: auto;
-    padding: 18px 16px 40px;
+    max-width:760px;
+    margin:0 auto;
+    padding:0 22px 72px;
   }
 
-  /* ===== TÍTULO + BOTÃO SLIDES ===== */
-  .title-row{
+  /* ============ CABEÇALHO ============ */
+  .masthead{
+    padding:56px 0 30px;
+    border-bottom:1px solid var(--line-strong);
+    animation:rise .7s cubic-bezier(.2,.7,.2,1) both;
+  }
+
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:600;
+    margin:0 0 20px;
     display:flex;
     align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .eyebrow::before{
+    content:"";
+    width:26px; height:2px;
+    background:var(--accent);
+    display:inline-block;
+  }
+  .eyebrow .dot{ color:var(--line-strong); }
+
+  .title-row{
+    display:flex;
+    align-items:flex-end;
     justify-content:space-between;
-    gap:16px;
+    gap:28px;
     flex-wrap:wrap;
   }
 
   h1{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(2.5rem,7vw,4.1rem);
+    line-height:1.02;
+    letter-spacing:-.015em;
     margin:0;
-    font-size:28px;
-    color:#1f4fd8;
+    max-width:12ch;
+  }
+  h1 .art{
+    display:block;
+    font-size:.42em;
+    font-weight:600;
+    letter-spacing:.02em;
+    color:var(--accent);
+    font-family:var(--mono);
+    text-transform:uppercase;
+    margin-bottom:.5em;
   }
 
+  /* botão de slides */
   .slides-btn{
+    flex-shrink:0;
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    background:var(--ink);
+    color:#f4f2ec;
+    border-radius:4px;
+    padding:13px 18px;
+    font-family:var(--mono);
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    box-shadow:0 8px 22px -12px rgba(27,36,54,.7);
+    transition:transform .25s cubic-bezier(.2,.7,.2,1), box-shadow .25s, background .25s;
+  }
+  .slides-btn .ico{
+    font-size:16px;
+    line-height:1;
+    transform:translateY(-1px);
+  }
+  .slides-btn .arw{ transition:transform .25s; }
+  .slides-btn:hover{
+    background:var(--accent);
+    transform:translateY(-2px);
+    box-shadow:0 14px 28px -12px rgba(122,46,55,.75);
+  }
+  .slides-btn:hover .arw{ transform:translateX(4px); }
+  .slides-btn:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:3px; }
+
+  /* ============ DEFINIÇÃO (herói) ============ */
+  .verbete{
+    margin:44px 0 8px;
+    padding:6px 0 6px 30px;
+    border-left:3px solid var(--accent);
+    animation:rise .7s .1s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .verbete .tag{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:block;
+    margin-bottom:14px;
+  }
+  .verbete p{
+    font-family:var(--display);
+    font-weight:400;
+    font-size:clamp(1.35rem,3.4vw,1.7rem);
+    line-height:1.45;
+    letter-spacing:-.01em;
+    margin:0;
+    color:var(--ink);
+  }
+  .verbete p strong{
+    font-weight:600;
+    color:var(--accent);
+  }
+
+  /* ============ SEÇÕES ============ */
+  section{ padding-top:20px; }
+
+  .sec-head{
     display:flex;
-    flex-direction:column;
+    gap:16px;
+    align-items:baseline;
+    margin:46px 0 10px;
+    padding-top:26px;
+    border-top:1px solid var(--line);
+  }
+  .sec-head .num{
+    font-family:var(--mono);
+    font-size:15px;
+    font-weight:600;
+    color:var(--accent);
+    letter-spacing:.02em;
+    flex-shrink:0;
+    padding-top:.35em;
+  }
+  h2{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(1.6rem,4vw,2rem);
+    line-height:1.14;
+    letter-spacing:-.01em;
+    margin:0;
+    color:var(--ink);
+  }
+
+  .sub-head{
+    display:flex;
+    gap:14px;
+    align-items:baseline;
+    margin:38px 0 6px;
+  }
+  .sub-head .num{
+    font-family:var(--mono);
+    font-size:13px;
+    font-weight:600;
+    color:var(--iron);
+    flex-shrink:0;
+    padding-top:.3em;
+  }
+  h3{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:1.28rem;
+    line-height:1.2;
+    margin:0;
+    color:var(--ink);
+  }
+
+  p{ margin:0 0 18px; }
+  section > p{ color:var(--ink-soft); }
+  .lead{ color:var(--ink); }
+
+  /* ============ TRÍADE DE CAUSAS ============ */
+  .causas{
+    margin:30px 0 8px;
+    display:grid;
+    gap:2px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+  }
+  .causa{
+    background:var(--surface);
+    padding:24px 26px;
+    position:relative;
+  }
+  .causa .lbl{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:600;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:14px;
+  }
+  .causa .lbl .rn{
+    display:inline-flex;
     align-items:center;
     justify-content:center;
+    min-width:26px; height:26px;
+    background:var(--accent);
+    color:#fff;
+    border-radius:4px;
+    font-size:12px;
+    letter-spacing:0;
+  }
+  .causa p{ color:var(--ink-soft); }
+  .causa p:last-child{ margin-bottom:0; }
+
+  /* ============ LINHA DO TEMPO (assinatura) ============ */
+  .timeline{
+    margin:34px 0 4px;
+    position:relative;
+    padding-left:8px;
+  }
+  .timeline::before{
+    content:"";
+    position:absolute;
+    left:calc(72px + 8px);
+    top:6px; bottom:6px;
+    width:2px;
+    background:linear-gradient(180deg,var(--iron),var(--accent));
+  }
+  .tl-item{
+    position:relative;
+    display:grid;
+    grid-template-columns:72px 1fr;
+    gap:26px;
+    padding:0 0 30px;
+  }
+  .tl-item:last-child{ padding-bottom:0; }
+  .tl-year{
+    font-family:var(--mono);
+    font-weight:600;
+    font-size:16px;
+    color:var(--accent);
+    text-align:right;
+    padding-top:1px;
+    letter-spacing:-.01em;
+  }
+  .tl-body{ position:relative; padding-left:26px; }
+  .tl-body::before{                 /* nó */
+    content:"";
+    position:absolute;
+    left:-9px; top:8px;
+    width:14px; height:14px;
+    border-radius:50%;
+    background:var(--surface);
+    border:3px solid var(--accent);
+    box-shadow:0 0 0 4px var(--paper);
+  }
+  .tl-item.faint .tl-year{ color:var(--iron); }
+  .tl-item.faint .tl-body::before{ border-color:var(--iron); }
+  .tl-body h4{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:1.12rem;
+    line-height:1.25;
+    margin:0 0 6px;
+    color:var(--ink);
+  }
+  .tl-body p{
+    margin:0;
+    font-size:.94em;
+    color:var(--ink-soft);
+    line-height:1.65;
+  }
+
+  /* revelação no scroll */
+  .reveal{ opacity:0; transform:translateY(16px); }
+  .reveal.in{
+    opacity:1; transform:none;
+    transition:opacity .6s ease, transform .6s cubic-bezier(.2,.7,.2,1);
+  }
+
+  /* ============ RODAPÉ / VOLTAR ============ */
+  .back{
+    margin-top:56px;
+    display:flex;
+    align-items:center;
+    gap:14px;
     text-decoration:none;
-    background:#ffffff;
-    border:1px solid rgba(15,23,42,.15);
-    border-radius:14px;
-    padding:10px 14px;
-    box-shadow:0 6px 14px rgba(15,23,42,.10);
-    min-width:90px;
+    color:var(--ink);
+    background:var(--surface);
+    border:1px solid var(--line-strong);
+    border-radius:6px;
+    padding:20px 22px;
+    font-family:var(--mono);
+    font-size:14px;
+    letter-spacing:.04em;
+    transition:border-color .25s, transform .25s, color .25s;
+  }
+  .back .arw{ color:var(--accent); transition:transform .25s; font-size:18px; }
+  .back:hover{ border-color:var(--accent); transform:translateY(-2px); }
+  .back:hover .arw{ transform:translateX(-4px); }
+  .back:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:3px; }
+
+  @keyframes rise{
+    from{ opacity:0; transform:translateY(18px); }
+    to{ opacity:1; transform:none; }
   }
 
-  .slides-icon{
-    font-size:28px;
-    line-height:1;
+  /* ============ MOBILE ============ */
+  @media (max-width:560px){
+    body{ font-size:17.5px; line-height:1.72; }
+    .masthead{ padding:40px 0 24px; }
+    .title-row{ align-items:stretch; }
+    .slides-btn{ width:100%; justify-content:center; }
+    .verbete{ padding-left:20px; }
+    .causa{ padding:20px; }
+    .timeline::before{ left:9px; }
+    .tl-item{ grid-template-columns:1fr; gap:8px; }
+    .tl-year{ text-align:left; padding-left:26px; }
+    .tl-body{ padding-left:26px; }
   }
 
-  .slides-text{
-    margin-top:4px;
-    font-weight:800;
-    font-size:13px;
-    color:#0f172a;
-  }
-
-  /* ===== CAIXAS DE TEXTO ===== */
-  .box{
-    background:#ffffff;
-    border-radius:14px;
-    padding:16px;
-    margin:16px 0 24px;
-    border:1px solid rgba(15,23,42,.12);
-  }
-
-  h2{
-    margin-top:28px;
-    font-size:22px;
-  }
-
-  h3{
-    margin-top:22px;
-    font-size:20px;
-  }
-
-  p{
-    margin-bottom:16px;
-    text-align: justify;
-  }
-
-  /* ===== MOBILE ===== */
-  @media (max-width: 520px){
-    h1{ font-size:24px; }
-    h2{ font-size:20px; }
-    h3{ font-size:18px; }
+  @media (prefers-reduced-motion:reduce){
+    *{ animation:none !important; scroll-behavior:auto; }
+    .reveal{ opacity:1; transform:none; }
+    .reveal.in{ transition:none; }
   }
 </style>
 </head>
@@ -97,147 +392,227 @@
 <body>
 <div class="wrap">
 
-  <!-- TÍTULO -->
-  <div class="title-row">
-    <h1>1. Conceito de Direito do Trabalho</h1>
-
-    <a class="slides-btn"
-       href="https://drive.google.com/file/d/1jaS-eVjC2EveoCopT6lNT1Eqp5-yNVbs/view?usp=sharing"
-       target="_blank"
-       rel="noopener">
-      <div class="slides-icon">🖼️</div>
-      <div class="slides-text">Slides</div>
-    </a>
-  </div>
-
-  <div class="box">
-    <p>
-      Direito do Trabalho é o ramo da ciência do Direito composto pelo conjunto de normas que regulam,
-      no âmbito individual e coletivo, a relação de trabalho subordinado, que determinam seus sujeitos
-      (empregado e empregador) e que estruturam as organizações destinadas à proteção do trabalhador.
+  <!-- ============ CABEÇALHO ============ -->
+  <header class="masthead">
+    <p class="eyebrow">
+      Direito do Trabalho
+      <span class="dot">·</span> Unidade 1
+      <span class="dot">·</span> Conceitos fundamentais
     </p>
-  </div>
 
-  <h2>1.1 Origem histórica do Direito do Trabalho</h2>
+    <div class="title-row">
+      <h1>
+        <span class="art">Item 1</span>
+        Conceito de Direito do Trabalho
+      </h1>
 
-  <p>
-    A origem do Direito do Trabalho está vinculada à Revolução Industrial, nome pelo qual é conhecida
-    a longa série de mudanças tecnológicas, econômicas, sociais e políticas ocorridas no século XIX.
-    O Direito do Trabalho nasce, assim, com a sociedade industrial e o trabalho assalariado, sob
-    influência de razões de ordem econômica, política e jurídica.
-  </p>
+      <a class="slides-btn"
+         href="https://drive.google.com/file/d/1jaS-eVjC2EveoCopT6lNT1Eqp5-yNVbs/view?usp=sharing"
+         target="_blank" rel="noopener">
+        <span class="ico">▮</span>
+        <span>Slides da aula</span>
+        <span class="arw">→</span>
+      </a>
+    </div>
 
-  <p>
-    A principal causa econômica foi a própria Revolução Industrial (fins do século XVIII, início do
-    século XIX), que trouxe mudanças tecnológicas que incluíram o uso de novos materiais básicos,
-    tais como o ferro e o aço, a descoberta de novas fontes de energia, tais como o carvão, a máquina
-    a vapor, a eletricidade, os motores de combustão, a máquina de fiar e o tear mecânico.
-  </p>
+    <!-- DEFINIÇÃO (herói) -->
+    <div class="verbete">
+      <span class="tag">Definição</span>
+      <p>
+        <strong>Direito do Trabalho</strong> é o ramo da ciência do Direito composto pelo
+        conjunto de normas que regulam, no âmbito individual e coletivo, a relação de
+        trabalho subordinado, que determinam seus sujeitos — empregado e empregador — e que
+        estruturam as organizações destinadas à proteção do trabalhador.
+      </p>
+    </div>
+  </header>
 
-  <p>
-    Também se desenvolveram os transportes, como a locomotiva a vapor e o navio, e as comunicações,
-    como o telégrafo e o rádio.
-  </p>
+  <!-- ============ § 1.1 ORIGEM HISTÓRICA ============ -->
+  <section>
+    <div class="sec-head">
+      <span class="num">§ 1.1</span>
+      <h2>Origem histórica do Direito do Trabalho</h2>
+    </div>
 
-  <p>
-    Essas modificações tecnológicas levaram às modificações econômicas decorrentes da transformação
-    da produção artesanal em produção em larga escala, favorecendo o desenvolvimento do comércio,
-    do lucro e da acumulação de riquezas.
-  </p>
+    <p class="lead">
+      A origem do Direito do Trabalho está vinculada à Revolução Industrial, nome pelo qual é
+      conhecida a longa série de mudanças tecnológicas, econômicas, sociais e políticas
+      ocorridas no século XIX. O Direito do Trabalho nasce, assim, com a sociedade industrial
+      e o trabalho assalariado, sob influência de razões de ordem econômica, política e
+      jurídica.
+    </p>
 
-  <p>
-    Com a expansão da indústria e do comércio, houve a substituição do trabalho escravo, servil e
-    corporativo pelo trabalho assalariado em larga escala, assim como a manufatura cedeu lugar à
-    fábrica e, posteriormente, à linha de produção.
-  </p>
+    <!-- TRÍADE DE CAUSAS -->
+    <div class="causas">
+      <div class="causa">
+        <span class="lbl"><span class="rn">I</span> Causa econômica</span>
+        <p>
+          A principal causa econômica foi a própria Revolução Industrial (fins do século
+          XVIII, início do século XIX), que trouxe mudanças tecnológicas que incluíram o uso
+          de novos materiais básicos, como o ferro e o aço, e a descoberta de novas fontes de
+          energia, como o carvão, a máquina a vapor, a eletricidade, os motores de combustão,
+          a máquina de fiar e o tear mecânico.
+        </p>
+        <p>
+          Também se desenvolveram os transportes, como a locomotiva a vapor e o navio, e as
+          comunicações, como o telégrafo e o rádio.
+        </p>
+        <p>
+          Essas modificações tecnológicas levaram às modificações econômicas decorrentes da
+          transformação da produção artesanal em produção em larga escala, favorecendo o
+          desenvolvimento do comércio, do lucro e da acumulação de riquezas.
+        </p>
+        <p>
+          Com a expansão da indústria e do comércio, houve a substituição do trabalho escravo,
+          servil e corporativo pelo trabalho assalariado em larga escala; a manufatura cedeu
+          lugar à fábrica e, posteriormente, à linha de produção.
+        </p>
+      </div>
 
-  <p>
-    A principal causa política foi a transformação do Estado Liberal, baseado na plena liberdade
-    contratual, em Estado Neoliberal, no qual o Estado passa a intervir na ordem econômica e social,
-    limitando a liberdade plena das partes.
-  </p>
+      <div class="causa">
+        <span class="lbl"><span class="rn">II</span> Causa política</span>
+        <p>
+          A principal causa política foi a transformação do Estado Liberal, baseado na plena
+          liberdade contratual, em Estado Neoliberal, no qual o Estado passa a intervir na
+          ordem econômica e social, limitando a liberdade plena das partes.
+        </p>
+        <p>
+          As formas extremadas de intervenção estatal foram o corporativismo e o socialismo,
+          com características fortemente autoritárias, transferindo a ordem trabalhista para o
+          âmbito das relações de natureza pública.
+        </p>
+      </div>
 
-  <p>
-    As formas extremadas de intervenção estatal foram o corporativismo e o socialismo, com
-    características fortemente autoritárias, transferindo a ordem trabalhista para o âmbito das
-    relações de natureza pública.
-  </p>
+      <div class="causa">
+        <span class="lbl"><span class="rn">III</span> Causa jurídica</span>
+        <p>
+          A principal causa jurídica foi a justa reivindicação dos trabalhadores por um
+          sistema jurídico destinado à sua proteção, garantindo direitos básicos e buscando
+          uma igualdade jurídica em uma relação naturalmente desigual entre empregado e
+          empregador.
+        </p>
+        <p>
+          Uma consequência relevante dessa causa jurídica foi o surgimento do sindicalismo,
+          como forma de união dos trabalhadores para a conquista de melhores condições de
+          trabalho.
+        </p>
+        <p>
+          Passa a surgir uma legislação voltada a coibir abusos do empregador e a preservar a
+          dignidade do trabalhador, em contraste com o cenário anterior de jornadas
+          excessivas, salários ínfimos, exploração do trabalho infantil e feminino e ausência
+          de proteção contra riscos sociais.
+        </p>
+        <p>
+          Essas transformações representaram uma reação à chamada <strong>Questão Social</strong>,
+          incorporando a ideia de justiça social ao ordenamento jurídico.
+        </p>
+      </div>
+    </div>
 
-  <p>
-    A principal causa jurídica foi a justa reivindicação dos trabalhadores por um sistema jurídico
-    destinado à sua proteção, garantindo direitos básicos e buscando uma igualdade jurídica em uma
-    relação naturalmente desigual entre empregado e empregador.
-  </p>
+    <!-- § 1.1.1 -->
+    <div class="sub-head">
+      <span class="num">§ 1.1.1</span>
+      <h3>Constitucionalismo social</h3>
+    </div>
+    <p>
+      Constitucionalismo social é o movimento caracterizado pela inserção de direitos
+      trabalhistas e sociais fundamentais nos textos constitucionais.
+    </p>
+    <p>
+      A Constituição mexicana de 1917 foi a primeira a estruturar de forma significativa os
+      direitos sociais dos trabalhadores, seguida pela Constituição alemã de 1919
+      (Constituição de Weimar).
+    </p>
+    <p>
+      Posteriormente, as Constituições dos Estados democráticos passaram a reproduzir os
+      princípios consagrados nessas Constituições pioneiras.
+    </p>
+  </section>
 
-  <p>
-    Uma consequência relevante dessa causa jurídica foi o surgimento do sindicalismo, como forma de
-    união dos trabalhadores para a conquista de melhores condições de trabalho.
-  </p>
+  <!-- ============ § 1.2 DIREITO DO TRABALHO NO BRASIL ============ -->
+  <section>
+    <div class="sec-head">
+      <span class="num">§ 1.2</span>
+      <h2>Direito do Trabalho no Brasil</h2>
+    </div>
 
-  <p>
-    Passa a surgir uma legislação voltada a coibir abusos do empregador e preservar a dignidade do
-    trabalhador, em contraste com o cenário anterior de jornadas excessivas, salários ínfimos,
-    exploração do trabalho infantil e feminino e ausência de proteção contra riscos sociais.
-  </p>
+    <p class="lead">
+      No Brasil, a construção do Direito do Trabalho segue uma linha de marcos que vai das
+      Constituições pioneiras do constitucionalismo social à consolidação legislativa e
+      constitucional interna.
+    </p>
 
-  <p>
-    Essas transformações representaram uma reação à chamada <strong>Questão Social</strong>,
-    incorporando a ideia de justiça social ao ordenamento jurídico.
-  </p>
+    <div class="timeline">
+      <div class="tl-item faint reveal">
+        <div class="tl-year">1917</div>
+        <div class="tl-body">
+          <h4>Constituição mexicana</h4>
+          <p>Primeira a estruturar de forma significativa os direitos sociais dos trabalhadores — antecedente do constitucionalismo social.</p>
+        </div>
+      </div>
 
-  <h3>1.1.1 Constitucionalismo social</h3>
+      <div class="tl-item faint reveal">
+        <div class="tl-year">1919</div>
+        <div class="tl-body">
+          <h4>Constituição de Weimar</h4>
+          <p>A Constituição alemã segue o exemplo mexicano e consolida a inserção de direitos sociais nos textos constitucionais.</p>
+        </div>
+      </div>
 
-  <p>
-    Constitucionalismo social é o movimento caracterizado pela inserção de direitos trabalhistas e
-    sociais fundamentais nos textos constitucionais.
-  </p>
+      <div class="tl-item reveal">
+        <div class="tl-year">1930</div>
+        <div class="tl-body">
+          <h4>Revolução de 1930 e o Ministério do Trabalho</h4>
+          <p>O Direito do Trabalho no Brasil tem início a partir da Revolução de 1930, quando o Governo Provisório chefiado por Getúlio Vargas criou o Ministério do Trabalho, Indústria e Comércio e deu início à elaboração de uma legislação trabalhista ampla e geral.</p>
+        </div>
+      </div>
 
-  <p>
-    A Constituição mexicana de 1917 foi a primeira a estruturar de forma significativa os direitos
-    sociais dos trabalhadores, seguida pela Constituição alemã de 1919 (Constituição de Weimar).
-  </p>
+      <div class="tl-item reveal">
+        <div class="tl-year">1943</div>
+        <div class="tl-body">
+          <h4>Consolidação das Leis do Trabalho (CLT)</h4>
+          <p>Aprovada em 1943, a CLT estrutura o sistema trabalhista brasileiro e assegura direitos fundamentais aos trabalhadores.</p>
+        </div>
+      </div>
 
-  <p>
-    Posteriormente, as Constituições dos Estados democráticos passaram a reproduzir os princípios
-    consagrados nessas Constituições pioneiras.
-  </p>
+      <div class="tl-item reveal">
+        <div class="tl-year">1988</div>
+        <div class="tl-body">
+          <h4>Constituição Federal</h4>
+          <p>Com a Constituição de 1988, os direitos dos trabalhadores são elevados à categoria de direitos fundamentais, consolidando a centralidade do Direito do Trabalho no ordenamento jurídico brasileiro.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <h2>1.2 Direito do Trabalho no Brasil</h2>
-
-  <p>
-    O Direito do Trabalho no Brasil tem início a partir da Revolução de 1930, quando o Governo
-    Provisório chefiado por Getúlio Vargas criou o Ministério do Trabalho, Indústria e Comércio e deu
-    início à elaboração de uma legislação trabalhista ampla e geral.
-  </p>
-
-  <p>
-    Em 1943 foi aprovada a Consolidação das Leis do Trabalho (CLT), estruturando o sistema trabalhista
-    brasileiro e assegurando direitos fundamentais aos trabalhadores.
-  </p>
-
-  <p>
-    Com a Constituição Federal de 1988, os direitos dos trabalhadores foram elevados à categoria de
-    direitos fundamentais, consolidando a centralidade do Direito do Trabalho no ordenamento jurídico
-    brasileiro.
-  </p>
-<!-- BOTÃO VOLTAR AO ÍNDICE DA DISCIPLINA -->
-<div style="margin-top:32px;">
-  <a href="../index.html" style="
-    display:block;
-    text-align:center;
-    background:#ffffff;
-    border:1px solid rgba(15,23,42,.15);
-    border-radius:14px;
-    padding:16px;
-    font-weight:800;
-    text-decoration:none;
-    color:#0f172a;
-    box-shadow:0 6px 14px rgba(15,23,42,.10);
-  ">
-    ← Voltar ao índice da disciplina
+  <!-- ============ VOLTAR ============ -->
+  <a class="back" href="../index.html">
+    <span class="arw">←</span>
+    <span>Voltar ao índice da disciplina</span>
   </a>
-</div>
 
 </div>
+
+<script>
+  (function(){
+    var items = document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window)){
+      items.forEach(function(el){ el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold:.2, rootMargin:'0px 0px -8% 0px' });
+    items.forEach(function(el, i){
+      el.style.transitionDelay = (i * 70) + 'ms';
+      io.observe(el);
+    });
+  })();
+</script>
 </body>
 </html>
