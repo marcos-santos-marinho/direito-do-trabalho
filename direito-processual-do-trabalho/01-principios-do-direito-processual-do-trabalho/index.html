@@ -5,259 +5,881 @@
 <title>Princípios do Direito Processual do Trabalho</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
 <style>
   :root{
-    --bg:#f2f7ff;
-    --text:#0f172a;
-    --title:#1f4fd8;
-    --card:#ffffff;
-    --border:rgba(15,23,42,.15);
-    --shadow:0 8px 18px rgba(15,23,42,.08);
+    --ink:#1b2436;
+    --ink-soft:#414a5c;
+    --paper:#edece5;
+    --surface:#fbfaf7;
+    --accent:#7a2e37;
+    --accent-soft:#a2545f;
+    --iron:#8b8579;
+    --reform:#4a3a00;
+    --reform-bg:#fdf8e8;
+    --reform-border:#c9a227;
+    --line:rgba(27,36,54,.13);
+    --line-strong:rgba(27,36,54,.22);
+    --display:"Fraunces", Georgia, "Times New Roman", serif;
+    --body:"Spectral", Georgia, serif;
+    --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
   }
 
-  *{ box-sizing:border-box; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
 
   body{
-    margin:0;
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    line-height:1.7;
-    font-size:18px;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:19px;
+    line-height:1.78;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
   }
 
-  .wrap{
-    max-width:900px;
-    margin:auto;
-    padding:18px 16px 40px;
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0 0 auto 0;
+    height:4px;
+    background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 34%,var(--ink) 34%,var(--ink) 100%);
+    z-index:50;
   }
 
-  /* ===== TÍTULO + SLIDES ===== */
-  .title-row{
+  .wrap{ max-width:760px; margin:0 auto; padding:0 22px 72px; }
+
+  /* ===== CABEÇALHO ===== */
+  .masthead{
+    padding:56px 0 30px;
+    border-bottom:1px solid var(--line-strong);
+    animation:rise .7s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:600;
+    margin-bottom:20px;
     display:flex;
-    justify-content:space-between;
     align-items:center;
-    gap:16px;
+    gap:12px;
     flex-wrap:wrap;
   }
+  .eyebrow::before{ content:""; width:26px; height:2px; background:var(--accent); display:inline-block; }
+  .eyebrow .dot{ color:var(--line-strong); }
 
+  .title-row{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:28px;
+    flex-wrap:wrap;
+  }
   h1{
-    color:var(--title);
-    font-size:28px;
-    margin:10px 0 16px;
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(2.3rem,6.5vw,3.8rem);
+    line-height:1.04;
+    letter-spacing:-.015em;
+    max-width:15ch;
+  }
+  h1 .art{
+    display:block;
+    font-size:.4em;
+    font-weight:600;
+    letter-spacing:.02em;
+    color:var(--accent);
+    font-family:var(--mono);
+    text-transform:uppercase;
+    margin-bottom:.5em;
   }
 
   .slides-btn{
+    flex-shrink:0;
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    background:var(--ink);
+    color:#f4f2ec;
+    border-radius:4px;
+    padding:13px 18px;
+    font-family:var(--mono);
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    box-shadow:0 8px 22px -12px rgba(27,36,54,.7);
+    transition:transform .25s cubic-bezier(.2,.7,.2,1), box-shadow .25s, background .25s;
+  }
+  .slides-btn .ico{ font-size:16px; line-height:1; transform:translateY(-1px); }
+  .slides-btn .arw{ transition:transform .25s; }
+  .slides-btn:hover{ background:var(--accent); transform:translateY(-2px); box-shadow:0 14px 28px -12px rgba(122,46,55,.75); }
+  .slides-btn:hover .arw{ transform:translateX(4px); }
+  .slides-btn:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:3px; }
+
+  /* ===== SEÇÕES ===== */
+  .sec-head{
+    display:flex;
+    gap:16px;
+    align-items:baseline;
+    margin:46px 0 14px;
+    padding-top:26px;
+    border-top:1px solid var(--line);
+  }
+  .sec-head .num{
+    font-family:var(--mono);
+    font-size:15px;
+    font-weight:600;
+    color:var(--accent);
+    letter-spacing:.02em;
+    flex-shrink:0;
+    padding-top:.35em;
+  }
+  h2{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(1.6rem,4vw,2rem);
+    line-height:1.14;
+    letter-spacing:-.01em;
+    color:var(--ink);
+  }
+  p{ margin-bottom:16px; }
+  .body-text{ color:var(--ink-soft); }
+
+  /* ref legal inline */
+  .ref{
+    font-family:var(--mono);
+    font-size:.8em;
+    color:var(--iron);
+    background:rgba(139,133,121,.12);
+    padding:2px 7px;
+    border-radius:3px;
+    white-space:nowrap;
+  }
+
+  /* ===== CARDS ===== */
+  .principios{
     display:flex;
     flex-direction:column;
+    gap:3px;
+  }
+
+  .card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+    transition:box-shadow .2s;
+  }
+  .card:hover{ box-shadow:0 4px 18px -8px rgba(27,36,54,.2); }
+
+  .card-btn{
+    width:100%;
+    background:none;
+    border:none;
+    cursor:pointer;
+    display:grid;
+    grid-template-columns:52px 1fr 34px;
+    align-items:center;
+    padding:0;
+    text-align:left;
+    color:inherit;
+  }
+  .card-btn:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:-3px; border-radius:5px; }
+
+  .card-icon{
+    display:flex;
     align-items:center;
     justify-content:center;
-    text-decoration:none;
-    background:#ffffff;
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:10px 14px;
-    box-shadow:var(--shadow);
-    min-width:90px;
-  }
-
-  .slides-icon{
-    font-size:28px;
-    line-height:1;
-  }
-
-  .slides-text{
-    margin-top:4px;
-    font-weight:800;
+    min-height:62px;
+    height:100%;
+    border-right:1px solid var(--line);
+    font-family:var(--mono);
+    font-weight:600;
     font-size:13px;
-    color:#0f172a;
+    color:var(--accent);
+    background:rgba(122,46,55,.05);
+    letter-spacing:.02em;
   }
-
-  /* ===== TEXTO ===== */
-  h2{
-    font-size:22px;
-    margin:30px 0 10px;
+  .card-head{ padding:16px 18px; }
+  .card-num{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--iron);
+    display:block;
+    margin-bottom:3px;
   }
-
-  h3{
-    font-size:20px;
-    margin:24px 0 8px;
+  .card-title{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:1.08rem;
+    line-height:1.2;
+    color:var(--ink);
   }
-
-  p{
-    margin:0 0 14px;
-    text-align:justify;
+  .card-chevron{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding-right:16px;
+    color:var(--iron);
+    font-size:13px;
+    transition:transform .3s cubic-bezier(.2,.7,.2,1), color .2s;
   }
+  .card.open .card-chevron{ transform:rotate(180deg); color:var(--accent); }
 
-  .box{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:16px;
-    margin:18px 0;
-    box-shadow:var(--shadow);
+  .card-body{
+    display:none;
+    padding:20px 22px 22px;
+    border-top:1px solid var(--line);
   }
+  .card.open .card-body{ display:block; }
+  .card-body > p{ color:var(--ink-soft); font-size:.94em; line-height:1.72; }
 
-  ul{
-    margin:10px 0 14px 22px;
+  /* bloco par antagônico (dispositivo × inquisitivo) */
+  .antagonico{
+    margin:14px 0 8px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:3px;
   }
+  .ant-col{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:5px;
+    padding:14px 16px;
+  }
+  .ant-lbl{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    margin-bottom:8px;
+    display:block;
+  }
+  .ant-col.disp .ant-lbl{ color:var(--iron); }
+  .ant-col.inq .ant-lbl{ color:var(--accent); }
+  .ant-col p{ font-size:.9em; color:var(--ink-soft); margin:0; line-height:1.6; }
 
-  li{
+  /* sub-bloco genérico */
+  .sub{
+    margin:14px 0 6px;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:5px;
+    padding:14px 18px;
+  }
+  .sub-lbl{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:block;
     margin-bottom:10px;
   }
+  .sub p{ font-size:.91em; color:var(--ink-soft); margin-bottom:8px; line-height:1.65; }
+  .sub p:last-child{ margin:0; }
+
+  /* lista de itens */
+  .item-list{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    margin:10px 0 4px;
+  }
+  .item-row{
+    display:grid;
+    grid-template-columns:22px 1fr;
+    gap:10px;
+    font-size:.9em;
+    color:var(--ink-soft);
+    line-height:1.6;
+    padding:6px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .item-row:last-child{ border-bottom:none; }
+  .item-row .bul{ color:var(--accent); font-family:var(--mono); font-size:.85em; padding-top:2px; }
+
+  /* exceções (fundo levemente distinto) */
+  .excecoes{
+    margin:14px 0 4px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    overflow:hidden;
+    background:var(--surface);
+  }
+  .exc-head{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--iron);
+    padding:10px 16px;
+    border-bottom:1px solid var(--line);
+    background:rgba(139,133,121,.08);
+  }
+  .exc-item{
+    display:grid;
+    grid-template-columns:120px 1fr;
+    border-bottom:1px solid var(--line);
+    font-size:.9em;
+  }
+  .exc-item:last-child{ border-bottom:none; }
+  .exc-ref{
+    font-family:var(--mono);
+    font-size:.85em;
+    color:var(--accent);
+    padding:12px 14px;
+    border-right:1px solid var(--line);
+    background:rgba(122,46,55,.04);
+    display:flex;
+    align-items:center;
+    line-height:1.3;
+    font-weight:600;
+  }
+  .exc-txt{
+    padding:12px 16px;
+    color:var(--ink-soft);
+    line-height:1.6;
+    display:flex;
+    align-items:center;
+  }
+
+  /* súmula / OJ */
+  .sumula{
+    margin:12px 0 4px;
+    padding:13px 17px;
+    border-left:2px solid var(--iron);
+    background:var(--paper);
+    border-radius:0 4px 4px 0;
+    font-size:.89em;
+    color:var(--ink-soft);
+    line-height:1.65;
+  }
+  .sumula strong{
+    font-style:normal;
+    font-family:var(--mono);
+    font-size:.88em;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--iron);
+    display:block;
+    margin-bottom:5px;
+  }
+
+  /* reforma */
+  .reforma{
+    margin:14px 0 4px;
+    padding:13px 17px;
+    background:var(--reform-bg);
+    border-left:3px solid var(--reform-border);
+    border-radius:0 5px 5px 0;
+    font-size:.9em;
+    color:var(--reform);
+    line-height:1.65;
+  }
+  .reforma-lbl{
+    font-family:var(--mono);
+    font-size:10.5px;
+    font-weight:600;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    margin-bottom:7px;
+    display:block;
+    color:var(--reform-border);
+  }
+  .reforma p{ margin-bottom:8px; color:var(--reform); }
+  .reforma p:last-child{ margin:0; }
+
+  /* alerta prescrição */
+  .prescricao{
+    margin:12px 0 4px;
+    padding:13px 17px;
+    background:var(--surface);
+    border:1px solid var(--line-strong);
+    border-radius:5px;
+    font-size:.9em;
+    color:var(--ink-soft);
+    line-height:1.65;
+  }
+  .prescricao strong{ color:var(--ink); }
+
+  /* atos orais (grid 2 col) */
+  .orais{
+    margin:12px 0 4px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:3px;
+  }
+  .oral-item{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:5px;
+    padding:14px 16px;
+  }
+  .oral-item .o-lbl{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:block;
+    margin-bottom:6px;
+  }
+  .oral-item p{ font-size:.9em; color:var(--ink-soft); margin:0; line-height:1.6; }
 
   /* ===== BOTÃO VOLTAR ===== */
-  .voltar{
-    margin-top:32px;
-  }
-
-  .voltar a{
-    display:block;
-    text-align:center;
-    background:#ffffff;
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:16px;
-    font-weight:800;
+  .back{
+    margin-top:56px;
+    display:flex;
+    align-items:center;
+    gap:14px;
     text-decoration:none;
-    color:#0f172a;
-    box-shadow:var(--shadow);
+    color:var(--ink);
+    background:var(--surface);
+    border:1px solid var(--line-strong);
+    border-radius:6px;
+    padding:20px 22px;
+    font-family:var(--mono);
+    font-size:14px;
+    letter-spacing:.04em;
+    transition:border-color .25s, transform .25s;
+  }
+  .back .arw{ color:var(--accent); transition:transform .25s; font-size:18px; }
+  .back:hover{ border-color:var(--accent); transform:translateY(-2px); }
+  .back:hover .arw{ transform:translateX(-4px); }
+  .back:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:3px; }
+
+  @keyframes rise{
+    from{ opacity:0; transform:translateY(18px); }
+    to{ opacity:1; transform:none; }
+  }
+  .reveal{ opacity:0; transform:translateY(14px); }
+  .reveal.in{
+    opacity:1; transform:none;
+    transition:opacity .5s ease, transform .5s cubic-bezier(.2,.7,.2,1);
   }
 
-  @media (max-width:480px){
-    body{ font-size:17px; }
-    h1{ font-size:24px; }
-    h2{ font-size:21px; }
-    h3{ font-size:19px; }
+  @media (max-width:560px){
+    body{ font-size:17.5px; }
+    .masthead{ padding:40px 0 24px; }
+    .title-row{ align-items:stretch; }
+    .slides-btn{ width:100%; justify-content:center; }
+    .antagonico, .orais{ grid-template-columns:1fr; }
+    .card-btn{ grid-template-columns:44px 1fr 30px; }
+    .exc-item{ grid-template-columns:1fr; }
+    .exc-ref{ border-right:none; border-bottom:1px solid var(--line); }
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{ animation:none !important; scroll-behavior:auto; }
+    .reveal{ opacity:1; transform:none; }
+    .reveal.in{ transition:none; }
+    .card-chevron{ transition:none; }
   }
 </style>
 </head>
-
 <body>
 <div class="wrap">
 
-  <div class="title-row">
-    <h1>1. Princípios do Direito Processual do Trabalho</h1>
-
-    <a class="slides-btn"
-       href="https://drive.google.com/file/d/10tY95kMGjSgyEQVktX_FuFD1Hfp9dhzl/view?usp=sharing"
-       target="_blank"
-       rel="noopener">
-      <div class="slides-icon">🖼️</div>
-      <div class="slides-text">Slides</div>
-    </a>
-  </div>
-
-  <h2>1.1 Dispositivo e inquisitivo</h2>
-
-  <p>
-    Os princípios dispositivo e inquisitivo mostram-se como contrários, ou seja, antagônicos. Enquanto
-    o princípio dispositivo está atrelado à necessidade de pedido da parte para que o Poder Judiciário
-    atue, sendo inclusive chamado de princípio da inércia, com previsão no art. 2º do CPC/2015, o
-    princípio inquisitivo está relacionado à atuação de ofício do juiz.
-  </p>
-
-  <p>
-    Exemplo clássico é o art. 878 da CLT, que prevê o início da execução definitiva de ofício, isto é,
-    por iniciativa do magistrado trabalhista. O princípio inquisitivo, contudo, foi restringido pela
-    Reforma Trabalhista (Lei nº 13.467/2017), que incluiu o parágrafo único no art. 878 da CLT,
-    determinando que a execução somente será iniciada de ofício quando a parte estiver exercendo o
-    jus postulandi.
-  </p>
-
-  <p>
-    Caso o exequente possua advogado constituído, caberá a este requerer o início da execução, sob
-    pena de prescrição intercorrente, prevista no art. 11-A da CLT.
-  </p>
-
-  <div class="box">
-    <p>
-      Além da prescrição bienal e quinquenal, deve-se lembrar da prescrição intercorrente, que ocorre
-      quando o processo permanece paralisado por mais de dois anos.
+  <!-- CABEÇALHO -->
+  <header class="masthead">
+    <p class="eyebrow">
+      Direito Processual do Trabalho
+      <span class="dot">·</span> Unidade 1
+      <span class="dot">·</span> Fundamentos processuais
     </p>
-  </div>
+    <div class="title-row">
+      <h1>
+        <span class="art">Item 1</span>
+        Princípios do processo do trabalho
+      </h1>
+      <a class="slides-btn"
+         href="https://drive.google.com/file/d/10tY95kMGjSgyEQVktX_FuFD1Hfp9dhzl/view?usp=sharing"
+         target="_blank" rel="noopener">
+        <span class="ico">▮</span>
+        <span>Slides da aula</span>
+        <span class="arw">→</span>
+      </a>
+    </div>
+  </header>
 
-  <h2>1.2 Proteção</h2>
+  <!-- PRINCÍPIOS -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 1</span>
+      <h2>Princípios específicos</h2>
+    </div>
 
-  <p>
-    Reconhece-se no Direito do Trabalho a hipossuficiência do empregado, fundamento do princípio da
-    proteção. No processo do trabalho, esse princípio se manifesta por regras que facilitam o acesso
-    à Justiça pela parte considerada mais fraca.
-  </p>
+    <div class="principios">
 
-  <div class="box">
-    <ul>
-      <li>Pagamento de custas ao final (art. 789, § 1º, CLT);</li>
-      <li>Vedação ao pagamento prévio de honorários periciais (OJ 98 SDI-2/TST e art. 790-B, § 3º, CLT);</li>
-      <li>Tratamento diferenciado quanto à ausência das partes à audiência (art. 844, CLT).</li>
-    </ul>
-  </div>
+      <!-- 1.1 DISPOSITIVO E INQUISITIVO -->
+      <div class="card reveal">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">1.1</div>
+          <div class="card-head">
+            <span class="card-num">Regra × exceção</span>
+            <span class="card-title">Dispositivo e inquisitivo</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            Os princípios dispositivo e inquisitivo são antagônicos. O <strong>princípio
+            dispositivo</strong> (princípio da inércia) está atrelado à necessidade de pedido
+            da parte para que o Judiciário atue — previsto no
+            <span class="ref">art. 2º, CPC/2015</span>. O <strong>princípio inquisitivo</strong>
+            está relacionado à atuação de ofício do juiz, sem necessidade de requerimento.
+          </p>
 
-  <h2>1.3 Conciliação</h2>
+          <div class="antagonico">
+            <div class="ant-col disp">
+              <span class="ant-lbl">Dispositivo — regra</span>
+              <p>Judiciário atua apenas mediante provocação da parte. Chamado de princípio da inércia.</p>
+            </div>
+            <div class="ant-col inq">
+              <span class="ant-lbl">Inquisitivo — exceção</span>
+              <p>Judiciário atua de ofício, sem requerimento — ex.: início da execução definitiva pelo magistrado trabalhista (<span class="ref">art. 878, CLT</span>).</p>
+            </div>
+          </div>
 
-  <p>
-    A conciliação é princípio fundamental do processo do trabalho, havendo dois momentos obrigatórios
-    de tentativa de acordo: no início e ao final da audiência (arts. 846 e 850 da CLT).
-  </p>
+          <div class="reforma">
+            <span class="reforma-lbl">⚠ Reforma Trabalhista — Lei n. 13.467/2017</span>
+            <p>
+              O princípio inquisitivo foi <strong>restringido</strong>: o parágrafo único acrescentado
+              ao <span class="ref">art. 878, CLT</span> determina que a execução somente será iniciada
+              de ofício se a parte estiver exercendo o <em>jus postulandi</em>, ou seja, se não estiver
+              representada por advogado.
+            </p>
+            <p>
+              Caso o exequente possua advogado constituído, caberá ao profissional requerer o início
+              da execução, sob pena de decretação da <strong>prescrição intercorrente</strong>
+              (<span class="ref">art. 11-A, CLT</span>).
+            </p>
+          </div>
 
-  <p>
-    A homologação do acordo é faculdade do juiz (Súmula 418, TST). Uma vez homologado, não cabe
-    recurso às partes, sendo possível a desconstituição apenas por ação rescisória (Súmula 259, TST).
-  </p>
+          <div class="prescricao">
+            <strong>Prescrições no processo do trabalho</strong><br>
+            Além da prescrição <strong>bienal</strong> (ajuizamento da ação em até 2 anos do rompimento
+            do contrato) e da <strong>quinquenal</strong> (verbas dos últimos 5 anos a contar do
+            ajuizamento), deve-se atentar para a <strong>prescrição intercorrente</strong>
+            (<span class="ref">art. 11-A, CLT</span>): ocorre quando o processo permanece paralisado
+            por mais de <strong>2 anos</strong>.
+          </div>
+        </div>
+      </div>
 
-  <p>
-    A Reforma Trabalhista introduziu a homologação de acordo extrajudicial (art. 855-B, CLT),
-    reforçando a importância da conciliação.
-  </p>
+      <!-- 1.2 PROTEÇÃO -->
+      <div class="card reveal">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">1.2</div>
+          <div class="card-head">
+            <span class="card-num">Hipossuficiência do empregado</span>
+            <span class="card-title">Proteção</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            No Direito do Trabalho reconhece-se a hipossuficiência do empregado como fundamento do
+            princípio da proteção. Tratam-se desigualmente os desiguais — empregado e empregador —
+            por aplicação do <em>in dubio pro operario</em>, da condição mais benéfica e da norma
+            mais favorável. No processo do trabalho, esse princípio se manifesta em regras que
+            facilitam o acesso à Justiça pela parte considerada mais fraca.
+          </p>
 
-  <h2>1.4 Irrecorribilidade imediata das interlocutórias</h2>
+          <div class="sub">
+            <span class="sub-lbl">Manifestações processuais do princípio</span>
+            <div class="item-list">
+              <div class="item-row">
+                <span class="bul">▸</span>
+                <span>
+                  <strong>Custas ao final</strong> — o <span class="ref">art. 789, § 1º, CLT</span>
+                  prevê que as custas são pagas ao final, o que possibilita o ajuizamento de ação
+                  por qualquer um, independentemente de sua condição financeira.
+                </span>
+              </div>
+              <div class="item-row">
+                <span class="bul">▸</span>
+                <span>
+                  <strong>Vedação a honorários periciais prévios</strong> — a
+                  <span class="ref">OJ n. 98, SDI-2/TST</span> e o
+                  <span class="ref">art. 790-B, § 3º, CLT</span> (inserido pela Reforma Trabalhista)
+                  proíbem o pagamento prévio de honorários periciais, pois impediria a realização
+                  da perícia por quem não tem condição financeira.
+                </span>
+              </div>
+              <div class="item-row">
+                <span class="bul">▸</span>
+                <span>
+                  <strong>Tratamento diferenciado na ausência à audiência</strong>
+                  (<span class="ref">art. 844, CLT</span>): ausência do <em>reclamante</em> →
+                  processo arquivado (extinção sem resolução do mérito); ausência do
+                  <em>reclamado</em> → revelia; ausência de <em>ambos</em> → processo arquivado.
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <p>
-    Regra geral, as decisões interlocutórias são irrecorríveis de imediato no processo do trabalho
-    (art. 893, § 1º, CLT), devendo a parte aguardar a decisão final.
-  </p>
+      <!-- 1.3 CONCILIAÇÃO -->
+      <div class="card reveal">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">1.3</div>
+          <div class="card-head">
+            <span class="card-num">Dois momentos obrigatórios</span>
+            <span class="card-title">Conciliação</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            A conciliação é extremamente importante para o processo do trabalho — por meio dela são
+            extintos milhares de processos por ano na Justiça do Trabalho. O legislador previu
+            <strong>dois momentos obrigatórios</strong> de tentativa de acordo:
+          </p>
+          <div class="antagonico" style="grid-template-columns:1fr 1fr;">
+            <div class="ant-col disp">
+              <span class="ant-lbl">1ª tentativa</span>
+              <p><span class="ref">Art. 846, CLT</span> — logo no início da audiência, após o pregão das partes.</p>
+            </div>
+            <div class="ant-col inq">
+              <span class="ant-lbl">2ª tentativa</span>
+              <p><span class="ref">Art. 850, CLT</span> — após as razões finais, antes da sentença.</p>
+            </div>
+          </div>
 
-  <div class="box">
-    <ul>
-      <li>Incompetência absoluta (art. 799, § 2º, CLT);</li>
-      <li>Hipóteses da Súmula 214 do TST;</li>
-      <li>Incidente de desconsideração da personalidade jurídica (art. 855-A, § 1º, CLT).</li>
-    </ul>
-  </div>
+          <p style="color:var(--ink-soft);font-size:.94em;margin-top:14px;">
+            Homologado o acordo, o juiz sentenciará extinguindo o feito com resolução do mérito.
+            A sentença que homologa acordo é definitiva, cabendo recurso apenas pela União
+            (<span class="ref">art. 831, CLT</span>). As partes não têm interesse recursal por
+            não serem consideradas sucumbentes.
+          </p>
 
-  <h2>1.5 Jus postulandi</h2>
+          <div class="sumula">
+            <strong>Súmula 418, TST</strong>
+            A homologação do acordo é <em>faculdade</em> do juiz — o magistrado não está obrigado
+            a aceitar o acordo proposto pelas partes.
+          </div>
 
-  <p>
-    Previsto no art. 791 da CLT, permite que as partes atuem sem advogado nas Varas do Trabalho e
-    Tribunais Regionais do Trabalho. A Súmula 425 do TST estabelece exceções, exigindo advogado em
-    determinadas ações e recursos ao TST.
-  </p>
+          <div class="sumula">
+            <strong>Súmula 259, TST</strong>
+            Sendo homologado o acordo, a única forma de desconstituí-lo é por meio do ajuizamento
+            de <strong>ação rescisória</strong>.
+          </div>
 
-  <p>
-    A Reforma Trabalhista restringiu o jus postulandi na homologação de acordo extrajudicial,
-    exigindo advogado para ambas as partes (art. 855-B, CLT).
-  </p>
+          <div class="reforma">
+            <span class="reforma-lbl">⚠ Reforma Trabalhista — Lei n. 13.467/2017</span>
+            <p>
+              Inseriu o procedimento de <strong>homologação de acordo extrajudicial</strong>
+              (<span class="ref">art. 855-B, CLT</span>), permitindo à Justiça do Trabalho
+              homologar acordos firmados antes do ajuizamento das demandas trabalhistas — não
+              apenas no curso do processo.
+            </p>
+          </div>
+        </div>
+      </div>
 
-  <h2>1.6 Oralidade</h2>
+      <!-- 1.4 IRRECORRIBILIDADE DAS INTERLOCUTÓRIAS -->
+      <div class="card reveal">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">1.4</div>
+          <div class="card-head">
+            <span class="card-num">Celeridade processual</span>
+            <span class="card-title">Irrecorribilidade imediata das interlocutórias</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            Um dos princípios mais importantes do processo do trabalho, totalmente atrelado à
+            celeridade. Previsto no <span class="ref">art. 893, § 1º, CLT</span>: são incabíveis
+            recursos de decisões proferidas no <em>curso</em> do processo — a parte prejudicada
+            deve aguardar a decisão final para, se for o caso, recorrer.
+          </p>
+          <p>
+            Exemplo: se for requerida liminarmente a reintegração de um empregado e a decisão for
+            denegatória, a parte deve aguardar a sentença para interpor recurso ordinário.
+          </p>
 
-  <p>
-    O processo do trabalho valoriza a oralidade, permitindo a prática de diversos atos de forma oral,
-    como petição inicial, defesa, razões finais e protesto em audiência.
-  </p>
+          <div class="excecoes">
+            <div class="exc-head">Exceções ao princípio</div>
+            <div class="exc-item">
+              <div class="exc-ref">Art. 799, § 2º CLT</div>
+              <div class="exc-txt">Decisão interlocutória que reconhece incompetência absoluta da Justiça do Trabalho — admite-se recurso ordinário imediato.</div>
+            </div>
+            <div class="exc-item">
+              <div class="exc-ref">Súmula 214 TST</div>
+              <div class="exc-txt">
+                Três situações excepcionais: (a) decisão interlocutória do TRT em desacordo com entendimento do TST; (b) decisão de tribunal da qual cabe recurso interno; (c) decisão que decide incompetência territorial e determina remessa dos autos para Vara de outro TRT.
+              </div>
+            </div>
+            <div class="exc-item">
+              <div class="exc-ref">Art. 855-A, § 1º CLT</div>
+              <div class="exc-txt">Da decisão que acolhe ou rejeita o incidente de desconsideração da personalidade jurídica, quando proferida no processo de conhecimento, não cabe qualquer recurso por tratar-se de decisão interlocutória.</div>
+            </div>
+          </div>
 
-  <div class="box">
-    <ul>
-      <li>Petição inicial oral (art. 840, CLT);</li>
-      <li>Defesa oral (art. 847, CLT);</li>
-      <li>Razões finais orais (art. 850, CLT);</li>
-      <li>Protesto em audiência para evitar preclusão.</li>
-    </ul>
-  </div>
+          <div class="sumula" style="margin-top:12px;">
+            <strong>IN n. 39/2016, TST</strong>
+            O princípio da irrecorribilidade imediata das decisões interlocutórias se mantém
+            mesmo com todos os novos institutos criados pelo CPC/2015.
+          </div>
+        </div>
+      </div>
 
-  <div class="voltar">
-    <a href="../index.html">← Voltar ao índice da disciplina</a>
-  </div>
+      <!-- 1.5 JUS POSTULANDI -->
+      <div class="card reveal">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">1.5</div>
+          <div class="card-head">
+            <span class="card-num">Dispensa de advogado</span>
+            <span class="card-title">Jus postulandi</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            Previsto no <span class="ref">art. 791, CLT</span>: as partes podem ajuizar e
+            acompanhar suas ações sem necessidade de advogado. Os tribunais entendem que o
+            art. 791 foi recepcionado pela CF/88, não havendo conflito com o
+            <span class="ref">art. 133 da CF</span>.
+          </p>
+          <p>
+            O <em>jus postulandi</em> aplica-se às <strong>Varas do Trabalho</strong> e aos
+            <strong>Tribunais Regionais do Trabalho</strong>. Para recorrer ao TST é
+            necessária a contratação de advogado.
+          </p>
+
+          <div class="excecoes">
+            <div class="exc-head">Situações em que o advogado é indispensável — Súmula 425, TST</div>
+            <div class="exc-item">
+              <div class="exc-ref">MS</div>
+              <div class="exc-txt">Mandado de segurança</div>
+            </div>
+            <div class="exc-item">
+              <div class="exc-ref">Ação rescisória</div>
+              <div class="exc-txt">Desconstituição de sentença transitada em julgado</div>
+            </div>
+            <div class="exc-item">
+              <div class="exc-ref">Ação cautelar</div>
+              <div class="exc-txt">Medidas cautelares em geral</div>
+            </div>
+            <div class="exc-item">
+              <div class="exc-ref">Recursos ao TST</div>
+              <div class="exc-txt">Recursos dirigidos ao Tribunal Superior do Trabalho</div>
+            </div>
+          </div>
+
+          <div class="reforma" style="margin-top:12px;">
+            <span class="reforma-lbl">⚠ Reforma Trabalhista — Lei n. 13.467/2017</span>
+            <p>
+              Criou nova restrição ao <em>jus postulandi</em> na <strong>homologação de acordo
+              extrajudicial</strong> (<span class="ref">art. 855-B, CLT</span>): o acordo deve
+              ser assinado por advogado, e os advogados de cada parte não podem ser os mesmos —
+              cada parte deve estar representada por um advogado distinto.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1.6 ORALIDADE -->
+      <div class="card reveal">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">1.6</div>
+          <div class="card-head">
+            <span class="card-num">Celeridade e acessibilidade</span>
+            <span class="card-title">Oralidade</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            Muitos atos processuais podem ser realizados oralmente na Justiça do Trabalho —
+            forma encontrada de realizá-los com mais facilidade e rapidez, aumentando a
+            possibilidade de que as próprias partes, valendo-se do <em>jus postulandi</em>,
+            atuem sozinhas.
+          </p>
+
+          <div class="orais">
+            <div class="oral-item">
+              <span class="o-lbl">Petição inicial <span class="ref" style="text-transform:none;letter-spacing:0">art. 840, CLT</span></span>
+              <p>Pode ser escrita ou oral, por opção do autor.</p>
+            </div>
+            <div class="oral-item">
+              <span class="o-lbl">Defesa <span class="ref" style="text-transform:none;letter-spacing:0">art. 847, CLT</span></span>
+              <p>Será oral, em até <strong>20 minutos</strong>, na audiência.</p>
+            </div>
+            <div class="oral-item">
+              <span class="o-lbl">Razões finais <span class="ref" style="text-transform:none;letter-spacing:0">art. 850, CLT</span></span>
+              <p>Apresentadas oralmente, em até <strong>10 minutos</strong> para cada parte.</p>
+            </div>
+            <div class="oral-item">
+              <span class="o-lbl">Protesto em audiência</span>
+              <p>Manifestação oral de inconformismo com decisão interlocutória proferida em audiência, para evitar a preclusão. Não é recurso — é inclusão na ata de audiência.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /principios -->
+  </section>
+
+  <a class="back" href="../index.html">
+    <span class="arw">←</span>
+    <span>Voltar ao índice da disciplina</span>
+  </a>
 
 </div>
+
+<script>
+  (function(){
+    var items = document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window)){
+      items.forEach(function(el){ el.classList.add('in'); }); return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold:.08, rootMargin:'0px 0px -3% 0px' });
+    items.forEach(function(el, i){
+      el.style.transitionDelay = (i * 40) + 'ms';
+      io.observe(el);
+    });
+  })();
+
+  (function(){
+    var cards = document.querySelectorAll('.card');
+    cards.forEach(function(card){
+      var btn = card.querySelector('.card-btn');
+      btn.addEventListener('click', function(){
+        var isOpen = card.classList.contains('open');
+        cards.forEach(function(c){
+          c.classList.remove('open');
+          c.querySelector('.card-btn').setAttribute('aria-expanded','false');
+        });
+        if(!isOpen){
+          card.classList.add('open');
+          btn.setAttribute('aria-expanded','true');
+        }
+      });
+    });
+  })();
+</script>
 </body>
 </html>
