@@ -5,252 +5,850 @@
 <title>Partes e Procuradores</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
 <style>
   :root{
-    --bg:#f2f7ff;
-    --text:#0f172a;
-    --title:#1f4fd8;
-    --card:#ffffff;
-    --border:rgba(15,23,42,.15);
-    --shadow:0 8px 18px rgba(15,23,42,.08);
+    --ink:#1b2436;
+    --ink-soft:#414a5c;
+    --paper:#edece5;
+    --surface:#fbfaf7;
+    --accent:#7a2e37;
+    --accent-soft:#a2545f;
+    --iron:#8b8579;
+    --reform:#4a3a00;
+    --reform-bg:#fdf8e8;
+    --reform-border:#c9a227;
+    --line:rgba(27,36,54,.13);
+    --line-strong:rgba(27,36,54,.22);
+    --display:"Fraunces", Georgia, "Times New Roman", serif;
+    --body:"Spectral", Georgia, serif;
+    --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
   }
 
-  *{ box-sizing:border-box; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
 
   body{
-    margin:0;
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    line-height:1.7;
-    font-size:18px;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:19px;
+    line-height:1.78;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
   }
 
-  .wrap{
-    max-width:900px;
-    margin:auto;
-    padding:18px 16px 40px;
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0 0 auto 0;
+    height:4px;
+    background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 34%,var(--ink) 34%,var(--ink) 100%);
+    z-index:50;
   }
 
-  /* ===== TÍTULO + SLIDES ===== */
-  .title-row{
+  .wrap{ max-width:760px; margin:0 auto; padding:0 22px 72px; }
+
+  /* ===== CABEÇALHO ===== */
+  .masthead{
+    padding:56px 0 30px;
+    border-bottom:1px solid var(--line-strong);
+    animation:rise .7s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:600;
+    margin-bottom:20px;
     display:flex;
-    justify-content:space-between;
     align-items:center;
-    gap:16px;
+    gap:12px;
     flex-wrap:wrap;
   }
+  .eyebrow::before{ content:""; width:26px; height:2px; background:var(--accent); display:inline-block; }
+  .eyebrow .dot{ color:var(--line-strong); }
 
+  .title-row{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:28px;
+    flex-wrap:wrap;
+  }
   h1{
-    color:var(--title);
-    font-size:28px;
-    margin:10px 0 16px;
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(2.5rem,7vw,4.1rem);
+    line-height:1.02;
+    letter-spacing:-.015em;
+    max-width:13ch;
+  }
+  h1 .art{
+    display:block;
+    font-size:.42em;
+    font-weight:600;
+    letter-spacing:.02em;
+    color:var(--accent);
+    font-family:var(--mono);
+    text-transform:uppercase;
+    margin-bottom:.5em;
+  }
+  .slides-btn{
+    flex-shrink:0;
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    background:var(--ink);
+    color:#f4f2ec;
+    border-radius:4px;
+    padding:13px 18px;
+    font-family:var(--mono);
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    box-shadow:0 8px 22px -12px rgba(27,36,54,.7);
+    transition:transform .25s cubic-bezier(.2,.7,.2,1), box-shadow .25s, background .25s;
+  }
+  .slides-btn .ico{ font-size:16px; line-height:1; transform:translateY(-1px); }
+  .slides-btn .arw{ transition:transform .25s; }
+  .slides-btn:hover{ background:var(--accent); transform:translateY(-2px); box-shadow:0 14px 28px -12px rgba(122,46,55,.75); }
+  .slides-btn:hover .arw{ transform:translateX(4px); }
+  .slides-btn:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:3px; }
+
+  /* ===== SEÇÕES ===== */
+  .sec-head{
+    display:flex;
+    gap:16px;
+    align-items:baseline;
+    margin:46px 0 14px;
+    padding-top:26px;
+    border-top:1px solid var(--line);
+  }
+  .sec-head .num{
+    font-family:var(--mono);
+    font-size:15px;
+    font-weight:600;
+    color:var(--accent);
+    letter-spacing:.02em;
+    flex-shrink:0;
+    padding-top:.35em;
+  }
+  h2{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(1.6rem,4vw,2rem);
+    line-height:1.14;
+    letter-spacing:-.01em;
+    color:var(--ink);
+  }
+  p{ margin-bottom:16px; }
+  .body-text{ color:var(--ink-soft); }
+
+  /* ref legal */
+  .ref{
+    font-family:var(--mono);
+    font-size:.8em;
+    color:var(--iron);
+    background:rgba(139,133,121,.12);
+    padding:2px 7px;
+    border-radius:3px;
+    white-space:nowrap;
   }
 
-  .slides-btn{
+  /* ===== TRÊS CAPACIDADES (assinatura) ===== */
+  .capacidades{
+    margin:18px 0 6px;
     display:flex;
     flex-direction:column;
+    gap:3px;
+  }
+  .cap{
+    display:grid;
+    grid-template-columns:52px 1fr;
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+    background:var(--surface);
+  }
+  .cap-num{
+    display:flex;
     align-items:center;
     justify-content:center;
-    text-decoration:none;
-    background:#ffffff;
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:10px 14px;
-    box-shadow:var(--shadow);
-    min-width:90px;
-  }
-
-  .slides-icon{
-    font-size:28px;
-    line-height:1;
-  }
-
-  .slides-text{
-    margin-top:4px;
-    font-weight:800;
+    font-family:var(--mono);
+    font-weight:700;
     font-size:13px;
-    color:#0f172a;
+    color:var(--accent);
+    background:rgba(122,46,55,.06);
+    border-right:1px solid var(--line);
+    padding:6px;
+    text-align:center;
+    line-height:1.3;
+  }
+  .cap-body{ padding:16px 20px; }
+  .cap-titulo{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:1.08rem;
+    color:var(--ink);
+    display:block;
+    margin-bottom:8px;
+  }
+  .cap-body p{ font-size:.93em; color:var(--ink-soft); margin:0; line-height:1.7; }
+
+  /* ===== CARDS EXPANSÍVEIS ===== */
+  .cards{
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+  }
+  .card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+    transition:box-shadow .2s;
+  }
+  .card:hover{ box-shadow:0 4px 18px -8px rgba(27,36,54,.2); }
+
+  .card-btn{
+    width:100%;
+    background:none;
+    border:none;
+    cursor:pointer;
+    display:grid;
+    grid-template-columns:52px 1fr 34px;
+    align-items:center;
+    padding:0;
+    text-align:left;
+    color:inherit;
+  }
+  .card-btn:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:-3px; border-radius:5px; }
+
+  .card-icon{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:60px;
+    height:100%;
+    border-right:1px solid var(--line);
+    font-family:var(--mono);
+    font-weight:600;
+    font-size:13px;
+    color:var(--accent);
+    background:rgba(122,46,55,.05);
+    letter-spacing:.02em;
+    text-align:center;
+    padding:4px;
+    line-height:1.3;
+  }
+  .card-head{ padding:14px 18px; }
+  .card-num{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--iron);
+    display:block;
+    margin-bottom:3px;
+  }
+  .card-title{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:1.08rem;
+    line-height:1.2;
+    color:var(--ink);
+  }
+  .card-chevron{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding-right:16px;
+    color:var(--iron);
+    font-size:13px;
+    transition:transform .3s cubic-bezier(.2,.7,.2,1), color .2s;
+  }
+  .card.open .card-chevron{ transform:rotate(180deg); color:var(--accent); }
+
+  .card-body{
+    display:none;
+    padding:18px 22px 22px;
+    border-top:1px solid var(--line);
+  }
+  .card.open .card-body{ display:block; }
+  .card-body > p{ color:var(--ink-soft); font-size:.93em; line-height:1.72; }
+
+  /* sub-bloco */
+  .sub{
+    margin:12px 0 6px;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:5px;
+    padding:13px 17px;
+  }
+  .sub-lbl{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:block;
+    margin-bottom:9px;
+  }
+  .sub p{ font-size:.91em; color:var(--ink-soft); margin-bottom:8px; line-height:1.65; }
+  .sub p:last-child{ margin:0; }
+
+  /* súmula */
+  .sumula{
+    margin:10px 0 4px;
+    padding:11px 15px;
+    border-left:2px solid var(--iron);
+    background:var(--paper);
+    border-radius:0 4px 4px 0;
+    font-size:.88em;
+    color:var(--ink-soft);
+    line-height:1.6;
+  }
+  .sumula strong{
+    font-style:normal;
+    font-family:var(--mono);
+    font-size:.86em;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--iron);
+    display:block;
+    margin-bottom:4px;
   }
 
-  /* ===== TEXTO ===== */
-  h2{
-    font-size:22px;
-    margin:30px 0 10px;
+  /* lista de itens */
+  .item-list{
+    margin:10px 0 4px;
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+  }
+  .item-row{
+    display:grid;
+    grid-template-columns:22px 1fr;
+    gap:10px;
+    font-size:.9em;
+    color:var(--ink-soft);
+    line-height:1.6;
+    padding:6px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .item-row:last-child{ border-bottom:none; }
+  .item-row .bul{ color:var(--accent); font-family:var(--mono); font-size:.85em; padding-top:2px; }
+
+  /* honorários — faixa percentual */
+  .faixa{
+    margin:12px 0 8px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:3px;
+  }
+  .faixa-col{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:5px;
+    padding:14px 16px;
+    text-align:center;
+  }
+  .faixa-col .f-pct{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:2rem;
+    color:var(--accent);
+    line-height:1;
+    display:block;
+  }
+  .faixa-col .f-lbl{
+    font-family:var(--mono);
+    font-size:10.5px;
+    font-weight:600;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--iron);
+    display:block;
+    margin-top:5px;
+  }
+  .faixa-sep{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:var(--mono);
+    font-size:1.2rem;
+    color:var(--iron);
+    align-self:center;
+    grid-column:1/-1;
+    display:none; /* ocultado — usamos o grid 2-col */
   }
 
-  h3{
-    font-size:20px;
-    margin:24px 0 8px;
+  /* reforma */
+  .reforma{
+    margin:12px 0 4px;
+    padding:12px 16px;
+    background:var(--reform-bg);
+    border-left:3px solid var(--reform-border);
+    border-radius:0 5px 5px 0;
+    font-size:.9em;
+    color:var(--reform);
+    line-height:1.65;
   }
-
-  p{
-    margin:0 0 14px;
-    text-align:justify;
+  .reforma-lbl{
+    font-family:var(--mono);
+    font-size:10.5px;
+    font-weight:600;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    margin-bottom:7px;
+    display:block;
+    color:var(--reform-border);
   }
+  .reforma p{ margin-bottom:8px; color:var(--reform); }
+  .reforma p:last-child{ margin:0; }
 
-  .box{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:16px;
-    margin:18px 0;
-    box-shadow:var(--shadow);
+  /* distinção gratuita × gratuidade */
+  .distincao{
+    margin:18px 0 6px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:3px;
   }
-
-  ul{
-    margin:10px 0 14px 22px;
+  .dist-col{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:18px 20px;
   }
-
-  li{
+  .dist-col .d-lbl{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.13em;
+    text-transform:uppercase;
     margin-bottom:10px;
+    display:block;
   }
-
-  .marker{
-    font-weight:900;
-  }
+  .dist-col.aj .d-lbl{ color:var(--iron); }
+  .dist-col.bg .d-lbl{ color:var(--accent); }
+  .dist-col p{ font-size:.91em; color:var(--ink-soft); margin:0; line-height:1.65; }
+  .dist-col p + p{ margin-top:8px; }
 
   /* ===== BOTÃO VOLTAR ===== */
-  .voltar{
-    margin-top:32px;
-  }
-
-  .voltar a{
-    display:block;
-    text-align:center;
-    background:#ffffff;
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:16px;
-    font-weight:800;
+  .back{
+    margin-top:56px;
+    display:flex;
+    align-items:center;
+    gap:14px;
     text-decoration:none;
-    color:#0f172a;
-    box-shadow:var(--shadow);
+    color:var(--ink);
+    background:var(--surface);
+    border:1px solid var(--line-strong);
+    border-radius:6px;
+    padding:20px 22px;
+    font-family:var(--mono);
+    font-size:14px;
+    letter-spacing:.04em;
+    transition:border-color .25s, transform .25s;
+  }
+  .back .arw{ color:var(--accent); transition:transform .25s; font-size:18px; }
+  .back:hover{ border-color:var(--accent); transform:translateY(-2px); }
+  .back:hover .arw{ transform:translateX(-4px); }
+  .back:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:3px; }
+
+  @keyframes rise{
+    from{ opacity:0; transform:translateY(18px); }
+    to{ opacity:1; transform:none; }
+  }
+  .reveal{ opacity:0; transform:translateY(14px); }
+  .reveal.in{
+    opacity:1; transform:none;
+    transition:opacity .5s ease, transform .5s cubic-bezier(.2,.7,.2,1);
   }
 
-  @media (max-width:480px){
-    body{ font-size:17px; }
-    h1{ font-size:24px; }
-    h2{ font-size:21px; }
-    h3{ font-size:19px; }
+  @media (max-width:560px){
+    body{ font-size:17.5px; }
+    .masthead{ padding:40px 0 24px; }
+    .title-row{ align-items:stretch; }
+    .slides-btn{ width:100%; justify-content:center; }
+    .card-btn{ grid-template-columns:44px 1fr 30px; }
+    .faixa, .distincao{ grid-template-columns:1fr; }
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{ animation:none !important; scroll-behavior:auto; }
+    .reveal{ opacity:1; transform:none; }
+    .reveal.in{ transition:none; }
+    .card-chevron{ transition:none; }
   }
 </style>
 </head>
-
 <body>
 <div class="wrap">
 
-  <div class="title-row">
-    <h1>4. Partes e Procuradores</h1>
-
-    <a class="slides-btn"
-       href="https://drive.google.com/file/d/1Dx_ZX5ywsvkGyHuwFUsWv9n9Nb0R6rrD/view?usp=sharing"
-       target="_blank"
-       rel="noopener">
-      <div class="slides-icon">🖼️</div>
-      <div class="slides-text">Slides</div>
-    </a>
-  </div>
-
-  <h2>4.1 Capacidade de ser parte, processual e postulatória</h2>
-
-  <p>
-    Diferenciar as capacidades de ser parte, processual e postulatória é de grande relevância para o
-    Exame da OAB.
-  </p>
-
-  <div class="box">
-    <p><span class="marker">■</span> <strong>Capacidade de ser parte:</strong> relaciona-se à personalidade
-    jurídica, que é a aptidão para adquirir direitos e contrair obrigações. A pessoa física adquire
-    personalidade com o nascimento com vida (art. 2º do CC) e a pessoa jurídica com a inscrição de seus
-    atos constitutivos (art. 45 do CC). Assim, mesmo um menor de 14 anos pode ser parte em ação trabalhista,
-    como no contrato de aprendizagem.</p>
-
-    <p><span class="marker">■</span> <strong>Capacidade processual:</strong> relaciona-se à capacidade civil
-    (arts. 3º e 4º do CC). No Direito do Trabalho, é adquirida aos 18 anos (art. 402 da CLT). O menor,
-    embora possa ser parte, não possui capacidade processual e deve ser representado ou assistido
-    (arts. 70 e 71 do CPC/2015).</p>
-
-    <p><span class="marker">■</span> <strong>Capacidade postulatória:</strong> é a aptidão para postular em
-    juízo. Em regra, é atribuída ao advogado (art. 133 da CF). No processo do trabalho, contudo, admite-se
-    o jus postulandi, permitindo que as partes postulem pessoalmente em determinadas hipóteses.</p>
-  </div>
-
-  <h2>4.2 Representação por advogado</h2>
-
-  <p>
-    No processo do trabalho, a representação por advogado não é obrigatória em todas as situações.
-    O art. 791 da CLT autoriza as partes a postularem em juízo sem advogado (jus postulandi).
-  </p>
-
-  <div class="box">
-    <p>
-      O TST restringiu o jus postulandi por meio da <strong>Súmula 425</strong>, tornando obrigatória
-      a atuação de advogado nas seguintes hipóteses:
+  <!-- CABEÇALHO -->
+  <header class="masthead">
+    <p class="eyebrow">
+      Direito Processual do Trabalho
+      <span class="dot">·</span> Unidade 2
+      <span class="dot">·</span> Sujeitos processuais
     </p>
-    <ul>
-      <li>mandado de segurança;</li>
-      <li>ação rescisória;</li>
-      <li>ação cautelar;</li>
-      <li>recursos dirigidos ao TST.</li>
-    </ul>
-  </div>
+    <div class="title-row">
+      <h1>
+        <span class="art">Item 4</span>
+        Partes e Procuradores
+      </h1>
+      <a class="slides-btn"
+         href="https://drive.google.com/file/d/1Dx_ZX5ywsvkGyHuwFUsWv9n9Nb0R6rrD/view?usp=sharing"
+         target="_blank" rel="noopener">
+        <span class="ico">▮</span>
+        <span>Slides da aula</span>
+        <span class="arw">→</span>
+      </a>
+    </div>
+  </header>
 
-  <p>
-    A procuração é o instrumento que confere poderes ao advogado. Pode ser expressa ou tácita,
-    sendo esta última reconhecida quando o nome do advogado consta na ata de audiência
-    (<strong>Súmula 383 do TST</strong>).
-  </p>
+  <!-- § 4.1 CAPACIDADES -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 4.1</span>
+      <h2>Capacidade de ser parte, processual e postulatória</h2>
+    </div>
 
-  <h2>4.3 Honorários advocatícios de sucumbência</h2>
-
-  <p>
-    A Reforma Trabalhista (Lei n. 13.467/2017) introduziu o sistema da mera sucumbência no processo
-    do trabalho, por meio do art. 791-A da CLT.
-  </p>
-
-  <div class="box">
-    <p>
-      Os honorários de sucumbência variam de <strong>5% a 15%</strong> do valor da condenação,
-      do proveito econômico obtido ou do valor atualizado da causa, considerando:
+    <p class="body-text reveal">
+      Diferenciar as três capacidades é de grande relevância para o Exame da OAB:
     </p>
-    <ul>
-      <li>grau de zelo do profissional;</li>
-      <li>lugar da prestação do serviço;</li>
-      <li>natureza e importância da causa;</li>
-      <li>trabalho realizado e tempo exigido.</li>
-    </ul>
-  </div>
 
-  <p>
-    O STF declarou inconstitucional a cobrança de honorários do beneficiário da justiça gratuita
-    (ADI 5.766), garantindo o acesso à Justiça.
-  </p>
+    <div class="capacidades reveal">
+      <div class="cap">
+        <div class="cap-num">Ser<br>parte</div>
+        <div class="cap-body">
+          <span class="cap-titulo">Capacidade de ser parte</span>
+          <p>
+            Relaciona-se à personalidade jurídica — aptidão para aquisição de direitos e obrigações.
+            A pessoa física adquire personalidade com o nascimento com vida
+            (<span class="ref">art. 2º, CC</span>); a pessoa jurídica, com a inscrição de seus atos
+            constitutivos (<span class="ref">art. 45, CC</span>).
+          </p>
+          <p>
+            Um menor de 14 anos, embora absolutamente incapaz no direito civil, pode ser
+            <em>parte</em> em ação trabalhista — por exemplo, como autor em ação decorrente de
+            contrato de aprendizagem.
+          </p>
+        </div>
+      </div>
 
-  <p>
-    Conforme a IN n. 41/2018 do TST, os honorários de sucumbência aplicam-se apenas aos processos
-    ajuizados após 11/11/2017.
-  </p>
+      <div class="cap">
+        <div class="cap-num">Proces-<br>sual</div>
+        <div class="cap-body">
+          <span class="cap-titulo">Capacidade processual</span>
+          <p>
+            Relaciona-se à capacidade civil (<span class="ref">arts. 3º e 4º, CC</span>). No Direito
+            do Trabalho, é adquirida aos <strong>18 anos</strong>
+            (<span class="ref">art. 402, CLT</span>).
+          </p>
+          <p>
+            O menor de 14 anos, embora possa ser parte, não possui capacidade processual — deve ser
+            representado ou assistido por pais, tutores ou curadores
+            (<span class="ref">arts. 70 e 71, CPC/2015</span>).
+          </p>
+        </div>
+      </div>
 
-  <h2>4.4 Assistência judiciária gratuita</h2>
+      <div class="cap">
+        <div class="cap-num">Postu-<br>latória</div>
+        <div class="cap-body">
+          <span class="cap-titulo">Capacidade postulatória</span>
+          <p>
+            Aptidão para formular pretensões, apresentar defesa e acompanhar o processo judicial.
+            Em regra, é atribuída ao advogado (<span class="ref">art. 133, CF</span>).
+          </p>
+          <p>
+            No processo do trabalho, o advogado é dispensável na maioria das ações, por aplicação do
+            <em>jus postulandi</em>, que atribui às partes a possibilidade de postular pessoalmente
+            em juízo.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <p>
-    Prevista no art. 14 da Lei n. 5.584/70, a assistência judiciária gratuita é prestada pelo
-    sindicato, independentemente de filiação do trabalhador, desde que preenchidos os requisitos legais.
-  </p>
+  <!-- § 4.2–4.5 CARDS -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 4.2–4.5</span>
+      <h2>Representação e benefícios processuais</h2>
+    </div>
 
-  <h2>4.5 Benefício da justiça gratuita</h2>
+    <div class="cards">
 
-  <p>
-    Diferentemente da assistência judiciária gratuita, o benefício da justiça gratuita pode ser
-    concedido a qualquer parte que comprove insuficiência econômica, inclusive de ofício pelo juiz,
-    conforme art. 790, §§ 3º e 4º, da CLT.
-  </p>
+      <!-- 4.2 ADVOGADO -->
+      <div class="card reveal">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">4.2</div>
+          <div class="card-head">
+            <span class="card-num">Jus postulandi</span>
+            <span class="card-title">Representação por advogado</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            No processo do trabalho, a representação por advogado é facultativa na imensa maioria
+            das situações. O <span class="ref">art. 791, CLT</span> prevê que as partes poderão
+            postular em juízo sem advogado, acompanhando as suas reclamações até o final
+            (<em>jus postulandi</em>).
+          </p>
+          <p>
+            O <em>jus postulandi</em> se aplica às <strong>Varas do Trabalho</strong> e aos
+            <strong>Tribunais Regionais do Trabalho</strong>. A chegada ao TST — geralmente por
+            Recurso de Revista (<span class="ref">art. 896, CLT</span>) — depende de advogado
+            regularmente inscrito na OAB.
+          </p>
 
-  <div class="voltar">
-    <a href="../index.html">← Voltar ao índice da disciplina</a>
-  </div>
+          <div class="sub">
+            <span class="sub-lbl">Hipóteses em que o advogado é obrigatório — Súmula 425, TST</span>
+            <div class="item-list">
+              <div class="item-row"><span class="bul">▸</span><span>Mandado de segurança</span></div>
+              <div class="item-row"><span class="bul">▸</span><span>Ação rescisória</span></div>
+              <div class="item-row"><span class="bul">▸</span><span>Ação cautelar</span></div>
+              <div class="item-row"><span class="bul">▸</span><span>Recursos dirigidos ao TST</span></div>
+            </div>
+            <p style="margin-top:10px; font-size:.9em; color:var(--ink-soft);">
+              Nas demais hipóteses — inclusive no dissídio coletivo — a contratação do advogado
+              continua sendo uma opção das partes.
+            </p>
+          </div>
+
+          <div class="sub" style="margin-top:10px;">
+            <span class="sub-lbl">Procuração</span>
+            <p>
+              A procuração é o instrumento que confere poderes ao advogado. Pode ser
+              <strong>expressa</strong> (documento em papel) ou <strong>tácita</strong>
+              (<span class="ref">Súmula 383, TST</span>): nesta última, os poderes de representação
+              surgem com a inclusão do nome do advogado na ata de audiência.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4.3 HONORÁRIOS -->
+      <div class="card reveal">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">4.3</div>
+          <div class="card-head">
+            <span class="card-num">Reforma Trabalhista — Lei n. 13.467/2017</span>
+            <span class="card-title">Honorários advocatícios de sucumbência</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            A Reforma Trabalhista abandonou o sistema anterior e adotou o sistema da
+            <strong>mera sucumbência</strong> ("perdeu-pagou"), por meio do
+            <span class="ref">art. 791-A, CLT</span>, igualando o processo do trabalho ao processo
+            civil. Os honorários são devidos ao advogado da parte vencedora, ainda que atue em
+            causa própria.
+          </p>
+
+          <div class="faixa">
+            <div class="faixa-col">
+              <span class="f-pct">5%</span>
+              <span class="f-lbl">Mínimo</span>
+            </div>
+            <div class="faixa-col">
+              <span class="f-pct">15%</span>
+              <span class="f-lbl">Máximo</span>
+            </div>
+          </div>
+          <p style="font-size:.88em; color:var(--iron); margin-top:4px; margin-bottom:14px;">
+            Percentual sobre o valor da liquidação, do proveito econômico obtido ou do valor
+            atualizado da causa.
+          </p>
+
+          <div class="sub">
+            <span class="sub-lbl">Critérios de fixação — § 2º, art. 791-A, CLT</span>
+            <div class="item-list">
+              <div class="item-row"><span class="bul">▸</span><span>Grau de zelo do profissional</span></div>
+              <div class="item-row"><span class="bul">▸</span><span>Lugar da prestação dos serviços</span></div>
+              <div class="item-row"><span class="bul">▸</span><span>Natureza e importância da causa</span></div>
+              <div class="item-row"><span class="bul">▸</span><span>Trabalho realizado e tempo exigido</span></div>
+            </div>
+          </div>
+
+          <div class="sub" style="margin-top:10px;">
+            <span class="sub-lbl">Hipóteses de aplicação</span>
+            <p>Também devidos: nas ações contra a <strong>Fazenda Pública</strong>; quando a parte estiver <strong>assistida ou substituída pelo Sindicato</strong> (<span class="ref">§ 1º</span>); e na <strong>reconvenção</strong>, por possuir natureza jurídica de ação (<span class="ref">§ 5º</span>).</p>
+          </div>
+
+          <div class="sumula" style="margin-top:12px;">
+            <strong>ADI n. 5.766 — STF (2021)</strong>
+            O beneficiário da justiça gratuita não será condenado ao pagamento de honorários
+            advocatícios de sucumbência — o <span class="ref">art. 791-A, § 4º, CLT</span> foi
+            declarado inconstitucional por conflitar com o princípio do acesso à Justiça.
+          </div>
+
+          <div class="reforma" style="margin-top:12px;">
+            <span class="reforma-lbl">⚠ Vigência — IN n. 41/2018, TST</span>
+            <p>
+              A condenação ao pagamento de honorários advocatícios de sucumbência somente pode
+              ocorrer nos processos ajuizados após <strong>11-11-2017</strong> (data de entrada em
+              vigor da Reforma Trabalhista).
+            </p>
+            <p>
+              Com a Reforma, os honorários deixaram de ser devidos apenas ao Sindicato e passaram
+              a ser devidos também aos advogados particulares.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4.4 ASSISTÊNCIA JUDICIÁRIA -->
+      <div class="card reveal">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">4.4</div>
+          <div class="card-head">
+            <span class="card-num">Lei n. 5.584/70</span>
+            <span class="card-title">Assistência judiciária gratuita</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            Prevista no <span class="ref">art. 14, Lei n. 5.584/70</span>, é prestada pelo
+            <strong>sindicato</strong> — independentemente de filiação do trabalhador, pois o
+            benefício é destinado a "todo aquele que perceber salário igual ou inferior ao dobro do
+            mínimo legal".
+          </p>
+          <p>
+            Como consequências: isenção das custas processuais e condenação ao pagamento de
+            honorários de sucumbência quando o empregado, além de assistido pelo sindicato, receba
+            até <strong>dois salários mínimos</strong>. Caso receba quantia superior mas não tenha
+            condições de arcar com os custos, deverá firmar declaração neste sentido.
+          </p>
+
+          <div class="sumula">
+            <strong>Atenção — distinção essencial</strong>
+            A assistência judiciária gratuita (Lei n. 5.584/70) e o benefício da justiça gratuita
+            possuem nomes parecidos mas requisitos diferentes — ver § 4.5.
+          </div>
+        </div>
+      </div>
+
+      <!-- 4.5 JUSTIÇA GRATUITA -->
+      <div class="card reveal">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">4.5</div>
+          <div class="card-head">
+            <span class="card-num">Art. 790, §§ 3º e 4º, CLT</span>
+            <span class="card-title">Benefício da justiça gratuita</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            Diferentemente da assistência judiciária gratuita (prestada exclusivamente pelo
+            Sindicato), o benefício da justiça gratuita pode ser concedido a qualquer parte —
+            inclusive representadas por advogado particular ou que se valham do <em>jus
+            postulandi</em> — que não tenham condições financeiras de arcar com os custos do
+            processo sem prejuízo de sua subsistência.
+          </p>
+
+          <div class="sub">
+            <span class="sub-lbl">Requisito — fragilidade econômica</span>
+            <p><strong>Presumida</strong> para quem receba até <strong>40% do limite dos benefícios pagos pelo RGPS</strong>.</p>
+            <p><strong>Comprovada</strong> por declaração de pobreza para quem receba quantia superior ao limite acima.</p>
+          </div>
+
+          <div class="sub" style="margin-top:10px;">
+            <span class="sub-lbl">Concessão</span>
+            <p>
+              Pode se dar <strong>de ofício</strong> (pelo próprio magistrado que perceba a
+              impossibilidade financeira da parte) ou <strong>a requerimento</strong>, a qualquer
+              tempo ou grau de jurisdição — inclusive em grau recursal, no TRT ou no TST.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /cards -->
+
+    <!-- COMPARATIVO FINAL -->
+    <div class="sec-head reveal" style="margin-top:32px;">
+      <span class="num">Síntese</span>
+      <h2>Assistência judiciária × benefício da justiça gratuita</h2>
+    </div>
+
+    <div class="distincao reveal">
+      <div class="dist-col aj">
+        <span class="d-lbl">Assistência judiciária gratuita</span>
+        <p><strong>Base:</strong> art. 14, Lei n. 5.584/70</p>
+        <p><strong>Prestada por:</strong> Sindicato</p>
+        <p><strong>Filiação:</strong> não exigida</p>
+        <p><strong>Limite de renda:</strong> até 2 salários mínimos (ou declaração de hipossuficiência)</p>
+        <p><strong>Efeito:</strong> isenção de custas + honorários de sucumbência</p>
+      </div>
+      <div class="dist-col bg">
+        <span class="d-lbl">Benefício da justiça gratuita</span>
+        <p><strong>Base:</strong> art. 790, §§ 3º e 4º, CLT</p>
+        <p><strong>Concedido por:</strong> juiz (de ofício ou a requerimento)</p>
+        <p><strong>Quem pode pedir:</strong> qualquer parte (com ou sem advogado)</p>
+        <p><strong>Limite de renda:</strong> até 40% do teto do RGPS (presumido) ou declaração</p>
+        <p><strong>Efeito:</strong> isenção de custas + vedação à cobrança de honorários (ADI 5.766)</p>
+      </div>
+    </div>
+  </section>
+
+  <a class="back" href="../index.html">
+    <span class="arw">←</span>
+    <span>Voltar ao índice da disciplina</span>
+  </a>
 
 </div>
+
+<script>
+  (function(){
+    var items = document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window)){
+      items.forEach(function(el){ el.classList.add('in'); }); return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold:.08, rootMargin:'0px 0px -3% 0px' });
+    items.forEach(function(el, i){
+      el.style.transitionDelay = (i * 40) + 'ms';
+      io.observe(el);
+    });
+  })();
+
+  (function(){
+    var cards = document.querySelectorAll('.card');
+    cards.forEach(function(card){
+      var btn = card.querySelector('.card-btn');
+      btn.addEventListener('click', function(){
+        var isOpen = card.classList.contains('open');
+        cards.forEach(function(c){
+          c.classList.remove('open');
+          c.querySelector('.card-btn').setAttribute('aria-expanded','false');
+        });
+        if(!isOpen){
+          card.classList.add('open');
+          btn.setAttribute('aria-expanded','true');
+        }
+      });
+    });
+  })();
+</script>
 </body>
 </html>
