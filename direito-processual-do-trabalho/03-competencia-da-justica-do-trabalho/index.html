@@ -5,264 +5,860 @@
 <title>Competência da Justiça do Trabalho</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
 <style>
   :root{
-    --bg:#f2f7ff;
-    --text:#0f172a;
-    --title:#1f4fd8;
-    --card:#ffffff;
-    --border:rgba(15,23,42,.15);
-    --shadow:0 8px 18px rgba(15,23,42,.08);
+    --ink:#1b2436;
+    --ink-soft:#414a5c;
+    --paper:#edece5;
+    --surface:#fbfaf7;
+    --accent:#7a2e37;
+    --accent-soft:#a2545f;
+    --iron:#8b8579;
+    --line:rgba(27,36,54,.13);
+    --line-strong:rgba(27,36,54,.22);
+    --display:"Fraunces", Georgia, "Times New Roman", serif;
+    --body:"Spectral", Georgia, serif;
+    --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
   }
-  *{ box-sizing:border-box; }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
 
   body{
-    margin:0;
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    line-height:1.7;
-    font-size:18px;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:19px;
+    line-height:1.78;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
   }
 
-  .wrap{
-    max-width:900px;
-    margin:auto;
-    padding:18px 16px 40px;
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0 0 auto 0;
+    height:4px;
+    background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 34%,var(--ink) 34%,var(--ink) 100%);
+    z-index:50;
   }
 
-  /* ===== TÍTULO + SLIDES ===== */
-  .title-row{
+  .wrap{ max-width:760px; margin:0 auto; padding:0 22px 72px; }
+
+  /* ===== CABEÇALHO ===== */
+  .masthead{
+    padding:56px 0 30px;
+    border-bottom:1px solid var(--line-strong);
+    animation:rise .7s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:600;
+    margin-bottom:20px;
     display:flex;
-    justify-content:space-between;
     align-items:center;
-    gap:16px;
+    gap:12px;
     flex-wrap:wrap;
   }
+  .eyebrow::before{ content:""; width:26px; height:2px; background:var(--accent); display:inline-block; }
+  .eyebrow .dot{ color:var(--line-strong); }
 
+  .title-row{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:28px;
+    flex-wrap:wrap;
+  }
   h1{
-    color:var(--title);
-    font-size:28px;
-    margin:10px 0 16px;
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(2.3rem,6.5vw,3.8rem);
+    line-height:1.04;
+    letter-spacing:-.015em;
+    max-width:14ch;
+  }
+  h1 .art{
+    display:block;
+    font-size:.4em;
+    font-weight:600;
+    letter-spacing:.02em;
+    color:var(--accent);
+    font-family:var(--mono);
+    text-transform:uppercase;
+    margin-bottom:.5em;
   }
 
   .slides-btn{
+    flex-shrink:0;
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    background:var(--ink);
+    color:#f4f2ec;
+    border-radius:4px;
+    padding:13px 18px;
+    font-family:var(--mono);
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    box-shadow:0 8px 22px -12px rgba(27,36,54,.7);
+    transition:transform .25s cubic-bezier(.2,.7,.2,1), box-shadow .25s, background .25s;
+  }
+  .slides-btn .ico{ font-size:16px; line-height:1; transform:translateY(-1px); }
+  .slides-btn .arw{ transition:transform .25s; }
+  .slides-btn:hover{ background:var(--accent); transform:translateY(-2px); box-shadow:0 14px 28px -12px rgba(122,46,55,.75); }
+  .slides-btn:hover .arw{ transform:translateX(4px); }
+  .slides-btn:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:3px; }
+
+  /* ===== VERBETE ===== */
+  .verbete{
+    margin:44px 0 8px;
+    padding:6px 0 6px 30px;
+    border-left:3px solid var(--accent);
+    animation:rise .7s .1s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .verbete .tag{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:block;
+    margin-bottom:14px;
+  }
+  .verbete p{
+    font-family:var(--display);
+    font-weight:400;
+    font-size:clamp(1.2rem,3vw,1.5rem);
+    line-height:1.45;
+    letter-spacing:-.01em;
+    color:var(--ink);
+    margin:0;
+  }
+
+  /* ===== SEÇÕES ===== */
+  .sec-head{
+    display:flex;
+    gap:16px;
+    align-items:baseline;
+    margin:46px 0 14px;
+    padding-top:26px;
+    border-top:1px solid var(--line);
+  }
+  .sec-head .num{
+    font-family:var(--mono);
+    font-size:15px;
+    font-weight:600;
+    color:var(--accent);
+    letter-spacing:.02em;
+    flex-shrink:0;
+    padding-top:.35em;
+  }
+  h2{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(1.6rem,4vw,2rem);
+    line-height:1.14;
+    letter-spacing:-.01em;
+    color:var(--ink);
+  }
+  p{ margin-bottom:16px; }
+  .body-text{ color:var(--ink-soft); }
+
+  /* ref legal */
+  .ref{
+    font-family:var(--mono);
+    font-size:.8em;
+    color:var(--iron);
+    background:rgba(139,133,121,.12);
+    padding:2px 7px;
+    border-radius:3px;
+    white-space:nowrap;
+  }
+
+  /* ===== CARDS DOS INCISOS ===== */
+  .incisos{
     display:flex;
     flex-direction:column;
+    gap:3px;
+  }
+  .card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+    transition:box-shadow .2s;
+  }
+  .card:hover{ box-shadow:0 4px 18px -8px rgba(27,36,54,.2); }
+
+  .card-btn{
+    width:100%;
+    background:none;
+    border:none;
+    cursor:pointer;
+    display:grid;
+    grid-template-columns:52px 1fr 34px;
+    align-items:center;
+    padding:0;
+    text-align:left;
+    color:inherit;
+  }
+  .card-btn:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:-3px; border-radius:5px; }
+
+  .card-icon{
+    display:flex;
     align-items:center;
     justify-content:center;
-    text-decoration:none;
-    background:#ffffff;
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:10px 14px;
-    box-shadow:var(--shadow);
-    min-width:90px;
-  }
-  .slides-icon{ font-size:28px; line-height:1; }
-  .slides-text{
-    margin-top:4px;
-    font-weight:800;
+    min-height:60px;
+    height:100%;
+    border-right:1px solid var(--line);
+    font-family:var(--mono);
+    font-weight:700;
     font-size:13px;
-    color:#0f172a;
+    color:var(--accent);
+    background:rgba(122,46,55,.05);
+    letter-spacing:.02em;
+    line-height:1.2;
+    text-align:center;
+    padding:4px;
+  }
+  .card-head{ padding:14px 18px; }
+  .card-num{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--iron);
+    display:block;
+    margin-bottom:3px;
+  }
+  .card-title{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:1.05rem;
+    line-height:1.2;
+    color:var(--ink);
+  }
+  .card-chevron{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding-right:16px;
+    color:var(--iron);
+    font-size:13px;
+    transition:transform .3s cubic-bezier(.2,.7,.2,1), color .2s;
+  }
+  .card.open .card-chevron{ transform:rotate(180deg); color:var(--accent); }
+
+  .card-body{
+    display:none;
+    padding:18px 22px 20px;
+    border-top:1px solid var(--line);
+  }
+  .card.open .card-body{ display:block; }
+  .card-body > p{ color:var(--ink-soft); font-size:.93em; line-height:1.72; }
+
+  /* súmulas dentro do card */
+  .sumula{
+    margin:10px 0 4px;
+    padding:11px 16px;
+    border-left:2px solid var(--iron);
+    background:var(--paper);
+    border-radius:0 4px 4px 0;
+    font-size:.88em;
+    color:var(--ink-soft);
+    line-height:1.6;
+  }
+  .sumula strong{
+    font-style:normal;
+    font-family:var(--mono);
+    font-size:.86em;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--iron);
+    display:block;
+    margin-bottom:4px;
   }
 
-  /* ===== TEXTO ===== */
-  h2{ font-size:22px; margin:30px 0 10px; }
-  h3{ font-size:20px; margin:24px 0 8px; }
+  /* sub-bloco */
+  .sub{
+    margin:12px 0 4px;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:5px;
+    padding:13px 17px;
+  }
+  .sub-lbl{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:block;
+    margin-bottom:9px;
+  }
+  .sub p{ font-size:.9em; color:var(--ink-soft); margin-bottom:8px; line-height:1.65; }
+  .sub p:last-child{ margin:0; }
 
-  p{ margin:0 0 14px; text-align:justify; }
+  /* lista CLT 652/653 */
+  .item-list{
+    margin:10px 0 4px;
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+  }
+  .item-row{
+    display:grid;
+    grid-template-columns:22px 1fr;
+    gap:10px;
+    font-size:.9em;
+    color:var(--ink-soft);
+    line-height:1.6;
+    padding:6px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .item-row:last-child{ border-bottom:none; }
+  .item-row .bul{ color:var(--accent); font-family:var(--mono); font-size:.85em; padding-top:2px; }
 
-  .box{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:16px;
-    margin:18px 0;
-    box-shadow:var(--shadow);
+  /* ===== EXEMPLO DIDÁTICO (territorial) ===== */
+  .exemplo{
+    margin:18px 0 10px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+  }
+  .exemplo-head{
+    background:var(--ink);
+    color:#f4f2ec;
+    font-family:var(--mono);
+    font-size:11.5px;
+    font-weight:600;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    padding:10px 16px;
+  }
+  .exemplo-body{
+    padding:16px 18px;
+    font-size:.92em;
+    color:var(--ink-soft);
+    line-height:1.65;
+  }
+  .exemplo-body p{ margin-bottom:10px; }
+  .exemplo-body p:last-child{ margin:0; }
+  .exemplo-destaque{
+    font-family:var(--mono);
+    font-size:.88em;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:3px 9px;
+    border-radius:3px;
+    margin:2px 3px 2px 0;
+  }
+  .d-vitoria{ background:rgba(139,133,121,.14); color:var(--iron); }
+  .d-rj{ background:rgba(56,78,107,.12); color:#384e6b; }
+  .d-salvador{ background:rgba(122,46,55,.1); color:var(--accent); }
+
+  /* ===== REGRAS TERRITORIAIS ===== */
+  .regras-territ{
+    margin:14px 0 6px;
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+    background:var(--surface);
+  }
+  .rt-row{
+    display:grid;
+    grid-template-columns:140px 1fr;
+    border-bottom:1px solid var(--line);
+    font-size:.9em;
+  }
+  .rt-row:last-child{ border-bottom:none; }
+  .rt-cat{
+    padding:13px 16px;
+    font-family:var(--mono);
+    font-size:.82em;
+    font-weight:600;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--accent);
+    background:rgba(122,46,55,.05);
+    border-right:1px solid var(--line);
+    display:flex;
+    align-items:flex-start;
+    line-height:1.35;
+    padding-top:15px;
+  }
+  .rt-val{
+    padding:13px 17px;
+    color:var(--ink-soft);
+    line-height:1.65;
+    display:flex;
+    align-items:flex-start;
   }
 
-  ul{
-    margin:10px 0 14px 22px;
+  /* nota alertas provas */
+  .nota{
+    margin:14px 0 4px;
+    padding:13px 17px;
+    background:rgba(122,46,55,.06);
+    border-left:3px solid var(--accent);
+    border-radius:0 5px 5px 0;
+    font-size:.9em;
+    color:var(--ink-soft);
+    line-height:1.65;
   }
-  li{ margin-bottom:10px; }
-
-  .marker{
-    font-weight:900;
-    display:inline-block;
-    margin-right:8px;
-  }
+  .nota strong{ color:var(--ink); }
 
   /* ===== BOTÃO VOLTAR ===== */
-  .voltar{ margin-top:32px; }
-  .voltar a{
-    display:block;
-    text-align:center;
-    background:#ffffff;
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:16px;
-    font-weight:800;
+  .back{
+    margin-top:56px;
+    display:flex;
+    align-items:center;
+    gap:14px;
     text-decoration:none;
-    color:#0f172a;
-    box-shadow:var(--shadow);
+    color:var(--ink);
+    background:var(--surface);
+    border:1px solid var(--line-strong);
+    border-radius:6px;
+    padding:20px 22px;
+    font-family:var(--mono);
+    font-size:14px;
+    letter-spacing:.04em;
+    transition:border-color .25s, transform .25s;
+  }
+  .back .arw{ color:var(--accent); transition:transform .25s; font-size:18px; }
+  .back:hover{ border-color:var(--accent); transform:translateY(-2px); }
+  .back:hover .arw{ transform:translateX(-4px); }
+  .back:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:3px; }
+
+  @keyframes rise{
+    from{ opacity:0; transform:translateY(18px); }
+    to{ opacity:1; transform:none; }
+  }
+  .reveal{ opacity:0; transform:translateY(14px); }
+  .reveal.in{
+    opacity:1; transform:none;
+    transition:opacity .5s ease, transform .5s cubic-bezier(.2,.7,.2,1);
   }
 
-  @media (max-width:480px){
-    body{ font-size:17px; }
-    h1{ font-size:24px; }
-    h2{ font-size:21px; }
-    h3{ font-size:19px; }
+  @media (max-width:560px){
+    body{ font-size:17.5px; }
+    .masthead{ padding:40px 0 24px; }
+    .title-row{ align-items:stretch; }
+    .slides-btn{ width:100%; justify-content:center; }
+    .verbete{ padding-left:20px; }
+    .card-btn{ grid-template-columns:44px 1fr 30px; }
+    .rt-row{ grid-template-columns:1fr; }
+    .rt-cat{ border-right:none; border-bottom:1px solid var(--line); }
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{ animation:none !important; scroll-behavior:auto; }
+    .reveal{ opacity:1; transform:none; }
+    .reveal.in{ transition:none; }
+    .card-chevron{ transition:none; }
   }
 </style>
 </head>
-
 <body>
 <div class="wrap">
 
-  <div class="title-row">
-    <h1>3. Competência da Justiça do Trabalho</h1>
-
-    <a class="slides-btn"
-       href="https://drive.google.com/file/d/1sWaPhs7cxIyQINAEU60mmejYEDjAVRIm/view?usp=sharing"
-       target="_blank"
-       rel="noopener">
-      <div class="slides-icon">🖼️</div>
-      <div class="slides-text">Slides</div>
-    </a>
-  </div>
-
-  <div class="box">
-    <h2 style="margin-top:0">3.1 Competência material</h2>
-    <p>
-      Analisar a competência material da Justiça do Trabalho significa verificar que ações podem ser ajuizadas perante a
-      referida justiça, ou, em outras palavras, que conflitos podem ser julgados pela justiça trabalhista.
-      O dispositivo que trata do tema é, especialmente, o art. 114 da CF/88, amplamente modificado pela EC n. 45/2004,
-      bem como os arts. 652 e 653 da CLT.
+  <!-- CABEÇALHO -->
+  <header class="masthead">
+    <p class="eyebrow">
+      Direito Processual do Trabalho
+      <span class="dot">·</span> Unidade 2
+      <span class="dot">·</span> Competência
     </p>
-    <p>
-      Nas provas da OAB é mais comum a cobrança do dispositivo da CF/88, bem como das súmulas que decorreram das interpretações
-      dos tribunais (STF, TST e STJ) a respeito do tema. Analisaremos de forma sintética os incisos do art. 114 da CF:
-    </p>
-  </div>
+    <div class="title-row">
+      <h1>
+        <span class="art">Item 3</span>
+        Competência da Justiça do Trabalho
+      </h1>
+      <a class="slides-btn"
+         href="https://drive.google.com/file/d/1sWaPhs7cxIyQINAEU60mmejYEDjAVRIm/view?usp=sharing"
+         target="_blank" rel="noopener">
+        <span class="ico">▮</span>
+        <span>Slides da aula</span>
+        <span class="arw">→</span>
+      </a>
+    </div>
 
-  <div class="box">
-    <p><span class="marker">■</span><strong>Inciso I – Relação de trabalho:</strong>
-      a EC n. 45/2004 alterou o texto constitucional que mencionava “relação de emprego” para “relação de trabalho”, mais ampla.
-      Contudo, o inciso I menciona as pessoas jurídicas de direito público, o que gerou dúvidas e culminou com decisão do STF na
-      ADI 3.345-6, que excluiu da competência da Justiça do Trabalho as ações ajuizadas por servidores estatutários (competência da
-      Justiça comum). A partir de então, apenas as ações propostas por celetistas da administração pública são da competência trabalhista.
-      Também há destaque para a Súmula 363 do STJ, que excluiu da competência trabalhista as ações de cobrança de honorários de profissionais
-      liberais (competência da Justiça comum).
-    </p>
+    <div class="verbete">
+      <span class="tag">Bases normativas</span>
+      <p>
+        A competência da Justiça do Trabalho é definida pelo <span class="ref">art. 114, CF/88</span>
+        (amplamente modificado pela EC n. 45/2004) e pelos
+        <span class="ref">arts. 651, 652 e 653 da CLT</span>.
+      </p>
+    </div>
+  </header>
 
-    <p><span class="marker">■</span><strong>Inciso II – Exercício do direito de greve:</strong>
-      ações decorrentes do exercício do direito de greve (individuais ou coletivas, indenizações, dissídios coletivos ou possessórias)
-      são da competência da Justiça do Trabalho quando relacionadas ao exercício da greve. O STF editou a Súmula Vinculante 23, fixando
-      que ações possessórias são da competência trabalhista quando ajuizadas em decorrência do exercício do direito de greve.
-    </p>
+  <!-- § 3.1 COMPETÊNCIA MATERIAL -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 3.1</span>
+      <h2>Competência material</h2>
+    </div>
 
-    <p><span class="marker">■</span><strong>Inciso III – Representação sindical:</strong>
-      ações sobre representação sindical (entre sindicatos; sindicatos e empregadores; sindicatos e empregados) são de competência trabalhista.
-    </p>
-
-    <p><span class="marker">■</span><strong>Inciso IV – Mandados de segurança, habeas corpus e habeas data:</strong>
-      quando relacionados às relações de trabalho, são da competência trabalhista, como quando MS é impetrado contra decisão judicial.
+    <p class="body-text reveal">
+      Analisar a competência material da Justiça do Trabalho significa verificar quais ações podem
+      ser ajuizadas perante a referida justiça. Nas provas da OAB é mais comum a cobrança do
+      <span class="ref">art. 114, CF/88</span> e das súmulas que decorreram das interpretações do
+      STF, TST e STJ. Abaixo, cada inciso do art. 114 e as súmulas pertinentes:
     </p>
 
-    <p><span class="marker">■</span><strong>Inciso V – Conflitos de competência:</strong>
-      indispensável lembrar a Súmula 420 do TST: não há conflito de competência entre Vara e Tribunal a que esteja vinculada.
-      Ex.: não há conflito entre a 20ª VT de São Paulo e o TRT da 2ª Região, nem entre a 10ª VT de Vitória e o TRT da 17ª Região.
+    <div class="incisos reveal">
+
+      <!-- I -->
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Art. 114<br>Inc. I</div>
+          <div class="card-head">
+            <span class="card-num">EC n. 45/2004</span>
+            <span class="card-title">Relação de trabalho</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            A EC n. 45/2004 substituiu "relação de emprego" por <strong>"relação de trabalho"</strong>,
+            expressão mais ampla. Contudo, a menção às pessoas jurídicas de direito público gerou
+            dúvidas, culminando com a decisão do STF na <strong>ADI 3.345-6</strong>, que excluiu
+            da competência trabalhista as ações ajuizadas por <strong>servidores estatutários</strong>
+            (competência da Justiça comum). Apenas as ações de <strong>celetistas da administração
+            pública</strong> são da competência da Justiça do Trabalho.
+          </p>
+          <div class="sumula">
+            <strong>Súmula 363, STJ</strong>
+            Ações de cobrança de honorários de profissionais liberais são da competência da
+            <strong>Justiça comum</strong>, e não da Justiça do Trabalho.
+          </div>
+        </div>
+      </div>
+
+      <!-- II -->
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Art. 114<br>Inc. II</div>
+          <div class="card-head">
+            <span class="card-num">Greve</span>
+            <span class="card-title">Exercício do direito de greve</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            Todas as ações que decorrem do exercício do direito de greve são da competência da
+            Justiça do Trabalho — sejam individuais ou coletivas, de indenização, dissídios
+            coletivos ou <strong>possessórias</strong> — desde que relacionadas ao exercício do
+            direito de greve.
+          </p>
+          <div class="sumula">
+            <strong>Súmula Vinculante 23, STF</strong>
+            Ações possessórias são da competência trabalhista quando ajuizadas em decorrência
+            do exercício do direito de greve.
+          </div>
+        </div>
+      </div>
+
+      <!-- III -->
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Art. 114<br>Inc. III</div>
+          <div class="card-head">
+            <span class="card-num">Sindicatos</span>
+            <span class="card-title">Representação sindical</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            As ações sobre representação sindical são da competência trabalhista, sejam entre
+            sindicatos; entre sindicato e empregadores; ou entre sindicato e empregados.
+          </p>
+        </div>
+      </div>
+
+      <!-- IV -->
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Art. 114<br>Inc. IV</div>
+          <div class="card-head">
+            <span class="card-num">Remédios constitucionais</span>
+            <span class="card-title">MS, HC e HD nas relações de trabalho</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            Mandados de segurança, <em>habeas corpus</em> e <em>habeas data</em>, quando
+            relacionados às relações de trabalho, são da competência trabalhista — como quando
+            um mandado de segurança é impetrado contra decisão judicial trabalhista.
+          </p>
+        </div>
+      </div>
+
+      <!-- V -->
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Art. 114<br>Inc. V</div>
+          <div class="card-head">
+            <span class="card-num">Pegadinha de prova</span>
+            <span class="card-title">Conflitos de competência</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            Ações sobre conflitos de competência entre órgãos com jurisdição trabalhista são da
+            Justiça do Trabalho.
+          </p>
+          <div class="nota">
+            <strong>Atenção para provas:</strong> <strong>não há conflito de competência</strong>
+            entre Vara do Trabalho e o Tribunal ao qual está vinculada. Não há conflito entre a
+            20ª VT de São Paulo e o TRT da 2ª Região, nem entre a 10ª VT de Vitória e o TRT
+            da 17ª Região.
+          </div>
+          <div class="sumula">
+            <strong>Súmula 420, TST</strong>
+            Não há conflito de competência entre Vara do Trabalho e Tribunal Regional do
+            Trabalho a que esteja vinculada.
+          </div>
+        </div>
+      </div>
+
+      <!-- VI -->
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Art. 114<br>Inc. VI</div>
+          <div class="card-head">
+            <span class="card-num">Acidente e dano</span>
+            <span class="card-title">Indenização por dano moral e material</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            Ações de indenização por dano moral e material decorrentes de relação de trabalho
+            são da competência da Justiça do Trabalho.
+          </p>
+          <div class="sumula">
+            <strong>Súmula Vinculante 22, STF</strong>
+            Ações sobre acidente de trabalho, ajuizadas pelo empregado em face do empregador,
+            são da competência da Justiça do Trabalho.
+          </div>
+          <div class="sumula">
+            <strong>Súmula 392, TST</strong>
+            Indenizações por danos morais e materiais decorrentes do vínculo de emprego são
+            da competência da Justiça do Trabalho, inclusive quando ajuizadas por sucessores
+            e dependentes (conforme alteração de 2016).
+          </div>
+        </div>
+      </div>
+
+      <!-- VII -->
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Art. 114<br>Inc. VII</div>
+          <div class="card-head">
+            <span class="card-num">Fiscalização</span>
+            <span class="card-title">Penalidades administrativas dos órgãos de fiscalização</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            Ações relativas a penalidades administrativas impostas pelos órgãos de fiscalização
+            das relações de trabalho — como o Ministério do Trabalho — são da competência da
+            Justiça do Trabalho. Exemplo: empresa autuada pode mover ação trabalhista para
+            impugnar e tentar anular a autuação.
+          </p>
+        </div>
+      </div>
+
+      <!-- VIII -->
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Art. 114<br>Inc. VIII</div>
+          <div class="card-head">
+            <span class="card-num">Contribuições sociais</span>
+            <span class="card-title">Execução das contribuições sociais</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            A Justiça do Trabalho possui competência para executar, <strong>de ofício</strong>,
+            as contribuições decorrentes de <strong>sentenças condenatórias em pecúnia</strong>
+            que proferir.
+          </p>
+          <p>
+            <strong>Não</strong> possui competência para executar contribuições decorrentes de
+            <em>período de trabalho reconhecido por sentença</em> (sem condenação em pecúnia)
+            — essas devem ser cobradas na Justiça comum.
+          </p>
+          <div class="sumula">
+            <strong>Súmula 368, TST · Súmula Vinculante 53, STF</strong>
+            Competência da Justiça do Trabalho para executar de ofício contribuições
+            decorrentes de sentenças condenatórias que proferir.
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /incisos -->
+
+    <!-- CLT 652/653 -->
+    <div class="sub reveal" style="margin-top:18px;">
+      <span class="sub-lbl">Competência pelos arts. 652 e 653 da CLT</span>
+      <div class="item-list">
+        <div class="item-row"><span class="bul">▸</span><span>Dissídios resultantes do contrato de empreitada</span></div>
+        <div class="item-row"><span class="bul">▸</span><span>Inquérito para apuração de falta grave</span></div>
+        <div class="item-row"><span class="bul">▸</span><span>Ações entre trabalhadores portuários e operadores portuários ou OGMO decorrentes da relação de trabalho</span></div>
+        <div class="item-row">
+          <span class="bul">▸</span>
+          <span>
+            <strong>Homologação de acordo extrajudicial</strong>
+            (<span class="ref">art. 855-B, CLT</span> — Lei n. 13.467/2017): petição ao Juiz do
+            Trabalho do local da prestação dos serviços; prazo de 15 dias para análise; possibilidade
+            de audiência; homologação facultativa (<span class="ref">Súmula 418, TST</span>). Se
+            indeferida, cabe recurso ordinário ou ajuizamento de ação trabalhista — prazo prescricional
+            permanece suspenso enquanto se aguarda a decisão.
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- § 3.2 COMPETÊNCIA TERRITORIAL -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 3.2</span>
+      <h2>Competência territorial</h2>
+    </div>
+
+    <p class="body-text reveal">
+      As regras sobre o <em>local</em> de ajuizamento das ações trabalhistas estão no
+      <span class="ref">art. 651, CLT</span>, muito cobrado no Exame de Ordem.
     </p>
 
-    <p><span class="marker">■</span><strong>Inciso VI – Indenização por dano moral e material:</strong>
-      destaques: Súmula Vinculante 22 do STF (acidente de trabalho: ações do empregado contra empregador são da competência da JT);
-      Súmula 392 do TST (indenização por danos morais e materiais decorrentes do vínculo de emprego é da JT, inclusive se ajuizada por
-      sucessores e dependentes, conforme alteração de 2016).
-    </p>
+    <!-- EXEMPLO DIDÁTICO -->
+    <div class="exemplo reveal">
+      <div class="exemplo-head">Caso prático — art. 651, CLT</div>
+      <div class="exemplo-body">
+        <p>
+          João, domiciliado em
+          <span class="exemplo-destaque d-vitoria">📍 Vitória/ES</span>,
+          é contratado por empresa com sede em
+          <span class="exemplo-destaque d-rj">🏢 Rio de Janeiro/RJ</span>
+          para trabalhar em
+          <span class="exemplo-destaque d-salvador">⚒ Salvador/BA</span>.
+          Dispensado sem verbas trabalhistas, onde deve ajuizar a reclamação?
+        </p>
+        <p>
+          <strong>Resposta:</strong> em <strong>Salvador/BA</strong> — local da prestação dos serviços
+          (regra geral do <span class="ref">art. 651, caput, CLT</span>).
+        </p>
+      </div>
+    </div>
 
-    <p><span class="marker">■</span><strong>Inciso VII – Penalidades administrativas:</strong>
-      ações relativas a penalidades administrativas impostas por órgãos de fiscalização das relações de trabalho (ex.: autuações do
-      Ministério do Trabalho) podem ser ajuizadas na Justiça do Trabalho para impugnação/anulação.
-    </p>
+    <div class="regras-territ reveal">
+      <div class="rt-row">
+        <div class="rt-cat">Regra geral</div>
+        <div class="rt-val">Local da <strong>prestação dos serviços</strong>. Em caso de transferências sucessivas, o último local da prestação.</div>
+      </div>
+      <div class="rt-row">
+        <div class="rt-cat">Agente / viajante comercial <span class="ref" style="font-size:.8em;display:block;margin-top:2px;">§ 1º</span></div>
+        <div class="rt-val">Verificar se há subordinação a sede ou filial: se sim, ação nesse local; se não, ação no domicílio do empregado ou na localidade mais próxima.</div>
+      </div>
+      <div class="rt-row">
+        <div class="rt-cat">Atividades fora do local do contrato (ex.: circo) <span class="ref" style="font-size:.8em;display:block;margin-top:2px;">§ 3º</span></div>
+        <div class="rt-val">Ação no <strong>local da contratação</strong> ou no <strong>local da prestação dos serviços</strong> (à escolha).</div>
+      </div>
+      <div class="rt-row">
+        <div class="rt-cat">Brasileiro no exterior <span class="ref" style="font-size:.8em;display:block;margin-top:2px;">§ 2º</span></div>
+        <div class="rt-val">Pode ajuizar ação no Brasil, salvo convenção internacional em sentido contrário.</div>
+      </div>
+    </div>
 
-    <p><span class="marker">■</span><strong>Inciso VIII – Execução das contribuições sociais:</strong>
-      a JT executa, de ofício, contribuições decorrentes de sentenças condenatórias que proferir (Súmula 368 do TST e Súmula Vinculante 53 do STF).
-      Não há competência para executar contribuições relativas apenas a período de trabalho reconhecido: somente sentenças condenatórias em pecúnia
-      geram contribuições de competência trabalhista; as demais devem ser cobradas na Justiça comum.
-    </p>
-  </div>
+    <!-- RELATIVA / EXCEÇÃO -->
+    <div class="sub reveal" style="margin-top:14px;">
+      <span class="sub-lbl">Competência relativa — consequências</span>
+      <p>
+        A competência territorial é <strong>relativa</strong> — interessa apenas às partes. O juiz
+        <strong>não pode reconhecer de ofício</strong> eventual erro em sua aplicação
+        (<span class="ref">Súmula 33, STJ</span>). Somente o <strong>réu</strong> pode alegar a
+        incompetência em sua defesa.
+      </p>
+      <p>
+        No processo civil: incompetência relativa é alegada em <strong>preliminar de contestação</strong>
+        (<span class="ref">art. 337, CPC</span>). No processo do trabalho: por
+        <strong>exceção de incompetência</strong> (<span class="ref">art. 800, CLT</span>).
+      </p>
+      <p>
+        A <span class="ref">IN n. 39/2016, TST</span> veda a aplicação do
+        <span class="ref">art. 63, CPC/2015</span> (foro de eleição) ao processo do trabalho.
+        Cláusula contratual prevendo o local do ajuizamento é <strong>nula de pleno direito</strong>
+        e não produz qualquer efeito.
+      </p>
+    </div>
+  </section>
 
-  <div class="box">
-    <p>
-      A competência material também é definida pelos arts. 652 e 653 da CLT, que afirmam ser competência trabalhista, entre outras:
-    </p>
-    <ul>
-      <li>dissídios resultantes do contrato de empreitada;</li>
-      <li>inquérito para apuração de falta grave;</li>
-      <li>ações entre trabalhadores portuários e operadores portuários ou OGMO decorrentes da relação de trabalho;</li>
-      <li>
-        homologação de acordo extrajudicial (Lei n. 13.467/2017): petição ao Juiz do Trabalho do local da prestação dos serviços,
-        prazo de 15 dias para análise, possibilidade de audiência e homologação facultativa (Súmula 418 do TST). Se indeferida,
-        cabe recurso ordinário da sentença ou ajuizamento de ação trabalhista, sem prejuízo do prazo prescricional, pois permanece
-        suspenso enquanto se aguarda a decisão.
-      </li>
-    </ul>
-  </div>
-
-  <div class="box">
-    <h2 style="margin-top:0">3.2 Competência territorial</h2>
-
-    <p>
-      Após conhecer os conflitos (ações) que podem ser ajuizados perante a Justiça do Trabalho, devemos conhecer as regras sobre competência territorial,
-      isto é, as regras sobre o local de ajuizamento das ações trabalhistas.
-    </p>
-
-    <p>
-      Exemplo: João, domiciliado em Vitória/ES, contratado por empresa com sede no Rio de Janeiro/RJ, para trabalhar em Salvador/BA.
-      Se dispensado sem receber verbas trabalhistas, em que local deverá ajuizar a reclamação?
-    </p>
-
-    <p>
-      A resposta está no art. 651 da CLT. Resumo das regras:
-    </p>
-
-    <ul>
-      <li><strong>Regra geral:</strong> ação no local da prestação dos serviços (no exemplo, Salvador).</li>
-      <li><strong>Transferência:</strong> se houve transferências sucessivas, ajuiza-se no último local da prestação.</li>
-      <li><strong>Exceções:</strong></li>
-      <li>
-        <strong>Agente ou viajante comercial</strong> (§ 1º): verifica-se subordinação à sede/filial; se sim, ação nesse local;
-        se não, ação no domicílio do empregado ou na localidade mais próxima.
-      </li>
-      <li>
-        <strong>Atividades fora do lugar do contrato</strong> (ex.: circo) (§ 3º): ação no local da contratação ou no local da prestação.
-      </li>
-      <li>
-        <strong>Empregado brasileiro no exterior</strong> (§ 2º): pode ajuizar no Brasil, salvo convenção internacional em sentido contrário.
-      </li>
-    </ul>
-
-    <p>
-      Competência territorial é <strong>relativa</strong>: o juiz não pode reconhecer de ofício erro na sua aplicação (Súmula 33 do STJ).
-      Se ajuizada em local errado, somente o réu pode alegar a incompetência em sua defesa, não podendo o juiz remeter de ofício.
-    </p>
-
-    <p>
-      No processo civil, a incompetência relativa é alegada em preliminar de contestação (art. 337, CPC). No processo do trabalho,
-      é alegada por exceção de incompetência (art. 800, CLT).
-    </p>
-
-    <p>
-      A IN n. 39/2016 do TST afirma não caber a aplicação do art. 63 do CPC/2015 (foro de eleição) ao processo do trabalho.
-      Assim, cláusula contratual prevendo foro é nula e não produz efeitos.
-    </p>
-  </div>
-
-  <div class="voltar">
-    <a href="../index.html">← Voltar ao índice da disciplina</a>
-  </div>
+  <a class="back" href="../index.html">
+    <span class="arw">←</span>
+    <span>Voltar ao índice da disciplina</span>
+  </a>
 
 </div>
+
+<script>
+  (function(){
+    var items = document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window)){
+      items.forEach(function(el){ el.classList.add('in'); }); return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold:.08, rootMargin:'0px 0px -3% 0px' });
+    items.forEach(function(el, i){
+      el.style.transitionDelay = (i * 35) + 'ms';
+      io.observe(el);
+    });
+  })();
+
+  (function(){
+    var cards = document.querySelectorAll('.card');
+    cards.forEach(function(card){
+      var btn = card.querySelector('.card-btn');
+      btn.addEventListener('click', function(){
+        var isOpen = card.classList.contains('open');
+        cards.forEach(function(c){
+          c.classList.remove('open');
+          c.querySelector('.card-btn').setAttribute('aria-expanded','false');
+        });
+        if(!isOpen){
+          card.classList.add('open');
+          btn.setAttribute('aria-expanded','true');
+        }
+      });
+    });
+  })();
+</script>
 </body>
 </html>
