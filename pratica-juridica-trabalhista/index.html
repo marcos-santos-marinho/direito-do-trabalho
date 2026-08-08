@@ -1,273 +1,435 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Prática Jurídica Trabalhista</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
 <style>
-:root{
-  --bg:#eef6ff;
-  --title:#1f4fd8;
-  --text:#0f172a;
-  --card:#ffffff;
-  --border:rgba(15,23,42,.18);
-  --shadow:0 10px 22px rgba(15,23,42,.08);
-  --green:#1f9a3c;
-}
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
 
-*{ box-sizing:border-box; }
+  body{
+    font-family:"Inter", system-ui, sans-serif;
+    background:#f1f5f9;
+    color:#0f172a;
+    font-size:16px;
+    line-height:1.6;
+    min-height:100vh;
+  }
 
-body{
-  margin:0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  font-size:18px;
-  line-height:1.6;
-}
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+      radial-gradient(ellipse 700px 500px at 10% -10%, rgba(5,150,105,.11) 0%, transparent 70%),
+      radial-gradient(ellipse 600px 400px at 90% 100%, rgba(217,119,6,.09) 0%, transparent 70%),
+      radial-gradient(ellipse 500px 300px at 50% 50%, rgba(37,99,235,.06) 0%, transparent 70%);
+    pointer-events:none;
+    z-index:0;
+  }
 
-.wrap{
-  max-width:900px;
-  margin:auto;
-  padding:16px 14px 40px;
-}
+  .container{
+    position:relative;
+    z-index:1;
+    max-width:680px;
+    margin:0 auto;
+    padding:28px 18px 48px;
+  }
 
-h1{
-  color:var(--title);
-  font-size:30px;
-  margin:6px 0 14px;
-}
+  /* ===== HERO ===== */
+  .hero{
+    text-align:center;
+    padding:36px 0 28px;
+  }
 
-/* ===== BOTÕES TOPO ===== */
-.top-actions{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-  margin-bottom:16px;
-}
+  .hero h1{
+    font-family:"Fraunces", Georgia, serif;
+    font-size:clamp(2rem,7vw,3.2rem);
+    font-weight:700;
+    line-height:1.05;
+    letter-spacing:-.02em;
+    background:linear-gradient(135deg, #059669 0%, #d97706 60%, #2563eb 100%);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+    margin-bottom:12px;
+  }
 
-.mini-btn{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-  padding:14px 12px;
-  background:#fff;
-  border:1px solid var(--border);
-  border-radius:16px;
-  box-shadow:var(--shadow);
-  text-decoration:none;
-  color:var(--text);
-  font-weight:800;
-}
+  .hero p{
+    font-size:15px;
+    color:#475569;
+    max-width:420px;
+    margin:0 auto;
+  }
 
-.mini-ico{ font-size:22px; }
+  /* ===== BOTÕES TOPO ===== */
+  .top-buttons{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin:24px 0 32px;
+  }
 
-/* ===== CARD ===== */
-.card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:18px;
-  box-shadow:var(--shadow);
-  padding:16px;
-}
+  .top-btn{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:16px;
+    border-radius:16px;
+    text-decoration:none;
+    color:#ffffff;
+    font-weight:700;
+    font-size:14px;
+    transition:transform .2s cubic-bezier(.2,.7,.2,1), box-shadow .2s;
+    position:relative;
+    overflow:hidden;
+  }
+  .top-btn::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(255,255,255,.12);
+    opacity:0;
+    transition:opacity .2s;
+  }
+  .top-btn:hover{ transform:translateY(-3px); }
+  .top-btn:hover::before{ opacity:1; }
 
-h2{
-  font-size:18px;
-  text-transform:uppercase;
-  margin:4px 0 12px;
-}
+  .top-btn.plano{
+    background:linear-gradient(135deg,#059669,#047857);
+    box-shadow:0 8px 24px rgba(5,150,105,.35);
+  }
+  .top-btn.plano:hover{ box-shadow:0 14px 32px rgba(5,150,105,.45); }
 
-/* ===== TABELA RESPONSIVA (CORRIGIDA) ===== */
-.table-wrap{
-  width:100%;
-}
+  .top-btn.livro{
+    background:linear-gradient(135deg,#d97706,#b45309);
+    box-shadow:0 8px 24px rgba(217,119,6,.35);
+  }
+  .top-btn.livro:hover{ box-shadow:0 14px 32px rgba(217,119,6,.45); }
 
-table{
-  width:100%;
-  table-layout:fixed;
-  border-collapse:collapse;
-  font-size:15px;
-}
+  .top-btn .btn-icon{
+    width:40px; height:40px;
+    border-radius:10px;
+    background:rgba(255,255,255,.2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+    font-size:18px;
+  }
+  .top-btn .btn-text{ display:flex; flex-direction:column; gap:1px; }
+  .top-btn .btn-label{ font-size:13px; font-weight:900; letter-spacing:.05em; text-transform:uppercase; }
+  .top-btn .btn-desc{ font-size:11px; font-weight:500; opacity:.85; }
 
-th, td{
-  padding:12px 10px;
-  text-align:left;
-  vertical-align:top;
-  white-space:normal;
-  overflow-wrap:anywhere;
-  word-break:normal;
-}
+  /* ===== TABELA DE AVALIAÇÕES ===== */
+  .section-label{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:16px;
+  }
+  .section-label span{
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:#475569;
+    white-space:nowrap;
+  }
+  .section-label::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:rgba(15,23,42,.1);
+  }
 
-th{
-  background:#eef1ff;
-  font-weight:900;
-}
+  .avaliacoes{
+    background:#ffffff;
+    border:1px solid rgba(15,23,42,.1);
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 2px 8px rgba(15,23,42,.06);
+    margin-bottom:28px;
+  }
 
-tr:not(:last-child) td{
-  border-bottom:1px solid rgba(15,23,42,.12);
-}
+  .aval-head{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    background:linear-gradient(135deg,#059669,#047857);
+    color:#fff;
+  }
+  .aval-head div{
+    padding:12px 18px;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+  }
+  .aval-head div:first-child{
+    border-right:1px solid rgba(255,255,255,.2);
+  }
 
-/* distribuição correta das colunas */
-th:nth-child(1), td:nth-child(1){ width:48%; }
-th:nth-child(2), td:nth-child(2){ width:52%; }
+  .aval-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    border-top:1px solid rgba(15,23,42,.08);
+  }
+  .aval-row:first-child{ border-top:none; }
 
-/* ===== TEXTO ===== */
-.hint{
-  margin:16px 2px 10px;
-  font-size:16px;
-}
+  .aval-row div{
+    padding:14px 18px;
+    font-size:14px;
+    line-height:1.4;
+    display:flex;
+    align-items:center;
+  }
+  .aval-row div:first-child{
+    font-weight:600;
+    color:#0f172a;
+    border-right:1px solid rgba(15,23,42,.08);
+  }
+  .aval-row div:last-child{
+    color:#475569;
+    font-variant-numeric:tabular-nums;
+  }
+  .aval-row:nth-child(odd){ background:#f8fafc; }
 
-/* ===== BOTÕES DE ATIVIDADE ===== */
-.topics{
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-}
+  /* prazo em destaque */
+  .prazo-pill{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    font-family:"Inter", sans-serif;
+    font-size:13px;
+    font-weight:700;
+    padding:3px 10px;
+    border-radius:99px;
+    background:rgba(5,150,105,.1);
+    color:#065f46;
+  }
+  .prazo-pill.indefinido{
+    background:rgba(15,23,42,.07);
+    color:#64748b;
+    font-weight:500;
+  }
 
-.topic-btn{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:16px;
-  background:#fff;
-  border:2px solid rgba(31,154,60,.65);
-  border-radius:16px;
-  text-decoration:none;
-  color:var(--text);
-  font-weight:900;
-  box-shadow:0 8px 18px rgba(15,23,42,.06);
-}
+  /* ===== ATIVIDADES ===== */
+  .list{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
 
-.topic-left{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
+  .item{
+    display:flex;
+    align-items:center;
+    text-decoration:none;
+    background:#ffffff;
+    border-radius:14px;
+    border:1px solid rgba(15,23,42,.1);
+    color:#0f172a;
+    overflow:hidden;
+    transition:transform .18s cubic-bezier(.2,.7,.2,1), box-shadow .18s;
+    box-shadow:0 2px 8px rgba(15,23,42,.06);
+    opacity:0;
+    transform:translateY(12px);
+    animation:fadeUp .45s ease forwards;
+  }
+  .item:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(15,23,42,.12);
+  }
 
-.topic-num{
-  width:28px;
-  height:28px;
-  border-radius:8px;
-  background:rgba(31,154,60,.15);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:14px;
-  color:#0b5a1f;
-}
+  .item-num{
+    width:52px;
+    min-height:68px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:15px;
+    font-weight:800;
+    color:#fff;
+    flex-shrink:0;
+  }
 
-.chev{
-  font-size:20px;
-  opacity:.5;
-}
+  .item-body{
+    flex:1;
+    padding:14px 16px;
+  }
+  .item-body .i-titulo{
+    font-weight:700;
+    font-size:15px;
+    color:#0f172a;
+    display:block;
+    margin-bottom:2px;
+  }
+  .item-body .i-prazo{
+    font-size:12px;
+    color:#64748b;
+    font-weight:500;
+  }
+  .item-body .i-prazo strong{
+    color:#065f46;
+    font-weight:700;
+  }
 
-/* ===== VOLTAR ===== */
-.back{
-  margin-top:18px;
-}
+  .item-chev{
+    padding-right:16px;
+    font-size:16px;
+    font-weight:900;
+    color:rgba(15,23,42,.25);
+    flex-shrink:0;
+  }
 
-.back a{
-  display:block;
-  text-align:center;
-  padding:16px;
-  background:#fff;
-  border:1px solid var(--border);
-  border-radius:16px;
-  text-decoration:none;
-  color:var(--text);
-  font-weight:900;
-  box-shadow:var(--shadow);
-}
+  .c-1{ border-left:3px solid #059669; } .c-1 .item-num{ background:linear-gradient(160deg,#059669,#047857); }
+  .c-2{ border-left:3px solid #d97706; } .c-2 .item-num{ background:linear-gradient(160deg,#d97706,#b45309); }
+  .c-3{ border-left:3px solid #2563eb; } .c-3 .item-num{ background:linear-gradient(160deg,#2563eb,#1d4ed8); }
+  .c-4{ border-left:3px solid #9333ea; } .c-4 .item-num{ background:linear-gradient(160deg,#9333ea,#7e22ce); }
 
-/* ===== MOBILE ===== */
-@media(max-width:480px){
-  body{ font-size:17px; }
-  h1{ font-size:26px; }
-}
+  .item:nth-child(1){ animation-delay:.06s; }
+  .item:nth-child(2){ animation-delay:.12s; }
+  .item:nth-child(3){ animation-delay:.18s; }
+  .item:nth-child(4){ animation-delay:.24s; }
+
+  @keyframes fadeUp{
+    to{ opacity:1; transform:none; }
+  }
+
+  /* ===== VOLTAR ===== */
+  .back{
+    margin-top:28px;
+    text-align:center;
+  }
+  .back a{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    text-decoration:none;
+    background:#ffffff;
+    border:1px solid rgba(15,23,42,.1);
+    border-radius:12px;
+    padding:14px 28px;
+    font-weight:700;
+    font-size:14px;
+    color:#0f172a;
+    box-shadow:0 2px 8px rgba(15,23,42,.06);
+    transition:transform .18s, box-shadow .18s;
+  }
+  .back a:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(15,23,42,.12);
+  }
+
+  @media (max-width:480px){
+    .top-buttons{ grid-template-columns:1fr; }
+    .hero h1{ font-size:1.9rem; }
+  }
+  @media (prefers-reduced-motion:reduce){
+    .item{ animation:none; opacity:1; transform:none; }
+  }
 </style>
 </head>
 
 <body>
-<div class="wrap">
+<div class="container">
 
-  <h1>Prática Jurídica Trabalhista</h1>
+  <div class="hero">
+    <h1>Prática Jurídica Trabalhista</h1>
+    <p>Atividades, prazos e materiais da disciplina</p>
+  </div>
 
-  <div class="top-actions">
-    <a class="mini-btn" href="https://drive.google.com/file/d/1IDH4sJENsGtwPy-x4OHKBZusVX-OUM3f/view?usp=sharing" target="_blank">
-      <span class="mini-ico">📋</span> Plano de Ensino
+  <div class="top-buttons">
+    <a class="top-btn plano"
+       href="https://drive.google.com/file/d/1IDH4sJENsGtwPy-x4OHKBZusVX-OUM3f/view?usp=sharing"
+       target="_blank" rel="noopener">
+      <div class="btn-icon">📋</div>
+      <div class="btn-text">
+        <div class="btn-label">Plano de Ensino</div>
+        <div class="btn-desc">Acesse o plano e cronograma</div>
+      </div>
     </a>
-    <a class="mini-btn" href="https://drive.google.com/file/d/1ek3gZWWOBZ_kjk-0WEWk6BfQCmCjxxLo/view?usp=sharing" target="_blank">
-      <span class="mini-ico">📘</span> Livro
+    <a class="top-btn livro"
+       href="https://drive.google.com/file/d/1ek3gZWWOBZ_kjk-0WEWk6BfQCmCjxxLo/view?usp=sharing"
+       target="_blank" rel="noopener">
+      <div class="btn-icon">📘</div>
+      <div class="btn-text">
+        <div class="btn-label">Livro</div>
+        <div class="btn-desc">Leitura e materiais de apoio</div>
+      </div>
     </a>
   </div>
 
-  <div class="card">
-    <h2>Sistema de avaliação da disciplina</h2>
+  <!-- AVALIAÇÕES -->
+  <div class="section-label"><span>Sistema de avaliação</span></div>
 
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>AVALIAÇÃO</th>
-            <th>PRAZO</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1ª peça jurídica</td>
-            <td>28/09/2026</td>
-          </tr>
-          <tr>
-            <td>2ª peça jurídica</td>
-            <td>30/10/2026</td>
-          </tr>
-          <tr>
-            <td>Apresentações</td>
-            <td>No decorrer do semestre</td>
-          </tr>
-          <tr>
-            <td>Audiência simulada</td>
-            <td>A definir</td>
-          </tr>
-        </tbody>
-      </table>
+  <div class="avaliacoes">
+    <div class="aval-head">
+      <div>Avaliação</div>
+      <div>Prazo</div>
     </div>
-
-    <div class="hint">
-      Selecione o tópico abaixo para acessar o conteúdo das atividades:
+    <div class="aval-row">
+      <div>1ª Peça Jurídica</div>
+      <div><span class="prazo-pill">📅 28/09/2026</span></div>
     </div>
-
-    <div class="topics">
-      <a class="topic-btn" href="01-primeira-peca/index.html">
-        <div class="topic-left">
-          <div class="topic-num">1</div> Primeira Peça
-        </div>
-        <div class="chev">›</div>
-      </a>
-
-      <a class="topic-btn" href="02-segunda-peca/index.html">
-        <div class="topic-left">
-          <div class="topic-num">2</div> Segunda Peça
-        </div>
-        <div class="chev">›</div>
-      </a>
-
-      <a class="topic-btn" href="03-apresentacoes/index.html">
-        <div class="topic-left">
-          <div class="topic-num">3</div> Apresentações
-        </div>
-        <div class="chev">›</div>
-      </a>
-
-      <a class="topic-btn" href="04-audiencia-simulada/index.html">
-        <div class="topic-left">
-          <div class="topic-num">4</div> Audiência Simulada
-        </div>
-        <div class="chev">›</div>
-      </a>
+    <div class="aval-row">
+      <div>2ª Peça Jurídica</div>
+      <div><span class="prazo-pill">📅 30/10/2026</span></div>
     </div>
+    <div class="aval-row">
+      <div>Apresentações</div>
+      <div><span class="prazo-pill indefinido">No decorrer do semestre</span></div>
+    </div>
+    <div class="aval-row">
+      <div>Audiência Simulada</div>
+      <div><span class="prazo-pill indefinido">A definir</span></div>
+    </div>
+  </div>
+
+  <!-- ATIVIDADES -->
+  <div class="section-label"><span>Atividades</span></div>
+
+  <div class="list">
+    <a class="item c-1" href="01-primeira-peca/index.html">
+      <div class="item-num">01</div>
+      <div class="item-body">
+        <span class="i-titulo">Primeira Peça</span>
+        <span class="i-prazo">Prazo: <strong>28/09/2026</strong></span>
+      </div>
+      <div class="item-chev">›</div>
+    </a>
+
+    <a class="item c-2" href="02-segunda-peca/index.html">
+      <div class="item-num">02</div>
+      <div class="item-body">
+        <span class="i-titulo">Segunda Peça</span>
+        <span class="i-prazo">Prazo: <strong>30/10/2026</strong></span>
+      </div>
+      <div class="item-chev">›</div>
+    </a>
+
+    <a class="item c-3" href="03-apresentacoes/index.html">
+      <div class="item-num">03</div>
+      <div class="item-body">
+        <span class="i-titulo">Apresentações</span>
+        <span class="i-prazo">No decorrer do semestre</span>
+      </div>
+      <div class="item-chev">›</div>
+    </a>
+
+    <a class="item c-4" href="04-audiencia-simulada/index.html">
+      <div class="item-num">04</div>
+      <div class="item-body">
+        <span class="i-titulo">Audiência Simulada</span>
+        <span class="i-prazo">Data a definir</span>
+      </div>
+      <div class="item-chev">›</div>
+    </a>
   </div>
 
   <div class="back">
