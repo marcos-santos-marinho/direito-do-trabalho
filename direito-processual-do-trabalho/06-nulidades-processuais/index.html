@@ -5,219 +5,1623 @@
 <title>Nulidades Processuais</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
 <style>
   :root{
-    --bg:#f2f7ff;
-    --text:#0f172a;
-    --title:#1f4fd8;
-    --card:#ffffff;
-    --border:rgba(15,23,42,.15);
-    --shadow:0 8px 18px rgba(15,23,42,.08);
+    --ink:#1b2436;
+    --ink-soft:#414a5c;
+    --paper:#edece5;
+    --surface:#fbfaf7;
+    --accent:#7a2e37;
+    --accent-soft:#a2545f;
+    --iron:#8b8579;
+    --line:rgba(27,36,54,.13);
+    --line-strong:rgba(27,36,54,.22);
+    /* escala de gravidade */
+    --g-inex:#1b2436;
+    --g-abs:#7a2e37;
+    --g-rel:#4a6384;
+    --g-irr:#8b8579;
+    --display:"Fraunces", Georgia, "Times New Roman", serif;
+    --body:"Spectral", Georgia, serif;
+    --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
   }
 
-  *{ box-sizing:border-box; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
 
   body{
-    margin:0;
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    line-height:1.7;
-    font-size:18px;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:19px;
+    line-height:1.78;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
   }
 
-  .wrap{
-    max-width:900px;
-    margin:auto;
-    padding:18px 16px 40px;
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0 0 auto 0;
+    height:4px;
+    background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 34%,var(--ink) 34%,var(--ink) 100%);
+    z-index:50;
   }
 
-  /* ===== TÍTULO + SLIDES ===== */
-  .title-row{
+  .wrap{ max-width:760px; margin:0 auto; padding:0 22px 72px; }
+
+  /* ===== CABEÇALHO ===== */
+  .masthead{
+    padding:56px 0 30px;
+    border-bottom:1px solid var(--line-strong);
+    animation:rise .7s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:600;
+    margin-bottom:20px;
     display:flex;
-    justify-content:space-between;
     align-items:center;
-    gap:16px;
+    gap:12px;
     flex-wrap:wrap;
   }
+  .eyebrow::before{ content:""; width:26px; height:2px; background:var(--accent); display:inline-block; }
+  .eyebrow .dot{ color:var(--line-strong); }
 
+  .title-row{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:28px;
+    flex-wrap:wrap;
+  }
   h1{
-    color:var(--title);
-    font-size:28px;
-    margin:10px 0 16px;
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(2.3rem,6.5vw,3.8rem);
+    line-height:1.04;
+    letter-spacing:-.015em;
+    max-width:14ch;
+  }
+  h1 .art{
+    display:block;
+    font-size:.4em;
+    font-weight:600;
+    letter-spacing:.02em;
+    color:var(--accent);
+    font-family:var(--mono);
+    text-transform:uppercase;
+    margin-bottom:.5em;
+  }
+  .slides-btn{
+    flex-shrink:0;
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    background:var(--ink);
+    color:#f4f2ec;
+    border-radius:4px;
+    padding:13px 18px;
+    font-family:var(--mono);
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    box-shadow:0 8px 22px -12px rgba(27,36,54,.7);
+    transition:transform .25s cubic-bezier(.2,.7,.2,1), box-shadow .25s, background .25s;
+  }
+  .slides-btn .ico{ font-size:16px; line-height:1; transform:translateY(-1px); }
+  .slides-btn .arw{ transition:transform .25s; }
+  .slides-btn:hover{ background:var(--accent); transform:translateY(-2px); box-shadow:0 14px 28px -12px rgba(122,46,55,.75); }
+  .slides-btn:hover .arw{ transform:translateX(4px); }
+  .slides-btn:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:3px; }
+
+  /* ===== VERBETE ===== */
+  .verbete{
+    margin:44px 0 8px;
+    padding:6px 0 6px 30px;
+    border-left:3px solid var(--accent);
+    animation:rise .7s .1s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .verbete .tag{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:block;
+    margin-bottom:14px;
+  }
+  .verbete p{
+    font-family:var(--display);
+    font-weight:400;
+    font-size:clamp(1.2rem,3vw,1.5rem);
+    line-height:1.45;
+    letter-spacing:-.01em;
+    color:var(--ink);
+    margin:0;
   }
 
-  .slides-btn{
+  /* ===== SEÇÕES ===== */
+  .sec-head{
+    display:flex;
+    gap:16px;
+    align-items:baseline;
+    margin:46px 0 14px;
+    padding-top:26px;
+    border-top:1px solid var(--line);
+  }
+  .sec-head .num{
+    font-family:var(--mono);
+    font-size:15px;
+    font-weight:600;
+    color:var(--accent);
+    letter-spacing:.02em;
+    flex-shrink:0;
+    padding-top:.35em;
+  }
+  h2{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(1.6rem,4vw,2rem);
+    line-height:1.14;
+    letter-spacing:-.01em;
+    color:var(--ink);
+  }
+  p{ margin-bottom:16px; }
+  .body-text{ color:var(--ink-soft); }
+
+  .ref{
+    font-family:var(--mono);
+    font-size:.8em;
+    color:var(--iron);
+    background:rgba(139,133,121,.12);
+    padding:2px 7px;
+    border-radius:3px;
+    white-space:nowrap;
+  }
+
+  /* ===== ESCALA DE GRAVIDADE (assinatura) ===== */
+  .escala{
+    margin:18px 0 6px;
     display:flex;
     flex-direction:column;
+    gap:2px;
+  }
+  .grau{
+    display:grid;
+    grid-template-columns:36px 1fr;
+    border-radius:5px;
+    overflow:hidden;
+    border:1px solid var(--line);
+  }
+  .grau-bar{
+    display:flex;
     align-items:center;
     justify-content:center;
-    text-decoration:none;
-    background:#ffffff;
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:10px 14px;
-    box-shadow:var(--shadow);
-    min-width:90px;
+    writing-mode:vertical-lr;
+    text-orientation:mixed;
+    font-family:var(--mono);
+    font-weight:700;
+    font-size:9px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:#fff;
+    padding:8px 0;
   }
+  .grau.inex .grau-bar{ background:var(--g-inex); }
+  .grau.abs  .grau-bar{ background:var(--g-abs); }
+  .grau.rel  .grau-bar{ background:var(--g-rel); }
+  .grau.irr  .grau-bar{ background:var(--g-irr); }
 
-  .slides-icon{ font-size:28px; line-height:1; }
-  .slides-text{
-    margin-top:4px;
-    font-weight:800;
+  .grau-body{
+    background:var(--surface);
+    border-left:1px solid var(--line);
+    padding:15px 20px;
+  }
+  .grau-nome{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:1.05rem;
+    color:var(--ink);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:8px;
+    flex-wrap:wrap;
+  }
+  .grau-badge{
+    font-family:var(--mono);
+    font-size:10px;
+    font-weight:600;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    padding:2px 8px;
+    border-radius:3px;
+    color:#fff;
+    flex-shrink:0;
+  }
+  .grau.inex .grau-badge{ background:var(--g-inex); }
+  .grau.abs  .grau-badge{ background:var(--g-abs); }
+  .grau.rel  .grau-badge{ background:var(--g-rel); }
+  .grau.irr  .grau-badge{ background:var(--g-irr); }
+
+  .grau-body p{ font-size:.92em; color:var(--ink-soft); margin:0; line-height:1.7; }
+  .grau-body p + p{ margin-top:8px; }
+  .grau-body .ex{
+    margin-top:8px;
+    font-size:.87em;
+    color:var(--iron);
+    font-style:italic;
+    line-height:1.55;
+  }
+  .grau-body .ex strong{ font-style:normal; color:var(--ink-soft); }
+
+  /* características (tag pills) */
+  .carac{
+    display:flex;
+    flex-wrap:wrap;
+    gap:5px;
+    margin-top:10px;
+  }
+  .carac span{
+    font-family:var(--mono);
+    font-size:.78em;
+    padding:2px 9px;
+    border-radius:3px;
+    border:1px solid var(--line);
+    color:var(--ink-soft);
+    background:var(--paper);
+  }
+  .carac span.pos{ border-color:var(--g-irr); color:var(--g-irr); }
+  .carac span.neg{ border-color:var(--g-abs); color:var(--g-abs); }
+
+  /* ===== CARDS DOS PRINCÍPIOS ===== */
+  .principios{
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+  }
+  .card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+    transition:box-shadow .2s;
+  }
+  .card:hover{ box-shadow:0 4px 18px -8px rgba(27,36,54,.2); }
+
+  .card-btn{
+    width:100%;
+    background:none;
+    border:none;
+    cursor:pointer;
+    display:grid;
+    grid-template-columns:52px 1fr 34px;
+    align-items:center;
+    padding:0;
+    text-align:left;
+    color:inherit;
+  }
+  .card-btn:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:-3px; border-radius:5px; }
+
+  .card-icon{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:60px;
+    height:100%;
+    border-right:1px solid var(--line);
+    font-family:var(--mono);
+    font-weight:600;
+    font-size:12px;
+    color:var(--accent);
+    background:rgba(122,46,55,.05);
+    text-align:center;
+    padding:4px;
+    line-height:1.3;
+  }
+  .card-head{ padding:14px 18px; }
+  .card-num{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--iron);
+    display:block;
+    margin-bottom:3px;
+  }
+  .card-title{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:1.05rem;
+    line-height:1.2;
+    color:var(--ink);
+  }
+  .card-chevron{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding-right:16px;
+    color:var(--iron);
     font-size:13px;
-    color:#0f172a;
+    transition:transform .3s cubic-bezier(.2,.7,.2,1), color .2s;
   }
+  .card.open .card-chevron{ transform:rotate(180deg); color:var(--accent); }
 
-  /* ===== TEXTO ===== */
-  h2{ font-size:22px; margin:30px 0 10px; }
-  h3{ font-size:20px; margin:24px 0 8px; }
-
-  p{
-    margin:0 0 14px;
-    text-align:justify;
+  .card-body{
+    display:none;
+    padding:18px 22px 22px;
+    border-top:1px solid var(--line);
   }
+  .card.open .card-body{ display:block; }
+  .card-body > p{ color:var(--ink-soft); font-size:.93em; line-height:1.72; }
 
-  .box{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:16px;
-    margin:18px 0;
-    box-shadow:var(--shadow);
+  /* aplicabilidade pills dentro dos cards */
+  .aplica{
+    margin-top:12px;
+    display:flex;
+    gap:6px;
+    flex-wrap:wrap;
+    align-items:center;
   }
-
-  ul{
-    margin:10px 0 14px 22px;
+  .aplica .a-lbl{
+    font-family:var(--mono);
+    font-size:.8em;
+    color:var(--iron);
+    text-transform:uppercase;
+    letter-spacing:.08em;
   }
-
-  li{ margin-bottom:10px; }
-
-  .marker{
-    font-weight:900;
+  .aplica .pill{
+    font-family:var(--mono);
+    font-size:.8em;
+    padding:2px 9px;
+    border-radius:3px;
+    font-weight:600;
   }
+  .pill.abs{ background:rgba(122,46,55,.1); color:var(--g-abs); }
+  .pill.rel{ background:rgba(74,99,132,.1); color:var(--g-rel); }
+  .pill.both{ background:rgba(27,36,54,.08); color:var(--ink-soft); }
+
+  .ex-box{
+    margin-top:12px;
+    padding:11px 15px;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:5px;
+    font-size:.88em;
+    color:var(--iron);
+    font-style:italic;
+    line-height:1.6;
+  }
+  .ex-box strong{ font-style:normal; color:var(--ink-soft); }
 
   /* ===== BOTÃO VOLTAR ===== */
-  .voltar{ margin-top:32px; }
-  .voltar a{
-    display:block;
-    text-align:center;
-    background:#ffffff;
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:16px;
-    font-weight:800;
+  .back{
+    margin-top:56px;
+    display:flex;
+    align-items:center;
+    gap:14px;
     text-decoration:none;
-    color:#0f172a;
-    box-shadow:var(--shadow);
+    color:var(--ink);
+    background:var(--surface);
+    border:1px solid var(--line-strong);
+    border-radius:6px;
+    padding:20px 22px;
+    font-family:var(--mono);
+    font-size:14px;
+    letter-spacing:.04em;
+    transition:border-color .25s, transform .25s;
+  }
+  .back .arw{ color:var(--accent); transition:transform .25s; font-size:18px; }
+  .back:hover{ border-color:var(--accent); transform:translateY(-2px); }
+  .back:hover .arw{ transform:translateX(-4px); }
+  .back:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:3px; }
+
+  @keyframes rise{
+    from{ opacity:0; transform:translateY(18px); }
+    to{ opacity:1; transform:none; }
+  }
+  .reveal{ opacity:0; transform:translateY(14px); }
+  .reveal.in{
+    opacity:1; transform:none;
+    transition:opacity .5s ease, transform .5s cubic-bezier(.2,.7,.2,1);
   }
 
-  @media (max-width:480px){
-    body{ font-size:17px; }
-    h1{ font-size:24px; }
-    h2{ font-size:21px; }
-    h3{ font-size:19px; }
+  @media (max-width:560px){
+    body{ font-size:17.5px; }
+    .masthead{ padding:40px 0 24px; }
+    .title-row{ align-items:stretch; }
+    .slides-btn{ width:100%; justify-content:center; }
+    .verbete{ padding-left:20px; }
+    .card-btn{ grid-template-columns:44px 1fr 30px; }
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{ animation:none !important; scroll-behavior:auto; }
+    .reveal{ opacity:1; transform:none; }
+    .reveal.in{ transition:none; }
+    .card-chevron{ transition:none; }
   }
 </style>
 </head>
-
 <body>
 <div class="wrap">
 
-  <div class="title-row">
-    <h1>6. Nulidades Processuais</h1>
-
-    <a class="slides-btn"
-       href="https://drive.google.com/file/d/1yF3DHZHdPWWFQRVJ2DNQCywq02HR6WRo/view?usp=sharing"
-       target="_blank"
-       rel="noopener">
-      <div class="slides-icon">🖼️</div>
-      <div class="slides-text">Slides</div>
-    </a>
-  </div>
-
-  <p>
-    O procedimento é composto por diversos atos processuais que devem ser realizados conforme requisitos
-    e parâmetros criados pelo legislador. Caso a forma seja desrespeitada e haja prejuízo às partes ou ao
-    Estado-Juiz, surge a nulidade processual.
-  </p>
-
-  <div class="box">
-    <p>
-      <strong>Nulidade processual</strong> pode ser conceituada como <strong>erro de forma + prejuízo</strong>.
-      A nulidade não é mero vício formal, mas um defeito que compromete a validade do ato por causar prejuízo.
+  <!-- CABEÇALHO -->
+  <header class="masthead">
+    <p class="eyebrow">
+      Direito Processual do Trabalho
+      <span class="dot">·</span> Unidade 2
+      <span class="dot">·</span> Validade dos atos processuais
     </p>
-  </div>
+    <div class="title-row">
+      <h1>
+        <span class="art">Item 6</span>
+        Nulidades Processuais
+      </h1>
+      <a class="slides-btn"
+         href="https://drive.google.com/file/d/1yF3DHZHdPWWFQRVJ2DNQCywq02HR6WRo/view?usp=sharing"
+         target="_blank" rel="noopener">
+        <span class="ico">▮</span>
+        <span>Slides da aula</span>
+        <span class="arw">→</span>
+      </a>
+    </div>
 
-  <h2>6.1 Classificação dos vícios processuais</h2>
+    <div class="verbete">
+      <span class="tag">Conceito</span>
+      <p>
+        Nulidade processual = <strong>erro de forma + prejuízo</strong>. Não é apenas um vício
+        formal, mas um defeito que compromete a validade do ato por causar prejuízo às partes ou
+        ao Estado-Juiz. Por vezes o prejuízo é presumido; em outros casos deve ser demonstrado.
+      </p>
+    </div>
+  </header>
 
-  <div class="box">
-    <ul>
-      <li>
-        <strong>Inexistência:</strong> vício mais grave, caracterizado pela ausência de requisitos mínimos
-        do ato processual. Ex.: sentença não assinada por juiz investido na função jurisdicional.
-      </li>
+  <!-- § 6.1 CLASSIFICAÇÃO DOS VÍCIOS -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 6.1</span>
+      <h2>Classificação dos vícios processuais</h2>
+    </div>
 
-      <li>
-        <strong>Nulidade absoluta:</strong> decorre do descumprimento de norma de ordem pública,
-        criada no interesse do Estado-Juiz. Pode ser reconhecida de ofício e não sofre preclusão.
-        Exemplo: incompetência absoluta (art. 64 do CPC/2015).
-      </li>
+    <p class="body-text reveal">
+      A doutrina majoritária classifica os vícios em quatro categorias, dispostas abaixo da
+      mais grave para a menos grave:
+    </p>
 
-      <li>
-        <strong>Nulidade relativa:</strong> depende de arguição da parte prejudicada e está sujeita à
-        preclusão. Exemplo: incompetência territorial, que não pode ser reconhecida de ofício
-        (Súmula 33 do STJ).
-      </li>
+    <div class="escala reveal">
 
-      <li>
-        <strong>Irregularidade:</strong> vício sem consequências processuais, pois não gera prejuízo.
-        Ex.: numeração incorreta de páginas, despacho escrito a lápis ou documento em língua estrangeira
-        sem tradução, desde que compreensível.
-      </li>
-    </ul>
-  </div>
+      <div class="grau inex">
+        <div class="grau-bar">Grau I</div>
+        <div class="grau-body">
+          <div class="grau-nome">
+            Inexistência
+            <span class="grau-badge">Mais grave</span>
+          </div>
+          <p>
+            Ausência de requisitos mínimos para a viabilidade do ato processual. Diferentemente
+            da nulidade, o ato inexistente sequer pode ser considerado um ato processual.
+          </p>
+          <p class="ex">
+            <strong>Exemplo:</strong> sentença não assinada por quem está investido na função
+            jurisdicional — não pode ser considerada uma sentença por faltar um requisito mínimo
+            de existência.
+          </p>
+          <div class="carac">
+            <span class="neg">Não produz efeitos</span>
+            <span class="neg">Não convalesce</span>
+            <span class="neg">Jamais se convalida</span>
+          </div>
+        </div>
+      </div>
 
-  <h2>6.2 Princípios relacionados às nulidades processuais</h2>
+      <div class="grau abs">
+        <div class="grau-bar">Grau II</div>
+        <div class="grau-body">
+          <div class="grau-nome">
+            Nulidade absoluta
+            <span class="grau-badge">Grave</span>
+          </div>
+          <p>
+            Decorre do descumprimento de norma de ordem pública, criada no interesse do
+            Estado-Juiz. O ato pode produzir efeitos, mas está viciado e pode ser invalidado.
+            Pode ser reconhecida <strong>de ofício</strong>, sem necessidade de pedido, e
+            <strong>não há preclusão</strong> — pode ser reconhecida enquanto o processo
+            estiver em tramitação.
+          </p>
+          <p class="ex">
+            <strong>Exemplo:</strong> incompetência absoluta — pode ser reconhecida de ofício
+            pelo juiz a qualquer momento (<span class="ref">art. 64, CPC/2015</span>).
+          </p>
+          <div class="carac">
+            <span class="neg">Reconhecível de ofício</span>
+            <span class="neg">Sem preclusão</span>
+            <span class="pos">Pode produzir efeitos provisórios</span>
+          </div>
+        </div>
+      </div>
 
-  <div class="box">
-    <ul>
-      <li>
-        <strong>Transcendência ou prejuízo</strong> (art. 794, CLT): somente haverá nulidade se houver
-        prejuízo. Aplica-se às nulidades relativas; nas absolutas, o prejuízo é presumido.
-      </li>
+      <div class="grau rel">
+        <div class="grau-bar">Grau III</div>
+        <div class="grau-body">
+          <div class="grau-nome">
+            Nulidade relativa
+            <span class="grau-badge">Moderada</span>
+          </div>
+          <p>
+            Vício mais fraco — depende de requerimento da parte prejudicada para ser reconhecido,
+            pois a norma violada protege apenas o interesse das partes. Sujeita à
+            <strong>preclusão</strong> se não alegada na primeira oportunidade.
+          </p>
+          <p class="ex">
+            <strong>Exemplo:</strong> incompetência territorial — não pode ser reconhecida de ofício
+            pelo juiz; deve ser alegada pelo reclamado em sua defesa
+            (<span class="ref">Súmula 33, STJ</span>).
+          </p>
+          <div class="carac">
+            <span class="pos">Depende de requerimento</span>
+            <span class="neg">Sujeita a preclusão</span>
+            <span class="pos">Pode ser convalidada</span>
+          </div>
+        </div>
+      </div>
 
-      <li>
-        <strong>Convalidação ou preclusão</strong> (art. 795, CLT): a nulidade deve ser alegada na
-        primeira oportunidade, sob pena de preclusão. Aplica-se apenas às nulidades relativas.
-      </li>
+      <div class="grau irr">
+        <div class="grau-bar">Grau IV</div>
+        <div class="grau-body">
+          <div class="grau-nome">
+            Irregularidade
+            <span class="grau-badge">Sem consequências</span>
+          </div>
+          <p>
+            Vício processual que não gera consequências, pois não prejudica as partes nem o
+            Estado-Juiz, apesar do descumprimento da forma.
+          </p>
+          <p class="ex">
+            <strong>Exemplos:</strong> numeração incorreta de páginas; despacho escrito a lápis;
+            documento em língua estrangeira sem tradução, mas compreensível.
+          </p>
+          <div class="carac">
+            <span class="pos">Sem prejuízo</span>
+            <span class="pos">Sem consequências processuais</span>
+          </div>
+        </div>
+      </div>
 
-      <li>
-        <strong>Economia processual</strong> (art. 796, a, CLT): não se declara nulidade quando for
-        possível suprir a falta ou repetir o ato, preservando seus efeitos.
-      </li>
+    </div>
+  </section>
 
-      <li>
-        <strong>Interesse</strong> (art. 796, b, CLT): não pode alegar nulidade quem lhe deu causa.
-        Ex.: autor não pode alegar incompetência territorial se ajuizou a ação em local errado.
-      </li>
+  <!-- § 6.2 PRINCÍPIOS -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 6.2</span>
+      <h2>Princípios das nulidades processuais</h2>
+    </div>
 
-      <li>
-        <strong>Utilidade ou aproveitamento</strong> (art. 797, CLT): os atos anteriores ao vício
-        são mantidos; os posteriores só serão invalidados se afetados pela nulidade.
-      </li>
+    <p class="body-text reveal">
+      O ponto mais cobrado no Exame da OAB sobre nulidades são os princípios previstos
+      sobretudo na CLT, com reflexos do CPC/2015:
+    </p>
 
-      <li>
-        <strong>Instrumentalidade das formas</strong> (art. 277 do CPC/2015): não haverá nulidade
-        se o ato, apesar do vício formal, atingir sua finalidade essencial.
-      </li>
-    </ul>
-  </div>
+    <div class="principios reveal">
 
-  <div class="voltar">
-    <a href="../index.html">← Voltar ao índice da disciplina</a>
-  </div>
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Art. 794<br>CLT</div>
+          <div class="card-head">
+            <span class="card-num">1º princípio</span>
+            <span class="card-title">Transcendência ou prejuízo</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            Somente haverá nulidade quando se verificar o prejuízo. Sem prejuízo, não há
+            nulidade — apenas irregularidade. O princípio define o próprio conceito de
+            nulidade (erro de forma + prejuízo).
+          </p>
+          <div class="aplica">
+            <span class="a-lbl">Aplica-se a:</span>
+            <span class="pill rel">Nulidade relativa</span>
+          </div>
+          <div class="ex-box">
+            Nas <strong>nulidades absolutas</strong> o prejuízo é <em>presumido</em> pelo
+            descumprimento de norma criada no interesse do Estado — não há necessidade de
+            demonstrá-lo.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Art. 795<br>CLT</div>
+          <div class="card-head">
+            <span class="card-num">2º princípio</span>
+            <span class="card-title">Convalidação ou preclusão</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            A nulidade deve ser alegada na <strong>primeira oportunidade</strong>, sob pena de
+            preclusão — perdendo-se o direito de alegá-la posteriormente.
+          </p>
+          <div class="aplica">
+            <span class="a-lbl">Aplica-se a:</span>
+            <span class="pill rel">Nulidade relativa</span>
+          </div>
+          <div class="ex-box">
+            Não se aplica às <strong>nulidades absolutas</strong>, que podem ser reconhecidas
+            a qualquer momento do processo, sem preclusão.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Art. 796-a<br>CLT</div>
+          <div class="card-head">
+            <span class="card-num">3º princípio</span>
+            <span class="card-title">Economia processual</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            A nulidade não será reconhecida quando for possível suprir a falta ou repetir o
+            ato — preservando seus efeitos sem necessidade de declarar a nulidade. A ideia
+            é manter a higidez do ato processual sempre que possível.
+          </p>
+          <div class="aplica">
+            <span class="a-lbl">Aplica-se a:</span>
+            <span class="pill both">Todos os vícios</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Art. 796-b<br>CLT</div>
+          <div class="card-head">
+            <span class="card-num">4º princípio</span>
+            <span class="card-title">Interesse</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            Não pode alegar a nulidade <strong>quem lhe deu causa</strong>. A parte não pode
+            se beneficiar de vício que ela própria criou.
+          </p>
+          <div class="aplica">
+            <span class="a-lbl">Aplica-se a:</span>
+            <span class="pill both">Todos os vícios</span>
+          </div>
+          <div class="ex-box">
+            <strong>Exemplo:</strong> o autor não pode alegar incompetência territorial se foi
+            ele quem ajuizou a ação em local errado, ferindo o <span class="ref">art. 651, CLT</span>.
+            O erro foi causado por ele — não pode ser por ele alegado.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Art. 797<br>CLT</div>
+          <div class="card-head">
+            <span class="card-num">5º princípio</span>
+            <span class="card-title">Utilidade ou aproveitamento</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            Os atos processuais <strong>anteriores</strong> ao vício são mantidos íntegros. Os
+            atos <strong>posteriores</strong> ao vício devem ser analisados: só serão invalidados
+            se tiverem sido afetados pela nulidade; caso permaneçam úteis, serão aproveitados.
+          </p>
+          <div class="aplica">
+            <span class="a-lbl">Aplica-se a:</span>
+            <span class="pill both">Todos os vícios</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Art. 277<br>CPC</div>
+          <div class="card-head">
+            <span class="card-num">6º princípio</span>
+            <span class="card-title">Instrumentalidade das formas</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            Não haverá nulidade se o ato processual, apesar do vício de forma,
+            <strong>atingir sua finalidade essencial</strong>. A forma é instrumento, não
+            um fim em si mesma.
+          </p>
+          <div class="aplica">
+            <span class="a-lbl">Aplica-se a:</span>
+            <span class="pill both">Todos os vícios</span>
+          </div>
+          <div class="ex-box">
+            <strong>Exemplo:</strong> notificação endereçada para local errado, mas que chegou
+            ao conhecimento do reclamado — não haverá nulidade, pois a finalidade do ato
+            (ciência da ação) foi preenchida, apesar do erro de endereço.
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /principios -->
+  </section>
+
+  <a class="back" href="../index.html">
+    <span class="arw">←</span>
+    <span>Voltar ao índice da disciplina</span>
+  </a>
 
 </div>
+
+<script>
+  (function(){
+    var items = document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window)){
+      items.forEach(function(el){ el.classList.add('in'); }); return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold:.08, rootMargin:'0px 0px -3% 0px' });
+    items.forEach(function(el, i){
+      el.style.transitionDelay = (i * 40) + 'ms';
+      io.observe(el);
+    });
+  })();
+
+  (function(){
+    var cards = document.querySelectorAll('.card');
+    cards.forEach(function(card){
+      var btn = card.querySelector('.card-btn');
+      btn.addEventListener('click', function(){
+        var isOpen = card.classList.contains('open');
+        cards.forEach(function(c){
+          c.classList.remove('open');
+          c.querySelector('.card-btn').setAttribute('aria-expanded','false');
+        });
+        if(!isOpen){
+          card.classList.add('open');
+          btn.setAttribute('aria-expanded','true');
+        }
+      });
+    });
+  })();
+</script>
+</body>
+</html><!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Nulidades Processuais</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:#1b2436;
+    --ink-soft:#414a5c;
+    --paper:#edece5;
+    --surface:#fbfaf7;
+    --accent:#7a2e37;
+    --accent-soft:#a2545f;
+    --iron:#8b8579;
+    --line:rgba(27,36,54,.13);
+    --line-strong:rgba(27,36,54,.22);
+    /* escala de gravidade */
+    --g-inex:#1b2436;
+    --g-abs:#7a2e37;
+    --g-rel:#4a6384;
+    --g-irr:#8b8579;
+    --display:"Fraunces", Georgia, "Times New Roman", serif;
+    --body:"Spectral", Georgia, serif;
+    --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:19px;
+    line-height:1.78;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0 0 auto 0;
+    height:4px;
+    background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 34%,var(--ink) 34%,var(--ink) 100%);
+    z-index:50;
+  }
+
+  .wrap{ max-width:760px; margin:0 auto; padding:0 22px 72px; }
+
+  /* ===== CABEÇALHO ===== */
+  .masthead{
+    padding:56px 0 30px;
+    border-bottom:1px solid var(--line-strong);
+    animation:rise .7s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:600;
+    margin-bottom:20px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .eyebrow::before{ content:""; width:26px; height:2px; background:var(--accent); display:inline-block; }
+  .eyebrow .dot{ color:var(--line-strong); }
+
+  .title-row{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:28px;
+    flex-wrap:wrap;
+  }
+  h1{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(2.3rem,6.5vw,3.8rem);
+    line-height:1.04;
+    letter-spacing:-.015em;
+    max-width:14ch;
+  }
+  h1 .art{
+    display:block;
+    font-size:.4em;
+    font-weight:600;
+    letter-spacing:.02em;
+    color:var(--accent);
+    font-family:var(--mono);
+    text-transform:uppercase;
+    margin-bottom:.5em;
+  }
+  .slides-btn{
+    flex-shrink:0;
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    background:var(--ink);
+    color:#f4f2ec;
+    border-radius:4px;
+    padding:13px 18px;
+    font-family:var(--mono);
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    box-shadow:0 8px 22px -12px rgba(27,36,54,.7);
+    transition:transform .25s cubic-bezier(.2,.7,.2,1), box-shadow .25s, background .25s;
+  }
+  .slides-btn .ico{ font-size:16px; line-height:1; transform:translateY(-1px); }
+  .slides-btn .arw{ transition:transform .25s; }
+  .slides-btn:hover{ background:var(--accent); transform:translateY(-2px); box-shadow:0 14px 28px -12px rgba(122,46,55,.75); }
+  .slides-btn:hover .arw{ transform:translateX(4px); }
+  .slides-btn:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:3px; }
+
+  /* ===== VERBETE ===== */
+  .verbete{
+    margin:44px 0 8px;
+    padding:6px 0 6px 30px;
+    border-left:3px solid var(--accent);
+    animation:rise .7s .1s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .verbete .tag{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:block;
+    margin-bottom:14px;
+  }
+  .verbete p{
+    font-family:var(--display);
+    font-weight:400;
+    font-size:clamp(1.2rem,3vw,1.5rem);
+    line-height:1.45;
+    letter-spacing:-.01em;
+    color:var(--ink);
+    margin:0;
+  }
+
+  /* ===== SEÇÕES ===== */
+  .sec-head{
+    display:flex;
+    gap:16px;
+    align-items:baseline;
+    margin:46px 0 14px;
+    padding-top:26px;
+    border-top:1px solid var(--line);
+  }
+  .sec-head .num{
+    font-family:var(--mono);
+    font-size:15px;
+    font-weight:600;
+    color:var(--accent);
+    letter-spacing:.02em;
+    flex-shrink:0;
+    padding-top:.35em;
+  }
+  h2{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(1.6rem,4vw,2rem);
+    line-height:1.14;
+    letter-spacing:-.01em;
+    color:var(--ink);
+  }
+  p{ margin-bottom:16px; }
+  .body-text{ color:var(--ink-soft); }
+
+  .ref{
+    font-family:var(--mono);
+    font-size:.8em;
+    color:var(--iron);
+    background:rgba(139,133,121,.12);
+    padding:2px 7px;
+    border-radius:3px;
+    white-space:nowrap;
+  }
+
+  /* ===== ESCALA DE GRAVIDADE (assinatura) ===== */
+  .escala{
+    margin:18px 0 6px;
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+  }
+  .grau{
+    display:grid;
+    grid-template-columns:36px 1fr;
+    border-radius:5px;
+    overflow:hidden;
+    border:1px solid var(--line);
+  }
+  .grau-bar{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    writing-mode:vertical-lr;
+    text-orientation:mixed;
+    font-family:var(--mono);
+    font-weight:700;
+    font-size:9px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:#fff;
+    padding:8px 0;
+  }
+  .grau.inex .grau-bar{ background:var(--g-inex); }
+  .grau.abs  .grau-bar{ background:var(--g-abs); }
+  .grau.rel  .grau-bar{ background:var(--g-rel); }
+  .grau.irr  .grau-bar{ background:var(--g-irr); }
+
+  .grau-body{
+    background:var(--surface);
+    border-left:1px solid var(--line);
+    padding:15px 20px;
+  }
+  .grau-nome{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:1.05rem;
+    color:var(--ink);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:8px;
+    flex-wrap:wrap;
+  }
+  .grau-badge{
+    font-family:var(--mono);
+    font-size:10px;
+    font-weight:600;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    padding:2px 8px;
+    border-radius:3px;
+    color:#fff;
+    flex-shrink:0;
+  }
+  .grau.inex .grau-badge{ background:var(--g-inex); }
+  .grau.abs  .grau-badge{ background:var(--g-abs); }
+  .grau.rel  .grau-badge{ background:var(--g-rel); }
+  .grau.irr  .grau-badge{ background:var(--g-irr); }
+
+  .grau-body p{ font-size:.92em; color:var(--ink-soft); margin:0; line-height:1.7; }
+  .grau-body p + p{ margin-top:8px; }
+  .grau-body .ex{
+    margin-top:8px;
+    font-size:.87em;
+    color:var(--iron);
+    font-style:italic;
+    line-height:1.55;
+  }
+  .grau-body .ex strong{ font-style:normal; color:var(--ink-soft); }
+
+  /* características (tag pills) */
+  .carac{
+    display:flex;
+    flex-wrap:wrap;
+    gap:5px;
+    margin-top:10px;
+  }
+  .carac span{
+    font-family:var(--mono);
+    font-size:.78em;
+    padding:2px 9px;
+    border-radius:3px;
+    border:1px solid var(--line);
+    color:var(--ink-soft);
+    background:var(--paper);
+  }
+  .carac span.pos{ border-color:var(--g-irr); color:var(--g-irr); }
+  .carac span.neg{ border-color:var(--g-abs); color:var(--g-abs); }
+
+  /* ===== CARDS DOS PRINCÍPIOS ===== */
+  .principios{
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+  }
+  .card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+    transition:box-shadow .2s;
+  }
+  .card:hover{ box-shadow:0 4px 18px -8px rgba(27,36,54,.2); }
+
+  .card-btn{
+    width:100%;
+    background:none;
+    border:none;
+    cursor:pointer;
+    display:grid;
+    grid-template-columns:52px 1fr 34px;
+    align-items:center;
+    padding:0;
+    text-align:left;
+    color:inherit;
+  }
+  .card-btn:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:-3px; border-radius:5px; }
+
+  .card-icon{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:60px;
+    height:100%;
+    border-right:1px solid var(--line);
+    font-family:var(--mono);
+    font-weight:600;
+    font-size:12px;
+    color:var(--accent);
+    background:rgba(122,46,55,.05);
+    text-align:center;
+    padding:4px;
+    line-height:1.3;
+  }
+  .card-head{ padding:14px 18px; }
+  .card-num{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--iron);
+    display:block;
+    margin-bottom:3px;
+  }
+  .card-title{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:1.05rem;
+    line-height:1.2;
+    color:var(--ink);
+  }
+  .card-chevron{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding-right:16px;
+    color:var(--iron);
+    font-size:13px;
+    transition:transform .3s cubic-bezier(.2,.7,.2,1), color .2s;
+  }
+  .card.open .card-chevron{ transform:rotate(180deg); color:var(--accent); }
+
+  .card-body{
+    display:none;
+    padding:18px 22px 22px;
+    border-top:1px solid var(--line);
+  }
+  .card.open .card-body{ display:block; }
+  .card-body > p{ color:var(--ink-soft); font-size:.93em; line-height:1.72; }
+
+  /* aplicabilidade pills dentro dos cards */
+  .aplica{
+    margin-top:12px;
+    display:flex;
+    gap:6px;
+    flex-wrap:wrap;
+    align-items:center;
+  }
+  .aplica .a-lbl{
+    font-family:var(--mono);
+    font-size:.8em;
+    color:var(--iron);
+    text-transform:uppercase;
+    letter-spacing:.08em;
+  }
+  .aplica .pill{
+    font-family:var(--mono);
+    font-size:.8em;
+    padding:2px 9px;
+    border-radius:3px;
+    font-weight:600;
+  }
+  .pill.abs{ background:rgba(122,46,55,.1); color:var(--g-abs); }
+  .pill.rel{ background:rgba(74,99,132,.1); color:var(--g-rel); }
+  .pill.both{ background:rgba(27,36,54,.08); color:var(--ink-soft); }
+
+  .ex-box{
+    margin-top:12px;
+    padding:11px 15px;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:5px;
+    font-size:.88em;
+    color:var(--iron);
+    font-style:italic;
+    line-height:1.6;
+  }
+  .ex-box strong{ font-style:normal; color:var(--ink-soft); }
+
+  /* ===== BOTÃO VOLTAR ===== */
+  .back{
+    margin-top:56px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    text-decoration:none;
+    color:var(--ink);
+    background:var(--surface);
+    border:1px solid var(--line-strong);
+    border-radius:6px;
+    padding:20px 22px;
+    font-family:var(--mono);
+    font-size:14px;
+    letter-spacing:.04em;
+    transition:border-color .25s, transform .25s;
+  }
+  .back .arw{ color:var(--accent); transition:transform .25s; font-size:18px; }
+  .back:hover{ border-color:var(--accent); transform:translateY(-2px); }
+  .back:hover .arw{ transform:translateX(-4px); }
+  .back:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:3px; }
+
+  @keyframes rise{
+    from{ opacity:0; transform:translateY(18px); }
+    to{ opacity:1; transform:none; }
+  }
+  .reveal{ opacity:0; transform:translateY(14px); }
+  .reveal.in{
+    opacity:1; transform:none;
+    transition:opacity .5s ease, transform .5s cubic-bezier(.2,.7,.2,1);
+  }
+
+  @media (max-width:560px){
+    body{ font-size:17.5px; }
+    .masthead{ padding:40px 0 24px; }
+    .title-row{ align-items:stretch; }
+    .slides-btn{ width:100%; justify-content:center; }
+    .verbete{ padding-left:20px; }
+    .card-btn{ grid-template-columns:44px 1fr 30px; }
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{ animation:none !important; scroll-behavior:auto; }
+    .reveal{ opacity:1; transform:none; }
+    .reveal.in{ transition:none; }
+    .card-chevron{ transition:none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- CABEÇALHO -->
+  <header class="masthead">
+    <p class="eyebrow">
+      Direito Processual do Trabalho
+      <span class="dot">·</span> Unidade 2
+      <span class="dot">·</span> Validade dos atos processuais
+    </p>
+    <div class="title-row">
+      <h1>
+        <span class="art">Item 6</span>
+        Nulidades Processuais
+      </h1>
+      <a class="slides-btn"
+         href="https://drive.google.com/file/d/1yF3DHZHdPWWFQRVJ2DNQCywq02HR6WRo/view?usp=sharing"
+         target="_blank" rel="noopener">
+        <span class="ico">▮</span>
+        <span>Slides da aula</span>
+        <span class="arw">→</span>
+      </a>
+    </div>
+
+    <div class="verbete">
+      <span class="tag">Conceito</span>
+      <p>
+        Nulidade processual = <strong>erro de forma + prejuízo</strong>. Não é apenas um vício
+        formal, mas um defeito que compromete a validade do ato por causar prejuízo às partes ou
+        ao Estado-Juiz. Por vezes o prejuízo é presumido; em outros casos deve ser demonstrado.
+      </p>
+    </div>
+  </header>
+
+  <!-- § 6.1 CLASSIFICAÇÃO DOS VÍCIOS -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 6.1</span>
+      <h2>Classificação dos vícios processuais</h2>
+    </div>
+
+    <p class="body-text reveal">
+      A doutrina majoritária classifica os vícios em quatro categorias, dispostas abaixo da
+      mais grave para a menos grave:
+    </p>
+
+    <div class="escala reveal">
+
+      <div class="grau inex">
+        <div class="grau-bar">Grau I</div>
+        <div class="grau-body">
+          <div class="grau-nome">
+            Inexistência
+            <span class="grau-badge">Mais grave</span>
+          </div>
+          <p>
+            Ausência de requisitos mínimos para a viabilidade do ato processual. Diferentemente
+            da nulidade, o ato inexistente sequer pode ser considerado um ato processual.
+          </p>
+          <p class="ex">
+            <strong>Exemplo:</strong> sentença não assinada por quem está investido na função
+            jurisdicional — não pode ser considerada uma sentença por faltar um requisito mínimo
+            de existência.
+          </p>
+          <div class="carac">
+            <span class="neg">Não produz efeitos</span>
+            <span class="neg">Não convalesce</span>
+            <span class="neg">Jamais se convalida</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="grau abs">
+        <div class="grau-bar">Grau II</div>
+        <div class="grau-body">
+          <div class="grau-nome">
+            Nulidade absoluta
+            <span class="grau-badge">Grave</span>
+          </div>
+          <p>
+            Decorre do descumprimento de norma de ordem pública, criada no interesse do
+            Estado-Juiz. O ato pode produzir efeitos, mas está viciado e pode ser invalidado.
+            Pode ser reconhecida <strong>de ofício</strong>, sem necessidade de pedido, e
+            <strong>não há preclusão</strong> — pode ser reconhecida enquanto o processo
+            estiver em tramitação.
+          </p>
+          <p class="ex">
+            <strong>Exemplo:</strong> incompetência absoluta — pode ser reconhecida de ofício
+            pelo juiz a qualquer momento (<span class="ref">art. 64, CPC/2015</span>).
+          </p>
+          <div class="carac">
+            <span class="neg">Reconhecível de ofício</span>
+            <span class="neg">Sem preclusão</span>
+            <span class="pos">Pode produzir efeitos provisórios</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="grau rel">
+        <div class="grau-bar">Grau III</div>
+        <div class="grau-body">
+          <div class="grau-nome">
+            Nulidade relativa
+            <span class="grau-badge">Moderada</span>
+          </div>
+          <p>
+            Vício mais fraco — depende de requerimento da parte prejudicada para ser reconhecido,
+            pois a norma violada protege apenas o interesse das partes. Sujeita à
+            <strong>preclusão</strong> se não alegada na primeira oportunidade.
+          </p>
+          <p class="ex">
+            <strong>Exemplo:</strong> incompetência territorial — não pode ser reconhecida de ofício
+            pelo juiz; deve ser alegada pelo reclamado em sua defesa
+            (<span class="ref">Súmula 33, STJ</span>).
+          </p>
+          <div class="carac">
+            <span class="pos">Depende de requerimento</span>
+            <span class="neg">Sujeita a preclusão</span>
+            <span class="pos">Pode ser convalidada</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="grau irr">
+        <div class="grau-bar">Grau IV</div>
+        <div class="grau-body">
+          <div class="grau-nome">
+            Irregularidade
+            <span class="grau-badge">Sem consequências</span>
+          </div>
+          <p>
+            Vício processual que não gera consequências, pois não prejudica as partes nem o
+            Estado-Juiz, apesar do descumprimento da forma.
+          </p>
+          <p class="ex">
+            <strong>Exemplos:</strong> numeração incorreta de páginas; despacho escrito a lápis;
+            documento em língua estrangeira sem tradução, mas compreensível.
+          </p>
+          <div class="carac">
+            <span class="pos">Sem prejuízo</span>
+            <span class="pos">Sem consequências processuais</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- § 6.2 PRINCÍPIOS -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 6.2</span>
+      <h2>Princípios das nulidades processuais</h2>
+    </div>
+
+    <p class="body-text reveal">
+      O ponto mais cobrado no Exame da OAB sobre nulidades são os princípios previstos
+      sobretudo na CLT, com reflexos do CPC/2015:
+    </p>
+
+    <div class="principios reveal">
+
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Art. 794<br>CLT</div>
+          <div class="card-head">
+            <span class="card-num">1º princípio</span>
+            <span class="card-title">Transcendência ou prejuízo</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            Somente haverá nulidade quando se verificar o prejuízo. Sem prejuízo, não há
+            nulidade — apenas irregularidade. O princípio define o próprio conceito de
+            nulidade (erro de forma + prejuízo).
+          </p>
+          <div class="aplica">
+            <span class="a-lbl">Aplica-se a:</span>
+            <span class="pill rel">Nulidade relativa</span>
+          </div>
+          <div class="ex-box">
+            Nas <strong>nulidades absolutas</strong> o prejuízo é <em>presumido</em> pelo
+            descumprimento de norma criada no interesse do Estado — não há necessidade de
+            demonstrá-lo.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Art. 795<br>CLT</div>
+          <div class="card-head">
+            <span class="card-num">2º princípio</span>
+            <span class="card-title">Convalidação ou preclusão</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            A nulidade deve ser alegada na <strong>primeira oportunidade</strong>, sob pena de
+            preclusão — perdendo-se o direito de alegá-la posteriormente.
+          </p>
+          <div class="aplica">
+            <span class="a-lbl">Aplica-se a:</span>
+            <span class="pill rel">Nulidade relativa</span>
+          </div>
+          <div class="ex-box">
+            Não se aplica às <strong>nulidades absolutas</strong>, que podem ser reconhecidas
+            a qualquer momento do processo, sem preclusão.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Art. 796-a<br>CLT</div>
+          <div class="card-head">
+            <span class="card-num">3º princípio</span>
+            <span class="card-title">Economia processual</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            A nulidade não será reconhecida quando for possível suprir a falta ou repetir o
+            ato — preservando seus efeitos sem necessidade de declarar a nulidade. A ideia
+            é manter a higidez do ato processual sempre que possível.
+          </p>
+          <div class="aplica">
+            <span class="a-lbl">Aplica-se a:</span>
+            <span class="pill both">Todos os vícios</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Art. 796-b<br>CLT</div>
+          <div class="card-head">
+            <span class="card-num">4º princípio</span>
+            <span class="card-title">Interesse</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            Não pode alegar a nulidade <strong>quem lhe deu causa</strong>. A parte não pode
+            se beneficiar de vício que ela própria criou.
+          </p>
+          <div class="aplica">
+            <span class="a-lbl">Aplica-se a:</span>
+            <span class="pill both">Todos os vícios</span>
+          </div>
+          <div class="ex-box">
+            <strong>Exemplo:</strong> o autor não pode alegar incompetência territorial se foi
+            ele quem ajuizou a ação em local errado, ferindo o <span class="ref">art. 651, CLT</span>.
+            O erro foi causado por ele — não pode ser por ele alegado.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Art. 797<br>CLT</div>
+          <div class="card-head">
+            <span class="card-num">5º princípio</span>
+            <span class="card-title">Utilidade ou aproveitamento</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            Os atos processuais <strong>anteriores</strong> ao vício são mantidos íntegros. Os
+            atos <strong>posteriores</strong> ao vício devem ser analisados: só serão invalidados
+            se tiverem sido afetados pela nulidade; caso permaneçam úteis, serão aproveitados.
+          </p>
+          <div class="aplica">
+            <span class="a-lbl">Aplica-se a:</span>
+            <span class="pill both">Todos os vícios</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Art. 277<br>CPC</div>
+          <div class="card-head">
+            <span class="card-num">6º princípio</span>
+            <span class="card-title">Instrumentalidade das formas</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            Não haverá nulidade se o ato processual, apesar do vício de forma,
+            <strong>atingir sua finalidade essencial</strong>. A forma é instrumento, não
+            um fim em si mesma.
+          </p>
+          <div class="aplica">
+            <span class="a-lbl">Aplica-se a:</span>
+            <span class="pill both">Todos os vícios</span>
+          </div>
+          <div class="ex-box">
+            <strong>Exemplo:</strong> notificação endereçada para local errado, mas que chegou
+            ao conhecimento do reclamado — não haverá nulidade, pois a finalidade do ato
+            (ciência da ação) foi preenchida, apesar do erro de endereço.
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /principios -->
+  </section>
+
+  <a class="back" href="../index.html">
+    <span class="arw">←</span>
+    <span>Voltar ao índice da disciplina</span>
+  </a>
+
+</div>
+
+<script>
+  (function(){
+    var items = document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window)){
+      items.forEach(function(el){ el.classList.add('in'); }); return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold:.08, rootMargin:'0px 0px -3% 0px' });
+    items.forEach(function(el, i){
+      el.style.transitionDelay = (i * 40) + 'ms';
+      io.observe(el);
+    });
+  })();
+
+  (function(){
+    var cards = document.querySelectorAll('.card');
+    cards.forEach(function(card){
+      var btn = card.querySelector('.card-btn');
+      btn.addEventListener('click', function(){
+        var isOpen = card.classList.contains('open');
+        cards.forEach(function(c){
+          c.classList.remove('open');
+          c.querySelector('.card-btn').setAttribute('aria-expanded','false');
+        });
+        if(!isOpen){
+          card.classList.add('open');
+          btn.setAttribute('aria-expanded','true');
+        }
+      });
+    });
+  })();
+</script>
 </body>
 </html>
