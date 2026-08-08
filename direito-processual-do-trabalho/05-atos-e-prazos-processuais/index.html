@@ -5,249 +5,1017 @@
 <title>Atos e Prazos Processuais</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
 <style>
   :root{
-    --bg:#f2f7ff;
-    --text:#0f172a;
-    --title:#1f4fd8;
-    --card:#ffffff;
-    --border:rgba(15,23,42,.15);
-    --shadow:0 8px 18px rgba(15,23,42,.08);
+    --ink:#1b2436;
+    --ink-soft:#414a5c;
+    --paper:#edece5;
+    --surface:#fbfaf7;
+    --accent:#7a2e37;
+    --accent-soft:#a2545f;
+    --iron:#8b8579;
+    --reform:#4a3a00;
+    --reform-bg:#fdf8e8;
+    --reform-border:#c9a227;
+    --line:rgba(27,36,54,.13);
+    --line-strong:rgba(27,36,54,.22);
+    --display:"Fraunces", Georgia, "Times New Roman", serif;
+    --body:"Spectral", Georgia, serif;
+    --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
   }
 
-  *{ box-sizing:border-box; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
 
   body{
-    margin:0;
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    line-height:1.7;
-    font-size:18px;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:19px;
+    line-height:1.78;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
   }
 
-  .wrap{
-    max-width:900px;
-    margin:auto;
-    padding:18px 16px 40px;
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0 0 auto 0;
+    height:4px;
+    background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 34%,var(--ink) 34%,var(--ink) 100%);
+    z-index:50;
   }
 
-  /* ===== TÍTULO + SLIDES ===== */
-  .title-row{
+  .wrap{ max-width:760px; margin:0 auto; padding:0 22px 72px; }
+
+  /* ===== CABEÇALHO ===== */
+  .masthead{
+    padding:56px 0 30px;
+    border-bottom:1px solid var(--line-strong);
+    animation:rise .7s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:600;
+    margin-bottom:20px;
     display:flex;
-    justify-content:space-between;
     align-items:center;
-    gap:16px;
+    gap:12px;
     flex-wrap:wrap;
   }
+  .eyebrow::before{ content:""; width:26px; height:2px; background:var(--accent); display:inline-block; }
+  .eyebrow .dot{ color:var(--line-strong); }
 
+  .title-row{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:28px;
+    flex-wrap:wrap;
+  }
   h1{
-    color:var(--title);
-    font-size:28px;
-    margin:10px 0 16px;
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(2.3rem,6.5vw,3.8rem);
+    line-height:1.04;
+    letter-spacing:-.015em;
+    max-width:14ch;
+  }
+  h1 .art{
+    display:block;
+    font-size:.4em;
+    font-weight:600;
+    letter-spacing:.02em;
+    color:var(--accent);
+    font-family:var(--mono);
+    text-transform:uppercase;
+    margin-bottom:.5em;
+  }
+  .slides-btn{
+    flex-shrink:0;
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    background:var(--ink);
+    color:#f4f2ec;
+    border-radius:4px;
+    padding:13px 18px;
+    font-family:var(--mono);
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    box-shadow:0 8px 22px -12px rgba(27,36,54,.7);
+    transition:transform .25s cubic-bezier(.2,.7,.2,1), box-shadow .25s, background .25s;
+  }
+  .slides-btn .ico{ font-size:16px; line-height:1; transform:translateY(-1px); }
+  .slides-btn .arw{ transition:transform .25s; }
+  .slides-btn:hover{ background:var(--accent); transform:translateY(-2px); box-shadow:0 14px 28px -12px rgba(122,46,55,.75); }
+  .slides-btn:hover .arw{ transform:translateX(4px); }
+  .slides-btn:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:3px; }
+
+  /* ===== SEÇÕES ===== */
+  .sec-head{
+    display:flex;
+    gap:16px;
+    align-items:baseline;
+    margin:46px 0 14px;
+    padding-top:26px;
+    border-top:1px solid var(--line);
+  }
+  .sec-head .num{
+    font-family:var(--mono);
+    font-size:15px;
+    font-weight:600;
+    color:var(--accent);
+    letter-spacing:.02em;
+    flex-shrink:0;
+    padding-top:.35em;
+  }
+  h2{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(1.6rem,4vw,2rem);
+    line-height:1.14;
+    letter-spacing:-.01em;
+    color:var(--ink);
+  }
+  p{ margin-bottom:16px; }
+  .body-text{ color:var(--ink-soft); }
+
+  .ref{
+    font-family:var(--mono);
+    font-size:.8em;
+    color:var(--iron);
+    background:rgba(139,133,121,.12);
+    padding:2px 7px;
+    border-radius:3px;
+    white-space:nowrap;
   }
 
-  .slides-btn{
+  /* ===== HORÁRIOS (grade visual) ===== */
+  .horarios{
+    margin:18px 0 6px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:3px;
+  }
+  .hor-col{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:18px 20px;
+  }
+  .hor-col .h-lbl{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--iron);
+    display:block;
+    margin-bottom:8px;
+  }
+  .hor-col .h-tempo{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:1.5rem;
+    color:var(--accent);
+    display:block;
+    margin-bottom:6px;
+    line-height:1.1;
+  }
+  .hor-col p{ font-size:.9em; color:var(--ink-soft); margin:0; line-height:1.6; }
+
+  /* ===== CARDS ===== */
+  .cards{
     display:flex;
     flex-direction:column;
+    gap:3px;
+  }
+  .card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+    transition:box-shadow .2s;
+  }
+  .card:hover{ box-shadow:0 4px 18px -8px rgba(27,36,54,.2); }
+
+  .card-btn{
+    width:100%;
+    background:none;
+    border:none;
+    cursor:pointer;
+    display:grid;
+    grid-template-columns:52px 1fr 34px;
+    align-items:center;
+    padding:0;
+    text-align:left;
+    color:inherit;
+  }
+  .card-btn:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:-3px; border-radius:5px; }
+
+  .card-icon{
+    display:flex;
     align-items:center;
     justify-content:center;
-    text-decoration:none;
-    background:#ffffff;
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:10px 14px;
-    box-shadow:var(--shadow);
-    min-width:90px;
-  }
-
-  .slides-icon{ font-size:28px; line-height:1; }
-  .slides-text{
-    margin-top:4px;
-    font-weight:800;
+    min-height:60px;
+    height:100%;
+    border-right:1px solid var(--line);
+    font-family:var(--mono);
+    font-weight:600;
     font-size:13px;
-    color:#0f172a;
+    color:var(--accent);
+    background:rgba(122,46,55,.05);
+    text-align:center;
+    padding:4px;
+    line-height:1.3;
+  }
+  .card-head{ padding:14px 18px; }
+  .card-num{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--iron);
+    display:block;
+    margin-bottom:3px;
+  }
+  .card-title{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:1.08rem;
+    line-height:1.2;
+    color:var(--ink);
+  }
+  .card-chevron{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding-right:16px;
+    color:var(--iron);
+    font-size:13px;
+    transition:transform .3s cubic-bezier(.2,.7,.2,1), color .2s;
+  }
+  .card.open .card-chevron{ transform:rotate(180deg); color:var(--accent); }
+
+  .card-body{
+    display:none;
+    padding:18px 22px 22px;
+    border-top:1px solid var(--line);
+  }
+  .card.open .card-body{ display:block; }
+  .card-body > p{ color:var(--ink-soft); font-size:.93em; line-height:1.72; }
+
+  /* sub-bloco */
+  .sub{
+    margin:12px 0 6px;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:5px;
+    padding:13px 17px;
+  }
+  .sub-lbl{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:block;
+    margin-bottom:9px;
+  }
+  .sub p{ font-size:.91em; color:var(--ink-soft); margin-bottom:8px; line-height:1.65; }
+  .sub p:last-child{ margin:0; }
+
+  /* lista */
+  .item-list{
+    margin:10px 0 4px;
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+  }
+  .item-row{
+    display:grid;
+    grid-template-columns:22px 1fr;
+    gap:10px;
+    font-size:.9em;
+    color:var(--ink-soft);
+    line-height:1.6;
+    padding:6px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .item-row:last-child{ border-bottom:none; }
+  .item-row .bul{ color:var(--accent); font-family:var(--mono); font-size:.85em; padding-top:2px; }
+
+  /* súmula */
+  .sumula{
+    margin:10px 0 4px;
+    padding:11px 15px;
+    border-left:2px solid var(--iron);
+    background:var(--paper);
+    border-radius:0 4px 4px 0;
+    font-size:.88em;
+    color:var(--ink-soft);
+    line-height:1.6;
+  }
+  .sumula strong{
+    font-style:normal;
+    font-family:var(--mono);
+    font-size:.86em;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--iron);
+    display:block;
+    margin-bottom:4px;
   }
 
-  /* ===== TEXTO ===== */
-  h2{ font-size:22px; margin:30px 0 10px; }
-  h3{ font-size:20px; margin:24px 0 8px; }
+  /* reforma */
+  .reforma{
+    margin:12px 0 4px;
+    padding:12px 16px;
+    background:var(--reform-bg);
+    border-left:3px solid var(--reform-border);
+    border-radius:0 5px 5px 0;
+    font-size:.9em;
+    color:var(--reform);
+    line-height:1.65;
+  }
+  .reforma-lbl{
+    font-family:var(--mono);
+    font-size:10.5px;
+    font-weight:600;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    margin-bottom:7px;
+    display:block;
+    color:var(--reform-border);
+  }
+  .reforma p{ margin-bottom:8px; color:var(--reform); }
+  .reforma p:last-child{ margin:0; }
 
-  p{
-    margin:0 0 14px;
-    text-align:justify;
+  /* alerta OAB */
+  .nota{
+    margin:12px 0 4px;
+    padding:12px 16px;
+    background:rgba(122,46,55,.06);
+    border-left:3px solid var(--accent);
+    border-radius:0 5px 5px 0;
+    font-size:.9em;
+    color:var(--ink-soft);
+    line-height:1.65;
+  }
+  .nota strong{ color:var(--ink); }
+
+  /* texto DL 779 */
+  .decreto{
+    margin:12px 0 4px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:5px;
+    overflow:hidden;
+  }
+  .decreto-head{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--iron);
+    padding:9px 14px;
+    background:rgba(139,133,121,.08);
+    border-bottom:1px solid var(--line);
+  }
+  .decreto-body{
+    padding:12px 16px;
+    font-size:.87em;
+    color:var(--ink-soft);
+    line-height:1.65;
+  }
+  .decreto-body p{ margin-bottom:6px; }
+  .decreto-body p:last-child{ margin:0; }
+
+  /* prazos — linha do tempo (assinatura da seção 5.3) */
+  .prazo-exemplo{
+    margin:14px 0 8px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+  }
+  .pe-head{
+    background:var(--ink);
+    color:#f4f2ec;
+    font-family:var(--mono);
+    font-size:11.5px;
+    font-weight:600;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    padding:9px 16px;
+  }
+  .pe-body{
+    padding:14px 18px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:0;
+  }
+  .pe-step{
+    text-align:center;
+    padding:6px 8px;
+    position:relative;
+  }
+  .pe-step:not(:last-child)::after{
+    content:"→";
+    position:absolute;
+    right:-8px;
+    top:50%;
+    transform:translateY(-50%);
+    color:var(--iron);
+    font-size:14px;
+  }
+  .pe-step .ps-dia{
+    font-family:var(--mono);
+    font-weight:600;
+    font-size:.9rem;
+    color:var(--accent);
+    display:block;
+    margin-bottom:3px;
+  }
+  .pe-step .ps-lbl{
+    font-family:var(--mono);
+    font-size:.74em;
+    color:var(--iron);
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    display:block;
+    line-height:1.3;
+  }
+  .pe-step.destaque .ps-dia{ color:var(--ink); }
+  .pe-step.destaque .ps-lbl{ color:var(--ink-soft); }
+
+  /* custas — tabela valores */
+  .custas-calc{
+    margin:14px 0 6px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    overflow:hidden;
+    background:var(--surface);
+  }
+  .cc-row{
+    display:grid;
+    grid-template-columns:140px 1fr;
+    border-bottom:1px solid var(--line);
+    font-size:.9em;
+  }
+  .cc-row:last-child{ border-bottom:none; }
+  .cc-cat{
+    padding:11px 14px;
+    font-family:var(--mono);
+    font-size:.82em;
+    font-weight:600;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--accent);
+    background:rgba(122,46,55,.05);
+    border-right:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    line-height:1.3;
+  }
+  .cc-val{
+    padding:11px 15px;
+    color:var(--ink-soft);
+    display:flex;
+    align-items:center;
+    line-height:1.55;
   }
 
-  .box{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:16px;
-    margin:18px 0;
-    box-shadow:var(--shadow);
+  /* isenções grid */
+  .isencoes{
+    margin:12px 0 4px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:3px;
   }
-
-  ul{
-    margin:10px 0 14px 22px;
+  .is-col{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:5px;
+    padding:13px 15px;
   }
-
-  li{ margin-bottom:10px; }
-
-  .marker{ font-weight:900; }
+  .is-col .i-lbl{
+    font-family:var(--mono);
+    font-size:10.5px;
+    font-weight:600;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    margin-bottom:8px;
+    display:block;
+  }
+  .is-col.sim .i-lbl{ color:var(--accent); }
+  .is-col.nao .i-lbl{ color:var(--iron); }
+  .is-col p{ font-size:.88em; color:var(--ink-soft); margin:0; line-height:1.6; }
 
   /* ===== BOTÃO VOLTAR ===== */
-  .voltar{ margin-top:32px; }
-  .voltar a{
-    display:block;
-    text-align:center;
-    background:#ffffff;
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:16px;
-    font-weight:800;
+  .back{
+    margin-top:56px;
+    display:flex;
+    align-items:center;
+    gap:14px;
     text-decoration:none;
-    color:#0f172a;
-    box-shadow:var(--shadow);
+    color:var(--ink);
+    background:var(--surface);
+    border:1px solid var(--line-strong);
+    border-radius:6px;
+    padding:20px 22px;
+    font-family:var(--mono);
+    font-size:14px;
+    letter-spacing:.04em;
+    transition:border-color .25s, transform .25s;
+  }
+  .back .arw{ color:var(--accent); transition:transform .25s; font-size:18px; }
+  .back:hover{ border-color:var(--accent); transform:translateY(-2px); }
+  .back:hover .arw{ transform:translateX(-4px); }
+  .back:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:3px; }
+
+  @keyframes rise{
+    from{ opacity:0; transform:translateY(18px); }
+    to{ opacity:1; transform:none; }
+  }
+  .reveal{ opacity:0; transform:translateY(14px); }
+  .reveal.in{
+    opacity:1; transform:none;
+    transition:opacity .5s ease, transform .5s cubic-bezier(.2,.7,.2,1);
   }
 
-  @media (max-width:480px){
-    body{ font-size:17px; }
-    h1{ font-size:24px; }
-    h2{ font-size:21px; }
-    h3{ font-size:19px; }
+  @media (max-width:560px){
+    body{ font-size:17.5px; }
+    .masthead{ padding:40px 0 24px; }
+    .title-row{ align-items:stretch; }
+    .slides-btn{ width:100%; justify-content:center; }
+    .horarios, .isencoes{ grid-template-columns:1fr; }
+    .card-btn{ grid-template-columns:44px 1fr 30px; }
+    .pe-body{ grid-template-columns:1fr 1fr; row-gap:12px; }
+    .pe-step:nth-child(2)::after{ display:none; }
+    .cc-row{ grid-template-columns:1fr; }
+    .cc-cat{ border-right:none; border-bottom:1px solid var(--line); }
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{ animation:none !important; scroll-behavior:auto; }
+    .reveal{ opacity:1; transform:none; }
+    .reveal.in{ transition:none; }
+    .card-chevron{ transition:none; }
   }
 </style>
 </head>
-
 <body>
 <div class="wrap">
 
-  <div class="title-row">
-    <h1>5. Atos e Prazos Processuais</h1>
+  <!-- CABEÇALHO -->
+  <header class="masthead">
+    <p class="eyebrow">
+      Direito Processual do Trabalho
+      <span class="dot">·</span> Unidade 2
+      <span class="dot">·</span> Procedimento
+    </p>
+    <div class="title-row">
+      <h1>
+        <span class="art">Item 5</span>
+        Atos e Prazos Processuais
+      </h1>
+      <a class="slides-btn"
+         href="https://drive.google.com/file/d/1jptUjpTeccbZfvGQD-RCQ_gEdz8Qi_sb/view?usp=sharing"
+         target="_blank" rel="noopener">
+        <span class="ico">▮</span>
+        <span>Slides da aula</span>
+        <span class="arw">→</span>
+      </a>
+    </div>
+  </header>
 
-    <a class="slides-btn"
-       href="https://drive.google.com/file/d/1jptUjpTeccbZfvGQD-RCQ_gEdz8Qi_sb/view?usp=sharing"
-       target="_blank"
-       rel="noopener">
-      <div class="slides-icon">🖼️</div>
-      <div class="slides-text">Slides</div>
-    </a>
-  </div>
+  <!-- § 5.1 FORMA DOS ATOS -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 5.1</span>
+      <h2>Forma e realização dos atos processuais</h2>
+    </div>
 
-  <h2>5.1 Forma e realização dos atos processuais</h2>
+    <!-- horários -->
+    <div class="horarios reveal">
+      <div class="hor-col">
+        <span class="h-lbl">Atos processuais em geral — <span class="ref">art. 770, CLT</span></span>
+        <span class="h-tempo">6h – 20h</span>
+        <p>Dias úteis. A penhora fora desse horário depende de autorização expressa do juiz (não há autorização implícita), sob pena de nulidade.</p>
+      </div>
+      <div class="hor-col">
+        <span class="h-lbl">Audiência — <span class="ref">art. 813, CLT</span></span>
+        <span class="h-tempo">8h – 18h</span>
+        <p>Dias úteis. Não pode ultrapassar 5 horas seguidas, salvo matéria urgente.</p>
+      </div>
+    </div>
 
-  <p>
-    Os atos processuais são realizados das 6h às 20h dos dias úteis, conforme art. 770 da CLT,
-    podendo a penhora ocorrer fora desses horários quando houver autorização expressa do juiz,
-    sob pena de nulidade. Trata-se de exceção justificada pela dificuldade do ato.
-  </p>
+    <!-- classificação dos atos -->
+    <div class="cards reveal" style="margin-top:16px;">
 
-  <p>
-    A audiência segue regra própria: será realizada das 8h às 18h, nos dias úteis, não podendo
-    ultrapassar 5 horas seguidas, salvo matéria urgente (art. 813 da CLT).
-  </p>
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Atos<br>partes</div>
+          <div class="card-head">
+            <span class="card-num">Sujeitos processuais</span>
+            <span class="card-title">Classificação dos atos processuais</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <div class="sub">
+            <span class="sub-lbl">Atos das partes</span>
+            <p>Petição inicial, defesa, interposição de recursos, apresentação de razões finais, entre outros.</p>
+          </div>
 
-  <div class="box">
-    <p><strong>Classificação dos atos processuais:</strong></p>
-    <ul>
-      <li><strong>Atos das partes:</strong> petição inicial, defesa, recursos, razões finais.</li>
-      <li><strong>Atos do juiz:</strong> despachos, decisões interlocutórias, sentenças e acórdãos.</li>
-      <li><strong>Atos do escrivão/chefe de secretaria:</strong> autuação e expedição de notificações.</li>
-    </ul>
-  </div>
+          <div class="sub">
+            <span class="sub-lbl">Atos do juiz — pronunciamentos judiciais (<span class="ref" style="text-transform:none;letter-spacing:0">arts. 203 e 204, CPC/2015</span>)</span>
+            <div class="item-list">
+              <div class="item-row"><span class="bul">▸</span><span><strong>Despachos</strong> — atos de movimentação do processo, sem conteúdo decisório, que não geram prejuízo às partes e não podem ser impugnados por recurso (<span class="ref">art. 1.001, CPC</span>).</span></div>
+              <div class="item-row"><span class="bul">▸</span><span><strong>Decisões interlocutórias</strong> — decidem questões incidentes no curso do processo, sem analisar o pedido principal; não há recurso imediato no processo do trabalho.</span></div>
+              <div class="item-row"><span class="bul">▸</span><span><strong>Sentenças</strong> — extinguem o processo em primeiro grau. <em>Definitiva</em>: julga o mérito (<span class="ref">art. 487, CPC</span>). <em>Terminativa</em>: extingue sem julgamento do mérito por vício processual (<span class="ref">art. 485, CPC</span>).</span></div>
+              <div class="item-row"><span class="bul">▸</span><span><strong>Acórdãos</strong> — decisões colegiadas dos tribunais (<span class="ref">art. 204, CPC</span>).</span></div>
+            </div>
+          </div>
 
-  <div class="box">
-    <p><strong>Pronunciamentos judiciais (arts. 203 e 204 do CPC):</strong></p>
-    <ul>
-      <li><strong>Despachos:</strong> atos sem conteúdo decisório (art. 1.001, CPC).</li>
-      <li><strong>Decisões interlocutórias:</strong> decidem questões incidentais, sem recurso imediato.</li>
-      <li><strong>Sentenças:</strong> extinguem o processo, com ou sem resolução do mérito.</li>
-      <li><strong>Acórdãos:</strong> decisões colegiadas dos tribunais.</li>
-    </ul>
-  </div>
+          <div class="sub" style="margin-top:10px;">
+            <span class="sub-lbl">Atos do escrivão / chefe de secretaria (<span class="ref" style="text-transform:none;letter-spacing:0">art. 206, CPC</span>)</span>
+            <p>Autuação da petição inicial e expedição de notificações. O <span class="ref">art. 841, CLT</span> prevê que o serventuário deve remeter a notificação ao reclamado em até 48 horas após receber a petição inicial.</p>
+          </div>
 
-  <p>
-    A IN nº 39/2016 do TST afasta a aplicação do art. 190 do CPC ao processo do trabalho, vedando
-    a negociação processual.
-  </p>
+          <div class="nota" style="margin-top:12px;">
+            <strong>IN n. 39/2016, TST:</strong> não se aplica ao processo do trabalho o <span class="ref">art. 190, CPC</span> (negociação processual). Não é possível que as partes negociem a modificação do procedimento ou da forma de prática dos atos processuais.
+          </div>
+        </div>
+      </div>
 
-  <h2>5.2 Comunicação dos atos processuais</h2>
+    </div>
+  </section>
 
-  <p>
-    No processo do trabalho, tanto a citação quanto a intimação recebem a denominação única de
-    <strong>notificação</strong>.
-  </p>
+  <!-- § 5.2 COMUNICAÇÃO -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 5.2</span>
+      <h2>Comunicação dos atos processuais</h2>
+    </div>
 
-  <div class="box">
-    <p><strong>Art. 841 da CLT – prazos relevantes:</strong></p>
-    <ul>
-      <li>48h para expedição da notificação;</li>
-      <li>presunção de recebimento em 48h (Súmula 16 do TST);</li>
-      <li>mínimo de 5 dias de antecedência para a audiência;</li>
-      <li>prazo em quádruplo (20 dias) para entes públicos (DL 779/69).</li>
-    </ul>
-  </div>
+    <p class="body-text reveal">
+      No processo civil há distinção entre citação e intimação. No processo do trabalho, as duas
+      formas de comunicação recebem a denominação única de <strong>notificação</strong>.
+    </p>
 
-  <p>
-    A notificação por edital é vedada no procedimento sumaríssimo (art. 852-B, II, CLT).
-    O Oficial de Justiça atua, em regra, na execução (art. 880, CLT).
-  </p>
+    <div class="cards reveal">
 
-  <p>
-    Súmula 427 do TST: havendo pedido de intimação exclusiva de advogado, a intimação de outro
-    pode gerar nulidade, desde que haja prejuízo.
-  </p>
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Art. 841<br>CLT</div>
+          <div class="card-head">
+            <span class="card-num">Prazos para prova</span>
+            <span class="card-title">Notificação para a audiência</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <div class="item-list">
+            <div class="item-row">
+              <span class="bul">▸</span>
+              <span><strong>48h para expedição</strong> — o serventuário deve expedir a notificação postal em até 48h após receber a petição inicial.</span>
+            </div>
+            <div class="item-row">
+              <span class="bul">▸</span>
+              <span><strong>48h para recebimento</strong> (<span class="ref">Súmula 16, TST</span>) — presunção relativa de recebimento em 48h; pode ser desconstruída pelo destinatário.</span>
+            </div>
+            <div class="item-row">
+              <span class="bul">▸</span>
+              <span><strong>5 dias de antecedência</strong> para a audiência, contados do recebimento — prazo mínimo para o reclamado preparar sua defesa.</span>
+            </div>
+            <div class="item-row">
+              <span class="bul">▸</span>
+              <span><strong>20 dias de antecedência</strong> para entes públicos — prazo em quádruplo (5 × 4) por aplicação do <span class="ref">art. 1º, DL n. 779/69</span>.</span>
+            </div>
+          </div>
 
-  <p>
-    As testemunhas não são previamente intimadas (art. 825 da CLT), devendo comparecer mediante convite.
-  </p>
+          <div class="decreto" style="margin-top:12px;">
+            <div class="decreto-head">DL n. 779/69 — privilégios processuais dos entes públicos</div>
+            <div class="decreto-body">
+              <p>Os privilégios a seguir aplicam-se à União, Estados, DF, Municípios e autarquias/fundações de direito público que não explorem atividade econômica:</p>
+              <p><strong>I</strong> — presunção relativa de validade dos recibos de quitação ou pedidos de demissão, ainda que não homologados;</p>
+              <p><strong>II</strong> — quádruplo do prazo fixado no art. 841 <em>in fine</em> da CLT (prazo para defesa = 20 dias);</p>
+              <p><strong>III</strong> — prazo em dobro para recurso;</p>
+              <p><strong>IV</strong> — dispensa de depósito para interposição de recurso;</p>
+              <p><strong>V</strong> — recurso ordinário ex officio das decisões total ou parcialmente contrárias;</p>
+              <p><strong>VI</strong> — pagamento de custas ao final (a União não as paga).</p>
+            </div>
+          </div>
 
-  <h2>5.3 Prazos processuais</h2>
+          <div class="nota" style="margin-top:12px;">
+            O <span class="ref">art. 183, CPC</span> prevê prazo em dobro para a Fazenda Pública, mas no processo do trabalho continua-se a aplicar o prazo em quádruplo do DL n. 779/69, por ser norma especial que afasta a aplicação subsidiária do CPC.
+          </div>
+        </div>
+      </div>
 
-  <p>
-    Diferencia-se o início do prazo (ciência do ato) do início da contagem (dia útil seguinte).
-    Exclui-se o primeiro dia e inclui-se o último (art. 775, CLT).
-  </p>
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Outras<br>regras</div>
+          <div class="card-head">
+            <span class="card-num">Modalidades e destinatários</span>
+            <span class="card-title">Formas de notificação</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <div class="item-list">
+            <div class="item-row"><span class="bul">▸</span><span><strong>Postal</strong> (regra) — mais rápida e econômica.</span></div>
+            <div class="item-row"><span class="bul">▸</span><span><strong>Edital</strong> — quando a notificação postal não for possível ou o destinatário criar dificuldades. Vedada no procedimento sumaríssimo (<span class="ref">art. 852-B, II, CLT</span>).</span></div>
+            <div class="item-row"><span class="bul">▸</span><span><strong>Oficial de Justiça</strong> — restrito, em regra, ao processo de execução (<span class="ref">art. 880, CLT</span>), com realização pessoal do ato.</span></div>
+          </div>
 
-  <p>
-    A Reforma Trabalhista determinou a contagem apenas em dias úteis.
-  </p>
+          <div class="sumula" style="margin-top:12px;">
+            <strong>Súmula 427, TST</strong>
+            Havendo pedido de intimação exclusiva de um advogado específico, a intimação de outro
+            pode gerar nulidade, desde que demonstrado o prejuízo sofrido pela parte (ex.: recurso
+            não interposto por não recebimento da intimação).
+          </div>
 
-  <div class="box">
-    <p><strong>Destaques importantes:</strong></p>
-    <ul>
-      <li>Súmula 262 do TST: intimação no sábado presume-se recebida na segunda;</li>
-      <li>prazo em quádruplo para entes públicos (DL 779/69);</li>
-      <li>OJ 310 da SDI-1: não se aplica prazo em dobro por litisconsórcio;</li>
-      <li>suspensão dos prazos de 20/12 a 20/01 (art. 775-A, CLT).</li>
-    </ul>
-  </div>
+          <div class="sumula">
+            <strong>Art. 825, CLT — testemunhas</strong>
+            As testemunhas não são previamente intimadas — devem comparecer à audiência mediante
+            convite da parte. Se não comparecerem, poderão ser intimadas para audiência posterior.
+          </div>
+        </div>
+      </div>
 
-  <h2>5.4 Custas processuais</h2>
+    </div>
+  </section>
 
-  <p>
-    Não há custas prévias na Justiça do Trabalho. O vencido arca ao final (art. 789, §1º, CLT).
-  </p>
+  <!-- § 5.3 PRAZOS -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 5.3</span>
+      <h2>Prazos processuais</h2>
+    </div>
 
-  <p>
-    Honorários periciais são devidos ao final, sendo vedada cobrança antecipada (art. 790-B, §3º, CLT).
-    O STF declarou inconstitucional a cobrança do beneficiário da justiça gratuita.
-  </p>
+    <!-- exemplo de contagem (assinatura) -->
+    <div class="prazo-exemplo reveal">
+      <div class="pe-head">Exemplo de contagem — intimação recebida na quinta-feira</div>
+      <div class="pe-body">
+        <div class="pe-step">
+          <span class="ps-dia">Qui</span>
+          <span class="ps-lbl">Início do prazo (dia da ciência — excluído)</span>
+        </div>
+        <div class="pe-step destaque">
+          <span class="ps-dia">Sex</span>
+          <span class="ps-lbl">Início da contagem (1º dia útil seguinte)</span>
+        </div>
+        <div class="pe-step">
+          <span class="ps-dia">Sáb · Dom</span>
+          <span class="ps-lbl">Não contados (dias úteis apenas)</span>
+        </div>
+        <div class="pe-step destaque">
+          <span class="ps-dia">Seg…</span>
+          <span class="ps-lbl">Contagem continua (2º dia útil…)</span>
+        </div>
+      </div>
+    </div>
 
-  <div class="box">
-    <p><strong>Custas:</strong></p>
-    <ul>
-      <li>2% do valor da condenação, causa ou acordo;</li>
-      <li>valor mínimo: R$ 10,64;</li>
-      <li>valor máximo: 4x o teto do RGPS;</li>
-      <li>isenções previstas no art. 790-A da CLT.</li>
-    </ul>
-  </div>
+    <div class="cards reveal" style="margin-top:4px;">
 
-  <div class="voltar">
-    <a href="../index.html">← Voltar ao índice da disciplina</a>
-  </div>
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Art. 775<br>CLT</div>
+          <div class="card-head">
+            <span class="card-num">Regras gerais</span>
+            <span class="card-title">Contagem dos prazos</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            O início do prazo é o dia da ciência do ato (excluído da contagem). O início da
+            contagem é o dia útil seguinte. Exclui-se o primeiro dia e inclui-se o último
+            (<span class="ref">art. 775, CLT</span>).
+          </p>
+
+          <div class="reforma">
+            <span class="reforma-lbl">⚠ Reforma Trabalhista — Lei n. 13.467/2017</span>
+            <p>
+              O <span class="ref">art. 775, CLT</span> passou a prever a contagem apenas em
+              <strong>dias úteis</strong>, igualando o processo do trabalho ao processo civil.
+              Sábados, domingos e feriados não são mais contados, mesmo no curso do prazo.
+            </p>
+          </div>
+
+          <div class="sub" style="margin-top:12px;">
+            <span class="sub-lbl">Regras específicas</span>
+            <div class="item-list">
+              <div class="item-row">
+                <span class="bul">▸</span>
+                <span>
+                  <strong>Intimação recebida no sábado</strong> (<span class="ref">Súmula 262, TST</span>):
+                  presume-se recebida na segunda-feira (1º dia útil), sendo a contagem iniciada na
+                  terça-feira (dia subsequente). Se a segunda for feriado, presume-se recebida no
+                  próximo dia útil.
+                </span>
+              </div>
+              <div class="item-row">
+                <span class="bul">▸</span>
+                <span>
+                  <strong>Prazo em quádruplo para entes públicos</strong> (DL n. 779/69): o prazo de
+                  5 dias do <span class="ref">art. 841, CLT</span> passa a ser 20 dias quando o
+                  reclamado for ente de direito público. O prazo em dobro do <span class="ref">art. 183,
+                  CPC</span> não se aplica ao processo do trabalho.
+                </span>
+              </div>
+              <div class="item-row">
+                <span class="bul">▸</span>
+                <span>
+                  <strong>Litisconsórcio</strong> (<span class="ref">OJ n. 310, SDI-1/TST</span>):
+                  não se aplica o prazo em dobro para litisconsortes com diferentes procuradores
+                  (<span class="ref">art. 229, CPC</span>), por ser incompatível com a celeridade
+                  do processo do trabalho. Os prazos permanecem simples.
+                </span>
+              </div>
+              <div class="item-row">
+                <span class="bul">▸</span>
+                <span>
+                  <strong>Suspensão de fim de ano</strong> (<span class="ref">art. 775-A, CLT</span>):
+                  os prazos são suspensos de <strong>20 de dezembro</strong> a <strong>20 de
+                  janeiro</strong>. Não se realizam audiências nem sessões de julgamento no período.
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- § 5.4 CUSTAS -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 5.4</span>
+      <h2>Custas processuais</h2>
+    </div>
+
+    <p class="body-text reveal">
+      Não há custas prévias na Justiça do Trabalho — o vencido arca ao final
+      (<span class="ref">art. 789, § 1º, CLT</span>). Qualquer valor somente é devido após o
+      trânsito em julgado ou, excepcionalmente, como preparo recursal.
+    </p>
+
+    <div class="cards reveal">
+
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Art. 789<br>CLT</div>
+          <div class="card-head">
+            <span class="card-num">Cálculo e limites</span>
+            <span class="card-title">Cálculo das custas</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>A alíquota é de <strong>2%</strong> calculada sobre:</p>
+
+          <div class="custas-calc">
+            <div class="cc-row">
+              <div class="cc-cat">Condenação</div>
+              <div class="cc-val">2% do valor da condenação — pago pelo vencido.</div>
+            </div>
+            <div class="cc-row">
+              <div class="cc-cat">Improcedência / extinção sem mérito</div>
+              <div class="cc-val">2% do valor da causa — pago pelo autor.</div>
+            </div>
+            <div class="cc-row">
+              <div class="cc-cat">Acordo</div>
+              <div class="cc-val">2% do valor do acordo — metade para cada parte, salvo cláusula expressa em contrário no acordo.</div>
+            </div>
+            <div class="cc-row">
+              <div class="cc-cat">Mínimo</div>
+              <div class="cc-val">R$ 10,64</div>
+            </div>
+            <div class="cc-row">
+              <div class="cc-cat">Máximo</div>
+              <div class="cc-val">4 vezes o teto dos benefícios do RGPS (inserido pela Reforma Trabalhista)</div>
+            </div>
+          </div>
+
+          <div class="sub" style="margin-top:14px;">
+            <span class="sub-lbl">Isenções — art. 790-A, CLT</span>
+            <div class="isencoes">
+              <div class="is-col sim">
+                <span class="i-lbl">Isentos</span>
+                <p>Beneficiários da justiça gratuita; entes de direito público (União, Estados, Municípios, DF, autarquias e fundações); Ministério Público do Trabalho; Correios; entes estrangeiros.</p>
+              </div>
+              <div class="is-col nao">
+                <span class="i-lbl">Não isentos</span>
+                <p>Entidades fiscalizadoras das profissões (OAB, CREA, CRA etc.); entes públicos de direito privado (sociedades de economia mista e empresas públicas).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Art. 790-B<br>CLT</div>
+          <div class="card-head">
+            <span class="card-num">Perícia</span>
+            <span class="card-title">Honorários periciais e do assistente técnico</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            Os honorários periciais são devidos ao final — é vedada a cobrança prévia
+            (<span class="ref">OJ n. 98, SDI-2/TST</span> e <span class="ref">art. 790-B, § 3º,
+            CLT</span>). São pagos pelo sucumbente na pretensão objeto da perícia.
+          </p>
+          <p>
+            Se o sucumbente for beneficiário da justiça gratuita e não tiver créditos nem
+            condições financeiras, a responsabilidade é da <strong>União</strong>
+            (<span class="ref">Súmula 457, TST</span>). O valor pode ser parcelado
+            (<span class="ref">§ 2º, art. 790-B, CLT</span>).
+          </p>
+
+          <div class="sumula">
+            <strong>ADI n. 5.766 — STF (2021)</strong>
+            A condenação do beneficiário da justiça gratuita ao pagamento de honorários periciais
+            é inconstitucional — viola o princípio do acesso à Justiça.
+          </div>
+
+          <div class="sub" style="margin-top:12px;">
+            <span class="sub-lbl">Honorários do assistente técnico</span>
+            <p>
+              São devidos <strong>pela parte que o contratou</strong>, independentemente do
+              resultado da perícia, pois a contratação é facultativa (<span class="ref">Súmula
+              341, TST</span>). O assistente técnico acompanha a perícia do perito nomeado pelo
+              juiz e apresenta laudo paralelo — não é indispensável.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <a class="back" href="../index.html">
+    <span class="arw">←</span>
+    <span>Voltar ao índice da disciplina</span>
+  </a>
 
 </div>
+
+<script>
+  (function(){
+    var items = document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window)){
+      items.forEach(function(el){ el.classList.add('in'); }); return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold:.08, rootMargin:'0px 0px -3% 0px' });
+    items.forEach(function(el, i){
+      el.style.transitionDelay = (i * 35) + 'ms';
+      io.observe(el);
+    });
+  })();
+
+  (function(){
+    var cards = document.querySelectorAll('.card');
+    cards.forEach(function(card){
+      var btn = card.querySelector('.card-btn');
+      btn.addEventListener('click', function(){
+        var isOpen = card.classList.contains('open');
+        cards.forEach(function(c){
+          c.classList.remove('open');
+          c.querySelector('.card-btn').setAttribute('aria-expanded','false');
+        });
+        if(!isOpen){
+          card.classList.add('open');
+          btn.setAttribute('aria-expanded','true');
+        }
+      });
+    });
+  })();
+</script>
 </body>
 </html>
