@@ -1,169 +1,352 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Direito Processual do Trabalho</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
-  :root{
-    --bg:#dff0ff;
-    --title:#1f4fd8;
-    --text:#0f172a;
-    --muted:#475569;
-    --card:#ffffff;
-    --border:rgba(15,23,42,.14);
-    --shadow:0 10px 22px rgba(15,23,42,.10);
-    --radius:16px;
-  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
 
-  *{ box-sizing:border-box; }
   body{
-    margin:0;
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    background:var(--bg);
-    color:var(--text);
+    font-family:"Inter", system-ui, sans-serif;
+    background:#f1f5f9;
+    color:#0f172a;
+    font-size:16px;
+    line-height:1.6;
+    min-height:100vh;
   }
 
-  .wrap{
-    max-width:720px;
-    margin:auto;
-    padding:14px 12px 26px;
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+      radial-gradient(ellipse 700px 500px at 10% -10%, rgba(220,38,38,.10) 0%, transparent 70%),
+      radial-gradient(ellipse 600px 400px at 90% 100%, rgba(124,58,237,.09) 0%, transparent 70%),
+      radial-gradient(ellipse 500px 300px at 50% 50%, rgba(8,145,178,.06) 0%, transparent 70%);
+    pointer-events:none;
+    z-index:0;
   }
 
-  .panel{
-    background:rgba(255,255,255,.7);
-    border-radius:22px;
-    padding:16px 14px;
-    box-shadow:var(--shadow);
+  .container{
+    position:relative;
+    z-index:1;
+    max-width:680px;
+    margin:0 auto;
+    padding:28px 18px 48px;
   }
 
-  h1{
-    margin:6px 0 10px;
-    color:var(--title);
-    font-size:26px;
-  }
-
-  /* === BOTÕES TOPO (AJUSTADOS) === */
-  .drive-row{
-    display:flex;                 /* flex em vez de grid */
-    justify-content:center;       /* centraliza */
-    gap:16px;
-    margin:10px 0 16px;
-  }
-
-  .drive-btn{
-    background:#fff;
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    padding:14px 18px;
-    min-width:140px;
+  /* ===== HERO ===== */
+  .hero{
     text-align:center;
-    text-decoration:none;
-    box-shadow:0 6px 14px rgba(15,23,42,.08);
-    color:var(--text);
-    font-weight:900;
+    padding:36px 0 28px;
   }
 
-  .drive-icon{
-    font-size:26px;
-    margin-bottom:6px;
+  .hero h1{
+    font-family:"Fraunces", Georgia, serif;
+    font-size:clamp(2.2rem,7vw,3.4rem);
+    font-weight:700;
+    line-height:1.05;
+    letter-spacing:-.02em;
+    background:linear-gradient(135deg, #dc2626 0%, #9333ea 50%, #0891b2 100%);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+    margin-bottom:12px;
   }
 
-  .subtitle{
-    color:var(--muted);
-    margin-bottom:14px;
+  .hero p{
+    font-size:15px;
+    color:#475569;
+    max-width:420px;
+    margin:0 auto;
   }
 
-  /* === LISTA DE TÓPICOS === */
-  ul{
-    list-style:none;
-    padding:0;
-    margin:0;
+  /* ===== BOTÕES TOPO ===== */
+  .top-buttons{
     display:grid;
+    grid-template-columns:1fr 1fr;
     gap:12px;
+    margin:24px 0 32px;
   }
 
-  .topic{
-    display:block;
-    background:#fff;
-    border:1px solid var(--border);
-    border-radius:12px;
-    padding:14px;
+  .top-btn{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:16px;
+    border-radius:16px;
     text-decoration:none;
-    color:#0b1220;
+    color:#ffffff;
+    font-weight:700;
+    font-size:14px;
+    transition:transform .2s cubic-bezier(.2,.7,.2,1), box-shadow .2s;
+    position:relative;
+    overflow:hidden;
+  }
+  .top-btn::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(255,255,255,.12);
+    opacity:0;
+    transition:opacity .2s;
+  }
+  .top-btn:hover{ transform:translateY(-3px); }
+  .top-btn:hover::before{ opacity:1; }
+
+  .top-btn.plano{
+    background:linear-gradient(135deg, #dc2626, #b91c1c);
+    box-shadow:0 8px 24px rgba(220,38,38,.35);
+  }
+  .top-btn.plano:hover{ box-shadow:0 14px 32px rgba(220,38,38,.45); }
+
+  .top-btn.livro{
+    background:linear-gradient(135deg, #9333ea, #7e22ce);
+    box-shadow:0 8px 24px rgba(147,51,234,.35);
+  }
+  .top-btn.livro:hover{ box-shadow:0 14px 32px rgba(147,51,234,.45); }
+
+  .top-btn .btn-icon{
+    width:40px;
+    height:40px;
+    border-radius:10px;
+    background:rgba(255,255,255,.2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
     font-size:18px;
-    box-shadow:0 6px 14px rgba(15,23,42,.06);
+  }
+  .top-btn .btn-text{ display:flex; flex-direction:column; gap:1px; }
+  .top-btn .btn-label{ font-size:13px; font-weight:900; letter-spacing:.05em; text-transform:uppercase; }
+  .top-btn .btn-desc{ font-size:11px; font-weight:500; opacity:.85; }
+
+  /* ===== DIVISOR ===== */
+  .section-label{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:16px;
+  }
+  .section-label span{
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:#475569;
+    white-space:nowrap;
+  }
+  .section-label::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:rgba(15,23,42,.1);
   }
 
-  .back{
-    margin-top:16px;
-    display:block;
-    background:#fff;
-    border:1px solid var(--border);
-    border-radius:12px;
-    padding:14px;
+  /* ===== LISTA ===== */
+  .list{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+
+  .item{
+    display:flex;
+    align-items:center;
     text-decoration:none;
-    font-weight:800;
-    color:#0b1220;
+    background:#ffffff;
+    border-radius:14px;
+    border:1px solid rgba(15,23,42,.1);
+    color:#0f172a;
+    overflow:hidden;
+    transition:transform .18s cubic-bezier(.2,.7,.2,1), box-shadow .18s;
+    box-shadow:0 2px 8px rgba(15,23,42,.06);
+    opacity:0;
+    transform:translateY(12px);
+    animation:fadeUp .45s ease forwards;
+  }
+  .item:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(15,23,42,.12);
   }
 
-  @media(max-width:420px){
-    h1{ font-size:24px; }
-    .drive-btn{ min-width:120px; padding:12px; }
-    .topic{ font-size:17px; }
+  .item-num{
+    width:52px;
+    min-height:60px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:13px;
+    font-weight:800;
+    color:#fff;
+    flex-shrink:0;
+  }
+
+  .item-text{
+    flex:1;
+    padding:14px 16px;
+    font-weight:600;
+    font-size:15px;
+    line-height:1.3;
+  }
+
+  .item-chev{
+    padding-right:16px;
+    font-size:16px;
+    font-weight:900;
+    color:rgba(15,23,42,.25);
+    flex-shrink:0;
+  }
+
+  /* cores */
+  .c-1  { border-left:3px solid #dc2626; } .c-1  .item-num{ background:linear-gradient(160deg,#dc2626,#b91c1c); }
+  .c-2  { border-left:3px solid #9333ea; } .c-2  .item-num{ background:linear-gradient(160deg,#9333ea,#7e22ce); }
+  .c-3  { border-left:3px solid #0891b2; } .c-3  .item-num{ background:linear-gradient(160deg,#0891b2,#0e7490); }
+  .c-4  { border-left:3px solid #16a34a; } .c-4  .item-num{ background:linear-gradient(160deg,#16a34a,#15803d); }
+  .c-5  { border-left:3px solid #d97706; } .c-5  .item-num{ background:linear-gradient(160deg,#d97706,#b45309); }
+  .c-6  { border-left:3px solid #be185d; } .c-6  .item-num{ background:linear-gradient(160deg,#be185d,#9d174d); }
+  .c-7  { border-left:3px solid #2563eb; } .c-7  .item-num{ background:linear-gradient(160deg,#2563eb,#1d4ed8); }
+  .c-8  { border-left:3px solid #dc2626; } .c-8  .item-num{ background:linear-gradient(160deg,#dc2626,#b91c1c); }
+  .c-9  { border-left:3px solid #9333ea; } .c-9  .item-num{ background:linear-gradient(160deg,#9333ea,#7e22ce); }
+  .c-10 { border-left:3px solid #0891b2; } .c-10 .item-num{ background:linear-gradient(160deg,#0891b2,#0e7490); }
+  .c-11 { border-left:3px solid #16a34a; } .c-11 .item-num{ background:linear-gradient(160deg,#16a34a,#15803d); }
+  .c-12 { border-left:3px solid #d97706; } .c-12 .item-num{ background:linear-gradient(160deg,#d97706,#b45309); }
+  .c-13 { border-left:3px solid #be185d; } .c-13 .item-num{ background:linear-gradient(160deg,#be185d,#9d174d); }
+  .c-14 { border-left:3px solid #2563eb; } .c-14 .item-num{ background:linear-gradient(160deg,#2563eb,#1d4ed8); }
+  .c-15 { border-left:3px solid #dc2626; } .c-15 .item-num{ background:linear-gradient(160deg,#dc2626,#b91c1c); }
+  .c-16 { border-left:3px solid #9333ea; } .c-16 .item-num{ background:linear-gradient(160deg,#9333ea,#7e22ce); }
+  .c-17 { border-left:3px solid #0891b2; } .c-17 .item-num{ background:linear-gradient(160deg,#0891b2,#0e7490); }
+  .c-18 { border-left:3px solid #16a34a; } .c-18 .item-num{ background:linear-gradient(160deg,#16a34a,#15803d); }
+  .c-19 { border-left:3px solid #d97706; } .c-19 .item-num{ background:linear-gradient(160deg,#d97706,#b45309); }
+
+  /* delays */
+  .item:nth-child(1) { animation-delay:.04s; }
+  .item:nth-child(2) { animation-delay:.07s; }
+  .item:nth-child(3) { animation-delay:.10s; }
+  .item:nth-child(4) { animation-delay:.13s; }
+  .item:nth-child(5) { animation-delay:.16s; }
+  .item:nth-child(6) { animation-delay:.19s; }
+  .item:nth-child(7) { animation-delay:.22s; }
+  .item:nth-child(8) { animation-delay:.25s; }
+  .item:nth-child(9) { animation-delay:.28s; }
+  .item:nth-child(10){ animation-delay:.31s; }
+  .item:nth-child(11){ animation-delay:.34s; }
+  .item:nth-child(12){ animation-delay:.37s; }
+  .item:nth-child(13){ animation-delay:.40s; }
+  .item:nth-child(14){ animation-delay:.43s; }
+  .item:nth-child(15){ animation-delay:.46s; }
+  .item:nth-child(16){ animation-delay:.49s; }
+  .item:nth-child(17){ animation-delay:.52s; }
+  .item:nth-child(18){ animation-delay:.55s; }
+  .item:nth-child(19){ animation-delay:.58s; }
+
+  @keyframes fadeUp{
+    to{ opacity:1; transform:none; }
+  }
+
+  /* ===== VOLTAR ===== */
+  .back{
+    margin-top:28px;
+    text-align:center;
+  }
+  .back a{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    text-decoration:none;
+    background:#ffffff;
+    border:1px solid rgba(15,23,42,.1);
+    border-radius:12px;
+    padding:14px 28px;
+    font-weight:700;
+    font-size:14px;
+    color:#0f172a;
+    box-shadow:0 2px 8px rgba(15,23,42,.06);
+    transition:transform .18s, box-shadow .18s;
+  }
+  .back a:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(15,23,42,.12);
+  }
+
+  @media (max-width:480px){
+    .top-buttons{ grid-template-columns:1fr; }
+    .hero h1{ font-size:2rem; }
+    .item-text{ font-size:14px; }
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    .item{ animation:none; opacity:1; transform:none; }
   }
 </style>
 </head>
 
 <body>
-<div class="wrap">
-  <div class="panel">
+<div class="container">
 
+  <div class="hero">
     <h1>Direito Processual do Trabalho</h1>
-
-    <!-- ✅ APENAS DOIS BOTÕES, CENTRALIZADOS -->
-    <div class="drive-row">
-      <a class="drive-btn" href="https://drive.google.com/file/d/1GcglsdlSngsOUszbK3hycWTgUW2emiWh/view?usp=sharing" target="_blank">
-        <div class="drive-icon">📋</div>
-        Plano de Ensino
-      </a>
-
-      <a class="drive-btn" href="https://drive.google.com/file/d/1hYoIWn49qKzQY-EJ474l9MD-qej7Zf5v/view?usp=sharing" target="_blank">
-        <div class="drive-icon">📘</div>
-        Livro
-      </a>
-    </div>
-
-    <p class="subtitle">
-      Selecione o tópico abaixo para acessar o conteúdo da disciplina:
-    </p>
-
-    <ul>
-      <li><a class="topic" href="01-principios-do-direito-processual-do-trabalho/">1. Princípios do Direito Processual do Trabalho</a></li>
-      <li><a class="topic" href="02-organizacao-da-justica-do-trabalho/">2. Organização da Justiça do Trabalho</a></li>
-      <li><a class="topic" href="03-competencia-da-justica-do-trabalho/">3. Competência da Justiça do Trabalho</a></li>
-      <li><a class="topic" href="04-partes-e-procuradores/">4. Partes e procuradores</a></li>
-      <li><a class="topic" href="05-atos-e-prazos-processuais/">5. Atos e prazos processuais</a></li>
-      <li><a class="topic" href="06-nulidades-processuais/">6. Nulidades processuais</a></li>
-      <li><a class="topic" href="07-comissao-de-conciliacao-previa/">7. Comissão de Conciliação Prévia</a></li>
-      <li><a class="topic" href="08-peticao-inicial/">8. Petição Inicial</a></li>
-      <li><a class="topic" href="09-notificacao-do-reclamado/">9. Notificação do Reclamado</a></li>
-      <li><a class="topic" href="10-audiencias-trabalhistas/">10. Audiências Trabalhistas</a></li>
-      <li><a class="topic" href="11-defesa-do-reclamado/">11. Defesa do Reclamado</a></li>
-      <li><a class="topic" href="12-provas/">12. Provas</a></li>
-      <li><a class="topic" href="13-sentenca-e-coisa-julgada/">13. Sentença e Coisa Julgada</a></li>
-      <li><a class="topic" href="14-sumario-e-sumarissimo/">14. Sumário e Sumaríssimo</a></li>
-      <li><a class="topic" href="15-recursos/">15. Recursos Trabalhistas</a></li>
-      <li><a class="topic" href="16-recurso-ordinario/">16. Recurso Ordinário</a></li>
-      <li><a class="topic" href="17-recurso-de-revista/">17. Recurso de Revista</a></li>
-      <li><a class="topic" href="18-liquidacao-de-sentenca/">18. Liquidação de Sentença</a></li>
-      <li><a class="topic" href="19-execucao-trabalhista/">19. Execução Trabalhista</a></li>
-    </ul>
-
-    <a class="back" href="../index.html">← Voltar ao curso</a>
-
+    <p>Materiais e tópicos organizados para leitura e estudo</p>
   </div>
+
+  <div class="top-buttons">
+    <a class="top-btn plano"
+       href="https://drive.google.com/file/d/1GcglsdlSngsOUszbK3hycWTgUW2emiWh/view?usp=sharing"
+       target="_blank" rel="noopener">
+      <div class="btn-icon">📋</div>
+      <div class="btn-text">
+        <div class="btn-label">Plano de Ensino</div>
+        <div class="btn-desc">Acesse o plano e cronograma</div>
+      </div>
+    </a>
+    <a class="top-btn livro"
+       href="https://drive.google.com/file/d/1hYoIWn49qKzQY-EJ474l9MD-qej7Zf5v/view?usp=sharing"
+       target="_blank" rel="noopener">
+      <div class="btn-icon">📘</div>
+      <div class="btn-text">
+        <div class="btn-label">Livro</div>
+        <div class="btn-desc">Leitura e materiais de apoio</div>
+      </div>
+    </a>
+  </div>
+
+  <div class="section-label">
+    <span>Tópicos da disciplina</span>
+  </div>
+
+  <div class="list">
+    <a class="item c-1"  href="01-principios-do-direito-processual-do-trabalho/"><div class="item-num">01</div><div class="item-text">Princípios do Direito Processual do Trabalho</div><div class="item-chev">›</div></a>
+    <a class="item c-2"  href="02-organizacao-da-justica-do-trabalho/"><div class="item-num">02</div><div class="item-text">Organização da Justiça do Trabalho</div><div class="item-chev">›</div></a>
+    <a class="item c-3"  href="03-competencia-da-justica-do-trabalho/"><div class="item-num">03</div><div class="item-text">Competência da Justiça do Trabalho</div><div class="item-chev">›</div></a>
+    <a class="item c-4"  href="04-partes-e-procuradores/"><div class="item-num">04</div><div class="item-text">Partes e Procuradores</div><div class="item-chev">›</div></a>
+    <a class="item c-5"  href="05-atos-e-prazos-processuais/"><div class="item-num">05</div><div class="item-text">Atos e Prazos Processuais</div><div class="item-chev">›</div></a>
+    <a class="item c-6"  href="06-nulidades-processuais/"><div class="item-num">06</div><div class="item-text">Nulidades Processuais</div><div class="item-chev">›</div></a>
+    <a class="item c-7"  href="07-comissao-de-conciliacao-previa/"><div class="item-num">07</div><div class="item-text">Comissão de Conciliação Prévia</div><div class="item-chev">›</div></a>
+    <a class="item c-8"  href="08-peticao-inicial/"><div class="item-num">08</div><div class="item-text">Petição Inicial</div><div class="item-chev">›</div></a>
+    <a class="item c-9"  href="09-notificacao-do-reclamado/"><div class="item-num">09</div><div class="item-text">Notificação do Reclamado</div><div class="item-chev">›</div></a>
+    <a class="item c-10" href="10-audiencias-trabalhistas/"><div class="item-num">10</div><div class="item-text">Audiências Trabalhistas</div><div class="item-chev">›</div></a>
+    <a class="item c-11" href="11-defesa-do-reclamado/"><div class="item-num">11</div><div class="item-text">Defesa do Reclamado</div><div class="item-chev">›</div></a>
+    <a class="item c-12" href="12-provas/"><div class="item-num">12</div><div class="item-text">Provas</div><div class="item-chev">›</div></a>
+    <a class="item c-13" href="13-sentenca-e-coisa-julgada/"><div class="item-num">13</div><div class="item-text">Sentença e Coisa Julgada</div><div class="item-chev">›</div></a>
+    <a class="item c-14" href="14-sumario-e-sumarissimo/"><div class="item-num">14</div><div class="item-text">Sumário e Sumaríssimo</div><div class="item-chev">›</div></a>
+    <a class="item c-15" href="15-recursos/"><div class="item-num">15</div><div class="item-text">Recursos Trabalhistas</div><div class="item-chev">›</div></a>
+    <a class="item c-16" href="16-recurso-ordinario/"><div class="item-num">16</div><div class="item-text">Recurso Ordinário</div><div class="item-chev">›</div></a>
+    <a class="item c-17" href="17-recurso-de-revista/"><div class="item-num">17</div><div class="item-text">Recurso de Revista</div><div class="item-chev">›</div></a>
+    <a class="item c-18" href="18-liquidacao-de-sentenca/"><div class="item-num">18</div><div class="item-text">Liquidação de Sentença</div><div class="item-chev">›</div></a>
+    <a class="item c-19" href="19-execucao-trabalhista/"><div class="item-num">19</div><div class="item-text">Execução Trabalhista</div><div class="item-chev">›</div></a>
+  </div>
+
+  <div class="back">
+    <a href="../index.html">← Voltar ao curso</a>
+  </div>
+
 </div>
 </body>
 </html>
