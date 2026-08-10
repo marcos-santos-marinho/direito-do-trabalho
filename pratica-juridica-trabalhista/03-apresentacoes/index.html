@@ -1,328 +1,427 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>03. Apresentações</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>03. Apresentações</title>
 
-  <style>
-    :root{
-      --bg:#ffffff;
-      --blue:#1f57ff;
-      --green:#2e7d32;
-      --greenSoft:#d9f2d6;
-      --card:#ffffff;
-      --line:#cfd8dc;
-      --shadow: 0 10px 25px rgba(0,0,0,.12);
-      --shadow2: 0 8px 18px rgba(0,0,0,.10);
-      --radius: 16px;
-    }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    *{ box-sizing:border-box; }
-    body{
-      margin:0;
-      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      background: var(--bg);
-      color:#0b1220;
-    }
+<style>
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
 
-    .wrap{
-      max-width: 820px;
-      margin: 0 auto;
-      padding: 14px 12px 30px;
-    }
+  body{
+    font-family:"Inter", system-ui, sans-serif;
+    background:#f1f5f9;
+    color:#0f172a;
+    font-size:16px;
+    line-height:1.6;
+    min-height:100vh;
+  }
 
-    /* Top icon + button */
-    .top{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap: 8px;
-      margin-top: 4px;
-      margin-bottom: 8px;
-    }
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+      radial-gradient(ellipse 700px 500px at 0% 0%,   rgba(37,99,235,.11) 0%, transparent 65%),
+      radial-gradient(ellipse 600px 400px at 100% 100%, rgba(5,150,105,.09) 0%, transparent 65%),
+      radial-gradient(ellipse 500px 300px at 60% 40%,  rgba(217,119,6,.07) 0%, transparent 65%);
+    pointer-events:none;
+    z-index:0;
+  }
 
-    .teamIcon{
-      width: 46px;
-      height: 46px;
-      display:block;
-    }
+  .container{
+    position:relative;
+    z-index:1;
+    max-width:680px;
+    margin:0 auto;
+    padding:28px 18px 52px;
+  }
 
-    .topBtn{
-      text-decoration:none;
-      color:#0b1220;
-      font-weight: 800;
-      font-size: 16px;
-      padding: 10px 16px;
-      border-radius: 14px;
-      background:#fff;
-      border: 1px solid rgba(0,0,0,.14);
-      box-shadow: var(--shadow2);
-      transition: transform .12s ease, box-shadow .12s ease;
-    }
-    .topBtn:hover{ transform: translateY(-1px); box-shadow: 0 12px 26px rgba(0,0,0,.14); }
+  /* ===== HERO ===== */
+  .hero{
+    text-align:center;
+    padding:32px 0 28px;
+  }
 
-    /* Green evaluation card */
-    .evalCard{
-      border-radius: 22px;
-      background: var(--greenSoft);
-      border: 2px solid #53b85a;
-      padding: 10px 10px 12px;
-      box-shadow: 0 10px 24px rgba(0,0,0,.10);
-      margin: 10px 0 18px;
-    }
-    .evalTitle{
-      text-align:center;
-      font-weight: 900;
-      margin: 0 0 10px;
-      font-size: 14px;
-    }
+  .hero h1{
+    font-family:"Fraunces", Georgia, serif;
+    font-size:clamp(2rem,7vw,3rem);
+    font-weight:700;
+    line-height:1.05;
+    letter-spacing:-.02em;
+    background:linear-gradient(135deg, #2563eb 0%, #059669 60%, #d97706 100%);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+    margin-bottom:10px;
+  }
 
-    table{
-      width:100%;
-      border-collapse: collapse;
-      background:#fff;
-      border-radius: 14px;
-      overflow:hidden;
-      border: 1px solid rgba(0,0,0,.10);
-    }
-    th, td{
-      padding: 10px 10px;
-      vertical-align: top;
-      font-size: 12px;
-      line-height: 1.35;
-    }
-    th{
-      background: #e9f6e7;
-      text-align:left;
-      font-weight: 900;
-    }
-    tr+tr td{ border-top: 1px solid rgba(0,0,0,.08); }
-    td+td, th+th{ border-left: 1px solid rgba(0,0,0,.08); }
+  .hero p{
+    font-size:14px;
+    color:#475569;
+  }
 
-    .score{
-      white-space: nowrap;
-      text-align:right;
-      font-weight: 900;
-    }
+  /* ===== BOTÃO MEU GRUPO ===== */
+  .grupo-btn{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    text-decoration:none;
+    background:linear-gradient(135deg, #2563eb, #7c3aed);
+    color:#fff;
+    border-radius:18px;
+    padding:18px 22px;
+    margin:0 0 28px;
+    box-shadow:0 8px 24px rgba(37,99,235,.35);
+    transition:transform .2s cubic-bezier(.2,.7,.2,1), box-shadow .2s;
+    position:relative;
+    overflow:hidden;
+  }
+  .grupo-btn::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(160deg, rgba(255,255,255,.15) 0%, transparent 55%);
+    pointer-events:none;
+  }
+  .grupo-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 14px 32px rgba(37,99,235,.45);
+  }
+  .grupo-btn .gb-icon{
+    width:52px; height:52px;
+    border-radius:14px;
+    background:rgba(255,255,255,.2);
+    border:1px solid rgba(255,255,255,.3);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:26px;
+    flex-shrink:0;
+  }
+  .grupo-btn .gb-text{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+  }
+  .grupo-btn .gb-label{
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    opacity:.8;
+  }
+  .grupo-btn .gb-nome{
+    font-family:"Fraunces", Georgia, serif;
+    font-size:1.25rem;
+    font-weight:600;
+    line-height:1.1;
+  }
+  .grupo-btn .gb-chev{
+    margin-left:auto;
+    font-size:20px;
+    font-weight:900;
+    opacity:.6;
+    flex-shrink:0;
+  }
 
-    /* Section title */
-    h2{
-      margin: 8px 0 6px;
-      color: var(--blue);
-      font-size: 18px;
-      font-weight: 900;
-    }
-    .hint{
-      margin: 0 0 10px;
-      font-size: 12px;
-      color:#2b3a55;
-    }
+  /* ===== DIVISOR ===== */
+  .section-label{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:16px;
+  }
+  .section-label span{
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:#475569;
+    white-space:nowrap;
+  }
+  .section-label::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:rgba(15,23,42,.1);
+  }
 
-    /* Buttons list */
-    .list{
-      display:flex;
-      flex-direction:column;
-      gap: 10px;
-      margin-top: 8px;
-    }
-    .item{
-      text-decoration:none;
-      color:#0b1220;
-      background:#fff;
-      border: 2px solid #53b85a;
-      border-radius: 14px;
-      padding: 12px 12px;
-      display:flex;
-      align-items:center;
-      justify-content: space-between;
-      box-shadow: 0 6px 14px rgba(0,0,0,.08);
-      transition: transform .12s ease, box-shadow .12s ease;
-    }
-    .item:hover{ transform: translateY(-1px); box-shadow: 0 10px 20px rgba(0,0,0,.12); }
+  /* ===== TABELA DE CRITÉRIOS ===== */
+  .criterios{
+    background:#fff;
+    border-radius:18px;
+    overflow:hidden;
+    border:1px solid rgba(15,23,42,.08);
+    box-shadow:0 4px 16px rgba(15,23,42,.08);
+    margin-bottom:28px;
+  }
 
-    .left{
-      display:flex;
-      align-items:center;
-      gap: 10px;
-      font-weight: 800;
-      font-size: 12px;
-    }
-    .num{
-      width: 26px;
-      height: 26px;
-      border-radius: 9px;
-      background: #e9f6e7;
-      display:grid;
-      place-items:center;
-      font-weight: 900;
-      color:#1b5e20;
-      flex: 0 0 auto;
-    }
-    .arrow{
-      font-size: 18px;
-      color:#6b7280;
-      font-weight: 900;
-      line-height: 1;
-    }
+  .crit-head{
+    display:grid;
+    grid-template-columns:1fr 2fr 88px;
+    background:linear-gradient(135deg, #059669, #047857);
+    color:#fff;
+  }
+  .crit-head div{
+    padding:11px 16px;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+  }
+  .crit-head div:not(:last-child){ border-right:1px solid rgba(255,255,255,.2); }
+  .crit-head .ch-pts{ text-align:right; }
 
-    /* Footer back button */
-    .footer{
-      display:flex;
-      justify-content:center;
-      margin-top: 18px;
-    }
-    .back{
-      text-decoration:none;
-      color:#0b1220;
-      background:#fff;
-      border: 1px solid rgba(0,0,0,.14);
-      border-radius: 14px;
-      padding: 12px 16px;
-      font-weight: 900;
-      box-shadow: var(--shadow2);
-      min-width: min(520px, 100%);
-      text-align:center;
-    }
+  .crit-row{
+    display:grid;
+    grid-template-columns:1fr 2fr 88px;
+    border-top:1px solid rgba(15,23,42,.07);
+  }
+  .crit-row:nth-child(even){ background:#f8fafc; }
+  .crit-row.total{
+    background:linear-gradient(90deg, rgba(5,150,105,.08), rgba(5,150,105,.04));
+    border-top:2px solid rgba(5,150,105,.3);
+  }
 
-    @media (max-width: 420px){
-      th, td{ font-size: 11px; padding: 9px; }
-      .left{ font-size: 12px; }
-    }
-  </style>
+  .crit-row div{
+    padding:13px 16px;
+    font-size:13px;
+    line-height:1.45;
+    display:flex;
+    align-items:center;
+  }
+  .crit-row div:not(:last-child){ border-right:1px solid rgba(15,23,42,.07); }
+
+  .crit-nome{
+    font-weight:700;
+    color:#0f172a;
+  }
+  .crit-desc{ color:#475569; }
+  .crit-pts{
+    font-weight:800;
+    color:#059669;
+    justify-content:flex-end;
+    font-variant-numeric:tabular-nums;
+  }
+  .crit-row.total .crit-nome{ color:#047857; font-weight:900; }
+  .crit-row.total .crit-pts{ font-size:15px; color:#047857; }
+
+  /* ===== LISTA DE APRESENTAÇÕES ===== */
+  /* paleta de 10 cores */
+  --cc:();
+
+  .list{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+
+  .item{
+    display:flex;
+    align-items:center;
+    text-decoration:none;
+    background:#fff;
+    border-radius:14px;
+    border:1px solid rgba(15,23,42,.08);
+    color:#0f172a;
+    overflow:hidden;
+    box-shadow:0 2px 8px rgba(15,23,42,.06);
+    transition:transform .18s cubic-bezier(.2,.7,.2,1), box-shadow .18s;
+    opacity:0;
+    transform:translateY(10px);
+    animation:fadeUp .4s ease forwards;
+  }
+  .item:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 22px rgba(15,23,42,.13);
+  }
+
+  .item-num{
+    width:52px;
+    min-height:62px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:14px;
+    font-weight:800;
+    color:#fff;
+    flex-shrink:0;
+  }
+
+  .item-text{
+    flex:1;
+    padding:14px 16px;
+    font-size:14px;
+    font-weight:600;
+    line-height:1.4;
+    color:#0f172a;
+  }
+
+  .item-chev{
+    padding-right:16px;
+    font-size:16px;
+    font-weight:900;
+    color:rgba(15,23,42,.22);
+    flex-shrink:0;
+    transition:transform .2s, color .2s;
+  }
+  .item:hover .item-chev{
+    color:rgba(15,23,42,.5);
+    transform:translateX(3px);
+  }
+
+  /* 10 cores */
+  .n1  { border-left:3px solid #2563eb; } .n1  .item-num{ background:linear-gradient(160deg,#2563eb,#1d4ed8); }
+  .n2  { border-left:3px solid #7c3aed; } .n2  .item-num{ background:linear-gradient(160deg,#7c3aed,#6d28d9); }
+  .n3  { border-left:3px solid #dc2626; } .n3  .item-num{ background:linear-gradient(160deg,#dc2626,#b91c1c); }
+  .n4  { border-left:3px solid #059669; } .n4  .item-num{ background:linear-gradient(160deg,#059669,#047857); }
+  .n5  { border-left:3px solid #d97706; } .n5  .item-num{ background:linear-gradient(160deg,#d97706,#b45309); }
+  .n6  { border-left:3px solid #0891b2; } .n6  .item-num{ background:linear-gradient(160deg,#0891b2,#0e7490); }
+  .n7  { border-left:3px solid #be185d; } .n7  .item-num{ background:linear-gradient(160deg,#be185d,#9d174d); }
+  .n8  { border-left:3px solid #16a34a; } .n8  .item-num{ background:linear-gradient(160deg,#16a34a,#15803d); }
+  .n9  { border-left:3px solid #9333ea; } .n9  .item-num{ background:linear-gradient(160deg,#9333ea,#7e22ce); }
+  .n10 { border-left:3px solid #ea580c; } .n10 .item-num{ background:linear-gradient(160deg,#ea580c,#c2410c); }
+
+  /* delays */
+  .item:nth-child(1) { animation-delay:.04s; }
+  .item:nth-child(2) { animation-delay:.08s; }
+  .item:nth-child(3) { animation-delay:.12s; }
+  .item:nth-child(4) { animation-delay:.16s; }
+  .item:nth-child(5) { animation-delay:.20s; }
+  .item:nth-child(6) { animation-delay:.24s; }
+  .item:nth-child(7) { animation-delay:.28s; }
+  .item:nth-child(8) { animation-delay:.32s; }
+  .item:nth-child(9) { animation-delay:.36s; }
+  .item:nth-child(10){ animation-delay:.40s; }
+
+  @keyframes fadeUp{
+    to{ opacity:1; transform:none; }
+  }
+
+  /* ===== VOLTAR ===== */
+  .back{
+    margin-top:28px;
+    text-align:center;
+  }
+  .back a{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    text-decoration:none;
+    background:#fff;
+    border:1px solid rgba(15,23,42,.1);
+    border-radius:12px;
+    padding:14px 28px;
+    font-weight:700;
+    font-size:14px;
+    color:#0f172a;
+    box-shadow:0 2px 8px rgba(15,23,42,.06);
+    transition:transform .18s, box-shadow .18s;
+  }
+  .back a:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(15,23,42,.12);
+  }
+
+  @media (max-width:480px){
+    .crit-head, .crit-row{ grid-template-columns:1fr 2fr 72px; }
+    .item-text{ font-size:13px; }
+    .hero h1{ font-size:1.8rem; }
+  }
+  @media (prefers-reduced-motion:reduce){
+    .item{ animation:none; opacity:1; transform:none; }
+  }
+</style>
 </head>
-
 <body>
-  <div class="wrap">
+<div class="container">
 
-    <!-- Botão no topo para link do Google Drive -->
-    <div class="top">
-      <!-- ícone simples de "grupo" (sem depender de imagens externas) -->
-      <svg class="teamIcon" viewBox="0 0 64 64" aria-hidden="true">
-        <circle cx="32" cy="10" r="6" fill="#ffcc80"/>
-        <rect x="28" y="16" width="8" height="10" rx="4" fill="#795548"/>
-        <circle cx="18" cy="22" r="6" fill="#ffcc80"/>
-        <rect x="14" y="28" width="8" height="10" rx="4" fill="#546e7a"/>
-        <circle cx="46" cy="22" r="6" fill="#ffcc80"/>
-        <rect x="42" y="28" width="8" height="10" rx="4" fill="#607d8b"/>
-        <path d="M8 56c2-10 12-16 24-16s22 6 24 16" fill="#90caf9"/>
-        <path d="M16 56c2-7 8-11 16-11s14 4 16 11" fill="#64b5f6"/>
-        <path d="M32 2l6 10h-12l6-10z" fill="#ffeb3b"/>
-      </svg>
-
-      <!-- TROQUE o link abaixo pelo seu Google Drive -->
-      <a class="topBtn" href="https://drive.google.com/drive/folders/1hvyyclVpIbPa_AIl9AbG1e9q-jjwiL0n?usp=sharing" target="_blank" rel="noopener noreferrer">
-        Meu Grupo
-      </a>
-    </div>
-
-    <!-- Critérios de Avaliação -->
-    <section class="evalCard">
-      <div class="evalTitle">Critérios de Avaliação</div>
-
-      <table aria-label="Critérios de Avaliação">
-        <thead>
-          <tr>
-            <th style="width:22%;">Critério</th>
-            <th>Descrição</th>
-            <th style="width:14%; text-align:right;">Pontuação</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Domínio do conteúdo</strong></td>
-            <td>Demonstra segurança, não lê apenas os slides e explica os conceitos com clareza.</td>
-            <td class="score">1,0 pt</td>
-          </tr>
-          <tr>
-            <td><strong>Organização e tempo</strong></td>
-            <td>A apresentação tem início, meio e fim. O grupo demonstra controle do tempo.</td>
-            <td class="score">1,0 pt</td>
-          </tr>
-          <tr>
-            <td><strong>Recursos Visuais</strong></td>
-            <td>Material de apoio (legal), criativo, sem excesso de texto e relevante ao tema.</td>
-            <td class="score">1,0 pt</td>
-          </tr>
-          <tr>
-            <td><strong>Postura e Oratória</strong></td>
-            <td>Tom de voz adequado, contato visual com a turma e uso correto do tempo.</td>
-            <td class="score">1,0 pt</td>
-          </tr>
-          <tr>
-            <td><strong>Resposta à Arguição</strong></td>
-            <td>Capacidade de responder dúvidas após a apresentação, com fundamentação.</td>
-            <td class="score">1,0 pt</td>
-          </tr>
-          <tr>
-            <td><strong>TOTAL</strong></td>
-            <td></td>
-            <td class="score">5,0 pts</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <!-- Lista de processos -->
-    <h2>Precedentes do Supremo na Área Trabalhista</h2>
-    <p class="hint">Selecione o caso abaixo para acessar o conteúdo dos processos:</p>
-
-    <div class="list">
-      <a class="item" href="01-apresentacao/index.html">
-        <div class="left"><span class="num">1</span>Contribuição assistencial a empregados não sindicalizados</div>
-        <div class="arrow">›</div>
-      </a>
-
-      <a class="item" href="02-apresentacao/index.html">
-        <div class="left"><span class="num">2</span>Inclusão de empresas do mesmo grupo na fase de execução</div>
-        <div class="arrow">›</div>
-      </a>
-
-      <a class="item" href="03-apresentacao/index.html">
-        <div class="left"><span class="num">3</span>Prova sobre a fiscalização de terceirizados por ente público</div>
-        <div class="arrow">›</div>
-      </a>
-
-      <a class="item" href="04-apresentacao/index.html">
-        <div class="left"><span class="num">4</span>Vínculo de emprego com pessoa jurídica</div>
-        <div class="arrow">›</div>
-      </a>
-
-      <a class="item" href="05-apresentacao/index.html">
-        <div class="left"><span class="num">5</span>Vínculo empregatício de motorista de aplicativo</div>
-        <div class="arrow">›</div>
-      </a>
-
-      <a class="item" href="06-apresentacao/index.html">
-        <div class="left"><span class="num">6</span>Equiparação entre terceirizados e empregados da contratante</div>
-        <div class="arrow">›</div>
-      </a>
-
-      <a class="item" href="07-apresentacao/index.html">
-        <div class="left"><span class="num">7</span>Responsabilização do empregador por acidentes de trabalho</div>
-        <div class="arrow">›</div>
-      </a>
-
-      <a class="item" href="08-apresentacao/index.html">
-        <div class="left"><span class="num">8</span>Despedida imotivada de empregados de Empresa Pública</div>
-        <div class="arrow">›</div>
-      </a>
-
-      <a class="item" href="09-apresentacao/index.html">
-        <div class="left"><span class="num">9</span>Responsabilização por danos e doenças ocupacionais</div>
-        <div class="arrow">›</div>
-      </a>
-
-      <a class="item" href="10-apresentacao/index.html">
-        <div class="left"><span class="num">10</span>Salário-maternidade para mãe não gestante</div>
-        <div class="arrow">›</div>
-      </a>
-    </div>
-
-    <div class="footer">
-      <a class="back" href="../index.html">← Voltar ao índice da disciplina</a>
-    </div>
-
+  <!-- HERO -->
+  <div class="hero">
+    <h1>Apresentações</h1>
+    <p>Prática Jurídica Trabalhista · Precedentes do STF na Área Trabalhista</p>
   </div>
+
+  <!-- MEU GRUPO -->
+  <a class="grupo-btn"
+     href="https://drive.google.com/drive/folders/1hvyyclVpIbPa_AIl9AbG1e9q-jjwiL0n?usp=sharing"
+     target="_blank" rel="noopener">
+    <div class="gb-icon">👥</div>
+    <div class="gb-text">
+      <span class="gb-label">Acesse os materiais</span>
+      <span class="gb-nome">Meu Grupo</span>
+    </div>
+    <div class="gb-chev">›</div>
+  </a>
+
+  <!-- CRITÉRIOS -->
+  <div class="section-label"><span>Critérios de avaliação</span></div>
+
+  <div class="criterios">
+    <div class="crit-head">
+      <div>Critério</div>
+      <div>Descrição</div>
+      <div class="ch-pts">Pontos</div>
+    </div>
+
+    <div class="crit-row">
+      <div class="crit-nome">Domínio do conteúdo</div>
+      <div class="crit-desc">Demonstra segurança, não lê apenas os slides e explica os conceitos com clareza.</div>
+      <div class="crit-pts">1,0 pt</div>
+    </div>
+    <div class="crit-row">
+      <div class="crit-nome">Organização e tempo</div>
+      <div class="crit-desc">A apresentação tem início, meio e fim. O grupo demonstra controle do tempo.</div>
+      <div class="crit-pts">1,0 pt</div>
+    </div>
+    <div class="crit-row">
+      <div class="crit-nome">Recursos visuais</div>
+      <div class="crit-desc">Material de apoio criativo, sem excesso de texto e relevante ao tema.</div>
+      <div class="crit-pts">1,0 pt</div>
+    </div>
+    <div class="crit-row">
+      <div class="crit-nome">Postura e oratória</div>
+      <div class="crit-desc">Tom de voz adequado, contato visual com a turma e uso correto do tempo.</div>
+      <div class="crit-pts">1,0 pt</div>
+    </div>
+    <div class="crit-row">
+      <div class="crit-nome">Resposta à arguição</div>
+      <div class="crit-desc">Capacidade de responder dúvidas após a apresentação, com fundamentação.</div>
+      <div class="crit-pts">1,0 pt</div>
+    </div>
+    <div class="crit-row total">
+      <div class="crit-nome">Total</div>
+      <div class="crit-desc"></div>
+      <div class="crit-pts">5,0 pts</div>
+    </div>
+  </div>
+
+  <!-- LISTA -->
+  <div class="section-label"><span>Casos para apresentação</span></div>
+
+  <div class="list">
+    <a class="item n1"  href="01-apresentacao/index.html"><div class="item-num">01</div><div class="item-text">Contribuição assistencial a empregados não sindicalizados</div><div class="item-chev">›</div></a>
+    <a class="item n2"  href="02-apresentacao/index.html"><div class="item-num">02</div><div class="item-text">Inclusão de empresas do mesmo grupo na fase de execução</div><div class="item-chev">›</div></a>
+    <a class="item n3"  href="03-apresentacao/index.html"><div class="item-num">03</div><div class="item-text">Prova sobre a fiscalização de terceirizados por ente público</div><div class="item-chev">›</div></a>
+    <a class="item n4"  href="04-apresentacao/index.html"><div class="item-num">04</div><div class="item-text">Vínculo de emprego com pessoa jurídica</div><div class="item-chev">›</div></a>
+    <a class="item n5"  href="05-apresentacao/index.html"><div class="item-num">05</div><div class="item-text">Vínculo empregatício de motorista de aplicativo</div><div class="item-chev">›</div></a>
+    <a class="item n6"  href="06-apresentacao/index.html"><div class="item-num">06</div><div class="item-text">Equiparação entre terceirizados e empregados da contratante</div><div class="item-chev">›</div></a>
+    <a class="item n7"  href="07-apresentacao/index.html"><div class="item-num">07</div><div class="item-text">Responsabilização do empregador por acidentes de trabalho</div><div class="item-chev">›</div></a>
+    <a class="item n8"  href="08-apresentacao/index.html"><div class="item-num">08</div><div class="item-text">Despedida imotivada de empregados de Empresa Pública</div><div class="item-chev">›</div></a>
+    <a class="item n9"  href="09-apresentacao/index.html"><div class="item-num">09</div><div class="item-text">Responsabilização por danos e doenças ocupacionais</div><div class="item-chev">›</div></a>
+    <a class="item n10" href="10-apresentacao/index.html"><div class="item-num">10</div><div class="item-text">Salário-maternidade para mãe não gestante</div><div class="item-chev">›</div></a>
+  </div>
+
+  <div class="back">
+    <a href="../index.html">← Voltar ao índice da disciplina</a>
+  </div>
+
+</div>
 </body>
 </html>
