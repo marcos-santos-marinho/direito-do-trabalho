@@ -1,567 +1,443 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>6. Empregado</title>
-
-  <style>
-    :root{
-      --bg:#eef5ff;
-      --panel:rgba(255,255,255,.62);
-      --card:#ffffff;
-      --text:#0f172a;
-      --muted:#475569;
-      --primary:#1d4ed8;
-      --border:rgba(15,23,42,.10);
-      --shadow:0 18px 45px rgba(15,23,42,.10);
-      --shadow-small:0 8px 20px rgba(15,23,42,.08);
-      --blue-soft:rgba(37,99,235,.08);
-      --green:#16a34a;
-      --green-soft:rgba(22,163,74,.07);
-    }
-
-    *{
-      box-sizing:border-box;
-    }
-
-    html{
-      scroll-behavior:smooth;
-    }
-
-    body{
-      margin:0;
-      font-family:
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        Arial,
-        sans-serif;
-
-      color:var(--text);
-      background:
-        radial-gradient(
-          1000px 600px at 50% -100px,
-          rgba(37,99,235,.20),
-          transparent 60%
-        ),
-        linear-gradient(
-          180deg,
-          #f8fbff 0%,
-          var(--bg) 100%
-        );
-
-      font-size:18px;
-      line-height:1.78;
-      -webkit-font-smoothing:antialiased;
-    }
-
-    .wrap{
-      width:100%;
-      max-width:980px;
-      margin:0 auto;
-      padding:22px 16px 40px;
-    }
-
-    .shell{
-      padding:20px;
-      background:var(--panel);
-      border:1px solid rgba(29,78,216,.10);
-      border-radius:24px;
-      box-shadow:var(--shadow);
-      backdrop-filter:blur(8px);
-    }
-
-    /* Cabeçalho */
-
-    .topbar{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:18px;
-      margin-bottom:18px;
-    }
-
-    .title-area{
-      min-width:0;
-    }
-
-    h1{
-      margin:0;
-      color:var(--primary);
-      font-size:clamp(30px, 5vw, 44px);
-      line-height:1.1;
-      letter-spacing:-.5px;
-    }
-
-    /* Botão Slides */
-
-    .slide-btn{
-      flex:0 0 auto;
-      min-width:150px;
-      display:flex;
-      align-items:center;
-      gap:11px;
-      padding:11px 13px;
-
-      color:var(--text);
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:16px;
-      box-shadow:var(--shadow-small);
-
-      text-decoration:none;
-      transition:
-        transform .15s ease,
-        box-shadow .15s ease,
-        border-color .15s ease;
-    }
-
-    .slide-btn:hover{
-      transform:translateY(-2px);
-      border-color:rgba(29,78,216,.25);
-      box-shadow:0 14px 30px rgba(15,23,42,.12);
-    }
-
-    .slide-icon{
-      width:44px;
-      height:44px;
-      flex:0 0 44px;
-
-      display:grid;
-      place-items:center;
-
-      background:
-        linear-gradient(
-          180deg,
-          rgba(37,99,235,.15),
-          rgba(37,99,235,.06)
-        );
-
-      border:1px solid rgba(37,99,235,.20);
-      border-radius:13px;
-    }
-
-    .slide-text{
-      display:flex;
-      flex-direction:column;
-      line-height:1.15;
-    }
-
-    .slide-text strong{
-      font-size:15px;
-    }
-
-    .slide-text span{
-      margin-top:3px;
-      color:var(--muted);
-      font-size:12px;
-    }
-
-    /* Conteúdo */
-
-    .content{
-      display:grid;
-      gap:15px;
-    }
-
-    .card{
-      padding:20px;
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:19px;
-      box-shadow:var(--shadow-small);
-    }
-
-    .pill{
-      display:inline-block;
-      margin-bottom:11px;
-      padding:6px 11px;
-
-      color:#0b2a7a;
-      background:rgba(37,99,235,.10);
-      border:1px solid rgba(37,99,235,.18);
-      border-radius:999px;
-
-      font-size:14px;
-      font-weight:800;
-    }
-
-    .card p{
-      margin:0 0 14px;
-      font-size:19px;
-      line-height:1.78;
-      text-align:justify;
-    }
-
-    .card p:last-child{
-      margin-bottom:0;
-    }
-
-    .definition{
-      border:2px solid rgba(22,163,74,.50);
-      background:
-        linear-gradient(
-          180deg,
-          var(--green-soft),
-          rgba(255,255,255,.98)
-        );
-    }
-
-    /* Alíneas */
-
-    .requirements{
-      display:grid;
-      gap:14px;
-      margin-top:5px;
-    }
-
-    .requirement{
-      display:grid;
-      grid-template-columns:42px 1fr;
-      gap:13px;
-      align-items:flex-start;
-
-      padding:15px;
-      background:#ffffff;
-      border:1px solid rgba(15,23,42,.09);
-      border-radius:16px;
-      box-shadow:0 5px 14px rgba(15,23,42,.05);
-    }
-
-    .letter{
-      width:42px;
-      height:42px;
-
-      display:grid;
-      place-items:center;
-
-      color:#14532d;
-      background:rgba(22,163,74,.11);
-      border:1px solid rgba(22,163,74,.22);
-      border-radius:13px;
-
-      font-size:17px;
-      font-weight:900;
-    }
-
-    .requirement p{
-      margin:0;
-      font-size:19px;
-      line-height:1.75;
-      text-align:justify;
-    }
-
-    .final-note{
-      padding:17px;
-      background:var(--blue-soft);
-      border:1px solid rgba(37,99,235,.16);
-      border-radius:16px;
-    }
-
-    /* Voltar */
-
-    .back-wrap{
-      display:flex;
-      justify-content:center;
-      margin-top:20px;
-    }
-
-    .back{
-      width:100%;
-      max-width:540px;
-
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:9px;
-
-      padding:15px 20px;
-
-      color:var(--text);
-      background:#ffffff;
-      border:1px solid var(--border);
-      border-radius:16px;
-      box-shadow:var(--shadow-small);
-
-      font-size:18px;
-      font-weight:900;
-      text-align:center;
-      text-decoration:none;
-
-      transition:
-        transform .15s ease,
-        box-shadow .15s ease,
-        border-color .15s ease;
-    }
-
-    .back:hover{
-      transform:translateY(-2px);
-      border-color:rgba(29,78,216,.25);
-      box-shadow:0 14px 30px rgba(15,23,42,.12);
-    }
-
-    /* Celular */
-
-    @media (max-width:640px){
-      body{
-        font-size:17px;
-      }
-
-      .wrap{
-        padding:14px 10px 28px;
-      }
-
-      .shell{
-        padding:14px;
-        border-radius:20px;
-      }
-
-      .topbar{
-        align-items:flex-start;
-        gap:10px;
-      }
-
-      h1{
-        padding-top:5px;
-        font-size:26px;
-      }
-
-      .slide-btn{
-        min-width:92px;
-        flex-direction:column;
-        gap:5px;
-        padding:9px;
-        text-align:center;
-      }
-
-      .slide-icon{
-        width:36px;
-        height:36px;
-        flex-basis:36px;
-        border-radius:11px;
-      }
-
-      .slide-text strong{
-        font-size:13px;
-      }
-
-      .slide-text span{
-        display:none;
-      }
-
-      .card{
-        padding:16px;
-      }
-
-      .card p,
-      .requirement p{
-        font-size:17px;
-        line-height:1.72;
-      }
-
-      .requirement{
-        grid-template-columns:36px 1fr;
-        gap:10px;
-        padding:13px;
-      }
-
-      .letter{
-        width:36px;
-        height:36px;
-        font-size:15px;
-      }
-
-      .back{
-        font-size:16px;
-      }
-    }
-
-    @media (max-width:380px){
-      h1{
-        font-size:23px;
-      }
-
-      .slide-btn{
-        min-width:78px;
-      }
-
-      .slide-icon{
-        width:32px;
-        height:32px;
-        flex-basis:32px;
-      }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>6. Empregado</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:#1b2436;
+    --ink-soft:#414a5c;
+    --paper:#edece5;
+    --surface:#fbfaf7;
+    --accent:#7a2e37;
+    --accent-soft:#a2545f;
+    --iron:#8b8579;
+    --line:rgba(27,36,54,.13);
+    --line-strong:rgba(27,36,54,.22);
+    --display:"Fraunces", Georgia, "Times New Roman", serif;
+    --body:"Spectral", Georgia, serif;
+    --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:19px;
+    line-height:1.78;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0 0 auto 0;
+    height:4px;
+    background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 34%,var(--ink) 34%,var(--ink) 100%);
+    z-index:50;
+  }
+
+  .wrap{ max-width:760px; margin:0 auto; padding:0 22px 72px; }
+
+  /* ===== CABEÇALHO ===== */
+  .masthead{
+    padding:56px 0 30px;
+    border-bottom:1px solid var(--line-strong);
+    animation:rise .7s cubic-bezier(.2,.7,.2,1) both;
+  }
+
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:600;
+    margin-bottom:20px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .eyebrow::before{ content:""; width:26px; height:2px; background:var(--accent); display:inline-block; }
+  .eyebrow .dot{ color:var(--line-strong); }
+
+  .title-row{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:28px;
+    flex-wrap:wrap;
+  }
+
+  h1{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(2.5rem,7vw,4.1rem);
+    line-height:1.02;
+    letter-spacing:-.015em;
+    max-width:12ch;
+  }
+  h1 .art{
+    display:block;
+    font-size:.42em;
+    font-weight:600;
+    letter-spacing:.02em;
+    color:var(--accent);
+    font-family:var(--mono);
+    text-transform:uppercase;
+    margin-bottom:.5em;
+  }
+
+  .slides-btn{
+    flex-shrink:0;
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    background:var(--ink);
+    color:#f4f2ec;
+    border-radius:4px;
+    padding:13px 18px;
+    font-family:var(--mono);
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    box-shadow:0 8px 22px -12px rgba(27,36,54,.7);
+    transition:transform .25s cubic-bezier(.2,.7,.2,1), box-shadow .25s, background .25s;
+  }
+  .slides-btn .ico{ font-size:16px; line-height:1; transform:translateY(-1px); }
+  .slides-btn .arw{ transition:transform .25s; }
+  .slides-btn:hover{ background:var(--accent); transform:translateY(-2px); box-shadow:0 14px 28px -12px rgba(122,46,55,.75); }
+  .slides-btn:hover .arw{ transform:translateX(4px); }
+  .slides-btn:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:3px; }
+
+  /* ===== VERBETE ===== */
+  .verbete{
+    margin:44px 0 8px;
+    padding:6px 0 6px 30px;
+    border-left:3px solid var(--accent);
+    animation:rise .7s .1s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .verbete .tag{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:block;
+    margin-bottom:14px;
+  }
+  .verbete p{
+    font-family:var(--display);
+    font-weight:400;
+    font-size:clamp(1.35rem,3.4vw,1.7rem);
+    line-height:1.45;
+    letter-spacing:-.01em;
+    color:var(--ink);
+    margin:0;
+  }
+
+  /* ref legal */
+  .ref{
+    font-family:var(--mono);
+    font-size:.8em;
+    color:var(--iron);
+    background:rgba(139,133,121,.12);
+    padding:2px 7px;
+    border-radius:3px;
+    white-space:nowrap;
+  }
+
+  /* ===== SEÇÕES ===== */
+  .sec-head{
+    display:flex;
+    gap:16px;
+    align-items:baseline;
+    margin:46px 0 14px;
+    padding-top:26px;
+    border-top:1px solid var(--line);
+  }
+  .sec-head .num{
+    font-family:var(--mono);
+    font-size:15px;
+    font-weight:600;
+    color:var(--accent);
+    letter-spacing:.02em;
+    flex-shrink:0;
+    padding-top:.35em;
+  }
+  h2{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(1.6rem,4vw,2rem);
+    line-height:1.14;
+    letter-spacing:-.01em;
+    color:var(--ink);
+  }
+  p{ margin-bottom:16px; color:var(--ink-soft); }
+
+  /* ===== QUATRO CARACTERÍSTICAS ===== */
+  .caracteristicas{
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+    margin:4px 0 8px;
+  }
+
+  .carac{
+    display:grid;
+    grid-template-columns:52px 1fr;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+    opacity:0;
+    transform:translateY(12px);
+    animation:rise .5s ease forwards;
+  }
+  .carac:nth-child(1){ animation-delay:.1s; }
+  .carac:nth-child(2){ animation-delay:.18s; }
+  .carac:nth-child(3){ animation-delay:.26s; }
+  .carac:nth-child(4){ animation-delay:.34s; }
+
+  .carac-letra{
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+    padding-top:18px;
+    font-family:var(--mono);
+    font-weight:700;
+    font-size:18px;
+    color:var(--accent);
+    background:rgba(122,46,55,.06);
+    border-right:1px solid var(--line);
+  }
+
+  .carac-body{
+    padding:18px 20px;
+  }
+  .carac-body .c-titulo{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:1.05rem;
+    color:var(--ink);
+    display:block;
+    margin-bottom:8px;
+    line-height:1.2;
+  }
+  .carac-body p{
+    font-size:.93em;
+    color:var(--ink-soft);
+    margin:0;
+    line-height:1.72;
+  }
+
+  /* ===== NOTA FINAL ===== */
+  .nota-final{
+    margin:14px 0 0;
+    padding:18px 22px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-left:3px solid var(--iron);
+    border-radius:0 6px 6px 0;
+    opacity:0;
+    animation:rise .5s .42s ease forwards;
+  }
+  .nota-final .n-tag{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--iron);
+    display:block;
+    margin-bottom:10px;
+  }
+  .nota-final p{
+    font-size:.93em;
+    color:var(--ink-soft);
+    margin:0;
+    line-height:1.68;
+  }
+
+  /* ===== BOTÃO VOLTAR ===== */
+  .back{
+    margin-top:56px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    text-decoration:none;
+    color:var(--ink);
+    background:var(--surface);
+    border:1px solid var(--line-strong);
+    border-radius:6px;
+    padding:20px 22px;
+    font-family:var(--mono);
+    font-size:14px;
+    letter-spacing:.04em;
+    transition:border-color .25s, transform .25s;
+  }
+  .back .arw{ color:var(--accent); transition:transform .25s; font-size:18px; }
+  .back:hover{ border-color:var(--accent); transform:translateY(-2px); }
+  .back:hover .arw{ transform:translateX(-4px); }
+  .back:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:3px; }
+
+  @keyframes rise{
+    from{ opacity:0; transform:translateY(16px); }
+    to{ opacity:1; transform:none; }
+  }
+
+  @media (max-width:560px){
+    body{ font-size:17.5px; }
+    .masthead{ padding:40px 0 24px; }
+    .title-row{ align-items:stretch; }
+    .slides-btn{ width:100%; justify-content:center; }
+    .verbete{ padding-left:20px; }
+    .carac{ grid-template-columns:40px 1fr; }
+    .carac-letra{ font-size:16px; padding-top:16px; }
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{ animation:none !important; }
+    .carac, .nota-final{ opacity:1; transform:none; }
+  }
+</style>
 </head>
-
 <body>
+<div class="wrap">
 
-  <main class="wrap">
-    <section class="shell">
+  <!-- CABEÇALHO -->
+  <header class="masthead">
+    <p class="eyebrow">
+      Direito do Trabalho
+      <span class="dot">·</span> Unidade 1
+      <span class="dot">·</span> Sujeitos da relação de emprego
+    </p>
+    <div class="title-row">
+      <h1>
+        <span class="art">Item 6</span>
+        Empregado
+      </h1>
+      <a class="slides-btn"
+         href="https://drive.google.com/file/d/1MJPDEVSVMtYTHuWoXjZD2DaZIc6XowMH/view?usp=sharing"
+         target="_blank" rel="noopener">
+        <span class="ico">▮</span>
+        <span>Slides da aula</span>
+        <span class="arw">→</span>
+      </a>
+    </div>
 
-      <header class="topbar">
-        <div class="title-area">
-          <h1>6. Empregado</h1>
-        </div>
+    <!-- DEFINIÇÃO -->
+    <div class="verbete">
+      <span class="tag">Definição — arts. 2º e 3º da CLT</span>
+      <p>
+        Empregado é a pessoa física que pessoalmente presta serviços não
+        eventuais, sob a dependência de empregador e mediante remuneração.
+      </p>
+    </div>
+  </header>
 
-        <!-- Substitua o endereço abaixo pelo link dos slides -->
-        <a
-          class="slide-btn"
-          href="https://drive.google.com/file/d/1MJPDEVSVMtYTHuWoXjZD2DaZIc6XowMH/view?usp=sharing"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Abrir os slides no Google Drive"
-        >
-          <span class="slide-icon" aria-hidden="true">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-            >
-              <path
-                d="M4 5h16v11H4V5Z"
-                stroke="#1d4ed8"
-                stroke-width="1.8"
-                stroke-linejoin="round"
-              />
+  <!-- CARACTERÍSTICAS -->
+  <section>
+    <div class="sec-head">
+      <span class="num">§</span>
+      <h2>Características do empregado</h2>
+    </div>
 
-              <path
-                d="M8 20h8"
-                stroke="#1d4ed8"
-                stroke-width="1.8"
-                stroke-linecap="round"
-              />
+    <div class="caracteristicas">
 
-              <path
-                d="M12 16v4"
-                stroke="#1d4ed8"
-                stroke-width="1.8"
-                stroke-linecap="round"
-              />
-
-              <path
-                d="M7 12l3-3 2.4 2.4L15 8.8l2 2"
-                stroke="#1d4ed8"
-                stroke-width="1.8"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </span>
-
-          <span class="slide-text">
-            <strong>Slides</strong>
-            <span>Abrir no Drive</span>
-          </span>
-        </a>
-      </header>
-
-      <div class="content">
-
-        <article class="card definition">
-          <span class="pill">Conceito</span>
-
+      <div class="carac">
+        <div class="carac-letra">a)</div>
+        <div class="carac-body">
+          <span class="c-titulo">Pessoa física</span>
           <p>
-            Empregado é a pessoa física que pessoalmente presta serviços não
-            eventuais, sob a dependência de empregador e mediante remuneração
-            (arts. 2º e 3º da CLT).
+            O empregado é sempre pessoa física. Isto decorre da natureza do
+            contrato de trabalho, pelo qual se contrata a prestação pessoal de
+            serviços (<em>intuitu personae</em>), o que afasta a possibilidade
+            de ser o empregado pessoa jurídica. A pessoa jurídica jamais
+            poderá executar o próprio trabalho, fazendo-o por meio de pessoas
+            físicas.
           </p>
-        </article>
-
-        <article class="card">
-          <span class="pill">Características</span>
-
-          <p>Assim:</p>
-
-          <div class="requirements">
-
-            <section class="requirement">
-              <div class="letter">a)</div>
-
-              <p>
-                o empregado é sempre pessoa física. Isto decorre da natureza do
-                contrato de trabalho, pelo qual se contrata a prestação pessoal
-                de serviços (intuitu personae), o que afasta, logicamente, a
-                possibilidade de ser o empregado pessoa jurídica. A pessoa
-                jurídica jamais poderá executar o próprio trabalho, fazendo-o
-                por meio de pessoas físicas;
-              </p>
-            </section>
-
-            <section class="requirement">
-              <div class="letter">b)</div>
-
-              <p>
-                os serviços contratados são prestados de modo não eventual, isto
-                é, a utilização da força de trabalho, como fator de produção,
-                corresponde às necessidades normais da atividade econômica em
-                que é utilizada e se prolongam no tempo. A duração da prestação
-                não importa; pela própria natureza da atividade do empregador,
-                o serviço pode ser prestado apenas durante poucas horas
-                diariamente, bastando que não seja excepcional ou transitório
-                em relação à atividade do estabelecimento;
-              </p>
-            </section>
-
-            <section class="requirement">
-              <div class="letter">c)</div>
-
-              <p>
-                a prestação do serviço é realizada de forma subordinada às
-                ordens do empregador e não se dá sob forma autônoma, isto é, o
-                trabalhador não exerce, ele próprio, uma atividade econômica.
-                É preciso, portanto, para ser empregado, que o trabalhador se
-                limite a permitir que sua força de trabalho seja utilizada na
-                atividade econômica e produtiva exercida por outrem, a quem
-                fica, por isso, juridicamente subordinado;
-              </p>
-            </section>
-
-            <section class="requirement">
-              <div class="letter">d)</div>
-
-              <p>
-                o trabalho prestado é remunerado, ou seja, não se dá a título
-                gratuito, porque o contrato de trabalho é oneroso. Não é a
-                falta de estipulação do quantum do salário ou o seu pagamento
-                sob forma indireta que desfiguram a condição de empregado, e
-                sim a intenção de prestar o serviço desinteressadamente, por
-                mera benevolência.
-              </p>
-            </section>
-
-          </div>
-        </article>
-
-        <article class="card">
-          <span class="pill">Igualdade entre formas de trabalho</span>
-
-          <div class="final-note">
-            <p>
-              Não há distinção entre o trabalho intelectual, técnico e manual
-              (art. 3º, parágrafo único, CLT), sendo proibida a distinção entre
-              essas formas de trabalho e os profissionais respectivos
-              (art. 7º, XXXII, CF).
-            </p>
-          </div>
-        </article>
-
+        </div>
       </div>
 
-      <div class="back-wrap">
-        <a class="back" href="../index.html">
-          <span aria-hidden="true">←</span>
-          <span>Voltar ao índice da disciplina</span>
-        </a>
+      <div class="carac">
+        <div class="carac-letra">b)</div>
+        <div class="carac-body">
+          <span class="c-titulo">Não eventualidade</span>
+          <p>
+            Os serviços contratados são prestados de modo não eventual, isto é,
+            a utilização da força de trabalho corresponde às necessidades normais
+            da atividade econômica e se prolongam no tempo. A duração da
+            prestação não importa; pela própria natureza da atividade do
+            empregador, o serviço pode ser prestado apenas durante poucas horas
+            diariamente, bastando que não seja excepcional ou transitório em
+            relação à atividade do estabelecimento.
+          </p>
+        </div>
       </div>
 
-    </section>
-  </main>
+      <div class="carac">
+        <div class="carac-letra">c)</div>
+        <div class="carac-body">
+          <span class="c-titulo">Subordinação</span>
+          <p>
+            A prestação do serviço é realizada de forma subordinada às ordens
+            do empregador e não se dá sob forma autônoma — o trabalhador não
+            exerce, ele próprio, uma atividade econômica. É preciso, portanto,
+            para ser empregado, que o trabalhador se limite a permitir que sua
+            força de trabalho seja utilizada na atividade econômica e produtiva
+            exercida por outrem, a quem fica, por isso, juridicamente
+            subordinado.
+          </p>
+        </div>
+      </div>
 
+      <div class="carac">
+        <div class="carac-letra">d)</div>
+        <div class="carac-body">
+          <span class="c-titulo">Remuneração</span>
+          <p>
+            O trabalho prestado é remunerado — não se dá a título gratuito,
+            porque o contrato de trabalho é oneroso. Não é a falta de
+            estipulação do <em>quantum</em> do salário ou o seu pagamento sob
+            forma indireta que desfiguram a condição de empregado, e sim a
+            intenção de prestar o serviço desinteressadamente, por mera
+            benevolência.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- NOTA FINAL -->
+    <div class="nota-final">
+      <span class="n-tag">Igualdade entre formas de trabalho</span>
+      <p>
+        Não há distinção entre o trabalho intelectual, técnico e manual
+        <span class="ref">art. 3º, parágrafo único, CLT</span>, sendo
+        proibida a distinção entre essas formas de trabalho e os profissionais
+        respectivos <span class="ref">art. 7º, XXXII, CF</span>.
+      </p>
+    </div>
+  </section>
+
+  <a class="back" href="../index.html">
+    <span class="arw">←</span>
+    <span>Voltar ao índice da disciplina</span>
+  </a>
+
+</div>
 </body>
 </html>
