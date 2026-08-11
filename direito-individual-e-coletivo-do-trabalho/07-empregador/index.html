@@ -1,290 +1,855 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<title>Empregador</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>7. Empregador</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
   :root{
-    --bg:#f2f7ff;
-    --text:#0f172a;
-    --title:#1f4fd8;
-    --card:#ffffff;
-    --border:rgba(15,23,42,.15);
-    --shadow:0 8px 18px rgba(15,23,42,.08);
+    --ink:#1b2436;
+    --ink-soft:#414a5c;
+    --paper:#edece5;
+    --surface:#fbfaf7;
+    --accent:#7a2e37;
+    --accent-soft:#a2545f;
+    --iron:#8b8579;
+    --line:rgba(27,36,54,.13);
+    --line-strong:rgba(27,36,54,.22);
+    --display:"Fraunces", Georgia, "Times New Roman", serif;
+    --body:"Spectral", Georgia, serif;
+    --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
   }
 
-  *{ box-sizing:border-box; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
 
   body{
-    margin:0;
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    line-height:1.7;
-    font-size:18px;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:19px;
+    line-height:1.78;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
   }
 
-  .wrap{
-    max-width:900px;
-    margin:auto;
-    padding:18px 16px 40px;
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0 0 auto 0;
+    height:4px;
+    background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 34%,var(--ink) 34%,var(--ink) 100%);
+    z-index:50;
   }
 
-  /* ===== TÍTULO + SLIDES ===== */
-  .title-row{
+  .wrap{ max-width:760px; margin:0 auto; padding:0 22px 72px; }
+
+  /* ===== CABEÇALHO ===== */
+  .masthead{
+    padding:56px 0 30px;
+    border-bottom:1px solid var(--line-strong);
+    animation:rise .7s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:600;
+    margin-bottom:20px;
     display:flex;
-    justify-content:space-between;
     align-items:center;
-    gap:16px;
+    gap:12px;
     flex-wrap:wrap;
   }
+  .eyebrow::before{ content:""; width:26px; height:2px; background:var(--accent); display:inline-block; }
+  .eyebrow .dot{ color:var(--line-strong); }
 
+  .title-row{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:28px;
+    flex-wrap:wrap;
+  }
   h1{
-    color:var(--title);
-    font-size:28px;
-    margin:10px 0 16px;
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(2.5rem,7vw,4.1rem);
+    line-height:1.02;
+    letter-spacing:-.015em;
+    max-width:12ch;
+  }
+  h1 .art{
+    display:block;
+    font-size:.42em;
+    font-weight:600;
+    letter-spacing:.02em;
+    color:var(--accent);
+    font-family:var(--mono);
+    text-transform:uppercase;
+    margin-bottom:.5em;
+  }
+  .slides-btn{
+    flex-shrink:0;
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    background:var(--ink);
+    color:#f4f2ec;
+    border-radius:4px;
+    padding:13px 18px;
+    font-family:var(--mono);
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    box-shadow:0 8px 22px -12px rgba(27,36,54,.7);
+    transition:transform .25s cubic-bezier(.2,.7,.2,1), box-shadow .25s, background .25s;
+  }
+  .slides-btn .ico{ font-size:16px; line-height:1; transform:translateY(-1px); }
+  .slides-btn .arw{ transition:transform .25s; }
+  .slides-btn:hover{ background:var(--accent); transform:translateY(-2px); box-shadow:0 14px 28px -12px rgba(122,46,55,.75); }
+  .slides-btn:hover .arw{ transform:translateX(4px); }
+  .slides-btn:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:3px; }
+
+  /* ===== VERBETE ===== */
+  .verbete{
+    margin:44px 0 8px;
+    padding:6px 0 6px 30px;
+    border-left:3px solid var(--accent);
+    animation:rise .7s .1s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .verbete .tag{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:block;
+    margin-bottom:14px;
+  }
+  .verbete p{
+    font-family:var(--display);
+    font-weight:400;
+    font-size:clamp(1.2rem,3vw,1.55rem);
+    line-height:1.45;
+    letter-spacing:-.01em;
+    color:var(--ink);
+    margin:0;
   }
 
-  .slides-btn{
+  /* ref legal */
+  .ref{
+    font-family:var(--mono);
+    font-size:.8em;
+    color:var(--iron);
+    background:rgba(139,133,121,.12);
+    padding:2px 7px;
+    border-radius:3px;
+    white-space:nowrap;
+  }
+
+  /* ===== SEÇÕES ===== */
+  .sec-head{
+    display:flex;
+    gap:16px;
+    align-items:baseline;
+    margin:46px 0 14px;
+    padding-top:26px;
+    border-top:1px solid var(--line);
+  }
+  .sec-head .num{
+    font-family:var(--mono);
+    font-size:15px;
+    font-weight:600;
+    color:var(--accent);
+    letter-spacing:.02em;
+    flex-shrink:0;
+    padding-top:.35em;
+  }
+  h2{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(1.6rem,4vw,2rem);
+    line-height:1.14;
+    letter-spacing:-.01em;
+    color:var(--ink);
+  }
+  p{ margin-bottom:16px; color:var(--ink-soft); }
+
+  /* ===== EQUIPARADOS ===== */
+  .equiparados{
+    margin:14px 0 8px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+  }
+  .eq-head{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--iron);
+    padding:10px 16px;
+    background:rgba(139,133,121,.08);
+    border-bottom:1px solid var(--line);
+  }
+  .eq-item{
+    display:grid;
+    grid-template-columns:24px 1fr;
+    gap:12px;
+    padding:12px 16px;
+    border-bottom:1px solid var(--line);
+    font-size:.92em;
+    color:var(--ink-soft);
+    align-items:center;
+  }
+  .eq-item:last-child{ border-bottom:none; }
+  .eq-item .bul{ color:var(--accent); font-family:var(--mono); font-size:.9em; }
+
+  /* ===== CINCO ATRIBUTOS ===== */
+  .atributos{
     display:flex;
     flex-direction:column;
+    gap:3px;
+    margin:10px 0 8px;
+  }
+  .atr{
+    display:grid;
+    grid-template-columns:40px 1fr;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+  }
+  .atr-letra{
+    display:flex;
     align-items:center;
     justify-content:center;
-    text-decoration:none;
-    background:#ffffff;
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:10px 14px;
-    box-shadow:var(--shadow);
-    min-width:90px;
+    font-family:var(--mono);
+    font-weight:700;
+    font-size:14px;
+    color:var(--accent);
+    background:rgba(122,46,55,.06);
+    border-right:1px solid var(--line);
+    padding:4px;
+    text-align:center;
   }
-
-  .slides-icon{
-    font-size:28px;
-    line-height:1;
+  .atr-body{
+    padding:13px 18px;
+    font-size:.93em;
+    color:var(--ink-soft);
+    line-height:1.65;
   }
+  .atr-body strong{ color:var(--ink); }
 
-  .slides-text{
-    margin-top:4px;
-    font-weight:800;
+  /* ===== CARDS EXPANSÍVEIS ===== */
+  .cards{
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+  }
+  .card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+    transition:box-shadow .2s;
+  }
+  .card:hover{ box-shadow:0 4px 18px -8px rgba(27,36,54,.2); }
+
+  .card-btn{
+    width:100%;
+    background:none;
+    border:none;
+    cursor:pointer;
+    display:grid;
+    grid-template-columns:52px 1fr 34px;
+    align-items:center;
+    padding:0;
+    text-align:left;
+    color:inherit;
+  }
+  .card-btn:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:-3px; border-radius:5px; }
+
+  .card-icon{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:60px;
+    height:100%;
+    border-right:1px solid var(--line);
+    font-family:var(--mono);
+    font-weight:600;
+    font-size:12px;
+    color:var(--accent);
+    background:rgba(122,46,55,.05);
+    text-align:center;
+    padding:4px;
+    line-height:1.3;
+  }
+  .card-head{ padding:14px 18px; }
+  .card-num{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--iron);
+    display:block;
+    margin-bottom:3px;
+  }
+  .card-title{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:1.08rem;
+    line-height:1.2;
+    color:var(--ink);
+  }
+  .card-chevron{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding-right:16px;
+    color:var(--iron);
     font-size:13px;
-    color:#0f172a;
+    transition:transform .3s cubic-bezier(.2,.7,.2,1), color .2s;
+  }
+  .card.open .card-chevron{ transform:rotate(180deg); color:var(--accent); }
+
+  .card-body{
+    display:none;
+    padding:18px 22px 22px;
+    border-top:1px solid var(--line);
+  }
+  .card.open .card-body{ display:block; }
+  .card-body > p{ color:var(--ink-soft); font-size:.93em; line-height:1.72; }
+
+  /* sub-bloco */
+  .sub{
+    margin:12px 0 6px;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:5px;
+    padding:13px 17px;
+  }
+  .sub-lbl{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:block;
+    margin-bottom:9px;
+  }
+  .sub p{ font-size:.91em; color:var(--ink-soft); margin-bottom:8px; line-height:1.65; }
+  .sub p:last-child{ margin:0; }
+
+  /* súmula */
+  .sumula{
+    margin:10px 0 4px;
+    padding:11px 15px;
+    border-left:2px solid var(--iron);
+    background:var(--paper);
+    border-radius:0 4px 4px 0;
+    font-size:.88em;
+    color:var(--ink-soft);
+    line-height:1.6;
+  }
+  .sumula strong{
+    font-style:normal;
+    font-family:var(--mono);
+    font-size:.86em;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--iron);
+    display:block;
+    margin-bottom:4px;
   }
 
-  /* ===== TEXTO ===== */
-  h2{
-    font-size:22px;
-    margin:30px 0 10px;
+  /* lista de itens */
+  .item-list{
+    margin:10px 0 4px;
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+  }
+  .item-row{
+    display:grid;
+    grid-template-columns:28px 1fr;
+    gap:10px;
+    font-size:.9em;
+    color:var(--ink-soft);
+    line-height:1.6;
+    padding:7px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .item-row:last-child{ border-bottom:none; }
+  .item-row .lbl{
+    font-family:var(--mono);
+    font-weight:600;
+    font-size:.85em;
+    color:var(--accent);
+    padding-top:2px;
   }
 
-  h3{
-    font-size:20px;
-    margin:24px 0 8px;
-  }
-
-  p{
-    margin:0 0 14px;
-    text-align:justify;
-  }
-
-  .box{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:16px;
-    margin:18px 0;
-    box-shadow:var(--shadow);
-  }
-
-  ul, ol{
-    margin:10px 0 14px 22px;
-  }
-
-  li{
-    margin-bottom:10px;
-  }
-
+  /* nota */
   .nota{
-    font-size:15px;
+    margin:12px 0 4px;
+    padding:13px 17px;
+    background:var(--surface);
+    border-left:3px solid var(--iron);
+    border-radius:0 5px 5px 0;
+    font-size:.9em;
+    color:var(--ink-soft);
+    line-height:1.65;
   }
+  .nota strong{ color:var(--ink); }
 
   /* ===== BOTÃO VOLTAR ===== */
-  .voltar{
-    margin-top:32px;
-  }
-
-  .voltar a{
-    display:block;
-    text-align:center;
-    background:#ffffff;
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:16px;
-    font-weight:800;
+  .back{
+    margin-top:56px;
+    display:flex;
+    align-items:center;
+    gap:14px;
     text-decoration:none;
-    color:#0f172a;
-    box-shadow:var(--shadow);
+    color:var(--ink);
+    background:var(--surface);
+    border:1px solid var(--line-strong);
+    border-radius:6px;
+    padding:20px 22px;
+    font-family:var(--mono);
+    font-size:14px;
+    letter-spacing:.04em;
+    transition:border-color .25s, transform .25s;
+  }
+  .back .arw{ color:var(--accent); transition:transform .25s; font-size:18px; }
+  .back:hover{ border-color:var(--accent); transform:translateY(-2px); }
+  .back:hover .arw{ transform:translateX(-4px); }
+  .back:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:3px; }
+
+  @keyframes rise{
+    from{ opacity:0; transform:translateY(18px); }
+    to{ opacity:1; transform:none; }
+  }
+  .reveal{ opacity:0; transform:translateY(14px); }
+  .reveal.in{
+    opacity:1; transform:none;
+    transition:opacity .5s ease, transform .5s cubic-bezier(.2,.7,.2,1);
   }
 
-  @media (max-width:480px){
-    body{ font-size:17px; }
-    h1{ font-size:24px; }
-    h2{ font-size:21px; }
-    h3{ font-size:19px; }
+  @media (max-width:560px){
+    body{ font-size:17.5px; }
+    .masthead{ padding:40px 0 24px; }
+    .title-row{ align-items:stretch; }
+    .slides-btn{ width:100%; justify-content:center; }
+    .verbete{ padding-left:20px; }
+    .card-btn{ grid-template-columns:44px 1fr 30px; }
+    .atr{ grid-template-columns:34px 1fr; }
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{ animation:none !important; scroll-behavior:auto; }
+    .reveal{ opacity:1; transform:none; }
+    .reveal.in{ transition:none; }
+    .card-chevron{ transition:none; }
   }
 </style>
 </head>
-
 <body>
 <div class="wrap">
 
-  <div class="title-row">
-    <h1>7. Empregador</h1>
-
-    <a class="slides-btn"
-       href="https://drive.google.com/file/d/1CO1WVl7szWrs8_WvngwBxvldU_s_YbL_/view?usp=sharing"
-       target="_blank"
-       rel="noopener">
-      <div class="slides-icon">🖼️</div>
-      <div class="slides-text">Slides</div>
-    </a>
-  </div>
-
-  <div class="box">
-    <p>
-      O legislador define empregador como “a empresa, individual ou coletiva, que, assumindo os riscos
-      da atividade econômica, admite, assalaria e dirige a prestação pessoal de serviços” (art. 2º,
-      caput, CLT). Também podem ser empregadores os entes não dotados de personalidade jurídica
-      (condomínio, massa falida, espólio), desde que admitam trabalhadores como empregados.
+  <!-- CABEÇALHO -->
+  <header class="masthead">
+    <p class="eyebrow">
+      Direito do Trabalho
+      <span class="dot">·</span> Unidade 1
+      <span class="dot">·</span> Sujeitos da relação de emprego
     </p>
-  </div>
+    <div class="title-row">
+      <h1>
+        <span class="art">Item 7</span>
+        Empregador
+      </h1>
+      <a class="slides-btn"
+         href="https://drive.google.com/file/d/1CO1WVl7szWrs8_WvngwBxvldU_s_YbL_/view?usp=sharing"
+         target="_blank" rel="noopener">
+        <span class="ico">▮</span>
+        <span>Slides da aula</span>
+        <span class="arw">→</span>
+      </a>
+    </div>
 
-  <p>
-    A lei equiparou ao empregador, “para os efeitos exclusivos da relação de emprego” (art. 2º, § 1º,
-    CLT), desde que admitam empregados:
-  </p>
+    <div class="verbete">
+      <span class="tag">Definição — art. 2º, caput, CLT</span>
+      <p>
+        Empregador é "a empresa, individual ou coletiva, que, assumindo os riscos
+        da atividade econômica, admite, assalaria e dirige a prestação pessoal de
+        serviços." Também podem ser empregadores os entes não dotados de
+        personalidade jurídica — condomínio, massa falida, espólio — desde que
+        admitam trabalhadores como empregados.
+      </p>
+    </div>
+  </header>
 
-  <div class="box">
-    <ul>
-      <li>os profissionais liberais;</li>
-      <li>as instituições de beneficência;</li>
-      <li>as associações recreativas;</li>
-      <li>outras instituições sem fins lucrativos que admitirem trabalhadores como empregados.</li>
-    </ul>
-  </div>
+  <!-- EQUIPARADOS + ATRIBUTOS -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§</span>
+      <h2>Conceito e atributos</h2>
+    </div>
 
-  <p>
-    Assim, empregador é o tomador dos serviços; aquele que contrata o trabalho prestado de forma
-    pessoal, subordinada, contínua e mediante remuneração pelo empregado.
-  </p>
-
-  <p>Portanto, o empregador:</p>
-
-  <div class="box">
-    <ol>
-      <li>pode ser pessoa física ou jurídica, e, ainda, ente despersonalizado;</li>
-      <li>pode ter ou não finalidade lucrativa;</li>
-      <li>assume os riscos da atividade econômica (alteridade);</li>
-      <li>exerce o poder de direção;</li>
-      <li>é responsável pelo pagamento dos salários e direitos trabalhistas.</li>
-    </ol>
-  </div>
-
-  <h2>7.1 Poder de direção do empregador</h2>
-
-  <p>
-    Ao ser contratado, o empregado transfere ao empregador o poder de direção sobre seu trabalho,
-    estruturando-se a relação jurídica com poder de direção de um lado e subordinação do outro.
-  </p>
-
-  <p>
-    O poder de direção divide-se em poder de organização, poder de controle e poder disciplinar.
-  </p>
-
-  <h3>Poder de organização</h3>
-  <p>
-    Consiste na faculdade de determinar atividades e regras de trabalho. Exterioriza-se por meio do
-    regulamento de empresa e do quadro de carreira.
-  </p>
-
-  <div class="box">
-    <p><strong>Súmula 51, TST</strong></p>
-    <p class="nota">
-      I – Cláusulas regulamentares só atingem empregados admitidos após alteração.  
-      II – A opção por um regulamento implica renúncia ao outro.
+    <p class="reveal">
+      A lei equiparou ao empregador, "para os efeitos exclusivos da relação de
+      emprego" <span class="ref">art. 2º, § 1º, CLT</span>, desde que admitam empregados:
     </p>
 
-    <p><strong>Súmula 288, TST</strong></p>
-    <p class="nota">
-      A complementação de aposentadoria paga diretamente pelo empregador rege-se pelas normas da
-      admissão, salvo alterações mais benéficas.
+    <div class="equiparados reveal">
+      <div class="eq-head">Equiparados ao empregador</div>
+      <div class="eq-item"><span class="bul">▸</span><span>Profissionais liberais</span></div>
+      <div class="eq-item"><span class="bul">▸</span><span>Instituições de beneficência</span></div>
+      <div class="eq-item"><span class="bul">▸</span><span>Associações recreativas</span></div>
+      <div class="eq-item"><span class="bul">▸</span><span>Outras instituições sem fins lucrativos que admitirem trabalhadores como empregados</span></div>
+    </div>
+
+    <p class="reveal" style="margin-top:16px;">
+      A noção de empregador está essencialmente relacionada ao conceito de empregado:
+      se em um dos polos da relação jurídica existir trabalho prestado com pessoalidade,
+      não eventualidade, subordinação e remuneração, do outro lado haverá um empregador.
+      Portanto, o empregador:
     </p>
-  </div>
 
-  <h3>Poder de controle</h3>
-  <p>
-    Permite ao empregador fiscalizar o cumprimento das obrigações contratuais.
-  </p>
+    <div class="atributos reveal">
+      <div class="atr"><div class="atr-letra">a)</div><div class="atr-body">Pode ser <strong>pessoa física ou jurídica</strong>, e, ainda, ente despersonalizado</div></div>
+      <div class="atr"><div class="atr-letra">b)</div><div class="atr-body">Pode ter ou <strong>não finalidade lucrativa</strong></div></div>
+      <div class="atr"><div class="atr-letra">c)</div><div class="atr-body">Assume os <strong>riscos da atividade econômica</strong> (alteridade)</div></div>
+      <div class="atr"><div class="atr-letra">d)</div><div class="atr-body">Exerce o <strong>poder de direção</strong>, subordinando o empregado às suas ordens</div></div>
+      <div class="atr"><div class="atr-letra">e)</div><div class="atr-body">É responsável pelo <strong>pagamento dos salários</strong> e pelo cumprimento de todos os direitos do empregado estabelecidos pelas normas trabalhistas</div></div>
+    </div>
+  </section>
 
-  <h3>Poder disciplinar</h3>
-  <p>
-    Autoriza a aplicação de advertência, suspensão e dispensa por justa causa.
-  </p>
+  <!-- PODER DE DIREÇÃO -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 7.1</span>
+      <h2>Poder de direção do empregador</h2>
+    </div>
 
-  <h2>7.2 Grupo econômico</h2>
-
-  <p>
-    Caracteriza-se quando empresas, embora autônomas, atuam sob direção, controle ou administração
-    comuns, respondendo solidariamente pelos créditos trabalhistas.
-  </p>
-
-  <div class="box">
-    <p>
-      Não configura grupo econômico a mera identidade de sócios; exige-se interesse integrado,
-      comunhão de interesses e atuação conjunta (art. 2º, § 3º, CLT).
+    <p class="reveal">
+      Ao ser contratado, o empregado transfere ao empregador o poder de direção sobre
+      seu trabalho. Assim estrutura-se a relação jurídica: de um lado, o poder de direção,
+      reconhecido ao empregador como contrapartida aos riscos da atividade econômica; de
+      outro, o estado de subordinação do empregado.
     </p>
-  </div>
 
-  <p>
-    Súmula 129, TST: a prestação de serviços a mais de uma empresa do grupo não gera múltiplos
-    contratos.
-  </p>
+    <div class="cards reveal">
 
-  <p>
-    Súmula 239, TST: empregado de empresa de processamento de dados que presta serviços a banco do
-    grupo é bancário, salvo exceções.
-  </p>
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Poder<br>de<br>organ.</div>
+          <div class="card-head">
+            <span class="card-num">7.1.1</span>
+            <span class="card-title">Poder de organização (ou de comando)</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            Consiste na faculdade de determinar as atividades que serão exercidas pelo
+            empregado e de definir as condições concretas e regras gerais de trabalho —
+            jornada e horário, processos de trabalho, etc. Permite ao empregador utilizar
+            a força de trabalho do empregado da forma que melhor atenda aos interesses
+            da empresa.
+          </p>
 
-  <h2>7.3 Sucessão de empregadores</h2>
+          <div class="sub">
+            <span class="sub-lbl">Formas de exteriorização</span>
+            <p>
+              <strong>Regulamento de empresa</strong> — contém regras gerais, abstratas,
+              impessoais e de cumprimento obrigatório. Tem natureza contratual e adere ao
+              contrato de trabalho, aplicando-se a regra da inalterabilidade das cláusulas
+              contratuais <span class="ref">art. 468, CLT</span>.
+            </p>
+            <p>
+              <strong>Quadro de carreira</strong> (plano de cargos e salários) — prevê
+              promoções alternadas segundo critérios de antiguidade e merecimento
+              <span class="ref">art. 461, §§ 2º e 3º, CLT</span>. Sua existência impede o
+              reconhecimento de equiparação salarial, mas não obsta reclamação fundada em
+              preterição, enquadramento ou reclassificação <span class="ref">Súmula 127, TST</span>.
+              Não precisa de homologação ou registro em órgão público.
+            </p>
+          </div>
 
-  <p>
-    Decorre da alteração subjetiva do contrato de trabalho, mantendo-se a continuidade da relação de
-    emprego (arts. 10 e 448 da CLT).
-  </p>
+          <div class="sumula">
+            <strong>Súmula 51, TST</strong>
+            I — As cláusulas regulamentares que revoguem ou alterem vantagens deferidas
+            anteriormente só atingirão os trabalhadores admitidos após a revogação ou
+            alteração do regulamento. II — Havendo coexistência de dois regulamentos, a
+            opção do empregado por um deles tem efeito jurídico de renúncia às regras do
+            sistema do outro.
+          </div>
 
-  <p>
-    A sucessão exige transferência da unidade econômico-jurídica e continuidade da prestação dos
-    serviços.
-  </p>
+          <div class="sumula">
+            <strong>Súmula 288, TST</strong>
+            A complementação dos proventos de aposentadoria, instituída e paga diretamente
+            pelo empregador sem vínculo com entidades de previdência privada fechada, é
+            regida pelas normas em vigor na data de admissão do empregado, ressalvadas
+            as alterações mais benéficas <span class="ref">art. 468, CLT</span>.
+          </div>
+        </div>
+      </div>
 
-  <div class="box">
-    <p>
-      O sucessor responde por todas as obrigações trabalhistas, inclusive as anteriores, preservando
-      tempo de serviço, férias, contratos a prazo e direitos adquiridos.
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Poder<br>de<br>controle</div>
+          <div class="card-head">
+            <span class="card-num">7.1.2</span>
+            <span class="card-title">Poder de controle (ou de fiscalização)</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            Permite ao empregador verificar o exato cumprimento pelo empregado das
+            determinações relativas à prestação do trabalho — fiscaliza a atuação do
+            empregado em relação às obrigações decorrentes do contrato de trabalho.
+            A atividade do empregado não é exercida da forma pretendida por ele, mas
+            sim da maneira determinada pelo empregador.
+          </p>
+        </div>
+      </div>
+
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Poder<br>discipl.</div>
+          <div class="card-head">
+            <span class="card-num">7.1.3</span>
+            <span class="card-title">Poder disciplinar</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            É o direito do empregador de impor sanções disciplinares aos seus empregados
+            em caso de descumprimento das obrigações contratuais. No direito brasileiro,
+            as sanções aplicáveis são:
+          </p>
+          <div class="item-list">
+            <div class="item-row"><span class="lbl">1</span><span>Advertência</span></div>
+            <div class="item-row"><span class="lbl">2</span><span>Suspensão</span></div>
+            <div class="item-row"><span class="lbl">3</span><span>Dispensa por justa causa</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GRUPO ECONÔMICO -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 7.2</span>
+      <h2>Grupo econômico</h2>
+    </div>
+
+    <p class="reveal">
+      Existe grupo econômico, para fins trabalhistas, sempre que duas ou mais empresas,
+      embora cada uma com personalidade jurídica própria, estiverem sob direção, controle
+      ou administração de outra, ou quando, mesmo guardando autonomia, integrem grupo
+      econômico. Caracterizado o grupo, as empresas são
+      <strong>solidariamente responsáveis</strong> pelos direitos trabalhistas dos
+      empregados de todas elas <span class="ref">art. 2º, § 2º, CLT</span>.
     </p>
-  </div>
 
-  <p>
-    O sócio retirante responde subsidiariamente por obrigações do período em que integrou a sociedade,
-    observados os limites do art. 10-A da CLT.
-  </p>
+    <div class="cards reveal">
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Elem.<br>do<br>grupo</div>
+          <div class="card-head">
+            <span class="card-num">Configuração</span>
+            <span class="card-title">Elementos do grupo econômico</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            Não caracteriza grupo econômico a mera identidade de sócios — é necessária a
+            demonstração do interesse integrado, a efetiva comunhão de interesses e a
+            atuação conjunta das empresas <span class="ref">art. 2º, § 3º, CLT</span>.
+          </p>
+          <div class="item-list">
+            <div class="item-row"><span class="lbl">a)</span><span>Existência de duas ou mais empresas</span></div>
+            <div class="item-row"><span class="lbl">b)</span><span>Autonomia das empresas (personalidade jurídica própria)</span></div>
+            <div class="item-row"><span class="lbl">c)</span><span>Relação de dominação entre as empresas — direção, controle ou administração da principal sobre as filiadas</span></div>
+            <div class="item-row"><span class="lbl">d)</span><span>Interesse integrado, comunhão de interesses e atuação conjunta das empresas</span></div>
+            <div class="item-row"><span class="lbl">e)</span><span>Atividade industrial, comercial ou de qualquer outro caráter econômico</span></div>
+            <div class="item-row"><span class="lbl">f)</span><span>Vínculo de solidariedade entre as empresas para garantia dos direitos trabalhistas</span></div>
+            <div class="item-row"><span class="lbl">g)</span><span>Efeito incidente apenas na relação de emprego</span></div>
+          </div>
 
-  <div class="voltar">
-    <a href="../index.html">← Voltar ao índice da disciplina</a>
-  </div>
+          <div class="sumula" style="margin-top:14px;">
+            <strong>Súmula 129, TST</strong>
+            A prestação de serviços a mais de uma empresa do mesmo grupo econômico, durante
+            a mesma jornada, não caracteriza mais de um contrato de trabalho, salvo ajuste
+            em contrário.
+          </div>
+
+          <div class="sumula">
+            <strong>Súmula 239, TST</strong>
+            É bancário o empregado de empresa de processamento de dados que presta serviço
+            a banco integrante do mesmo grupo econômico, exceto quando a empresa presta
+            serviços também a empresas não bancárias do grupo ou a terceiros.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUCESSÃO DE EMPREGADORES -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 7.3</span>
+      <h2>Sucessão de empregadores</h2>
+    </div>
+
+    <p class="reveal">
+      Decorre da alteração subjetiva do contrato de trabalho — modificação do sujeito
+      empregador, mantendo-se intacta a relação de emprego. Prevista pelos
+      <span class="ref">arts. 10 e 448, CLT</span>: qualquer alteração na estrutura
+      jurídica da empresa ou em sua propriedade não afeta os contratos de trabalho nem
+      os direitos adquiridos pelos empregados.
+    </p>
+
+    <div class="cards reveal">
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Requi-<br>sitos</div>
+          <div class="card-head">
+            <span class="card-num">Configuração</span>
+            <span class="card-title">Requisitos da sucessão</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>Para que exista a sucessão de empregadores, dois requisitos são indispensáveis:</p>
+          <div class="item-list">
+            <div class="item-row"><span class="lbl">a)</span><span>Que um estabelecimento, como unidade econômico-jurídica, passe de um para outro titular (sucedido e sucessor)</span></div>
+            <div class="item-row"><span class="lbl">b)</span><span>Que a prestação de serviço pelos empregados não sofra solução de continuidade</span></div>
+          </div>
+          <div class="nota" style="margin-top:12px;">
+            <strong>Fundamento:</strong> princípio da continuidade do contrato de trabalho e
+            princípio da despersonalização do empregador — os contratos são mantidos com a
+            organização de trabalho, não com as pessoas que estejam eventualmente à sua frente.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Efeitos</div>
+          <div class="card-head">
+            <span class="card-num">art. 448-A, CLT</span>
+            <span class="card-title">Efeitos da sucessão</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <div class="item-list">
+            <div class="item-row"><span class="lbl">a)</span><span>O novo proprietário sub-roga-se em todas as obrigações do primeiro — contrato se desenvolve normalmente, sem prejuízo para o trabalhador</span></div>
+            <div class="item-row"><span class="lbl">b)</span><span>A contagem de tempo de serviço não é interrompida</span></div>
+            <div class="item-row"><span class="lbl">c)</span><span>Obrigações trabalhistas vencidas à época do sucedido, mas não cumpridas, são exigíveis do sucessor</span></div>
+            <div class="item-row"><span class="lbl">d)</span><span>Sentenças judiciais podem ser executadas contra o sucessor, inclusive reintegração de estáveis</span></div>
+            <div class="item-row"><span class="lbl">e)</span><span>Empregados com contratos suspensos ou interrompidos têm o direito de reassumir os cargos</span></div>
+            <div class="item-row"><span class="lbl">f)</span><span>Contratos a prazo devem ser respeitados pelo sucessor até o fim</span></div>
+            <div class="item-row"><span class="lbl">g)</span><span>A contagem dos períodos aquisitivos de férias prossegue normalmente</span></div>
+            <div class="item-row"><span class="lbl">h)</span><span>Débitos previdenciários do sucedido passam para o sucessor</span></div>
+            <div class="item-row"><span class="lbl">i)</span><span>O sucedido responde solidariamente com o sucessor quando comprovada fraude na transferência</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Sócio<br>retir.</div>
+          <div class="card-head">
+            <span class="card-num">art. 10-A, CLT</span>
+            <span class="card-title">Sócio retirante</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            O sócio retirante responde <strong>subsidiariamente</strong> pelas obrigações
+            trabalhistas da sociedade relativas ao período em que figurou como sócio, somente
+            em ações ajuizadas até <strong>dois anos</strong> depois de averbada a modificação
+            do contrato. Ordem de preferência:
+          </p>
+          <div class="item-list">
+            <div class="item-row"><span class="lbl">1</span><span>A empresa devedora</span></div>
+            <div class="item-row"><span class="lbl">2</span><span>Os sócios atuais</span></div>
+            <div class="item-row"><span class="lbl">3</span><span>Os sócios retirantes</span></div>
+          </div>
+          <div class="nota" style="margin-top:12px;">
+            O sócio retirante responde <strong>solidariamente</strong> com os demais quando
+            comprovada fraude na alteração societária
+            <span class="ref">parágrafo único, art. 10-A, CLT</span>.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <a class="back" href="../index.html">
+    <span class="arw">←</span>
+    <span>Voltar ao índice da disciplina</span>
+  </a>
 
 </div>
+
+<script>
+  (function(){
+    var items = document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window)){
+      items.forEach(function(el){ el.classList.add('in'); }); return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold:.08, rootMargin:'0px 0px -3% 0px' });
+    items.forEach(function(el, i){
+      el.style.transitionDelay = (i * 40) + 'ms';
+      io.observe(el);
+    });
+  })();
+
+  (function(){
+    var cards = document.querySelectorAll('.card');
+    cards.forEach(function(card){
+      var btn = card.querySelector('.card-btn');
+      btn.addEventListener('click', function(){
+        var isOpen = card.classList.contains('open');
+        cards.forEach(function(c){
+          c.classList.remove('open');
+          c.querySelector('.card-btn').setAttribute('aria-expanded','false');
+        });
+        if(!isOpen){
+          card.classList.add('open');
+          btn.setAttribute('aria-expanded','true');
+        }
+      });
+    });
+  })();
+</script>
 </body>
 </html>
