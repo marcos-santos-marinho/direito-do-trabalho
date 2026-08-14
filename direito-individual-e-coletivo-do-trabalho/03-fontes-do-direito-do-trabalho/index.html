@@ -517,6 +517,59 @@
     .reveal.in{ transition:none; }
     .card-chevron{ transition:none; }
   }
+
+/* ================================================================
+   QUIZ
+================================================================ */
+.quiz-section{ margin-top:56px; padding-top:36px; border-top:2px solid var(--accent); }
+.quiz-header{ display:flex; align-items:center; gap:16px; margin-bottom:32px; }
+.quiz-icon{ width:48px; height:48px; background:var(--accent); color:#fff; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0; font-family:var(--mono); font-weight:700; }
+.quiz-header-text h2{ font-family:var(--display); font-weight:500; font-size:clamp(1.5rem,4vw,1.9rem); margin:0 0 2px; color:var(--ink); }
+.quiz-header-text p{ font-family:var(--mono); font-size:12px; letter-spacing:.15em; text-transform:uppercase; color:var(--iron); margin:0; }
+.quiz-score{ display:flex; align-items:center; gap:16px; background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:14px 20px; margin-bottom:28px; font-family:var(--mono); font-size:13px; color:var(--ink-soft); letter-spacing:.04em; }
+.quiz-score .score-num{ font-size:20px; font-weight:600; color:var(--accent); letter-spacing:0; }
+.quiz-score .score-bar{ flex:1; height:6px; background:var(--line); border-radius:3px; overflow:hidden; }
+.quiz-score .score-fill{ height:100%; background:#166b3a; border-radius:3px; width:0%; transition:width .6s cubic-bezier(.2,.7,.2,1); }
+.quiz-card{ background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:28px 26px 24px; margin-bottom:20px; transition:border-color .3s; }
+.quiz-card.answered-correct{ border-color:#2d9d5a; }
+.quiz-card.answered-wrong{ border-color:#dc4545; }
+.quiz-card .q-num{ font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); margin-bottom:12px; display:block; }
+.quiz-card .q-text{ font-family:var(--body); font-size:17px; line-height:1.65; color:var(--ink); margin-bottom:20px; }
+.q-options{ list-style:none; padding:0; margin:0 0 16px; }
+.q-option{ display:flex; align-items:flex-start; gap:14px; padding:14px 16px; margin-bottom:6px; border:2px solid var(--line); border-radius:8px; cursor:pointer; transition:all .2s; position:relative; }
+.q-option:hover:not(.locked){ background:rgba(122,46,55,.04); border-color:var(--line-strong); }
+.q-option.selected:not(.locked){ background:rgba(122,46,55,.08); border-color:var(--accent); }
+.q-option.locked{ cursor:default; }
+.q-option.locked.is-correct{ background:#e8f5ec; border-color:#2d9d5a; }
+.q-option.locked.is-wrong.selected{ background:#fef2f2; border-color:#dc4545; }
+.q-option.locked:not(.is-correct):not(.selected){ opacity:.55; }
+.q-letter{ font-family:var(--mono); font-size:13px; font-weight:600; color:var(--accent); min-width:28px; height:28px; display:flex; align-items:center; justify-content:center; border:2px solid var(--line-strong); border-radius:6px; flex-shrink:0; margin-top:1px; transition:all .2s; }
+.q-option.selected:not(.locked) .q-letter{ background:var(--accent); color:#fff; border-color:var(--accent); }
+.q-option.locked.is-correct .q-letter{ background:#166b3a; color:#fff; border-color:#166b3a; }
+.q-option.locked.is-wrong.selected .q-letter{ background:#b91c1c; color:#fff; border-color:#b91c1c; }
+.q-option-text{ font-size:16px; line-height:1.55; color:var(--ink-soft); padding-top:3px; }
+.q-result-icon{ position:absolute; right:14px; top:50%; transform:translateY(-50%); font-size:18px; display:none; }
+.q-option.locked.is-correct .q-result-icon, .q-option.locked.is-wrong.selected .q-result-icon{ display:block; }
+.q-feedback{ display:none; align-items:center; gap:10px; padding:12px 16px; border-radius:6px; font-family:var(--mono); font-size:13px; font-weight:600; letter-spacing:.04em; margin-bottom:16px; }
+.q-feedback.visible{ display:flex; }
+.q-feedback.correct{ background:#e8f5ec; color:#166b3a; border:1px solid #2d9d5a; }
+.q-feedback.wrong{ background:#fef2f2; color:#b91c1c; border:1px solid #dc4545; }
+.q-confirm-btn{ display:none; font-family:var(--mono); font-size:13px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; background:var(--accent); color:#fff; border:none; border-radius:6px; padding:12px 24px; cursor:pointer; transition:background .2s, transform .2s; }
+.q-confirm-btn:hover{ background:var(--ink); transform:translateY(-1px); }
+.q-confirm-btn.visible{ display:inline-flex; }
+.q-gabarito{ display:none; margin-top:18px; padding:20px 22px; background:linear-gradient(135deg,rgba(122,46,55,.04),rgba(27,36,54,.03)); border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:0 8px 8px 0; }
+.q-gabarito.visible{ display:block; }
+.q-gabarito .gab-title{ font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); margin-bottom:14px; display:flex; align-items:center; gap:8px; }
+.gab-item{ padding:10px 0; border-bottom:1px solid var(--line); }
+.gab-item:last-child{ border-bottom:none; }
+.gab-letter{ font-family:var(--mono); font-size:12px; font-weight:600; margin-right:4px; }
+.gab-letter.correct-letter{ color:#166b3a; }
+.gab-letter.wrong-letter{ color:#b91c1c; }
+.gab-verdict{ font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; margin-left:4px; }
+.gab-verdict.v-correct{ color:#166b3a; }
+.gab-verdict.v-wrong{ color:#b91c1c; }
+.gab-comment{ font-size:15px; line-height:1.6; color:var(--ink-soft); margin-top:4px; padding-left:28px; }
+
 </style>
 </head>
 <body>
@@ -925,7 +978,87 @@
     </div>
   </section>
 
-  <a class="back" href="../index.html">
+  
+<section class="quiz-section" id="quiz">
+  <div class="quiz-header">
+    <div class="quiz-icon">?</div>
+    <div class="quiz-header-text">
+      <h2>Teste seus conhecimentos</h2>
+      <p>3 questões sobre esta unidade</p>
+    </div>
+  </div>
+
+  <div class="quiz-score" id="quizScore">
+    <span>Acertos: <span class="score-num" id="scoreNum">0 / 3</span></span>
+    <div class="score-bar"><div class="score-fill" id="scoreFill"></div></div>
+  </div>
+
+  <!-- Q1 — Convenção coletiva de trabalho (XXII OAB) -->
+  <div class="quiz-card" id="q1" data-correct="a">
+    <span class="q-num">Questão 1 de 3 — Convenção coletiva de trabalho</span>
+    <div class="q-text">(XXII Exame de Ordem Unificado/FGV) Na convenção coletiva de determinada categoria, ficou estipulado que o adicional de periculosidade seria pago na razão de 15% sobre o salário-base, pois, comprovadamente, os trabalhadores permaneciam em situação de risco durante metade da jornada cumprida. Sobre a cláusula em questão, assinale a afirmativa correta.</div>
+    <ul class="q-options">
+      <li class="q-option" data-value="a" onclick="selectOption(this)"><span class="q-letter">A</span><span class="q-option-text">A cláusula não é válida, pois se trata de norma de ordem pública.</span><span class="q-result-icon"></span></li>
+      <li class="q-option" data-value="b" onclick="selectOption(this)"><span class="q-letter">B</span><span class="q-option-text">A validade da cláusula depende de homologação judicial.</span><span class="q-result-icon"></span></li>
+      <li class="q-option" data-value="c" onclick="selectOption(this)"><span class="q-letter">C</span><span class="q-option-text">A cláusula é válida, porque a Constituição da República garante eficácia aos acordos e às convenções coletivas.</span><span class="q-result-icon"></span></li>
+      <li class="q-option" data-value="d" onclick="selectOption(this)"><span class="q-letter">D</span><span class="q-option-text">A legalidade da cláusula será avaliada pelo juiz, porque a Lei e o TST são silentes a respeito.</span><span class="q-result-icon"></span></li>
+    </ul>
+    <div class="q-feedback" id="q1-feedback"></div>
+    <button class="q-confirm-btn" id="q1-btn" onclick="confirmAnswer('q1')">Confirmar resposta</button>
+    <div class="q-gabarito" id="q1-gabarito">
+      <div class="gab-title">&#128218; Gabarito comentado — Convenção coletiva de trabalho</div>
+      <div class="gab-item"><span class="gab-letter correct-letter">A)</span><span class="gab-verdict v-correct">Correta.</span><div class="gab-comment">A negociação coletiva não pode diminuir os direitos dos trabalhadores previstos em lei, exceto nas hipóteses expressamente autorizadas pela CF, tendo em vista a natureza de ordem pública das normas de proteção ao trabalhador. No caso do adicional de periculosidade, não há autorização para negociação que reduza o valor do adicional, que é de 30%, sendo inválida a cláusula que contenha tal previsão.</div></div>
+      <div class="gab-item"><span class="gab-letter wrong-letter">B)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">A negociação coletiva é prerrogativa dos sindicatos, conforme o art. 8º, III, CF, e o reconhecimento dos acordos e das convenções coletivas de trabalho constitui garantia dos trabalhadores, não havendo qualquer necessidade de homologação judicial para validade do que dispõem os referidos instrumentos coletivos.</div></div>
+      <div class="gab-item"><span class="gab-letter wrong-letter">C)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">A negociação coletiva realizada ultrapassa os limites da flexibilização impostos pela Constituição Federal, não sendo válida, portanto. Embora a CF garanta eficácia aos instrumentos coletivos, não permite que reduzam normas de ordem pública sem autorização expressa.</div></div>
+      <div class="gab-item"><span class="gab-letter wrong-letter">D)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">Não há lacuna legal ou silêncio do TST nessa matéria. Os limites impostos pela Constituição Federal foram desrespeitados, tornando a cláusula inválida independentemente de avaliação casuística pelo juiz.</div></div>
+    </div>
+  </div>
+
+  <!-- Q2 — Acordo coletivo de trabalho (37º OAB) -->
+  <div class="quiz-card" id="q2" data-correct="a">
+    <span class="q-num">Questão 2 de 3 — Acordo coletivo de trabalho</span>
+    <div class="q-text">(37º Exame de Ordem Unificado/FGV) Um sindicato de categoria profissional, após ser procurado por uma sociedade empresária e seguir os trâmites legais, pretende assinar com ela um acordo coletivo que, entre outras cláusulas, fixa redução de 20% da jornada e 20% do salário durante 1 ano para todos os empregados. Em relação a esse acordo coletivo, considerando a previsão da CLT, assinale a afirmativa correta.</div>
+    <ul class="q-options">
+      <li class="q-option" data-value="a" onclick="selectOption(this)"><span class="q-letter">A</span><span class="q-option-text">O acordo coletivo deverá prever a proteção dos empregados contra dispensa imotivada durante o prazo de vigência do instrumento coletivo.</span><span class="q-result-icon"></span></li>
+      <li class="q-option" data-value="b" onclick="selectOption(this)"><span class="q-letter">B</span><span class="q-option-text">O acordo coletivo será nulo porque deveria ser pactuado por, no mínimo, 2 anos.</span><span class="q-result-icon"></span></li>
+      <li class="q-option" data-value="c" onclick="selectOption(this)"><span class="q-letter">C</span><span class="q-option-text">O acordo coletivo será inconstitucional, porque não pode haver redução do salário, haja vista o prejuízo direto que isso causa ao trabalhador.</span><span class="q-result-icon"></span></li>
+      <li class="q-option" data-value="d" onclick="selectOption(this)"><span class="q-letter">D</span><span class="q-option-text">A redução da jornada e do salário somente seria válida se fosse prevista em convenção coletiva, pois essa previsão é vedada pela CLT no acordo coletivo.</span><span class="q-result-icon"></span></li>
+    </ul>
+    <div class="q-feedback" id="q2-feedback"></div>
+    <button class="q-confirm-btn" id="q2-btn" onclick="confirmAnswer('q2')">Confirmar resposta</button>
+    <div class="q-gabarito" id="q2-gabarito">
+      <div class="gab-title">&#128218; Gabarito comentado — Acordo coletivo de trabalho</div>
+      <div class="gab-item"><span class="gab-letter correct-letter">A)</span><span class="gab-verdict v-correct">Correta.</span><div class="gab-comment">É contrapartida necessária prevista no art. 611-A, § 3º, CLT: quando o acordo coletivo dispõe sobre redução de salário, deve prever a proteção dos empregados contra dispensa imotivada durante o prazo de vigência do instrumento coletivo.</div></div>
+      <div class="gab-item"><span class="gab-letter wrong-letter">B)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">O prazo de 2 anos é <em>máximo</em> para a vigência do acordo ou convenção coletiva (art. 614, § 3º, CLT), e não mínimo. O acordo de 1 ano está dentro do limite legal.</div></div>
+      <div class="gab-item"><span class="gab-letter wrong-letter">C)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">A CF prevê expressamente a possibilidade de redução de salário por meio de convenção ou acordo coletivo (art. 7º, VI). A redução é constitucional quando negociada coletivamente.</div></div>
+      <div class="gab-item"><span class="gab-letter wrong-letter">D)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">A CF prevê a possibilidade de redução de salário tanto por convenção coletiva quanto por acordo coletivo de trabalho (art. 7º, VI), sem distinção entre as duas modalidades de negociação.</div></div>
+    </div>
+  </div>
+
+  <!-- Q3 — Regulamento de empresa (XVIII OAB) -->
+  <div class="quiz-card" id="q3" data-correct="c">
+    <span class="q-num">Questão 3 de 3 — Regulamento de empresa</span>
+    <div class="q-text">(XVIII Exame de Ordem Unificado/FGV) Reinaldo trabalha em uma empresa cujo regulamento interno prevê que o empregador pagará a conta de telefone celular do empregado, até o limite de R$ 150,00 mensais. Posteriormente, havendo crise no setor em que a empresa atua, o regulamento interno foi expressamente alterado para constar que, dali em diante, a empresa arcará com a conta dos celulares dos empregados até o limite de R$ 50,00 mensais. De acordo com o entendimento consolidado do TST, assinale a afirmativa correta.</div>
+    <ul class="q-options">
+      <li class="q-option" data-value="a" onclick="selectOption(this)"><span class="q-letter">A</span><span class="q-option-text">O regulamento interno é ato unilateral de vontade do empregador, que poderá modificá-lo a qualquer momento, daí por que não há direito adquirido e a nova condição alcança Reinaldo.</span><span class="q-result-icon"></span></li>
+      <li class="q-option" data-value="b" onclick="selectOption(this)"><span class="q-letter">B</span><span class="q-option-text">A alteração somente é válida para aqueles que foram admitidos anteriormente à mudança e não prevalece para os que forem contratados após a mudança.</span><span class="q-result-icon"></span></li>
+      <li class="q-option" data-value="c" onclick="selectOption(this)"><span class="q-letter">C</span><span class="q-option-text">As cláusulas de regulamento interno de empresa que revogam ou alterem vantagens deferidas anteriormente só atingirão os trabalhadores admitidos após a revogação ou alteração do regulamento, sendo mantido o direito assegurado até então aos empregados antigos.</span><span class="q-result-icon"></span></li>
+      <li class="q-option" data-value="d" onclick="selectOption(this)"><span class="q-letter">D</span><span class="q-option-text">A alteração feita pela empresa é ilegal, pois, uma vez concedida a benesse, ela não pode ser retirada em momento algum e para nenhum empregado, atual ou futuro.</span><span class="q-result-icon"></span></li>
+    </ul>
+    <div class="q-feedback" id="q3-feedback"></div>
+    <button class="q-confirm-btn" id="q3-btn" onclick="confirmAnswer('q3')">Confirmar resposta</button>
+    <div class="q-gabarito" id="q3-gabarito">
+      <div class="gab-title">&#128218; Gabarito comentado — Regulamento de empresa</div>
+      <div class="gab-item"><span class="gab-letter wrong-letter">A)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">Embora o regulamento interno decorra de ato unilateral do empregador, ele passa a integrar o contrato de trabalho dos empregados que a ele aderiram, não podendo ser modificado de forma prejudicial aos mesmos — regra da condição mais benéfica e da inalterabilidade prejudicial do contrato de trabalho (Súmula 51, I, TST).</div></div>
+      <div class="gab-item"><span class="gab-letter wrong-letter">B)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">A alternativa inverteu a lógica da Súmula 51, I, TST. A garantia de inalterabilidade diz respeito aos empregados <em>antigos</em> (admitidos antes da mudança), não aos admitidos posteriormente. Os novos empregados ingressam nas regras do regulamento já alterado.</div></div>
+      <div class="gab-item"><span class="gab-letter correct-letter">C)</span><span class="gab-verdict v-correct">Correta.</span><div class="gab-comment">As cláusulas regulamentares que revoquem ou alterem vantagens deferidas anteriormente só atingirão os trabalhadores admitidos após a revogação ou alteração do regulamento, sendo mantido o direito assegurado até então aos empregados antigos — Súmula 51, I, TST.</div></div>
+      <div class="gab-item"><span class="gab-letter wrong-letter">D)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">O empregador pode alterar o regulamento de empresa, desde que mantenha para os empregados antigos as condições mais benéficas que o regulamento vigorava assegurava. Os empregados admitidos após a alteração não têm direito às regras anteriores.</div></div>
+    </div>
+  </div>
+
+</section>
+
+<a class="back" href="../index.html">
     <span class="arw">←</span>
     <span>Voltar ao índice da disciplina</span>
   </a>
@@ -967,5 +1100,54 @@
     });
   })();
 </script>
+
+<script>
+(function(){
+  var totalQuestions = document.querySelectorAll('.quiz-card').length;
+  var correctCount = 0;
+
+  window.selectOption = function(el){
+    if(el.classList.contains('locked')) return;
+    var card = el.closest('.quiz-card');
+    card.querySelectorAll('.q-option').forEach(function(o){ o.classList.remove('selected'); });
+    el.classList.add('selected');
+    card.querySelector('.q-confirm-btn').classList.add('visible');
+  };
+
+  window.confirmAnswer = function(cardId){
+    var card = document.getElementById(cardId);
+    if(card.classList.contains('answered')) return;
+    var selected = card.querySelector('.q-option.selected');
+    if(!selected) return;
+    var isCorrect = (selected.getAttribute('data-value') === card.getAttribute('data-correct'));
+    card.querySelectorAll('.q-option').forEach(function(opt){
+      opt.classList.add('locked');
+      if(opt.getAttribute('data-value') === card.getAttribute('data-correct')){
+        opt.classList.add('is-correct');
+        opt.querySelector('.q-result-icon').textContent = '✓';
+      }
+      if(opt === selected && !isCorrect){
+        opt.classList.add('is-wrong');
+        opt.querySelector('.q-result-icon').textContent = '✗';
+      }
+    });
+    card.querySelector('.q-confirm-btn').classList.remove('visible');
+    var fb = document.getElementById(cardId+'-feedback');
+    if(isCorrect){
+      fb.className='q-feedback visible correct'; fb.innerHTML='✓ Resposta correta!';
+      card.classList.add('answered-correct'); correctCount++;
+    } else {
+      fb.className='q-feedback visible wrong'; fb.innerHTML='✗ Resposta incorreta. Veja o gabarito comentado abaixo.';
+      card.classList.add('answered-wrong');
+    }
+    card.classList.add('answered');
+    document.getElementById(cardId+'-gabarito').classList.add('visible');
+    document.getElementById('scoreNum').textContent = correctCount+' / '+totalQuestions;
+    document.getElementById('scoreFill').style.width = ((correctCount/totalQuestions)*100)+'%';
+    setTimeout(function(){ document.getElementById(cardId+'-gabarito').scrollIntoView({behavior:'smooth',block:'nearest'}); }, 200);
+  };
+})();
+</script>
+
 </body>
 </html>
