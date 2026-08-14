@@ -1,246 +1,611 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>9. Empregado Rural</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>9. Empregado Rural</title>
 
-  <style>
-    :root{
-      --bg:#eaf3ff;
-      --panel:#f6faff;
-      --title:#1f4fd8;
-      --text:#0f172a;
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
-      --card:#ffffff;
-      --border:rgba(15,23,42,.14);
-      --shadow:0 10px 22px rgba(15,23,42,.08);
+<style>
+  :root{
+    --ink:#1b2436;
+    --ink-soft:#414a5c;
+    --paper:#edece5;
+    --surface:#fbfaf7;
+    --accent:#7a2e37;
+    --accent-soft:#a2545f;
+    --iron:#8b8579;
+    --line:rgba(27,36,54,.13);
+    --line-strong:rgba(27,36,54,.22);
+    --display:"Fraunces", Georgia, "Times New Roman", serif;
+    --body:"Spectral", Georgia, serif;
+    --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+  }
 
-      --muted:rgba(15,23,42,.78);
-    }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
 
-    *{ box-sizing:border-box; }
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:19px;
+    line-height:1.78;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
 
-    body{
-      margin:0;
-      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      background: radial-gradient(1000px 420px at 30% 0%, #d8ecff 0%, var(--bg) 55%, #eaf3ff 100%);
-      color:var(--text);
-      font-size:18px;
-      line-height:1.75;
-    }
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0 0 auto 0;
+    height:4px;
+    background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 34%,var(--ink) 34%,var(--ink) 100%);
+    z-index:50;
+  }
 
-    .wrap{
-      max-width: 980px;
-      margin: 22px auto;
-      padding: 18px;
-    }
+  .wrap{ max-width:760px; margin:0 auto; padding:0 22px 72px; }
 
-    .panel{
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      box-shadow: 0 18px 40px rgba(15,23,42,.10);
-      padding: 18px;
-    }
+  /* ===== CABEÇALHO ===== */
+  .masthead{
+    padding:56px 0 30px;
+    border-bottom:1px solid var(--line-strong);
+    animation:rise .7s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:600;
+    margin-bottom:20px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .eyebrow::before{ content:""; width:26px; height:2px; background:var(--accent); display:inline-block; }
+  .eyebrow .dot{ color:var(--line-strong); }
 
-    /* topo: título + botão slides */
-    .topbar{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:14px;
-      margin-bottom: 10px;
-    }
+  .title-row{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:28px;
+    flex-wrap:wrap;
+  }
+  h1{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(2.3rem,6.5vw,3.8rem);
+    line-height:1.04;
+    letter-spacing:-.015em;
+    max-width:14ch;
+  }
+  h1 .art{
+    display:block;
+    font-size:.4em;
+    font-weight:600;
+    letter-spacing:.02em;
+    color:var(--accent);
+    font-family:var(--mono);
+    text-transform:uppercase;
+    margin-bottom:.5em;
+  }
 
-    h1{
-      margin: 4px 0 0;
-      font-size: 28px;
-      line-height:1.2;
-      color: var(--title);
-      letter-spacing: -.2px;
-    }
+  .slides-btn{
+    flex-shrink:0;
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    background:var(--ink);
+    color:#f4f2ec;
+    border-radius:4px;
+    padding:13px 18px;
+    font-family:var(--mono);
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    box-shadow:0 8px 22px -12px rgba(27,36,54,.7);
+    transition:transform .25s cubic-bezier(.2,.7,.2,1), box-shadow .25s, background .25s;
+  }
+  .slides-btn .ico{ font-size:16px; line-height:1; transform:translateY(-1px); }
+  .slides-btn .arw{ transition:transform .25s; }
+  .slides-btn:hover{ background:var(--accent); transform:translateY(-2px); box-shadow:0 14px 28px -12px rgba(122,46,55,.75); }
+  .slides-btn:hover .arw{ transform:translateX(4px); }
+  .slides-btn:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:3px; }
 
-    /* botão slides no canto superior direito */
-    .slideBtn{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      gap:6px;
-      width: 86px;
-      padding: 10px 10px;
-      background:#fff;
-      border:1px solid var(--border);
-      border-radius: 12px;
-      text-decoration:none;
-      color: var(--text);
-      font-weight: 900;
-      box-shadow: var(--shadow);
-      transition: transform .18s ease, box-shadow .18s ease;
-      flex: 0 0 auto;
-    }
+  /* ===== VERBETE ===== */
+  .verbete{
+    margin:44px 0 8px;
+    padding:6px 0 6px 30px;
+    border-left:3px solid var(--accent);
+    animation:rise .7s .1s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .verbete .tag{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:block;
+    margin-bottom:14px;
+  }
+  .verbete p{
+    font-family:var(--display);
+    font-weight:400;
+    font-size:clamp(1.15rem,2.8vw,1.45rem);
+    line-height:1.45;
+    letter-spacing:-.01em;
+    color:var(--ink);
+    margin:0;
+  }
 
-    .slideBtn:hover{
-      transform: translateY(-2px);
-      box-shadow: 0 16px 34px rgba(15,23,42,.12);
-    }
+  /* ref legal */
+  .ref{
+    font-family:var(--mono);
+    font-size:.8em;
+    color:var(--iron);
+    background:rgba(139,133,121,.12);
+    padding:2px 7px;
+    border-radius:3px;
+    white-space:nowrap;
+  }
 
-    .slideIcon{
-      width: 28px;
-      height: 28px;
-      display:block;
-    }
+  /* ===== SEÇÕES ===== */
+  .sec-head{
+    display:flex;
+    gap:16px;
+    align-items:baseline;
+    margin:46px 0 14px;
+    padding-top:26px;
+    border-top:1px solid var(--line);
+  }
+  .sec-head .num{
+    font-family:var(--mono);
+    font-size:15px;
+    font-weight:600;
+    color:var(--accent);
+    letter-spacing:.02em;
+    flex-shrink:0;
+    padding-top:.35em;
+  }
+  h2{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(1.6rem,4vw,2rem);
+    line-height:1.14;
+    letter-spacing:-.01em;
+    color:var(--ink);
+  }
+  p{ margin-bottom:16px; color:var(--ink-soft); }
 
-    /* cards de texto */
-    .card{
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 16px;
-      box-shadow: 0 6px 14px rgba(15,23,42,.06);
-      margin: 12px 0;
-    }
+  /* ===== DOIS CRITÉRIOS CARACTERIZADORES ===== */
+  .criterios{
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+    margin:12px 0 8px;
+  }
+  .criterio{
+    display:grid;
+    grid-template-columns:44px 1fr;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+    opacity:0;
+    transform:translateY(10px);
+    animation:rise .45s ease forwards;
+  }
+  .criterio:nth-child(1){ animation-delay:.1s; }
+  .criterio:nth-child(2){ animation-delay:.18s; }
+  .criterio-letra{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:var(--mono);
+    font-weight:700;
+    font-size:16px;
+    color:var(--accent);
+    background:rgba(122,46,55,.06);
+    border-right:1px solid var(--line);
+  }
+  .criterio-body{
+    padding:16px 20px;
+  }
+  .criterio-body .c-titulo{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:1.05rem;
+    color:var(--ink);
+    display:block;
+    margin-bottom:6px;
+    line-height:1.2;
+  }
+  .criterio-body p{
+    font-size:.93em;
+    color:var(--ink-soft);
+    margin:0;
+    line-height:1.65;
+  }
 
-    p{
-      margin:0 0 12px;
-      text-align: justify;
-    }
-    p:last-child{ margin-bottom:0; }
+  /* ===== COMPARATIVO EMPREGADOR RURAL ===== */
+  .comparativo{
+    margin:16px 0 8px;
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+    background:var(--surface);
+  }
+  .comp-head{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    background:var(--ink);
+    color:#f4f2ec;
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+  }
+  .comp-head div{ padding:10px 16px; }
+  .comp-head div:first-child{ border-right:1px solid rgba(255,255,255,.15); }
+  .comp-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    border-top:1px solid var(--line);
+    font-size:.91em;
+  }
+  .comp-row div{
+    padding:13px 16px;
+    color:var(--ink-soft);
+    line-height:1.6;
+  }
+  .comp-row div:first-child{
+    border-right:1px solid var(--line);
+    font-weight:600;
+    color:var(--ink);
+  }
+  .comp-row:nth-child(even) div{ background:rgba(139,133,121,.04); }
 
-    .bullets{
-      margin: 10px 0 0 18px;
-      padding: 0;
-    }
-    .bullets li{ margin: 0 0 8px; }
+  /* sub-bloco */
+  .sub{
+    margin:14px 0 6px;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:5px;
+    padding:14px 18px;
+  }
+  .sub-lbl{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:block;
+    margin-bottom:9px;
+  }
+  .sub p{ font-size:.91em; color:var(--ink-soft); margin-bottom:8px; line-height:1.65; }
+  .sub p:last-child{ margin:0; }
 
-    .back{
-      margin-top: 16px;
-      display:flex;
-      justify-content:center;
-    }
+  /* nota */
+  .nota{
+    margin:14px 0 4px;
+    padding:14px 18px;
+    background:rgba(122,46,55,.06);
+    border-left:3px solid var(--accent);
+    border-radius:0 6px 6px 0;
+    font-size:.91em;
+    color:var(--ink-soft);
+    line-height:1.65;
+  }
+  .nota strong{ color:var(--ink); }
 
-    .back a{
-      width: min(560px, 100%);
-      text-align:center;
-      text-decoration:none;
-      background:#fff;
-      padding:16px 18px;
-      border-radius:16px;
-      border:1px solid var(--border);
-      box-shadow: var(--shadow);
-      color: var(--text);
-      font-weight: 900;
-      transition: transform .18s ease;
-    }
+  /* nota neutra */
+  .nota-neutra{
+    margin:14px 0 4px;
+    padding:14px 18px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-left:3px solid var(--iron);
+    border-radius:0 6px 6px 0;
+    font-size:.91em;
+    color:var(--ink-soft);
+    line-height:1.65;
+  }
+  .nota-neutra strong{ color:var(--ink); }
 
-    .back a:hover{
-      transform: translateY(-2px);
-    }
+  /* fontes normativas */
+  .fontes-grid{
+    margin:12px 0 4px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:3px;
+  }
+  .fonte-col{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:5px;
+    padding:14px 16px;
+  }
+  .fonte-col .f-tipo{
+    font-family:var(--mono);
+    font-size:10.5px;
+    font-weight:600;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--iron);
+    display:block;
+    margin-bottom:6px;
+  }
+  .fonte-col .f-nome{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:.98rem;
+    color:var(--ink);
+    display:block;
+    margin-bottom:4px;
+    line-height:1.2;
+  }
+  .fonte-col p{ font-size:.88em; color:var(--ink-soft); margin:0; line-height:1.55; }
 
-    @media (max-width:480px){
-      body{ font-size:17px; }
-      h1{ font-size:24px; }
-      .slideBtn{ width: 82px; }
-    }
-  </style>
+  /* ===== BOTÃO VOLTAR ===== */
+  .back{
+    margin-top:56px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    text-decoration:none;
+    color:var(--ink);
+    background:var(--surface);
+    border:1px solid var(--line-strong);
+    border-radius:6px;
+    padding:20px 22px;
+    font-family:var(--mono);
+    font-size:14px;
+    letter-spacing:.04em;
+    transition:border-color .25s, transform .25s;
+  }
+  .back .arw{ color:var(--accent); transition:transform .25s; font-size:18px; }
+  .back:hover{ border-color:var(--accent); transform:translateY(-2px); }
+  .back:hover .arw{ transform:translateX(-4px); }
+  .back:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:3px; }
+
+  @keyframes rise{
+    from{ opacity:0; transform:translateY(16px); }
+    to{ opacity:1; transform:none; }
+  }
+  .reveal{ opacity:0; transform:translateY(14px); }
+  .reveal.in{
+    opacity:1; transform:none;
+    transition:opacity .5s ease, transform .5s cubic-bezier(.2,.7,.2,1);
+  }
+
+  @media (max-width:560px){
+    body{ font-size:17.5px; }
+    .masthead{ padding:40px 0 24px; }
+    .title-row{ align-items:stretch; }
+    .verbete{ padding-left:20px; }
+    .criterio{ grid-template-columns:36px 1fr; }
+    .comp-head, .comp-row{ grid-template-columns:1fr; }
+    .comp-head div:first-child{ border-right:none; border-bottom:1px solid rgba(255,255,255,.15); }
+    .comp-row div:first-child{ border-right:none; border-bottom:1px solid var(--line); }
+    .fontes-grid{ grid-template-columns:1fr; }
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{ animation:none !important; scroll-behavior:auto; }
+    .criterio{ opacity:1; transform:none; }
+    .reveal{ opacity:1; transform:none; }
+    .reveal.in{ transition:none; }
+  }
+</style>
 </head>
-
 <body>
-  <div class="wrap">
-    <div class="panel">
+<div class="wrap">
 
-      <div class="topbar">
-        <h1>9. Empregado Rural</h1>
-
-        <!-- ✅ TROQUE pelo link do Google Drive (slides) -->
-        <a class="slideBtn" href="https://drive.google.com/file/d/1C2voLctk-fZ7Zy7CAkzkfeMbTjkik2dE/view?usp=sharing" target="_blank" rel="noopener">
-          <svg class="slideIcon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M4 5h16v10H4V5Z" stroke="#1f4fd8" stroke-width="1.7"/>
-            <path d="M8 19h8" stroke="#1f4fd8" stroke-width="1.7" stroke-linecap="round"/>
-            <path d="M12 15v4" stroke="#1f4fd8" stroke-width="1.7" stroke-linecap="round"/>
-            <path d="M7 9l2-2 3 3 2-2 3 3" stroke="#1f4fd8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <div>Slides</div>
-        </a>
-      </div>
-
-      <div class="card">
-        <p>
-          Empregado rural é o trabalhador que presta serviços subordinados, em propriedade rural ou prédio rústico,
-          continuamente, mediante remuneração.
-        </p>
-      </div>
-
-      <div class="card">
-        <p><strong>O que caracteriza o empregado rural é, basicamente:</strong></p>
-        <ul class="bullets">
-          <li><strong>a)</strong> o local da prestação de serviço – propriedade rural ou prédio rústico; e</li>
-          <li><strong>b)</strong> o exercício de atividade agroeconômica pelo empregador – atividade agrícola ou pecuária, com finalidade lucrativa.</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <p>
-          A lei pressupõe, como sujeitos do contrato de trabalho rural, de um lado, o empregador, assim entendida toda pessoa
-          que exerce atividade agroeconômica, inclusive a exploração industrial em estabelecimento agrário, e, de outro lado,
-          o empregado rural (art. 2º, § 4º, Decreto n. 73.626/74).
-        </p>
-
-        <p>
-          Portanto, empregador rural é aquele que explora atividade agrícola ou pecuária com fins lucrativos.
-        </p>
-
-        <p>
-          Destinando-se a atividade econômica à transformação da matéria-prima em produto industrializado, com vistas à comercialização
-          (por exemplo: laranja – suco concentrado; cana de açúcar – álcool/açúcar), a relação de emprego não será rural
-          (art. 84, § 5º, Decreto n. 10.854/2021).
-        </p>
-
-        <p>
-          Equipara-se a empregador rural “a pessoa física ou jurídica que, habitualmente, em caráter profissional, e por conta de terceiros,
-          execute serviços de natureza agrária, mediante utilização do trabalho de outrem” (art. 4º, Lei n. 5.889/73).
-        </p>
-      </div>
-
-      <div class="card">
-        <p>
-          A Lei n. 8.212/91, art. 25-A, equipara ao empregador rural pessoa física o consórcio simplificado de produtores rurais, formado pela união
-          de produtores rurais pessoas físicas, que outorgam a um deles poderes para contratar, gerir e demitir trabalhadores para a prestação de serviços
-          exclusivamente aos seus integrantes, mediante documento registrado em cartório de títulos e documentos. No mesmo sentido, o art. 84, § 1º, II,
-          do Decreto n. 10.854/2021.
-        </p>
-
-        <p>
-          Os produtores rurais integrantes do consórcio serão responsáveis solidários em relação às obrigações previdenciárias
-          (art. 25-A, § 3º, Lei n. 8.212/91) e também em relação às obrigações trabalhistas.
-        </p>
-      </div>
-
-      <div class="card">
-        <p>
-          A Constituição Federal, em seu art. 7º, caput, equipara o trabalhador urbano e o rural, estando este favorecido por todas as normas genéricas
-          das relações de trabalho subordinado, igualando os direitos trabalhistas.
-        </p>
-
-        <p>
-          Assim, a Constituição Federal estabelece os direitos do empregado rural, que são regulamentados pela Lei n. 5.889/73 e pelo Decreto n. 10.854/2021,
-          como normas especiais, e pela CLT e outras leis esparsas, que, de forma supletiva, são aplicáveis aos trabalhadores rurais.
-        </p>
-
-        <p>
-          Os produtores rurais integrantes do consórcio serão responsáveis solidários em relação às obrigações previdenciárias (§ 3º, art. 25-A, Lei n. 8.212/91)
-          e também em relação às obrigações trabalhistas.
-        </p>
-      </div>
-
-      <!-- Ajuste o caminho do voltar conforme onde está seu índice -->
-      <div class="back">
-        <a href="../index.html">← Voltar ao índice da disciplina</a>
-      </div>
-
+  <!-- CABEÇALHO -->
+  <header class="masthead">
+    <p class="eyebrow">
+      Direito do Trabalho
+      <span class="dot">·</span> Unidade 1
+      <span class="dot">·</span> Sujeitos especiais
+    </p>
+    <div class="title-row">
+      <h1>
+        <span class="art">Item 9</span>
+        Empregado Rural
+      </h1>
+      <a class="slides-btn"
+         href="https://drive.google.com/file/d/1C2voLctk-fZ7Zy7CAkzkfeMbTjkik2dE/view?usp=sharing"
+         target="_blank" rel="noopener">
+        <span class="ico">▮</span>
+        <span>Slides da aula</span>
+        <span class="arw">→</span>
+      </a>
     </div>
-  </div>
+
+    <div class="verbete">
+      <span class="tag">Definição</span>
+      <p>
+        Empregado rural é o trabalhador que presta serviços subordinados, em propriedade
+        rural ou prédio rústico, continuamente, mediante remuneração.
+      </p>
+    </div>
+  </header>
+
+  <!-- CARACTERÍSTICAS -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 9.1</span>
+      <h2>Elementos caracterizadores</h2>
+    </div>
+
+    <p class="reveal">
+      O que caracteriza o empregado rural é, basicamente, dois fatores cumulativos:
+    </p>
+
+    <div class="criterios">
+      <div class="criterio">
+        <div class="criterio-letra">a)</div>
+        <div class="criterio-body">
+          <span class="c-titulo">Local da prestação de serviço</span>
+          <p>
+            Propriedade rural ou prédio rústico — critério espacial que distingue o
+            empregado rural do empregado urbano.
+          </p>
+        </div>
+      </div>
+      <div class="criterio">
+        <div class="criterio-letra">b)</div>
+        <div class="criterio-body">
+          <span class="c-titulo">Atividade agroeconômica do empregador</span>
+          <p>
+            Exercício de atividade agrícola ou pecuária com finalidade lucrativa — critério
+            funcional que define a natureza da relação como rural.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="nota reveal">
+      <strong>Atenção — atividade de transformação industrial:</strong> quando a atividade
+      econômica se destina à transformação da matéria-prima em produto industrializado para
+      comercialização — por exemplo, laranja em suco concentrado ou cana-de-açúcar em
+      álcool/açúcar — a relação de emprego <strong>não será rural</strong>
+      <span class="ref">art. 84, § 5º, Decreto n. 10.854/2021</span>.
+    </div>
+  </section>
+
+  <!-- EMPREGADOR RURAL -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 9.2</span>
+      <h2>Empregador rural</h2>
+    </div>
+
+    <p class="reveal">
+      A lei pressupõe, como sujeitos do contrato de trabalho rural, de um lado o empregador —
+      toda pessoa que exerce atividade agroeconômica, inclusive a exploração industrial em
+      estabelecimento agrário — e de outro lado o empregado rural
+      <span class="ref">art. 2º, § 4º, Decreto n. 73.626/74</span>.
+    </p>
+
+    <div class="comparativo reveal">
+      <div class="comp-head">
+        <div>Figura</div>
+        <div>Definição e base legal</div>
+      </div>
+      <div class="comp-row">
+        <div>Empregador rural</div>
+        <div>Aquele que explora atividade agrícola ou pecuária com fins lucrativos.</div>
+      </div>
+      <div class="comp-row">
+        <div>Equiparado a empregador rural</div>
+        <div>
+          "A pessoa física ou jurídica que, habitualmente, em caráter profissional, e por
+          conta de terceiros, execute serviços de natureza agrária, mediante utilização do
+          trabalho de outrem." <span class="ref">art. 4º, Lei n. 5.889/73</span>
+        </div>
+      </div>
+      <div class="comp-row">
+        <div>Consórcio simplificado de produtores rurais</div>
+        <div>
+          União de produtores rurais pessoas físicas que outorgam a um deles poderes para
+          contratar, gerir e demitir trabalhadores, mediante documento registrado em
+          cartório. Equiparado ao empregador rural pessoa física.
+          <span class="ref">art. 25-A, Lei n. 8.212/91</span> e
+          <span class="ref">art. 84, § 1º, II, Decreto n. 10.854/2021</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub reveal">
+      <span class="sub-lbl">Responsabilidade solidária no consórcio</span>
+      <p>
+        Os produtores rurais integrantes do consórcio são <strong>solidariamente
+        responsáveis</strong> pelas obrigações previdenciárias
+        <span class="ref">art. 25-A, § 3º, Lei n. 8.212/91</span> e
+        também pelas obrigações trabalhistas.
+      </p>
+    </div>
+  </section>
+
+  <!-- DIREITOS E FONTES NORMATIVAS -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 9.3</span>
+      <h2>Direitos e fontes normativas</h2>
+    </div>
+
+    <p class="reveal">
+      A Constituição Federal, em seu <span class="ref">art. 7º, <em>caput</em></span>,
+      <strong>equipara o trabalhador urbano e o rural</strong>, estando este favorecido por
+      todas as normas genéricas das relações de trabalho subordinado — igualdade de direitos
+      trabalhistas entre as duas categorias.
+    </p>
+
+    <div class="fontes-grid reveal">
+      <div class="fonte-col">
+        <span class="f-tipo">Norma especial</span>
+        <span class="f-nome">Lei n. 5.889/73</span>
+        <p>Estatuto do Trabalhador Rural — regula as condições de trabalho no meio rural, com primazia sobre as demais normas nas matérias que especifica.</p>
+      </div>
+      <div class="fonte-col">
+        <span class="f-tipo">Norma regulamentadora</span>
+        <span class="f-nome">Decreto n. 10.854/2021</span>
+        <p>Regulamenta a Lei n. 5.889/73 e demais normas relativas ao trabalho rural, atualizando os critérios de enquadramento.</p>
+      </div>
+      <div class="fonte-col">
+        <span class="f-tipo">Aplicação supletiva</span>
+        <span class="f-nome">CLT e leis esparsas</span>
+        <p>Aplicam-se de forma subsidiária aos trabalhadores rurais, nos casos em que a legislação especial for omissa.</p>
+      </div>
+      <div class="fonte-col">
+        <span class="f-tipo">Base constitucional</span>
+        <span class="f-nome">CF/88, art. 7º</span>
+        <p>Equipara urbanos e rurais, garantindo a todos os trabalhadores os mesmos direitos fundamentais trabalhistas.</p>
+      </div>
+    </div>
+
+    <div class="nota-neutra reveal">
+      <strong>Hierarquia das fontes:</strong> aplica-se primeiro a legislação especial
+      (Lei n. 5.889/73 e Decreto n. 10.854/2021); na omissão desta, aplica-se
+      supletivamente a CLT e demais leis esparsas; em qualquer caso, observam-se os
+      direitos mínimos garantidos pela CF/88.
+    </div>
+  </section>
+
+  <a class="back" href="../index.html">
+    <span class="arw">←</span>
+    <span>Voltar ao índice da disciplina</span>
+  </a>
+
+</div>
+
+<script>
+  (function(){
+    var items = document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window)){
+      items.forEach(function(el){ el.classList.add('in'); }); return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold:.08, rootMargin:'0px 0px -3% 0px' });
+    items.forEach(function(el, i){
+      el.style.transitionDelay = (i * 45) + 'ms';
+      io.observe(el);
+    });
+  })();
+</script>
 </body>
 </html>
-
