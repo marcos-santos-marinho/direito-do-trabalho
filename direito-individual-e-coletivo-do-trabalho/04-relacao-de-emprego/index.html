@@ -455,6 +455,57 @@
     .reveal{ opacity:1; transform:none; }
     .reveal.in{ transition:none; }
   }
+
+/* QUIZ */
+.quiz-section{ margin-top:56px; padding-top:36px; border-top:2px solid var(--accent); }
+.quiz-header{ display:flex; align-items:center; gap:16px; margin-bottom:32px; }
+.quiz-icon{ width:48px; height:48px; background:var(--accent); color:#fff; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0; font-family:var(--mono); font-weight:700; }
+.quiz-header-text h2{ font-family:var(--display); font-weight:500; font-size:clamp(1.5rem,4vw,1.9rem); margin:0 0 2px; color:var(--ink); }
+.quiz-header-text p{ font-family:var(--mono); font-size:12px; letter-spacing:.15em; text-transform:uppercase; color:var(--iron); margin:0; }
+.quiz-score{ display:flex; align-items:center; gap:16px; background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:14px 20px; margin-bottom:28px; font-family:var(--mono); font-size:13px; color:var(--ink-soft); letter-spacing:.04em; }
+.quiz-score .score-num{ font-size:20px; font-weight:600; color:var(--accent); letter-spacing:0; }
+.quiz-score .score-bar{ flex:1; height:6px; background:var(--line); border-radius:3px; overflow:hidden; }
+.quiz-score .score-fill{ height:100%; background:#166b3a; border-radius:3px; width:0%; transition:width .6s cubic-bezier(.2,.7,.2,1); }
+.quiz-card{ background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:28px 26px 24px; margin-bottom:20px; transition:border-color .3s; }
+.quiz-card.answered-correct{ border-color:#2d9d5a; }
+.quiz-card.answered-wrong{ border-color:#dc4545; }
+.quiz-card .q-num{ font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); margin-bottom:12px; display:block; }
+.quiz-card .q-text{ font-family:var(--body); font-size:17px; line-height:1.65; color:var(--ink); margin-bottom:20px; }
+.q-options{ list-style:none; padding:0; margin:0 0 16px; }
+.q-option{ display:flex; align-items:flex-start; gap:14px; padding:14px 16px; margin-bottom:6px; border:2px solid var(--line); border-radius:8px; cursor:pointer; transition:all .2s; position:relative; }
+.q-option:hover:not(.locked){ background:rgba(122,46,55,.04); border-color:var(--line-strong); }
+.q-option.selected:not(.locked){ background:rgba(122,46,55,.08); border-color:var(--accent); }
+.q-option.locked{ cursor:default; }
+.q-option.locked.is-correct{ background:#e8f5ec; border-color:#2d9d5a; }
+.q-option.locked.is-wrong.selected{ background:#fef2f2; border-color:#dc4545; }
+.q-option.locked:not(.is-correct):not(.selected){ opacity:.55; }
+.q-letter{ font-family:var(--mono); font-size:13px; font-weight:600; color:var(--accent); min-width:28px; height:28px; display:flex; align-items:center; justify-content:center; border:2px solid var(--line-strong); border-radius:6px; flex-shrink:0; margin-top:1px; transition:all .2s; }
+.q-option.selected:not(.locked) .q-letter{ background:var(--accent); color:#fff; border-color:var(--accent); }
+.q-option.locked.is-correct .q-letter{ background:#166b3a; color:#fff; border-color:#166b3a; }
+.q-option.locked.is-wrong.selected .q-letter{ background:#b91c1c; color:#fff; border-color:#b91c1c; }
+.q-option-text{ font-size:16px; line-height:1.55; color:var(--ink-soft); padding-top:3px; }
+.q-result-icon{ position:absolute; right:14px; top:50%; transform:translateY(-50%); font-size:18px; display:none; }
+.q-option.locked.is-correct .q-result-icon, .q-option.locked.is-wrong.selected .q-result-icon{ display:block; }
+.q-feedback{ display:none; align-items:center; gap:10px; padding:12px 16px; border-radius:6px; font-family:var(--mono); font-size:13px; font-weight:600; letter-spacing:.04em; margin-bottom:16px; }
+.q-feedback.visible{ display:flex; }
+.q-feedback.correct{ background:#e8f5ec; color:#166b3a; border:1px solid #2d9d5a; }
+.q-feedback.wrong{ background:#fef2f2; color:#b91c1c; border:1px solid #dc4545; }
+.q-confirm-btn{ display:none; font-family:var(--mono); font-size:13px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; background:var(--accent); color:#fff; border:none; border-radius:6px; padding:12px 24px; cursor:pointer; transition:background .2s, transform .2s; }
+.q-confirm-btn:hover{ background:var(--ink); transform:translateY(-1px); }
+.q-confirm-btn.visible{ display:inline-flex; }
+.q-gabarito{ display:none; margin-top:18px; padding:20px 22px; background:linear-gradient(135deg,rgba(122,46,55,.04),rgba(27,36,54,.03)); border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:0 8px 8px 0; }
+.q-gabarito.visible{ display:block; }
+.q-gabarito .gab-title{ font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); margin-bottom:14px; display:flex; align-items:center; gap:8px; }
+.gab-item{ padding:10px 0; border-bottom:1px solid var(--line); }
+.gab-item:last-child{ border-bottom:none; }
+.gab-letter{ font-family:var(--mono); font-size:12px; font-weight:600; margin-right:4px; }
+.gab-letter.correct-letter{ color:#166b3a; }
+.gab-letter.wrong-letter{ color:#b91c1c; }
+.gab-verdict{ font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; margin-left:4px; }
+.gab-verdict.v-correct{ color:#166b3a; }
+.gab-verdict.v-wrong{ color:#b91c1c; }
+.gab-comment{ font-size:15px; line-height:1.6; color:var(--ink-soft); margin-top:4px; padding-left:28px; }
+
 </style>
 </head>
 <body>
@@ -687,7 +738,45 @@
     </div>
   </section>
 
-  <a class="back" href="../index.html">
+  
+<section class="quiz-section" id="quiz">
+  <div class="quiz-header">
+    <div class="quiz-icon">?</div>
+    <div class="quiz-header-text">
+      <h2>Teste seus conhecimentos</h2>
+      <p>1 questão — Relação de emprego</p>
+    </div>
+  </div>
+
+  <div class="quiz-score" id="quizScore">
+    <span>Acertos: <span class="score-num" id="scoreNum">0 / 1</span></span>
+    <div class="score-bar"><div class="score-fill" id="scoreFill"></div></div>
+  </div>
+
+  <!-- Q1 — Relação de emprego (XXVI OAB) — Súmula 386 TST -->
+  <div class="quiz-card" id="q1" data-correct="a">
+    <span class="q-num">Questão 1 de 1 — Relação de emprego</span>
+    <div class="q-text">(XXVI Exame de Ordem Unificado/FGV) Paulo é policial militar da ativa da Brigada Militar do Rio Grande do Sul. Como policial militar, trabalha em regime de escala 24h x 72h. Nos dias em que não tem plantão no quartel, atua como segurança em uma joalheria de um <em>shopping center</em>, onde tem que trabalhar três dias por semana, não pode se fazer substituir por ninguém, recebe remuneração fixa mensal e tem que cumprir uma rotina de 8 horas a cada dia laborado. Os comandos do trabalho lhe são repassados pelo gerente-geral da loja, sendo que ainda ajuda nas arrumações de estoque, na conferência de mercadorias e em algumas outras funções internas. Paulo não teve a CTPS assinada pela joalheria. À luz das normas da CLT e da jurisprudência consolidada do TST, assinale a afirmativa correta.</div>
+    <ul class="q-options">
+      <li class="q-option" data-value="a" onclick="selectOption(this)"><span class="q-letter">A</span><span class="q-option-text">Estão preenchidos os requisitos da relação de emprego, razão pela qual Paulo tem vínculo empregatício com a joalheria, independentemente do fato de ser policial militar da ativa e de sofrer eventual punição disciplinar administrativa prevista no estatuto do Policial Militar.</span><span class="q-result-icon"></span></li>
+      <li class="q-option" data-value="b" onclick="selectOption(this)"><span class="q-letter">B</span><span class="q-option-text">Estão preenchidos os requisitos da relação de emprego, mas Paulo não poderá ter vínculo empregatício com a joalheria, em razão da punição disciplinar administrativa prevista no estatuto do Policial Militar.</span><span class="q-result-icon"></span></li>
+      <li class="q-option" data-value="c" onclick="selectOption(this)"><span class="q-letter">C</span><span class="q-option-text">Não estão presentes os requisitos da relação de emprego, uma vez que Paulo poderá ser requisitado pela Brigada Militar e não poderá trabalhar nesse dia para a joalheria.</span><span class="q-result-icon"></span></li>
+      <li class="q-option" data-value="d" onclick="selectOption(this)"><span class="q-letter">D</span><span class="q-option-text">Estão preenchidos os requisitos da relação de emprego, sendo indiferente à relação de emprego uma eventual punição disciplinar administrativa prevista no estatuto do Policial Militar, mas Paulo não pode ter vínculo empregatício com a joalheria tendo em vista que a função pública exige dedicação exclusiva.</span><span class="q-result-icon"></span></li>
+    </ul>
+    <div class="q-feedback" id="q1-feedback"></div>
+    <button class="q-confirm-btn" id="q1-btn" onclick="confirmAnswer('q1')">Confirmar resposta</button>
+    <div class="q-gabarito" id="q1-gabarito">
+      <div class="gab-title">&#128218; Gabarito comentado — Relação de emprego</div>
+      <div class="gab-item"><span class="gab-letter correct-letter">A)</span><span class="gab-verdict v-correct">Correta.</span><div class="gab-comment">A Súmula 386 do TST prevê que, preenchidos os requisitos do art. 3º da CLT, é legítimo o reconhecimento de relação de emprego entre policial militar e empresa privada, independentemente do eventual cabimento de penalidade disciplinar prevista no Estatuto do Policial Militar. O vínculo empregatício existe no plano trabalhista; a punição administrativa é questão distinta, no âmbito estatutário.</div></div>
+      <div class="gab-item"><span class="gab-letter wrong-letter">B)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">Contraria o disposto na Súmula 386 do TST. A eventual punição disciplinar administrativa no âmbito do estatuto do Policial Militar não afasta o reconhecimento do vínculo de emprego na esfera trabalhista.</div></div>
+      <div class="gab-item"><span class="gab-letter wrong-letter">C)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">Contraria o disposto na Súmula 386 do TST. A possibilidade de requisição pela Brigada Militar não descaracteriza a não eventualidade nem a pessoalidade exigidas para a configuração da relação de emprego com a joalheria.</div></div>
+      <div class="gab-item"><span class="gab-letter wrong-letter">D)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">Contraria o disposto na Súmula 386 do TST. Não há norma legal que imponha dedicação exclusiva ao cargo público de policial militar de modo a impedir, no plano trabalhista, o reconhecimento do vínculo de emprego com empresa privada.</div></div>
+    </div>
+  </div>
+
+</section>
+
+<a class="back" href="../index.html">
     <span class="arw">←</span>
     <span>Voltar ao índice da disciplina</span>
   </a>
@@ -711,5 +800,52 @@
     });
   })();
 </script>
+
+<script>
+(function(){
+  var totalQuestions = document.querySelectorAll('.quiz-card').length;
+  var correctCount = 0;
+  window.selectOption = function(el){
+    if(el.classList.contains('locked')) return;
+    var card = el.closest('.quiz-card');
+    card.querySelectorAll('.q-option').forEach(function(o){ o.classList.remove('selected'); });
+    el.classList.add('selected');
+    card.querySelector('.q-confirm-btn').classList.add('visible');
+  };
+  window.confirmAnswer = function(cardId){
+    var card = document.getElementById(cardId);
+    if(card.classList.contains('answered')) return;
+    var selected = card.querySelector('.q-option.selected');
+    if(!selected) return;
+    var isCorrect = (selected.getAttribute('data-value') === card.getAttribute('data-correct'));
+    card.querySelectorAll('.q-option').forEach(function(opt){
+      opt.classList.add('locked');
+      if(opt.getAttribute('data-value') === card.getAttribute('data-correct')){
+        opt.classList.add('is-correct');
+        opt.querySelector('.q-result-icon').textContent = '✓';
+      }
+      if(opt === selected && !isCorrect){
+        opt.classList.add('is-wrong');
+        opt.querySelector('.q-result-icon').textContent = '✗';
+      }
+    });
+    card.querySelector('.q-confirm-btn').classList.remove('visible');
+    var fb = document.getElementById(cardId+'-feedback');
+    if(isCorrect){
+      fb.className='q-feedback visible correct'; fb.innerHTML='✓ Resposta correta!';
+      card.classList.add('answered-correct'); correctCount++;
+    } else {
+      fb.className='q-feedback visible wrong'; fb.innerHTML='✗ Resposta incorreta. Veja o gabarito comentado abaixo.';
+      card.classList.add('answered-wrong');
+    }
+    card.classList.add('answered');
+    document.getElementById(cardId+'-gabarito').classList.add('visible');
+    document.getElementById('scoreNum').textContent = correctCount+' / '+totalQuestions;
+    document.getElementById('scoreFill').style.width = ((correctCount/totalQuestions)*100)+'%';
+    setTimeout(function(){ document.getElementById(cardId+'-gabarito').scrollIntoView({behavior:'smooth',block:'nearest'}); }, 200);
+  };
+})();
+</script>
+
 </body>
 </html>
