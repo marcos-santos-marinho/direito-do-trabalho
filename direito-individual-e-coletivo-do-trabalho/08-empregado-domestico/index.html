@@ -1,293 +1,709 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>8. Empregado Doméstico</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>8. Empregado Doméstico</title>
 
-  <style>
-    :root{
-      --bg:#eaf3ff;
-      --panel:#f6faff;
-      --title:#1f4fd8;
-      --text:#0f172a;
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
-      --card:#ffffff;
-      --border:rgba(15,23,42,.14);
-      --shadow:0 10px 22px rgba(15,23,42,.08);
+<style>
+  :root{
+    --ink:#1b2436;
+    --ink-soft:#414a5c;
+    --paper:#edece5;
+    --surface:#fbfaf7;
+    --accent:#7a2e37;
+    --accent-soft:#a2545f;
+    --iron:#8b8579;
+    --line:rgba(27,36,54,.13);
+    --line-strong:rgba(27,36,54,.22);
+    --display:"Fraunces", Georgia, "Times New Roman", serif;
+    --body:"Spectral", Georgia, serif;
+    --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+  }
 
-      --muted:rgba(15,23,42,.78);
-    }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
 
-    *{ box-sizing:border-box; }
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:19px;
+    line-height:1.78;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
 
-    body{
-      margin:0;
-      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      background: radial-gradient(1000px 420px at 30% 0%, #d8ecff 0%, var(--bg) 55%, #eaf3ff 100%);
-      color:var(--text);
-      font-size:18px;
-      line-height:1.75;
-    }
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0 0 auto 0;
+    height:4px;
+    background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 34%,var(--ink) 34%,var(--ink) 100%);
+    z-index:50;
+  }
 
-    .wrap{
-      max-width: 980px;
-      margin: 22px auto;
-      padding: 18px;
-    }
+  .wrap{ max-width:760px; margin:0 auto; padding:0 22px 72px; }
 
-    .panel{
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      box-shadow: 0 18px 40px rgba(15,23,42,.10);
-      padding: 18px;
-    }
+  /* ===== CABEÇALHO ===== */
+  .masthead{
+    padding:56px 0 30px;
+    border-bottom:1px solid var(--line-strong);
+    animation:rise .7s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:600;
+    margin-bottom:20px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .eyebrow::before{ content:""; width:26px; height:2px; background:var(--accent); display:inline-block; }
+  .eyebrow .dot{ color:var(--line-strong); }
 
-    /* topo: título + botão slides */
-    .topbar{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:14px;
-      margin-bottom: 10px;
-    }
+  .title-row{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:28px;
+    flex-wrap:wrap;
+  }
+  h1{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(2.3rem,6.5vw,3.8rem);
+    line-height:1.04;
+    letter-spacing:-.015em;
+    max-width:14ch;
+  }
+  h1 .art{
+    display:block;
+    font-size:.4em;
+    font-weight:600;
+    letter-spacing:.02em;
+    color:var(--accent);
+    font-family:var(--mono);
+    text-transform:uppercase;
+    margin-bottom:.5em;
+  }
+  .slides-btn{
+    flex-shrink:0;
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    background:var(--ink);
+    color:#f4f2ec;
+    border-radius:4px;
+    padding:13px 18px;
+    font-family:var(--mono);
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    box-shadow:0 8px 22px -12px rgba(27,36,54,.7);
+    transition:transform .25s cubic-bezier(.2,.7,.2,1), box-shadow .25s, background .25s;
+  }
+  .slides-btn .ico{ font-size:16px; line-height:1; transform:translateY(-1px); }
+  .slides-btn .arw{ transition:transform .25s; }
+  .slides-btn:hover{ background:var(--accent); transform:translateY(-2px); box-shadow:0 14px 28px -12px rgba(122,46,55,.75); }
+  .slides-btn:hover .arw{ transform:translateX(4px); }
+  .slides-btn:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:3px; }
 
-    h1{
-      margin: 4px 0 0;
-      font-size: 28px;
-      line-height:1.2;
-      color: var(--title);
-      letter-spacing: -.2px;
-    }
+  /* ===== VERBETE ===== */
+  .verbete{
+    margin:44px 0 8px;
+    padding:6px 0 6px 30px;
+    border-left:3px solid var(--accent);
+    animation:rise .7s .1s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .verbete .tag{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:block;
+    margin-bottom:14px;
+  }
+  .verbete p{
+    font-family:var(--display);
+    font-weight:400;
+    font-size:clamp(1.15rem,2.8vw,1.45rem);
+    line-height:1.45;
+    letter-spacing:-.01em;
+    color:var(--ink);
+    margin:0;
+  }
 
-    /* botão slides pequeno, canto superior direito */
-    .slideBtn{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      gap:6px;
-      width: 86px;
-      padding: 10px 10px;
-      background:#fff;
-      border:1px solid var(--border);
-      border-radius: 12px;
-      text-decoration:none;
-      color: var(--text);
-      font-weight: 900;
-      box-shadow: var(--shadow);
-      transition: transform .18s ease, box-shadow .18s ease;
-      flex: 0 0 auto;
-    }
+  /* ref legal */
+  .ref{
+    font-family:var(--mono);
+    font-size:.8em;
+    color:var(--iron);
+    background:rgba(139,133,121,.12);
+    padding:2px 7px;
+    border-radius:3px;
+    white-space:nowrap;
+  }
 
-    .slideBtn:hover{
-      transform: translateY(-2px);
-      box-shadow: 0 16px 34px rgba(15,23,42,.12);
-    }
+  /* ===== SEÇÕES ===== */
+  .sec-head{
+    display:flex;
+    gap:16px;
+    align-items:baseline;
+    margin:46px 0 14px;
+    padding-top:26px;
+    border-top:1px solid var(--line);
+  }
+  .sec-head .num{
+    font-family:var(--mono);
+    font-size:15px;
+    font-weight:600;
+    color:var(--accent);
+    letter-spacing:.02em;
+    flex-shrink:0;
+    padding-top:.35em;
+  }
+  h2{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(1.6rem,4vw,2rem);
+    line-height:1.14;
+    letter-spacing:-.01em;
+    color:var(--ink);
+  }
+  p{ margin-bottom:16px; color:var(--ink-soft); }
 
-    .slideIcon{
-      width: 28px;
-      height: 28px;
-      display:block;
-    }
+  /* ===== TRÊS FATORES DISTINTIVOS ===== */
+  .fatores{
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+    margin:10px 0 8px;
+  }
+  .fator{
+    display:grid;
+    grid-template-columns:40px 1fr;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+    opacity:0;
+    transform:translateY(10px);
+    animation:rise .45s ease forwards;
+  }
+  .fator:nth-child(1){ animation-delay:.1s; }
+  .fator:nth-child(2){ animation-delay:.17s; }
+  .fator:nth-child(3){ animation-delay:.24s; }
+  .fator-num{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:var(--mono);
+    font-weight:700;
+    font-size:13px;
+    color:var(--accent);
+    background:rgba(122,46,55,.06);
+    border-right:1px solid var(--line);
+  }
+  .fator-body{
+    padding:13px 18px;
+    font-size:.93em;
+    color:var(--ink-soft);
+    line-height:1.65;
+  }
 
-    .subtitle{
-      margin: 4px 0 14px;
-      color: var(--muted);
-      font-size: 16px;
-    }
+  /* ===== ALERTA ===== */
+  .alerta{
+    margin:14px 0 4px;
+    padding:14px 20px;
+    background:rgba(122,46,55,.07);
+    border-left:3px solid var(--accent);
+    border-radius:0 6px 6px 0;
+    font-size:.91em;
+    color:var(--ink-soft);
+    line-height:1.65;
+  }
+  .alerta strong{ color:var(--ink); }
 
-    /* cards de texto */
-    .card{
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 16px;
-      box-shadow: 0 6px 14px rgba(15,23,42,.06);
-      margin: 12px 0;
-    }
+  /* ===== LINHA DO TEMPO CONSTITUCIONAL ===== */
+  .timeline{
+    margin:18px 0 4px;
+    position:relative;
+    padding-left:8px;
+  }
+  .timeline::before{
+    content:"";
+    position:absolute;
+    left:calc(60px + 8px);
+    top:6px; bottom:6px;
+    width:2px;
+    background:linear-gradient(180deg,var(--iron),var(--accent));
+  }
+  .tl-item{
+    position:relative;
+    display:grid;
+    grid-template-columns:60px 1fr;
+    gap:24px;
+    padding-bottom:28px;
+  }
+  .tl-item:last-child{ padding-bottom:0; }
+  .tl-ano{
+    font-family:var(--mono);
+    font-weight:600;
+    font-size:14px;
+    color:var(--accent);
+    text-align:right;
+    padding-top:2px;
+    letter-spacing:-.01em;
+  }
+  .tl-body{ position:relative; padding-left:24px; }
+  .tl-body::before{
+    content:"";
+    position:absolute;
+    left:-8px; top:8px;
+    width:14px; height:14px;
+    border-radius:50%;
+    background:var(--surface);
+    border:3px solid var(--accent);
+    box-shadow:0 0 0 4px var(--paper);
+  }
+  .tl-item.sec .tl-ano{ color:var(--iron); }
+  .tl-item.sec .tl-body::before{ border-color:var(--iron); }
+  .tl-body h4{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:1.08rem;
+    line-height:1.2;
+    margin-bottom:6px;
+    color:var(--ink);
+  }
+  .tl-body p{ font-size:.93em; margin-bottom:10px; }
 
-    p{
-      margin:0 0 12px;
-      text-align: justify;
-    }
+  /* ===== CARDS DE DIREITOS ===== */
+  .cards{
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+  }
+  .card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+    transition:box-shadow .2s;
+  }
+  .card:hover{ box-shadow:0 4px 18px -8px rgba(27,36,54,.2); }
+  .card-btn{
+    width:100%;
+    background:none;
+    border:none;
+    cursor:pointer;
+    display:grid;
+    grid-template-columns:52px 1fr 34px;
+    align-items:center;
+    padding:0;
+    text-align:left;
+    color:inherit;
+  }
+  .card-btn:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:-3px; border-radius:5px; }
+  .card-icon{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:60px;
+    height:100%;
+    border-right:1px solid var(--line);
+    font-family:var(--mono);
+    font-weight:600;
+    font-size:11px;
+    color:var(--accent);
+    background:rgba(122,46,55,.05);
+    text-align:center;
+    padding:4px;
+    line-height:1.3;
+  }
+  .card-head{ padding:14px 18px; }
+  .card-num{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--iron);
+    display:block;
+    margin-bottom:3px;
+  }
+  .card-title{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:1.05rem;
+    line-height:1.2;
+    color:var(--ink);
+  }
+  .card-chevron{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding-right:16px;
+    color:var(--iron);
+    font-size:13px;
+    transition:transform .3s cubic-bezier(.2,.7,.2,1), color .2s;
+  }
+  .card.open .card-chevron{ transform:rotate(180deg); color:var(--accent); }
+  .card-body{
+    display:none;
+    padding:18px 22px 22px;
+    border-top:1px solid var(--line);
+  }
+  .card.open .card-body{ display:block; }
+  .card-body > p{ color:var(--ink-soft); font-size:.93em; line-height:1.72; }
 
-    p:last-child{ margin-bottom:0; }
+  /* lista de direitos */
+  .dir-list{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    margin:10px 0 4px;
+  }
+  .dir-item{
+    display:grid;
+    grid-template-columns:22px 1fr;
+    gap:10px;
+    font-size:.9em;
+    color:var(--ink-soft);
+    line-height:1.6;
+    padding:7px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .dir-item:last-child{ border-bottom:none; }
+  .dir-item .bul{ color:var(--accent); font-family:var(--mono); font-size:.85em; padding-top:2px; }
 
-    .bullets{
-      margin: 10px 0 0 18px;
-      padding: 0;
-    }
-    .bullets li{ margin: 0 0 8px; }
+  /* ===== BOTÃO VOLTAR ===== */
+  .back{
+    margin-top:56px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    text-decoration:none;
+    color:var(--ink);
+    background:var(--surface);
+    border:1px solid var(--line-strong);
+    border-radius:6px;
+    padding:20px 22px;
+    font-family:var(--mono);
+    font-size:14px;
+    letter-spacing:.04em;
+    transition:border-color .25s, transform .25s;
+  }
+  .back .arw{ color:var(--accent); transition:transform .25s; font-size:18px; }
+  .back:hover{ border-color:var(--accent); transform:translateY(-2px); }
+  .back:hover .arw{ transform:translateX(-4px); }
+  .back:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:3px; }
 
-    .note{
-      margin-top: 10px;
-      padding: 14px;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      background: rgba(31,79,216,.08);
-      font-weight: 800;
-    }
+  @keyframes rise{
+    from{ opacity:0; transform:translateY(16px); }
+    to{ opacity:1; transform:none; }
+  }
+  .reveal{ opacity:0; transform:translateY(14px); }
+  .reveal.in{
+    opacity:1; transform:none;
+    transition:opacity .5s ease, transform .5s cubic-bezier(.2,.7,.2,1);
+  }
 
-    /* botão voltar */
-    .back{
-      margin-top: 16px;
-      display:flex;
-      justify-content:center;
-    }
-
-    .back a{
-      width: min(560px, 100%);
-      text-align:center;
-      text-decoration:none;
-      background:#fff;
-      padding:16px 18px;
-      border-radius:16px;
-      border:1px solid var(--border);
-      box-shadow: var(--shadow);
-      color: var(--text);
-      font-weight: 900;
-      transition: transform .18s ease;
-    }
-
-    .back a:hover{
-      transform: translateY(-2px);
-    }
-
-    @media (max-width:480px){
-      body{ font-size:17px; }
-      h1{ font-size:24px; }
-      .slideBtn{ width: 82px; }
-    }
-  </style>
+  @media (max-width:560px){
+    body{ font-size:17.5px; }
+    .masthead{ padding:40px 0 24px; }
+    .title-row{ align-items:stretch; }
+    .slides-btn{ width:100%; justify-content:center; }
+    .verbete{ padding-left:20px; }
+    .card-btn{ grid-template-columns:44px 1fr 30px; }
+    .tl-item{ grid-template-columns:48px 1fr; gap:16px; }
+    .timeline::before{ left:calc(48px + 8px); }
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{ animation:none !important; scroll-behavior:auto; }
+    .fator{ opacity:1; transform:none; }
+    .reveal{ opacity:1; transform:none; }
+    .reveal.in{ transition:none; }
+    .card-chevron{ transition:none; }
+  }
+</style>
 </head>
-
 <body>
-  <div class="wrap">
-    <div class="panel">
+<div class="wrap">
 
-      <div class="topbar">
-        <h1>8. Empregado Doméstico</h1>
+  <!-- CABEÇALHO -->
+  <header class="masthead">
+    <p class="eyebrow">
+      Direito do Trabalho
+      <span class="dot">·</span> Unidade 1
+      <span class="dot">·</span> Sujeitos especiais
+    </p>
+    <div class="title-row">
+      <h1>
+        <span class="art">Item 8</span>
+        Empregado Doméstico
+      </h1>
+      <a class="slides-btn"
+         href="https://drive.google.com/file/d/18YllWqNH0qm650Kw1_wU-BsiBZKo8wsn/view?usp=sharing"
+         target="_blank" rel="noopener">
+        <span class="ico">▮</span>
+        <span>Slides da aula</span>
+        <span class="arw">→</span>
+      </a>
+    </div>
 
-        <!-- ✅ TROQUE pelo link do Google Drive (slides) -->
-        <a class="slideBtn" href="https://drive.google.com/file/d/18YllWqNH0qm650Kw1_wU-BsiBZKo8wsn/view?usp=sharing" target="_blank" rel="noopener">
-          <!-- ícone tipo “quadro” -->
-          <svg class="slideIcon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M4 5h16v10H4V5Z" stroke="#1f4fd8" stroke-width="1.7"/>
-            <path d="M8 19h8" stroke="#1f4fd8" stroke-width="1.7" stroke-linecap="round"/>
-            <path d="M12 15v4" stroke="#1f4fd8" stroke-width="1.7" stroke-linecap="round"/>
-            <path d="M7 9l2-2 3 3 2-2 3 3" stroke="#1f4fd8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <div>Slides</div>
-        </a>
+    <div class="verbete">
+      <span class="tag">Definição — art. 1º, LC n. 150/2015</span>
+      <p>
+        Empregado doméstico é aquele que presta serviços de forma contínua, subordinada,
+        onerosa e pessoal e de finalidade não lucrativa à pessoa ou à família, no âmbito
+        residencial destas, por mais de 2 dias por semana.
+      </p>
+    </div>
+  </header>
+
+  <!-- FATORES DISTINTIVOS -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§</span>
+      <h2>Fatores que diferenciam o doméstico</h2>
+    </div>
+
+    <p class="reveal">
+      Os fatores que distinguem o empregado doméstico dos demais empregados são:
+    </p>
+
+    <div class="fatores">
+      <div class="fator">
+        <div class="fator-num">I</div>
+        <div class="fator-body">
+          <strong>Tomador específico:</strong> trabalho prestado para pessoa ou família —
+          e não para empresa ou atividade econômica.
+        </div>
       </div>
-     
-      <div class="card">
-        <p>
-          Empregado doméstico é “aquele que presta serviços de forma contínua, subordinada, onerosa e pessoal e de finalidade
-          não lucrativa à pessoa ou à família, no âmbito residencial destas, por mais de 2 (dois) dias por semana”
-          (art. 1º, Lei Complementar n. 150/2015).
-        </p>
+      <div class="fator">
+        <div class="fator-num">II</div>
+        <div class="fator-body">
+          <strong>Âmbito residencial:</strong> a prestação ocorre no espaço do lar e suas
+          extensões (chácara recreativa, sítio de lazer, casa de praia).
+        </div>
+      </div>
+      <div class="fator">
+        <div class="fator-num">III</div>
+        <div class="fator-body">
+          <strong>Ausência de fins lucrativos:</strong> o trabalho não pode ser prestado
+          na exploração de atividade comercial ou industrial — destina-se exclusivamente ao
+          desenvolvimento da vida do lar.
+        </div>
+      </div>
+    </div>
+
+    <p class="reveal" style="margin-top:16px;">
+      O trabalho doméstico, como em qualquer relação de emprego, é prestado com
+      <strong>pessoalidade</strong>, de forma <strong>contínua</strong>,
+      <strong>subordinada</strong> e com <strong>onerosidade</strong>.
+    </p>
+
+    <div class="alerta reveal">
+      <strong>Vedação expressa:</strong> é proibida a contratação de menor de 18 anos para
+      o desempenho de trabalho doméstico
+      <span class="ref">art. 1º, parágrafo único, LC n. 150/2015</span>.
+    </div>
+  </section>
+
+  <!-- EVOLUÇÃO CONSTITUCIONAL -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§</span>
+      <h2>Evolução constitucional e ampliação de direitos</h2>
+    </div>
+
+    <div class="timeline reveal">
+
+      <div class="tl-item sec">
+        <div class="tl-ano">1988</div>
+        <div class="tl-body">
+          <h4>Constituição Federal — proteção inicial</h4>
+          <p>
+            A CF/88 representou marco na proteção trabalhista dos domésticos, ampliando
+            significativamente seus direitos em relação à legislação anterior. Assegurou:
+            salário mínimo, irredutibilidade salarial, décimo terceiro salário, repouso
+            semanal remunerado, férias anuais com 1/3, licença-gestante de 120 dias,
+            licença-paternidade, aviso-prévio proporcional (mínimo 30 dias),
+            aposentadoria e integração à Previdência Social.
+          </p>
+          <p>
+            Contudo, o constituinte adotou critério desigual: o <span class="ref">art. 7º</span>
+            garantia proteção integral a trabalhadores urbanos e rurais, enquanto os domésticos
+            ficavam restritos a apenas alguns incisos desse dispositivo.
+          </p>
+        </div>
       </div>
 
-      <div class="card">
-        <p><strong>Fatores que diferenciam o doméstico dos demais empregados</strong></p>
-        <ul class="bullets">
-          <li>trabalho para pessoa ou família;</li>
-          <li>trabalho no âmbito residencial;</li>
-          <li>inexistência de fins lucrativos no trabalho que exerce.</li>
-        </ul>
+      <div class="tl-item">
+        <div class="tl-ano">2013</div>
+        <div class="tl-body">
+          <h4>EC n. 72/2013 — "PEC das domésticas"</h4>
+          <p>
+            Em resposta à desigualdade de tratamento, a Emenda Constitucional n. 72/2013
+            ampliou os direitos dos domésticos, acrescentando ao <span class="ref">parágrafo único
+            do art. 7º, CF</span> novos direitos, condicionando alguns à regulamentação por
+            lei complementar.
+          </p>
+        </div>
       </div>
 
+      <div class="tl-item">
+        <div class="tl-ano">2015</div>
+        <div class="tl-body">
+          <h4>LC n. 150/2015 — regulamentação</h4>
+          <p>
+            Regulamentou os direitos assegurados constitucionalmente, consolidando o regime
+            jurídico do empregado doméstico e estabelecendo as condições de contratação,
+            jornada, FGTS e demais garantias.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- DIREITOS POR CATEGORIA -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§</span>
+      <h2>Direitos constitucionais do doméstico</h2>
+    </div>
+
+    <div class="cards reveal">
+
       <div class="card">
-        <p>
-          <strong>Finalidade não lucrativa</strong> – o trabalho doméstico não visa lucro para o empregador. Não pode ser prestado
-          na exploração de atividade comercial ou industrial, devendo ser realizado tão somente para o desenvolvimento da vida do lar,
-          da vida familiar.
-        </p>
-
-        <p>
-          <strong>Âmbito residencial da família</strong> – relaciona-se com o âmbito da prestação do trabalho, que abrange todo o local
-          onde há o desenvolvimento da vida do lar, incluindo não só a moradia permanente (motorista, jardineiro, mordomo, babá etc.),
-          como também suas extensões, como a chácara recreativa, o sítio de lazer, casa de praia (caseiro).
-        </p>
-
-        <p>
-          O trabalho doméstico, como ocorre em qualquer tipo de relação de emprego, é prestado com pessoalidade, de forma contínua,
-          subordinada e com onerosidade, ou seja, o empregado doméstico presta serviços pessoais, não eventuais e remunerados,
-          sob as ordens do empregador.
-        </p>
-
-        <div class="note">
-          É vedada a contratação de menor de 18 anos para desempenho de trabalho doméstico (art. 1º, parágrafo único,
-          Lei Complementar n. 150/2015).
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Dir.<br>orig.</div>
+          <div class="card-head">
+            <span class="card-num">CF/88 — art. 7º, parágrafo único (original)</span>
+            <span class="card-title">Direitos originários de 1988</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <div class="dir-list">
+            <div class="dir-item"><span class="bul">▸</span><span>Salário mínimo</span></div>
+            <div class="dir-item"><span class="bul">▸</span><span>Irredutibilidade de salário</span></div>
+            <div class="dir-item"><span class="bul">▸</span><span>Décimo terceiro salário</span></div>
+            <div class="dir-item"><span class="bul">▸</span><span>Repouso semanal remunerado, preferencialmente aos domingos</span></div>
+            <div class="dir-item"><span class="bul">▸</span><span>Férias anuais remuneradas com, no mínimo, 1/3 a mais do que o salário normal</span></div>
+            <div class="dir-item"><span class="bul">▸</span><span>Licença-gestante de 120 dias, sem prejuízo do emprego e do salário</span></div>
+            <div class="dir-item"><span class="bul">▸</span><span>Licença-paternidade</span></div>
+            <div class="dir-item"><span class="bul">▸</span><span>Aviso-prévio proporcional ao tempo de serviço, mínimo de 30 dias</span></div>
+            <div class="dir-item"><span class="bul">▸</span><span>Aposentadoria e integração à Previdência Social</span></div>
+          </div>
         </div>
       </div>
 
       <div class="card">
-        <p>
-          <strong>Evolução constitucional e ampliação de direitos</strong>
-        </p>
-
-        <p>
-          A Constituição Federal de 1988 foi um marco na proteção trabalhista dos domésticos, à medida que assegurou aos mesmos um leque
-          de direitos muito mais extenso dos que lhe eram conferidos pela legislação existente até então. No entanto, muito embora fosse
-          inegável a melhoria das condições de proteção trabalhista do doméstico a partir da Constituição de 1988, é inescusável a constatação
-          de que o constituinte adotou um critério desigual entre os trabalhadores domésticos e os trabalhadores urbanos e rurais, tendo em vista
-          que o art. 7º previa uma proteção ampla e integral a estes últimos em detrimento da proteção assegurada aos primeiros, que se restringia
-          apenas aos direitos previstos em alguns dos incisos do referido dispositivo.
-        </p>
-
-        <p>
-          Em resposta às discussões sobre a desigualdade de tratamento constitucional entre os trabalhadores urbanos e rurais e os trabalhadores domésticos,
-          e atendendo aos anseios dessa última categoria, a Emenda Constitucional n. 72/2013 estabeleceu uma nova ampliação aos direitos do empregado doméstico.
-        </p>
-
-        <p>
-          Assim, mantendo os direitos já originalmente previstos pela Constituição Federal de 1988 (salário mínimo, irredutibilidade de salário, décimo terceiro salário,
-          repouso semanal remunerado preferencialmente aos domingos, férias anuais remuneradas com pelo menos um terço a mais do que o salário normal, licença-gestante de 120 dias
-          sem prejuízo do emprego e do salário, licença-paternidade, aviso-prévio proporcional ao tempo de serviço, sendo no mínimo de 30 dias, aposentadoria e integração à Previdência Social),
-          o parágrafo único do art. 7º da Constituição Federal passou, com a redação dada pela Emenda Constitucional n. 72/2013, a garantir à categoria dos trabalhadores domésticos os seguintes direitos:
-        </p>
-
-        <ul class="bullets">
-          <li>garantia de salário, nunca inferior ao mínimo, para os que percebem remuneração variável;</li>
-          <li>proteção do salário na forma da lei, constituindo crime sua retenção dolosa;</li>
-          <li>duração do trabalho normal não superior a oito horas diárias e quarenta e quatro semanais, facultada a compensação de horários e a redução da jornada, mediante acordo ou convenção coletiva de trabalho;</li>
-          <li>remuneração do serviço extraordinário superior, no mínimo, em cinquenta por cento à do normal;</li>
-          <li>redução dos riscos inerentes ao trabalho, por meio de normas de saúde, higiene e segurança;</li>
-          <li>reconhecimento das convenções e acordos coletivos de trabalho;</li>
-          <li>proibição de diferença de salários, de exercício de funções e de critério de admissão por motivo de sexo, idade, cor ou estado civil;</li>
-          <li>proibição de qualquer discriminação no tocante a salário e critérios de admissão do trabalhador portador de deficiência;</li>
-          <li>proibição de trabalho noturno, perigoso ou insalubre a menores de dezoito e de qualquer trabalho a menores de dezesseis anos, salvo na condição de aprendiz, a partir de quatorze anos.</li>
-        </ul>
-
-        <p>
-          Além disso, atendidas as condições estabelecidas em lei e observada a simplificação do cumprimento das obrigações tributárias, principais e acessórias,
-          decorrentes da relação de trabalho e suas peculiaridades, também se assegurou aos trabalhadores domésticos:
-        </p>
-
-        <ul class="bullets">
-          <li>relação de emprego protegida contra despedida arbitrária ou sem justa causa, nos termos de lei complementar, que preverá indenização compensatória, entre outros direitos;</li>
-          <li>seguro-desemprego, em caso de desemprego involuntário;</li>
-          <li>fundo de garantia do tempo de serviço;</li>
-          <li>remuneração do trabalho noturno superior à do diurno;</li>
-          <li>salário-família pago em razão do dependente do trabalhador de baixa renda nos termos da lei;</li>
-          <li>assistência gratuita aos filhos e dependentes desde o nascimento até 5 (cinco) anos de idade em creches e pré-escolas;</li>
-          <li>seguro contra acidentes de trabalho, a cargo do empregador, sem excluir a indenização a que este está obrigado, quando incorrer em dolo ou culpa.</li>
-        </ul>
-
-        <p>
-          Os direitos assegurados constitucionalmente aos domésticos foram regulamentados pela Lei Complementar n. 150/2015.
-        </p>
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">EC<br>72/<br>2013</div>
+          <div class="card-head">
+            <span class="card-num">EC n. 72/2013 — novos direitos</span>
+            <span class="card-title">Direitos acrescentados pela "PEC das domésticas"</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <div class="dir-list">
+            <div class="dir-item"><span class="bul">▸</span><span>Garantia de salário nunca inferior ao mínimo para quem percebe remuneração variável</span></div>
+            <div class="dir-item"><span class="bul">▸</span><span>Proteção do salário na forma da lei, constituindo crime sua retenção dolosa</span></div>
+            <div class="dir-item"><span class="bul">▸</span><span>Jornada de até 8h diárias e 44h semanais, facultada compensação mediante acordo ou CCT</span></div>
+            <div class="dir-item"><span class="bul">▸</span><span>Hora extra remunerada com adicional mínimo de 50%</span></div>
+            <div class="dir-item"><span class="bul">▸</span><span>Redução dos riscos inerentes ao trabalho por normas de saúde, higiene e segurança</span></div>
+            <div class="dir-item"><span class="bul">▸</span><span>Reconhecimento das convenções e acordos coletivos de trabalho</span></div>
+            <div class="dir-item"><span class="bul">▸</span><span>Proibição de diferença de salários por motivo de sexo, idade, cor ou estado civil</span></div>
+            <div class="dir-item"><span class="bul">▸</span><span>Proibição de discriminação salarial ao trabalhador portador de deficiência</span></div>
+            <div class="dir-item"><span class="bul">▸</span><span>Proibição de trabalho noturno, perigoso ou insalubre a menores de 18 anos</span></div>
+          </div>
+        </div>
       </div>
 
-      <div class="back">
-        <a href="../index.html">← Voltar ao índice da disciplina</a>
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">LC<br>150/<br>2015</div>
+          <div class="card-head">
+            <span class="card-num">Sujeitos à regulamentação em lei complementar</span>
+            <span class="card-title">Direitos condicionados — regulamentados pela LC n. 150/2015</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <div class="dir-list">
+            <div class="dir-item"><span class="bul">▸</span><span>Relação de emprego protegida contra despedida arbitrária ou sem justa causa, com indenização compensatória (FGTS + multa de 40%)</span></div>
+            <div class="dir-item"><span class="bul">▸</span><span>Seguro-desemprego em caso de desemprego involuntário</span></div>
+            <div class="dir-item"><span class="bul">▸</span><span>Fundo de Garantia do Tempo de Serviço (FGTS)</span></div>
+            <div class="dir-item"><span class="bul">▸</span><span>Remuneração do trabalho noturno superior à do diurno</span></div>
+            <div class="dir-item"><span class="bul">▸</span><span>Salário-família ao trabalhador de baixa renda</span></div>
+            <div class="dir-item"><span class="bul">▸</span><span>Assistência gratuita a filhos e dependentes em creches e pré-escolas até 5 anos de idade</span></div>
+            <div class="dir-item"><span class="bul">▸</span><span>Seguro contra acidentes de trabalho a cargo do empregador, sem excluir indenização por dolo ou culpa</span></div>
+          </div>
+        </div>
       </div>
 
     </div>
-  </div>
+  </section>
+
+  <a class="back" href="../index.html">
+    <span class="arw">←</span>
+    <span>Voltar ao índice da disciplina</span>
+  </a>
+
+</div>
+
+<script>
+  (function(){
+    var items = document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window)){
+      items.forEach(function(el){ el.classList.add('in'); }); return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold:.08, rootMargin:'0px 0px -3% 0px' });
+    items.forEach(function(el, i){
+      el.style.transitionDelay = (i * 40) + 'ms';
+      io.observe(el);
+    });
+  })();
+
+  (function(){
+    var cards = document.querySelectorAll('.card');
+    cards.forEach(function(card){
+      var btn = card.querySelector('.card-btn');
+      btn.addEventListener('click', function(){
+        var isOpen = card.classList.contains('open');
+        cards.forEach(function(c){
+          c.classList.remove('open');
+          c.querySelector('.card-btn').setAttribute('aria-expanded','false');
+        });
+        if(!isOpen){
+          card.classList.add('open');
+          btn.setAttribute('aria-expanded','true');
+        }
+      });
+    });
+  })();
+</script>
 </body>
 </html>
