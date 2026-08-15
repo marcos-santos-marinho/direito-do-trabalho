@@ -472,6 +472,57 @@
     .reveal.in{ transition:none; }
     .card-chevron{ transition:none; }
   }
+
+/* QUIZ */
+.quiz-section{ margin-top:56px; padding-top:36px; border-top:2px solid var(--accent); }
+.quiz-header{ display:flex; align-items:center; gap:16px; margin-bottom:32px; }
+.quiz-icon{ width:48px; height:48px; background:var(--accent); color:#fff; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0; font-family:var(--mono); font-weight:700; }
+.quiz-header-text h2{ font-family:var(--display); font-weight:500; font-size:clamp(1.5rem,4vw,1.9rem); margin:0 0 2px; color:var(--ink); }
+.quiz-header-text p{ font-family:var(--mono); font-size:12px; letter-spacing:.15em; text-transform:uppercase; color:var(--iron); margin:0; }
+.quiz-score{ display:flex; align-items:center; gap:16px; background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:14px 20px; margin-bottom:28px; font-family:var(--mono); font-size:13px; color:var(--ink-soft); letter-spacing:.04em; }
+.quiz-score .score-num{ font-size:20px; font-weight:600; color:var(--accent); letter-spacing:0; }
+.quiz-score .score-bar{ flex:1; height:6px; background:var(--line); border-radius:3px; overflow:hidden; }
+.quiz-score .score-fill{ height:100%; background:#166b3a; border-radius:3px; width:0%; transition:width .6s cubic-bezier(.2,.7,.2,1); }
+.quiz-card{ background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:28px 26px 24px; margin-bottom:20px; transition:border-color .3s; }
+.quiz-card.answered-correct{ border-color:#2d9d5a; }
+.quiz-card.answered-wrong{ border-color:#dc4545; }
+.quiz-card .q-num{ font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); margin-bottom:12px; display:block; }
+.quiz-card .q-text{ font-family:var(--body); font-size:17px; line-height:1.65; color:var(--ink); margin-bottom:20px; }
+.q-options{ list-style:none; padding:0; margin:0 0 16px; }
+.q-option{ display:flex; align-items:flex-start; gap:14px; padding:14px 16px; margin-bottom:6px; border:2px solid var(--line); border-radius:8px; cursor:pointer; transition:all .2s; position:relative; }
+.q-option:hover:not(.locked){ background:rgba(122,46,55,.04); border-color:var(--line-strong); }
+.q-option.selected:not(.locked){ background:rgba(122,46,55,.08); border-color:var(--accent); }
+.q-option.locked{ cursor:default; }
+.q-option.locked.is-correct{ background:#e8f5ec; border-color:#2d9d5a; }
+.q-option.locked.is-wrong.selected{ background:#fef2f2; border-color:#dc4545; }
+.q-option.locked:not(.is-correct):not(.selected){ opacity:.55; }
+.q-letter{ font-family:var(--mono); font-size:13px; font-weight:600; color:var(--accent); min-width:28px; height:28px; display:flex; align-items:center; justify-content:center; border:2px solid var(--line-strong); border-radius:6px; flex-shrink:0; margin-top:1px; transition:all .2s; }
+.q-option.selected:not(.locked) .q-letter{ background:var(--accent); color:#fff; border-color:var(--accent); }
+.q-option.locked.is-correct .q-letter{ background:#166b3a; color:#fff; border-color:#166b3a; }
+.q-option.locked.is-wrong.selected .q-letter{ background:#b91c1c; color:#fff; border-color:#b91c1c; }
+.q-option-text{ font-size:16px; line-height:1.55; color:var(--ink-soft); padding-top:3px; }
+.q-result-icon{ position:absolute; right:14px; top:50%; transform:translateY(-50%); font-size:18px; display:none; }
+.q-option.locked.is-correct .q-result-icon, .q-option.locked.is-wrong.selected .q-result-icon{ display:block; }
+.q-feedback{ display:none; align-items:center; gap:10px; padding:12px 16px; border-radius:6px; font-family:var(--mono); font-size:13px; font-weight:600; letter-spacing:.04em; margin-bottom:16px; }
+.q-feedback.visible{ display:flex; }
+.q-feedback.correct{ background:#e8f5ec; color:#166b3a; border:1px solid #2d9d5a; }
+.q-feedback.wrong{ background:#fef2f2; color:#b91c1c; border:1px solid #dc4545; }
+.q-confirm-btn{ display:none; font-family:var(--mono); font-size:13px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; background:var(--accent); color:#fff; border:none; border-radius:6px; padding:12px 24px; cursor:pointer; transition:background .2s, transform .2s; }
+.q-confirm-btn:hover{ background:var(--ink); transform:translateY(-1px); }
+.q-confirm-btn.visible{ display:inline-flex; }
+.q-gabarito{ display:none; margin-top:18px; padding:20px 22px; background:linear-gradient(135deg,rgba(122,46,55,.04),rgba(27,36,54,.03)); border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:0 8px 8px 0; }
+.q-gabarito.visible{ display:block; }
+.q-gabarito .gab-title{ font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); margin-bottom:14px; display:flex; align-items:center; gap:8px; }
+.gab-item{ padding:10px 0; border-bottom:1px solid var(--line); }
+.gab-item:last-child{ border-bottom:none; }
+.gab-letter{ font-family:var(--mono); font-size:12px; font-weight:600; margin-right:4px; }
+.gab-letter.correct-letter{ color:#166b3a; }
+.gab-letter.wrong-letter{ color:#b91c1c; }
+.gab-verdict{ font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; margin-left:4px; }
+.gab-verdict.v-correct{ color:#166b3a; }
+.gab-verdict.v-wrong{ color:#b91c1c; }
+.gab-comment{ font-size:15px; line-height:1.6; color:var(--ink-soft); margin-top:4px; padding-left:28px; }
+
 </style>
 </head>
 <body>
@@ -818,7 +869,94 @@
     </div>
   </section>
 
-  <a class="back" href="../index.html">
+  
+<section class="quiz-section" id="quiz">
+  <div class="quiz-header">
+    <div class="quiz-icon">?</div>
+    <div class="quiz-header-text">
+      <h2>Teste seus conhecimentos</h2>
+      <p>3 questões — Competência da Justiça do Trabalho</p>
+    </div>
+  </div>
+
+  <div class="quiz-score" id="quizScore">
+    <span>Acertos: <span class="score-num" id="scoreNum">0 / 3</span></span>
+    <div class="score-bar"><div class="score-fill" id="scoreFill"></div></div>
+  </div>
+
+  <!-- Q1 — XXIX OAB — competência material -->
+  <div class="quiz-card" id="q1" data-correct="d">
+    <span class="q-num">Questão 1 de 3 — Competência da Justiça do Trabalho</span>
+    <div class="q-text">(XXIX Exame de Ordem Unificado/FGV) Considere as situações a seguir.
+    <br><br>
+    I. Victor é um artista mirim e precisa de autorização judicial para poder participar de uma peça cinematográfica como ator coadjuvante.<br>
+    II. A empresa FFX Ltda. foi multada por um auditor fiscal do trabalho e deseja anular judicialmente o auto de infração, alegando vícios e nulidades.<br>
+    III. O empregado Regis teve concedido pelo INSS auxílio-doença comum, mas entende que deveria receber auxílio-doença acidentário, daí por que pretende a conversão judicial do benefício.<br>
+    IV. Jonilson, advogado, foi contratado por um cliente para o ajuizamento de uma ação de despejo, mas esse cliente não pagou os honorários contratuais que haviam sido acertados.
+    <br><br>
+    Assinale a opção que indica quem deverá ajuizar ação na Justiça do Trabalho para ver seu pleito atendido.</div>
+    <ul class="q-options">
+      <li class="q-option" data-value="a" onclick="selectOption(this)"><span class="q-letter">A</span><span class="q-option-text">Victor e Jonilson.</span><span class="q-result-icon"></span></li>
+      <li class="q-option" data-value="b" onclick="selectOption(this)"><span class="q-letter">B</span><span class="q-option-text">Regis e a empresa FFX Ltda.</span><span class="q-result-icon"></span></li>
+      <li class="q-option" data-value="c" onclick="selectOption(this)"><span class="q-letter">C</span><span class="q-option-text">Victor e Regis.</span><span class="q-result-icon"></span></li>
+      <li class="q-option" data-value="d" onclick="selectOption(this)"><span class="q-letter">D</span><span class="q-option-text">Apenas a empresa FFX Ltda.</span><span class="q-result-icon"></span></li>
+    </ul>
+    <div class="q-feedback" id="q1-feedback"></div>
+    <button class="q-confirm-btn" id="q1-btn" onclick="confirmAnswer('q1')">Confirmar resposta</button>
+    <div class="q-gabarito" id="q1-gabarito">
+      <div class="gab-title">&#128218; Gabarito comentado — Competência da Justiça do Trabalho</div>
+      <div class="gab-item"><span class="gab-letter wrong-letter">A)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">A competência de Victor (autorização para trabalho de menor) é da Justiça Comum Estadual, conforme decidido pelo STF. A cobrança de honorários contratuais de Jonilson também é da Justiça Comum, nos termos da Súmula 363 do STJ.</div></div>
+      <div class="gab-item"><span class="gab-letter wrong-letter">B)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">A demanda de Regis (conversão de auxílio-doença comum em acidentário) deve ser ajuizada perante a Justiça Comum Federal, pois trata de benefício previdenciário do INSS. A FFX Ltda. está correta.</div></div>
+      <div class="gab-item"><span class="gab-letter wrong-letter">C)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">Victor deve ir à Justiça Comum Estadual e Regis à Justiça Comum Federal. Nenhum dos dois vai à Justiça do Trabalho.</div></div>
+      <div class="gab-item"><span class="gab-letter correct-letter">D)</span><span class="gab-verdict v-correct">Correta.</span><div class="gab-comment">A única situação inserida no art. 114 da CF é a da FFX Ltda. — trata-se da anulação do auto de infração lavrado pelo Auditor-Fiscal do Trabalho, já que o inciso VII afirma serem da competência da Justiça do Trabalho as ações relativas às penalidades administrativas impostas pelos órgãos de fiscalização das relações de trabalho.</div></div>
+    </div>
+  </div>
+
+  <!-- Q2 — 35º OAB — penalidades administrativas e competência -->
+  <div class="quiz-card" id="q2" data-correct="a">
+    <span class="q-num">Questão 2 de 3 — Competência da Justiça do Trabalho</span>
+    <div class="q-text">(35º Exame de Ordem Unificado/FGV) Seu escritório atua exclusivamente na área trabalhista e participará de uma licitação a ser realizada por uma grande empresa pública para escolha de escritórios de advocacia das mais diversas áreas de atuação. A fim de elaborar a proposta a ser enviada para licitação, você foi incumbido de indicar quais processos seriam da competência da Justiça do Trabalho. Diante disso, considerando o entendimento jurisprudencial consolidado do TST, bem como a Constituição da República Federativa do Brasil, são da competência da Justiça do Trabalho:</div>
+    <ul class="q-options">
+      <li class="q-option" data-value="a" onclick="selectOption(this)"><span class="q-letter">A</span><span class="q-option-text">As ações relativas às penalidades administrativas impostas aos empregadores pelos órgãos de fiscalização das relações de trabalho.</span><span class="q-result-icon"></span></li>
+      <li class="q-option" data-value="b" onclick="selectOption(this)"><span class="q-letter">B</span><span class="q-option-text">As causas que envolvam servidores públicos estatutários e os entes de direito público interno.</span><span class="q-result-icon"></span></li>
+      <li class="q-option" data-value="c" onclick="selectOption(this)"><span class="q-letter">C</span><span class="q-option-text">Os conflitos de competência instaurados entre juízes do trabalho e juízes de direito da justiça comum estadual.</span><span class="q-result-icon"></span></li>
+      <li class="q-option" data-value="d" onclick="selectOption(this)"><span class="q-letter">D</span><span class="q-option-text">As ações que visem a determinar o recolhimento de todas as contribuições previdenciárias oriundas da relação de emprego.</span><span class="q-result-icon"></span></li>
+    </ul>
+    <div class="q-feedback" id="q2-feedback"></div>
+    <button class="q-confirm-btn" id="q2-btn" onclick="confirmAnswer('q2')">Confirmar resposta</button>
+    <div class="q-gabarito" id="q2-gabarito">
+      <div class="gab-title">&#128218; Gabarito comentado — Competência da Justiça do Trabalho</div>
+      <div class="gab-item"><span class="gab-letter correct-letter">A)</span><span class="gab-verdict v-correct">Correta.</span><div class="gab-comment">Trata-se da hipótese prevista no art. 114, VII, da CF, a falar das ações sobre penalidades administrativas aplicadas pela fiscalização do trabalho. Esta é uma das situações mais cobradas pela banca no Exame de Ordem.</div></div>
+      <div class="gab-item"><span class="gab-letter wrong-letter">B)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">Tal situação, apesar de constar no inciso I do art. 114 da CF, foi excluída pelo STF ao dar interpretação conforme à CF no julgamento da ADI 3.395-6. Servidores estatutários são da Justiça Comum.</div></div>
+      <div class="gab-item"><span class="gab-letter wrong-letter">C)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">Tais conflitos são julgados pelo STJ, já que temos varas de justiças diferentes (Justiça do Trabalho e Justiça Comum).</div></div>
+      <div class="gab-item"><span class="gab-letter wrong-letter">D)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">Nos termos da Súmula Vinculante 53 do STF, nem todas as contribuições previdenciárias são de competência da Justiça do Trabalho — estão excluídas aquelas que derivam do reconhecimento do vínculo de emprego.</div></div>
+    </div>
+  </div>
+
+  <!-- Q3 — 40º OAB — competência territorial e exceção -->
+  <div class="quiz-card" id="q3" data-correct="c">
+    <span class="q-num">Questão 3 de 3 — Competência territorial</span>
+    <div class="q-text">(40º Exame de Ordem Unificado/FGV) Jeferson trabalhou em São Paulo de 2018 a 2023, quando foi dispensado sem justa causa e voltou para sua cidade de origem, Fortaleza/CE. Entendendo ter realizado sobrejornada sem receber, Jeferson contratou um advogado na sua cidade que ajuizou reclamação trabalhista distribuída a uma das Varas de Fortaleza/CE requerendo o pagamento de horas extras. A ex-empregadora foi citada para a audiência, que ocorreria em quatro meses, mas pretende deslocar o feito para São Paulo, pois foi o único local da prestação de serviços e onde o autor foi contratado. Para tanto, a ex-empregadora o(a) contratou como advogado(a). Na qualidade de advogado(a) da sociedade empresária, considerando os fatos e o que dispõe a CLT, assinale a afirmativa correta.</div>
+    <ul class="q-options">
+      <li class="q-option" data-value="a" onclick="selectOption(this)"><span class="q-letter">A</span><span class="q-option-text">A sociedade empresária poderá apresentar a exceção de incompetência territorial até a audiência.</span><span class="q-result-icon"></span></li>
+      <li class="q-option" data-value="b" onclick="selectOption(this)"><span class="q-letter">B</span><span class="q-option-text">A sociedade empresária deve apresentar a exceção de incompetência territorial em até dez dias corridos, contados da citação.</span><span class="q-result-icon"></span></li>
+      <li class="q-option" data-value="c" onclick="selectOption(this)"><span class="q-letter">C</span><span class="q-option-text">A sociedade empresária deverá apresentar a exceção de incompetência territorial em cinco dias úteis, contados da citação.</span><span class="q-result-icon"></span></li>
+      <li class="q-option" data-value="d" onclick="selectOption(this)"><span class="q-letter">D</span><span class="q-option-text">Não se poderá apresentar exceção de incompetência territorial, porque a ação pode ser ajuizada no domicílio do autor, ainda que não coincida com o local da prestação dos serviços.</span><span class="q-result-icon"></span></li>
+    </ul>
+    <div class="q-feedback" id="q3-feedback"></div>
+    <button class="q-confirm-btn" id="q3-btn" onclick="confirmAnswer('q3')">Confirmar resposta</button>
+    <div class="q-gabarito" id="q3-gabarito">
+      <div class="gab-title">&#128218; Gabarito comentado — Competência territorial</div>
+      <div class="gab-item"><span class="gab-letter wrong-letter">A)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">Não, pois o prazo é peremptório, antes da audiência, conforme art. 800 da CLT. O prazo específico de 5 dias úteis da citação não pode ser substituído pela data da audiência.</div></div>
+      <div class="gab-item"><span class="gab-letter wrong-letter">B)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">O art. 800 da CLT prevê o prazo de até 5 dias a contar do recebimento da notificação — e em dias úteis, após a Reforma Trabalhista, não corridos.</div></div>
+      <div class="gab-item"><span class="gab-letter correct-letter">C)</span><span class="gab-verdict v-correct">Correta.</span><div class="gab-comment">A questão consta no art. 800 da CLT, que prevê a possibilidade de o reclamado apresentar exceção de incompetência territorial no prazo de 5 dias a contar do recebimento da notificação, para demonstrar que o local em que foi ajuizada a ação está incorreto. Após a Reforma Trabalhista, os prazos são contados em dias úteis.</div></div>
+      <div class="gab-item"><span class="gab-letter wrong-letter">D)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">Errado — o art. 651 da CLT prevê que a ação será ajuizada no local da prestação dos serviços, não no domicílio do autor. A ação foi proposta em Fortaleza, mas a prestação ocorreu em São Paulo, razão pela qual cabe a exceção de incompetência territorial.</div></div>
+    </div>
+  </div>
+
+</section>
+
+<a class="back" href="../index.html">
     <span class="arw">←</span>
     <span>Voltar ao índice da disciplina</span>
   </a>
@@ -860,5 +998,52 @@
     });
   })();
 </script>
+
+<script>
+(function(){
+  var totalQuestions = document.querySelectorAll('.quiz-card').length;
+  var correctCount = 0;
+  window.selectOption = function(el){
+    if(el.classList.contains('locked')) return;
+    var card = el.closest('.quiz-card');
+    card.querySelectorAll('.q-option').forEach(function(o){ o.classList.remove('selected'); });
+    el.classList.add('selected');
+    card.querySelector('.q-confirm-btn').classList.add('visible');
+  };
+  window.confirmAnswer = function(cardId){
+    var card = document.getElementById(cardId);
+    if(card.classList.contains('answered')) return;
+    var selected = card.querySelector('.q-option.selected');
+    if(!selected) return;
+    var isCorrect = (selected.getAttribute('data-value') === card.getAttribute('data-correct'));
+    card.querySelectorAll('.q-option').forEach(function(opt){
+      opt.classList.add('locked');
+      if(opt.getAttribute('data-value') === card.getAttribute('data-correct')){
+        opt.classList.add('is-correct');
+        opt.querySelector('.q-result-icon').textContent = '✓';
+      }
+      if(opt === selected && !isCorrect){
+        opt.classList.add('is-wrong');
+        opt.querySelector('.q-result-icon').textContent = '✗';
+      }
+    });
+    card.querySelector('.q-confirm-btn').classList.remove('visible');
+    var fb = document.getElementById(cardId+'-feedback');
+    if(isCorrect){
+      fb.className='q-feedback visible correct'; fb.innerHTML='✓ Resposta correta!';
+      card.classList.add('answered-correct'); correctCount++;
+    } else {
+      fb.className='q-feedback visible wrong'; fb.innerHTML='✗ Resposta incorreta. Veja o gabarito comentado abaixo.';
+      card.classList.add('answered-wrong');
+    }
+    card.classList.add('answered');
+    document.getElementById(cardId+'-gabarito').classList.add('visible');
+    document.getElementById('scoreNum').textContent = correctCount+' / '+totalQuestions;
+    document.getElementById('scoreFill').style.width = ((correctCount/totalQuestions)*100)+'%';
+    setTimeout(function(){ document.getElementById(cardId+'-gabarito').scrollIntoView({behavior:'smooth',block:'nearest'}); }, 200);
+  };
+})();
+</script>
+
 </body>
 </html>
