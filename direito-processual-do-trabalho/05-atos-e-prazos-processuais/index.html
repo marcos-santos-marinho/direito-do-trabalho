@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Atos e Prazos Processuais</title>
+<title>Partes e Procuradores</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,9 +18,6 @@
     --accent:#7a2e37;
     --accent-soft:#a2545f;
     --iron:#8b8579;
-    --reform:#4a3a00;
-    --reform-bg:#fdf8e8;
-    --reform-border:#c9a227;
     --line:rgba(27,36,54,.13);
     --line-strong:rgba(27,36,54,.22);
     --display:"Fraunces", Georgia, "Times New Roman", serif;
@@ -99,6 +96,7 @@
     text-transform:uppercase;
     margin-bottom:.5em;
   }
+
   .slides-btn{
     flex-shrink:0;
     display:inline-flex;
@@ -122,6 +120,32 @@
   .slides-btn:hover{ background:var(--accent); transform:translateY(-2px); box-shadow:0 14px 28px -12px rgba(122,46,55,.75); }
   .slides-btn:hover .arw{ transform:translateX(4px); }
   .slides-btn:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:3px; }
+
+  /* ===== VERBETE ===== */
+  .verbete{
+    margin:44px 0 8px;
+    padding:6px 0 6px 30px;
+    border-left:3px solid var(--accent);
+    animation:rise .7s .1s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .verbete .tag{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:block;
+    margin-bottom:14px;
+  }
+  .verbete p{
+    font-family:var(--display);
+    font-weight:400;
+    font-size:clamp(1.2rem,3vw,1.5rem);
+    line-height:1.45;
+    letter-spacing:-.01em;
+    color:var(--ink);
+    margin:0;
+  }
 
   /* ===== SEÇÕES ===== */
   .sec-head{
@@ -152,6 +176,7 @@
   p{ margin-bottom:16px; }
   .body-text{ color:var(--ink-soft); }
 
+  /* ref legal */
   .ref{
     font-family:var(--mono);
     font-size:.8em;
@@ -162,42 +187,8 @@
     white-space:nowrap;
   }
 
-  /* ===== HORÁRIOS (grade visual) ===== */
-  .horarios{
-    margin:18px 0 6px;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:3px;
-  }
-  .hor-col{
-    background:var(--surface);
-    border:1px solid var(--line);
-    border-radius:6px;
-    padding:18px 20px;
-  }
-  .hor-col .h-lbl{
-    font-family:var(--mono);
-    font-size:11px;
-    font-weight:600;
-    letter-spacing:.14em;
-    text-transform:uppercase;
-    color:var(--iron);
-    display:block;
-    margin-bottom:8px;
-  }
-  .hor-col .h-tempo{
-    font-family:var(--display);
-    font-weight:600;
-    font-size:1.5rem;
-    color:var(--accent);
-    display:block;
-    margin-bottom:6px;
-    line-height:1.1;
-  }
-  .hor-col p{ font-size:.9em; color:var(--ink-soft); margin:0; line-height:1.6; }
-
   /* ===== CARDS ===== */
-  .cards{
+  .incisos{
     display:flex;
     flex-direction:column;
     gap:3px;
@@ -233,13 +224,14 @@
     height:100%;
     border-right:1px solid var(--line);
     font-family:var(--mono);
-    font-weight:600;
+    font-weight:700;
     font-size:13px;
     color:var(--accent);
     background:rgba(122,46,55,.05);
+    letter-spacing:.02em;
+    line-height:1.2;
     text-align:center;
     padding:4px;
-    line-height:1.3;
   }
   .card-head{ padding:14px 18px; }
   .card-num{
@@ -255,7 +247,7 @@
   .card-title{
     font-family:var(--display);
     font-weight:600;
-    font-size:1.08rem;
+    font-size:1.05rem;
     line-height:1.2;
     color:var(--ink);
   }
@@ -272,15 +264,37 @@
 
   .card-body{
     display:none;
-    padding:18px 22px 22px;
+    padding:18px 22px 20px;
     border-top:1px solid var(--line);
   }
   .card.open .card-body{ display:block; }
   .card-body > p{ color:var(--ink-soft); font-size:.93em; line-height:1.72; }
 
+  /* súmulas */
+  .sumula{
+    margin:10px 0 4px;
+    padding:11px 16px;
+    border-left:2px solid var(--iron);
+    background:var(--paper);
+    border-radius:0 4px 4px 0;
+    font-size:.88em;
+    color:var(--ink-soft);
+    line-height:1.6;
+  }
+  .sumula strong{
+    font-style:normal;
+    font-family:var(--mono);
+    font-size:.86em;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--iron);
+    display:block;
+    margin-bottom:4px;
+  }
+
   /* sub-bloco */
   .sub{
-    margin:12px 0 6px;
+    margin:12px 0 4px;
     background:var(--paper);
     border:1px solid var(--line);
     border-radius:5px;
@@ -296,10 +310,10 @@
     display:block;
     margin-bottom:9px;
   }
-  .sub p{ font-size:.91em; color:var(--ink-soft); margin-bottom:8px; line-height:1.65; }
+  .sub p{ font-size:.9em; color:var(--ink-soft); margin-bottom:8px; line-height:1.65; }
   .sub p:last-child{ margin:0; }
 
-  /* lista */
+  /* item-list */
   .item-list{
     margin:10px 0 4px;
     display:flex;
@@ -319,37 +333,48 @@
   .item-row:last-child{ border-bottom:none; }
   .item-row .bul{ color:var(--accent); font-family:var(--mono); font-size:.85em; padding-top:2px; }
 
-  /* súmula */
-  .sumula{
-    margin:10px 0 4px;
-    padding:11px 15px;
-    border-left:2px solid var(--iron);
-    background:var(--paper);
-    border-radius:0 4px 4px 0;
-    font-size:.88em;
-    color:var(--ink-soft);
-    line-height:1.6;
+  /* faixa percentual */
+  .faixa{
+    margin:12px 0 8px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:3px;
   }
-  .sumula strong{
-    font-style:normal;
+  .faixa-col{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:5px;
+    padding:14px 16px;
+    text-align:center;
+  }
+  .faixa-col .f-pct{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:2rem;
+    color:var(--accent);
+    line-height:1;
+    display:block;
+  }
+  .faixa-col .f-lbl{
     font-family:var(--mono);
-    font-size:.86em;
-    letter-spacing:.08em;
+    font-size:10.5px;
+    font-weight:600;
+    letter-spacing:.12em;
     text-transform:uppercase;
     color:var(--iron);
     display:block;
-    margin-bottom:4px;
+    margin-top:5px;
   }
 
   /* reforma */
   .reforma{
     margin:12px 0 4px;
     padding:12px 16px;
-    background:var(--reform-bg);
-    border-left:3px solid var(--reform-border);
+    background:#fdf8e8;
+    border-left:3px solid #c9a227;
     border-radius:0 5px 5px 0;
     font-size:.9em;
-    color:var(--reform);
+    color:#4a3a00;
     line-height:1.65;
   }
   .reforma-lbl{
@@ -360,15 +385,15 @@
     text-transform:uppercase;
     margin-bottom:7px;
     display:block;
-    color:var(--reform-border);
+    color:#c9a227;
   }
-  .reforma p{ margin-bottom:8px; color:var(--reform); }
+  .reforma p{ margin-bottom:8px; color:#4a3a00; }
   .reforma p:last-child{ margin:0; }
 
-  /* alerta OAB */
+  /* nota */
   .nota{
-    margin:12px 0 4px;
-    padding:12px 16px;
+    margin:14px 0 4px;
+    padding:13px 17px;
     background:rgba(122,46,55,.06);
     border-left:3px solid var(--accent);
     border-radius:0 5px 5px 0;
@@ -378,154 +403,73 @@
   }
   .nota strong{ color:var(--ink); }
 
-  /* texto DL 779 */
-  .decreto{
-    margin:12px 0 4px;
-    background:var(--surface);
-    border:1px solid var(--line);
-    border-radius:5px;
-    overflow:hidden;
-  }
-  .decreto-head{
-    font-family:var(--mono);
-    font-size:11px;
-    font-weight:600;
-    letter-spacing:.12em;
-    text-transform:uppercase;
-    color:var(--iron);
-    padding:9px 14px;
-    background:rgba(139,133,121,.08);
-    border-bottom:1px solid var(--line);
-  }
-  .decreto-body{
-    padding:12px 16px;
-    font-size:.87em;
-    color:var(--ink-soft);
-    line-height:1.65;
-  }
-  .decreto-body p{ margin-bottom:6px; }
-  .decreto-body p:last-child{ margin:0; }
-
-  /* prazos — linha do tempo (assinatura da seção 5.3) */
-  .prazo-exemplo{
-    margin:14px 0 8px;
-    background:var(--surface);
-    border:1px solid var(--line);
-    border-radius:6px;
-    overflow:hidden;
-  }
-  .pe-head{
-    background:var(--ink);
-    color:#f4f2ec;
-    font-family:var(--mono);
-    font-size:11.5px;
-    font-weight:600;
-    letter-spacing:.14em;
-    text-transform:uppercase;
-    padding:9px 16px;
-  }
-  .pe-body{
-    padding:14px 18px;
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:0;
-  }
-  .pe-step{
-    text-align:center;
-    padding:6px 8px;
-    position:relative;
-  }
-  .pe-step:not(:last-child)::after{
-    content:"→";
-    position:absolute;
-    right:-8px;
-    top:50%;
-    transform:translateY(-50%);
-    color:var(--iron);
-    font-size:14px;
-  }
-  .pe-step .ps-dia{
-    font-family:var(--mono);
-    font-weight:600;
-    font-size:.9rem;
-    color:var(--accent);
-    display:block;
-    margin-bottom:3px;
-  }
-  .pe-step .ps-lbl{
-    font-family:var(--mono);
-    font-size:.74em;
-    color:var(--iron);
-    letter-spacing:.06em;
-    text-transform:uppercase;
-    display:block;
-    line-height:1.3;
-  }
-  .pe-step.destaque .ps-dia{ color:var(--ink); }
-  .pe-step.destaque .ps-lbl{ color:var(--ink-soft); }
-
-  /* custas — tabela valores */
-  .custas-calc{
-    margin:14px 0 6px;
-    border:1px solid var(--line);
-    border-radius:5px;
-    overflow:hidden;
-    background:var(--surface);
-  }
-  .cc-row{
-    display:grid;
-    grid-template-columns:140px 1fr;
-    border-bottom:1px solid var(--line);
-    font-size:.9em;
-  }
-  .cc-row:last-child{ border-bottom:none; }
-  .cc-cat{
-    padding:11px 14px;
-    font-family:var(--mono);
-    font-size:.82em;
-    font-weight:600;
-    letter-spacing:.08em;
-    text-transform:uppercase;
-    color:var(--accent);
-    background:rgba(122,46,55,.05);
-    border-right:1px solid var(--line);
-    display:flex;
-    align-items:center;
-    line-height:1.3;
-  }
-  .cc-val{
-    padding:11px 15px;
-    color:var(--ink-soft);
-    display:flex;
-    align-items:center;
-    line-height:1.55;
-  }
-
-  /* isenções grid */
-  .isencoes{
-    margin:12px 0 4px;
+  /* comparativo */
+  .distincao{
+    margin:18px 0 6px;
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:3px;
   }
-  .is-col{
-    background:var(--paper);
+  .dist-col{
+    background:var(--surface);
     border:1px solid var(--line);
-    border-radius:5px;
-    padding:13px 15px;
+    border-radius:6px;
+    padding:18px 20px;
   }
-  .is-col .i-lbl{
+  .dist-col .d-lbl{
     font-family:var(--mono);
-    font-size:10.5px;
+    font-size:11px;
     font-weight:600;
-    letter-spacing:.12em;
+    letter-spacing:.13em;
     text-transform:uppercase;
-    margin-bottom:8px;
+    margin-bottom:10px;
     display:block;
   }
-  .is-col.sim .i-lbl{ color:var(--accent); }
-  .is-col.nao .i-lbl{ color:var(--iron); }
-  .is-col p{ font-size:.88em; color:var(--ink-soft); margin:0; line-height:1.6; }
+  .dist-col.aj .d-lbl{ color:var(--iron); }
+  .dist-col.bg .d-lbl{ color:var(--accent); }
+  .dist-col p{ font-size:.91em; color:var(--ink-soft); margin:0; line-height:1.65; }
+  .dist-col p + p{ margin-top:8px; }
+
+  /* capacidades (3 colunas) */
+  .capacidades{
+    margin:18px 0 6px;
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+  }
+  .cap{
+    display:grid;
+    grid-template-columns:52px 1fr;
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+    background:var(--surface);
+  }
+  .cap-num{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:var(--mono);
+    font-weight:700;
+    font-size:13px;
+    color:var(--accent);
+    background:rgba(122,46,55,.06);
+    border-right:1px solid var(--line);
+    padding:6px;
+    text-align:center;
+    line-height:1.3;
+  }
+  .cap-body{ padding:16px 20px; }
+  .cap-titulo{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:1.08rem;
+    color:var(--ink);
+    display:block;
+    margin-bottom:8px;
+  }
+  .cap-body p{ font-size:.93em; color:var(--ink-soft); margin:0 0 8px; line-height:1.7; }
+  .cap-body p:last-child{ margin:0; }
 
   /* ===== BOTÃO VOLTAR ===== */
   .back{
@@ -564,12 +508,9 @@
     .masthead{ padding:40px 0 24px; }
     .title-row{ align-items:stretch; }
     .slides-btn{ width:100%; justify-content:center; }
-    .horarios, .isencoes{ grid-template-columns:1fr; }
+    .verbete{ padding-left:20px; }
     .card-btn{ grid-template-columns:44px 1fr 30px; }
-    .pe-body{ grid-template-columns:1fr 1fr; row-gap:12px; }
-    .pe-step:nth-child(2)::after{ display:none; }
-    .cc-row{ grid-template-columns:1fr; }
-    .cc-cat{ border-right:none; border-bottom:1px solid var(--line); }
+    .faixa, .distincao{ grid-template-columns:1fr; }
   }
   @media (prefers-reduced-motion:reduce){
     *{ animation:none !important; scroll-behavior:auto; }
@@ -577,6 +518,56 @@
     .reveal.in{ transition:none; }
     .card-chevron{ transition:none; }
   }
+
+/* ===== QUIZ ===== */
+.quiz-section{ margin-top:56px; padding-top:36px; border-top:2px solid var(--accent); }
+.quiz-header{ display:flex; align-items:center; gap:16px; margin-bottom:32px; }
+.quiz-icon{ width:48px; height:48px; background:var(--accent); color:#fff; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0; font-family:var(--mono); font-weight:700; }
+.quiz-header-text h2{ font-family:var(--display); font-weight:500; font-size:clamp(1.5rem,4vw,1.9rem); margin:0 0 2px; color:var(--ink); }
+.quiz-header-text p{ font-family:var(--mono); font-size:12px; letter-spacing:.15em; text-transform:uppercase; color:var(--iron); margin:0; }
+.quiz-score{ display:flex; align-items:center; gap:16px; background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:14px 20px; margin-bottom:28px; font-family:var(--mono); font-size:13px; color:var(--ink-soft); letter-spacing:.04em; }
+.quiz-score .score-num{ font-size:20px; font-weight:600; color:var(--accent); letter-spacing:0; }
+.quiz-score .score-bar{ flex:1; height:6px; background:var(--line); border-radius:3px; overflow:hidden; }
+.quiz-score .score-fill{ height:100%; background:#166b3a; border-radius:3px; width:0%; transition:width .6s cubic-bezier(.2,.7,.2,1); }
+.quiz-card{ background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:28px 26px 24px; margin-bottom:20px; transition:border-color .3s; }
+.quiz-card.answered-correct{ border-color:#2d9d5a; }
+.quiz-card.answered-wrong{ border-color:#dc4545; }
+.quiz-card .q-num{ font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); margin-bottom:12px; display:block; }
+.quiz-card .q-text{ font-family:var(--body); font-size:17px; line-height:1.65; color:var(--ink); margin-bottom:20px; }
+.q-options{ list-style:none; padding:0; margin:0 0 16px; }
+.q-option{ display:flex; align-items:flex-start; gap:14px; padding:14px 16px; margin-bottom:6px; border:2px solid var(--line); border-radius:8px; cursor:pointer; transition:all .2s; position:relative; }
+.q-option:hover:not(.locked){ background:rgba(122,46,55,.04); border-color:var(--line-strong); }
+.q-option.selected:not(.locked){ background:rgba(122,46,55,.08); border-color:var(--accent); }
+.q-option.locked{ cursor:default; }
+.q-option.locked.is-correct{ background:#e8f5ec; border-color:#2d9d5a; }
+.q-option.locked.is-wrong.selected{ background:#fef2f2; border-color:#dc4545; }
+.q-option.locked:not(.is-correct):not(.selected){ opacity:.55; }
+.q-letter{ font-family:var(--mono); font-size:13px; font-weight:600; color:var(--accent); min-width:28px; height:28px; display:flex; align-items:center; justify-content:center; border:2px solid var(--line-strong); border-radius:6px; flex-shrink:0; margin-top:1px; transition:all .2s; }
+.q-option.selected:not(.locked) .q-letter{ background:var(--accent); color:#fff; border-color:var(--accent); }
+.q-option.locked.is-correct .q-letter{ background:#166b3a; color:#fff; border-color:#166b3a; }
+.q-option.locked.is-wrong.selected .q-letter{ background:#b91c1c; color:#fff; border-color:#b91c1c; }
+.q-option-text{ font-size:16px; line-height:1.55; color:var(--ink-soft); padding-top:3px; }
+.q-result-icon{ position:absolute; right:14px; top:50%; transform:translateY(-50%); font-size:18px; display:none; }
+.q-option.locked.is-correct .q-result-icon, .q-option.locked.is-wrong.selected .q-result-icon{ display:block; }
+.q-feedback{ display:none; align-items:center; gap:10px; padding:12px 16px; border-radius:6px; font-family:var(--mono); font-size:13px; font-weight:600; letter-spacing:.04em; margin-bottom:16px; }
+.q-feedback.visible{ display:flex; }
+.q-feedback.correct{ background:#e8f5ec; color:#166b3a; border:1px solid #2d9d5a; }
+.q-feedback.wrong{ background:#fef2f2; color:#b91c1c; border:1px solid #dc4545; }
+.q-confirm-btn{ display:none; font-family:var(--mono); font-size:13px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; background:var(--accent); color:#fff; border:none; border-radius:6px; padding:12px 24px; cursor:pointer; transition:background .2s, transform .2s; }
+.q-confirm-btn:hover{ background:var(--ink); transform:translateY(-1px); }
+.q-confirm-btn.visible{ display:inline-flex; }
+.q-gabarito{ display:none; margin-top:18px; padding:20px 22px; background:linear-gradient(135deg,rgba(122,46,55,.04),rgba(27,36,54,.03)); border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:0 8px 8px 0; }
+.q-gabarito.visible{ display:block; }
+.q-gabarito .gab-title{ font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); margin-bottom:14px; display:flex; align-items:center; gap:8px; }
+.gab-item{ padding:10px 0; border-bottom:1px solid var(--line); }
+.gab-item:last-child{ border-bottom:none; }
+.gab-letter{ font-family:var(--mono); font-size:12px; font-weight:600; margin-right:4px; }
+.gab-letter.correct-letter{ color:#166b3a; }
+.gab-letter.wrong-letter{ color:#b91c1c; }
+.gab-verdict{ font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; margin-left:4px; }
+.gab-verdict.v-correct{ color:#166b3a; }
+.gab-verdict.v-wrong{ color:#b91c1c; }
+.gab-comment{ font-size:15px; line-height:1.6; color:var(--ink-soft); margin-top:4px; padding-left:28px; }
 </style>
 </head>
 <body>
@@ -587,79 +578,147 @@
     <p class="eyebrow">
       Direito Processual do Trabalho
       <span class="dot">·</span> Unidade 2
-      <span class="dot">·</span> Procedimento
+      <span class="dot">·</span> Sujeitos processuais
     </p>
     <div class="title-row">
       <h1>
-        <span class="art">Item 5</span>
-        Atos e Prazos Processuais
+        <span class="art">Item 4</span>
+        Partes e Procuradores
       </h1>
       <a class="slides-btn"
-         href="https://drive.google.com/file/d/1jptUjpTeccbZfvGQD-RCQ_gEdz8Qi_sb/view?usp=sharing"
+         href="https://drive.google.com/file/d/1Dx_ZX5ywsvkGyHuwFUsWv9n9Nb0R6rrD/view?usp=sharing"
          target="_blank" rel="noopener">
         <span class="ico">▮</span>
         <span>Slides da aula</span>
         <span class="arw">→</span>
       </a>
     </div>
+
+    <div class="verbete">
+      <span class="tag">Bases normativas</span>
+      <p>
+        As regras sobre partes, representação e capacidade processual estão nos
+        <span class="ref">arts. 791–793-D da CLT</span>, no <span class="ref">art. 133 da CF/88</span>
+        e nos <span class="ref">arts. 855-B a 855-E da CLT</span> (Reforma Trabalhista).
+      </p>
+    </div>
   </header>
 
-  <!-- § 5.1 FORMA DOS ATOS -->
+  <!-- § 4.1 CAPACIDADES -->
   <section>
     <div class="sec-head reveal">
-      <span class="num">§ 5.1</span>
-      <h2>Forma e realização dos atos processuais</h2>
+      <span class="num">§ 4.1</span>
+      <h2>Capacidade de ser parte, processual e postulatória</h2>
     </div>
 
-    <!-- horários -->
-    <div class="horarios reveal">
-      <div class="hor-col">
-        <span class="h-lbl">Atos processuais em geral — <span class="ref">art. 770, CLT</span></span>
-        <span class="h-tempo">6h – 20h</span>
-        <p>Dias úteis. A penhora fora desse horário depende de autorização expressa do juiz (não há autorização implícita), sob pena de nulidade.</p>
+    <p class="body-text reveal">
+      Diferenciar as três capacidades é essencial no Exame da OAB, pois são institutos distintos
+      com regras próprias no Direito do Trabalho:
+    </p>
+
+    <div class="capacidades reveal">
+      <div class="cap">
+        <div class="cap-num">Ser<br>parte</div>
+        <div class="cap-body">
+          <span class="cap-titulo">Capacidade de ser parte</span>
+          <p>Relaciona-se à personalidade jurídica — aptidão para adquirir direitos e obrigações. A pessoa física a adquire com o nascimento com vida (<span class="ref">art. 2º, CC</span>); a jurídica, com o registro dos atos constitutivos (<span class="ref">art. 45, CC</span>).</p>
+          <p>Um menor de 14 anos, absolutamente incapaz no Direito Civil, pode ser <em>parte</em> em ação trabalhista — ex.: autor em ação decorrente de contrato de aprendizagem.</p>
+        </div>
       </div>
-      <div class="hor-col">
-        <span class="h-lbl">Audiência — <span class="ref">art. 813, CLT</span></span>
-        <span class="h-tempo">8h – 18h</span>
-        <p>Dias úteis. Não pode ultrapassar 5 horas seguidas, salvo matéria urgente.</p>
+
+      <div class="cap">
+        <div class="cap-num">Proces-<br>sual</div>
+        <div class="cap-body">
+          <span class="cap-titulo">Capacidade processual</span>
+          <p>Relaciona-se à capacidade civil (<span class="ref">arts. 3º e 4º, CC</span>). No Direito do Trabalho, é adquirida aos <strong>18 anos</strong> (<span class="ref">art. 402, CLT</span>).</p>
+          <p>O menor de 14 anos pode ser parte, mas não tem capacidade processual — deve ser representado ou assistido por pais, tutores ou curadores (<span class="ref">arts. 70 e 71, CPC/2015</span>).</p>
+        </div>
+      </div>
+
+      <div class="cap">
+        <div class="cap-num">Postu-<br>latória</div>
+        <div class="cap-body">
+          <span class="cap-titulo">Capacidade postulatória</span>
+          <p>Aptidão para formular pretensões, apresentar defesa e acompanhar o processo. Em regra, é atribuída ao advogado (<span class="ref">art. 133, CF</span>).</p>
+          <p>No processo do trabalho, o advogado é dispensável na maioria das ações pelo <em>jus postulandi</em> (<span class="ref">art. 791, CLT</span>), que permite às partes postular pessoalmente em juízo.</p>
+        </div>
       </div>
     </div>
+  </section>
 
-    <!-- classificação dos atos -->
-    <div class="cards reveal" style="margin-top:16px;">
+  <!-- § 4.2 JUS POSTULANDI -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 4.2</span>
+      <h2>Jus postulandi e representação por advogado</h2>
+    </div>
+
+    <div class="incisos reveal">
 
       <div class="card">
         <button class="card-btn" aria-expanded="false">
-          <div class="card-icon">Atos<br>partes</div>
+          <div class="card-icon">Art.<br>791<br>CLT</div>
           <div class="card-head">
-            <span class="card-num">Sujeitos processuais</span>
-            <span class="card-title">Classificação dos atos processuais</span>
+            <span class="card-num">Jus postulandi</span>
+            <span class="card-title">Faculdade de postular sem advogado</span>
           </div>
           <div class="card-chevron">▾</div>
         </button>
         <div class="card-body" role="region">
+          <p>As partes poderão postular em juízo sem advogado, acompanhando pessoalmente suas reclamações até o final — nas <strong>Varas do Trabalho</strong> e nos <strong>TRTs</strong>. A chegada ao TST (Recurso de Revista, <span class="ref">art. 896, CLT</span>) exige advogado regularmente inscrito na OAB.</p>
           <div class="sub">
-            <span class="sub-lbl">Atos das partes</span>
-            <p>Petição inicial, defesa, interposição de recursos, apresentação de razões finais, entre outros.</p>
-          </div>
-
-          <div class="sub">
-            <span class="sub-lbl">Atos do juiz — pronunciamentos judiciais (<span class="ref" style="text-transform:none;letter-spacing:0">arts. 203 e 204, CPC/2015</span>)</span>
+            <span class="sub-lbl">Hipóteses em que o advogado é obrigatório — Súmula 425, TST</span>
             <div class="item-list">
-              <div class="item-row"><span class="bul">▸</span><span><strong>Despachos</strong> — atos de movimentação do processo, sem conteúdo decisório, que não geram prejuízo às partes e não podem ser impugnados por recurso (<span class="ref">art. 1.001, CPC</span>).</span></div>
-              <div class="item-row"><span class="bul">▸</span><span><strong>Decisões interlocutórias</strong> — decidem questões incidentes no curso do processo, sem analisar o pedido principal; não há recurso imediato no processo do trabalho.</span></div>
-              <div class="item-row"><span class="bul">▸</span><span><strong>Sentenças</strong> — extinguem o processo em primeiro grau. <em>Definitiva</em>: julga o mérito (<span class="ref">art. 487, CPC</span>). <em>Terminativa</em>: extingue sem julgamento do mérito por vício processual (<span class="ref">art. 485, CPC</span>).</span></div>
-              <div class="item-row"><span class="bul">▸</span><span><strong>Acórdãos</strong> — decisões colegiadas dos tribunais (<span class="ref">art. 204, CPC</span>).</span></div>
+              <div class="item-row"><span class="bul">▸</span><span>Mandado de segurança</span></div>
+              <div class="item-row"><span class="bul">▸</span><span>Ação rescisória</span></div>
+              <div class="item-row"><span class="bul">▸</span><span>Ação cautelar</span></div>
+              <div class="item-row"><span class="bul">▸</span><span>Recursos dirigidos ao TST</span></div>
             </div>
           </div>
-
-          <div class="sub" style="margin-top:10px;">
-            <span class="sub-lbl">Atos do escrivão / chefe de secretaria (<span class="ref" style="text-transform:none;letter-spacing:0">art. 206, CPC</span>)</span>
-            <p>Autuação da petição inicial e expedição de notificações. O <span class="ref">art. 841, CLT</span> prevê que o serventuário deve remeter a notificação ao reclamado em até 48 horas após receber a petição inicial.</p>
-          </div>
-
           <div class="nota" style="margin-top:12px;">
-            <strong>IN n. 39/2016, TST:</strong> não se aplica ao processo do trabalho o <span class="ref">art. 190, CPC</span> (negociação processual). Não é possível que as partes negociem a modificação do procedimento ou da forma de prática dos atos processuais.
+            <strong>Atenção:</strong> o <em>jus postulandi</em> <strong>não se aplica</strong> ao
+            procedimento de homologação de acordo extrajudicial (<span class="ref">art. 855-B, CLT</span>),
+            que exige obrigatoriamente advogado distinto para cada parte.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Art.<br>791<br>§ 3º</div>
+          <div class="card-head">
+            <span class="card-num">Mandato tácito — Súmula 383, TST</span>
+            <span class="card-title">Procuração expressa × tácita</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>A procuração pode ser <strong>expressa</strong> (documento em papel) ou <strong>tácita</strong>: nesta, os poderes de representação surgem com a simples inclusão do nome do advogado na ata de audiência, sem "procuração" juntada aos autos.</p>
+          <div class="sub">
+            <span class="sub-lbl">Efeitos do mandato tácito</span>
+            <p><strong>Confere:</strong> poderes gerais para o foro — o advogado pode praticar todos os atos normais do processo, inclusive interpor recurso ordinário.</p>
+            <p><strong>Não confere:</strong> poderes especiais (transigir, substabelecer, receber, dar quitação etc.). O portador de mandato tácito <strong>não pode substabelecer</strong> — OJ 200 da SDI-1 do TST.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Art.<br>843<br>CLT</div>
+          <div class="card-head">
+            <span class="card-num">Reforma Trabalhista</span>
+            <span class="card-title">Representação em audiência — preposto</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>Na audiência, o empregador pode se fazer representar por <strong>preposto</strong> com conhecimento dos fatos — sem exigência de que seja empregado da empresa (<span class="ref">art. 843, § 3º, CLT</span>, alterado pela Reforma).</p>
+          <p>O reclamante (autor) deve <strong>comparecer pessoalmente</strong>. Exceções: nas ações plúrimas e de cumprimento, os autores podem ser representados pelo sindicato; na ação individual, por doença ou motivo ponderoso comprovado, pode ser substituído por colega de mesma profissão ou pelo sindicato.</p>
+          <div class="sumula">
+            <strong>Atenção — Súmula 377, TST (cancelada em 2025)</strong>
+            A exigência de que o preposto fosse empregado da reclamada foi inserida pela antiga
+            Súmula 377 do TST, cancelada expressamente pelo TST em 2025, consolidando o texto do
+            art. 843, § 3º, da CLT.
           </div>
         </div>
       </div>
@@ -667,312 +726,334 @@
     </div>
   </section>
 
-  <!-- § 5.2 COMUNICAÇÃO -->
+  <!-- § 4.3 ACORDO EXTRAJUDICIAL -->
   <section>
     <div class="sec-head reveal">
-      <span class="num">§ 5.2</span>
-      <h2>Comunicação dos atos processuais</h2>
+      <span class="num">§ 4.3</span>
+      <h2>Homologação de acordo extrajudicial</h2>
     </div>
 
     <p class="body-text reveal">
-      No processo civil há distinção entre citação e intimação. No processo do trabalho, as duas
-      formas de comunicação recebem a denominação única de <strong>notificação</strong>.
+      Inserido pela Reforma Trabalhista nos <span class="ref">arts. 855-B a 855-E, CLT</span>,
+      o procedimento de homologação de acordo extrajudicial é bastante cobrado nas provas da OAB.
     </p>
 
-    <div class="cards reveal">
-
+    <div class="incisos reveal">
       <div class="card">
         <button class="card-btn" aria-expanded="false">
-          <div class="card-icon">Art. 841<br>CLT</div>
+          <div class="card-icon">Art.<br>855-B<br>CLT</div>
           <div class="card-head">
-            <span class="card-num">Prazos para prova</span>
-            <span class="card-title">Notificação para a audiência</span>
+            <span class="card-num">Lei n. 13.467/2017</span>
+            <span class="card-title">Requisitos formais do procedimento</span>
           </div>
           <div class="card-chevron">▾</div>
         </button>
         <div class="card-body" role="region">
-          <div class="item-list">
-            <div class="item-row">
-              <span class="bul">▸</span>
-              <span><strong>48h para expedição</strong> — o serventuário deve expedir a notificação postal em até 48h após receber a petição inicial.</span>
+          <p>As partes devem ser representadas por <strong>advogados distintos</strong> — é vedado o advogado comum. O <em>jus postulandi</em> não se aplica a esse procedimento. A petição inicial é <strong>conjunta</strong>, subscrita pelos advogados de cada parte.</p>
+          <div class="sub">
+            <span class="sub-lbl">Pontos críticos para a OAB</span>
+            <div class="item-list">
+              <div class="item-row"><span class="bul">▸</span><span>Advogados <strong>distintos</strong> para cada parte — vedado advogado único</span></div>
+              <div class="item-row"><span class="bul">▸</span><span>Petição <strong>conjunta</strong> — não é ação contenciosa</span></div>
+              <div class="item-row"><span class="bul">▸</span><span>Juiz <strong>não é obrigado</strong> a homologar — Súmula 418, TST</span></div>
+              <div class="item-row"><span class="bul">▸</span><span>Se negada, cabe <strong>recurso ordinário</strong></span></div>
+              <div class="item-row"><span class="bul">▸</span><span><em>Jus postulandi</em> <strong>não se aplica</strong></span></div>
             </div>
-            <div class="item-row">
-              <span class="bul">▸</span>
-              <span><strong>48h para recebimento</strong> (<span class="ref">Súmula 16, TST</span>) — presunção relativa de recebimento em 48h; pode ser desconstruída pelo destinatário.</span>
-            </div>
-            <div class="item-row">
-              <span class="bul">▸</span>
-              <span><strong>5 dias de antecedência</strong> para a audiência, contados do recebimento — prazo mínimo para o reclamado preparar sua defesa.</span>
-            </div>
-            <div class="item-row">
-              <span class="bul">▸</span>
-              <span><strong>20 dias de antecedência</strong> para entes públicos — prazo em quádruplo (5 × 4) por aplicação do <span class="ref">art. 1º, DL n. 779/69</span>.</span>
-            </div>
-          </div>
-
-          <div class="decreto" style="margin-top:12px;">
-            <div class="decreto-head">DL n. 779/69 — privilégios processuais dos entes públicos</div>
-            <div class="decreto-body">
-              <p>Os privilégios a seguir aplicam-se à União, Estados, DF, Municípios e autarquias/fundações de direito público que não explorem atividade econômica:</p>
-              <p><strong>I</strong> — presunção relativa de validade dos recibos de quitação ou pedidos de demissão, ainda que não homologados;</p>
-              <p><strong>II</strong> — quádruplo do prazo fixado no art. 841 <em>in fine</em> da CLT (prazo para defesa = 20 dias);</p>
-              <p><strong>III</strong> — prazo em dobro para recurso;</p>
-              <p><strong>IV</strong> — dispensa de depósito para interposição de recurso;</p>
-              <p><strong>V</strong> — recurso ordinário ex officio das decisões total ou parcialmente contrárias;</p>
-              <p><strong>VI</strong> — pagamento de custas ao final (a União não as paga).</p>
-            </div>
-          </div>
-
-          <div class="nota" style="margin-top:12px;">
-            O <span class="ref">art. 183, CPC</span> prevê prazo em dobro para a Fazenda Pública, mas no processo do trabalho continua-se a aplicar o prazo em quádruplo do DL n. 779/69, por ser norma especial que afasta a aplicação subsidiária do CPC.
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- § 4.4 HONORÁRIOS DE SUCUMBÊNCIA -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 4.4</span>
+      <h2>Honorários advocatícios de sucumbência</h2>
+    </div>
+
+    <div class="incisos reveal">
 
       <div class="card">
         <button class="card-btn" aria-expanded="false">
-          <div class="card-icon">Outras<br>regras</div>
+          <div class="card-icon">Art.<br>791-A<br>CLT</div>
           <div class="card-head">
-            <span class="card-num">Modalidades e destinatários</span>
-            <span class="card-title">Formas de notificação</span>
+            <span class="card-num">Reforma Trabalhista — Lei n. 13.467/2017</span>
+            <span class="card-title">Sistema da mera sucumbência</span>
           </div>
           <div class="card-chevron">▾</div>
         </button>
         <div class="card-body" role="region">
-          <div class="item-list">
-            <div class="item-row"><span class="bul">▸</span><span><strong>Postal</strong> (regra) — mais rápida e econômica.</span></div>
-            <div class="item-row"><span class="bul">▸</span><span><strong>Edital</strong> — quando a notificação postal não for possível ou o destinatário criar dificuldades. Vedada no procedimento sumaríssimo (<span class="ref">art. 852-B, II, CLT</span>).</span></div>
-            <div class="item-row"><span class="bul">▸</span><span><strong>Oficial de Justiça</strong> — restrito, em regra, ao processo de execução (<span class="ref">art. 880, CLT</span>), com realização pessoal do ato.</span></div>
+          <p>A Reforma abandonou o sistema anterior (que exigia assistência sindical) e adotou o sistema da <strong>mera sucumbência</strong> — quem perde, paga. Os honorários são devidos ao advogado da parte vencedora, ainda que atue em causa própria.</p>
+          <div class="faixa">
+            <div class="faixa-col">
+              <span class="f-pct">5%</span>
+              <span class="f-lbl">Mínimo</span>
+            </div>
+            <div class="faixa-col">
+              <span class="f-pct">15%</span>
+              <span class="f-lbl">Máximo</span>
+            </div>
           </div>
-
+          <p style="font-size:.88em;color:var(--iron);margin-top:4px;margin-bottom:14px;">
+            Percentual sobre o valor da liquidação, do proveito econômico obtido ou do valor atualizado da causa.
+          </p>
+          <div class="sub">
+            <span class="sub-lbl">Critérios de fixação — § 2º, art. 791-A, CLT</span>
+            <div class="item-list">
+              <div class="item-row"><span class="bul">▸</span><span>Grau de zelo do profissional</span></div>
+              <div class="item-row"><span class="bul">▸</span><span>Lugar da prestação dos serviços</span></div>
+              <div class="item-row"><span class="bul">▸</span><span>Natureza e importância da causa</span></div>
+              <div class="item-row"><span class="bul">▸</span><span>Trabalho realizado e tempo exigido</span></div>
+            </div>
+          </div>
           <div class="sumula" style="margin-top:12px;">
-            <strong>Súmula 427, TST</strong>
-            Havendo pedido de intimação exclusiva de um advogado específico, a intimação de outro
-            pode gerar nulidade, desde que demonstrado o prejuízo sofrido pela parte (ex.: recurso
-            não interposto por não recebimento da intimação).
-          </div>
-
-          <div class="sumula">
-            <strong>Art. 825, CLT — testemunhas</strong>
-            As testemunhas não são previamente intimadas — devem comparecer à audiência mediante
-            convite da parte. Se não comparecerem, poderão ser intimadas para audiência posterior.
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- § 5.3 PRAZOS -->
-  <section>
-    <div class="sec-head reveal">
-      <span class="num">§ 5.3</span>
-      <h2>Prazos processuais</h2>
-    </div>
-
-    <!-- exemplo de contagem (assinatura) -->
-    <div class="prazo-exemplo reveal">
-      <div class="pe-head">Exemplo de contagem — intimação recebida na quinta-feira</div>
-      <div class="pe-body">
-        <div class="pe-step">
-          <span class="ps-dia">Qui</span>
-          <span class="ps-lbl">Início do prazo (dia da ciência — excluído)</span>
-        </div>
-        <div class="pe-step destaque">
-          <span class="ps-dia">Sex</span>
-          <span class="ps-lbl">Início da contagem (1º dia útil seguinte)</span>
-        </div>
-        <div class="pe-step">
-          <span class="ps-dia">Sáb · Dom</span>
-          <span class="ps-lbl">Não contados (dias úteis apenas)</span>
-        </div>
-        <div class="pe-step destaque">
-          <span class="ps-dia">Seg…</span>
-          <span class="ps-lbl">Contagem continua (2º dia útil…)</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="cards reveal" style="margin-top:4px;">
-
-      <div class="card">
-        <button class="card-btn" aria-expanded="false">
-          <div class="card-icon">Art. 775<br>CLT</div>
-          <div class="card-head">
-            <span class="card-num">Regras gerais</span>
-            <span class="card-title">Contagem dos prazos</span>
-          </div>
-          <div class="card-chevron">▾</div>
-        </button>
-        <div class="card-body" role="region">
-          <p>
-            O início do prazo é o dia da ciência do ato (excluído da contagem). O início da
-            contagem é o dia útil seguinte. Exclui-se o primeiro dia e inclui-se o último
-            (<span class="ref">art. 775, CLT</span>).
-          </p>
-
-          <div class="reforma">
-            <span class="reforma-lbl">⚠ Reforma Trabalhista — Lei n. 13.467/2017</span>
-            <p>
-              O <span class="ref">art. 775, CLT</span> passou a prever a contagem apenas em
-              <strong>dias úteis</strong>, igualando o processo do trabalho ao processo civil.
-              Sábados, domingos e feriados não são mais contados, mesmo no curso do prazo.
-            </p>
-          </div>
-
-          <div class="sub" style="margin-top:12px;">
-            <span class="sub-lbl">Regras específicas</span>
-            <div class="item-list">
-              <div class="item-row">
-                <span class="bul">▸</span>
-                <span>
-                  <strong>Intimação recebida no sábado</strong> (<span class="ref">Súmula 262, TST</span>):
-                  presume-se recebida na segunda-feira (1º dia útil), sendo a contagem iniciada na
-                  terça-feira (dia subsequente). Se a segunda for feriado, presume-se recebida no
-                  próximo dia útil.
-                </span>
-              </div>
-              <div class="item-row">
-                <span class="bul">▸</span>
-                <span>
-                  <strong>Prazo em quádruplo para entes públicos</strong> (DL n. 779/69): o prazo de
-                  5 dias do <span class="ref">art. 841, CLT</span> passa a ser 20 dias quando o
-                  reclamado for ente de direito público. O prazo em dobro do <span class="ref">art. 183,
-                  CPC</span> não se aplica ao processo do trabalho.
-                </span>
-              </div>
-              <div class="item-row">
-                <span class="bul">▸</span>
-                <span>
-                  <strong>Litisconsórcio</strong> (<span class="ref">OJ n. 310, SDI-1/TST</span>):
-                  não se aplica o prazo em dobro para litisconsortes com diferentes procuradores
-                  (<span class="ref">art. 229, CPC</span>), por ser incompatível com a celeridade
-                  do processo do trabalho. Os prazos permanecem simples.
-                </span>
-              </div>
-              <div class="item-row">
-                <span class="bul">▸</span>
-                <span>
-                  <strong>Suspensão de fim de ano</strong> (<span class="ref">art. 775-A, CLT</span>):
-                  os prazos são suspensos de <strong>20 de dezembro</strong> a <strong>20 de
-                  janeiro</strong>. Não se realizam audiências nem sessões de julgamento no período.
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- § 5.4 CUSTAS -->
-  <section>
-    <div class="sec-head reveal">
-      <span class="num">§ 5.4</span>
-      <h2>Custas processuais</h2>
-    </div>
-
-    <p class="body-text reveal">
-      Não há custas prévias na Justiça do Trabalho — o vencido arca ao final
-      (<span class="ref">art. 789, § 1º, CLT</span>). Qualquer valor somente é devido após o
-      trânsito em julgado ou, excepcionalmente, como preparo recursal.
-    </p>
-
-    <div class="cards reveal">
-
-      <div class="card">
-        <button class="card-btn" aria-expanded="false">
-          <div class="card-icon">Art. 789<br>CLT</div>
-          <div class="card-head">
-            <span class="card-num">Cálculo e limites</span>
-            <span class="card-title">Cálculo das custas</span>
-          </div>
-          <div class="card-chevron">▾</div>
-        </button>
-        <div class="card-body" role="region">
-          <p>A alíquota é de <strong>2%</strong> calculada sobre:</p>
-
-          <div class="custas-calc">
-            <div class="cc-row">
-              <div class="cc-cat">Condenação</div>
-              <div class="cc-val">2% do valor da condenação — pago pelo vencido.</div>
-            </div>
-            <div class="cc-row">
-              <div class="cc-cat">Improcedência / extinção sem mérito</div>
-              <div class="cc-val">2% do valor da causa — pago pelo autor.</div>
-            </div>
-            <div class="cc-row">
-              <div class="cc-cat">Acordo</div>
-              <div class="cc-val">2% do valor do acordo — metade para cada parte, salvo cláusula expressa em contrário no acordo.</div>
-            </div>
-            <div class="cc-row">
-              <div class="cc-cat">Mínimo</div>
-              <div class="cc-val">R$ 10,64</div>
-            </div>
-            <div class="cc-row">
-              <div class="cc-cat">Máximo</div>
-              <div class="cc-val">4 vezes o teto dos benefícios do RGPS (inserido pela Reforma Trabalhista)</div>
-            </div>
-          </div>
-
-          <div class="sub" style="margin-top:14px;">
-            <span class="sub-lbl">Isenções — art. 790-A, CLT</span>
-            <div class="isencoes">
-              <div class="is-col sim">
-                <span class="i-lbl">Isentos</span>
-                <p>Beneficiários da justiça gratuita; entes de direito público (União, Estados, Municípios, DF, autarquias e fundações); Ministério Público do Trabalho; Correios; entes estrangeiros.</p>
-              </div>
-              <div class="is-col nao">
-                <span class="i-lbl">Não isentos</span>
-                <p>Entidades fiscalizadoras das profissões (OAB, CREA, CRA etc.); entes públicos de direito privado (sociedades de economia mista e empresas públicas).</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <button class="card-btn" aria-expanded="false">
-          <div class="card-icon">Art. 790-B<br>CLT</div>
-          <div class="card-head">
-            <span class="card-num">Perícia</span>
-            <span class="card-title">Honorários periciais e do assistente técnico</span>
-          </div>
-          <div class="card-chevron">▾</div>
-        </button>
-        <div class="card-body" role="region">
-          <p>
-            Os honorários periciais são devidos ao final — é vedada a cobrança prévia
-            (<span class="ref">OJ n. 98, SDI-2/TST</span> e <span class="ref">art. 790-B, § 3º,
-            CLT</span>). São pagos pelo sucumbente na pretensão objeto da perícia.
-          </p>
-          <p>
-            Se o sucumbente for beneficiário da justiça gratuita e não tiver créditos nem
-            condições financeiras, a responsabilidade é da <strong>União</strong>
-            (<span class="ref">Súmula 457, TST</span>). O valor pode ser parcelado
-            (<span class="ref">§ 2º, art. 790-B, CLT</span>).
-          </p>
-
-          <div class="sumula">
             <strong>ADI n. 5.766 — STF (2021)</strong>
-            A condenação do beneficiário da justiça gratuita ao pagamento de honorários periciais
-            é inconstitucional — viola o princípio do acesso à Justiça.
+            O beneficiário da justiça gratuita não será condenado ao pagamento de honorários
+            advocatícios de sucumbência — o art. 791-A, § 4º, CLT foi declarado inconstitucional
+            por conflitar com o princípio do acesso à Justiça.
           </div>
-
-          <div class="sub" style="margin-top:12px;">
-            <span class="sub-lbl">Honorários do assistente técnico</span>
-            <p>
-              São devidos <strong>pela parte que o contratou</strong>, independentemente do
-              resultado da perícia, pois a contratação é facultativa (<span class="ref">Súmula
-              341, TST</span>). O assistente técnico acompanha a perícia do perito nomeado pelo
-              juiz e apresenta laudo paralelo — não é indispensável.
-            </p>
+          <div class="reforma" style="margin-top:12px;">
+            <span class="reforma-lbl">⚠ Vigência — IN n. 41/2018, TST</span>
+            <p>A condenação somente pode ocorrer nos processos ajuizados <strong>após 11-11-2017</strong>. Honorários periciais omitidos na conta de liquidação podem ser incluídos a qualquer tempo, por serem condenações implícitas — Súmula 211 do TST.</p>
           </div>
         </div>
       </div>
 
     </div>
+  </section>
+
+  <!-- § 4.5 BENEFÍCIOS PROCESSUAIS -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 4.5</span>
+      <h2>Assistência judiciária × justiça gratuita</h2>
+    </div>
+
+    <div class="distincao reveal">
+      <div class="dist-col aj">
+        <span class="d-lbl">Assistência judiciária gratuita</span>
+        <p><strong>Base:</strong> art. 14, Lei n. 5.584/70</p>
+        <p><strong>Prestada por:</strong> Sindicato</p>
+        <p><strong>Filiação:</strong> não exigida</p>
+        <p><strong>Limite de renda:</strong> até 2 salários mínimos (ou declaração de hipossuficiência)</p>
+        <p><strong>Efeito:</strong> isenção de custas + honorários periciais pagos pela União (Súmula 457, TST)</p>
+      </div>
+      <div class="dist-col bg">
+        <span class="d-lbl">Benefício da justiça gratuita</span>
+        <p><strong>Base:</strong> art. 790, §§ 3º e 4º, CLT</p>
+        <p><strong>Concedido por:</strong> juiz (de ofício ou a requerimento)</p>
+        <p><strong>Quem pode pedir:</strong> qualquer parte (com ou sem advogado)</p>
+        <p><strong>Limite de renda:</strong> até 40% do teto do RGPS (presumido) ou declaração</p>
+        <p><strong>Efeito:</strong> isenção de custas + vedação à cobrança de honorários (ADI 5.766)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== QUIZ ===== -->
+  <section class="quiz-section" id="quiz">
+    <div class="quiz-header">
+      <div class="quiz-icon">?</div>
+      <div class="quiz-header-text">
+        <h2>Teste seus conhecimentos</h2>
+        <p>9 questões — Partes, Procuradores e Honorários</p>
+      </div>
+    </div>
+
+    <div class="quiz-score" id="quizScore">
+      <span>Acertos: <span class="score-num" id="scoreNum">0 / 9</span></span>
+      <div class="score-bar"><div class="score-fill" id="scoreFill"></div></div>
+    </div>
+
+    <!-- Q1 -->
+    <div class="quiz-card" id="q1" data-correct="c">
+      <span class="q-num">Questão 1 de 9 — XX Exame de Ordem Unificado · FGV</span>
+      <div class="q-text">Paulo é juridicamente pobre, razão pela qual teve a gratuidade de justiça deferida em sede de reclamação trabalhista ajuizada em face de seu empregador, na qual pleiteava adicional de periculosidade. No curso do processo, o perito constatou que o local de trabalho não era perigoso. Assinale a opção que indica a quem cabe custear os honorários periciais.</div>
+      <ul class="q-options">
+        <li class="q-option" data-value="a" onclick="selectOption(this)"><span class="q-letter">A</span><span class="q-option-text">Paulo deverá realizar o pagamento, pois honorários periciais não se incluem na gratuidade de justiça, que alcança apenas as custas.</span><span class="q-result-icon"></span></li>
+        <li class="q-option" data-value="b" onclick="selectOption(this)"><span class="q-letter">B</span><span class="q-option-text">A sociedade empresária deverá pagar a perícia, já que Paulo não tem condições de fazê-lo.</span><span class="q-result-icon"></span></li>
+        <li class="q-option" data-value="c" onclick="selectOption(this)"><span class="q-letter">C</span><span class="q-option-text">A União será a responsável pelo pagamento dos honorários periciais.</span><span class="q-result-icon"></span></li>
+        <li class="q-option" data-value="d" onclick="selectOption(this)"><span class="q-letter">D</span><span class="q-option-text">O perito deverá se habilitar como credor de Paulo até que esse tenha condição de custear a perícia.</span><span class="q-result-icon"></span></li>
+      </ul>
+      <div class="q-feedback" id="q1-feedback"></div>
+      <button class="q-confirm-btn" id="q1-btn" onclick="confirmAnswer('q1')">Confirmar resposta</button>
+      <div class="q-gabarito" id="q1-gabarito">
+        <div class="gab-title">&#128218; Gabarito comentado — Honorários periciais e justiça gratuita</div>
+        <div class="gab-item"><span class="gab-letter wrong-letter">A)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">Os honorários periciais entram no conceito de custas processuais e estão abrangidos pela isenção da gratuidade de justiça — Paulo não paga.</div></div>
+        <div class="gab-item"><span class="gab-letter wrong-letter">B)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">A responsabilidade da empresa pelo pagamento decorreria de sua sucumbência no pedido objeto da perícia, o que não ocorreu — Paulo perdeu no ponto do adicional de periculosidade.</div></div>
+        <div class="gab-item"><span class="gab-letter correct-letter">C)</span><span class="gab-verdict v-correct">Correta.</span><div class="gab-comment">Quando o sucumbente na pretensão objeto da perícia é beneficiário da justiça gratuita, a União arca com os honorários periciais — Súmula 457 do TST. Paulo perdeu no mérito da perícia, mas tem gratuidade, logo a União paga.</div></div>
+        <div class="gab-item"><span class="gab-letter wrong-letter">D)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">A Súmula 457 do TST resolve de forma objetiva: pagamento imediato pela União, sem habilitação de crédito contra a parte gratuita.</div></div>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="quiz-card" id="q2" data-correct="a">
+      <span class="q-num">Questão 2 de 9 — XXV Exame de Ordem Unificado · FGV</span>
+      <div class="q-text">Silvio contratou você como advogado para ajuizar ação trabalhista em face do empregador. Entretanto, na audiência, o juiz constatou que não havia procuração nos autos. Diante disso, você requereu fosse efetivado registro em ata de audiência no qual Silvio o constituía como procurador. Silvio anuiu com o requerimento. Com base na hipótese narrada, nos termos da CLT, assinale a afirmativa correta.</div>
+      <ul class="q-options">
+        <li class="q-option" data-value="a" onclick="selectOption(this)"><span class="q-letter">A</span><span class="q-option-text">O mandato, no caso, é válido e os poderes são apenas para o foro em geral.</span><span class="q-result-icon"></span></li>
+        <li class="q-option" data-value="b" onclick="selectOption(this)"><span class="q-letter">B</span><span class="q-option-text">O mandato, no caso, é inválido, e seria necessário e obrigatório o requerimento de prazo para juntada de procuração.</span><span class="q-result-icon"></span></li>
+        <li class="q-option" data-value="c" onclick="selectOption(this)"><span class="q-letter">C</span><span class="q-option-text">O mandato, no caso, é válido e os poderes são para o foro em geral, bem como os especiais, dentre eles os poderes para transigir.</span><span class="q-result-icon"></span></li>
+        <li class="q-option" data-value="d" onclick="selectOption(this)"><span class="q-letter">D</span><span class="q-option-text">O mandato é válido apenas para a representação na audiência, devendo os demais atos serem regularizados e juntada a procuração para atos futuros.</span><span class="q-result-icon"></span></li>
+      </ul>
+      <div class="q-feedback" id="q2-feedback"></div>
+      <button class="q-confirm-btn" id="q2-btn" onclick="confirmAnswer('q2')">Confirmar resposta</button>
+      <div class="q-gabarito" id="q2-gabarito">
+        <div class="gab-title">&#128218; Gabarito comentado — Mandato tácito</div>
+        <div class="gab-item"><span class="gab-letter correct-letter">A)</span><span class="gab-verdict v-correct">Correta.</span><div class="gab-comment">Trata-se do mandato tácito (art. 791, § 3º, CLT): a inclusão do nome do advogado na ata de audiência é suficiente, sem procuração em papel. Confere apenas os poderes gerais para o foro — o advogado pode inclusive interpor recurso (Súmula 383, TST), mas não pode substabelecer nem transigir (OJ 200 da SDI-1).</div></div>
+        <div class="gab-item"><span class="gab-letter wrong-letter">B)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">O mandato tácito é plenamente válido — não há qualquer irregularidade que exija prazo para juntada de procuração em papel.</div></div>
+        <div class="gab-item"><span class="gab-letter wrong-letter">C)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">Os poderes especiais (transigir, substabelecer, receber, dar quitação) não são conferidos pelo mandato tácito — apenas os gerais para o foro.</div></div>
+        <div class="gab-item"><span class="gab-letter wrong-letter">D)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">O mandato tácito vale para todos os atos normais do processo, não apenas para a audiência em que foi constituído. Não há necessidade de regularização posterior.</div></div>
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="quiz-card" id="q3" data-correct="b">
+      <span class="q-num">Questão 3 de 9 — XXVI Exame de Ordem Unificado · FGV</span>
+      <div class="q-text">Gustavo foi empregado da empresa Pizzaria Massa Deliciosa. Após a extinção do seu contrato, ocorrida em julho de 2018, as partes confeccionaram um termo de acordo extrajudicial que levaram à Justiça do Trabalho para homologação. O acordo foi assinado pelas partes e por um advogado comum às partes. Considerando o caso narrado, segundo os ditames da CLT, assinale a afirmativa correta.</div>
+      <ul class="q-options">
+        <li class="q-option" data-value="a" onclick="selectOption(this)"><span class="q-letter">A</span><span class="q-option-text">Viável a homologação do acordo extrajudicial, porque fruto de manifestação de vontade das partes envolvidas.</span><span class="q-result-icon"></span></li>
+        <li class="q-option" data-value="b" onclick="selectOption(this)"><span class="q-letter">B</span><span class="q-option-text">Não será possível a homologação, porque empregado e empregador não podem ter advogado comum.</span><span class="q-result-icon"></span></li>
+        <li class="q-option" data-value="c" onclick="selectOption(this)"><span class="q-letter">C</span><span class="q-option-text">Impossível a pretensão, porque, na Justiça do Trabalho, não existe procedimento especial de jurisdição voluntária, mas apenas contenciosa.</span><span class="q-result-icon"></span></li>
+        <li class="q-option" data-value="d" onclick="selectOption(this)"><span class="q-letter">D</span><span class="q-option-text">Para a validade do acordo proposto, seria necessário que o empregado ganhasse mais de duas vezes o teto da Previdência Social.</span><span class="q-result-icon"></span></li>
+      </ul>
+      <div class="q-feedback" id="q3-feedback"></div>
+      <button class="q-confirm-btn" id="q3-btn" onclick="confirmAnswer('q3')">Confirmar resposta</button>
+      <div class="q-gabarito" id="q3-gabarito">
+        <div class="gab-title">&#128218; Gabarito comentado — Homologação de acordo extrajudicial</div>
+        <div class="gab-item"><span class="gab-letter wrong-letter">A)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">A manifestação de vontade não é suficiente — o art. 855-B, CLT exige que cada parte seja representada por advogado próprio. O vício formal impede a homologação.</div></div>
+        <div class="gab-item"><span class="gab-letter correct-letter">B)</span><span class="gab-verdict v-correct">Correta.</span><div class="gab-comment">O art. 855-B da CLT é expresso: as partes devem ser obrigatoriamente assistidas por advogados distintos. Advogado único para ambas as partes é vício insanável que impede a homologação.</div></div>
+        <div class="gab-item"><span class="gab-letter wrong-letter">C)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">O procedimento de homologação de acordo extrajudicial foi justamente incluído pela Reforma como hipótese de jurisdição voluntária na Justiça do Trabalho.</div></div>
+        <div class="gab-item"><span class="gab-letter wrong-letter">D)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">Não há na CLT qualquer norma relacionando a homologação ao valor recebido pelo obreiro. O requisito formal é a representação por advogados distintos.</div></div>
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="quiz-card" id="q4" data-correct="b">
+      <span class="q-num">Questão 4 de 9 — XXXI Exame de Ordem Unificado · FGV</span>
+      <div class="q-text">José da Silva, que trabalhou em determinada sociedade empresária de 20-11-2018 a 30-4-2019, recebeu apenas parcialmente as verbas rescisórias. A sociedade empresária pretende pagar o que entende devido, mas também quer evitar uma possível ação trabalhista. Sobre a hipótese, na qualidade de advogado(a) da sociedade empresária, assinale a afirmativa correta.</div>
+      <ul class="q-options">
+        <li class="q-option" data-value="a" onclick="selectOption(this)"><span class="q-letter">A</span><span class="q-option-text">Deverá ser indicado e custeado um advogado para o empregado, a fim de que seja ajuizada uma ação para, então, comparecerem para um acordo já entabulado no valor pretendido pela empresa.</span><span class="q-result-icon"></span></li>
+        <li class="q-option" data-value="b" onclick="selectOption(this)"><span class="q-letter">B</span><span class="q-option-text">Deverá ser instaurado um processo de homologação de acordo extrajudicial, proposto em petição conjunta, mas com cada parte representada obrigatoriamente por advogado diferente.</span><span class="q-result-icon"></span></li>
+        <li class="q-option" data-value="c" onclick="selectOption(this)"><span class="q-letter">C</span><span class="q-option-text">Deverá ser instaurado um processo de homologação de acordo extrajudicial, proposto em petição conjunta, mas cada parte poderá ser representada por advogado, ou não, já que vigora o jus postulandi.</span><span class="q-result-icon"></span></li>
+        <li class="q-option" data-value="d" onclick="selectOption(this)"><span class="q-letter">D</span><span class="q-option-text">Deverá ser instaurado um processo de homologação de acordo extrajudicial, proposto em petição conjunta, mas com advogado único representando ambas as partes, por se tratar de acordo extrajudicial.</span><span class="q-result-icon"></span></li>
+      </ul>
+      <div class="q-feedback" id="q4-feedback"></div>
+      <button class="q-confirm-btn" id="q4-btn" onclick="confirmAnswer('q4')">Confirmar resposta</button>
+      <div class="q-gabarito" id="q4-gabarito">
+        <div class="gab-title">&#128218; Gabarito comentado — Acordo extrajudicial</div>
+        <div class="gab-item"><span class="gab-letter wrong-letter">A)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">Não há necessidade de ajuizar reclamação para depois acordar — o art. 855-B da CLT prevê o procedimento de homologação extrajudicial direto, sem ação prévia.</div></div>
+        <div class="gab-item"><span class="gab-letter correct-letter">B)</span><span class="gab-verdict v-correct">Correta.</span><div class="gab-comment">A alternativa B é correta: petição conjunta, mas cada parte com advogado distinto. O art. 855-B da CLT exige obrigatoriamente advogados diferentes — o jus postulandi não se aplica e o advogado único é vedado.</div></div>
+        <div class="gab-item"><span class="gab-letter wrong-letter">C)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">O jus postulandi não se aplica ao procedimento de homologação de acordo extrajudicial — o art. 855-B impõe representação obrigatória por advogado.</div></div>
+        <div class="gab-item"><span class="gab-letter wrong-letter">D)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">O advogado não pode ser único — o art. 855-B da CLT prevê que as partes devem ser representadas por advogados distintos.</div></div>
+      </div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="quiz-card" id="q5" data-correct="c">
+      <span class="q-num">Questão 5 de 9 — XXXI Exame de Ordem Unificado · FGV</span>
+      <div class="q-text">Você foi contratado(a) para atuar nas seguintes ações trabalhistas: (i) uma ação de cumprimento, como advogado da parte autora; (ii) uma reclamação plúrima, também como advogado da parte autora; (iii) uma reclamação trabalhista movida por João, ex-empregado, autor da ação; (iv) uma reclamação trabalhista por uma sociedade empresária, ré na ação. Sobre essas ações, de acordo com a legislação trabalhista em vigor, assinale a afirmativa correta.</div>
+      <ul class="q-options">
+        <li class="q-option" data-value="a" onclick="selectOption(this)"><span class="q-letter">A</span><span class="q-option-text">Tanto na ação de cumprimento como na plúrima, todos os empregados autores deverão obrigatoriamente estar presentes. O mesmo com João. A sociedade poderá se representar por preposto não empregado.</span><span class="q-result-icon"></span></li>
+        <li class="q-option" data-value="b" onclick="selectOption(this)"><span class="q-letter">B</span><span class="q-option-text">O sindicato poderá representar os empregados nas ações plúrima e de cumprimento. João deverá estar presente em qualquer hipótese, de forma obrigatória. A sociedade se representa por preposto que não precisa ser empregado.</span><span class="q-result-icon"></span></li>
+        <li class="q-option" data-value="c" onclick="selectOption(this)"><span class="q-letter">C</span><span class="q-option-text">Nas ações plúrima e de cumprimento, a parte autora poderá se fazer representar pelo Sindicato. João deverá estar presente, mas, por doença ou motivo ponderoso comprovado, poderá ser representado por colega de profissão ou pelo sindicato. Na ação em face da sociedade, o preposto não precisará ser empregado da ré.</span><span class="q-result-icon"></span></li>
+        <li class="q-option" data-value="d" onclick="selectOption(this)"><span class="q-letter">D</span><span class="q-option-text">O sindicato poderá representar os empregados nas ações plúrima e de cumprimento. João poderá se fazer representar em caso de doença. Na ação em face da sociedade, o preposto deverá, obrigatoriamente, ser empregado da ré.</span><span class="q-result-icon"></span></li>
+      </ul>
+      <div class="q-feedback" id="q5-feedback"></div>
+      <button class="q-confirm-btn" id="q5-btn" onclick="confirmAnswer('q5')">Confirmar resposta</button>
+      <div class="q-gabarito" id="q5-gabarito">
+        <div class="gab-title">&#128218; Gabarito comentado — Representação em audiência</div>
+        <div class="gab-item"><span class="gab-letter wrong-letter">A)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">Nas ações plúrimas e de cumprimento, os autores podem ser representados pelo sindicato (art. 843, CLT), não precisando comparecer pessoalmente.</div></div>
+        <div class="gab-item"><span class="gab-letter wrong-letter">B)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">João não precisa estar obrigatoriamente presente em qualquer situação — o art. 843 da CLT prevê que, havendo doença ou motivo ponderoso comprovado, pode ser substituído por colega de profissão ou pelo sindicato.</div></div>
+        <div class="gab-item"><span class="gab-letter correct-letter">C)</span><span class="gab-verdict v-correct">Correta.</span><div class="gab-comment">Resumo correto do art. 843 da CLT: (1) ações plúrimas/cumprimento → sindicato pode representar; (2) ação individual → autor presente, mas doença/motivo ponderoso permite substituição; (3) preposto do réu → não precisa ser empregado (art. 843, § 3º, Reforma).</div></div>
+        <div class="gab-item"><span class="gab-letter wrong-letter">D)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">O proposto não mais precisa ser empregado da ré. O art. 843, § 3º, CLT (alterado pela Reforma) e o cancelamento da Súmula 377 do TST em 2025 consolidam essa posição.</div></div>
+      </div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="quiz-card" id="q6" data-correct="d">
+      <span class="q-num">Questão 6 de 9 — 38º Exame de Ordem Unificado · FGV</span>
+      <div class="q-text">Você advoga para um ex-empregado em sede de reclamação trabalhista em face de uma sociedade empresária e também em face dos sócios desta. A parte ré deduziu fatos manifesta e notoriamente inverídicos em juízo; vem utilizando meios de retardar o desfecho processual, arrolando testemunhas não localizadas e provocando adiamentos desnecessários de audiências. Seu cliente perguntou se as condutas poderiam ensejar condenação em litigância de má-fé. De acordo com o texto da CLT, assinale a afirmativa correta.</div>
+      <ul class="q-options">
+        <li class="q-option" data-value="a" onclick="selectOption(this)"><span class="q-letter">A</span><span class="q-option-text">Não é vedado à parte promover incidentes processuais sem fundamento com intuito de retardar o andamento processual, já que o amplo direito de defesa é assegurado constitucionalmente.</span><span class="q-result-icon"></span></li>
+        <li class="q-option" data-value="b" onclick="selectOption(this)"><span class="q-letter">B</span><span class="q-option-text">Os valores da multa de litigância de má-fé sempre incidem sobre o valor da causa, ainda que irrisório o valor, pois existem as demais reparações previstas na lei.</span><span class="q-result-icon"></span></li>
+        <li class="q-option" data-value="c" onclick="selectOption(this)"><span class="q-letter">C</span><span class="q-option-text">Não constitui conduta passível de litigância de má-fé a parte formular alegações em sede de contestação contrárias a texto expresso de lei.</span><span class="q-result-icon"></span></li>
+        <li class="q-option" data-value="d" onclick="selectOption(this)"><span class="q-letter">D</span><span class="q-option-text">As condutas ensejam litigância de má-fé e têm previsão legal, sendo passíveis de multa superior a 1% e inferior a 10% sobre o valor corrigido da causa, entre outras penalidades.</span><span class="q-result-icon"></span></li>
+      </ul>
+      <div class="q-feedback" id="q6-feedback"></div>
+      <button class="q-confirm-btn" id="q6-btn" onclick="confirmAnswer('q6')">Confirmar resposta</button>
+      <div class="q-gabarito" id="q6-gabarito">
+        <div class="gab-title">&#128218; Gabarito comentado — Litigância de má-fé</div>
+        <div class="gab-item"><span class="gab-letter wrong-letter">A)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">Provocar incidentes sem fundamento para retardar o processo é conduta típica de má-fé, expressamente prevista no art. 793-B da CLT.</div></div>
+        <div class="gab-item"><span class="gab-letter wrong-letter">B)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">O art. 793-C, § 2º, da CLT prevê que, sendo irrisório o valor da causa, a multa poderá ser fixada observando-se o limite dos benefícios do RGPS — não incide necessariamente sobre o valor da causa.</div></div>
+        <div class="gab-item"><span class="gab-letter wrong-letter">C)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">Formular alegações contrárias a texto expresso de lei também é hipótese de má-fé, tipificada no art. 793-B da CLT.</div></div>
+        <div class="gab-item"><span class="gab-letter correct-letter">D)</span><span class="gab-verdict v-correct">Correta.</span><div class="gab-comment">As situações estão previstas nos arts. 793-A a 793-C da CLT (inseridos pela Reforma). A multa é de mais de 1% e menos de 10% sobre o valor corrigido da causa, e o juiz pode aplicar outras penalidades previstas em lei.</div></div>
+      </div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="quiz-card" id="q7" data-correct="a">
+      <span class="q-num">Questão 7 de 9 — 42º Exame de Ordem Unificado · FGV</span>
+      <div class="q-text">Foi protocolizada petição de homologação de acordo extrajudicial à 200ª Vara do Trabalho de Florianópolis. As partes envolvidas são Luísa, empregada doméstica, e José Pedro, seu ex-empregador. O valor é de R$ 27.000,00, pagos em duas parcelas. Empregada e empregador estão representados pelo mesmo advogado. Sobre esses fatos, segundo os termos da CLT, assinale a afirmativa correta.</div>
+      <ul class="q-options">
+        <li class="q-option" data-value="a" onclick="selectOption(this)"><span class="q-letter">A</span><span class="q-option-text">Não é possível a homologação, porque as partes não podem ser representadas pelo mesmo advogado.</span><span class="q-result-icon"></span></li>
+        <li class="q-option" data-value="b" onclick="selectOption(this)"><span class="q-letter">B</span><span class="q-option-text">Na homologação de acordo extrajudicial, os empregados precisam ser assistidos pelo advogado do seu sindicato de classe.</span><span class="q-result-icon"></span></li>
+        <li class="q-option" data-value="c" onclick="selectOption(this)"><span class="q-letter">C</span><span class="q-option-text">Contanto que ambas as partes ratifiquem perante o Juiz o desejo de realizar a transação, o acordo deve ser homologado pelo Magistrado.</span><span class="q-result-icon"></span></li>
+        <li class="q-option" data-value="d" onclick="selectOption(this)"><span class="q-letter">D</span><span class="q-option-text">Tratando-se de procedimento especial de jurisdição voluntária, o Juiz não pode negar a homologação de acordo alegando vício formal.</span><span class="q-result-icon"></span></li>
+      </ul>
+      <div class="q-feedback" id="q7-feedback"></div>
+      <button class="q-confirm-btn" id="q7-btn" onclick="confirmAnswer('q7')">Confirmar resposta</button>
+      <div class="q-gabarito" id="q7-gabarito">
+        <div class="gab-title">&#128218; Gabarito comentado — Acordo extrajudicial e advogado único</div>
+        <div class="gab-item"><span class="gab-letter correct-letter">A)</span><span class="gab-verdict v-correct">Correta.</span><div class="gab-comment">O art. 855-B da CLT é categórico: cada parte deve ser representada por advogado distinto — é absolutamente vedado o advogado comum. O juiz não homologa o acordo nessa situação, pois a regra é absoluta.</div></div>
+        <div class="gab-item"><span class="gab-letter wrong-letter">B)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">Podem ser advogados particulares — desde que diferentes. Não há exigência de advogado sindical.</div></div>
+        <div class="gab-item"><span class="gab-letter wrong-letter">C)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">A ratificação pelas partes não supre o vício de representação por advogado único. O juiz não é obrigado a homologar qualquer acordo — Súmula 418 do TST.</div></div>
+        <div class="gab-item"><span class="gab-letter wrong-letter">D)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">O juiz pode e deve recusar a homologação quando há vício formal como o advogado único. A Súmula 418 do TST confirma a faculdade de negar.</div></div>
+      </div>
+    </div>
+
+    <!-- Q8 -->
+    <div class="quiz-card" id="q8" data-correct="c">
+      <span class="q-num">Questão 8 de 9 — XXVII Exame de Ordem Unificado · FGV</span>
+      <div class="q-text">Em reclamação trabalhista ajuizada em fevereiro de 2018, os pedidos formulados por Paulo em face do seu ex-empregador foram julgados totalmente procedentes. Em relação à verba honorária, de acordo com a CLT, sabendo-se que o patrocínio de Paulo foi feito por advogado particular por ele contratado, assinale a afirmativa correta.</div>
+      <ul class="q-options">
+        <li class="q-option" data-value="a" onclick="selectOption(this)"><span class="q-letter">A</span><span class="q-option-text">Não haverá condenação em honorários advocatícios, porque o autor não está assistido pelo sindicato de classe.</span><span class="q-result-icon"></span></li>
+        <li class="q-option" data-value="b" onclick="selectOption(this)"><span class="q-letter">B</span><span class="q-option-text">Haverá condenação em honorários de, no mínimo, 10% e, no máximo, 20% em favor do advogado.</span><span class="q-result-icon"></span></li>
+        <li class="q-option" data-value="c" onclick="selectOption(this)"><span class="q-letter">C</span><span class="q-option-text">Haverá condenação em honorários de, no mínimo, 5% e, no máximo, 15% em favor do advogado.</span><span class="q-result-icon"></span></li>
+        <li class="q-option" data-value="d" onclick="selectOption(this)"><span class="q-letter">D</span><span class="q-option-text">Somente se a assistência do advogado do autor for gratuita é que haverá condenação em honorários, de até 20%.</span><span class="q-result-icon"></span></li>
+      </ul>
+      <div class="q-feedback" id="q8-feedback"></div>
+      <button class="q-confirm-btn" id="q8-btn" onclick="confirmAnswer('q8')">Confirmar resposta</button>
+      <div class="q-gabarito" id="q8-gabarito">
+        <div class="gab-title">&#128218; Gabarito comentado — Honorários de sucumbência</div>
+        <div class="gab-item"><span class="gab-letter wrong-letter">A)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">Após a Reforma, não há mais necessidade de assistência sindical para que o advogado faça jus aos honorários. O sistema é o da mera sucumbência — art. 791-A da CLT.</div></div>
+        <div class="gab-item"><span class="gab-letter wrong-letter">B)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">Os percentuais estão errados. A faixa do art. 791-A da CLT é de 5% a 15%, não de 10% a 20%.</div></div>
+        <div class="gab-item"><span class="gab-letter correct-letter">C)</span><span class="gab-verdict v-correct">Correta.</span><div class="gab-comment">O art. 791-A da CLT prevê condenação ao pagamento de honorários de 5% a 15% sobre o valor da liquidação, proveito econômico ou valor atualizado da causa. Com procedência total, o réu paga honorários nessa faixa ao advogado particular do autor.</div></div>
+        <div class="gab-item"><span class="gab-letter wrong-letter">D)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">Não há exigência de gratuidade da assistência, e o percentual máximo é 15%, não 20%.</div></div>
+      </div>
+    </div>
+
+    <!-- Q9 -->
+    <div class="quiz-card" id="q9" data-correct="d">
+      <span class="q-num">Questão 9 de 9 — 41º Exame de Ordem Unificado · FGV</span>
+      <div class="q-text">Tereza ajuizou reclamação trabalhista, julgada totalmente procedente, com concessão de 10% de honorários advocatícios sucumbenciais. Transitado em julgado sem recurso, o juiz determinou o cálculo da dívida. As partes verificaram as contas sem discordância. Dez dias depois, sem que o executado tivesse sido citado para pagar, você, como advogado(a) de Tereza, notou que por falha involuntária os honorários sucumbenciais não haviam sido incluídos na conta, e que o prazo para impugnação da sentença de liquidação já havia transcorrido. Sobre os honorários, assinale a afirmativa correta.</div>
+      <ul class="q-options">
+        <li class="q-option" data-value="a" onclick="selectOption(this)"><span class="q-letter">A</span><span class="q-option-text">O advogado de Tereza perdeu o direito aos honorários.</span><span class="q-result-icon"></span></li>
+        <li class="q-option" data-value="b" onclick="selectOption(this)"><span class="q-letter">B</span><span class="q-option-text">O causídico ainda poderá perseguir os honorários, mas deverá fazê-lo em ação própria.</span><span class="q-result-icon"></span></li>
+        <li class="q-option" data-value="c" onclick="selectOption(this)"><span class="q-letter">C</span><span class="q-option-text">Os honorários poderão ser incluídos na conta, se houver concordância expressa do executado.</span><span class="q-result-icon"></span></li>
+        <li class="q-option" data-value="d" onclick="selectOption(this)"><span class="q-letter">D</span><span class="q-option-text">Os honorários, por se tratar de erro material de cálculo, poderão ser incluídos na conta, mesmo após o prazo para impugnação.</span><span class="q-result-icon"></span></li>
+      </ul>
+      <div class="q-feedback" id="q9-feedback"></div>
+      <button class="q-confirm-btn" id="q9-btn" onclick="confirmAnswer('q9')">Confirmar resposta</button>
+      <div class="q-gabarito" id="q9-gabarito">
+        <div class="gab-title">&#128218; Gabarito comentado — Honorários omitidos na liquidação</div>
+        <div class="gab-item"><span class="gab-letter wrong-letter">A)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">Os honorários estão previstos em lei e foram deferidos na sentença — não há perda do direito por simples omissão na conta de liquidação.</div></div>
+        <div class="gab-item"><span class="gab-letter wrong-letter">B)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">Não há necessidade de ação própria — o processo ainda está em trâmite e pode ser corrigido em seu curso.</div></div>
+        <div class="gab-item"><span class="gab-letter wrong-letter">C)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">Não há necessidade de concordância do executado — os honorários são condenação prevista em lei e deferida na sentença, independentemente da anuência da parte contrária.</div></div>
+        <div class="gab-item"><span class="gab-letter correct-letter">D)</span><span class="gab-verdict v-correct">Correta.</span><div class="gab-comment">Custas, juros de mora e honorários advocatícios podem ser incluídos e corrigidos a qualquer momento, por serem parcelas previstas em lei e deferidas na sentença — condenações implícitas que não sofrem preclusão (Súmula 211 do TST). Trata-se de erro material sanável a qualquer tempo.</div></div>
+      </div>
+    </div>
+
   </section>
 
   <a class="back" href="../index.html">
@@ -1017,5 +1098,52 @@
     });
   })();
 </script>
+
+<script>
+(function(){
+  var totalQuestions = document.querySelectorAll('.quiz-card').length;
+  var correctCount = 0;
+  window.selectOption = function(el){
+    if(el.classList.contains('locked')) return;
+    var card = el.closest('.quiz-card');
+    card.querySelectorAll('.q-option').forEach(function(o){ o.classList.remove('selected'); });
+    el.classList.add('selected');
+    card.querySelector('.q-confirm-btn').classList.add('visible');
+  };
+  window.confirmAnswer = function(cardId){
+    var card = document.getElementById(cardId);
+    if(card.classList.contains('answered')) return;
+    var selected = card.querySelector('.q-option.selected');
+    if(!selected) return;
+    var isCorrect = (selected.getAttribute('data-value') === card.getAttribute('data-correct'));
+    card.querySelectorAll('.q-option').forEach(function(opt){
+      opt.classList.add('locked');
+      if(opt.getAttribute('data-value') === card.getAttribute('data-correct')){
+        opt.classList.add('is-correct');
+        opt.querySelector('.q-result-icon').textContent = '✓';
+      }
+      if(opt === selected && !isCorrect){
+        opt.classList.add('is-wrong');
+        opt.querySelector('.q-result-icon').textContent = '✗';
+      }
+    });
+    card.querySelector('.q-confirm-btn').classList.remove('visible');
+    var fb = document.getElementById(cardId+'-feedback');
+    if(isCorrect){
+      fb.className='q-feedback visible correct'; fb.innerHTML='✓ Resposta correta!';
+      card.classList.add('answered-correct'); correctCount++;
+    } else {
+      fb.className='q-feedback visible wrong'; fb.innerHTML='✗ Resposta incorreta. Veja o gabarito comentado abaixo.';
+      card.classList.add('answered-wrong');
+    }
+    card.classList.add('answered');
+    document.getElementById(cardId+'-gabarito').classList.add('visible');
+    document.getElementById('scoreNum').textContent = correctCount+' / '+totalQuestions;
+    document.getElementById('scoreFill').style.width = ((correctCount/totalQuestions)*100)+'%';
+    setTimeout(function(){ document.getElementById(cardId+'-gabarito').scrollIntoView({behavior:'smooth',block:'nearest'}); }, 200);
+  };
+})();
+</script>
+
 </body>
 </html>
