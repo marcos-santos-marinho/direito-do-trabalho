@@ -1,252 +1,1042 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>1ª Peça – Reclamação Trabalhista</title>
+<meta charset="UTF-8">
+<title>Reclamação Trabalhista</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    :root{
-      --bg:#eef6ff;
-      --title:#1f4fd8;
-      --text:#0f172a;
-      --card:#ffffff;
-      --border:rgba(15,23,42,.18);
-      --shadow:0 10px 22px rgba(15,23,42,.08);
-      --green:#1f7a2e;
-      --green-border:#4aa154;
-      --bluebtn:#1f5f86;
-      --bluebtn-border:#123d56;
-    }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
-    *{ box-sizing:border-box; }
+<style>
+  :root{
+    --ink:#1b2436;
+    --ink-soft:#414a5c;
+    --paper:#edece5;
+    --surface:#fbfaf7;
+    --accent:#7a2e37;
+    --accent-soft:#a2545f;
+    --iron:#8b8579;
+    --reform:#4a3a00;
+    --reform-bg:#fdf8e8;
+    --reform-border:#c9a227;
+    --line:rgba(27,36,54,.13);
+    --line-strong:rgba(27,36,54,.22);
+    --display:"Fraunces", Georgia, "Times New Roman", serif;
+    --body:"Spectral", Georgia, serif;
+    --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:19px;
+    line-height:1.78;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0 0 auto 0;
+    height:4px;
+    background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 34%,var(--ink) 34%,var(--ink) 100%);
+    z-index:50;
+  }
+  .wrap{ max-width:760px; margin:0 auto; padding:0 22px 72px; }
 
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background:var(--bg);
-      color:var(--text);
-      font-size:18px;
-      line-height:1.75;
-    }
+  /* ===== CABEÇALHO ===== */
+  .masthead{
+    padding:56px 0 30px;
+    border-bottom:1px solid var(--line-strong);
+    animation:rise .7s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:600;
+    margin-bottom:20px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .eyebrow::before{ content:""; width:26px; height:2px; background:var(--accent); display:inline-block; }
+  .eyebrow .dot{ color:var(--line-strong); }
+  .title-row{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:28px;
+    flex-wrap:wrap;
+  }
+  h1{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(2.3rem,6.5vw,3.8rem);
+    line-height:1.04;
+    letter-spacing:-.015em;
+    max-width:14ch;
+  }
+  h1 .art{
+    display:block;
+    font-size:.4em;
+    font-weight:600;
+    letter-spacing:.02em;
+    color:var(--accent);
+    font-family:var(--mono);
+    text-transform:uppercase;
+    margin-bottom:.5em;
+  }
 
-    .wrap{
-      max-width: 980px;
-      margin:auto;
-      padding: 16px 14px 40px;
-    }
+  /* botões topo */
+  .btn-group{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:26px;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+    border-radius:4px;
+    padding:12px 18px;
+    font-family:var(--mono);
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    box-shadow:0 8px 22px -12px rgba(27,36,54,.7);
+    transition:transform .25s cubic-bezier(.2,.7,.2,1), box-shadow .25s, background .25s;
+  }
+  .btn .ico{ font-size:16px; line-height:1; transform:translateY(-1px); }
+  .btn .arw{ transition:transform .25s; }
+  .btn-dark{ background:var(--ink); color:#f4f2ec; border:none; }
+  .btn-outline{ background:var(--surface); color:var(--ink); border:1px solid var(--line-strong); }
+  .btn:hover{ transform:translateY(-2px); box-shadow:0 14px 28px -12px rgba(27,36,54,.25); }
+  .btn-dark:hover{ background:var(--accent); }
+  .btn-outline:hover{ border-color:var(--accent); color:var(--accent); }
+  .btn:hover .arw{ transform:translateX(4px); }
+  .btn:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:3px; }
 
-    /* Faixa verde do título */
-    .hero-title{
-      background: var(--green);
-      color: #fff;
-      text-align: center;
-      font-size: 30px;
-      font-weight: 900;
-      line-height: 1.2;
-      padding: 14px 16px;
-      border: 2px solid #165b22;
-      box-shadow: var(--shadow);
-      margin: 0 0 18px;
-    }
+  /* ===== SEÇÕES ===== */
+  .sec-head{
+    display:flex;
+    gap:16px;
+    align-items:baseline;
+    margin:46px 0 14px;
+    padding-top:26px;
+    border-top:1px solid var(--line);
+  }
+  .sec-head .num{
+    font-family:var(--mono);
+    font-size:15px;
+    font-weight:600;
+    color:var(--accent);
+    letter-spacing:.02em;
+    flex-shrink:0;
+    padding-top:.35em;
+  }
+  h2{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(1.6rem,4vw,2rem);
+    line-height:1.14;
+    letter-spacing:-.01em;
+    color:var(--ink);
+  }
+  p{ margin-bottom:16px; }
+  .body-text{ color:var(--ink-soft); }
+  .ref{
+    font-family:var(--mono);
+    font-size:.8em;
+    color:var(--iron);
+    background:rgba(139,133,121,.12);
+    padding:2px 7px;
+    border-radius:3px;
+    white-space:nowrap;
+  }
 
-    /* ===== 3 BOTÕES TOPO ===== */
-    .top-actions{
-      display:grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 18px;
-      align-items: stretch;
-      margin: 10px auto 22px;
-      max-width: 860px;
-    }
+  /* ===== CARDS EXPANSÍVEIS ===== */
+  .cards{ display:flex; flex-direction:column; gap:3px; }
+  .card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+    transition:box-shadow .2s;
+  }
+  .card:hover{ box-shadow:0 4px 18px -8px rgba(27,36,54,.2); }
+  .card-btn{
+    width:100%;
+    background:none;
+    border:none;
+    cursor:pointer;
+    display:grid;
+    grid-template-columns:52px 1fr 34px;
+    align-items:center;
+    padding:0;
+    text-align:left;
+    color:inherit;
+  }
+  .card-btn:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:-3px; border-radius:5px; }
+  .card-icon{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:60px;
+    height:100%;
+    border-right:1px solid var(--line);
+    font-family:var(--mono);
+    font-weight:700;
+    font-size:12px;
+    color:var(--accent);
+    background:rgba(122,46,55,.05);
+    letter-spacing:.02em;
+    text-align:center;
+    padding:4px;
+    line-height:1.3;
+  }
+  .card-head{ padding:14px 18px; }
+  .card-num{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--iron);
+    display:block;
+    margin-bottom:3px;
+  }
+  .card-title{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:1.05rem;
+    line-height:1.2;
+    color:var(--ink);
+  }
+  .card-chevron{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding-right:16px;
+    color:var(--iron);
+    font-size:13px;
+    transition:transform .3s cubic-bezier(.2,.7,.2,1), color .2s;
+  }
+  .card.open .card-chevron{ transform:rotate(180deg); color:var(--accent); }
+  .card-body{
+    display:none;
+    padding:18px 22px 22px;
+    border-top:1px solid var(--line);
+  }
+  .card.open .card-body{ display:block; }
+  .card-body > p{ color:var(--ink-soft); font-size:.93em; line-height:1.72; }
 
-    .top-link{
-      text-decoration:none;
-    }
+  /* sub-bloco */
+  .sub{
+    margin:12px 0 6px;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:5px;
+    padding:13px 17px;
+  }
+  .sub-lbl{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:block;
+    margin-bottom:9px;
+  }
+  .sub p{ font-size:.91em; color:var(--ink-soft); margin-bottom:8px; line-height:1.65; }
+  .sub p:last-child{ margin:0; }
 
-    .mini-btn{
-      min-height: 74px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding: 14px 12px;
-      border-radius: 12px;
-      box-shadow: var(--shadow);
-      font-weight: 900;
-      font-size: 16px;
-      transition: transform .12s ease, box-shadow .12s ease;
-    }
+  /* item-list */
+  .item-list{ margin:10px 0 4px; display:flex; flex-direction:column; gap:2px; }
+  .item-row{
+    display:grid;
+    grid-template-columns:22px 1fr;
+    gap:10px;
+    font-size:.9em;
+    color:var(--ink-soft);
+    line-height:1.6;
+    padding:6px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .item-row:last-child{ border-bottom:none; }
+  .item-row .bul{ color:var(--accent); font-family:var(--mono); font-size:.85em; padding-top:2px; }
 
-    .mini-btn:hover{
-      transform: translateY(-1px);
-      box-shadow: 0 14px 28px rgba(15,23,42,.12);
-    }
+  /* sumula */
+  .sumula{
+    margin:10px 0 4px;
+    padding:11px 15px;
+    border-left:2px solid var(--iron);
+    background:var(--paper);
+    border-radius:0 4px 4px 0;
+    font-size:.88em;
+    color:var(--ink-soft);
+    line-height:1.6;
+  }
+  .sumula strong{
+    font-style:normal;
+    font-family:var(--mono);
+    font-size:.86em;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--iron);
+    display:block;
+    margin-bottom:4px;
+  }
 
-    .mini-btn.slides{
-      background:#fff;
-      color:#111;
-      border:2px solid var(--green-border);
-      display:flex;
-      flex-direction:column;
-      gap:6px;
-    }
+  /* nota */
+  .nota{
+    margin:12px 0 4px;
+    padding:12px 16px;
+    background:rgba(122,46,55,.06);
+    border-left:3px solid var(--accent);
+    border-radius:0 5px 5px 0;
+    font-size:.9em;
+    color:var(--ink-soft);
+    line-height:1.65;
+  }
+  .nota strong{ color:var(--ink); }
 
-    .mini-btn.slides .mini-ico{
-      font-size: 22px;
-      line-height:1;
-    }
+  /* reforma */
+  .reforma{
+    margin:12px 0 4px;
+    padding:12px 16px;
+    background:var(--reform-bg);
+    border-left:3px solid var(--reform-border);
+    border-radius:0 5px 5px 0;
+    font-size:.9em;
+    color:var(--reform);
+    line-height:1.65;
+  }
+  .reforma-lbl{
+    font-family:var(--mono);
+    font-size:10.5px;
+    font-weight:600;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    margin-bottom:7px;
+    display:block;
+    color:var(--reform-border);
+  }
+  .reforma p{ margin-bottom:8px; color:var(--reform); }
+  .reforma p:last-child{ margin:0; }
 
-    .mini-btn.blue{
-      background: var(--bluebtn);
-      color:#fff;
-      border:2px solid var(--bluebtn-border);
-      letter-spacing:.2px;
-    }
+  /* modelo de peça */
+  .modelo{
+    margin:14px 0 6px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:5px;
+    overflow:hidden;
+    font-size:.87em;
+  }
+  .modelo-head{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--iron);
+    padding:9px 16px;
+    background:rgba(139,133,121,.08);
+    border-bottom:1px solid var(--line);
+  }
+  .modelo-body{
+    padding:14px 18px;
+    color:var(--ink-soft);
+    line-height:1.7;
+  }
+  .modelo-body p{ margin-bottom:8px; font-size:.92em; }
+  .modelo-body p:last-child{ margin:0; }
+  .modelo-body .sublinhado{ text-decoration:underline; }
+  .modelo-body .centralizado{ text-align:center; font-weight:600; font-family:var(--mono); font-size:.85em; letter-spacing:.1em; text-transform:uppercase; }
 
-    /* ===== CARD ===== */
-    .card{
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      box-shadow: var(--shadow);
-      padding: 16px;
-    }
+  /* passos silogismo */
+  .passos{
+    margin:14px 0 6px;
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+  }
+  .passo{
+    display:grid;
+    grid-template-columns:36px 1fr;
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+    background:var(--surface);
+  }
+  .passo-num{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:var(--mono);
+    font-weight:700;
+    font-size:14px;
+    color:var(--accent);
+    background:rgba(122,46,55,.06);
+    border-right:1px solid var(--line);
+    padding:6px;
+    text-align:center;
+    line-height:1.3;
+  }
+  .passo-body{ padding:12px 16px; }
+  .passo-titulo{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:1rem;
+    color:var(--ink);
+    display:block;
+    margin-bottom:6px;
+  }
+  .passo-body p{ font-size:.9em; color:var(--ink-soft); margin:0 0 6px; line-height:1.65; }
+  .passo-body p:last-child{ margin:0; }
 
-    h2{
-      margin: 18px 0 8px;
-      font-size: 18px;
-      color: #0b2fb3;
-      line-height: 1.3;
-    }
+  /* tabela responsabilidades */
+  .resp-grid{
+    margin:14px 0 6px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:3px;
+  }
+  .resp-col{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:16px 18px;
+  }
+  .resp-col .r-lbl{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.13em;
+    text-transform:uppercase;
+    margin-bottom:10px;
+    display:block;
+  }
+  .resp-col.sub-resp .r-lbl{ color:var(--iron); }
+  .resp-col.sol-resp .r-lbl{ color:var(--accent); }
+  .resp-col p{ font-size:.9em; color:var(--ink-soft); margin:0; line-height:1.6; }
+  .resp-col p + p{ margin-top:8px; }
 
-    p{
-      margin: 0 0 12px;
-      text-align: justify;
-    }
+  /* verbas grid */
+  .verbas-grid{
+    margin:12px 0 4px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:3px;
+  }
+  .verba-item{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:5px;
+    padding:11px 13px;
+    font-size:.88em;
+    color:var(--ink-soft);
+    line-height:1.5;
+  }
+  .verba-item strong{
+    display:block;
+    font-family:var(--mono);
+    font-size:.82em;
+    letter-spacing:.06em;
+    color:var(--accent);
+    margin-bottom:4px;
+  }
 
-    .line{
-      margin: 0 0 10px;
-      font-weight: 800;
-    }
+  /* ===== BOTÃO VOLTAR ===== */
+  .back{
+    margin-top:56px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    text-decoration:none;
+    color:var(--ink);
+    background:var(--surface);
+    border:1px solid var(--line-strong);
+    border-radius:6px;
+    padding:20px 22px;
+    font-family:var(--mono);
+    font-size:14px;
+    letter-spacing:.04em;
+    transition:border-color .25s, transform .25s;
+  }
+  .back .arw{ color:var(--accent); transition:transform .25s; font-size:18px; }
+  .back:hover{ border-color:var(--accent); transform:translateY(-2px); }
+  .back:hover .arw{ transform:translateX(-4px); }
+  .back:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:3px; }
 
-    ul{
-      margin: 8px 0 14px 18px;
-      padding: 0;
-    }
+  @keyframes rise{ from{ opacity:0; transform:translateY(18px); } to{ opacity:1; transform:none; } }
+  .reveal{ opacity:0; transform:translateY(14px); }
+  .reveal.in{ opacity:1; transform:none; transition:opacity .5s ease, transform .5s cubic-bezier(.2,.7,.2,1); }
 
-    li{ margin: 0 0 10px; }
-
-    /* ===== VOLTAR ===== */
-    .back{
-      margin-top: 18px;
-      display:flex;
-      justify-content:center;
-    }
-
-    .back a{
-      display:inline-block;
-      text-align:center;
-      padding: 16px 18px;
-      border-radius: 16px;
-      text-decoration:none;
-      background:#fff;
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      font-weight: 900;
-      color: var(--text);
-      width: 100%;
-      max-width: 520px;
-    }
-
-    @media (max-width:760px){
-      .top-actions{
-        grid-template-columns: 1fr;
-        gap: 12px;
-      }
-
-      .hero-title{
-        font-size: 26px;
-      }
-    }
-
-    @media (max-width:520px){
-      body{ font-size:17px; }
-      .hero-title{ font-size:24px; }
-      .mini-btn{ font-size:15px; min-height:68px; }
-    }
-  </style>
+  @media (max-width:560px){
+    body{ font-size:17.5px; }
+    .masthead{ padding:40px 0 24px; }
+    .title-row{ align-items:stretch; }
+    .btn{ width:100%; justify-content:center; }
+    .card-btn{ grid-template-columns:44px 1fr 30px; }
+    .resp-grid, .verbas-grid{ grid-template-columns:1fr; }
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{ animation:none !important; scroll-behavior:auto; }
+    .reveal{ opacity:1; transform:none; }
+    .reveal.in{ transition:none; }
+    .card-chevron{ transition:none; }
+  }
+</style>
 </head>
-
 <body>
-  <div class="wrap">
+<div class="wrap">
 
-    <div class="hero-title">Reclamação Trabalhista</div>
+  <!-- CABEÇALHO -->
+  <header class="masthead">
+    <p class="eyebrow">
+      Prática Jurídica Trabalhista
+      <span class="dot">·</span> Peças Processuais
+      <span class="dot">·</span> Petição Inicial
+    </p>
+    <div class="title-row">
+      <h1>
+        <span class="art">1ª Peça</span>
+        Reclamação Trabalhista
+      </h1>
+    </div>
 
-    <div class="top-actions">
-      <a class="top-link" href="https://drive.google.com/file/d/147Im8rPUvSjgS-4yCep35kRjZCENr0CK/view?usp=sharing" target="_blank" rel="noopener">
-        <div class="mini-btn slides">
-          <span class="mini-ico">🖼️</span>
-          <span>Slides</span>
+    <div class="btn-group">
+      <a class="btn btn-dark"
+         href="https://drive.google.com/file/d/147Im8rPUvSjgS-4yCep35kRjZCENr0CK/view?usp=sharing"
+         target="_blank" rel="noopener">
+        <span class="ico">▮</span>
+        <span>Slides da aula</span>
+        <span class="arw">→</span>
+      </a>
+      <a class="btn btn-outline"
+         href="https://drive.google.com/drive/folders/1ImJnSejj7ZtREg4n5OkiLks91TTH_qup?usp=sharing"
+         target="_blank" rel="noopener">
+        <span>Peça — AVA</span>
+        <span class="arw">→</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- § 1 APRESENTAÇÃO -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 1</span>
+      <h2>Apresentação</h2>
+    </div>
+
+    <p class="body-text reveal">
+      Quando empregado e empregador possuem um desacordo sobre direitos oriundos do contrato de
+      trabalho e não conseguem solucionar de forma amigável, precisam eleger um terceiro para
+      resolver a pendência. O Poder Judiciário — que é inerte (<span class="ref">art. 2º, CPC</span>)
+      — exerce a jurisdição e diz o direito ao caso concreto pela característica da
+      substitutividade.
+    </p>
+    <p class="body-text reveal">
+      O processo trabalhista inicia-se pela petição inicial denominada <strong>Reclamação
+      Trabalhista</strong> (<span class="ref">art. 840, CLT</span>). Ela pode ser escrita ou verbal:
+      a forma verbal também é reduzida a termo dentro de cinco dias contados da distribuição,
+      conforme o <span class="ref">art. 786, parágrafo único, da CLT</span>, seguindo após o mesmo
+      procedimento da escrita.
+    </p>
+
+    <div class="nota reveal">
+      <strong>Como identificar a peça:</strong> o enunciado <em>não</em> deverá citar a prática de
+      qualquer ato processual anterior, devendo apenas relatar os fatos ocorridos entre as partes.
+      O cliente deverá ser o empregado/trabalhador.
+    </div>
+  </section>
+
+  <!-- § 2 ESTRUTURA -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 2</span>
+      <h2>Estrutura e requisitos da peça</h2>
+    </div>
+
+    <p class="body-text reveal">
+      A reclamação trabalhista escrita tem fundamento legal no <span class="ref">art. 840, § 1º, CLT</span>.
+      Os requisitos são: indicação do juízo competente, qualificação das partes, exposição dos
+      fatos, pedido certo e determinado com o devido valor, data e assinatura do reclamante.
+    </p>
+
+    <div class="cards reveal">
+
+      <!-- a) Endereçamento -->
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">A</div>
+          <div class="card-head">
+            <span class="card-num">Art. 651, CLT</span>
+            <span class="card-title">Endereçamento completo</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>O endereçamento define o juízo ou tribunal competente, em razão do lugar para processar e julgar a reclamação. A competência territorial está no <span class="ref">art. 651, CLT</span>: a regra geral é ajuizar no foro do local da prestação do serviço, independentemente do local da contratação.</p>
+          <p>Quando o local da prestação não for informado no enunciado, deixa-se a lacuna representada por reticências:</p>
+          <div class="modelo">
+            <div class="modelo-head">Modelos de endereçamento</div>
+            <div class="modelo-body">
+              <p class="sublinhado">Vara do Trabalho (regra):</p>
+              <p>"AO JUÍZO DA ... VARA DO TRABALHO DE ..."</p>
+              <p class="sublinhado" style="margin-top:10px;">Juiz de direito investido na jurisdição trabalhista (<span class="ref">art. 112, CF/88</span>):</p>
+              <p>"AO JUÍZO DE DIREITO DA ... VARA CÍVEL DA COMARCA DE ..."</p>
+            </div>
+          </div>
+          <div class="nota" style="margin-top:10px;">
+            <strong>Atenção:</strong> utilize COMARCA apenas quando a reclamação for dirigida ao juiz de direito. Nunca quando for para órgão da Justiça do Trabalho. Não se esqueça também das hipóteses de prevenção do juízo (<span class="ref">art. 286, II, CPC</span>).
+          </div>
         </div>
-      </a>
+      </div>
 
-      <a class="top-link" href="https://drive.google.com/drive/folders/1Io8S4FjMg3BxLY-PJ4QyKXg4ELF1eFVu?usp=sharing" target="_blank" rel="noopener">
-        <div class="mini-btn blue">PEÇA SALA DE AULA</div>
-      </a>
+      <!-- b) Qualificação -->
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">B / G</div>
+          <div class="card-head">
+            <span class="card-num">Partes</span>
+            <span class="card-title">Qualificação do reclamante e do reclamado</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>É essencial individualizar as partes perante o Poder Judiciário. Não é válido criar dados não informados no enunciado.</p>
+          <div class="sub">
+            <span class="sub-lbl">Reclamante (b)</span>
+            <p>Se nenhum dado for fornecido: <em>"FULANO DE TAL, qualificação e endereço completos"</em></p>
+            <p>Se houver dados no enunciado (ex.: brasileiro, casado, engenheiro): acrescentar a expressão <em>"qualificação e endereço completos"</em>.</p>
+            <p>Indicar o advogado do reclamante: <em>"FULANO DE TAL, ... por seu advogado com procuração anexa, ..."</em></p>
+          </div>
+          <div class="sub" style="margin-top:10px;">
+            <span class="sub-lbl">Reclamado (g)</span>
+            <p>As mesmas regras valem para o reclamado. Em face de empresas: <em>"em face de EMPRESA LTDA., qualificação e endereço completos"</em></p>
+          </div>
+        </div>
+      </div>
 
-      <a class="top-link" href="https://drive.google.com/drive/folders/1ImJnSejj7ZtREg4n5OkiLks91TTH_qup?usp=sharing" target="_blank" rel="noopener">
-        <div class="mini-btn blue">PEÇA AVA</div>
-      </a>
+      <!-- c) Fundamento + verbo + nome da peça -->
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">C / D / E / F</div>
+          <div class="card-head">
+            <span class="card-num">Art. 840, § 1º, CLT</span>
+            <span class="card-title">Fundamento legal, verbo e nome da peça</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <div class="item-list">
+            <div class="item-row"><span class="bul">▸</span><span><strong>Advogado (c):</strong> indicar o advogado e informar que a procuração consta anexa.</span></div>
+            <div class="item-row"><span class="bul">▸</span><span><strong>Fundamento legal (d):</strong> o fundamento da reclamação trabalhista é o <span class="ref">art. 840, § 1º, da CLT</span>. Ex.: <em>"FULANO DE TAL, ... com fundamento no art. 840, § 1º, da CLT..."</em></span></div>
+            <div class="item-row"><span class="bul">▸</span><span><strong>Verbo (e):</strong> para a petição inicial os verbos corretos são <em>Ajuizar</em>, <em>Intentar</em> ou <em>Aforar</em>. Ex.: <em>"... vem respeitosamente à presença de Vossa Excelência AJUIZAR a..."</em></span></div>
+            <div class="item-row"><span class="bul">▸</span><span><strong>Nome da peça (f):</strong> indicar em letras maiúsculas e centralizado: <span class="ref" style="font-family:var(--body);background:none;padding:0;font-size:inherit;">"RECLAMAÇÃO TRABALHISTA"</span></span></div>
+          </div>
+          <div class="nota" style="margin-top:10px;">
+            Sugerimos que o nome da peça seja destacado em letras maiúsculas e centralizado, o que facilita a identificação pela banca examinadora.
+          </div>
+        </div>
+      </div>
+
+      <!-- h) Teses — Silogismo -->
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">H</div>
+          <div class="card-head">
+            <span class="card-num">Fundamentos jurídicos e legais</span>
+            <span class="card-title">Teses — O Silogismo Jurídico</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>Esse é o tópico mais importante da peça prático-profissional, onde a banca examinadora mais atribui pontuação. Cada tese deve ser desenvolvida com base no Silogismo Jurídico, seguindo três passos obrigatórios. Sugere-se iniciar um novo tópico para cada tese desenvolvida.</p>
+
+          <div class="passos">
+            <div class="passo">
+              <div class="passo-num">1</div>
+              <div class="passo-body">
+                <span class="passo-titulo">Caso concreto</span>
+                <p>Relato dos fatos e dados apresentados pelo próprio exercício.</p>
+                <p>Exemplo: <em>"O reclamante diariamente trabalhava das 7 horas às 17 horas, com uma hora de intervalo para descanso e refeição."</em></p>
+              </div>
+            </div>
+            <div class="passo">
+              <div class="passo-num">2</div>
+              <div class="passo-body">
+                <span class="passo-titulo">Norma legal</span>
+                <p>O fundamento legal e jurídico que defende os interesses do cliente, com base na Constituição, Lei, Súmula ou OJ.</p>
+                <p>Exemplo: <em>"Nos termos do art. 7º, XIII, da CRFB/88, a jornada de trabalho foi limitada em oito horas diárias, de forma que o reclamante trabalhou em horas extraordinárias."</em></p>
+              </div>
+            </div>
+            <div class="passo">
+              <div class="passo-num">3</div>
+              <div class="passo-body">
+                <span class="passo-titulo">Pedido (conclusão)</span>
+                <p>A conclusão lógica entre a norma legal e o caso concreto, com indicação do valor (<span class="ref">art. 840, § 1º, CLT</span>).</p>
+                <p>Exemplo: <em>"Desta forma, requer a procedência do pedido para condenar a reclamada ao pagamento das horas extras com adicional de 50% e, por habituais, seus reflexos em..., no valor de R$... (valor por extenso)."</em></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="reforma" style="margin-top:14px;">
+            <span class="reforma-lbl">⚠ Reforma Trabalhista — Lei n. 13.467/2017</span>
+            <p>O <span class="ref">art. 840, § 1º, da CLT</span> passou a exigir a indicação de valores para os pedidos de natureza pecuniária. Na peça profissional, deve-se indicar o valor de cada pedido representado por <em>"R$... (valor por extenso)"</em>.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- i/j/k/l/m) Pedidos e requerimentos -->
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">I–M</div>
+          <div class="card-head">
+            <span class="card-num">Parte final da peça</span>
+            <span class="card-title">Pedidos e requerimentos finais</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <div class="item-list">
+            <div class="item-row">
+              <span class="bul">▸</span>
+              <span><strong>i) Pedidos:</strong> requerer a procedência dos pedidos, repetindo-os em rol com indicação de valores. Os pedidos devem ser certos, determinados e com valor (<span class="ref">art. 840, § 1º, CLT</span>).</span>
+            </div>
+            <div class="item-row">
+              <span class="bul">▸</span>
+              <span><strong>j) Notificação:</strong> requerer que a reclamada seja notificada via postal para comparecimento em audiência. Ex.: <em>"Requer seja a reclamada notificada, via postal, para comparecimento em audiência."</em></span>
+            </div>
+            <div class="item-row">
+              <span class="bul">▸</span>
+              <span><strong>k) Requerimento por provas:</strong> indicar interesse na produção das provas a serem produzidas durante a instrução. Ex.: <em>"Requer, ainda, provar o alegado por todos os meios de prova admitidos."</em></span>
+            </div>
+            <div class="item-row">
+              <span class="bul">▸</span>
+              <span><strong>l) Honorários sucumbenciais:</strong> requerer a condenação ao pagamento de honorários sucumbenciais, com base no <span class="ref">art. 791-A, CLT</span> (5% a 15%).</span>
+            </div>
+            <div class="item-row">
+              <span class="bul">▸</span>
+              <span><strong>m) Encerramento:</strong> <strong>Não assinar a peça</strong> na prova da OAB. Indicar apenas: "Nestes termos, / Requer deferimento. / Local e data. / Advogado... / OAB n. ...."</span>
+            </div>
+          </div>
+          <div class="nota" style="margin-top:10px;">
+            <strong>Atenção:</strong> assinar a peça gera reprovação sumária por identificação do examinando. Nunca assine.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- § 3 RESPONSABILIDADE SUBSIDIÁRIA E SOLIDÁRIA -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 3</span>
+      <h2>Responsabilidade subsidiária e solidária</h2>
     </div>
 
-    <div class="card">
-      <p class="line">1ª PEÇA</p>
-      <p class="line">PRAZO: 30/03/2026</p>
+    <p class="body-text reveal">
+      Não é raro o polo passivo conter mais de uma parte. O examinando deve estar atento para não
+      esquecer de indicar alguma das reclamadas, o que acarreta perda substancial de pontuação.
+      A forma da responsabilidade varia conforme o caso concreto:
+    </p>
 
-      <p>
-        A Reclamação Trabalhista é a peça processual inicial que quebra a inércia do Poder Judiciário na esfera
-        trabalhista, podendo ser apresentada de forma escrita ou verbal. Com base nos documentos fornecidos,
-        segue um resumo dos seus principais aspectos estruturais e temas recorrentes:
-      </p>
-
-      <h2>1. Estrutura e Requisitos Essenciais</h2>
-
-      <p>A petição deve seguir os requisitos do Art. 840, § 1º, da CLT, incluindo:</p>
-
-      <ul>
-        <li><strong>Endereçamento:</strong> Definição do juízo competente, geralmente o foro do local da prestação do serviço.</li>
-        <li><strong>Qualificação:</strong> Identificação completa do reclamante e do reclamado.</li>
-        <li><strong>Causa de Pedir (Silogismo Jurídico):</strong> Exposição clara do caso concreto, fundamentação na norma legal (Constituição, CLT, Súmulas) e a conclusão lógica que gera o pedido.</li>
-        <li><strong>Pedidos e Valores:</strong> Após a Reforma Trabalhista, os pedidos devem ser certos, determinados e indicar o valor correspondente.</li>
-        <li><strong>Requerimentos Finais:</strong> Notificação da parte contrária, produção de provas, honorários sucumbenciais (5% a 15%) e indicação do valor da causa.</li>
-      </ul>
-
-      <h2>2. Principais Teses e Direitos Pleiteados</h2>
-
-      <p>Os documentos destacam temas frequentes em exames e na prática profissional:</p>
-
-      <ul>
-        <li><strong>Verbas Rescisórias:</strong> Cálculos de saldo de salário, aviso prévio indenizado, 13º salário proporcional e férias acrescidas de 1/3.</li>
-        <li><strong>Jornada de Trabalho:</strong> Reclamações sobre horas extras, adicional noturno (20% sobre a hora diurna) e supressão de intervalos intrajornada.</li>
-        <li><strong>Extinção do Contrato:</strong> Reversão de dispensa por justa causa para imotivada ou pedidos de rescisão indireta quando o empregador descumpre obrigações contratuais.</li>
-        <li><strong>Indenizações por Danos:</strong> Danos morais (ofensa à esfera extrapatrimonial), materiais (danos emergentes e lucros cessantes) e estéticos (alterações na aparência física por acidente de trabalho).</li>
-        <li><strong>Estabilidades e Reintegração:</strong> Proteção ao emprego para dirigentes sindicais ou vítimas de acidente de trabalho.</li>
-      </ul>
-
-      <h2>3. Aspectos Processuais Relevantes</h2>
-
-      <ul>
-        <li><strong>Justiça Gratuita:</strong> Pode ser requerida por quem recebe salário igual ou inferior a 40% do limite máximo dos benefícios do RGPS ou comprova insuficiência de recursos.</li>
-        <li><strong>Responsabilidade:</strong> Identificação de responsabilidade subsidiária (em casos de terceirização) ou solidária (sucessão de empresas ou grupo econômico).</li>
-        <li><strong>Tutela Provisória:</strong> Pedidos de urgência ou evidência para garantir direitos imediatos, como a reintegração de empregado estável.</li>
-      </ul>
+    <div class="resp-grid reveal">
+      <div class="resp-col sub-resp">
+        <span class="r-lbl">Responsabilidade Subsidiária</span>
+        <p>O credor deve buscar primeiro a satisfação do crédito junto ao devedor principal (empregadora). Só após inadimplência busca o devedor subsidiário (tomadora).</p>
+        <p>Há benefício de ordem para o devedor subsidiário.</p>
+      </div>
+      <div class="resp-col sol-resp">
+        <span class="r-lbl">Responsabilidade Solidária</span>
+        <p>O credor pode exigir a satisfação do crédito de qualquer um dos devedores, sem qualquer benefício de ordem (<span class="ref">art. 275, CC</span>).</p>
+        <p>Não há ordem de preferência entre os devedores.</p>
+      </div>
     </div>
 
-    <div class="back">
-      <a href="../index.html">← Voltar à Prática Jurídica Trabalhista</a>
+    <div class="cards reveal" style="margin-top:6px;">
+
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Tercei-<br>rização</div>
+          <div class="card-head">
+            <span class="card-num">Lei n. 6.019/74 — Lei n. 13.429/2017</span>
+            <span class="card-title">Terceirização na iniciativa privada</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>A terceirização ocorre quando a empresa contratante contrata uma empresa prestadora de serviços a terceiros, que por sua vez contrata o trabalhador. O examinando deverá ajuizar a reclamação em face das duas empresas, sendo a responsabilidade <strong>subsidiária</strong>, nos termos do <span class="ref">art. 5º-A, § 5º, da Lei n. 6.019/74</span>.</p>
+          <div class="sumula">
+            <strong>Terceirização irregular — Súmula 331, I, TST</strong>
+            Quando o trabalhador terceirizado presta serviços de forma pessoal e subordinada para a empresa contratante (pessoalidade + subordinação), aplica-se o item I da Súmula 331: a ação deve ser ajuizada em face da empresa contratante, requerendo o reconhecimento do vínculo empregatício diretamente com ela.
+          </div>
+          <div class="sumula">
+            <strong>Terceirização na Administração Pública — Súmula 331, V, TST</strong>
+            A Lei n. 13.429/2017 aplica-se apenas à iniciativa privada. Na Administração Pública, aplica-se a Súmula 331 do TST: se o poder público deixou de fiscalizar o contrato com a prestadora, há responsabilidade subsidiária (Lei n. 8.666/93).
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Trab.<br>Temp.</div>
+          <div class="card-head">
+            <span class="card-num">Lei n. 6.019/74 — art. 10, § 7º</span>
+            <span class="card-title">Trabalho temporário</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>O trabalho temporário ocorre quando a empresa tomadora contrata uma empresa de trabalho temporário para fornecimento transitório de pessoal, por necessidade de substituição ou acréscimo de serviço. A responsabilidade é <strong>subsidiária</strong> nos termos do <span class="ref">art. 10, § 7º, da Lei n. 6.019/74</span>.</p>
+          <div class="nota">
+            <strong>Exceção:</strong> na decretação de falência da empresa de trabalho temporário, a responsabilidade da empresa tomadora passa a ser <strong>solidária</strong>, de forma que a reclamação poderá ser ajuizada somente em face desta, nos termos do <span class="ref">art. 16 da Lei n. 6.019/74</span>.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Suces-<br>são</div>
+          <div class="card-head">
+            <span class="card-num">Arts. 10, 448 e 448-A, CLT</span>
+            <span class="card-title">Sucessão trabalhista</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>A sucessão trabalhista ocorre quando há alteração da propriedade ou estrutura jurídica da empresa com continuidade da atividade empresarial. A alteração da figura do empregador não gera nenhum efeito sobre os direitos trabalhistas do atual contrato de trabalho.</p>
+          <p>Em regra, a responsabilidade passa a ser do <strong>sucessor</strong> (<span class="ref">art. 448-A, CLT</span>). Se restar comprovada fraude na sucessão, ambas respondem <strong>solidariamente</strong> nos termos do <span class="ref">art. 448-A, parágrafo único, da CLT</span>.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Grupo<br>Econ.</div>
+          <div class="card-head">
+            <span class="card-num">Art. 2º, § 2º, CLT</span>
+            <span class="card-title">Grupo econômico</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>Quando empresas estão integradas sob direção, controle ou administração de outra, constituindo grupo econômico, a responsabilidade entre elas é <strong>solidária</strong> nos termos do <span class="ref">art. 2º, § 2º, da CLT</span>.</p>
+          <p>Não há necessidade de chamar para o polo passivo todas as empresas do grupo — basta ajuizar em face daquelas indicadas no enunciado.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- § 4 VERBAS RESCISÓRIAS -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 4</span>
+      <h2>Verbas rescisórias — cálculo e proporcionalidade</h2>
     </div>
 
-  </div>
+    <p class="body-text reveal">
+      As verbas rescisórias são devidas pelo empregador quando do rompimento do contrato de
+      trabalho. Quando o enunciado informa a data de início e término, o examinando deverá calcular
+      a proporcionalidade seguindo quatro passos:
+    </p>
+
+    <div class="passos reveal">
+      <div class="passo">
+        <div class="passo-num">1</div>
+        <div class="passo-body">
+          <span class="passo-titulo">Saldo de salário</span>
+          <p>Equivale à quantidade de dias trabalhados no último mês do contrato, sem a integração do aviso prévio indenizado.</p>
+          <p>Exemplo: se o último dia de trabalho foi 10-6-2016, o saldo equivale à proporção de 10 dias.</p>
+        </div>
+      </div>
+      <div class="passo">
+        <div class="passo-num">2</div>
+        <div class="passo-body">
+          <span class="passo-titulo">Aviso prévio indenizado</span>
+          <p>Base: <span class="ref">Lei n. 12.506/2011</span> — para cada ano completo trabalhado, o empregado tem direito a mais 3 dias de aviso, garantido no mínimo 30 dias. O prazo do aviso é projetado ao contrato para cálculo do 13º e férias.</p>
+          <p>Exemplo: 2 anos completos = 30 + 6 = 36 dias de aviso prévio indenizado.</p>
+        </div>
+      </div>
+      <div class="passo">
+        <div class="passo-num">3</div>
+        <div class="passo-body">
+          <span class="passo-titulo">13º salário</span>
+          <p>Contado de forma anual. Cria-se uma coluna com o 1º dia de cada ano (a partir da admissão) até o último dia do contrato (com integração do aviso prévio). O 13º da primeira e da última linha são sempre proporcionais; os das linhas intermediárias são sempre integrais.</p>
+        </div>
+      </div>
+      <div class="passo">
+        <div class="passo-num">4</div>
+        <div class="passo-body">
+          <span class="passo-titulo">Férias + 1/3</span>
+          <p>Calculadas por períodos aquisitivos (marcos: data de admissão a data de admissão). Férias da última linha são sempre proporcionais; da penúltima sempre integrais simples; das demais sempre integrais em dobro.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="verbas-grid reveal" style="margin-top:16px;">
+      <div class="verba-item"><strong>Demissão sem justa causa</strong>Saldo de salário, aviso prévio, 13º salário, férias + 1/3, saque FGTS, indenização compensatória FGTS (40%), seguro-desemprego.</div>
+      <div class="verba-item"><strong>Rescisão indireta</strong>Mesmas verbas da demissão sem justa causa — o descumprimento contratual pelo empregador equipara-se à dispensa imotivada (<span class="ref">art. 483, CLT</span>).</div>
+      <div class="verba-item"><strong>Reconhecimento de vínculo</strong>Requerer o reconhecimento do vínculo empregatício e, como consequência, todas as verbas rescisórias e verbas de curso do contrato não pagas.</div>
+    </div>
+
+    <div class="nota reveal" style="margin-top:6px;">
+      <strong>Multas:</strong> além das verbas rescisórias, requerer as multas dos <span class="ref">arts. 477, § 8º</span> (descumprimento do § 6º do mesmo artigo) e <span class="ref">467 da CLT</span> (não pagamento das verbas incontroversas na primeira audiência).
+    </div>
+  </section>
+
+  <!-- § 5 ASPECTOS ESPECÍFICOS -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 5</span>
+      <h2>Aspectos específicos recorrentes</h2>
+    </div>
+
+    <div class="cards reveal">
+
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Justiça<br>Gratu.</div>
+          <div class="card-head">
+            <span class="card-num">Art. 790, §§ 3º e 4º, CLT</span>
+            <span class="card-title">Justiça gratuita</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>A justiça gratuita somente deve ser requerida se o enunciado trouxer dados que a justifiquem — por exemplo, "o reclamante não tem condições de pagar as custas do processo sem prejuízo do sustento próprio ou de sua família" ou "o empregado está desempregado".</p>
+          <div class="modelo">
+            <div class="modelo-head">Modelo de tópico — Justiça Gratuita</div>
+            <div class="modelo-body">
+              <p class="centralizado">DA JUSTIÇA GRATUITA</p>
+              <p class="sublinhado">O reclamante é pessoa pobre que recebe menos de 40% do limite máximo do benefício da Previdência Social.</p>
+              <p class="sublinhado">O art. 790, § 3º, da CLT garante a justiça gratuita para pessoa que não tem condições de arcar com as despesas processuais, o que ocorre com o reclamante no caso em comento.</p>
+              <p class="sublinhado">Diante do exposto, requer a Vossa Excelência sejam deferidos os benefícios da justiça gratuita ao reclamante.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Tutela<br>Provis.</div>
+          <div class="card-head">
+            <span class="card-num">Arts. 300 e 301, CPC + CLT</span>
+            <span class="card-title">Tutela provisória de urgência</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>A tutela provisória é requerida quando há uma situação de urgência que demanda resposta imediata do Poder Judiciário. Não existe mais o processo cautelar autônomo, mas o pedido cautelar continua em vigor.</p>
+          <div class="item-list">
+            <div class="item-row">
+              <span class="bul">▸</span>
+              <span><strong>Reintegração de dirigente sindical</strong> dispensado sem justa causa durante o mandato: Tutela Provisória de Urgência Antecipada Incidental — <span class="ref">art. 300, CPC c/c art. 659, X, da CLT</span>. Requisitos: probabilidade do direito e risco de dano ou perigo ao resultado útil do processo.</span>
+            </div>
+            <div class="item-row">
+              <span class="bul">▸</span>
+              <span><strong>Abstenção de transferência</strong> sem prova de real necessidade de serviço: Tutela Provisória de Urgência Antecipada — <span class="ref">art. 300, CPC c/c art. 659, IX, da CLT</span>.</span>
+            </div>
+            <div class="item-row">
+              <span class="bul">▸</span>
+              <span><strong>Garantia de patrimônio</strong> do empregador para recebimento das verbas (sequestro ou arresto de bens): Tutela Provisória de Urgência Cautelar — <span class="ref">art. 301, CPC</span>.</span>
+            </div>
+          </div>
+          <div class="modelo" style="margin-top:12px;">
+            <div class="modelo-head">Exemplo — Tutela antecipada incidental (reintegração de dirigente sindical)</div>
+            <div class="modelo-body">
+              <p class="centralizado">DA TUTELA DE URGÊNCIA ANTECIPADA INCIDENTAL</p>
+              <p class="sublinhado">O reclamante era dirigente sindical e, consequentemente, portador da garantia no emprego, de forma que não poderia ter o contrato rescindido sem justa causa durante a estabilidade, sendo tal direito assegurado, inclusive, no plano constitucional pelo art. 8º, VIII, da CRFB/88.</p>
+              <p class="sublinhado">Nos termos do art. 659, X, da CLT c/o art. 300 do CPC, estão presentes os requisitos mínimos para concessão da tutela provisória de urgência antecipada, quais sejam: a probabilidade do direito e risco de dano ou perigo ao resultado útil do processo.</p>
+              <p class="sublinhado">Diante do exposto, requer a Vossa Excelência seja deferida a tutela provisória de urgência antecipada, para o fim de reintegrar o reclamante imediatamente, ou subsidiariamente, requer a conversão da mesma em indenização.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Temas<br>freq.</div>
+          <div class="card-head">
+            <span class="card-num">Teses recorrentes na OAB</span>
+            <span class="card-title">Principais direitos pleiteados</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <div class="item-list">
+            <div class="item-row"><span class="bul">▸</span><span><strong>Horas extras:</strong> adicional de 50% sobre a hora normal (<span class="ref">art. 7º, XVI, CF</span>) + reflexos em DSR, 13º salário, férias + 1/3, FGTS e aviso prévio.</span></div>
+            <div class="item-row"><span class="bul">▸</span><span><strong>Adicional noturno:</strong> 20% sobre o valor da hora diurna para trabalho entre 22h e 5h do dia seguinte (<span class="ref">art. 73, § 2º, CLT</span>) + reflexos.</span></div>
+            <div class="item-row"><span class="bul">▸</span><span><strong>Intervalo intrajornada suprimido:</strong> pagamento do período suprimido com acréscimo de 50% sobre o valor da remuneração da hora normal de trabalho (<span class="ref">art. 71, § 4º, CLT</span>).</span></div>
+            <div class="item-row"><span class="bul">▸</span><span><strong>Dano moral:</strong> ofensa à esfera extrapatrimonial do trabalhador — assédio moral, discriminação, acidente de trabalho com violação à dignidade (<span class="ref">art. 223-A e ss., CLT</span>).</span></div>
+            <div class="item-row"><span class="bul">▸</span><span><strong>Dano material (emergente + cessante):</strong> danos patrimoniais diretos (emergentes) e perda de ganhos futuros (lucros cessantes) decorrentes de acidente de trabalho.</span></div>
+            <div class="item-row"><span class="bul">▸</span><span><strong>Dano estético:</strong> alterações na aparência física decorrentes de acidente de trabalho — é cumulável com o dano moral (<span class="ref">Súmula 387, STJ</span>).</span></div>
+            <div class="item-row"><span class="bul">▸</span><span><strong>Adicional de insalubridade/periculosidade:</strong> respectivamente 10%, 20% ou 40% do salário mínimo (<span class="ref">art. 192, CLT</span>) e 30% sobre o salário (<span class="ref">art. 193, § 1º, CLT</span>).</span></div>
+            <div class="item-row"><span class="bul">▸</span><span><strong>Estabilidade / reintegração:</strong> dirigente sindical (<span class="ref">art. 8º, VIII, CF</span>), gestante (<span class="ref">art. 10, II, b, ADCT</span>), acidente de trabalho — 12 meses após a alta (<span class="ref">art. 118, Lei n. 8.213/91</span>).</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <a class="back" href="../index.html">
+    <span class="arw">←</span>
+    <span>Voltar à Prática Jurídica Trabalhista</span>
+  </a>
+
+</div>
+
+<script>
+  (function(){
+    var items = document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window)){
+      items.forEach(function(el){ el.classList.add('in'); }); return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold:.08, rootMargin:'0px 0px -3% 0px' });
+    items.forEach(function(el, i){
+      el.style.transitionDelay = (i * 35) + 'ms';
+      io.observe(el);
+    });
+  })();
+
+  (function(){
+    var cards = document.querySelectorAll('.card');
+    cards.forEach(function(card){
+      var btn = card.querySelector('.card-btn');
+      btn.addEventListener('click', function(){
+        var isOpen = card.classList.contains('open');
+        cards.forEach(function(c){
+          c.classList.remove('open');
+          c.querySelector('.card-btn').setAttribute('aria-expanded','false');
+        });
+        if(!isOpen){
+          card.classList.add('open');
+          btn.setAttribute('aria-expanded','true');
+        }
+      });
+    });
+  })();
+</script>
 </body>
 </html>
