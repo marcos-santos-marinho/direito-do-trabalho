@@ -1,335 +1,938 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>07. Comissão de Conciliação Prévia</title>
+<meta charset="UTF-8">
+<title>Comissão de Conciliação Prévia</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    :root{
-      --bg:#eaf3ff;
-      --panel: rgba(255,255,255,.82);
-      --card:#ffffff;
-      --text:#0f172a;
-      --muted:#475569;
-      --brand:#2563eb;
-      --brand2:#1d4ed8;
-      --line: rgba(15,23,42,.10);
-      --shadow: 0 18px 50px rgba(2,6,23,.12);
-      --shadow2: 0 10px 24px rgba(2,6,23,.10);
-      --radius: 22px;
-    }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
-    *{ box-sizing:border-box; }
+<style>
+  :root{
+    --ink:#1b2436;
+    --ink-soft:#414a5c;
+    --paper:#edece5;
+    --surface:#fbfaf7;
+    --accent:#7a2e37;
+    --accent-soft:#a2545f;
+    --iron:#8b8579;
+    --line:rgba(27,36,54,.13);
+    --line-strong:rgba(27,36,54,.22);
+    --c-inc:#7a2e37;
+    --c-fac:#2e5c7a;
+    --c-proc:#3d6e45;
+    --c-sin:#5a3d2b;
+    --display:"Fraunces", Georgia, "Times New Roman", serif;
+    --body:"Spectral", Georgia, serif;
+    --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+  }
 
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(1200px 600px at 20% 0%, rgba(37,99,235,.20), transparent 60%),
-        radial-gradient(900px 500px at 90% 20%, rgba(29,78,216,.12), transparent 55%),
-        var(--bg);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
 
-    .wrap{
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 18px 14px 34px;
-    }
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:19px;
+    line-height:1.78;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
 
-    .shell{
-      background: var(--panel);
-      border: 1px solid rgba(255,255,255,.65);
-      border-radius: calc(var(--radius) + 10px);
-      box-shadow: var(--shadow);
-      padding: 16px;
-      backdrop-filter: blur(10px);
-    }
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0 0 auto 0;
+    height:4px;
+    background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 34%,var(--ink) 34%,var(--ink) 100%);
+    z-index:50;
+  }
 
-    header{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap: 14px;
-      padding: 6px 6px 2px;
-    }
+  .wrap{ max-width:760px; margin:0 auto; padding:0 22px 72px; }
 
-    h1{
-      margin: 0;
-      font-size: clamp(28px, 4.8vw, 46px);
-      letter-spacing: -0.02em;
-      line-height: 1.06;
-      color: var(--brand);
-    }
+  .masthead{
+    padding:56px 0 30px;
+    border-bottom:1px solid var(--line-strong);
+    animation:rise .7s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:600;
+    margin-bottom:20px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .eyebrow::before{ content:""; width:26px; height:2px; background:var(--accent); display:inline-block; }
+  .eyebrow .dot{ color:var(--line-strong); }
 
-    .subtitle{
-      margin: 10px 6px 16px;
-      color: var(--muted);
-      font-size: 18px;
-      line-height: 1.55;
-    }
+  .title-row{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:28px;
+    flex-wrap:wrap;
+  }
+  h1{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(2.3rem,6.5vw,3.8rem);
+    line-height:1.04;
+    letter-spacing:-.015em;
+    max-width:14ch;
+  }
+  h1 .art{
+    display:block;
+    font-size:.4em;
+    font-weight:600;
+    letter-spacing:.02em;
+    color:var(--accent);
+    font-family:var(--mono);
+    text-transform:uppercase;
+    margin-bottom:.5em;
+  }
+  .slides-btn{
+    flex-shrink:0;
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    background:var(--ink);
+    color:#f4f2ec;
+    border-radius:4px;
+    padding:13px 18px;
+    font-family:var(--mono);
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    box-shadow:0 8px 22px -12px rgba(27,36,54,.7);
+    transition:transform .25s cubic-bezier(.2,.7,.2,1), box-shadow .25s, background .25s;
+  }
+  .slides-btn .ico{ font-size:16px; line-height:1; transform:translateY(-1px); }
+  .slides-btn .arw{ transition:transform .25s; }
+  .slides-btn:hover{ background:var(--accent); transform:translateY(-2px); box-shadow:0 14px 28px -12px rgba(122,46,55,.75); }
+  .slides-btn:hover .arw{ transform:translateX(4px); }
+  .slides-btn:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:3px; }
 
-    /* Botão Slides (premium) */
-    .slidesBtn{
-      text-decoration:none;
-      color: var(--text);
-      background: #fff;
-      border: 1px solid rgba(37,99,235,.18);
-      border-radius: 18px;
-      box-shadow: var(--shadow2);
-      padding: 12px 14px;
-      min-width: 140px;
-      display:flex;
-      align-items:center;
-      gap: 10px;
-      transition: transform .12s ease, box-shadow .12s ease;
-      user-select:none;
-      justify-content:center;
-      flex: 0 0 auto;
-    }
-    .slidesBtn:hover{
-      transform: translateY(-1px);
-      box-shadow: 0 14px 28px rgba(2,6,23,.14);
-    }
-    .slidesIcon{
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
-      display:grid;
-      place-items:center;
-      background: linear-gradient(135deg, rgba(37,99,235,.14), rgba(29,78,216,.08));
-      border: 1px solid rgba(37,99,235,.18);
-      flex: 0 0 auto;
-    }
-    .slidesIcon svg{ width: 22px; height: 22px; }
-    .slidesLbl{
-      display:flex;
-      flex-direction:column;
-      line-height:1.05;
-      text-align:left;
-    }
-    .slidesLbl strong{ font-size: 15px; }
-    .slidesLbl span{ margin-top: 3px; font-size: 12px; color: var(--muted); }
+  .verbete{
+    margin:44px 0 8px;
+    padding:6px 0 6px 30px;
+    border-left:3px solid var(--accent);
+    animation:rise .7s .1s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .verbete .tag{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:block;
+    margin-bottom:14px;
+  }
+  .verbete p{
+    font-family:var(--display);
+    font-weight:400;
+    font-size:clamp(1.2rem,3vw,1.5rem);
+    line-height:1.45;
+    letter-spacing:-.01em;
+    color:var(--ink);
+    margin:0;
+  }
 
-    .grid{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
-      padding: 8px 6px 6px;
-    }
+  .sec-head{
+    display:flex;
+    gap:16px;
+    align-items:baseline;
+    margin:46px 0 14px;
+    padding-top:26px;
+    border-top:1px solid var(--line);
+  }
+  .sec-head .num{
+    font-family:var(--mono);
+    font-size:15px;
+    font-weight:600;
+    color:var(--accent);
+    letter-spacing:.02em;
+    flex-shrink:0;
+    padding-top:.35em;
+  }
+  h2{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(1.6rem,4vw,2rem);
+    line-height:1.14;
+    letter-spacing:-.01em;
+    color:var(--ink);
+  }
+  p{ margin-bottom:16px; }
+  p:last-child{ margin-bottom:0; }
+  .body-text{ color:var(--ink-soft); }
 
-    .card{
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 18px 18px;
-      box-shadow: 0 10px 22px rgba(2,6,23,.07);
-    }
+  .ref{
+    font-family:var(--mono);
+    font-size:.8em;
+    color:var(--iron);
+    background:rgba(139,133,121,.12);
+    padding:2px 7px;
+    border-radius:3px;
+    white-space:nowrap;
+  }
 
-    .card h2{
-      margin: 0 0 10px;
-      font-size: clamp(20px, 2.6vw, 26px);
-      letter-spacing: -0.01em;
-      color:#0b1220;
-    }
+  /* ===== ESCALA / BLOCOS COLORIDOS ===== */
+  .escala{
+    margin:18px 0 6px;
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+  }
+  .grau{
+    display:grid;
+    grid-template-columns:36px 1fr;
+    border-radius:5px;
+    overflow:hidden;
+    border:1px solid var(--line);
+  }
+  .grau-bar{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    writing-mode:vertical-lr;
+    text-orientation:mixed;
+    font-family:var(--mono);
+    font-weight:700;
+    font-size:9px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:#fff;
+    padding:8px 0;
+  }
+  .grau.inc .grau-bar{ background:var(--c-inc); }
+  .grau.fac .grau-bar{ background:var(--c-fac); }
+  .grau.emp .grau-bar{ background:var(--c-proc); }
+  .grau.sin .grau-bar{ background:var(--c-sin); }
 
-    .card p{
-      margin: 0 0 12px;
-      font-size: 19px; /* fonte maior para celular */
-      line-height: 1.78;
-      color: #0b1220;
-    }
+  .grau-body{
+    background:var(--surface);
+    border-left:1px solid var(--line);
+    padding:15px 20px;
+  }
+  .grau-nome{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:1.05rem;
+    color:var(--ink);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:8px;
+    flex-wrap:wrap;
+  }
+  .grau-badge{
+    font-family:var(--mono);
+    font-size:10px;
+    font-weight:600;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    padding:2px 8px;
+    border-radius:3px;
+    color:#fff;
+    flex-shrink:0;
+  }
+  .grau.inc .grau-badge{ background:var(--c-inc); }
+  .grau.fac .grau-badge{ background:var(--c-fac); }
+  .grau.emp .grau-badge{ background:var(--c-proc); }
+  .grau.sin .grau-badge{ background:var(--c-sin); }
 
-    .pill{
-      display:inline-block;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(29,78,216,.08);
-      border: 1px solid rgba(29,78,216,.18);
-      color: #0b1220;
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: .02em;
-      margin-bottom: 10px;
-    }
+  .grau-body p{ font-size:.92em; color:var(--ink-soft); margin:0; line-height:1.7; }
+  .grau-body p + p{ margin-top:8px; }
+  .grau-body .ex{
+    margin-top:8px;
+    font-size:.87em;
+    color:var(--iron);
+    font-style:italic;
+    line-height:1.55;
+  }
+  .grau-body .ex strong{ font-style:normal; color:var(--ink-soft); }
 
-    .note{
-      margin-top: 10px;
-      padding: 14px 14px;
-      border-radius: 18px;
-      background: rgba(37,99,235,.06);
-      border: 1px solid rgba(37,99,235,.14);
-      color: #0b1220;
-      font-size: 18px;
-      line-height: 1.65;
-    }
+  .carac{
+    display:flex;
+    flex-wrap:wrap;
+    gap:5px;
+    margin-top:10px;
+  }
+  .carac span{
+    font-family:var(--mono);
+    font-size:.78em;
+    padding:2px 9px;
+    border-radius:3px;
+    border:1px solid var(--line);
+    color:var(--ink-soft);
+    background:var(--paper);
+  }
+  .carac span.pos{ border-color:var(--c-fac); color:var(--c-fac); }
+  .carac span.neg{ border-color:var(--c-inc); color:var(--c-inc); }
 
-    ul{
-      margin: 10px 0 0 22px;
-      padding: 0;
-      font-size: 19px;
-      line-height: 1.75;
-    }
-    li{ margin: 6px 0; }
+  /* lista dentro dos blocos */
+  .prose-list{
+    list-style:none;
+    margin:10px 0 0;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+  .prose-list li{
+    display:flex;
+    gap:10px;
+    font-size:.92em;
+    color:var(--ink-soft);
+    line-height:1.65;
+  }
+  .prose-list li::before{
+    content:"—";
+    font-family:var(--mono);
+    color:var(--accent);
+    flex-shrink:0;
+    margin-top:.15em;
+  }
 
-    .footer{
-      display:flex;
-      justify-content:center;
-      padding: 18px 6px 4px;
-    }
+  /* ===== CARDS / ACCORDION ===== */
+  .principios{
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+  }
+  .card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+    transition:box-shadow .2s;
+  }
+  .card:hover{ box-shadow:0 4px 18px -8px rgba(27,36,54,.2); }
 
-    .back{
-      text-decoration:none;
-      background: #fff;
-      color: #0b1220;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      box-shadow: var(--shadow2);
-      padding: 14px 18px;
-      font-size: 18px;
-      font-weight: 800;
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      transition: transform .12s ease, box-shadow .12s ease;
-      min-width: min(520px, 100%);
-      justify-content:center;
-    }
-    .back:hover{ transform: translateY(-1px); box-shadow: 0 14px 28px rgba(2,6,23,.14); }
+  .card-btn{
+    width:100%;
+    background:none;
+    border:none;
+    cursor:pointer;
+    display:grid;
+    grid-template-columns:52px 1fr 34px;
+    align-items:center;
+    padding:0;
+    text-align:left;
+    color:inherit;
+  }
+  .card-btn:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:-3px; border-radius:5px; }
 
-    @media (max-width: 520px){
-      .slidesBtn{ min-width: 124px; padding: 10px 12px; }
-      .card p, ul{ font-size: 17px; }
-      .subtitle{ font-size: 16px; }
-    }
-  </style>
+  .card-icon{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:60px;
+    height:100%;
+    border-right:1px solid var(--line);
+    font-family:var(--mono);
+    font-weight:600;
+    font-size:11px;
+    color:var(--accent);
+    background:rgba(122,46,55,.05);
+    text-align:center;
+    padding:4px;
+    line-height:1.3;
+  }
+  .card-head{ padding:14px 18px; }
+  .card-num{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--iron);
+    display:block;
+    margin-bottom:3px;
+  }
+  .card-title{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:1.05rem;
+    line-height:1.2;
+    color:var(--ink);
+  }
+  .card-chevron{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding-right:16px;
+    color:var(--iron);
+    font-size:13px;
+    transition:transform .3s cubic-bezier(.2,.7,.2,1), color .2s;
+  }
+  .card.open .card-chevron{ transform:rotate(180deg); color:var(--accent); }
+
+  .card-body{
+    display:none;
+    padding:18px 22px 22px;
+    border-top:1px solid var(--line);
+  }
+  .card.open .card-body{ display:block; }
+  .card-body > p{ color:var(--ink-soft); font-size:.93em; line-height:1.72; margin-bottom:12px; }
+  .card-body > p:last-child{ margin-bottom:0; }
+
+  .aplica{
+    margin-top:12px;
+    display:flex;
+    gap:6px;
+    flex-wrap:wrap;
+    align-items:center;
+  }
+  .aplica .a-lbl{
+    font-family:var(--mono);
+    font-size:.8em;
+    color:var(--iron);
+    text-transform:uppercase;
+    letter-spacing:.08em;
+  }
+  .aplica .pill{
+    font-family:var(--mono);
+    font-size:.8em;
+    padding:2px 9px;
+    border-radius:3px;
+    font-weight:600;
+  }
+  .pill.inc{ background:rgba(122,46,55,.1); color:var(--c-inc); }
+  .pill.fac{ background:rgba(46,92,122,.1); color:var(--c-fac); }
+  .pill.proc{ background:rgba(61,110,69,.1); color:var(--c-proc); }
+  .pill.both{ background:rgba(27,36,54,.08); color:var(--ink-soft); }
+
+  .ex-box{
+    margin-top:12px;
+    padding:11px 15px;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:5px;
+    font-size:.88em;
+    color:var(--iron);
+    font-style:italic;
+    line-height:1.6;
+  }
+  .ex-box strong{ font-style:normal; color:var(--ink-soft); }
+
+  /* ===== BOTÃO VOLTAR ===== */
+  .back{
+    margin-top:56px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    text-decoration:none;
+    color:var(--ink);
+    background:var(--surface);
+    border:1px solid var(--line-strong);
+    border-radius:6px;
+    padding:20px 22px;
+    font-family:var(--mono);
+    font-size:14px;
+    letter-spacing:.04em;
+    transition:border-color .25s, transform .25s;
+  }
+  .back .arw{ color:var(--accent); transition:transform .25s; font-size:18px; }
+  .back:hover{ border-color:var(--accent); transform:translateY(-2px); }
+  .back:hover .arw{ transform:translateX(-4px); }
+  .back:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:3px; }
+
+  @keyframes rise{
+    from{ opacity:0; transform:translateY(18px); }
+    to{ opacity:1; transform:none; }
+  }
+  .reveal{ opacity:0; transform:translateY(14px); }
+  .reveal.in{
+    opacity:1; transform:none;
+    transition:opacity .5s ease, transform .5s cubic-bezier(.2,.7,.2,1);
+  }
+
+  @media(max-width:560px){
+    body{ font-size:17.5px; }
+    .masthead{ padding:40px 0 24px; }
+    .title-row{ align-items:stretch; }
+    .slides-btn{ width:100%; justify-content:center; }
+    .verbete{ padding-left:20px; }
+    .card-btn{ grid-template-columns:44px 1fr 30px; }
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{ animation:none !important; scroll-behavior:auto; }
+    .reveal{ opacity:1; transform:none; }
+    .reveal.in{ transition:none; }
+    .card-chevron{ transition:none; }
+  }
+</style>
 </head>
-
 <body>
-  <div class="wrap">
-    <div class="shell">
+<div class="wrap">
 
-      <header>
-        <div>
-          <h1>07. Comissão de Conciliação Prévia</h1>
-          <div class="subtitle">
-            Regras, funcionamento, efeitos processuais e entendimento do STF sobre a obrigatoriedade de submissão prévia.
+  <!-- CABEÇALHO -->
+  <header class="masthead">
+    <p class="eyebrow">
+      Direito Processual do Trabalho
+      <span class="dot">·</span> Unidade 1
+      <span class="dot">·</span> Acesso à Justiça do Trabalho
+    </p>
+    <div class="title-row">
+      <h1>
+        <span class="art">Item 7</span>
+        Comissão de Conciliação Prévia
+      </h1>
+      <a class="slides-btn"
+         href="https://drive.google.com/file/d/1eCfTW9w9CNroy-p2e2ivezolCkR7nxxE/view?usp=sharing"
+         target="_blank" rel="noopener">
+        <span class="ico">▮</span>
+        <span>Slides da aula</span>
+        <span class="arw">→</span>
+      </a>
+    </div>
+
+    <div class="verbete">
+      <span class="tag">Conceito</span>
+      <p>
+        CCP = <strong>conciliação extrajudicial + título executivo</strong>. Mecanismo
+        criado em 2000 para estimular acordos antes do ajuizamento, com efeito
+        suspensivo sobre a prescrição e força de título executivo extrajudicial quando
+        homologado. A submissão é <strong>facultativa</strong> desde a decisão do STF nas
+        ADI 2.139 e 2.160.
+      </p>
+    </div>
+  </header>
+
+  <!-- § 7.1  PREVISÃO LEGAL E INCONSTITUCIONALIDADE -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 7.1</span>
+      <h2>Previsão legal e a questão da obrigatoriedade</h2>
+    </div>
+
+    <p class="body-text reveal">
+      As CCP estão previstas nos <span class="ref">arts. 625-A a 625-H da CLT</span>,
+      inseridos pela Lei n. 9.958/2000. A grande controvérsia diz respeito ao
+      <span class="ref">art. 625-D</span>, que pretendia tornar a passagem pela comissão
+      uma condição de procedibilidade da reclamação trabalhista:
+    </p>
+
+    <div class="escala reveal">
+
+      <div class="grau inc">
+        <div class="grau-bar">625-D</div>
+        <div class="grau-body">
+          <div class="grau-nome">
+            Submissão obrigatória — inconstitucional
+            <span class="grau-badge">ADI 2.139 e 2.160 — STF</span>
+          </div>
+          <p>
+            O dispositivo previa a passagem obrigatória pela CCP como condição para o
+            ajuizamento da reclamação trabalhista — uma barreira prévia ao exercício do
+            direito de ação. O STF declarou a norma <strong>inconstitucional</strong> por
+            violação ao <span class="ref">art. 5º, XXXV, CF/88</span>: "a lei não excluirá
+            da apreciação judicial lesão ou ameaça a direito" — princípio da
+            inafastabilidade do controle jurisdicional.
+          </p>
+          <div class="carac">
+            <span class="neg">Inconstitucional</span>
+            <span class="neg">Viola o art. 5º, XXXV, CF/88</span>
+            <span class="neg">Barreira ao direito de ação</span>
           </div>
         </div>
-
-        <!-- Troque o link abaixo pelo seu Google Drive -->
-        <a class="slidesBtn" href="https://drive.google.com/file/d/1eCfTW9w9CNroy-p2e2ivezolCkR7nxxE/view?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Abrir slides no Google Drive">
-          <div class="slidesIcon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none">
-              <path d="M7 4h7l3 3v13a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" stroke="#1d4ed8" stroke-width="1.8"/>
-              <path d="M14 4v3a1 1 0 0 0 1 1h3" stroke="#1d4ed8" stroke-width="1.8"/>
-              <path d="M8 12h8M8 15h8M8 18h6" stroke="#1d4ed8" stroke-width="1.8" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="slidesLbl">
-            <strong>Slides</strong>
-            <span>Abrir no Drive</span>
-          </div>
-        </a>
-      </header>
-
-      <div class="grid">
-
-        <section class="card">
-          <div class="pill">Previsão legal e finalidade</div>
-          <p>
-            Previstas nos arts. 625-A a 625-H da CLT, as Comissões de Conciliação Prévia (CCP) foram criadas no ano de 2000
-            para estimular a conciliação antes do ajuizamento das ações trabalhistas, buscando evitar demandas que poderiam
-            ser resolvidas por acordo entre as partes.
-          </p>
-
-          <p>
-            A intenção original do legislador foi estabelecer a passagem obrigatória pela CCP antes do ajuizamento da reclamação
-            trabalhista (art. 625-D, CLT), criando mais uma condição para o exercício do direito de ação.
-          </p>
-
-          <div class="note">
-            <b>Importante:</b> o STF, nas ADI 2.139 e 2.160, entendeu ser <b>inconstitucional</b> a obrigatoriedade de submissão prévia,
-            por violação ao art. 5º, XXXV, da CF/88 (inafastabilidade da jurisdição).
-          </div>
-        </section>
-
-        <section class="card">
-          <div class="pill">Inafastabilidade do controle jurisdicional</div>
-          <p>
-            O art. 5º, XXXV, da CF/88 prevê que “a lei não excluirá da apreciação judicial lesão ou ameaça a direito”.
-            Assim, impor a passagem obrigatória pela CCP funcionaria como entrave ao acesso ao Judiciário, criando uma barreira
-            ao exercício do direito de ação.
-          </p>
-        </section>
-
-        <section class="card">
-          <div class="pill">Formação e funcionamento</div>
-          <p>
-            Sobre a formação e funcionamento, destacam-se os arts. 625-B e 625-C da CLT, que tratam, respectivamente,
-            das comissões na empresa e nos sindicatos:
-          </p>
-
-          <h2>Art. 625-B (CCP na empresa)</h2>
-          <ul>
-            <li>Número mínimo de <b>2</b> e máximo de <b>10</b> membros;</li>
-            <li>Representação <b>paritária</b> (mesmo número de representantes eleitos pelos empregados e indicados pelos empregadores);</li>
-            <li>Os representantes eleitos pelos empregados têm <b>estabilidade provisória</b> até 1 ano após o término do mandato.</li>
-          </ul>
-
-          <h2 style="margin-top:14px;">Art. 625-C (CCP no sindicato)</h2>
-          <p>
-            As comissões criadas no âmbito dos sindicatos devem observar as regras previstas na convenção ou acordo coletivo
-            que as instituir.
-          </p>
-        </section>
-
-        <section class="card">
-          <div class="pill">Procedimento, prazo e prescrição</div>
-          <p>
-            Uma vez provocada a comissão, a sessão de conciliação deve ser realizada dentro do prazo de <b>10 dias</b>.
-            Nesse período, a <b>prescrição fica suspensa</b>.
-          </p>
-
-          <p>
-            Se houver acordo, o termo será homologado, assinado pelas partes e seus representantes, gerando um
-            <b>título executivo extrajudicial</b>.
-          </p>
-
-          <p>
-            Não havendo acordo, ou não ocorrendo a sessão no prazo de 10 dias, o empregado fica liberado para ajuizar ação
-            perante a Justiça do Trabalho.
-          </p>
-        </section>
-
-        <section class="card">
-          <div class="pill">Efeitos do termo de acordo</div>
-          <p>
-            O termo de acordo firmado na CCP, por ser título executivo extrajudicial, permite ao credor ajuizar
-            <b>ação de execução</b> (e não ação de conhecimento), pois o crédito já está reconhecido em documento.
-          </p>
-
-          <div class="note">
-            O CPC/2015 admite que, mesmo havendo título executivo extrajudicial, a parte possa optar por ajuizar
-            <b>ação de conhecimento</b> para obter um título executivo judicial.
-          </div>
-        </section>
-
       </div>
 
-      <div class="footer">
-        <!-- Ajuste o caminho se seu índice ficar em outro lugar -->
-        <a class="back" href="../index.html">
-          <span aria-hidden="true">←</span>
-          <span>Voltar ao índice da disciplina</span>
-        </a>
+      <div class="grau fac">
+        <div class="grau-bar">Hoje</div>
+        <div class="grau-body">
+          <div class="grau-nome">
+            Uso facultativo
+            <span class="grau-badge">Após a decisão do STF</span>
+          </div>
+          <p>
+            Com a declaração de inconstitucionalidade, a submissão à CCP passou a ser
+            <strong>opcional</strong>. O trabalhador pode escolher entre a conciliação
+            prévia ou o ajuizamento direto da reclamação trabalhista — sem nenhum
+            prejuízo processual pela não utilização da comissão.
+          </p>
+          <div class="carac">
+            <span class="pos">Facultativa</span>
+            <span class="pos">Acesso direto ao Judiciário garantido</span>
+            <span class="pos">Sem prejuízo pela não utilização</span>
+          </div>
+        </div>
       </div>
 
     </div>
-  </div>
+  </section>
+
+  <!-- § 7.2  FORMAÇÃO E COMPOSIÇÃO -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 7.2</span>
+      <h2>Formação e composição</h2>
+    </div>
+
+    <p class="body-text reveal">
+      Os <span class="ref">arts. 625-B e 625-C da CLT</span> regulam, respectivamente,
+      as comissões criadas no âmbito das <strong>empresas</strong> e dos
+      <strong>sindicatos</strong>. As regras de composição diferem conforme o âmbito
+      de instituição:
+    </p>
+
+    <div class="escala reveal">
+
+      <div class="grau emp">
+        <div class="grau-bar">625-B</div>
+        <div class="grau-body">
+          <div class="grau-nome">
+            CCP na empresa
+            <span class="grau-badge">Art. 625-B, CLT</span>
+          </div>
+          <ul class="prose-list">
+            <li>Mínimo de <strong>2</strong> e máximo de <strong>10</strong> membros.</li>
+            <li>Representação <strong>paritária</strong> — mesmo número de representantes eleitos pelos empregados e indicados pelos empregadores.</li>
+            <li>Representantes eleitos pelos empregados têm <strong>estabilidade provisória</strong> até <strong>1 ano</strong> após o término do mandato.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grau sin">
+        <div class="grau-bar">625-C</div>
+        <div class="grau-body">
+          <div class="grau-nome">
+            CCP no sindicato
+            <span class="grau-badge">Art. 625-C, CLT</span>
+          </div>
+          <ul class="prose-list">
+            <li>Constituída no âmbito do sindicato da categoria profissional.</li>
+            <li>Deve observar as regras previstas na <strong>convenção coletiva</strong> ou no <strong>acordo coletivo de trabalho</strong> que a instituir.</li>
+            <li>Amplia o acesso à conciliação para trabalhadores de empresas sem CCP própria.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- § 7.3  PROCEDIMENTO -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 7.3</span>
+      <h2>Procedimento, prazo e prescrição</h2>
+    </div>
+
+    <p class="body-text reveal">
+      Uma vez provocada a CCP, o rito segue etapas com consequências processuais
+      distintas — especialmente quanto ao prazo prescricional e ao efeito do resultado:
+    </p>
+
+    <div class="principios reveal">
+
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Passo<br>1</div>
+          <div class="card-head">
+            <span class="card-num">Início</span>
+            <span class="card-title">Provocação da comissão</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            O empregado — ou o empregador — provoca a CCP apresentando o requerimento
+            de conciliação. A partir desse momento, a <strong>prescrição fica suspensa</strong>
+            e a comissão deve designar a sessão.
+          </p>
+          <div class="aplica">
+            <span class="a-lbl">Efeito imediato:</span>
+            <span class="pill proc">Suspensão da prescrição</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Passo<br>2</div>
+          <div class="card-head">
+            <span class="card-num">Prazo</span>
+            <span class="card-title">Sessão de conciliação em 10 dias</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            A sessão deve ser realizada dentro do prazo de <strong>10 dias</strong>
+            da provocação (<span class="ref">art. 625-F, CLT</span>). Durante todo esse
+            período, a <strong>prescrição permanece suspensa</strong>.
+          </p>
+          <div class="ex-box">
+            Não sendo a sessão realizada no prazo de 10 dias, o empregado fica
+            <strong>imediatamente liberado</strong> para ajuizar a reclamação trabalhista.
+            A prescrição volta a fluir nos termos do <span class="ref">art. 625-G, CLT</span>.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Acordo<br>✓</div>
+          <div class="card-head">
+            <span class="card-num">Resultado positivo</span>
+            <span class="card-title">Termo de conciliação — título executivo extrajudicial</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            Chegando as partes ao acordo, o termo será <strong>homologado e assinado</strong>
+            pelas partes e seus representantes, constituindo um <strong>título executivo
+            extrajudicial</strong> (<span class="ref">art. 625-E, CLT</span>).
+          </p>
+          <div class="aplica">
+            <span class="a-lbl">Natureza:</span>
+            <span class="pill both">Título executivo extrajudicial</span>
+          </div>
+          <div class="ex-box">
+            Por ser título extrajudicial, o credor pode ajuizar <strong>ação de execução</strong>
+            diretamente — não precisando comprovar ter direito ao valor. Contudo, o
+            <span class="ref">CPC/2015</span> admite que a parte opte pela <strong>ação de
+            conhecimento</strong> mesmo diante de título extrajudicial, para obter título
+            executivo <em>judicial</em>.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Sem<br>acordo<br>✕</div>
+          <div class="card-head">
+            <span class="card-num">Resultado negativo</span>
+            <span class="card-title">Liberação para ajuizamento da reclamação</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            Não havendo acordo — ou não sendo a sessão realizada no prazo de 10 dias —
+            o empregado fica <strong>imediatamente liberado</strong> para o ajuizamento
+            da ação judicial perante a Justiça do Trabalho. A prescrição volta a correr
+            a partir desse momento (<span class="ref">art. 625-G, CLT</span>).
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- § 7.4  MAPA DOS ARTIGOS -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 7.4</span>
+      <h2>Mapa dos dispositivos — arts. 625-A a 625-H</h2>
+    </div>
+
+    <p class="body-text reveal">
+      Referência rápida para localização em provas e na consulta ao Vade Mecum.
+      Os pontos de maior incidência nas provas estão destacados:
+    </p>
+
+    <div class="principios reveal">
+
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Art.<br>625-A</div>
+          <div class="card-head">
+            <span class="card-num">Autorização</span>
+            <span class="card-title">Instituição das CCP</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            Autoriza empresas e sindicatos a instituírem Comissões de Conciliação Prévia
+            para tentativa de conciliação dos dissídios individuais do trabalho antes do
+            ajuizamento.
+          </p>
+        </div>
+      </div>
+
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Art.<br>625-B</div>
+          <div class="card-head">
+            <span class="card-num">★ Composição — empresa</span>
+            <span class="card-title">Paridade, mandato e estabilidade</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            2 a 10 membros com representação paritária — igual número de representantes
+            eleitos pelos empregados e indicados pelos empregadores. Mandato de 1 ano,
+            renovável por mais 1. Representantes dos empregados têm estabilidade provisória
+            de <strong>1 ano pós-mandato</strong>.
+          </p>
+          <div class="aplica">
+            <span class="a-lbl">Ponto frequente em prova:</span>
+            <span class="pill proc">Estabilidade 1 ano pós-mandato</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Art.<br>625-C</div>
+          <div class="card-head">
+            <span class="card-num">Composição — sindicato</span>
+            <span class="card-title">Convenção coletiva ou ACT</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            As comissões no âmbito dos sindicatos seguem as regras da <strong>convenção
+            coletiva</strong> ou do <strong>acordo coletivo de trabalho</strong> que as instituir.
+          </p>
+        </div>
+      </div>
+
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Art.<br>625-D</div>
+          <div class="card-head">
+            <span class="card-num">★ Inconstitucional — STF</span>
+            <span class="card-title">Obrigatoriedade declarada inconstitucional</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            Previa a submissão obrigatória à CCP como condição de procedibilidade da
+            reclamação. Declarado inconstitucional nas ADI 2.139 e 2.160 por violação ao
+            princípio da inafastabilidade (<span class="ref">art. 5º, XXXV, CF/88</span>).
+          </p>
+          <div class="aplica">
+            <span class="a-lbl">Status atual:</span>
+            <span class="pill inc">Inconstitucional</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Art.<br>625-E</div>
+          <div class="card-head">
+            <span class="card-num">★ Acordo</span>
+            <span class="card-title">Termo de conciliação — título executivo extrajudicial</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            O termo homologado e assinado pelas partes e seus representantes constitui
+            <strong>título executivo extrajudicial</strong> — autoriza o ajuizamento direto
+            de ação de execução. O CPC/2015, contudo, admite opção pela ação de conhecimento.
+          </p>
+          <div class="aplica">
+            <span class="a-lbl">Natureza:</span>
+            <span class="pill both">Título executivo extrajudicial</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Arts.<br>625-F<br>625-G</div>
+          <div class="card-head">
+            <span class="card-num">★ Prazo e prescrição</span>
+            <span class="card-title">10 dias — suspensão e retomada</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            O <span class="ref">art. 625-F</span> fixa o prazo de 10 dias para realização
+            da sessão e a suspensão da prescrição durante esse período. O
+            <span class="ref">art. 625-G</span> determina a retomada do prazo a partir da
+            tentativa frustrada de conciliação ou do esgotamento dos 10 dias.
+          </p>
+          <div class="aplica">
+            <span class="a-lbl">Efeito da provocação:</span>
+            <span class="pill proc">Suspende a prescrição</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Art.<br>625-H</div>
+          <div class="card-head">
+            <span class="card-num">Aplicação subsidiária</span>
+            <span class="card-title">Normas do processo judiciário do trabalho</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>
+            Aplica-se subsidiariamente ao procedimento perante a CCP o Título sobre o
+            processo judiciário do trabalho da CLT, no que couber.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <a class="back" href="../index.html">
+    <span class="arw">←</span>
+    <span>Voltar ao índice da disciplina</span>
+  </a>
+
+</div>
+
+<script>
+  (function(){
+    var items = document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window)){
+      items.forEach(function(el){ el.classList.add('in'); }); return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold:.08, rootMargin:'0px 0px -3% 0px' });
+    items.forEach(function(el, i){
+      el.style.transitionDelay = (i * 40) + 'ms';
+      io.observe(el);
+    });
+  })();
+
+  (function(){
+    var cards = document.querySelectorAll('.card');
+    cards.forEach(function(card){
+      var btn = card.querySelector('.card-btn');
+      btn.addEventListener('click', function(){
+        var isOpen = card.classList.contains('open');
+        cards.forEach(function(c){
+          c.classList.remove('open');
+          c.querySelector('.card-btn').setAttribute('aria-expanded','false');
+        });
+        if(!isOpen){
+          card.classList.add('open');
+          btn.setAttribute('aria-expanded','true');
+        }
+      });
+    });
+  })();
+</script>
 </body>
 </html>
-
