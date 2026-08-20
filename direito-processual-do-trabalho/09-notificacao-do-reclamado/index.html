@@ -1,336 +1,1282 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>09. Notificação do reclamado</title>
+<meta charset="UTF-8">
+<title>Notificação do Reclamado</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    :root{
-      --bg:#eaf3ff;
-      --panel: rgba(255,255,255,.82);
-      --card:#ffffff;
-      --card2:#f7fbff;
-      --text:#0f172a;
-      --muted:#475569;
-      --brand:#2563eb;
-      --brand2:#1d4ed8;
-      --line: rgba(15,23,42,.10);
-      --shadow: 0 18px 50px rgba(2,6,23,.12);
-      --shadow2: 0 10px 24px rgba(2,6,23,.10);
-      --radius: 22px;
-      --radius2: 18px;
-    }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
-    *{ box-sizing:border-box; }
+<style>
+  :root{
+    --ink:#1b2436;
+    --ink-soft:#414a5c;
+    --paper:#edece5;
+    --surface:#fbfaf7;
+    --accent:#7a2e37;
+    --accent-soft:#a2545f;
+    --iron:#8b8579;
+    --line:rgba(27,36,54,.13);
+    --line-strong:rgba(27,36,54,.22);
+    --c-red:#7a2e37;
+    --c-blue:#2e5c7a;
+    --c-green:#3d6e45;
+    --c-amber:#7a5a12;
+    --c-purple:#5a3d7a;
+    --display:"Fraunces", Georgia, "Times New Roman", serif;
+    --body:"Spectral", Georgia, serif;
+    --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+  }
 
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(1200px 600px at 20% 0%, rgba(37,99,235,.20), transparent 60%),
-        radial-gradient(900px 500px at 90% 20%, rgba(29,78,216,.12), transparent 55%),
-        var(--bg);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      line-height: 1.75;
-    }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
 
-    .wrap{
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 18px 14px 34px;
-    }
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:19px;
+    line-height:1.78;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
 
-    .shell{
-      background: var(--panel);
-      border: 1px solid rgba(255,255,255,.65);
-      border-radius: calc(var(--radius) + 10px);
-      box-shadow: var(--shadow);
-      padding: 16px;
-      backdrop-filter: blur(10px);
-    }
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0 0 auto 0;
+    height:4px;
+    background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 34%,var(--ink) 34%,var(--ink) 100%);
+    z-index:50;
+  }
 
-    header{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap: 14px;
-      padding: 6px 6px 2px;
-    }
+  .wrap{ max-width:760px; margin:0 auto; padding:0 22px 72px; }
 
-    h1{
-      margin: 0;
-      font-size: clamp(28px, 4.8vw, 46px);
-      letter-spacing: -0.02em;
-      line-height: 1.06;
-      color: var(--brand);
-    }
+  /* ───── HEADER ───── */
+  .masthead{
+    padding:56px 0 30px;
+    border-bottom:1px solid var(--line-strong);
+    animation:rise .7s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:600;
+    margin-bottom:20px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .eyebrow::before{ content:""; width:26px; height:2px; background:var(--accent); display:inline-block; }
+  .eyebrow .dot{ color:var(--line-strong); }
+  .title-row{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:28px;
+    flex-wrap:wrap;
+  }
+  h1{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(2.3rem,6.5vw,3.8rem);
+    line-height:1.04;
+    letter-spacing:-.015em;
+    max-width:14ch;
+  }
+  h1 .art{
+    display:block;
+    font-size:.4em;
+    font-weight:600;
+    letter-spacing:.02em;
+    color:var(--accent);
+    font-family:var(--mono);
+    text-transform:uppercase;
+    margin-bottom:.5em;
+  }
+  .slides-btn{
+    flex-shrink:0;
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    background:var(--ink);
+    color:#f4f2ec;
+    border-radius:4px;
+    padding:13px 18px;
+    font-family:var(--mono);
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    box-shadow:0 8px 22px -12px rgba(27,36,54,.7);
+    transition:transform .25s cubic-bezier(.2,.7,.2,1), box-shadow .25s, background .25s;
+  }
+  .slides-btn .ico{ font-size:16px; line-height:1; transform:translateY(-1px); }
+  .slides-btn .arw{ transition:transform .25s; }
+  .slides-btn:hover{ background:var(--accent); transform:translateY(-2px); box-shadow:0 14px 28px -12px rgba(122,46,55,.75); }
+  .slides-btn:hover .arw{ transform:translateX(4px); }
+  .slides-btn:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:3px; }
 
-    .subtitle{
-      margin: 10px 6px 16px;
-      color: var(--muted);
-      font-size: 18px;
-      line-height: 1.55;
-    }
+  /* ───── VERBETE ───── */
+  .verbete{
+    margin:44px 0 8px;
+    padding:6px 0 6px 30px;
+    border-left:3px solid var(--accent);
+    animation:rise .7s .1s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .verbete .tag{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:block;
+    margin-bottom:14px;
+  }
+  .verbete p{
+    font-family:var(--display);
+    font-weight:400;
+    font-size:clamp(1.2rem,3vw,1.5rem);
+    line-height:1.45;
+    letter-spacing:-.01em;
+    color:var(--ink);
+    margin:0;
+  }
 
-    /* Botão Slides (premium) */
-    .slidesBtn{
-      text-decoration:none;
-      color: var(--text);
-      background: #fff;
-      border: 1px solid rgba(37,99,235,.18);
-      border-radius: 18px;
-      box-shadow: var(--shadow2);
-      padding: 12px 14px;
-      min-width: 140px;
-      display:flex;
-      align-items:center;
-      gap: 10px;
-      transition: transform .12s ease, box-shadow .12s ease;
-      user-select:none;
-      justify-content:center;
-      flex: 0 0 auto;
-    }
-    .slidesBtn:hover{
-      transform: translateY(-1px);
-      box-shadow: 0 14px 28px rgba(2,6,23,.14);
-    }
-    .slidesIcon{
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
-      display:grid;
-      place-items:center;
-      background: linear-gradient(135deg, rgba(37,99,235,.14), rgba(29,78,216,.08));
-      border: 1px solid rgba(37,99,235,.18);
-      flex: 0 0 auto;
-    }
-    .slidesIcon svg{ width: 22px; height: 22px; }
-    .slidesLbl{
-      display:flex;
-      flex-direction:column;
-      line-height:1.05;
-      text-align:left;
-    }
-    .slidesLbl strong{ font-size: 15px; }
-    .slidesLbl span{ margin-top: 3px; font-size: 12px; color: var(--muted); }
+  /* ───── SEÇÕES ───── */
+  .sec-head{
+    display:flex;
+    gap:16px;
+    align-items:baseline;
+    margin:46px 0 14px;
+    padding-top:26px;
+    border-top:1px solid var(--line);
+  }
+  .sec-head .num{
+    font-family:var(--mono);
+    font-size:15px;
+    font-weight:600;
+    color:var(--accent);
+    letter-spacing:.02em;
+    flex-shrink:0;
+    padding-top:.35em;
+  }
+  h2{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(1.6rem,4vw,2rem);
+    line-height:1.14;
+    letter-spacing:-.01em;
+    color:var(--ink);
+  }
+  p{ margin-bottom:16px; }
+  p:last-child{ margin-bottom:0; }
+  .body-text{ color:var(--ink-soft); }
 
-    .grid{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
-      padding: 8px 6px 6px;
-    }
+  .ref{
+    font-family:var(--mono);
+    font-size:.8em;
+    color:var(--iron);
+    background:rgba(139,133,121,.12);
+    padding:2px 7px;
+    border-radius:3px;
+    white-space:nowrap;
+  }
 
-    .card{
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 18px 18px;
-      box-shadow: 0 10px 22px rgba(2,6,23,.07);
-    }
+  /* ───── BLOCOS COLORIDOS ───── */
+  .escala{ margin:18px 0 6px; display:flex; flex-direction:column; gap:2px; }
+  .grau{
+    display:grid;
+    grid-template-columns:36px 1fr;
+    border-radius:5px;
+    overflow:hidden;
+    border:1px solid var(--line);
+  }
+  .grau-bar{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    writing-mode:vertical-lr;
+    text-orientation:mixed;
+    font-family:var(--mono);
+    font-weight:700;
+    font-size:9px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:#fff;
+    padding:8px 0;
+  }
+  .grau.red   .grau-bar{ background:var(--c-red); }
+  .grau.blue  .grau-bar{ background:var(--c-blue); }
+  .grau.green .grau-bar{ background:var(--c-green); }
+  .grau.amber .grau-bar{ background:var(--c-amber); }
+  .grau.purple .grau-bar{ background:var(--c-purple); }
 
-    .card h2{
-      margin: 0 0 10px;
-      font-size: clamp(20px, 2.6vw, 26px);
-      letter-spacing: -0.01em;
-      color:#0b1220;
-    }
+  .grau-body{ background:var(--surface); border-left:1px solid var(--line); padding:15px 20px; }
+  .grau-nome{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:1.05rem;
+    color:var(--ink);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:8px;
+    flex-wrap:wrap;
+  }
+  .grau-badge{
+    font-family:var(--mono);
+    font-size:10px;
+    font-weight:600;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    padding:2px 8px;
+    border-radius:3px;
+    color:#fff;
+    flex-shrink:0;
+  }
+  .grau.red    .grau-badge{ background:var(--c-red); }
+  .grau.blue   .grau-badge{ background:var(--c-blue); }
+  .grau.green  .grau-badge{ background:var(--c-green); }
+  .grau.amber  .grau-badge{ background:var(--c-amber); }
+  .grau.purple .grau-badge{ background:var(--c-purple); }
 
-    .card p{
-      margin: 0 0 12px;
-      font-size: 19px; /* maior para celular */
-      color: #0b1220;
-    }
+  .grau-body p{ font-size:.92em; color:var(--ink-soft); margin:0; line-height:1.7; }
+  .grau-body p + p{ margin-top:8px; }
+  .grau-body .ex{ margin-top:8px; font-size:.87em; color:var(--iron); font-style:italic; line-height:1.55; }
+  .grau-body .ex strong{ font-style:normal; color:var(--ink-soft); }
 
-    .pill{
-      display:inline-block;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(29,78,216,.08);
-      border: 1px solid rgba(29,78,216,.18);
-      color: #0b1220;
-      font-size: 14px;
-      font-weight: 900;
-      letter-spacing: .02em;
-      margin-bottom: 10px;
-    }
+  .carac{ display:flex; flex-wrap:wrap; gap:5px; margin-top:10px; }
+  .carac span{
+    font-family:var(--mono);
+    font-size:.78em;
+    padding:2px 9px;
+    border-radius:3px;
+    border:1px solid var(--line);
+    color:var(--ink-soft);
+    background:var(--paper);
+  }
+  .carac span.pos{ border-color:var(--c-blue); color:var(--c-blue); }
+  .carac span.neg{ border-color:var(--c-red); color:var(--c-red); }
+  .carac span.neu{ border-color:var(--iron); color:var(--iron); }
 
-    .note{
-      margin-top: 10px;
-      padding: 14px 14px;
-      border-radius: var(--radius2);
-      background: var(--card2);
-      border: 1px solid rgba(37,99,235,.14);
-      color: #0b1220;
-      font-size: 18px;
-      line-height: 1.65;
-    }
+  .prose-list{ list-style:none; margin:10px 0 0; padding:0; display:flex; flex-direction:column; gap:6px; }
+  .prose-list li{ display:flex; gap:10px; font-size:.92em; color:var(--ink-soft); line-height:1.65; }
+  .prose-list li::before{ content:"—"; font-family:var(--mono); color:var(--accent); flex-shrink:0; margin-top:.15em; }
 
-    .quote{
-      margin-top: 12px;
-      padding: 14px 14px;
-      border-radius: var(--radius2);
-      background: #ffffff;
-      border: 1px solid rgba(15,23,42,.10);
-      box-shadow: 0 8px 18px rgba(2,6,23,.06);
-      font-size: 18px;
-      line-height: 1.7;
-    }
+  /* ───── TIMELINE DE PRAZOS ───── */
+  .timeline{ margin:18px 0 6px; display:flex; flex-direction:column; gap:0; }
+  .tl-step{ display:flex; gap:14px; align-items:stretch; }
+  .tl-left{ display:flex; flex-direction:column; align-items:center; flex:0 0 auto; width:38px; }
+  .tl-dot{
+    width:38px; height:38px;
+    border-radius:50%;
+    background:var(--ink);
+    color:#fff;
+    font-weight:800;
+    font-size:14px;
+    display:grid;
+    place-items:center;
+    flex:0 0 auto;
+    box-shadow:0 3px 10px rgba(27,36,54,.28);
+    font-family:var(--mono);
+  }
+  .tl-dot.blue{ background:var(--c-blue); box-shadow:0 3px 10px rgba(46,92,122,.30); }
+  .tl-dot.amber{ background:var(--c-amber); box-shadow:0 3px 10px rgba(122,90,18,.30); }
+  .tl-dot.green{ background:var(--c-green); box-shadow:0 3px 10px rgba(61,110,69,.30); }
+  .tl-dot.purple{ background:var(--c-purple); box-shadow:0 3px 10px rgba(90,61,122,.30); }
+  .tl-line{ flex:1; width:2px; background:linear-gradient(to bottom,rgba(27,36,54,.20),rgba(27,36,54,.05)); margin:4px 0; }
+  .tl-body{ flex:1; padding:4px 0 22px; }
+  .tl-body h4{ font-size:16px; font-weight:700; color:var(--ink); margin-bottom:4px; font-family:var(--display); }
+  .tl-body .tl-prazo{
+    font-family:var(--mono);
+    font-size:13px;
+    font-weight:700;
+    color:#fff;
+    background:var(--c-blue);
+    border-radius:4px;
+    padding:2px 10px;
+    display:inline-block;
+    margin-bottom:8px;
+  }
+  .tl-body .tl-prazo.amber{ background:var(--c-amber); }
+  .tl-body .tl-prazo.green{ background:var(--c-green); }
+  .tl-body .tl-prazo.purple{ background:var(--c-purple); }
+  .tl-body p{ font-size:.9em; line-height:1.70; color:var(--ink-soft); margin:0; }
+  .tl-step:last-child .tl-line{ display:none; }
+  .tl-step:last-child .tl-body{ padding-bottom:4px; }
 
-    ul{
-      margin: 10px 0 0 22px;
-      padding: 0;
-      font-size: 19px;
-      line-height: 1.75;
-    }
-    li{ margin: 6px 0; }
+  /* ───── ACCORDION ───── */
+  .principios{ display:flex; flex-direction:column; gap:3px; }
+  .card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+    transition:box-shadow .2s;
+  }
+  .card:hover{ box-shadow:0 4px 18px -8px rgba(27,36,54,.2); }
+  .card-btn{
+    width:100%;
+    background:none;
+    border:none;
+    cursor:pointer;
+    display:grid;
+    grid-template-columns:52px 1fr 34px;
+    align-items:center;
+    padding:0;
+    text-align:left;
+    color:inherit;
+  }
+  .card-btn:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:-3px; border-radius:5px; }
+  .card-icon{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:60px;
+    height:100%;
+    border-right:1px solid var(--line);
+    font-family:var(--mono);
+    font-weight:600;
+    font-size:11px;
+    color:var(--accent);
+    background:rgba(122,46,55,.05);
+    text-align:center;
+    padding:4px;
+    line-height:1.3;
+  }
+  .card-head{ padding:14px 18px; }
+  .card-num{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--iron);
+    display:block;
+    margin-bottom:3px;
+  }
+  .card-title{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:1.05rem;
+    line-height:1.2;
+    color:var(--ink);
+  }
+  .card-chevron{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding-right:16px;
+    color:var(--iron);
+    font-size:13px;
+    transition:transform .3s cubic-bezier(.2,.7,.2,1), color .2s;
+  }
+  .card.open .card-chevron{ transform:rotate(180deg); color:var(--accent); }
+  .card-body{ display:none; padding:18px 22px 22px; border-top:1px solid var(--line); }
+  .card.open .card-body{ display:block; }
+  .card-body > p{ color:var(--ink-soft); font-size:.93em; line-height:1.72; margin-bottom:12px; }
+  .card-body > p:last-child{ margin-bottom:0; }
 
-    .footer{
-      display:flex;
-      justify-content:center;
-      padding: 18px 6px 4px;
-    }
+  .aplica{ margin-top:12px; display:flex; gap:6px; flex-wrap:wrap; align-items:center; }
+  .aplica .a-lbl{ font-family:var(--mono); font-size:.8em; color:var(--iron); text-transform:uppercase; letter-spacing:.08em; }
+  .aplica .pill{ font-family:var(--mono); font-size:.8em; padding:2px 9px; border-radius:3px; font-weight:600; }
+  .pill.red{ background:rgba(122,46,55,.1); color:var(--c-red); }
+  .pill.blue{ background:rgba(46,92,122,.1); color:var(--c-blue); }
+  .pill.green{ background:rgba(61,110,69,.1); color:var(--c-green); }
+  .pill.amber{ background:rgba(122,90,18,.1); color:var(--c-amber); }
+  .pill.purple{ background:rgba(90,61,122,.1); color:var(--c-purple); }
+  .pill.both{ background:rgba(27,36,54,.08); color:var(--ink-soft); }
 
-    .back{
-      text-decoration:none;
-      background: #fff;
-      color: #0b1220;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      box-shadow: var(--shadow2);
-      padding: 14px 18px;
-      font-size: 18px;
-      font-weight: 900;
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      transition: transform .12s ease, box-shadow .12s ease;
-      min-width: min(520px, 100%);
-      justify-content:center;
-    }
-    .back:hover{ transform: translateY(-1px); box-shadow: 0 14px 28px rgba(2,6,23,.14); }
+  .ex-box{
+    margin-top:12px;
+    padding:11px 15px;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:5px;
+    font-size:.88em;
+    color:var(--iron);
+    font-style:italic;
+    line-height:1.6;
+  }
+  .ex-box strong{ font-style:normal; color:var(--ink-soft); }
 
-    @media (max-width: 520px){
-      .slidesBtn{ min-width: 124px; padding: 10px 12px; }
-      .card p, ul{ font-size: 17px; }
-      .subtitle{ font-size: 16px; }
-      .quote{ font-size: 16.5px; }
-    }
-  </style>
+  /* ───── DESTAQUE / SUMA ───── */
+  .sum-box{
+    margin:14px 0;
+    padding:14px 18px;
+    border-left:3px solid var(--accent);
+    background:rgba(122,46,55,.04);
+    border-radius:0 5px 5px 0;
+  }
+  .sum-box .sum-lbl{
+    font-family:var(--mono);
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:block;
+    margin-bottom:8px;
+  }
+  .sum-box p{ font-size:.9em; line-height:1.68; color:var(--ink-soft); margin:0; font-style:italic; }
+  .sum-box p strong{ font-style:normal; color:var(--ink); }
+
+  /* ───── COMPARATIVO PRIVADO × PÚBLICO ───── */
+  .compare-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin:18px 0 6px;
+  }
+  @media(max-width:520px){ .compare-row{ grid-template-columns:1fr; } }
+  .cmp-card{
+    border-radius:6px;
+    padding:16px 16px;
+    border:1px solid;
+  }
+  .cmp-card.priv{ background:rgba(46,92,122,.05); border-color:rgba(46,92,122,.22); }
+  .cmp-card.pub { background:rgba(90,61,122,.05); border-color:rgba(90,61,122,.22); }
+  .cmp-title{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    margin-bottom:10px;
+    display:block;
+  }
+  .cmp-card.priv .cmp-title{ color:var(--c-blue); }
+  .cmp-card.pub  .cmp-title{ color:var(--c-purple); }
+  .cmp-num{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:2.6rem;
+    line-height:1;
+    letter-spacing:-.02em;
+    margin-bottom:4px;
+    display:block;
+  }
+  .cmp-card.priv .cmp-num{ color:var(--c-blue); }
+  .cmp-card.pub  .cmp-num{ color:var(--c-purple); }
+  .cmp-sub{ font-size:.85em; color:var(--ink-soft); line-height:1.6; }
+  .cmp-base{
+    margin-top:10px;
+    font-family:var(--mono);
+    font-size:.78em;
+    color:var(--iron);
+  }
+
+  /* ───── QUESTÕES INTERATIVAS ───── */
+  .quest-wrap{ display:flex; flex-direction:column; gap:24px; margin-top:14px; }
+
+  .quest-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+  }
+
+  .quest-header{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px 18px 12px;
+    border-bottom:1px solid var(--line);
+    flex-wrap:wrap;
+    background:rgba(27,36,54,.03);
+  }
+  .quest-num{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:#fff;
+    background:var(--ink);
+    padding:4px 11px;
+    border-radius:3px;
+    flex-shrink:0;
+  }
+  .quest-exam{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--iron);
+    letter-spacing:.04em;
+  }
+  .quest-badge{
+    margin-left:auto;
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.08em;
+    padding:4px 11px;
+    border-radius:3px;
+    display:none;
+    flex-shrink:0;
+  }
+  .quest-badge.acerto{ background:rgba(61,110,69,.12); color:var(--c-green); border:1px solid rgba(61,110,69,.28); }
+  .quest-badge.erro  { background:rgba(122,46,55,.10); color:var(--c-red);   border:1px solid rgba(122,46,55,.25); }
+
+  .quest-body{ padding:18px 18px 0; }
+
+  .quest-enunciado{ font-size:.94em; line-height:1.72; color:var(--ink); margin-bottom:18px; }
+
+  .quest-options{ display:flex; flex-direction:column; gap:5px; }
+
+  .quest-option{
+    display:flex;
+    align-items:flex-start;
+    gap:11px;
+    padding:11px 14px;
+    border-radius:5px;
+    border:1px solid var(--line);
+    background:var(--paper);
+    font-size:.9em;
+    line-height:1.62;
+    color:var(--ink-soft);
+    cursor:pointer;
+    transition:border-color .18s, background .18s, transform .1s;
+    user-select:none;
+  }
+  .quest-option:hover:not(.disabled){ border-color:rgba(27,36,54,.28); background:#f0efe8; transform:translateX(2px); }
+  .quest-option.disabled{ cursor:default; pointer-events:none; }
+  .quest-option.chosen-correct{ border-color:var(--c-green); background:rgba(61,110,69,.07); color:#0d2b14; }
+  .quest-option.chosen-wrong  { border-color:var(--c-red);   background:rgba(122,46,55,.07); color:#2b0d0d; }
+  .quest-option.reveal-correct{ border-color:var(--c-green); background:rgba(61,110,69,.04); color:#1a3820; }
+
+  .opt-lbl{
+    font-family:var(--mono);
+    font-weight:700;
+    font-size:.82em;
+    flex-shrink:0;
+    margin-top:.12em;
+    color:var(--iron);
+    min-width:1.6em;
+  }
+  .quest-option.chosen-correct .opt-lbl,
+  .quest-option.reveal-correct .opt-lbl{ color:var(--c-green); }
+  .quest-option.chosen-wrong   .opt-lbl{ color:var(--c-red); }
+
+  .opt-icon{ flex-shrink:0; font-size:14px; margin-top:.1em; display:none; }
+  .quest-option.chosen-correct .opt-icon,
+  .quest-option.reveal-correct .opt-icon,
+  .quest-option.chosen-wrong   .opt-icon{ display:inline; }
+
+  /* ───── FEEDBACK ───── */
+  .quest-feedback{
+    display:none;
+    flex-direction:column;
+    gap:0;
+    border-top:1px solid var(--line);
+    margin-top:14px;
+  }
+  .quest-feedback.visible{ display:flex; animation:slideDown .28s cubic-bezier(.2,.7,.2,1); }
+
+  .feedback-intro{ padding:12px 18px; background:rgba(27,36,54,.03); border-bottom:1px solid var(--line); }
+  .feedback-intro p{ font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--iron); margin:0; }
+
+  .fb-item{ display:flex; gap:0; border-bottom:1px solid var(--line); }
+  .fb-item:last-child{ border-bottom:none; }
+
+  .fb-lbl{
+    flex:0 0 44px;
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+    padding:14px 0;
+    font-family:var(--mono);
+    font-weight:700;
+    font-size:12px;
+    color:var(--iron);
+    border-right:1px solid var(--line);
+  }
+  .fb-item.fb-correct .fb-lbl{ color:var(--c-green); background:rgba(61,110,69,.05); }
+  .fb-item.fb-wrong   .fb-lbl{ color:var(--c-red);   background:rgba(122,46,55,.04); }
+
+  .fb-content{ flex:1; padding:14px 16px; }
+  .fb-verdict{
+    font-family:var(--mono);
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    display:block;
+    margin-bottom:6px;
+  }
+  .fb-item.fb-correct .fb-verdict{ color:var(--c-green); }
+  .fb-item.fb-wrong   .fb-verdict{ color:var(--c-red); }
+  .fb-text{ font-size:.88em; line-height:1.68; color:var(--ink-soft); margin:0; }
+  .fb-text p{ margin-bottom:6px; }
+  .fb-text p:last-child{ margin-bottom:0; }
+
+  .quest-reset-wrap{ display:none; padding:14px 18px 18px; justify-content:flex-end; border-top:1px solid var(--line); }
+  .quest-reset-wrap.visible{ display:flex; }
+  .quest-reset{
+    font-family:var(--mono);
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:.08em;
+    color:var(--iron);
+    background:none;
+    border:1px solid var(--line-strong);
+    border-radius:4px;
+    padding:7px 14px;
+    cursor:pointer;
+    transition:color .18s, border-color .18s;
+  }
+  .quest-reset:hover{ color:var(--ink); border-color:var(--ink); }
+
+  /* ───── BOTÃO VOLTAR ───── */
+  .back{
+    margin-top:56px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    text-decoration:none;
+    color:var(--ink);
+    background:var(--surface);
+    border:1px solid var(--line-strong);
+    border-radius:6px;
+    padding:20px 22px;
+    font-family:var(--mono);
+    font-size:14px;
+    letter-spacing:.04em;
+    transition:border-color .25s, transform .25s;
+  }
+  .back .arw{ color:var(--accent); transition:transform .25s; font-size:18px; }
+  .back:hover{ border-color:var(--accent); transform:translateY(-2px); }
+  .back:hover .arw{ transform:translateX(-4px); }
+  .back:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:3px; }
+
+  @keyframes rise{ from{ opacity:0; transform:translateY(18px); } to{ opacity:1; transform:none; } }
+  @keyframes slideDown{ from{ opacity:0; transform:translateY(-6px); } to{ opacity:1; transform:none; } }
+
+  .reveal{ opacity:0; transform:translateY(14px); }
+  .reveal.in{ opacity:1; transform:none; transition:opacity .5s ease, transform .5s cubic-bezier(.2,.7,.2,1); }
+
+  @media(max-width:560px){
+    body{ font-size:17.5px; }
+    .masthead{ padding:40px 0 24px; }
+    .title-row{ align-items:stretch; }
+    .slides-btn{ width:100%; justify-content:center; }
+    .verbete{ padding-left:20px; }
+    .card-btn{ grid-template-columns:44px 1fr 30px; }
+    .fb-lbl{ flex:0 0 36px; font-size:11px; }
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{ animation:none !important; scroll-behavior:auto; }
+    .reveal{ opacity:1; transform:none; }
+    .reveal.in{ transition:none; }
+    .card-chevron,.quest-option{ transition:none; }
+  }
+</style>
 </head>
-
 <body>
-  <div class="wrap">
-    <div class="shell">
+<div class="wrap">
 
-      <header>
-        <div>
-          <h1>09. Notificação do reclamado</h1>
-          <div class="subtitle">
-            A notificação viabiliza o contraditório e impulsiona o procedimento em direção à audiência, onde se concentram os principais atos processuais.
-          </div>
+  <!-- ════════════════════════════════════════════
+       CABEÇALHO
+  ════════════════════════════════════════════ -->
+  <header class="masthead">
+    <p class="eyebrow">
+      Direito Processual do Trabalho
+      <span class="dot">·</span> Unidade 1
+      <span class="dot">·</span> Processo de conhecimento
+    </p>
+    <div class="title-row">
+      <h1>
+        <span class="art">Item 9</span>
+        Notificação do Reclamado
+      </h1>
+      <a class="slides-btn" href="#" target="_blank" rel="noopener">
+        <span class="ico">▮</span>
+        <span>Slides da aula</span>
+        <span class="arw">→</span>
+      </a>
+    </div>
+    <div class="verbete">
+      <span class="tag">Função</span>
+      <p>
+        A notificação do reclamado viabiliza o <strong>contraditório</strong> e impulsiona
+        o procedimento em direção à audiência — momento em que se concentram os principais
+        atos processuais. É indispensável ao devido processo legal.
+      </p>
+    </div>
+  </header>
+
+  <!-- ════════════════════════════════════════════
+       § 9.1  FORMA E PRAZOS
+  ════════════════════════════════════════════ -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 9.1</span>
+      <h2>Forma e prazos</h2>
+    </div>
+
+    <p class="body-text reveal">
+      O <span class="ref">art. 841 da CLT</span> prevê que a notificação será
+      <strong>postal</strong> (Correios, com aviso de recebimento — AR). Não é necessária
+      entrega pessoal ao reclamado: é suficiente a entrega no endereço correto,
+      independentemente de quem a receba.
+    </p>
+
+    <!-- TIMELINE DOS TRÊS PRAZOS -->
+    <div class="timeline reveal">
+
+      <div class="tl-step">
+        <div class="tl-left">
+          <div class="tl-dot blue">1</div>
+          <div class="tl-line"></div>
         </div>
-
-        <!-- Troque pelo link real dos seus slides -->
-        <a class="slidesBtn" href="https://drive.google.com/file/d/1h1Es28YO49RLDLJthZsEveFP4MNvM526/view?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Abrir slides no Google Drive">
-          <div class="slidesIcon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none">
-              <path d="M7 4h7l3 3v13a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" stroke="#1d4ed8" stroke-width="1.8"/>
-              <path d="M14 4v3a1 1 0 0 0 1 1h3" stroke="#1d4ed8" stroke-width="1.8"/>
-              <path d="M8 12h8M8 15h8M8 18h6" stroke="#1d4ed8" stroke-width="1.8" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="slidesLbl">
-            <strong>Slides</strong>
-            <span>Abrir no Drive</span>
-          </div>
-        </a>
-      </header>
-
-      <div class="grid">
-
-        <section class="card">
-          <div class="pill">Função e importância</div>
+        <div class="tl-body">
+          <div class="tl-prazo">48 horas — expedição</div>
+          <h4>Prazo do serventuário para expedir a notificação</h4>
           <p>
-            A notificação do reclamado faz com que o procedimento continue em direção à audiência, momento em que são realizados,
-            na prática, diversos atos processuais (pregão, tentativa de conciliação, defesa, instrução, razões finais, nova tentativa
-            de acordo e sentença), sendo indispensável para a concretização do princípio do contraditório.
+            Contado do <strong>recebimento da petição inicial</strong>, o escrivão ou
+            secretário da Vara tem 48 horas para remeter ao reclamado a segunda via da
+            petição ou do termo (<span class="ref">art. 841, caput, CLT</span>).
           </p>
-        </section>
-
-        <section class="card">
-          <div class="pill">9.1. Forma e prazos</div>
-          <p>
-            O art. 841 da CLT prevê que a notificação será <b>postal</b> (Correios, com aviso de recebimento – AR).
-            Não é necessária a entrega pessoal ao reclamado: é suficiente a entrega no <b>endereço correto</b>,
-            independentemente de quem receba.
-          </p>
-
-          <h2>Prazos importantes (para prova e prática)</h2>
-          <ul>
-            <li>
-              <b>48 horas para expedição:</b> prazo do serventuário para expedir a notificação após o recebimento da petição inicial (art. 841, CLT).
-            </li>
-            <li>
-              <b>48 horas para recebimento (presunção):</b> Súmula 16 do TST presume o recebimento em 48h, presunção <b>relativa</b>.
-              Se não recebeu ou recebeu depois, o destinatário deve provar o atraso.
-            </li>
-            <li>
-              <b>5 dias mínimos até a audiência:</b> entre o recebimento da notificação e a audiência deve haver pelo menos 5 dias,
-              para preparar defesa, reunir documentos e testemunhas (art. 841, CLT).
-            </li>
-          </ul>
-
-          <div class="note">
-            <b>Ônus da prova:</b> se a notificação não foi recebida, ou foi recebida tardiamente a ponto de prejudicar a defesa,
-            cabe ao reclamado alegar e provar o fato.
-          </div>
-
-          <div class="quote">
-            <b>CLT, art. 841 (trecho essencial):</b><br><br>
-            “Recebida e protocolada a reclamação, o escrivão ou secretário, dentro de 48 (quarenta e oito) horas, remeterá a segunda via
-            da petição, ou do termo, ao reclamado, notificando-o, ao mesmo tempo, para comparecer à audiência do julgamento, que será a
-            primeira desimpedida, depois de 5 (cinco) dias.”
-          </div>
-
-          <div class="note">
-            O prazo mínimo de 5 dias é aplicável ao reclamado pessoa física ou jurídica de direito privado.
-            Para entes públicos, aplica-se regra específica (abaixo).
-          </div>
-        </section>
-
-        <section class="card">
-          <div class="pill">9.2. Notificação da Fazenda Pública</div>
-          <p>
-            Para entes públicos (União, Estados, Municípios, DF, autarquias e fundações de direito público) valem regras especiais
-            (prerrogativas da Fazenda Pública), em razão do interesse público e do patrimônio que representam.
-          </p>
-
-          <p>
-            No processo do trabalho, aplica-se o prazo em <b>quádruplo</b> para a defesa, previsto no <b>Decreto-Lei 779/69</b>,
-            afastando a aplicação subsidiária do CPC/2015 (que prevê prazo em dobro no art. 183).
-          </p>
-
-          <div class="note">
-            <b>Consequência prática:</b> se o reclamado privado deve ser notificado com <b>mínimo de 5 dias</b> antes da audiência,
-            o ente público deve ser notificado com <b>mínimo de 20 dias</b> (quadruplicação do prazo).
-          </div>
-        </section>
-
+        </div>
       </div>
 
-      <div class="footer">
-        <a class="back" href="../index.html">
-          <span aria-hidden="true">←</span>
-          <span>Voltar ao índice da disciplina</span>
-        </a>
+      <div class="tl-step">
+        <div class="tl-left">
+          <div class="tl-dot amber">2</div>
+          <div class="tl-line"></div>
+        </div>
+        <div class="tl-body">
+          <div class="tl-prazo amber">48 horas — recebimento presumido</div>
+          <h4>Presunção relativa de recebimento — Súmula 16 do TST</h4>
+          <p>
+            Presume-se que a notificação foi recebida pelo destinatário
+            <strong>48 horas após a postagem</strong>. Trata-se de presunção
+            <em>relativa</em> (juris tantum): se não foi recebida ou chegou depois,
+            <strong>cabe ao destinatário alegar e provar</strong> o atraso — o ônus da
+            prova é do reclamado.
+          </p>
+        </div>
+      </div>
+
+      <div class="tl-step">
+        <div class="tl-left">
+          <div class="tl-dot green">3</div>
+        </div>
+        <div class="tl-body">
+          <div class="tl-prazo green">5 dias mínimos — reclamado privado</div>
+          <h4>Antecedência mínima entre o recebimento e a audiência</h4>
+          <p>
+            Entre o <strong>recebimento da notificação</strong> e a
+            <strong>realização da audiência</strong> deve haver pelo menos 5 dias —
+            tempo para preparar defesa, reunir documentos e testemunhas
+            (<span class="ref">art. 841, caput, CLT</span>). Aplica-se ao reclamado
+            <strong>pessoa física ou jurídica de direito privado</strong>.
+          </p>
+        </div>
+      </div>
+
+    </div><!-- /timeline -->
+
+    <!-- TEXTO DO ART. 841 -->
+    <div class="sum-box reveal">
+      <span class="sum-lbl">CLT, art. 841 — texto essencial</span>
+      <p>
+        "Recebida e protocolada a reclamação, o escrivão ou secretário, dentro de
+        <strong>48 (quarenta e oito) horas</strong>, remeterá a segunda via da petição,
+        ou do termo, ao reclamado, notificando-o, ao mesmo tempo, para comparecer
+        à audiência do julgamento, que será a primeira desimpedida, depois de
+        <strong>5 (cinco) dias</strong>."
+      </p>
+    </div>
+
+    <!-- ACCORDION — PONTOS DE DETALHE -->
+    <div class="principios reveal" style="margin-top:16px;">
+
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Forma<br>postal</div>
+          <div class="card-head">
+            <span class="card-num">Entrega e validade</span>
+            <span class="card-title">Notificação postal — não é necessária entrega pessoal</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>A doutrina e a jurisprudência aceitam que a notificação seja simplesmente entregue no endereço correto do reclamado, independentemente de quem a receba. Não há exigência de entrega pessoal ao reclamado, ao contrário do que ocorre em algumas situações no processo civil.</p>
+          <div class="aplica">
+            <span class="a-lbl">Base:</span>
+            <span class="pill blue">Art. 841, CLT</span>
+            <span class="pill both">Entrega no endereço correto é suficiente</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Ônus<br>prova</div>
+          <div class="card-head">
+            <span class="card-num">Súmula 16, TST</span>
+            <span class="card-title">Presunção relativa de recebimento em 48 horas</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>A Súmula 16 do TST cria uma presunção <em>juris tantum</em> (relativa): presume-se que a notificação foi recebida 48 horas após a postagem. Se o destinatário não recebeu ou recebeu tardiamente — a ponto de prejudicar o direito de defesa —, <strong>cabe a ele alegar e provar</strong> o fato.</p>
+          <div class="aplica">
+            <span class="a-lbl">Presunção:</span>
+            <span class="pill amber">Relativa — admite prova em contrário</span>
+          </div>
+          <div class="ex-box"><strong>Atenção para a prova:</strong> na questão que afirme que basta a postagem para presumir o recebimento, a resposta correta é que se trata de presunção <em>relativa</em> — o destinatário pode ilidir.</div>
+        </div>
       </div>
 
     </div>
-  </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       § 9.2  NOTIFICAÇÃO DA FAZENDA PÚBLICA
+  ════════════════════════════════════════════ -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 9.2</span>
+      <h2>Notificação da Fazenda Pública</h2>
+    </div>
+
+    <p class="body-text reveal">
+      Para entes públicos (União, Estados, Municípios, DF, autarquias e fundações de
+      direito público) valem <strong>regras especiais</strong>, em razão do interesse
+      público e do patrimônio que representam:
+    </p>
+
+    <!-- COMPARATIVO PRIVADO × PÚBLICO -->
+    <div class="compare-row reveal">
+      <div class="cmp-card priv">
+        <span class="cmp-title">Reclamado privado</span>
+        <span class="cmp-num">5</span>
+        <div class="cmp-sub">dias mínimos entre a notificação e a audiência</div>
+        <div class="cmp-base">Art. 841, caput, CLT</div>
+      </div>
+      <div class="cmp-card pub">
+        <span class="cmp-title">Fazenda Pública</span>
+        <span class="cmp-num">20</span>
+        <div class="cmp-sub">dias mínimos entre a notificação e a audiência (5 × 4)</div>
+        <div class="cmp-base">Decreto-Lei n. 779/69</div>
+      </div>
+    </div>
+
+    <div class="escala reveal">
+
+      <div class="grau purple">
+        <div class="grau-bar">DL 779</div>
+        <div class="grau-body">
+          <div class="grau-nome">
+            Prazo em quádruplo para defesa
+            <span class="grau-badge">Decreto-Lei n. 779/69</span>
+          </div>
+          <p>
+            Norma específica do processo do trabalho: o ente público deve receber a
+            notificação com mínimo de <strong>20 dias</strong> de antecedência — o
+            quádruplo dos 5 dias aplicáveis ao particular.
+          </p>
+          <p class="ex">
+            <strong>Afasta o CPC/2015:</strong> o CPC prevê prazo em dobro (art. 183),
+            mas no processo do trabalho o Decreto-Lei n. 779/69 é norma especial e afasta
+            a aplicação subsidiária do Código de Processo Civil.
+          </p>
+          <div class="carac">
+            <span class="neg">Não se aplica: prazo em dobro do CPC/2015</span>
+            <span class="pos">Aplica-se: prazo em quádruplo (DL 779/69)</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="sum-box reveal">
+      <span class="sum-lbl">Entes abrangidos pelo prazo em quádruplo</span>
+      <p>
+        <strong>União · Estados · Municípios · Distrito Federal · Autarquias ·
+        Fundações de direito público</strong> — qualquer pessoa jurídica de direito
+        público. O prazo em dobro do CPC não se aplica ao processo do trabalho;
+        o fundamento é o Decreto-Lei n. 779/69, norma especial.
+      </p>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       § 9.3  QUESTÕES INTERATIVAS — FORMAS DE RECLAMAÇÃO
+  ════════════════════════════════════════════ -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 9.3</span>
+      <h2>Questões do Exame de Ordem — FGV</h2>
+    </div>
+    <p class="body-text reveal">
+      Questões da 1ª fase do Exame de Ordem sobre <strong>formas de reclamação</strong>
+      e notificação. Clique em uma alternativa para responder — o comentário de cada
+      opção aparece após sua escolha.
+    </p>
+
+    <div class="quest-wrap reveal">
+
+      <!-- ══════════════════════════════════════
+           QUESTÃO 27 — XX Exame
+      ══════════════════════════════════════ -->
+      <div class="quest-card" data-quest="q27">
+        <div class="quest-header">
+          <span class="quest-num">Questão 27</span>
+          <span class="quest-exam">XX Exame de Ordem Unificado / FGV</span>
+          <span class="quest-badge" data-badge></span>
+        </div>
+        <div class="quest-body">
+          <div class="quest-enunciado">
+            Carlos tinha 17 anos quando começou a trabalhar na sociedade empresária ABCD Ltda.
+            No dia seguinte ao completar 18 anos foi dispensado. A sociedade empresária pagou
+            as verbas rescisórias, mas não pagou as horas extras trabalhadas ao longo de todo
+            o contrato de trabalho.<br><br>
+            Para o caso apresentado, na qualidade de advogado de Carlos, assinale a afirmativa
+            correta.
+          </div>
+          <div class="quest-options" data-correct="D">
+            <div class="quest-option" data-opt="A" tabindex="0" role="button" aria-pressed="false">
+              <span class="opt-lbl">A)</span>
+              <span class="opt-icon" aria-hidden="true">✗</span>
+              <span>A ação deverá ser ajuizada no prazo de dois anos contados da dispensa.</span>
+            </div>
+            <div class="quest-option" data-opt="B" tabindex="0" role="button" aria-pressed="false">
+              <span class="opt-lbl">B)</span>
+              <span class="opt-icon" aria-hidden="true">✗</span>
+              <span>Sendo Carlos menor na época da contratação e durante quase todo o pacto laboral, não corre prescrição bienal, iniciando-se a quinquenal a partir da data da dispensa.</span>
+            </div>
+            <div class="quest-option" data-opt="C" tabindex="0" role="button" aria-pressed="false">
+              <span class="opt-lbl">C)</span>
+              <span class="opt-icon" aria-hidden="true">✗</span>
+              <span>A ação deverá ser proposta no prazo de cinco anos após a dispensa, já que Carlos era menor quando da contratação, não correndo prescrição.</span>
+            </div>
+            <div class="quest-option" data-opt="D" tabindex="0" role="button" aria-pressed="false">
+              <span class="opt-lbl">D)</span>
+              <span class="opt-icon" aria-hidden="true">✓</span>
+              <span>A ação deverá ser ajuizada normalmente no prazo de dois anos a contar da dispensa, já que Carlos foi demitido com 18 anos, ou seja, maior de idade.</span>
+            </div>
+          </div>
+        </div>
+        <div class="quest-feedback" data-feedback>
+          <div class="feedback-intro"><p>Comentário alternativa por alternativa</p></div>
+
+          <div class="fb-item fb-wrong">
+            <div class="fb-lbl">A)</div>
+            <div class="fb-content">
+              <span class="fb-verdict">✗ Incompleta / imprecisa</span>
+              <div class="fb-text"><p>Diz que o prazo bienal conta da dispensa — isso está certo. Mas afirmar que a ação "deverá" ser ajuizada dentro dos 2 anos, sem contextualizar que Carlos era maior ao ser demitido, deixa implícita a ideia de que poderia haver diferença em razão da menoridade durante o contrato. A alternativa é imprecisa e foi afastada pela banca.</p></div>
+            </div>
+          </div>
+
+          <div class="fb-item fb-wrong">
+            <div class="fb-lbl">B)</div>
+            <div class="fb-content">
+              <span class="fb-verdict">✗ Incorreta</span>
+              <div class="fb-text"><p>O <span class="ref">art. 440 da CLT</span> suspende a prescrição enquanto o empregado é menor de 18 anos. Porém, a prescrição bienal (que impede o ajuizamento dois anos após o fim do contrato) só começa a correr quando o contrato se extingue. Carlos foi demitido com <strong>18 anos</strong> — já maior — e portanto as prescrições bienal e quinquenal passam a incidir normalmente a partir da dispensa. Não há que falar em prescrição apenas quinquenal.</p></div>
+            </div>
+          </div>
+
+          <div class="fb-item fb-wrong">
+            <div class="fb-lbl">C)</div>
+            <div class="fb-content">
+              <span class="fb-verdict">✗ Incorreta</span>
+              <div class="fb-text"><p>Errada. A não incidência da prescrição em razão da menoridade (<span class="ref">art. 440, CLT</span>) se refere ao período <em>durante</em> o contrato. Como Carlos já tinha <strong>18 anos</strong> ao ser dispensado, incidem as regras normais: 2 anos para ajuizar (bienal) e 5 anos de créditos retroativos (quinquenal). O prazo de 5 anos sozinho, sem o bienal, não é a resposta correta.</p></div>
+            </div>
+          </div>
+
+          <div class="fb-item fb-correct">
+            <div class="fb-lbl">D)</div>
+            <div class="fb-content">
+              <span class="fb-verdict">✓ Correta — gabarito oficial FGV</span>
+              <div class="fb-text"><p>Carlos foi dispensado no dia seguinte ao aniversário de 18 anos — portanto, <strong>já era maior</strong>. O <span class="ref">art. 440 da CLT</span> suspende a prescrição apenas enquanto o empregado é menor durante o contrato. Extinto o vínculo com Carlos maior de idade, aplicam-se as regras gerais: prazo bienal de 2 anos para ajuizar a ação (<span class="ref">art. 7º, XXIX, CF/88</span>), com créditos dos últimos 5 anos anteriores ao ajuizamento.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="quest-reset-wrap" data-resetwrap>
+          <button class="quest-reset" data-reset>↺ Refazer questão</button>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════
+           QUESTÃO 28 — XXIV Exame
+      ══════════════════════════════════════ -->
+      <div class="quest-card" data-quest="q28">
+        <div class="quest-header">
+          <span class="quest-num">Questão 28</span>
+          <span class="quest-exam">XXIV Exame de Ordem Unificado / FGV</span>
+          <span class="quest-badge" data-badge></span>
+        </div>
+        <div class="quest-body">
+          <div class="quest-enunciado">
+            Um empregado de 65 anos foi admitido em 10-5-2011 e dispensado em 10-1-2013.
+            Ajuizou reclamação trabalhista em 5-12-2016, postulando horas extras e
+            informando, na petição inicial, que não haveria prescrição porque apresentara
+            protesto judicial quanto às horas extras em 04/06/2015, conforme documentos que
+            juntou aos autos.<br><br>
+            Diante da situação retratada, considerando a Lei e o entendimento consolidado do
+            TST, assinale a afirmativa correta.
+          </div>
+          <div class="quest-options" data-correct="A">
+            <div class="quest-option" data-opt="A" tabindex="0" role="button" aria-pressed="false">
+              <span class="opt-lbl">A)</span>
+              <span class="opt-icon" aria-hidden="true">✓</span>
+              <span>A prescrição ocorreu graças ao decurso do tempo e à inércia do titular.</span>
+            </div>
+            <div class="quest-option" data-opt="B" tabindex="0" role="button" aria-pressed="false">
+              <span class="opt-lbl">B)</span>
+              <span class="opt-icon" aria-hidden="true">✗</span>
+              <span>A prescrição foi interrompida com o ajuizamento do protesto.</span>
+            </div>
+            <div class="quest-option" data-opt="C" tabindex="0" role="button" aria-pressed="false">
+              <span class="opt-lbl">C)</span>
+              <span class="opt-icon" aria-hidden="true">✗</span>
+              <span>A prescrição ocorreu, porque não cabe protesto judicial na seara trabalhista.</span>
+            </div>
+            <div class="quest-option" data-opt="D" tabindex="0" role="button" aria-pressed="false">
+              <span class="opt-lbl">D)</span>
+              <span class="opt-icon" aria-hidden="true">✗</span>
+              <span>A prescrição não corre para os empregados maiores de 60 anos.</span>
+            </div>
+          </div>
+        </div>
+        <div class="quest-feedback" data-feedback>
+          <div class="feedback-intro"><p>Comentário alternativa por alternativa</p></div>
+
+          <div class="fb-item fb-correct">
+            <div class="fb-lbl">A)</div>
+            <div class="fb-content">
+              <span class="fb-verdict">✓ Correta — gabarito oficial FGV</span>
+              <div class="fb-text">
+                <p>O contrato foi extinto em <strong>10-1-2013</strong>. A partir dessa data, corria o prazo bienal de 2 anos para ajuizar. Portanto, a ação deveria ter sido proposta até <strong>10-1-2015</strong>. O ajuizamento ocorreu em 5-12-2016 — mais de 3 anos depois da dispensa.</p>
+                <p>O <strong>protesto judicial de 04/06/2015</strong> não salvou o trabalhador: embora a <span class="ref">OJ 392 da SDI-1 do TST</span> reconheça o protesto judicial como causa interruptiva da prescrição no processo do trabalho, o protesto só funciona se apresentado <em>dentro do prazo prescricional</em>. Em junho de 2015, o prazo bienal já havia expirado (janeiro de 2015). Logo, a prescrição bienal já estava consumada.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="fb-item fb-wrong">
+            <div class="fb-lbl">B)</div>
+            <div class="fb-content">
+              <span class="fb-verdict">✗ Incorreta</span>
+              <div class="fb-text"><p>Embora o protesto judicial possa <em>em tese</em> interromper a prescrição na seara trabalhista (<span class="ref">OJ 392, SDI-1, TST</span>), o protesto de junho de 2015 foi apresentado <strong>após</strong> o escoamento do prazo bienal (que venceu em janeiro de 2015). Não é possível interromper uma prescrição que já se consumou.</p></div>
+            </div>
+          </div>
+
+          <div class="fb-item fb-wrong">
+            <div class="fb-lbl">C)</div>
+            <div class="fb-content">
+              <span class="fb-verdict">✗ Incorreta</span>
+              <div class="fb-text"><p>A alternativa erra ao afirmar que "não cabe protesto judicial na seara trabalhista". A <span class="ref">OJ 392 da SDI-1 do TST</span> expressamente reconhece a possibilidade de protesto judicial no processo do trabalho como causa de interrupção da prescrição. A prescrição ocorreu, mas não porque o protesto é incabível — e sim porque foi realizado fora do prazo.</p></div>
+            </div>
+          </div>
+
+          <div class="fb-item fb-wrong">
+            <div class="fb-lbl">D)</div>
+            <div class="fb-content">
+              <span class="fb-verdict">✗ Incorreta</span>
+              <div class="fb-text"><p>Não existe qualquer regra na CLT ou na CF/88 suspendendo ou interrompendo a prescrição trabalhista para empregados maiores de 60 anos. Essa proteção não existe no ordenamento jurídico trabalhista.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="quest-reset-wrap" data-resetwrap>
+          <button class="quest-reset" data-reset>↺ Refazer questão</button>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════
+           QUESTÃO 29 — XXXV Exame
+      ══════════════════════════════════════ -->
+      <div class="quest-card" data-quest="q29">
+        <div class="quest-header">
+          <span class="quest-num">Questão 29</span>
+          <span class="quest-exam">XXXV Exame de Ordem Unificado / FGV</span>
+          <span class="quest-badge" data-badge></span>
+        </div>
+        <div class="quest-body">
+          <div class="quest-enunciado">
+            Rosimeri trabalhou em uma sociedade empresária de produtos químicos de 1990 a 1992.
+            Em 2022, ajuizou reclamação trabalhista contra o ex-empregador, requerendo a entrega
+            do Perfil Profissiográfico Previdenciário (PPP) para que pudesse requerer
+            aposentadoria especial junto ao INSS. Devidamente citada, a sociedade empresária
+            suscitou em defesa prescrição total (extintiva).<br><br>
+            Diante da situação retratada e da previsão da CLT, assinale a afirmativa correta.
+          </div>
+          <div class="quest-options" data-correct="D">
+            <div class="quest-option" data-opt="A" tabindex="0" role="button" aria-pressed="false">
+              <span class="opt-lbl">A)</span>
+              <span class="opt-icon" aria-hidden="true">✗</span>
+              <span>Não há prescrição a declarar, porque a ação tem por objeto a anotação para fins de prova junto à Previdência Social.</span>
+            </div>
+            <div class="quest-option" data-opt="B" tabindex="0" role="button" aria-pressed="false">
+              <span class="opt-lbl">B)</span>
+              <span class="opt-icon" aria-hidden="true">✗</span>
+              <span>Houve prescrição, porque o pedido foi formulado muito após o prazo de 2 anos contados do término do contrato.</span>
+            </div>
+            <div class="quest-option" data-opt="C" tabindex="0" role="button" aria-pressed="false">
+              <span class="opt-lbl">C)</span>
+              <span class="opt-icon" aria-hidden="true">✗</span>
+              <span>A prescrição para entrega do PPP é trintenária, tal qual a do FGTS, motivo pelo qual não há prescrição na hipótese.</span>
+            </div>
+            <div class="quest-option" data-opt="D" tabindex="0" role="button" aria-pressed="false">
+              <span class="opt-lbl">D)</span>
+              <span class="opt-icon" aria-hidden="true">✓</span>
+              <span>A CLT é expressa ao dizer que a pretensão é imprescritível, conforme art. 11 da CLT.</span>
+            </div>
+          </div>
+        </div>
+        <div class="quest-feedback" data-feedback>
+          <div class="feedback-intro"><p>Comentário alternativa por alternativa</p></div>
+
+          <div class="fb-item fb-wrong">
+            <div class="fb-lbl">A)</div>
+            <div class="fb-content">
+              <span class="fb-verdict">✗ Parcialmente correta, mas incompleta</span>
+              <div class="fb-text"><p>O raciocínio de que não há prescrição porque a ação visa à "anotação para fins de prova previdenciária" está correto em essência — mas a fundamentação é imprecisa. O correto é que o <span class="ref">art. 11 da CLT</span> declara a pretensão <em>expressamente</em> imprescritível. A alternativa não cita o fundamento legal e foi preterida pela alternativa D.</p></div>
+            </div>
+          </div>
+
+          <div class="fb-item fb-wrong">
+            <div class="fb-lbl">B)</div>
+            <div class="fb-content">
+              <span class="fb-verdict">✗ Incorreta</span>
+              <div class="fb-text"><p>Errada. A pretensão de entrega do PPP não está sujeita à prescrição bienal. O <span class="ref">art. 11 da CLT</span> — com a redação dada pela Reforma Trabalhista (Lei n. 13.467/2017) — expressamente prevê que "não há prescrição" para pretensões que tenham por objeto apenas a declaração de direito, sem reflexo patrimonial, como a entrega de documento previdenciário.</p></div>
+            </div>
+          </div>
+
+          <div class="fb-item fb-wrong">
+            <div class="fb-lbl">C)</div>
+            <div class="fb-content">
+              <span class="fb-verdict">✗ Incorreta</span>
+              <div class="fb-text"><p>A prescrição trintenária do FGTS foi declarada inconstitucional pelo STF (<span class="ref">ARE 709.212</span>, repercussão geral), sendo substituída pelo prazo de 5 anos. Mas, mais importante, a entrega do PPP não segue esse prazo: a ação não busca crédito patrimonial, mas documento necessário à concessão de aposentadoria especial — pretensão imprescritível nos termos do <span class="ref">art. 11 da CLT</span>.</p></div>
+            </div>
+          </div>
+
+          <div class="fb-item fb-correct">
+            <div class="fb-lbl">D)</div>
+            <div class="fb-content">
+              <span class="fb-verdict">✓ Correta — gabarito oficial FGV</span>
+              <div class="fb-text">
+                <p>O <span class="ref">art. 11 da CLT</span> prevê expressamente que não se aplica a prescrição trabalhista às ações que tenham por objeto apenas <strong>anotações para fins de prova junto à Previdência Social</strong>. A entrega do PPP é exatamente esse tipo de pretensão — não envolve pagamento de verbas, mas apenas a documentação necessária à concessão de aposentadoria especial.</p>
+                <p>Portanto, independentemente do tempo decorrido desde o término do contrato em 1992, a pretensão de Rosimeri é <strong>imprescritível</strong>. A defesa de prescrição total deve ser rejeitada.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="quest-reset-wrap" data-resetwrap>
+          <button class="quest-reset" data-reset>↺ Refazer questão</button>
+        </div>
+      </div>
+
+    </div><!-- /quest-wrap -->
+  </section>
+
+  <a class="back" href="../index.html">
+    <span class="arw">←</span>
+    <span>Voltar ao índice da disciplina</span>
+  </a>
+
+</div><!-- /wrap -->
+
+<script>
+/* ── reveal on scroll ── */
+(function(){
+  var items = document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){
+    items.forEach(function(el){ el.classList.add('in'); }); return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold:.08, rootMargin:'0px 0px -3% 0px' });
+  items.forEach(function(el, i){
+    el.style.transitionDelay = (i * 40) + 'ms';
+    io.observe(el);
+  });
+})();
+
+/* ── accordion de conteúdo ── */
+(function(){
+  var cards = document.querySelectorAll('.card');
+  cards.forEach(function(card){
+    var btn = card.querySelector('.card-btn');
+    btn.addEventListener('click', function(){
+      var isOpen = card.classList.contains('open');
+      cards.forEach(function(c){
+        c.classList.remove('open');
+        c.querySelector('.card-btn').setAttribute('aria-expanded','false');
+      });
+      if(!isOpen){
+        card.classList.add('open');
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+})();
+
+/* ── questões interativas ── */
+(function(){
+  document.querySelectorAll('[data-quest]').forEach(function(qcard){
+    var optBox   = qcard.querySelector('[data-correct]');
+    var correct  = optBox.getAttribute('data-correct');
+    var options  = optBox.querySelectorAll('.quest-option');
+    var feedback = qcard.querySelector('[data-feedback]');
+    var resetWrap= qcard.querySelector('[data-resetwrap]');
+    var resetBtn = qcard.querySelector('[data-reset]');
+    var badge    = qcard.querySelector('[data-badge]');
+
+    function activate(chosen){
+      var isRight = (chosen === correct);
+      options.forEach(function(opt){
+        var key = opt.getAttribute('data-opt');
+        opt.classList.add('disabled');
+        opt.removeAttribute('tabindex');
+        if(key === chosen){
+          opt.classList.add(isRight ? 'chosen-correct' : 'chosen-wrong');
+        } else if(key === correct && !isRight){
+          opt.classList.add('reveal-correct');
+        }
+      });
+      feedback.classList.add('visible');
+      resetWrap.classList.add('visible');
+      badge.style.display = 'inline-block';
+      badge.textContent   = isRight ? '✓ Acertou' : '✗ Errou';
+      badge.className     = 'quest-badge ' + (isRight ? 'acerto' : 'erro');
+      feedback.scrollIntoView({ behavior:'smooth', block:'nearest' });
+    }
+
+    options.forEach(function(opt){
+      opt.addEventListener('click', function(){
+        if(!opt.classList.contains('disabled')) activate(opt.getAttribute('data-opt'));
+      });
+      opt.addEventListener('keydown', function(e){
+        if((e.key === 'Enter' || e.key === ' ') && !opt.classList.contains('disabled')){
+          e.preventDefault(); activate(opt.getAttribute('data-opt'));
+        }
+      });
+    });
+
+    resetBtn.addEventListener('click', function(){
+      options.forEach(function(opt){
+        opt.className = 'quest-option';
+        opt.setAttribute('tabindex','0');
+        opt.setAttribute('aria-pressed','false');
+      });
+      feedback.classList.remove('visible');
+      resetWrap.classList.remove('visible');
+      badge.style.display = 'none';
+    });
+  });
+})();
+</script>
 </body>
 </html>
-
