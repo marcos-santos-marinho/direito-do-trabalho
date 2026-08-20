@@ -1,425 +1,1337 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>08. Petição inicial</title>
+<meta charset="UTF-8">
+<title>Petição Inicial</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    :root{
-      --bg:#eaf3ff;
-      --panel: rgba(255,255,255,.82);
-      --card:#ffffff;
-      --card2:#f7fbff;
-      --text:#0f172a;
-      --muted:#475569;
-      --brand:#2563eb;
-      --brand2:#1d4ed8;
-      --line: rgba(15,23,42,.10);
-      --shadow: 0 18px 50px rgba(2,6,23,.12);
-      --shadow2: 0 10px 24px rgba(2,6,23,.10);
-      --radius: 22px;
-      --radius2: 18px;
-    }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
-    *{ box-sizing:border-box; }
+<style>
+  :root{
+    --ink:#1b2436;
+    --ink-soft:#414a5c;
+    --paper:#edece5;
+    --surface:#fbfaf7;
+    --accent:#7a2e37;
+    --accent-soft:#a2545f;
+    --iron:#8b8579;
+    --line:rgba(27,36,54,.13);
+    --line-strong:rgba(27,36,54,.22);
+    --c-red:#7a2e37;
+    --c-blue:#2e5c7a;
+    --c-green:#3d6e45;
+    --c-amber:#7a5a12;
+    --display:"Fraunces", Georgia, "Times New Roman", serif;
+    --body:"Spectral", Georgia, serif;
+    --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+  }
 
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(1200px 600px at 20% 0%, rgba(37,99,235,.20), transparent 60%),
-        radial-gradient(900px 500px at 90% 20%, rgba(29,78,216,.12), transparent 55%),
-        var(--bg);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      line-height: 1.75;
-    }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
 
-    .wrap{
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 18px 14px 34px;
-    }
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:19px;
+    line-height:1.78;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
 
-    .shell{
-      background: var(--panel);
-      border: 1px solid rgba(255,255,255,.65);
-      border-radius: calc(var(--radius) + 10px);
-      box-shadow: var(--shadow);
-      padding: 16px;
-      backdrop-filter: blur(10px);
-    }
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0 0 auto 0;
+    height:4px;
+    background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 34%,var(--ink) 34%,var(--ink) 100%);
+    z-index:50;
+  }
 
-    header{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap: 14px;
-      padding: 6px 6px 2px;
-    }
+  .wrap{ max-width:760px; margin:0 auto; padding:0 22px 72px; }
 
-    h1{
-      margin: 0;
-      font-size: clamp(28px, 4.8vw, 46px);
-      letter-spacing: -0.02em;
-      line-height: 1.06;
-      color: var(--brand);
-    }
+  /* ===== HEADER ===== */
+  .masthead{
+    padding:56px 0 30px;
+    border-bottom:1px solid var(--line-strong);
+    animation:rise .7s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:600;
+    margin-bottom:20px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .eyebrow::before{ content:""; width:26px; height:2px; background:var(--accent); display:inline-block; }
+  .eyebrow .dot{ color:var(--line-strong); }
 
-    .subtitle{
-      margin: 10px 6px 16px;
-      color: var(--muted);
-      font-size: 18px;
-      line-height: 1.55;
-    }
+  .title-row{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:28px;
+    flex-wrap:wrap;
+  }
+  h1{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(2.3rem,6.5vw,3.8rem);
+    line-height:1.04;
+    letter-spacing:-.015em;
+    max-width:14ch;
+  }
+  h1 .art{
+    display:block;
+    font-size:.4em;
+    font-weight:600;
+    letter-spacing:.02em;
+    color:var(--accent);
+    font-family:var(--mono);
+    text-transform:uppercase;
+    margin-bottom:.5em;
+  }
+  .slides-btn{
+    flex-shrink:0;
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    background:var(--ink);
+    color:#f4f2ec;
+    border-radius:4px;
+    padding:13px 18px;
+    font-family:var(--mono);
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    box-shadow:0 8px 22px -12px rgba(27,36,54,.7);
+    transition:transform .25s cubic-bezier(.2,.7,.2,1), box-shadow .25s, background .25s;
+  }
+  .slides-btn .ico{ font-size:16px; line-height:1; transform:translateY(-1px); }
+  .slides-btn .arw{ transition:transform .25s; }
+  .slides-btn:hover{ background:var(--accent); transform:translateY(-2px); box-shadow:0 14px 28px -12px rgba(122,46,55,.75); }
+  .slides-btn:hover .arw{ transform:translateX(4px); }
+  .slides-btn:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:3px; }
 
-    /* Botão Slides (premium) */
-    .slidesBtn{
-      text-decoration:none;
-      color: var(--text);
-      background: #fff;
-      border: 1px solid rgba(37,99,235,.18);
-      border-radius: 18px;
-      box-shadow: var(--shadow2);
-      padding: 12px 14px;
-      min-width: 140px;
-      display:flex;
-      align-items:center;
-      gap: 10px;
-      transition: transform .12s ease, box-shadow .12s ease;
-      user-select:none;
-      justify-content:center;
-      flex: 0 0 auto;
-    }
-    .slidesBtn:hover{
-      transform: translateY(-1px);
-      box-shadow: 0 14px 28px rgba(2,6,23,.14);
-    }
-    .slidesIcon{
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
-      display:grid;
-      place-items:center;
-      background: linear-gradient(135deg, rgba(37,99,235,.14), rgba(29,78,216,.08));
-      border: 1px solid rgba(37,99,235,.18);
-      flex: 0 0 auto;
-    }
-    .slidesIcon svg{ width: 22px; height: 22px; }
-    .slidesLbl{
-      display:flex;
-      flex-direction:column;
-      line-height:1.05;
-      text-align:left;
-    }
-    .slidesLbl strong{ font-size: 15px; }
-    .slidesLbl span{ margin-top: 3px; font-size: 12px; color: var(--muted); }
+  /* ===== VERBETE ===== */
+  .verbete{
+    margin:44px 0 8px;
+    padding:6px 0 6px 30px;
+    border-left:3px solid var(--accent);
+    animation:rise .7s .1s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .verbete .tag{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:block;
+    margin-bottom:14px;
+  }
+  .verbete p{
+    font-family:var(--display);
+    font-weight:400;
+    font-size:clamp(1.2rem,3vw,1.5rem);
+    line-height:1.45;
+    letter-spacing:-.01em;
+    color:var(--ink);
+    margin:0;
+  }
 
-    .grid{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
-      padding: 8px 6px 6px;
-    }
+  /* ===== SEÇÕES ===== */
+  .sec-head{
+    display:flex;
+    gap:16px;
+    align-items:baseline;
+    margin:46px 0 14px;
+    padding-top:26px;
+    border-top:1px solid var(--line);
+  }
+  .sec-head .num{
+    font-family:var(--mono);
+    font-size:15px;
+    font-weight:600;
+    color:var(--accent);
+    letter-spacing:.02em;
+    flex-shrink:0;
+    padding-top:.35em;
+  }
+  h2{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(1.6rem,4vw,2rem);
+    line-height:1.14;
+    letter-spacing:-.01em;
+    color:var(--ink);
+  }
+  p{ margin-bottom:16px; }
+  p:last-child{ margin-bottom:0; }
+  .body-text{ color:var(--ink-soft); }
 
-    .card{
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 18px 18px;
-      box-shadow: 0 10px 22px rgba(2,6,23,.07);
-    }
+  .ref{
+    font-family:var(--mono);
+    font-size:.8em;
+    color:var(--iron);
+    background:rgba(139,133,121,.12);
+    padding:2px 7px;
+    border-radius:3px;
+    white-space:nowrap;
+  }
 
-    .card h2{
-      margin: 0 0 10px;
-      font-size: clamp(20px, 2.6vw, 26px);
-      letter-spacing: -0.01em;
-      color:#0b1220;
-    }
+  /* ===== BLOCOS COLORIDOS ===== */
+  .escala{
+    margin:18px 0 6px;
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+  }
+  .grau{
+    display:grid;
+    grid-template-columns:36px 1fr;
+    border-radius:5px;
+    overflow:hidden;
+    border:1px solid var(--line);
+  }
+  .grau-bar{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    writing-mode:vertical-lr;
+    text-orientation:mixed;
+    font-family:var(--mono);
+    font-weight:700;
+    font-size:9px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:#fff;
+    padding:8px 0;
+  }
+  .grau.red .grau-bar{ background:var(--c-red); }
+  .grau.blue .grau-bar{ background:var(--c-blue); }
+  .grau.green .grau-bar{ background:var(--c-green); }
+  .grau.amber .grau-bar{ background:var(--c-amber); }
 
-    .card p{
-      margin: 0 0 12px;
-      font-size: 19px; /* maior para celular */
-      color: #0b1220;
-    }
+  .grau-body{
+    background:var(--surface);
+    border-left:1px solid var(--line);
+    padding:15px 20px;
+  }
+  .grau-nome{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:1.05rem;
+    color:var(--ink);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:8px;
+    flex-wrap:wrap;
+  }
+  .grau-badge{
+    font-family:var(--mono);
+    font-size:10px;
+    font-weight:600;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    padding:2px 8px;
+    border-radius:3px;
+    color:#fff;
+    flex-shrink:0;
+  }
+  .grau.red .grau-badge{ background:var(--c-red); }
+  .grau.blue .grau-badge{ background:var(--c-blue); }
+  .grau.green .grau-badge{ background:var(--c-green); }
+  .grau.amber .grau-badge{ background:var(--c-amber); }
 
-    .pill{
-      display:inline-block;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(29,78,216,.08);
-      border: 1px solid rgba(29,78,216,.18);
-      color: #0b1220;
-      font-size: 14px;
-      font-weight: 800;
-      letter-spacing: .02em;
-      margin-bottom: 10px;
-    }
+  .grau-body p{ font-size:.92em; color:var(--ink-soft); margin:0; line-height:1.7; }
+  .grau-body p + p{ margin-top:8px; }
+  .grau-body .ex{
+    margin-top:8px;
+    font-size:.87em;
+    color:var(--iron);
+    font-style:italic;
+    line-height:1.55;
+  }
+  .grau-body .ex strong{ font-style:normal; color:var(--ink-soft); }
 
-    .note{
-      margin-top: 10px;
-      padding: 14px 14px;
-      border-radius: var(--radius2);
-      background: var(--card2);
-      border: 1px solid rgba(37,99,235,.14);
-      color: #0b1220;
-      font-size: 18px;
-      line-height: 1.65;
-    }
+  .carac{
+    display:flex;
+    flex-wrap:wrap;
+    gap:5px;
+    margin-top:10px;
+  }
+  .carac span{
+    font-family:var(--mono);
+    font-size:.78em;
+    padding:2px 9px;
+    border-radius:3px;
+    border:1px solid var(--line);
+    color:var(--ink-soft);
+    background:var(--paper);
+  }
+  .carac span.pos{ border-color:var(--c-blue); color:var(--c-blue); }
+  .carac span.neg{ border-color:var(--c-red); color:var(--c-red); }
+  .carac span.neu{ border-color:var(--iron); color:var(--iron); }
 
-    ul{
-      margin: 10px 0 0 22px;
-      padding: 0;
-      font-size: 19px;
-      line-height: 1.75;
-    }
-    li{ margin: 6px 0; }
+  .prose-list{
+    list-style:none;
+    margin:10px 0 0;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+  .prose-list li{
+    display:flex;
+    gap:10px;
+    font-size:.92em;
+    color:var(--ink-soft);
+    line-height:1.65;
+  }
+  .prose-list li::before{
+    content:"—";
+    font-family:var(--mono);
+    color:var(--accent);
+    flex-shrink:0;
+    margin-top:.15em;
+  }
 
-    .footer{
-      display:flex;
-      justify-content:center;
-      padding: 18px 6px 4px;
-    }
+  /* ===== ACCORDION ===== */
+  .principios{ display:flex; flex-direction:column; gap:3px; }
+  .card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+    transition:box-shadow .2s;
+  }
+  .card:hover{ box-shadow:0 4px 18px -8px rgba(27,36,54,.2); }
+  .card-btn{
+    width:100%;
+    background:none;
+    border:none;
+    cursor:pointer;
+    display:grid;
+    grid-template-columns:52px 1fr 34px;
+    align-items:center;
+    padding:0;
+    text-align:left;
+    color:inherit;
+  }
+  .card-btn:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:-3px; border-radius:5px; }
+  .card-icon{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:60px;
+    height:100%;
+    border-right:1px solid var(--line);
+    font-family:var(--mono);
+    font-weight:600;
+    font-size:11px;
+    color:var(--accent);
+    background:rgba(122,46,55,.05);
+    text-align:center;
+    padding:4px;
+    line-height:1.3;
+  }
+  .card-head{ padding:14px 18px; }
+  .card-num{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--iron);
+    display:block;
+    margin-bottom:3px;
+  }
+  .card-title{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:1.05rem;
+    line-height:1.2;
+    color:var(--ink);
+  }
+  .card-chevron{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding-right:16px;
+    color:var(--iron);
+    font-size:13px;
+    transition:transform .3s cubic-bezier(.2,.7,.2,1), color .2s;
+  }
+  .card.open .card-chevron{ transform:rotate(180deg); color:var(--accent); }
+  .card-body{ display:none; padding:18px 22px 22px; border-top:1px solid var(--line); }
+  .card.open .card-body{ display:block; }
+  .card-body > p{ color:var(--ink-soft); font-size:.93em; line-height:1.72; margin-bottom:12px; }
+  .card-body > p:last-child{ margin-bottom:0; }
 
-    .back{
-      text-decoration:none;
-      background: #fff;
-      color: #0b1220;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      box-shadow: var(--shadow2);
-      padding: 14px 18px;
-      font-size: 18px;
-      font-weight: 900;
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      transition: transform .12s ease, box-shadow .12s ease;
-      min-width: min(520px, 100%);
-      justify-content:center;
-    }
-    .back:hover{ transform: translateY(-1px); box-shadow: 0 14px 28px rgba(2,6,23,.14); }
+  .aplica{
+    margin-top:12px;
+    display:flex;
+    gap:6px;
+    flex-wrap:wrap;
+    align-items:center;
+  }
+  .aplica .a-lbl{
+    font-family:var(--mono);
+    font-size:.8em;
+    color:var(--iron);
+    text-transform:uppercase;
+    letter-spacing:.08em;
+  }
+  .aplica .pill{
+    font-family:var(--mono);
+    font-size:.8em;
+    padding:2px 9px;
+    border-radius:3px;
+    font-weight:600;
+  }
+  .pill.red{ background:rgba(122,46,55,.1); color:var(--c-red); }
+  .pill.blue{ background:rgba(46,92,122,.1); color:var(--c-blue); }
+  .pill.green{ background:rgba(61,110,69,.1); color:var(--c-green); }
+  .pill.amber{ background:rgba(122,90,18,.1); color:var(--c-amber); }
+  .pill.both{ background:rgba(27,36,54,.08); color:var(--ink-soft); }
 
-    @media (max-width: 520px){
-      .slidesBtn{ min-width: 124px; padding: 10px 12px; }
-      .card p, ul{ font-size: 17px; }
-      .subtitle{ font-size: 16px; }
-    }
-  </style>
+  .ex-box{
+    margin-top:12px;
+    padding:11px 15px;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:5px;
+    font-size:.88em;
+    color:var(--iron);
+    font-style:italic;
+    line-height:1.6;
+  }
+  .ex-box strong{ font-style:normal; color:var(--ink-soft); }
+
+  /* ===== DESTAQUE TST ===== */
+  .sum-box{
+    margin:14px 0;
+    padding:14px 18px;
+    border-left:3px solid var(--accent);
+    background:rgba(122,46,55,.04);
+    border-radius:0 5px 5px 0;
+  }
+  .sum-box .sum-lbl{
+    font-family:var(--mono);
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:block;
+    margin-bottom:8px;
+  }
+  .sum-box p{
+    font-size:.9em;
+    line-height:1.68;
+    color:var(--ink-soft);
+    margin:0;
+    font-style:italic;
+  }
+  .sum-box p strong{ font-style:normal; color:var(--ink); }
+
+  /* ===== QUESTÕES INTERATIVAS ===== */
+  .quest-wrap{ display:flex; flex-direction:column; gap:24px; margin-top:14px; }
+
+  .quest-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+  }
+
+  /* cabeçalho da questão */
+  .quest-header{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px 18px 12px;
+    border-bottom:1px solid var(--line);
+    flex-wrap:wrap;
+    background:rgba(27,36,54,.03);
+  }
+  .quest-num{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:#fff;
+    background:var(--ink);
+    padding:4px 11px;
+    border-radius:3px;
+    flex-shrink:0;
+  }
+  .quest-exam{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--iron);
+    letter-spacing:.04em;
+  }
+  /* badge de resultado */
+  .quest-badge{
+    margin-left:auto;
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.08em;
+    padding:4px 11px;
+    border-radius:3px;
+    display:none;
+    flex-shrink:0;
+  }
+  .quest-badge.acerto{ background:rgba(61,110,69,.12); color:var(--c-green); border:1px solid rgba(61,110,69,.28); }
+  .quest-badge.erro{ background:rgba(122,46,55,.1); color:var(--c-red); border:1px solid rgba(122,46,55,.25); }
+
+  .quest-body{ padding:18px 18px 0; }
+
+  /* enunciado */
+  .quest-enunciado{
+    font-size:.94em;
+    line-height:1.72;
+    color:var(--ink);
+    margin-bottom:18px;
+  }
+
+  /* opções — estado inicial: clicáveis */
+  .quest-options{ display:flex; flex-direction:column; gap:5px; margin-bottom:0; }
+
+  .quest-option{
+    display:flex;
+    align-items:flex-start;
+    gap:11px;
+    padding:11px 14px;
+    border-radius:5px;
+    border:1px solid var(--line);
+    background:var(--paper);
+    font-size:.9em;
+    line-height:1.62;
+    color:var(--ink-soft);
+    cursor:pointer;
+    transition:border-color .18s, background .18s, transform .1s;
+    user-select:none;
+  }
+  .quest-option:hover:not(.disabled){
+    border-color:rgba(27,36,54,.28);
+    background:#f0efe8;
+    transform:translateX(2px);
+  }
+  /* estado após resposta */
+  .quest-option.disabled{ cursor:default; pointer-events:none; }
+  .quest-option.chosen-correct{
+    border-color:var(--c-green);
+    background:rgba(61,110,69,.07);
+    color:#0d2b14;
+  }
+  .quest-option.chosen-wrong{
+    border-color:var(--c-red);
+    background:rgba(122,46,55,.07);
+    color:#2b0d0d;
+  }
+  .quest-option.reveal-correct{
+    border-color:var(--c-green);
+    background:rgba(61,110,69,.04);
+    color:#1a3820;
+  }
+
+  .opt-lbl{
+    font-family:var(--mono);
+    font-weight:700;
+    font-size:.82em;
+    flex-shrink:0;
+    margin-top:.12em;
+    color:var(--iron);
+    min-width:1.6em;
+  }
+  .quest-option.chosen-correct .opt-lbl,
+  .quest-option.reveal-correct .opt-lbl{ color:var(--c-green); }
+  .quest-option.chosen-wrong .opt-lbl{ color:var(--c-red); }
+
+  /* ícone de resultado por opção */
+  .opt-icon{
+    flex-shrink:0;
+    font-size:14px;
+    margin-top:.1em;
+    display:none;
+  }
+  .quest-option.chosen-correct .opt-icon,
+  .quest-option.reveal-correct .opt-icon,
+  .quest-option.chosen-wrong .opt-icon{ display:inline; }
+
+  /* área de comentários — oculta até responder */
+  .quest-feedback{
+    display:none;
+    flex-direction:column;
+    gap:0;
+    border-top:1px solid var(--line);
+    margin-top:14px;
+  }
+  .quest-feedback.visible{ display:flex; }
+
+  /* cabeçalho do comentário */
+  .feedback-intro{
+    padding:12px 18px;
+    background:rgba(27,36,54,.03);
+    border-bottom:1px solid var(--line);
+  }
+  .feedback-intro p{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--iron);
+    margin:0;
+  }
+
+  /* cada comentário de alternativa */
+  .fb-item{
+    display:flex;
+    gap:0;
+    border-bottom:1px solid var(--line);
+  }
+  .fb-item:last-child{ border-bottom:none; }
+
+  .fb-lbl{
+    flex:0 0 44px;
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+    padding:14px 0 14px;
+    font-family:var(--mono);
+    font-weight:700;
+    font-size:12px;
+    color:var(--iron);
+    border-right:1px solid var(--line);
+  }
+  .fb-item.fb-correct .fb-lbl{ color:var(--c-green); background:rgba(61,110,69,.05); }
+  .fb-item.fb-wrong   .fb-lbl{ color:var(--c-red);   background:rgba(122,46,55,.04); }
+
+  .fb-content{ flex:1; padding:14px 16px; }
+
+  .fb-verdict{
+    font-family:var(--mono);
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    display:block;
+    margin-bottom:6px;
+  }
+  .fb-item.fb-correct .fb-verdict{ color:var(--c-green); }
+  .fb-item.fb-wrong   .fb-verdict{ color:var(--c-red); }
+
+  .fb-text{
+    font-size:.88em;
+    line-height:1.68;
+    color:var(--ink-soft);
+    margin:0;
+  }
+  .fb-text p{ margin-bottom:6px; }
+  .fb-text p:last-child{ margin-bottom:0; }
+
+  /* botão refazer */
+  .quest-reset-wrap{
+    display:none;
+    padding:14px 18px 18px;
+    justify-content:flex-end;
+    border-top:1px solid var(--line);
+    margin-top:0;
+  }
+  .quest-reset-wrap.visible{ display:flex; }
+  .quest-reset{
+    font-family:var(--mono);
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:.08em;
+    color:var(--iron);
+    background:none;
+    border:1px solid var(--line-strong);
+    border-radius:4px;
+    padding:7px 14px;
+    cursor:pointer;
+    transition:color .18s, border-color .18s;
+  }
+  .quest-reset:hover{ color:var(--ink); border-color:var(--ink); }
+
+  /* ===== BOTÃO VOLTAR ===== */
+  .back{
+    margin-top:56px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    text-decoration:none;
+    color:var(--ink);
+    background:var(--surface);
+    border:1px solid var(--line-strong);
+    border-radius:6px;
+    padding:20px 22px;
+    font-family:var(--mono);
+    font-size:14px;
+    letter-spacing:.04em;
+    transition:border-color .25s, transform .25s;
+  }
+  .back .arw{ color:var(--accent); transition:transform .25s; font-size:18px; }
+  .back:hover{ border-color:var(--accent); transform:translateY(-2px); }
+  .back:hover .arw{ transform:translateX(-4px); }
+  .back:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:3px; }
+
+  @keyframes rise{
+    from{ opacity:0; transform:translateY(18px); }
+    to{ opacity:1; transform:none; }
+  }
+  .reveal{ opacity:0; transform:translateY(14px); }
+  .reveal.in{
+    opacity:1; transform:none;
+    transition:opacity .5s ease, transform .5s cubic-bezier(.2,.7,.2,1);
+  }
+  @keyframes slideDown{
+    from{ opacity:0; transform:translateY(-6px); }
+    to{ opacity:1; transform:none; }
+  }
+  .quest-feedback.visible{ animation:slideDown .28s cubic-bezier(.2,.7,.2,1); }
+
+  @media(max-width:560px){
+    body{ font-size:17.5px; }
+    .masthead{ padding:40px 0 24px; }
+    .title-row{ align-items:stretch; }
+    .slides-btn{ width:100%; justify-content:center; }
+    .verbete{ padding-left:20px; }
+    .card-btn{ grid-template-columns:44px 1fr 30px; }
+    .fb-lbl{ flex:0 0 36px; font-size:11px; }
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{ animation:none !important; scroll-behavior:auto; }
+    .reveal{ opacity:1; transform:none; }
+    .reveal.in{ transition:none; }
+    .card-chevron,.quest-option{ transition:none; }
+  }
+</style>
 </head>
-
 <body>
-  <div class="wrap">
-    <div class="shell">
+<div class="wrap">
 
-      <header>
-        <div>
-          <h1>08. Petição inicial</h1>
-          <div class="subtitle">
-            No processo do trabalho, a petição inicial é o instrumento que provoca o Judiciário e dá início à reclamação trabalhista,
-            com simplicidade e foco na efetividade.
+  <!-- CABEÇALHO -->
+  <header class="masthead">
+    <p class="eyebrow">
+      Direito Processual do Trabalho
+      <span class="dot">·</span> Unidade 1
+      <span class="dot">·</span> Processo de conhecimento
+    </p>
+    <div class="title-row">
+      <h1>
+        <span class="art">Item 8</span>
+        Petição Inicial
+      </h1>
+      <a class="slides-btn" href="#" target="_blank" rel="noopener">
+        <span class="ico">▮</span>
+        <span>Slides da aula</span>
+        <span class="arw">→</span>
+      </a>
+    </div>
+    <div class="verbete">
+      <span class="tag">Conceito</span>
+      <p>
+        Petição inicial = <strong>instrumento de provocação</strong> da inércia do Judiciário.
+        No processo do trabalho é essencialmente simples — oral ou escrita — e se submete
+        ao princípio do <em>jus postulandi</em>, da celeridade e da simplicidade
+        (<span class="ref">art. 840, CLT</span>).
+      </p>
+    </div>
+  </header>
+
+  <!-- § 8.1  FORMAS DE RECLAMAÇÃO -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 8.1</span>
+      <h2>Formas de reclamação</h2>
+    </div>
+    <p class="body-text reveal">
+      O <span class="ref">art. 840 da CLT</span> prevê que a petição inicial pode ser
+      <strong>oral ou escrita</strong>, à escolha do autor — salvo inquérito para apuração
+      de falta grave e dissídio coletivo, que exigem forma escrita:
+    </p>
+    <div class="escala reveal">
+      <div class="grau blue">
+        <div class="grau-bar">Oral</div>
+        <div class="grau-body">
+          <div class="grau-nome">Reclamação verbal <span class="grau-badge">Art. 786, CLT</span></div>
+          <p>O pedido é distribuído a uma Vara competente. A parte deve <strong>comparecer em até 5 dias</strong> para redução a termo dos fatos.</p>
+          <p class="ex"><strong>Consequência do não comparecimento:</strong> pena de <strong>perempção</strong> (<span class="ref">art. 731, CLT</span>) — impede novo ajuizamento por <strong>6 meses</strong>.</p>
+          <div class="carac">
+            <span class="pos">Opção do autor</span>
+            <span class="neu">Prazo: 5 dias para comparecer</span>
+            <span class="neg">Perempção se não comparecer</span>
+          </div>
+        </div>
+      </div>
+      <div class="grau green">
+        <div class="grau-bar">Escrita</div>
+        <div class="grau-body">
+          <div class="grau-nome">Reclamação escrita <span class="grau-badge">Art. 840, § 1º, CLT</span></div>
+          <p>Deve preencher os requisitos do <span class="ref">art. 840, § 1º, da CLT</span>: juízo competente, qualificação das partes, exposição dos fatos, pedido com valor, data e assinatura.</p>
+          <div class="carac">
+            <span class="pos">Forma padrão</span>
+            <span class="pos">Obrigatória: inquérito e dissídio coletivo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sum-box reveal">
+      <span class="sum-lbl">Perempção trabalhista — arts. 731 e 732, CLT</span>
+      <p>É <strong>provisória (6 meses)</strong> e tem duas hipóteses: (a) faltar à redução a termo da reclamação verbal e (b) faltar à audiência gerando arquivamento <strong>duas vezes seguidas</strong>.</p>
+    </div>
+  </section>
+
+  <!-- § 8.2  REQUISITOS -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 8.2</span>
+      <h2>Requisitos da petição inicial escrita</h2>
+    </div>
+    <p class="body-text reveal">
+      O <span class="ref">art. 840, § 1º, da CLT</span> exige apenas requisitos mínimos.
+      Diferentemente do <span class="ref">art. 319 do CPC/2015</span>, não exige pedido
+      de citação nem indicação de provas:
+    </p>
+    <div class="principios reveal">
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Req.<br>1</div>
+          <div class="card-head">
+            <span class="card-num">Indicação do juízo</span>
+            <span class="card-title">Local da prestação de serviços — art. 651, CLT</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>A competência territorial é do local da prestação de serviços, ainda que a contratação tenha ocorrido em outro lugar (<span class="ref">art. 651, caput, CLT</span>).</p>
+        </div>
+      </div>
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Req.<br>2</div>
+          <div class="card-head">
+            <span class="card-num">Qualificação</span>
+            <span class="card-title">Identificação das partes — reclamante e reclamado</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>Individualização suficiente para permitir a citação e delimitar a coisa julgada. Usar apenas os dados do enunciado — nunca inventar qualificação.</p>
+        </div>
+      </div>
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Req.<br>3</div>
+          <div class="card-head">
+            <span class="card-num">Causa de pedir</span>
+            <span class="card-title">Breve exposição dos fatos que geram o dissídio</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>Equivale à <em>causa de pedir</em> do processo civil. A CLT exige apenas a exposição fática — sem obrigação de indicar provas nem requerer citação.</p>
+          <div class="aplica">
+            <span class="a-lbl">Distinção do CPC:</span>
+            <span class="pill blue">Citação automática — art. 841, CLT</span>
+            <span class="pill both">Provas definidas pelo juiz</span>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Req.<br>4</div>
+          <div class="card-head">
+            <span class="card-num">★ Pedido com valor</span>
+            <span class="card-title">Certo, determinado e com valor — Reforma 2017</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>A <strong>Lei n. 13.467/2017</strong> exige pedido <strong>certo, determinado e com valor indicado</strong>. A ausência gera extinção sem resolução do mérito (<span class="ref">art. 840, § 3º, CLT</span>) — sem possibilidade de emenda.</p>
+          <div class="aplica">
+            <span class="a-lbl">Aplica-se a:</span>
+            <span class="pill red">Processos ajuizados após 11-11-2017</span>
+          </div>
+          <div class="ex-box">Nos termos da <span class="ref">IN n. 41/2018 do TST</span>, a exigência de valor somente se aplica aos processos ajuizados após 11 de novembro de 2017. A consequência é o <strong>arquivamento</strong> — sem emenda.</div>
+        </div>
+      </div>
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Req.<br>5</div>
+          <div class="card-head">
+            <span class="card-num">Assinatura</span>
+            <span class="card-title">Data e assinatura do reclamante ou representante</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>Elemento formalizador. Na prova da OAB: <strong>nunca</strong> assinar a peça com dados reais — usar "Advogado — OAB n. …".</p>
+        </div>
+      </div>
+    </div>
+    <div class="sum-box reveal" style="margin-top:18px;">
+      <span class="sum-lbl">O que a petição trabalhista NÃO precisa conter</span>
+      <p><strong>Pedido de citação:</strong> a notificação é automática (<span class="ref">art. 841, CLT</span>). · <strong>Indicação de provas:</strong> o magistrado define em audiência pelo poder instrutório (<span class="ref">art. 370, CPC/2015</span>).</p>
+    </div>
+  </section>
+
+  <!-- § 8.3  EMENDA -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 8.3</span>
+      <h2>Emenda da petição inicial</h2>
+    </div>
+    <p class="body-text reveal">O CPC/2015 levou o TST a revisar a <span class="ref">Súmula 263</span> em 2016 — alterando o prazo e criando nova obrigação para o juiz:</p>
+    <div class="sum-box reveal">
+      <span class="sum-lbl">Súmula 263 do TST — texto vigente</span>
+      <p>Salvo nas hipóteses do <span class="ref">art. 330 do CPC/2015</span>, o indeferimento somente é cabível se, após <strong>intimada para suprir a irregularidade em 15 dias, mediante indicação precisa do que deve ser corrigido</strong>, a parte não o fizer (<span class="ref">art. 321, CPC/2015</span>).</p>
+    </div>
+    <div class="escala reveal" style="margin-top:16px;">
+      <div class="grau green">
+        <div class="grau-bar">Regra</div>
+        <div class="grau-body">
+          <div class="grau-nome">Procedimento de emenda <span class="grau-badge">Art. 321, CPC/2015</span></div>
+          <ul class="prose-list">
+            <li>O juiz <strong>deve intimar</strong> o autor para corrigir.</li>
+            <li>Prazo: <strong>15 dias</strong> (CPC/2015 ampliou de 10 para 15).</li>
+            <li>O juiz deve <strong>indicar precisamente</strong> o vício — nova obrigação do CPC/2015.</li>
+            <li>Só após o decurso in albis poderá ser indeferida.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="grau red">
+        <div class="grau-bar">Exceção</div>
+        <div class="grau-body">
+          <div class="grau-nome">Mandado de segurança — Súmula 415, TST <span class="grau-badge">Sem emenda</span></div>
+          <p>Não cabe emenda para juntada de documentos. Se o documento for indispensável ao direito líquido e certo, a ação é <strong>extinta sem resolução do mérito</strong>.</p>
+          <p class="ex"><strong>Fundamento:</strong> o direito líquido e certo deve estar comprovado já no momento da impetração — produção de prova posterior é incompatível com o MS.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- § 8.4  INDEFERIMENTO -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 8.4</span>
+      <h2>Indeferimento da petição inicial</h2>
+    </div>
+    <p class="body-text reveal">O indeferimento pressupõe vícios <em>insanáveis</em> — que não podem ser corrigidos por emenda. Hipóteses no <span class="ref">art. 330 do CPC/2015</span>:</p>
+    <div class="escala reveal">
+      <div class="grau red">
+        <div class="grau-bar">Causas</div>
+        <div class="grau-body">
+          <div class="grau-nome">Hipóteses de indeferimento</div>
+          <ul class="prose-list">
+            <li>Ausência de condições da ação.</li>
+            <li>Não realização da emenda no prazo legal.</li>
+            <li>Ausência de pedido ou causa de pedir.</li>
+            <li>Pedido indeterminado (sem valor, nos ritos que exigem).</li>
+          </ul>
+        </div>
+      </div>
+      <div class="grau blue">
+        <div class="grau-bar">Efeitos</div>
+        <div class="grau-body">
+          <div class="grau-nome">Sentença + RO + retratação</div>
+          <p>O indeferimento é <strong>sentença</strong>. Cabe <strong>recurso ordinário</strong> (<span class="ref">art. 895, CLT</span>) em <strong>8 dias úteis</strong>. O juiz pode se retratar em <strong>5 dias</strong> (<span class="ref">art. 331, CPC/2015</span>).</p>
+          <div class="carac">
+            <span class="pos">Recurso: ordinário</span>
+            <span class="pos">Prazo: 8 dias úteis</span>
+            <span class="neu">Retratação: 5 dias</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- § 8.5  ADITAMENTO -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 8.5</span>
+      <h2>Aditamento da petição inicial</h2>
+    </div>
+    <p class="body-text reveal">Aditar é <strong>modificar voluntariamente</strong> a petição — não por vício, mas pela vontade do autor de incluir ou retirar pedidos. Regras do <span class="ref">art. 329 do CPC/2015</span> adaptadas ao processo do trabalho:</p>
+    <div class="principios reveal">
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Fase<br>1</div>
+          <div class="card-head">
+            <span class="card-num">Antes da defesa</span>
+            <span class="card-title">Aditamento livre — sem consentimento do reclamado</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>Aditamento livre — <strong>sem necessidade de consentimento</strong>. O reclamado receberá novo prazo de defesa.</p>
+          <div class="aplica"><span class="a-lbl">Consentimento:</span><span class="pill green">Desnecessário</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Fase<br>2</div>
+          <div class="card-head">
+            <span class="card-num">Após a defesa</span>
+            <span class="card-title">Aditamento condicionado ao consentimento do reclamado</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>Possível, mas <strong>depende do consentimento do reclamado</strong>. Se o reclamado negar, o aditamento não é possível.</p>
+          <div class="aplica"><span class="a-lbl">Consentimento:</span><span class="pill amber">Exigido</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <button class="card-btn" aria-expanded="false">
+          <div class="card-icon">Fase<br>3</div>
+          <div class="card-head">
+            <span class="card-num">Após a instrução</span>
+            <span class="card-title">Aditamento vedado — mesmo com consentimento</span>
+          </div>
+          <div class="card-chevron">▾</div>
+        </button>
+        <div class="card-body" role="region">
+          <p>Iniciada a instrução, o aditamento é <strong>peremptoriamente proibido</strong> — mesmo com consentimento e autorização do juiz.</p>
+          <div class="aplica"><span class="a-lbl">Resultado:</span><span class="pill red">Vedado por lei</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- § 8.6  QUESTÕES INTERATIVAS -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§ 8.6</span>
+      <h2>Questões do Exame de Ordem — FGV</h2>
+    </div>
+    <p class="body-text reveal">Selecione uma alternativa para responder. Após sua escolha, aparece o comentário de <strong>cada alternativa</strong>.</p>
+
+    <div class="quest-wrap reveal">
+
+      <!-- ═══════════════════════════════════════════
+           QUESTÃO 24 — XXIII Exame
+      ═══════════════════════════════════════════ -->
+      <div class="quest-card" data-quest="q24">
+        <div class="quest-header">
+          <span class="quest-num">Questão 24</span>
+          <span class="quest-exam">XXIII Exame de Ordem Unificado / FGV</span>
+          <span class="quest-badge" data-badge></span>
+        </div>
+        <div class="quest-body">
+          <div class="quest-enunciado">
+            Reinaldo, Wilma e Teodoro trabalharam no restaurante Fino Paladar Ltda. Todos
+            procuraram o mesmo advogado para apresentar reclamação trabalhista: Reinaldo diz
+            que não recebeu horas extras, Wilma informa que não recebeu as verbas resilitórias
+            e Teodoro diz que não recebeu a participação nos lucros. Diante da situação
+            retratada, e de acordo com a CLT, assinale a afirmativa correta.
+          </div>
+
+          <div class="quest-options" data-correct="C">
+            <div class="quest-option" data-opt="A" tabindex="0" role="button" aria-pressed="false">
+              <span class="opt-lbl">A)</span>
+              <span class="opt-icon" aria-hidden="true">✗</span>
+              <span>Não é possível o ajuizamento de reclamação plúrima, porque os pedidos são distintos.</span>
+            </div>
+            <div class="quest-option" data-opt="B" tabindex="0" role="button" aria-pressed="false">
+              <span class="opt-lbl">B)</span>
+              <span class="opt-icon" aria-hidden="true">✗</span>
+              <span>A CLT não traz os requisitos para o litisconsórcio ativo e, por isso, ficará a critério do juiz aceitar o ingresso conjunto.</span>
+            </div>
+            <div class="quest-option" data-opt="C" tabindex="0" role="button" aria-pressed="false">
+              <span class="opt-lbl">C)</span>
+              <span class="opt-icon" aria-hidden="true">✓</span>
+              <span>Cabe manejo da reclamação plúrima, porque o empregador é o mesmo.</span>
+            </div>
+            <div class="quest-option" data-opt="D" tabindex="0" role="button" aria-pressed="false">
+              <span class="opt-lbl">D)</span>
+              <span class="opt-icon" aria-hidden="true">✗</span>
+              <span>No caso apresentado, caberá o ajuizamento de dissídio coletivo.</span>
+            </div>
           </div>
         </div>
 
-        <!-- Troque pelo link real dos seus slides -->
-        <a class="slidesBtn" href="https://drive.google.com/file/d/14_ChOQ2ZAPibCkKYabzQvAVmv6xi0aG8/view?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Abrir slides no Google Drive">
-          <div class="slidesIcon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none">
-              <path d="M7 4h7l3 3v13a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" stroke="#1d4ed8" stroke-width="1.8"/>
-              <path d="M14 4v3a1 1 0 0 0 1 1h3" stroke="#1d4ed8" stroke-width="1.8"/>
-              <path d="M8 12h8M8 15h8M8 18h6" stroke="#1d4ed8" stroke-width="1.8" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="slidesLbl">
-            <strong>Slides</strong>
-            <span>Abrir no Drive</span>
-          </div>
-        </a>
-      </header>
+        <!-- comentários — ocultos até responder -->
+        <div class="quest-feedback" data-feedback>
+          <div class="feedback-intro"><p>Comentário alternativa por alternativa</p></div>
 
-      <div class="grid">
-
-        <section class="card">
-          <div class="pill">Princípio dispositivo e simplicidade</div>
-          <p>
-            Já vimos que no processo do trabalho vige o princípio dispositivo, previsto no art. 2º do CPC/2015,
-            traduzindo a necessidade de provocação do Poder Judiciário para resolução dos conflitos, o que se dará
-            por meio da apresentação da petição inicial, que no processo do trabalho mostra-se essencialmente simples,
-            seja oral ou escrita, conforme art. 840 da CLT.
-          </p>
-
-          <p>
-            Vamos lembrar que o princípio dispositivo é a regra geral, sendo o princípio inquisitivo a exceção.
-            Enquanto a regra é a inércia do Poder Judiciário, a exceção é a prática de atos processuais de ofício.
-          </p>
-
-          <p>
-            Não poderíamos esperar nada diferente na Justiça do Trabalho, que trabalha ao mesmo tempo para tender aos
-            princípios da simplicidade, celeridade e jus postulandi. Assim, a complexidade do ato processual seria
-            um entrave ao acesso ao Poder Judiciário, violando todos os princípios mencionados e que são fundamentais
-            para o processo do trabalho.
-          </p>
-        </section>
-
-        <section class="card">
-          <div class="pill">8.1. Formas de reclamação</div>
-          <p>
-            O acesso facilitado à justiça é uma marca do processo do trabalho, na medida em que o art. 840 da CLT prevê
-            que a petição inicial poderá ser oral ou escrita, podendo o autor optar por uma forma ou outra, salvo poucas
-            exceções como o inquérito para apuração de falta grave e o dissídio coletivo, que devem ser ajuizados por
-            petição escrita.
-          </p>
-
-          <p>
-            Procedimento que deve ser destacado quando o autor opta pela reclamação trabalhista verbal, consta no art. 786
-            da CLT, que prevê que o pedido de reclamação será distribuído a uma das Varas do Trabalho com competência para
-            a demanda, devendo a parte comparecer ao órgão judiciário para o qual foi distribuído o pedido no prazo de 5 dias,
-            sob pena de perempção (art. 731 da CLT). Assim, se o meu pedido for distribuído para a 3ª Vara do Trabalho de Vitória/ES,
-            deverei comparecer àquela em até 5 dias para a redução a termo dos fatos que serão relatados.
-          </p>
-
-          <p>
-            Caso não compareça e não apresente justificativa, incidirá a pena de perempção, que está prevista no art. 731 da CLT
-            e impede o autor de ajuizar novamente a ação trabalhista pelo período de 6 meses (GARCIA, 2012).
-          </p>
-
-          <p>
-            Optando o autor pela petição inicial escrita, deverão ser preenchidos os requisitos do § 1º do mesmo artigo,
-            que serão analisados a seguir.
-          </p>
-
-          <div class="note">
-            <b>Perempção (processo do trabalho):</b> duas são as hipóteses, e é provisória por 6 meses.
-            Arts. 731 e 732 da CLT: (i) faltar à redução a termo da reclamação verbal e (ii) faltar à audiência e gerar
-            o arquivamento do processo por duas vezes seguidas.
-          </div>
-        </section>
-
-        <section class="card">
-          <div class="pill">8.2. Requisitos (art. 840, §1º, CLT)</div>
-          <p>
-            Em comparação com o art. 319 do CPC/2015, o art. 840, § 1º, da CLT é bem simplório, trazendo apenas requisitos mínimos
-            para a viabilidade da petição inicial, sem mencionar diversos requisitos que no processo civil são obrigatórios,
-            como o pedido de citação e a menção às provas (SARAIVA; MANFREDINI, 2016).
-          </p>
-
-          <p><b>Dispõe o § 1º que o autor deverá afirmar:</b></p>
-          <ul>
-            <li>O juízo competente (art. 651 da CLT: local da prestação dos serviços);</li>
-            <li>Qualificação das partes;</li>
-            <li>Breve exposição dos fatos de que resulte o dissídio (causa de pedir: fatos e fundamentos jurídicos);</li>
-            <li>
-              Pedido, que vincula o julgamento (princípio da congruência), devendo ser certo, determinado e
-              com indicação do seu valor;
-            </li>
-            <li>Data e assinatura do reclamante ou de seu representante.</li>
-          </ul>
-
-          <p>
-            Não há no processo do trabalho a obrigação de incluir o pedido de citação e as provas que pretende produzir,
-            que constam como requisitos obrigatórios no processo civil (art. 319 do CPC/2015).
-          </p>
-
-          <div class="note">
-            <b>Por quê?</b><br>
-            • <b>Notificação/citação</b>: é automática (art. 841 da CLT).<br>
-            • <b>Provas</b>: na audiência, o juiz define as necessárias (poderes instrutórios; art. 370 do CPC/2015).<br>
-            • <b>Valor do pedido</b>: passou a ser requisito com a Lei 13.467/2017, com extinção sem mérito se faltar (§3º do art. 840).
+          <div class="fb-item fb-wrong">
+            <div class="fb-lbl">A)</div>
+            <div class="fb-content">
+              <span class="fb-verdict">✗ Incorreta</span>
+              <div class="fb-text">
+                <p>A afirmativa é <strong>imprecisa</strong>. O <span class="ref">art. 842 da CLT</span> exige pedidos idênticos e mesmos empregados para a reclamação plúrima. Pedidos distintos impedem a plúrima nessa forma, mas a alternativa erra ao dizer simplesmente que "não é possível" — pois, segundo a banca, o mesmo empregador é suficiente para admiti-la.</p>
+              </div>
+            </div>
           </div>
 
-          <p>
-            A necessidade do valor do pedido, segundo a IN 41/2018, aplica-se aos processos ajuizados após 11-11-2017.
-          </p>
-
-          <p>
-            Como no sumaríssimo (art. 852-B da CLT) a consequência pela falta do valor é arquivamento/extinção sem mérito,
-            não se fala, para fins de prova (Exame da OAB), em emenda para corrigir ou conversão para rito ordinário.
-          </p>
-        </section>
-
-        <section class="card">
-          <div class="pill">8.3. Emenda da petição inicial</div>
-          <p>
-            O tema emenda da petição inicial ganhou relevância após o CPC/2015 e a alteração (2016) da Súmula 263 do TST,
-            pois o CPC modificou o prazo concedido ao autor e impôs ao juiz a obrigação de indicar o ponto a ser corrigido.
-          </p>
-
-          <div class="note">
-            <b>Súmula 263/TST (em síntese):</b> salvo hipóteses do art. 330 do CPC/2015, o indeferimento por falta de documento indispensável
-            ou requisito só é cabível se, após intimação para suprir em <b>15 dias</b>, com indicação precisa do que corrigir/completar,
-            a parte não o fizer (art. 321 do CPC/2015).
+          <div class="fb-item fb-wrong">
+            <div class="fb-lbl">B)</div>
+            <div class="fb-content">
+              <span class="fb-verdict">✗ Incorreta</span>
+              <div class="fb-text">
+                <p>Errada. A CLT <strong>trata sim dos requisitos</strong> do litisconsórcio ativo na reclamação plúrima, no <span class="ref">art. 842</span>. Não é matéria deixada ao arbítrio do juiz.</p>
+              </div>
+            </div>
           </div>
 
-          <p>
-            Percebendo falhas supríveis (ex.: qualificação incompleta), o magistrado deve intimar para corrigir/complementar em 15 dias,
-            apontando o vício. Tema recorrente em prova (MIESSA, 2016).
-          </p>
+          <div class="fb-item fb-correct">
+            <div class="fb-lbl">C)</div>
+            <div class="fb-content">
+              <span class="fb-verdict">✓ Correta — gabarito oficial FGV</span>
+              <div class="fb-text">
+                <p>A FGV considerou esta a alternativa correta, destacando que o empregador único é o elemento comum que permite a reclamação plúrima. O <span class="ref">art. 842 da CLT</span> prevê como requisitos pedidos idênticos e mesmos empregados — o mesmo empregador é condição necessária (mas pela banca, suficiente no contexto da questão).</p>
+                <p style="font-style:italic;font-size:.9em;color:var(--iron);">Atenção: o entendimento mais técnico do art. 842 exige também pedidos idênticos. Fique atento à jurisprudência atualizada do TST.</p>
+              </div>
+            </div>
+          </div>
 
-          <p>
-            Destaque ainda para a Súmula 415 do TST: não cabe emenda no mandado de segurança para juntada de documentos,
-            devendo ser extinta sem resolução do mérito se o documento for indispensável ao direito líquido e certo.
-          </p>
+          <div class="fb-item fb-wrong">
+            <div class="fb-lbl">D)</div>
+            <div class="fb-content">
+              <span class="fb-verdict">✗ Incorreta</span>
+              <div class="fb-text">
+                <p>O dissídio coletivo é instrumento para solução de <strong>conflitos coletivos</strong> de trabalho (art. 856, CLT). No caso, as pretensões de Reinaldo, Wilma e Teodoro são individuais — não há litígio coletivo.</p>
+              </div>
+            </div>
+          </div>
+        </div>
 
-          <p>
-            Isso se explica porque, no mandado de segurança, os fatos devem vir comprovados por documentos já na impetração,
-            sem produção de provas no curso do processo.
-          </p>
-        </section>
-
-        <section class="card">
-          <div class="pill">8.4. Indeferimento da petição inicial</div>
-          <p>
-            As hipóteses de indeferimento são diferentes das hipóteses de emenda: aqui os vícios não podem ser corrigidos,
-            gerando extinção sem resolução do mérito (art. 330 do CPC/2015). Exemplos: ausência de condições da ação,
-            não realização da emenda no prazo, ausência de pedido ou causa de pedir, pedido indeterminado, entre outros.
-          </p>
-
-          <p>
-            Indeferida a inicial, o juiz profere sentença de extinção; no processo do trabalho, cabe recurso ordinário
-            (art. 895 da CLT) em 8 dias, e há juízo de retratação em 5 dias (art. 331 do CPC/2015) (MIESSA, 2016).
-          </p>
-        </section>
-
-        <section class="card">
-          <div class="pill">8.5. Aditamento da petição inicial</div>
-          <p>
-            As regras do aditamento constam no art. 329 do CPC/2015, com adaptação ao processo do trabalho. Aditar é modificar a inicial
-            por vontade do autor (incluir/retirar pedido ou fundamento), e não por erro.
-          </p>
-
-          <p>
-            Exemplo clássico: ajuíza-se pedindo dano material; depois se percebe que também caberia dano moral. Como incluir?
-            Dependendo do estágio, o aditamento pode ser possível.
-          </p>
-
-          <p><b>Estágios e requisitos:</b></p>
-          <ul>
-            <li>
-              <b>Até a apresentação da defesa</b>: pode aditar sem consentimento do réu; novo prazo de defesa será concedido.
-            </li>
-            <li>
-              <b>Após a apresentação da defesa</b>: só com consentimento do reclamado, pois a defesa foi preparada com base nos pedidos originais.
-            </li>
-            <li>
-              <b>Iniciada a instrução (provas)</b>: não poderá aditar, mesmo com consentimento, pois a possibilidade é negada de forma peremptória.
-            </li>
-          </ul>
-        </section>
-
+        <div class="quest-reset-wrap" data-resetwrap>
+          <button class="quest-reset" data-reset>↺ Refazer questão</button>
+        </div>
       </div>
 
-      <div class="footer">
-        <!-- Ajuste se seu índice estiver em outro caminho -->
-        <a class="back" href="../index.html">
-          <span aria-hidden="true">←</span>
-          <span>Voltar ao índice da disciplina</span>
-        </a>
+      <!-- ═══════════════════════════════════════════
+           QUESTÃO 25 — XXXIII Exame
+      ═══════════════════════════════════════════ -->
+      <div class="quest-card" data-quest="q25">
+        <div class="quest-header">
+          <span class="quest-num">Questão 25</span>
+          <span class="quest-exam">XXXIII Exame de Ordem Unificado / FGV</span>
+          <span class="quest-badge" data-badge></span>
+        </div>
+        <div class="quest-body">
+          <div class="quest-enunciado">
+            Duas irmãs costureiras trabalharam juntas em uma confecção. A mais velha era
+            empregadora da mais nova, que gerenciava a atividade. Devido a um desentendimento
+            em família, a irmã mais nova foi dispensada. Em decorrência da relação fraternal,
+            chegaram a um bom termo sem a necessidade de ajuizamento da demanda. Porém, por
+            segurança de ambas, gostariam de ver garantidos, judicialmente, os termos do
+            acordo, e procuraram você, como advogado consultor. Diante disso, observados os
+            termos da CLT, assinale a afirmativa correta.
+          </div>
+
+          <div class="quest-options" data-correct="D">
+            <div class="quest-option" data-opt="A" tabindex="0" role="button" aria-pressed="false">
+              <span class="opt-lbl">A)</span>
+              <span class="opt-icon" aria-hidden="true">✗</span>
+              <span>Deverá ser distribuída uma petição requerendo a homologação de acordo extrajudicial, sendo que as partes deverão obrigatoriamente estar representadas por advogado, ainda que comum.</span>
+            </div>
+            <div class="quest-option" data-opt="B" tabindex="0" role="button" aria-pressed="false">
+              <span class="opt-lbl">B)</span>
+              <span class="opt-icon" aria-hidden="true">✗</span>
+              <span>Deverá ser ajuizada uma ação trabalhista e realizado um acordo na primeira audiência, vigorando o <em>jus postulandi</em>.</span>
+            </div>
+            <div class="quest-option" data-opt="C" tabindex="0" role="button" aria-pressed="false">
+              <span class="opt-lbl">C)</span>
+              <span class="opt-icon" aria-hidden="true">✗</span>
+              <span>Deverá ser distribuída uma petição requerendo a homologação de acordo extrajudicial, sendo que as partes não precisarão estar representadas por advogado, em razão do <em>jus postulandi</em>.</span>
+            </div>
+            <div class="quest-option" data-opt="D" tabindex="0" role="button" aria-pressed="false">
+              <span class="opt-lbl">D)</span>
+              <span class="opt-icon" aria-hidden="true">✓</span>
+              <span>Deverá ser distribuída uma petição requerendo a homologação de acordo extrajudicial, sendo que as partes deverão obrigatoriamente estar representadas por advogados distintos.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="quest-feedback" data-feedback>
+          <div class="feedback-intro"><p>Comentário alternativa por alternativa</p></div>
+
+          <div class="fb-item fb-wrong">
+            <div class="fb-lbl">A)</div>
+            <div class="fb-content">
+              <span class="fb-verdict">✗ Incorreta</span>
+              <div class="fb-text">
+                <p>Errada em parte. Acerta ao indicar a petição de homologação de acordo extrajudicial (<span class="ref">art. 855-B, CLT</span>) e ao exigir representação por advogado. Erra ao admitir <strong>advogado comum</strong>. O art. 855-B é explícito: cada parte deve ter seu <strong>próprio advogado</strong> — o advogado único é expressamente vedado.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="fb-item fb-wrong">
+            <div class="fb-lbl">B)</div>
+            <div class="fb-content">
+              <span class="fb-verdict">✗ Incorreta</span>
+              <div class="fb-text">
+                <p>Errada. Ajuizar ação trabalhista para depois celebrar acordo em audiência é desnecessário quando as partes já chegaram ao entendimento extrajudicialmente. Além disso, o <em>jus postulandi</em> <strong>não se aplica</strong> ao procedimento de homologação de acordo extrajudicial (<span class="ref">art. 855-B, CLT</span>), que exige representação por advogado.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="fb-item fb-wrong">
+            <div class="fb-lbl">C)</div>
+            <div class="fb-content">
+              <span class="fb-verdict">✗ Incorreta</span>
+              <div class="fb-text">
+                <p>Errada. O <em>jus postulandi</em> <strong>não se aplica</strong> ao procedimento do <span class="ref">art. 855-B da CLT</span>. A representação por advogado é obrigatória para as duas partes — e os advogados devem ser distintos. A CLT afasta expressamente o <em>jus postulandi</em> nesse procedimento especial.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="fb-item fb-correct">
+            <div class="fb-lbl">D)</div>
+            <div class="fb-content">
+              <span class="fb-verdict">✓ Correta — gabarito oficial FGV</span>
+              <div class="fb-text">
+                <p>O <span class="ref">art. 855-B da CLT</span> (inserido pela Reforma Trabalhista de 2017) institui o procedimento de homologação de acordo extrajudicial. São requisitos essenciais:</p>
+                <p>① petição <strong>conjunta</strong> das partes; ② cada parte representada por <strong>advogado próprio e distinto</strong> (advogado comum é vedado); ③ o juiz pode ou não homologar, a seu critério.</p>
+                <p>Não se aplica o <em>jus postulandi</em>, e o caminho correto não é ajuizar ação, mas sim requerer diretamente a homologação do acordo já celebrado.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quest-reset-wrap" data-resetwrap>
+          <button class="quest-reset" data-reset>↺ Refazer questão</button>
+        </div>
       </div>
 
-    </div>
-  </div>
+    </div><!-- /quest-wrap -->
+  </section>
+
+  <a class="back" href="../index.html">
+    <span class="arw">←</span>
+    <span>Voltar ao índice da disciplina</span>
+  </a>
+
+</div><!-- /wrap -->
+
+<script>
+/* ── reveal on scroll ── */
+(function(){
+  var items = document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){
+    items.forEach(function(el){ el.classList.add('in'); }); return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold:.08, rootMargin:'0px 0px -3% 0px' });
+  items.forEach(function(el, i){
+    el.style.transitionDelay = (i * 40) + 'ms';
+    io.observe(el);
+  });
+})();
+
+/* ── accordion dos cards de conteúdo ── */
+(function(){
+  var cards = document.querySelectorAll('.card');
+  cards.forEach(function(card){
+    var btn = card.querySelector('.card-btn');
+    btn.addEventListener('click', function(){
+      var isOpen = card.classList.contains('open');
+      cards.forEach(function(c){
+        c.classList.remove('open');
+        c.querySelector('.card-btn').setAttribute('aria-expanded','false');
+      });
+      if(!isOpen){
+        card.classList.add('open');
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+})();
+
+/* ── lógica das questões interativas ── */
+(function(){
+  var questCards = document.querySelectorAll('[data-quest]');
+
+  questCards.forEach(function(qcard){
+    var optionsContainer = qcard.querySelector('[data-correct]');
+    var correct = optionsContainer.getAttribute('data-correct');
+    var options  = optionsContainer.querySelectorAll('.quest-option');
+    var feedback = qcard.querySelector('[data-feedback]');
+    var resetWrap = qcard.querySelector('[data-resetwrap]');
+    var resetBtn  = qcard.querySelector('[data-reset]');
+    var badge     = qcard.querySelector('[data-badge]');
+
+    function activate(chosen){
+      var isRight = (chosen === correct);
+
+      options.forEach(function(opt){
+        var key = opt.getAttribute('data-opt');
+        opt.classList.add('disabled');
+        opt.removeAttribute('tabindex');
+        opt.setAttribute('aria-pressed', key === chosen ? 'true' : 'false');
+
+        if(key === chosen){
+          opt.classList.add(isRight ? 'chosen-correct' : 'chosen-wrong');
+        } else if(key === correct && !isRight){
+          opt.classList.add('reveal-correct');
+        }
+      });
+
+      feedback.classList.add('visible');
+      resetWrap.classList.add('visible');
+
+      badge.style.display = 'inline-block';
+      if(isRight){
+        badge.textContent = '✓ Acertou';
+        badge.className = 'quest-badge acerto';
+      } else {
+        badge.textContent = '✗ Errou';
+        badge.className = 'quest-badge erro';
+      }
+
+      feedback.scrollIntoView({ behavior:'smooth', block:'nearest' });
+    }
+
+    options.forEach(function(opt){
+      opt.addEventListener('click', function(){
+        if(opt.classList.contains('disabled')) return;
+        activate(opt.getAttribute('data-opt'));
+      });
+      opt.addEventListener('keydown', function(e){
+        if(e.key === 'Enter' || e.key === ' '){
+          e.preventDefault();
+          if(!opt.classList.contains('disabled'))
+            activate(opt.getAttribute('data-opt'));
+        }
+      });
+    });
+
+    resetBtn.addEventListener('click', function(){
+      options.forEach(function(opt){
+        opt.className = 'quest-option';
+        opt.setAttribute('tabindex','0');
+        opt.setAttribute('aria-pressed','false');
+      });
+      feedback.classList.remove('visible');
+      resetWrap.classList.remove('visible');
+      badge.style.display = 'none';
+    });
+  });
+})();
+</script>
 </body>
 </html>
-
