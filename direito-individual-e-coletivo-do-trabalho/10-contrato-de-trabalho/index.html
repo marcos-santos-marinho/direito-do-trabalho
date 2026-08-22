@@ -1,180 +1,495 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contrato de Trabalho</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>10. Contrato de Trabalho</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --bg:#eaf2fb;
-  --card:#ffffff;
-  --text:#1f2937;
-  --title:#1d4ed8;
-  --green:#2e7d32;
-  --shadow:0 12px 30px rgba(0,0,0,.08);
-}
+  :root{
+    --ink:#1b2436;
+    --ink-soft:#414a5c;
+    --paper:#edece5;
+    --surface:#fbfaf7;
+    --accent:#7a2e37;
+    --accent-soft:#a2545f;
+    --iron:#8b8579;
+    --line:rgba(27,36,54,.13);
+    --line-strong:rgba(27,36,54,.22);
+    --display:"Fraunces",Georgia,"Times New Roman",serif;
+    --body:"Spectral",Georgia,serif;
+    --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",monospace;
+  }
 
-*{box-sizing:border-box;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:19px;line-height:1.78;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
 
-body{
-  margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  line-height:1.8;
-  padding:25px;
-  font-size:18px; /* FONTE MAIOR */
-}
+  body::before{content:"";position:fixed;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 34%,var(--ink) 34%,var(--ink) 100%);z-index:50;}
 
-.container{
-  max-width:950px;
-  margin:auto;
-}
+  .wrap{max-width:760px;margin:0 auto;padding:0 22px 72px;}
 
-.header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  flex-wrap:wrap;
-  gap:20px;
-}
+  /* CABEÇALHO */
+  .masthead{padding:56px 0 30px;border-bottom:1px solid var(--line-strong);animation:rise .7s cubic-bezier(.2,.7,.2,1) both;}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+  .eyebrow::before{content:"";width:26px;height:2px;background:var(--accent);display:inline-block;}
+  .eyebrow .dot{color:var(--line-strong);}
+  .title-row{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;flex-wrap:wrap;}
+  h1{font-family:var(--display);font-weight:500;font-size:clamp(2.5rem,7vw,4.1rem);line-height:1.02;letter-spacing:-.015em;max-width:14ch;}
+  h1 .art{display:block;font-size:.42em;font-weight:600;letter-spacing:.02em;color:var(--accent);font-family:var(--mono);text-transform:uppercase;margin-bottom:.5em;}
+  .slides-btn{flex-shrink:0;display:inline-flex;align-items:center;gap:12px;text-decoration:none;background:var(--ink);color:#f4f2ec;border-radius:4px;padding:13px 18px;font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;box-shadow:0 8px 22px -12px rgba(27,36,54,.7);transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s,background .25s;}
+  .slides-btn .ico{font-size:16px;line-height:1;transform:translateY(-1px);}
+  .slides-btn .arw{transition:transform .25s;}
+  .slides-btn:hover{background:var(--accent);transform:translateY(-2px);box-shadow:0 14px 28px -12px rgba(122,46,55,.75);}
+  .slides-btn:hover .arw{transform:translateX(4px);}
 
-h1{
-  font-size:32px;
-  color:var(--title);
-  margin:0;
-}
+  /* VERBETE */
+  .verbete{margin:44px 0 8px;padding:6px 0 6px 30px;border-left:3px solid var(--accent);animation:rise .7s .1s cubic-bezier(.2,.7,.2,1) both;}
+  .verbete .tag{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:14px;}
+  .verbete p{font-family:var(--display);font-weight:400;font-size:clamp(1.2rem,3vw,1.5rem);line-height:1.45;letter-spacing:-.01em;color:var(--ink);margin:0;}
 
-.slide-btn{
-  text-decoration:none;
-  background:var(--card);
-  padding:16px 22px;
-  border-radius:16px;
-  box-shadow:var(--shadow);
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  font-weight:700;
-  font-size:15px;
-  color:var(--text);
-  transition:.3s;
-}
+  /* REF */
+  .ref{font-family:var(--mono);font-size:.8em;color:var(--iron);background:rgba(139,133,121,.12);padding:2px 7px;border-radius:3px;white-space:nowrap;}
 
-.slide-btn:hover{
-  transform:translateY(-4px);
-}
+  /* SEÇÕES */
+  .sec-head{display:flex;gap:16px;align-items:baseline;margin:46px 0 14px;padding-top:26px;border-top:1px solid var(--line);}
+  .sec-head .num{font-family:var(--mono);font-size:15px;font-weight:600;color:var(--accent);letter-spacing:.02em;flex-shrink:0;padding-top:.35em;}
+  h2{font-family:var(--display);font-weight:500;font-size:clamp(1.6rem,4vw,2rem);line-height:1.14;letter-spacing:-.01em;color:var(--ink);}
+  p{margin-bottom:16px;color:var(--ink-soft);}
 
-.slide-btn img{
-  width:42px;
-  margin-bottom:6px;
-}
+  /* LISTA DE CARACTERÍSTICAS */
+  .carac-list{display:flex;flex-direction:column;gap:3px;margin:10px 0 8px;}
+  .carac{display:grid;grid-template-columns:44px 1fr;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;}
+  .carac-letra{display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:700;font-size:13px;color:var(--accent);background:rgba(122,46,55,.06);border-right:1px solid var(--line);padding:4px;}
+  .carac-body{padding:14px 18px;font-size:.93em;color:var(--ink-soft);line-height:1.65;}
+  .carac-body strong{color:var(--ink);}
 
-.card{
-  background:var(--card);
-  padding:30px;
-  border-radius:20px;
-  margin-top:30px;
-  box-shadow:var(--shadow);
-}
+  /* BULLET LIST */
+  .blist{list-style:none;padding:0;margin:12px 0 8px;display:flex;flex-direction:column;gap:4px;}
+  .blist li{display:grid;grid-template-columns:22px 1fr;gap:8px;font-size:.93em;color:var(--ink-soft);line-height:1.65;padding:8px 0;border-bottom:1px solid var(--line);}
+  .blist li:last-child{border-bottom:none;}
+  .blist li .bul{color:var(--accent);font-family:var(--mono);font-size:.85em;padding-top:2px;}
 
-h2{
-  margin-top:50px;
-  color:#0f172a;
-  font-size:24px;
-}
+  /* CARDS EXPANSÍVEIS */
+  .cards{display:flex;flex-direction:column;gap:3px;}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;transition:box-shadow .2s;}
+  .card:hover{box-shadow:0 4px 18px -8px rgba(27,36,54,.2);}
+  .card-btn{width:100%;background:none;border:none;cursor:pointer;display:grid;grid-template-columns:52px 1fr 34px;align-items:center;padding:0;text-align:left;color:inherit;}
+  .card-btn:focus-visible{outline:3px solid var(--accent-soft);outline-offset:-3px;border-radius:5px;}
+  .card-icon{display:flex;align-items:center;justify-content:center;min-height:60px;height:100%;border-right:1px solid var(--line);font-family:var(--mono);font-weight:600;font-size:11px;color:var(--accent);background:rgba(122,46,55,.05);text-align:center;padding:4px;line-height:1.3;}
+  .card-head{padding:14px 18px;}
+  .card-num{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--iron);display:block;margin-bottom:3px;}
+  .card-title{font-family:var(--display);font-weight:600;font-size:1.05rem;line-height:1.2;color:var(--ink);}
+  .card-chevron{display:flex;align-items:center;justify-content:center;padding-right:16px;color:var(--iron);font-size:13px;transition:transform .3s cubic-bezier(.2,.7,.2,1),color .2s;}
+  .card.open .card-chevron{transform:rotate(180deg);color:var(--accent);}
+  .card-body{display:none;padding:18px 22px 22px;border-top:1px solid var(--line);}
+  .card.open .card-body{display:block;}
+  .card-body > p{color:var(--ink-soft);font-size:.93em;line-height:1.72;}
 
-ul{
-  padding-left:25px;
-}
+  /* TABELA PRAZOS */
+  .tbl{margin:12px 0 4px;border:1px solid var(--line);border-radius:6px;overflow:hidden;}
+  .tbl-head{display:grid;grid-template-columns:1fr 1fr 1fr;background:var(--ink);color:#f4f2ec;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;}
+  .tbl-head div,.tbl-row div{padding:10px 14px;}
+  .tbl-head div:not(:last-child){border-right:1px solid rgba(255,255,255,.15);}
+  .tbl-row{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid var(--line);font-size:.9em;}
+  .tbl-row div:not(:last-child){border-right:1px solid var(--line);}
+  .tbl-row div{color:var(--ink-soft);display:flex;align-items:center;line-height:1.5;}
+  .tbl-row:nth-child(even) div{background:rgba(139,133,121,.04);}
+  .tbl-row .lbl{font-family:var(--mono);font-weight:600;font-size:.85em;color:var(--accent);}
 
-.voltar{
-  display:block;
-  margin:50px auto 20px auto;
-  width:max-content;
-  padding:16px 32px;
-  border-radius:30px;
-  background:white;
-  text-decoration:none;
-  font-weight:700;
-  box-shadow:var(--shadow);
-  color:#111827;
-  transition:.3s;
-}
+  /* SUMULAS */
+  .sumula{margin:12px 0 4px;padding:12px 16px;border-left:2px solid var(--iron);background:var(--paper);border-radius:0 4px 4px 0;font-size:.89em;color:var(--ink-soft);line-height:1.6;}
+  .sumula strong{font-family:var(--mono);font-size:.86em;letter-spacing:.08em;text-transform:uppercase;color:var(--iron);display:block;margin-bottom:4px;}
 
-.voltar:hover{
-  transform:translateY(-3px);
-}
+  /* TABELA INVENTOS */
+  .inventos{margin:12px 0 4px;border:1px solid var(--line);border-radius:6px;overflow:hidden;}
+  .inv-row{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--line);font-size:.9em;}
+  .inv-row:last-child{border-bottom:none;}
+  .inv-row div{padding:12px 16px;color:var(--ink-soft);line-height:1.55;}
+  .inv-row div:first-child{background:rgba(122,46,55,.04);border-right:1px solid var(--line);font-family:var(--body);font-weight:600;color:var(--ink);font-size:.88em;}
+  .inv-head{display:grid;grid-template-columns:1fr 1fr;background:var(--accent);color:#f4f2ec;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;}
+  .inv-head div{padding:9px 16px;}
+  .inv-head div:first-child{border-right:1px solid rgba(255,255,255,.2);}
+
+  /* NOTA */
+  .nota{margin:12px 0 4px;padding:14px 18px;background:rgba(122,46,55,.06);border-left:3px solid var(--accent);border-radius:0 5px 5px 0;font-size:.91em;color:var(--ink-soft);line-height:1.65;}
+  .nota strong{color:var(--ink);}
+
+  /* VOLTAR */
+  .back{margin-top:56px;display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line-strong);border-radius:6px;padding:20px 22px;font-family:var(--mono);font-size:14px;letter-spacing:.04em;transition:border-color .25s,transform .25s;}
+  .back .arw{color:var(--accent);transition:transform .25s;font-size:18px;}
+  .back:hover{border-color:var(--accent);transform:translateY(-2px);}
+  .back:hover .arw{transform:translateX(-4px);}
+
+  @keyframes rise{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
+  .reveal{opacity:0;transform:translateY(14px);}
+  .reveal.in{opacity:1;transform:none;transition:opacity .5s ease,transform .5s cubic-bezier(.2,.7,.2,1);}
+
+  @media(max-width:560px){
+    body{font-size:17.5px;}
+    .masthead{padding:40px 0 24px;}
+    .title-row{align-items:stretch;}
+    .slides-btn{width:100%;justify-content:center;}
+    .verbete{padding-left:20px;}
+    .card-btn{grid-template-columns:44px 1fr 30px;}
+    .tbl-head,.tbl-row{grid-template-columns:1fr 1fr;}
+    .tbl-head div:last-child,.tbl-row div:last-child{display:none;}
+    .inv-row,.inv-head{grid-template-columns:1fr;}
+    .inv-head div:first-child,.inv-row div:first-child{border-right:none;border-bottom:1px solid var(--line);}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none !important;scroll-behavior:auto;}
+    .reveal{opacity:1;transform:none;}
+    .reveal.in{transition:none;}
+    .card-chevron{transition:none;}
+  }
 </style>
 </head>
-
 <body>
-<div class="container">
+<div class="wrap">
 
-<div class="header">
-<h1>10. Contrato de Trabalho</h1>
+<header class="masthead">
+  <p class="eyebrow">
+    Direito do Trabalho
+    <span class="dot">·</span> Unidade 2
+    <span class="dot">·</span> Contrato de trabalho
+  </p>
+  <div class="title-row">
+    <h1>
+      <span class="art">Item 10</span>
+      Contrato de Trabalho
+    </h1>
+    <a class="slides-btn"
+       href="https://drive.google.com/file/d/1J_hokgLkCtv1frnWZNi0lwMpUUw8Itjg/view?usp=sharing"
+       target="_blank" rel="noopener">
+      <span class="ico">▮</span>
+      <span>Slides da aula</span>
+      <span class="arw">→</span>
+    </a>
+  </div>
 
-<a href="https://drive.google.com/file/d/1J_hokgLkCtv1frnWZNi0lwMpUUw8Itjg/view?usp=sharing" target="_blank" class="slide-btn">
-<img src="https://cdn-icons-png.flaticon.com/512/2991/2991112.png">
-Slides
+  <div class="verbete">
+    <span class="tag">Definição — art. 442, CLT</span>
+    <p>
+      Contrato individual de trabalho é o acordo tácito ou expresso,
+      correspondente à relação de emprego. Pode ser verbal ou escrito,
+      expresso ou tácito — estando presentes as características da relação
+      de emprego, haverá contrato de trabalho (<em>contrato-realidade</em>).
+    </p>
+  </div>
+</header>
+
+<!-- § 10.1 CARACTERÍSTICAS -->
+<section>
+  <div class="sec-head reveal">
+    <span class="num">§ 10.1</span>
+    <h2>Características do contrato de trabalho</h2>
+  </div>
+  <p class="reveal">O contrato de trabalho é um contrato:</p>
+  <div class="carac-list reveal">
+    <div class="carac"><div class="carac-letra">a)</div><div class="carac-body"><strong>De direito privado</strong> — celebrado entre particulares, envolvendo interesses privados.</div></div>
+    <div class="carac"><div class="carac-letra">b)</div><div class="carac-body"><strong>Intuitu personae</strong> — desenvolve-se de forma pessoal em relação ao empregado; a prestação é infungível.</div></div>
+    <div class="carac"><div class="carac-letra">c)</div><div class="carac-body"><strong>Consensual</strong> — nasce da manifestação da vontade livre das partes e não depende de forma prevista em lei.</div></div>
+    <div class="carac"><div class="carac-letra">d)</div><div class="carac-body"><strong>Sinalagmático</strong> — pacto bilateral que gera obrigações recíprocas, resultando equilíbrio formal entre as prestações ajustadas.</div></div>
+    <div class="carac"><div class="carac-letra">e)</div><div class="carac-body"><strong>Sucessivo ou continuado</strong> — as obrigações se prolongam no tempo; o contrato é de débito permanente.</div></div>
+    <div class="carac"><div class="carac-letra">f)</div><div class="carac-body"><strong>Oneroso</strong> — previsão de perdas e vantagens econômicas para ambas as partes.</div></div>
+    <div class="carac"><div class="carac-letra">g)</div><div class="carac-body"><strong>Principal</strong> — admite a existência de contratos acessórios (ex.: contrato de depósito de mostruário para vendedores).</div></div>
+  </div>
+</section>
+
+<!-- § 10.2 ELEMENTOS -->
+<section>
+  <div class="sec-head reveal">
+    <span class="num">§ 10.2</span>
+    <h2>Elementos do contrato de trabalho</h2>
+  </div>
+  <p class="reveal">Como negócio jurídico, o contrato de trabalho exige <span class="ref">art. 104, CC</span>:</p>
+
+  <div class="cards reveal">
+
+    <div class="card">
+      <button class="card-btn" aria-expanded="false">
+        <div class="card-icon">Cap.<br>das<br>partes</div>
+        <div class="card-head">
+          <span class="card-num">Elemento a)</span>
+          <span class="card-title">Capacidade das partes</span>
+        </div>
+        <div class="card-chevron">▾</div>
+      </button>
+      <div class="card-body" role="region">
+        <p><strong>Capacidade do empregador</strong> — regida pelo Direito Civil. Qualquer pessoa natural, jurídica ou ente despersonalizado a quem a ordem jurídica reconheça aptidão para adquirir direitos e contrair obrigações tem capacidade para ser empregador.</p>
+        <p><strong>Capacidade do empregado</strong> — regida pelo <span class="ref">art. 7º, XXXIII, CF</span>:</p>
+        <div class="tbl">
+          <div class="tbl-head"><div>Faixa etária</div><div>Situação</div><div>Observação</div></div>
+          <div class="tbl-row"><div class="lbl">18 anos+</div><div>Capacidade plena</div><div>Pode celebrar qualquer contrato de trabalho</div></div>
+          <div class="tbl-row"><div class="lbl">16–18 anos</div><div>Incapacidade relativa</div><div>Necessita assistência dos pais/responsáveis; pode assinar recibo de salário <span class="ref">art. 439, CLT</span></div></div>
+          <div class="tbl-row"><div class="lbl">Menor de 16</div><div>Incapacidade absoluta</div><div>Salvo na condição de aprendiz (a partir de 14 anos)</div></div>
+          <div class="tbl-row"><div class="lbl">14–18 anos</div><div>Aprendiz (relativa)</div><div>Contrato de aprendizagem até 24 anos <span class="ref">art. 428, CLT</span></div></div>
+        </div>
+        <div class="nota" style="margin-top:12px;">
+          <strong>Trabalho proibido:</strong> o menor de 18 anos é incapaz para celebrar contrato que tenha por objeto trabalho insalubre, perigoso ou noturno — e também para contrato de trabalho doméstico <span class="ref">art. 1º, par. único, LC 150/2015</span>.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <button class="card-btn" aria-expanded="false">
+        <div class="card-icon">Obj.<br>lícito</div>
+        <div class="card-head">
+          <span class="card-num">Elemento b)</span>
+          <span class="card-title">Objeto lícito</span>
+        </div>
+        <div class="card-chevron">▾</div>
+      </button>
+      <div class="card-body" role="region">
+        <p>O trabalho executado por força do contrato não pode ser caracterizado como atividade criminosa ou contravenção legal. O trabalho enquadrado como crime ou contravenção penal leva à ilicitude do objeto.</p>
+        <div class="sumula">
+          <strong>OJ SDI-1 199, TST — Jogo do bicho</strong>
+          Trabalho prestado em atividade de jogo do bicho — contrato com objeto ilícito, nulo desde a origem, sem geração de direitos trabalhistas.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <button class="card-btn" aria-expanded="false">
+        <div class="card-icon">Forma</div>
+        <div class="card-head">
+          <span class="card-num">Elemento c)</span>
+          <span class="card-title">Forma não solene</span>
+        </div>
+        <div class="card-chevron">▾</div>
+      </button>
+      <div class="card-body" role="region">
+        <p>O contrato de trabalho não é formal — pode ser verbal ou tácito <span class="ref">arts. 442 e 443, CLT</span>. Estando presentes pessoalidade, não eventualidade, subordinação e remuneração, existe contrato de trabalho (contrato-realidade).</p>
+        <p>O registro na CTPS <strong>não é requisito de validade</strong> do contrato — é documento de identificação do trabalhador. É vedado ao empregador efetuar anotações desabonadoras à conduta do empregado <span class="ref">art. 29, § 4º, CLT</span>.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- § 10.3 NULIDADE -->
+<section>
+  <div class="sec-head reveal">
+    <span class="num">§ 10.3</span>
+    <h2>Nulidade do contrato de trabalho</h2>
+  </div>
+
+  <div class="carac-list reveal">
+    <div class="carac">
+      <div class="carac-letra">I</div>
+      <div class="carac-body">
+        <strong>Trabalho proibido</strong> (ex.: contratação irregular de menor) — nulidade com efeito
+        <span class="ref">ex nunc</span>: não retroage. Os efeitos trabalhistas são assegurados até a decretação da nulidade.
+      </div>
+    </div>
+    <div class="carac">
+      <div class="carac-letra">II</div>
+      <div class="carac-body">
+        <strong>Objeto ilícito</strong> (ex.: jogo do bicho) — nulidade com efeito
+        <span class="ref">ex tunc</span>: retroage à origem. Nenhum direito trabalhista é assegurado, pois a proteção do interesse público não permite a chancela do ilícito.
+      </div>
+    </div>
+    <div class="carac">
+      <div class="carac-letra">III</div>
+      <div class="carac-body">
+        <strong>Contratação pública sem concurso</strong> — nulidade fundada no <span class="ref">art. 37, II e § 2º, CF</span>. O trabalhador tem direito apenas à contraprestação pactuada pelas horas trabalhadas (mínimo de salário mínimo) e aos depósitos do FGTS.
+        <div class="sumula" style="margin-top:10px;">
+          <strong>Súmula 363, TST</strong>
+          A contratação de servidor público sem prévia aprovação em concurso público gera nulidade, conferindo ao trabalhador apenas o direito ao pagamento da contraprestação pactuada, respeitado o valor da hora do salário mínimo, e dos valores referentes ao FGTS.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- § 10.4 PROVA -->
+<section>
+  <div class="sec-head reveal">
+    <span class="num">§ 10.4</span>
+    <h2>Prova do contrato de trabalho</h2>
+  </div>
+  <p class="reveal">
+    A prova do contrato de trabalho será feita pelas anotações da CTPS ou por instrumento escrito, e suprida por todos os meios permitidos em direito <span class="ref">art. 456, CLT</span>.
+  </p>
+  <div class="sumula reveal">
+    <strong>Súmula 12, TST</strong>
+    As anotações feitas pelo empregador na CTPS do empregado geram presunção apenas <strong>relativa</strong> de veracidade, podendo ser elididas por prova em sentido contrário.
+  </div>
+</section>
+
+<!-- § 10.5 EFEITOS -->
+<section>
+  <div class="sec-head reveal">
+    <span class="num">§ 10.5</span>
+    <h2>Efeitos do contrato de trabalho</h2>
+  </div>
+  <p class="reveal">Do caráter sinalagmático originam-se duas obrigações essenciais:</p>
+  <div class="carac-list reveal">
+    <div class="carac"><div class="carac-letra">→</div><div class="carac-body"><strong>Empregado:</strong> prestar serviços pessoalmente, de forma diligente e com boa-fé, conforme a função contratada.</div></div>
+    <div class="carac"><div class="carac-letra">→</div><div class="carac-body"><strong>Empregador:</strong> pagar remuneração como contraprestação; proporcionar trabalho e fornecer meios de execução; exercer os poderes de organização, fiscalização e disciplinar dentro dos limites do ordenamento, respeitando a dignidade do trabalhador.</div></div>
+  </div>
+
+  <div class="sec-head reveal" style="margin-top:28px;">
+    <span class="num">§ 10.5.1</span>
+    <h2>Dano extrapatrimonial</h2>
+  </div>
+  <p class="reveal">
+    A Lei n. 13.467/2017 instituiu regramento próprio para reparação de danos extrapatrimoniais decorrentes da relação de trabalho
+    <span class="ref">arts. 223-A a 223-G, CLT</span>.
+    A indenização é fixada conforme a gravidade da ofensa:
+  </p>
+  <div class="tbl reveal">
+    <div class="tbl-head"><div>Natureza da ofensa</div><div>Teto (pessoa física)</div><div>Base de cálculo</div></div>
+    <div class="tbl-row"><div class="lbl">Leve</div><div>Até 3×</div><div>Último salário contratual do ofendido</div></div>
+    <div class="tbl-row"><div class="lbl">Média</div><div>Até 5×</div><div>Último salário contratual do ofendido</div></div>
+    <div class="tbl-row"><div class="lbl">Grave</div><div>Até 20×</div><div>Último salário contratual do ofendido</div></div>
+    <div class="tbl-row"><div class="lbl">Gravíssima</div><div>Até 50×</div><div>Último salário contratual do ofendido</div></div>
+  </div>
+  <div class="nota reveal">
+    <strong>Pessoa jurídica ofendida:</strong> a base de cálculo é o salário contratual do <em>ofensor</em> <span class="ref">art. 223-G, § 2º, CLT</span>.<br>
+    <strong>Reincidência entre partes idênticas:</strong> o juiz poderá elevar ao dobro o valor <span class="ref">art. 223-G, § 3º, CLT</span>.
+  </div>
+
+  <div class="sec-head reveal" style="margin-top:28px;">
+    <span class="num">§ 10.5.2</span>
+    <h2>Direitos intelectuais como efeitos conexos</h2>
+  </div>
+  <div class="inventos reveal">
+    <div class="inv-head"><div>Situação do invento</div><div>Titularidade</div></div>
+    <div class="inv-row"><div>Empregado inventa utilizando meios/equipamentos do empregador e há previsão contratual</div><div>Propriedade do <strong>empregador</strong></div></div>
+    <div class="inv-row"><div>Empregado inventa sem qualquer auxílio do empregador</div><div>Propriedade do <strong>empregado</strong></div></div>
+    <div class="inv-row"><div>Empregado inventa utilizando meios/equipamentos do empregador e não há previsão contratual</div><div>Propriedade <strong>comum</strong></div></div>
+  </div>
+</section>
+
+<!-- § 10.6 DURAÇÃO -->
+<section>
+  <div class="sec-head reveal">
+    <span class="num">§ 10.6</span>
+    <h2>Duração do contrato de trabalho</h2>
+  </div>
+  <p class="reveal">Os contratos podem ser por <strong>prazo indeterminado</strong> (regra geral), por <strong>prazo determinado</strong> (exceção) ou <strong>intermitente</strong> <span class="ref">art. 443, CLT</span>.</p>
+
+  <div class="cards reveal">
+
+    <div class="card">
+      <button class="card-btn" aria-expanded="false">
+        <div class="card-icon">Prazo<br>indet.</div>
+        <div class="card-head">
+          <span class="card-num">Modalidade 1</span>
+          <span class="card-title">Contrato por prazo indeterminado</span>
+        </div>
+        <div class="card-chevron">▾</div>
+      </button>
+      <div class="card-body" role="region">
+        <p>Não contém determinação quanto à sua vigência; terá validade até que ocorra uma causa extintiva. É a <strong>regra geral</strong> — o legislador privilegia esta modalidade.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <button class="card-btn" aria-expanded="false">
+        <div class="card-icon">Prazo<br>det.</div>
+        <div class="card-head">
+          <span class="card-num">Modalidade 2 — art. 443, § 1º, CLT</span>
+          <span class="card-title">Contrato por prazo determinado</span>
+        </div>
+        <div class="card-chevron">▾</div>
+      </button>
+      <div class="card-body" role="region">
+        <p>Vigência depende de termo prefixado, execução de serviços especificados ou realização de certo acontecimento. Somente é válido em três hipóteses:</p>
+        <ul class="blist">
+          <li><span class="bul">a)</span><span>Serviços cuja natureza ou transitoriedade justifique a predeterminação do prazo</span></li>
+          <li><span class="bul">b)</span><span>Atividades empresariais transitórias (grupos teatrais, feiras e eventos)</span></li>
+          <li><span class="bul">c)</span><span>Contrato de experiência — prazo máximo de 90 dias, prorrogável uma única vez <span class="ref">Súmula 188, TST</span></span></li>
+        </ul>
+        <div class="tbl" style="margin-top:12px;">
+          <div class="tbl-head"><div>Modalidade</div><div>Prazo máximo</div><div>Prorrogação</div></div>
+          <div class="tbl-row"><div class="lbl">Geral</div><div>2 anos</div><div>Uma vez, respeitado o limite</div></div>
+          <div class="tbl-row"><div class="lbl">Experiência</div><div>90 dias</div><div>Uma vez, respeitado o limite</div></div>
+        </div>
+        <div class="nota" style="margin-top:10px;">
+          <strong>Contrato sucessivo:</strong> considera-se por prazo indeterminado todo contrato que suceder, dentro de 6 meses, a outro contrato por prazo determinado <span class="ref">art. 452, CLT</span>.
+        </div>
+        <p style="margin-top:12px;font-size:.92em;"><strong>Rescisão antecipada:</strong> empregador deve indenizar com metade do que o empregado receberia até o término <span class="ref">art. 479, CLT</span>; empregado responde pelos prejuízos causados, limitado à mesma indenização <span class="ref">art. 480, CLT</span>. Havendo cláusula assecuratória de rescisão recíproca, aplicam-se as regras dos contratos por prazo indeterminado <span class="ref">art. 481, CLT</span>.</p>
+        <div class="sumula" style="margin-top:8px;">
+          <strong>Súmula 163, TST</strong>
+          Cabe aviso prévio nas rescisões antecipadas dos contratos de experiência, na forma do art. 481 da CLT.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <button class="card-btn" aria-expanded="false">
+        <div class="card-icon">Inter-<br>mitente</div>
+        <div class="card-head">
+          <span class="card-num">Modalidade 3 — art. 443, § 3º, CLT</span>
+          <span class="card-title">Contrato de trabalho intermitente</span>
+        </div>
+        <div class="card-chevron">▾</div>
+      </button>
+      <div class="card-body" role="region">
+        <p>Prestação de serviços com subordinação, não contínua, com alternância de períodos de prestação de serviços e de inatividade (em horas, dias ou meses). <strong>Não se aplica a aeronautas</strong>.</p>
+        <p><strong>Requisitos formais:</strong> deve ser celebrado por escrito, com indicação do valor da hora/dia, que não pode ser inferior ao salário mínimo horário ou ao pago a empregados que exerçam a mesma função.</p>
+        <ul class="blist">
+          <li><span class="bul">→</span><span>Convocação: pelo menos 3 dias corridos de antecedência</span></li>
+          <li><span class="bul">→</span><span>Resposta do empregado: prazo de 1 dia útil; silêncio presume recusa</span></li>
+          <li><span class="bul">→</span><span>Descumprimento após aceite: multa de 50% da remuneração devida, paga em 30 dias</span></li>
+          <li><span class="bul">→</span><span>Períodos de inatividade: não são tempo à disposição; empregado pode trabalhar para outros</span></li>
+        </ul>
+        <p style="margin-top:12px;font-size:.92em;"><strong>Pagamento imediato após cada período trabalhado:</strong> remuneração + férias proporcionais com 1/3 + 13º proporcional + RSR + adicionais legais.</p>
+        <p style="font-size:.92em;"><strong>Férias:</strong> a cada 12 meses de vigência, o empregado adquire 1 mês de férias nos 12 meses subsequentes, sem convocação possível nesse período.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<a class="back" href="../index.html">
+  <span class="arw">←</span>
+  <span>Voltar ao índice da disciplina</span>
 </a>
-</div>
-
-<div class="card">
-<p>Nos termos do art. 442 da CLT, contrato individual de trabalho é o acordo, tácito ou expresso, correspondente à relação de emprego. Trata-se do instrumento jurídico que formaliza a prestação de serviços subordinados mediante remuneração.</p>
-
-<p>O contrato pode ser celebrado de forma verbal, escrita ou até mesmo tácita, conforme dispõe o art. 443 da CLT. Isso significa que, ainda que não haja documento formal assinado, a existência dos requisitos da relação de emprego (subordinação, onerosidade, pessoalidade e não eventualidade) é suficiente para caracterizar o vínculo.</p>
-
-<p>Aplica-se aqui o princípio da primazia da realidade: o que prevalece é a realidade dos fatos sobre a forma adotada pelas partes.</p>
-</div>
-
-<h2>10.1 Natureza Jurídica</h2>
-<div class="card">
-<p>O contrato de trabalho possui natureza de direito privado, regido predominantemente pela autonomia da vontade das partes, embora fortemente limitado por normas de ordem pública que visam à proteção do trabalhador.</p>
-</div>
-
-<h2>10.2 Características do Contrato de Trabalho</h2>
-<div class="card">
-<ul>
-<li><strong>Intuitu personae:</strong> a prestação é pessoal e não pode ser substituída livremente;</li>
-<li><strong>Consensual:</strong> forma-se pelo acordo de vontades;</li>
-<li><strong>Sinalagmático:</strong> gera obrigações recíprocas;</li>
-<li><strong>Oneroso:</strong> envolve remuneração;</li>
-<li><strong>Sucessivo:</strong> prolonga-se no tempo;</li>
-<li><strong>Principal:</strong> não depende de outro contrato.</li>
-</ul>
-</div>
-
-<h2>10.3 Elementos Essenciais</h2>
-<div class="card">
-<p><strong>Capacidade:</strong> plena aos 18 anos; relativa entre 16 e 18 anos.</p>
-<p><strong>Objeto lícito:</strong> o trabalho não pode ser ilícito.</p>
-<p><strong>Forma:</strong> livre, salvo exceções legais.</p>
-</div>
-
-<h2>10.4 Nulidades</h2>
-<div class="card">
-<p>Contrato com objeto ilícito gera nulidade absoluta (efeitos retroativos).</p>
-<p>Contratação sem concurso público gera nulidade com efeitos limitados (Súmula 363 do TST).</p>
-</div>
-
-<h2>10.5 Prova</h2>
-<div class="card">
-<p>A prova do contrato poderá ser feita pelas anotações na CTPS ou por qualquer meio idôneo admitido em direito.</p>
-</div>
-
-<h2>10.6 Duração</h2>
-<div class="card">
-<ul>
-<li>Prazo indeterminado (regra geral);</li>
-<li>Prazo determinado (máximo de 2 anos);</li>
-<li>Contrato de experiência (até 90 dias);</li>
-<li>Contrato intermitente (art. 443, §3º, CLT).</li>
-</ul>
-</div>
-
-<a href="../index.html" class="voltar">← Voltar ao índice da disciplina</a>
 
 </div>
+
+<script>
+(function(){
+  var items = document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){
+    items.forEach(function(el){ el.classList.add('in'); }); return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  },{ threshold:.08, rootMargin:'0px 0px -3% 0px' });
+  items.forEach(function(el,i){
+    el.style.transitionDelay=(i*40)+'ms';
+    io.observe(el);
+  });
+})();
+
+(function(){
+  var cards = document.querySelectorAll('.card');
+  cards.forEach(function(card){
+    var btn = card.querySelector('.card-btn');
+    btn.addEventListener('click', function(){
+      var isOpen = card.classList.contains('open');
+      cards.forEach(function(c){
+        c.classList.remove('open');
+        c.querySelector('.card-btn').setAttribute('aria-expanded','false');
+      });
+      if(!isOpen){
+        card.classList.add('open');
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+})();
+</script>
 </body>
 </html>
