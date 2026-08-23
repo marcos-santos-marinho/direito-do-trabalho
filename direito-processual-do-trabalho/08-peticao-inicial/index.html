@@ -447,282 +447,66 @@
   }
   .sum-box p strong{ font-style:normal; color:var(--ink); }
 
-  /* ===== QUESTÕES INTERATIVAS ===== */
-  .quest-wrap{ display:flex; flex-direction:column; gap:24px; margin-top:14px; }
 
-  .quest-card{
-    background:var(--surface);
-    border:1px solid var(--line);
-    border-radius:6px;
-    overflow:hidden;
-  }
+/* ================================================================
+   QUIZ — modelo interativo
+================================================================ */
+/* BOTÃO VOLTAR */
+.back{margin-top:56px;display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line-strong);border-radius:6px;padding:20px 22px;font-family:var(--mono);font-size:14px;letter-spacing:.04em;transition:border-color .25s,transform .25s;}
+.back .arw{color:var(--accent);transition:transform .25s;font-size:18px;}
+.back:hover{border-color:var(--accent);transform:translateY(-2px);}
+.back:hover .arw{transform:translateX(-4px);}
+.back:focus-visible{outline:3px solid var(--accent-soft);outline-offset:3px;}
 
-  /* cabeçalho da questão */
-  .quest-header{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    padding:14px 18px 12px;
-    border-bottom:1px solid var(--line);
-    flex-wrap:wrap;
-    background:rgba(27,36,54,.03);
-  }
-  .quest-num{
-    font-family:var(--mono);
-    font-size:11px;
-    font-weight:700;
-    letter-spacing:.16em;
-    text-transform:uppercase;
-    color:#fff;
-    background:var(--ink);
-    padding:4px 11px;
-    border-radius:3px;
-    flex-shrink:0;
-  }
-  .quest-exam{
-    font-family:var(--mono);
-    font-size:11px;
-    color:var(--iron);
-    letter-spacing:.04em;
-  }
-  /* badge de resultado */
-  .quest-badge{
-    margin-left:auto;
-    font-family:var(--mono);
-    font-size:11px;
-    font-weight:700;
-    letter-spacing:.08em;
-    padding:4px 11px;
-    border-radius:3px;
-    display:none;
-    flex-shrink:0;
-  }
-  .quest-badge.acerto{ background:rgba(61,110,69,.12); color:var(--c-green); border:1px solid rgba(61,110,69,.28); }
-  .quest-badge.erro{ background:rgba(122,46,55,.1); color:var(--c-red); border:1px solid rgba(122,46,55,.25); }
+.quiz-section{ margin-top:56px; padding-top:36px; border-top:2px solid var(--accent); }
+.quiz-header{ display:flex; align-items:center; gap:16px; margin-bottom:32px; }
+.quiz-icon{ width:48px; height:48px; background:var(--accent); color:#fff; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0; font-family:var(--mono); font-weight:700; }
+.quiz-header-text h2{ font-family:var(--display); font-weight:500; font-size:clamp(1.5rem,4vw,1.9rem); margin:0 0 2px; color:var(--ink); }
+.quiz-header-text p{ font-family:var(--mono); font-size:12px; letter-spacing:.15em; text-transform:uppercase; color:var(--iron); margin:0; }
+.quiz-score{ display:flex; align-items:center; gap:16px; background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:14px 20px; margin-bottom:28px; font-family:var(--mono); font-size:13px; color:var(--ink-soft); letter-spacing:.04em; }
+.quiz-score .score-num{ font-size:20px; font-weight:600; color:var(--accent); letter-spacing:0; }
+.quiz-score .score-bar{ flex:1; height:6px; background:var(--line); border-radius:3px; overflow:hidden; }
+.quiz-score .score-fill{ height:100%; background:#166b3a; border-radius:3px; width:0%; transition:width .6s cubic-bezier(.2,.7,.2,1); }
+.quiz-card{ background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:28px 26px 24px; margin-bottom:20px; transition:border-color .3s; }
+.quiz-card.answered-correct{ border-color:#2d9d5a; }
+.quiz-card.answered-wrong{ border-color:#dc4545; }
+.quiz-card .q-num{ font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); margin-bottom:12px; display:block; }
+.quiz-card .q-text{ font-family:var(--body); font-size:17px; line-height:1.65; color:var(--ink); margin-bottom:20px; }
+.q-options{ list-style:none; padding:0; margin:0 0 16px; }
+.q-option{ display:flex; align-items:flex-start; gap:14px; padding:14px 16px; margin-bottom:6px; border:2px solid var(--line); border-radius:8px; cursor:pointer; transition:all .2s; position:relative; }
+.q-option:hover:not(.locked){ background:rgba(122,46,55,.04); border-color:var(--line-strong); }
+.q-option.selected:not(.locked){ background:rgba(122,46,55,.08); border-color:var(--accent); }
+.q-option.locked{ cursor:default; }
+.q-option.locked.is-correct{ background:#e8f5ec; border-color:#2d9d5a; }
+.q-option.locked.is-wrong.selected{ background:#fef2f2; border-color:#dc4545; }
+.q-option.locked:not(.is-correct):not(.selected){ opacity:.55; }
+.q-letter{ font-family:var(--mono); font-size:13px; font-weight:600; color:var(--accent); min-width:28px; height:28px; display:flex; align-items:center; justify-content:center; border:2px solid var(--line-strong); border-radius:6px; flex-shrink:0; margin-top:1px; transition:all .2s; }
+.q-option.selected:not(.locked) .q-letter{ background:var(--accent); color:#fff; border-color:var(--accent); }
+.q-option.locked.is-correct .q-letter{ background:#166b3a; color:#fff; border-color:#166b3a; }
+.q-option.locked.is-wrong.selected .q-letter{ background:#b91c1c; color:#fff; border-color:#b91c1c; }
+.q-option-text{ font-size:16px; line-height:1.55; color:var(--ink-soft); padding-top:3px; }
+.q-result-icon{ position:absolute; right:14px; top:50%; transform:translateY(-50%); font-size:18px; display:none; }
+.q-option.locked.is-correct .q-result-icon, .q-option.locked.is-wrong.selected .q-result-icon{ display:block; }
+.q-feedback{ display:none; align-items:center; gap:10px; padding:12px 16px; border-radius:6px; font-family:var(--mono); font-size:13px; font-weight:600; letter-spacing:.04em; margin-bottom:16px; }
+.q-feedback.visible{ display:flex; }
+.q-feedback.correct{ background:#e8f5ec; color:#166b3a; border:1px solid #2d9d5a; }
+.q-feedback.wrong{ background:#fef2f2; color:#b91c1c; border:1px solid #dc4545; }
+.q-confirm-btn{ display:none; font-family:var(--mono); font-size:13px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; background:var(--accent); color:#fff; border:none; border-radius:6px; padding:12px 24px; cursor:pointer; transition:background .2s, transform .2s; }
+.q-confirm-btn:hover{ background:var(--ink); transform:translateY(-1px); }
+.q-confirm-btn.visible{ display:inline-flex; }
+.q-gabarito{ display:none; margin-top:18px; padding:20px 22px; background:linear-gradient(135deg,rgba(122,46,55,.04),rgba(27,36,54,.03)); border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:0 8px 8px 0; }
+.q-gabarito.visible{ display:block; }
+.q-gabarito .gab-title{ font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); margin-bottom:14px; display:flex; align-items:center; gap:8px; }
+.gab-item{ padding:10px 0; border-bottom:1px solid var(--line); }
+.gab-item:last-child{ border-bottom:none; }
+.gab-letter{ font-family:var(--mono); font-size:12px; font-weight:600; margin-right:4px; }
+.gab-letter.correct-letter{ color:#166b3a; }
+.gab-letter.wrong-letter{ color:#b91c1c; }
+.gab-verdict{ font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; margin-left:4px; }
+.gab-verdict.v-correct{ color:#166b3a; }
+.gab-verdict.v-wrong{ color:#b91c1c; }
+.gab-comment{ font-size:15px; line-height:1.6; color:var(--ink-soft); margin-top:4px; padding-left:28px; }
 
-  .quest-body{ padding:18px 18px 0; }
-
-  /* enunciado */
-  .quest-enunciado{
-    font-size:.94em;
-    line-height:1.72;
-    color:var(--ink);
-    margin-bottom:18px;
-  }
-
-  /* opções — estado inicial: clicáveis */
-  .quest-options{ display:flex; flex-direction:column; gap:5px; margin-bottom:0; }
-
-  .quest-option{
-    display:flex;
-    align-items:flex-start;
-    gap:11px;
-    padding:11px 14px;
-    border-radius:5px;
-    border:1px solid var(--line);
-    background:var(--paper);
-    font-size:.9em;
-    line-height:1.62;
-    color:var(--ink-soft);
-    cursor:pointer;
-    transition:border-color .18s, background .18s, transform .1s;
-    user-select:none;
-  }
-  .quest-option:hover:not(.disabled){
-    border-color:rgba(27,36,54,.28);
-    background:#f0efe8;
-    transform:translateX(2px);
-  }
-  /* estado após resposta */
-  .quest-option.disabled{ cursor:default; pointer-events:none; }
-  .quest-option.chosen-correct{
-    border-color:var(--c-green);
-    background:rgba(61,110,69,.07);
-    color:#0d2b14;
-  }
-  .quest-option.chosen-wrong{
-    border-color:var(--c-red);
-    background:rgba(122,46,55,.07);
-    color:#2b0d0d;
-  }
-  .quest-option.reveal-correct{
-    border-color:var(--c-green);
-    background:rgba(61,110,69,.04);
-    color:#1a3820;
-  }
-
-  .opt-lbl{
-    font-family:var(--mono);
-    font-weight:700;
-    font-size:.82em;
-    flex-shrink:0;
-    margin-top:.12em;
-    color:var(--iron);
-    min-width:1.6em;
-  }
-  .quest-option.chosen-correct .opt-lbl,
-  .quest-option.reveal-correct .opt-lbl{ color:var(--c-green); }
-  .quest-option.chosen-wrong .opt-lbl{ color:var(--c-red); }
-
-  /* ícone de resultado por opção */
-  .opt-icon{
-    flex-shrink:0;
-    font-size:14px;
-    margin-top:.1em;
-    display:none;
-  }
-  .quest-option.chosen-correct .opt-icon,
-  .quest-option.reveal-correct .opt-icon,
-  .quest-option.chosen-wrong .opt-icon{ display:inline; }
-
-  /* área de comentários — oculta até responder */
-  .quest-feedback{
-    display:none;
-    flex-direction:column;
-    gap:0;
-    border-top:1px solid var(--line);
-    margin-top:14px;
-  }
-  .quest-feedback.visible{ display:flex; }
-
-  /* cabeçalho do comentário */
-  .feedback-intro{
-    padding:12px 18px;
-    background:rgba(27,36,54,.03);
-    border-bottom:1px solid var(--line);
-  }
-  .feedback-intro p{
-    font-family:var(--mono);
-    font-size:11px;
-    font-weight:600;
-    letter-spacing:.12em;
-    text-transform:uppercase;
-    color:var(--iron);
-    margin:0;
-  }
-
-  /* cada comentário de alternativa */
-  .fb-item{
-    display:flex;
-    gap:0;
-    border-bottom:1px solid var(--line);
-  }
-  .fb-item:last-child{ border-bottom:none; }
-
-  .fb-lbl{
-    flex:0 0 44px;
-    display:flex;
-    align-items:flex-start;
-    justify-content:center;
-    padding:14px 0 14px;
-    font-family:var(--mono);
-    font-weight:700;
-    font-size:12px;
-    color:var(--iron);
-    border-right:1px solid var(--line);
-  }
-  .fb-item.fb-correct .fb-lbl{ color:var(--c-green); background:rgba(61,110,69,.05); }
-  .fb-item.fb-wrong   .fb-lbl{ color:var(--c-red);   background:rgba(122,46,55,.04); }
-
-  .fb-content{ flex:1; padding:14px 16px; }
-
-  .fb-verdict{
-    font-family:var(--mono);
-    font-size:10px;
-    font-weight:700;
-    letter-spacing:.14em;
-    text-transform:uppercase;
-    display:block;
-    margin-bottom:6px;
-  }
-  .fb-item.fb-correct .fb-verdict{ color:var(--c-green); }
-  .fb-item.fb-wrong   .fb-verdict{ color:var(--c-red); }
-
-  .fb-text{
-    font-size:.88em;
-    line-height:1.68;
-    color:var(--ink-soft);
-    margin:0;
-  }
-  .fb-text p{ margin-bottom:6px; }
-  .fb-text p:last-child{ margin-bottom:0; }
-
-  /* botão refazer */
-  .quest-reset-wrap{
-    display:none;
-    padding:14px 18px 18px;
-    justify-content:flex-end;
-    border-top:1px solid var(--line);
-    margin-top:0;
-  }
-  .quest-reset-wrap.visible{ display:flex; }
-  .quest-reset{
-    font-family:var(--mono);
-    font-size:12px;
-    font-weight:600;
-    letter-spacing:.08em;
-    color:var(--iron);
-    background:none;
-    border:1px solid var(--line-strong);
-    border-radius:4px;
-    padding:7px 14px;
-    cursor:pointer;
-    transition:color .18s, border-color .18s;
-  }
-  .quest-reset:hover{ color:var(--ink); border-color:var(--ink); }
-
-  /* ===== BOTÃO VOLTAR ===== */
-  .back{
-    margin-top:56px;
-    display:flex;
-    align-items:center;
-    gap:14px;
-    text-decoration:none;
-    color:var(--ink);
-    background:var(--surface);
-    border:1px solid var(--line-strong);
-    border-radius:6px;
-    padding:20px 22px;
-    font-family:var(--mono);
-    font-size:14px;
-    letter-spacing:.04em;
-    transition:border-color .25s, transform .25s;
-  }
-  .back .arw{ color:var(--accent); transition:transform .25s; font-size:18px; }
-  .back:hover{ border-color:var(--accent); transform:translateY(-2px); }
-  .back:hover .arw{ transform:translateX(-4px); }
-  .back:focus-visible{ outline:3px solid var(--accent-soft); outline-offset:3px; }
-
-  @keyframes rise{
-    from{ opacity:0; transform:translateY(18px); }
-    to{ opacity:1; transform:none; }
-  }
-  .reveal{ opacity:0; transform:translateY(14px); }
-  .reveal.in{
-    opacity:1; transform:none;
-    transition:opacity .5s ease, transform .5s cubic-bezier(.2,.7,.2,1);
-  }
-  @keyframes slideDown{
-    from{ opacity:0; transform:translateY(-6px); }
-    to{ opacity:1; transform:none; }
-  }
-  .quest-feedback.visible{ animation:slideDown .28s cubic-bezier(.2,.7,.2,1); }
-
-  @media(max-width:560px){
-    body{ font-size:17.5px; }
-    .masthead{ padding:40px 0 24px; }
-    .title-row{ align-items:stretch; }
-    .slides-btn{ width:100%; justify-content:center; }
-    .verbete{ padding-left:20px; }
-    .card-btn{ grid-template-columns:44px 1fr 30px; }
-    .fb-lbl{ flex:0 0 36px; font-size:11px; }
-  }
-  @media(prefers-reduced-motion:reduce){
-    *{ animation:none !important; scroll-behavior:auto; }
-    .reveal{ opacity:1; transform:none; }
-    .reveal.in{ transition:none; }
-    .card-chevron,.quest-option{ transition:none; }
-  }
 </style>
 </head>
 <body>
@@ -1027,196 +811,67 @@
 
     <div class="quest-wrap reveal">
 
-      <!-- ═══════════════════════════════════════════
-           QUESTÃO 24 — XXIII Exame
-      ═══════════════════════════════════════════ -->
-      <div class="quest-card" data-quest="q24">
-        <div class="quest-header">
-          <span class="quest-num">Questão 24</span>
-          <span class="quest-exam">XXIII Exame de Ordem Unificado / FGV</span>
-          <span class="quest-badge" data-badge></span>
-        </div>
-        <div class="quest-body">
-          <div class="quest-enunciado">
-            Reinaldo, Wilma e Teodoro trabalharam no restaurante Fino Paladar Ltda. Todos
-            procuraram o mesmo advogado para apresentar reclamação trabalhista: Reinaldo diz
-            que não recebeu horas extras, Wilma informa que não recebeu as verbas resilitórias
-            e Teodoro diz que não recebeu a participação nos lucros. Diante da situação
-            retratada, e de acordo com a CLT, assinale a afirmativa correta.
-          </div>
-
-          <div class="quest-options" data-correct="C">
-            <div class="quest-option" data-opt="A" tabindex="0" role="button" aria-pressed="false">
-              <span class="opt-lbl">A)</span>
-              <span class="opt-icon" aria-hidden="true">✗</span>
-              <span>Não é possível o ajuizamento de reclamação plúrima, porque os pedidos são distintos.</span>
-            </div>
-            <div class="quest-option" data-opt="B" tabindex="0" role="button" aria-pressed="false">
-              <span class="opt-lbl">B)</span>
-              <span class="opt-icon" aria-hidden="true">✗</span>
-              <span>A CLT não traz os requisitos para o litisconsórcio ativo e, por isso, ficará a critério do juiz aceitar o ingresso conjunto.</span>
-            </div>
-            <div class="quest-option" data-opt="C" tabindex="0" role="button" aria-pressed="false">
-              <span class="opt-lbl">C)</span>
-              <span class="opt-icon" aria-hidden="true">✓</span>
-              <span>Cabe manejo da reclamação plúrima, porque o empregador é o mesmo.</span>
-            </div>
-            <div class="quest-option" data-opt="D" tabindex="0" role="button" aria-pressed="false">
-              <span class="opt-lbl">D)</span>
-              <span class="opt-icon" aria-hidden="true">✗</span>
-              <span>No caso apresentado, caberá o ajuizamento de dissídio coletivo.</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- comentários — ocultos até responder -->
-        <div class="quest-feedback" data-feedback>
-          <div class="feedback-intro"><p>Comentário alternativa por alternativa</p></div>
-
-          <div class="fb-item fb-wrong">
-            <div class="fb-lbl">A)</div>
-            <div class="fb-content">
-              <span class="fb-verdict">✗ Incorreta</span>
-              <div class="fb-text">
-                <p>A afirmativa é <strong>imprecisa</strong>. O <span class="ref">art. 842 da CLT</span> exige pedidos idênticos e mesmos empregados para a reclamação plúrima. Pedidos distintos impedem a plúrima nessa forma, mas a alternativa erra ao dizer simplesmente que "não é possível" — pois, segundo a banca, o mesmo empregador é suficiente para admiti-la.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="fb-item fb-wrong">
-            <div class="fb-lbl">B)</div>
-            <div class="fb-content">
-              <span class="fb-verdict">✗ Incorreta</span>
-              <div class="fb-text">
-                <p>Errada. A CLT <strong>trata sim dos requisitos</strong> do litisconsórcio ativo na reclamação plúrima, no <span class="ref">art. 842</span>. Não é matéria deixada ao arbítrio do juiz.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="fb-item fb-correct">
-            <div class="fb-lbl">C)</div>
-            <div class="fb-content">
-              <span class="fb-verdict">✓ Correta — gabarito oficial FGV</span>
-              <div class="fb-text">
-                <p>A FGV considerou esta a alternativa correta, destacando que o empregador único é o elemento comum que permite a reclamação plúrima. O <span class="ref">art. 842 da CLT</span> prevê como requisitos pedidos idênticos e mesmos empregados — o mesmo empregador é condição necessária (mas pela banca, suficiente no contexto da questão).</p>
-                <p style="font-style:italic;font-size:.9em;color:var(--iron);">Atenção: o entendimento mais técnico do art. 842 exige também pedidos idênticos. Fique atento à jurisprudência atualizada do TST.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="fb-item fb-wrong">
-            <div class="fb-lbl">D)</div>
-            <div class="fb-content">
-              <span class="fb-verdict">✗ Incorreta</span>
-              <div class="fb-text">
-                <p>O dissídio coletivo é instrumento para solução de <strong>conflitos coletivos</strong> de trabalho (art. 856, CLT). No caso, as pretensões de Reinaldo, Wilma e Teodoro são individuais — não há litígio coletivo.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="quest-reset-wrap" data-resetwrap>
-          <button class="quest-reset" data-reset>↺ Refazer questão</button>
-        </div>
-      </div>
-
-      <!-- ═══════════════════════════════════════════
-           QUESTÃO 25 — XXXIII Exame
-      ═══════════════════════════════════════════ -->
-      <div class="quest-card" data-quest="q25">
-        <div class="quest-header">
-          <span class="quest-num">Questão 25</span>
-          <span class="quest-exam">XXXIII Exame de Ordem Unificado / FGV</span>
-          <span class="quest-badge" data-badge></span>
-        </div>
-        <div class="quest-body">
-          <div class="quest-enunciado">
-            Duas irmãs costureiras trabalharam juntas em uma confecção. A mais velha era
-            empregadora da mais nova, que gerenciava a atividade. Devido a um desentendimento
-            em família, a irmã mais nova foi dispensada. Em decorrência da relação fraternal,
-            chegaram a um bom termo sem a necessidade de ajuizamento da demanda. Porém, por
-            segurança de ambas, gostariam de ver garantidos, judicialmente, os termos do
-            acordo, e procuraram você, como advogado consultor. Diante disso, observados os
-            termos da CLT, assinale a afirmativa correta.
-          </div>
-
-          <div class="quest-options" data-correct="D">
-            <div class="quest-option" data-opt="A" tabindex="0" role="button" aria-pressed="false">
-              <span class="opt-lbl">A)</span>
-              <span class="opt-icon" aria-hidden="true">✗</span>
-              <span>Deverá ser distribuída uma petição requerendo a homologação de acordo extrajudicial, sendo que as partes deverão obrigatoriamente estar representadas por advogado, ainda que comum.</span>
-            </div>
-            <div class="quest-option" data-opt="B" tabindex="0" role="button" aria-pressed="false">
-              <span class="opt-lbl">B)</span>
-              <span class="opt-icon" aria-hidden="true">✗</span>
-              <span>Deverá ser ajuizada uma ação trabalhista e realizado um acordo na primeira audiência, vigorando o <em>jus postulandi</em>.</span>
-            </div>
-            <div class="quest-option" data-opt="C" tabindex="0" role="button" aria-pressed="false">
-              <span class="opt-lbl">C)</span>
-              <span class="opt-icon" aria-hidden="true">✗</span>
-              <span>Deverá ser distribuída uma petição requerendo a homologação de acordo extrajudicial, sendo que as partes não precisarão estar representadas por advogado, em razão do <em>jus postulandi</em>.</span>
-            </div>
-            <div class="quest-option" data-opt="D" tabindex="0" role="button" aria-pressed="false">
-              <span class="opt-lbl">D)</span>
-              <span class="opt-icon" aria-hidden="true">✓</span>
-              <span>Deverá ser distribuída uma petição requerendo a homologação de acordo extrajudicial, sendo que as partes deverão obrigatoriamente estar representadas por advogados distintos.</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="quest-feedback" data-feedback>
-          <div class="feedback-intro"><p>Comentário alternativa por alternativa</p></div>
-
-          <div class="fb-item fb-wrong">
-            <div class="fb-lbl">A)</div>
-            <div class="fb-content">
-              <span class="fb-verdict">✗ Incorreta</span>
-              <div class="fb-text">
-                <p>Errada em parte. Acerta ao indicar a petição de homologação de acordo extrajudicial (<span class="ref">art. 855-B, CLT</span>) e ao exigir representação por advogado. Erra ao admitir <strong>advogado comum</strong>. O art. 855-B é explícito: cada parte deve ter seu <strong>próprio advogado</strong> — o advogado único é expressamente vedado.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="fb-item fb-wrong">
-            <div class="fb-lbl">B)</div>
-            <div class="fb-content">
-              <span class="fb-verdict">✗ Incorreta</span>
-              <div class="fb-text">
-                <p>Errada. Ajuizar ação trabalhista para depois celebrar acordo em audiência é desnecessário quando as partes já chegaram ao entendimento extrajudicialmente. Além disso, o <em>jus postulandi</em> <strong>não se aplica</strong> ao procedimento de homologação de acordo extrajudicial (<span class="ref">art. 855-B, CLT</span>), que exige representação por advogado.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="fb-item fb-wrong">
-            <div class="fb-lbl">C)</div>
-            <div class="fb-content">
-              <span class="fb-verdict">✗ Incorreta</span>
-              <div class="fb-text">
-                <p>Errada. O <em>jus postulandi</em> <strong>não se aplica</strong> ao procedimento do <span class="ref">art. 855-B da CLT</span>. A representação por advogado é obrigatória para as duas partes — e os advogados devem ser distintos. A CLT afasta expressamente o <em>jus postulandi</em> nesse procedimento especial.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="fb-item fb-correct">
-            <div class="fb-lbl">D)</div>
-            <div class="fb-content">
-              <span class="fb-verdict">✓ Correta — gabarito oficial FGV</span>
-              <div class="fb-text">
-                <p>O <span class="ref">art. 855-B da CLT</span> (inserido pela Reforma Trabalhista de 2017) institui o procedimento de homologação de acordo extrajudicial. São requisitos essenciais:</p>
-                <p>① petição <strong>conjunta</strong> das partes; ② cada parte representada por <strong>advogado próprio e distinto</strong> (advogado comum é vedado); ③ o juiz pode ou não homologar, a seu critério.</p>
-                <p>Não se aplica o <em>jus postulandi</em>, e o caminho correto não é ajuizar ação, mas sim requerer diretamente a homologação do acordo já celebrado.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="quest-reset-wrap" data-resetwrap>
-          <button class="quest-reset" data-reset>↺ Refazer questão</button>
-        </div>
-      </div>
-
-    </div><!-- /quest-wrap -->
+  
   </section>
+
+  <section class="quiz-section" id="quiz">
+    <div class="quiz-header">
+      <div class="quiz-icon">?</div>
+      <div class="quiz-header-text">
+        <h2>Teste seus conhecimentos</h2>
+        <p>2 questões — Petição inicial</p>
+      </div>
+    </div>
+
+    <div class="quiz-score" id="quizScore">
+      <span>Acertos: <span class="score-num" id="scoreNum">0 / 2</span></span>
+      <div class="score-bar"><div class="score-fill" id="scoreFill"></div></div>
+    </div>
+
+    <!-- Q1 — XXIII OAB — Reclamação plúrima -->
+    <div class="quiz-card" id="q1" data-correct="c">
+      <span class="q-num">Questão 1 de 2 — Petição inicial · Reclamação plúrima</span>
+      <div class="q-text">(XXIII Exame de Ordem Unificado/FGV) Reinaldo, Wilma e Teodoro trabalharam no restaurante Fino Paladar Ltda. Todos procuraram o mesmo advogado para apresentar reclamação trabalhista: Reinaldo diz que não recebeu horas extras, Wilma informa que não recebeu as verbas resilitórias e Teodoro diz que não recebeu a participação nos lucros. Diante da situação retratada, e de acordo com a CLT, assinale a afirmativa correta.</div>
+      <ul class="q-options">
+        <li class="q-option" data-value="a" onclick="selectOption(this)"><span class="q-letter">A</span><span class="q-option-text">Não é possível o ajuizamento de reclamação plúrima, porque os pedidos são distintos.</span><span class="q-result-icon"></span></li>
+        <li class="q-option" data-value="b" onclick="selectOption(this)"><span class="q-letter">B</span><span class="q-option-text">A CLT não traz os requisitos para o litisconsórcio ativo e, por isso, ficará a critério do juiz aceitar o ingresso conjunto.</span><span class="q-result-icon"></span></li>
+        <li class="q-option" data-value="c" onclick="selectOption(this)"><span class="q-letter">C</span><span class="q-option-text">Cabe manejo da reclamação plúrima, porque o empregador é o mesmo.</span><span class="q-result-icon"></span></li>
+        <li class="q-option" data-value="d" onclick="selectOption(this)"><span class="q-letter">D</span><span class="q-option-text">No caso apresentado, caberá o ajuizamento de dissídio coletivo.</span><span class="q-result-icon"></span></li>
+      </ul>
+      <div class="q-feedback" id="q1-feedback"></div>
+      <button class="q-confirm-btn" id="q1-btn" onclick="confirmAnswer('q1')">Confirmar resposta</button>
+      <div class="q-gabarito" id="q1-gabarito">
+        <div class="gab-title">&#128218; Gabarito comentado — Reclamação plúrima</div>
+        <div class="gab-item"><span class="gab-letter wrong-letter">A)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">A afirmativa é imprecisa. O art. 842 da CLT exige pedidos idênticos e mesmos empregados para a reclamação plúrima. A alternativa erra ao dizer simplesmente que "não é possível" — pois, segundo a banca, o mesmo empregador é suficiente para admiti-la no contexto da questão.</div></div>
+        <div class="gab-item"><span class="gab-letter wrong-letter">B)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">Errada. A CLT trata dos requisitos do litisconsórcio ativo na reclamação plúrima no art. 842. Não é matéria deixada ao arbítrio do juiz.</div></div>
+        <div class="gab-item"><span class="gab-letter correct-letter">C)</span><span class="gab-verdict v-correct">Correta.</span><div class="gab-comment">A FGV considerou correta esta alternativa, pois o empregador único é o elemento comum que permite a reclamação plúrima. O art. 842 da CLT prevê como requisitos pedidos idênticos e mesmos empregados — sendo o mesmo empregador condição necessária. Atenção: o entendimento mais técnico exige também pedidos idênticos; fique atento à jurisprudência atualizada do TST.</div></div>
+        <div class="gab-item"><span class="gab-letter wrong-letter">D)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">O dissídio coletivo é instrumento para solução de conflitos coletivos de trabalho (art. 856, CLT). No caso, as pretensões de Reinaldo, Wilma e Teodoro são individuais — não há litígio coletivo.</div></div>
+      </div>
+    </div>
+
+    <!-- Q2 — XXXIII OAB — Homologação de acordo extrajudicial -->
+    <div class="quiz-card" id="q2" data-correct="d">
+      <span class="q-num">Questão 2 de 2 — Petição inicial · Acordo extrajudicial</span>
+      <div class="q-text">(XXXIII Exame de Ordem Unificado/FGV) Duas irmãs costureiras trabalharam juntas em uma confecção. A mais velha era empregadora da mais nova, que gerenciava a atividade. Devido a um desentendimento em família, a irmã mais nova foi dispensada. Em decorrência da relação fraternal, chegaram a um bom termo sem a necessidade de ajuizamento da demanda. Porém, por segurança de ambas, gostariam de ver garantidos, judicialmente, os termos do acordo, e procuraram você, como advogado consultor. Diante disso, observados os termos da CLT, assinale a afirmativa correta.</div>
+      <ul class="q-options">
+        <li class="q-option" data-value="a" onclick="selectOption(this)"><span class="q-letter">A</span><span class="q-option-text">Deverá ser distribuída uma petição requerendo a homologação de acordo extrajudicial, sendo que as partes deverão obrigatoriamente estar representadas por advogado, ainda que comum.</span><span class="q-result-icon"></span></li>
+        <li class="q-option" data-value="b" onclick="selectOption(this)"><span class="q-letter">B</span><span class="q-option-text">Deverá ser ajuizada uma ação trabalhista e realizado um acordo na primeira audiência, vigorando o <em>jus postulandi</em>.</span><span class="q-result-icon"></span></li>
+        <li class="q-option" data-value="c" onclick="selectOption(this)"><span class="q-letter">C</span><span class="q-option-text">Deverá ser distribuída uma petição requerendo a homologação de acordo extrajudicial, sendo que as partes não precisarão estar representadas por advogado, em razão do <em>jus postulandi</em>.</span><span class="q-result-icon"></span></li>
+        <li class="q-option" data-value="d" onclick="selectOption(this)"><span class="q-letter">D</span><span class="q-option-text">Deverá ser distribuída uma petição requerendo a homologação de acordo extrajudicial, sendo que as partes deverão obrigatoriamente estar representadas por advogados distintos.</span><span class="q-result-icon"></span></li>
+      </ul>
+      <div class="q-feedback" id="q2-feedback"></div>
+      <button class="q-confirm-btn" id="q2-btn" onclick="confirmAnswer('q2')">Confirmar resposta</button>
+      <div class="q-gabarito" id="q2-gabarito">
+        <div class="gab-title">&#128218; Gabarito comentado — Acordo extrajudicial</div>
+        <div class="gab-item"><span class="gab-letter wrong-letter">A)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">Acerta ao indicar a petição de homologação (art. 855-B, CLT) e ao exigir advogado. Erra ao admitir <strong>advogado comum</strong> — o art. 855-B é explícito: cada parte deve ter seu <strong>próprio advogado distinto</strong>. Advogado único é expressamente vedado.</div></div>
+        <div class="gab-item"><span class="gab-letter wrong-letter">B)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">Desnecessário ajuizar ação trabalhista quando as partes já têm acordo extrajudicial. Além disso, o <em>jus postulandi</em> <strong>não se aplica</strong> ao procedimento do art. 855-B da CLT, que exige representação por advogado obrigatoriamente.</div></div>
+        <div class="gab-item"><span class="gab-letter wrong-letter">C)</span><span class="gab-verdict v-wrong">Incorreta.</span><div class="gab-comment">O <em>jus postulandi</em> <strong>não se aplica</strong> ao procedimento do art. 855-B da CLT. A representação por advogado é obrigatória para ambas as partes — e os advogados devem ser distintos.</div></div>
+        <div class="gab-item"><span class="gab-letter correct-letter">D)</span><span class="gab-verdict v-correct">Correta.</span><div class="gab-comment">O art. 855-B da CLT (inserido pela Reforma Trabalhista de 2017) institui o procedimento de homologação de acordo extrajudicial. São requisitos essenciais: (1) petição <strong>conjunta</strong> das partes; (2) cada parte representada por <strong>advogado próprio e distinto</strong> — advogado comum é vedado; (3) o juiz pode ou não homologar, a seu critério. O <em>jus postulandi</em> não se aplica.</div></div>
+      </div>
+    </div>
+
+  </section>
+
 
   <a class="back" href="../index.html">
     <span class="arw">←</span>
@@ -1226,7 +881,51 @@
 </div><!-- /wrap -->
 
 <script>
-/* ── reveal on scroll ── */
+(function(){
+  var totalQuestions = document.querySelectorAll('.quiz-card').length;
+  var correctCount = 0;
+  window.selectOption = function(el){
+    if(el.classList.contains('locked')) return;
+    var card = el.closest('.quiz-card');
+    card.querySelectorAll('.q-option').forEach(function(o){ o.classList.remove('selected'); });
+    el.classList.add('selected');
+    card.querySelector('.q-confirm-btn').classList.add('visible');
+  };
+  window.confirmAnswer = function(cardId){
+    var card = document.getElementById(cardId);
+    if(card.classList.contains('answered')) return;
+    var selected = card.querySelector('.q-option.selected');
+    if(!selected) return;
+    var isCorrect = (selected.getAttribute('data-value') === card.getAttribute('data-correct'));
+    card.querySelectorAll('.q-option').forEach(function(opt){
+      opt.classList.add('locked');
+      if(opt.getAttribute('data-value') === card.getAttribute('data-correct')){
+        opt.classList.add('is-correct');
+        opt.querySelector('.q-result-icon').textContent = '✓';
+      }
+      if(opt === selected && !isCorrect){
+        opt.classList.add('is-wrong');
+        opt.querySelector('.q-result-icon').textContent = '✗';
+      }
+    });
+    card.querySelector('.q-confirm-btn').classList.remove('visible');
+    var fb = document.getElementById(cardId+'-feedback');
+    if(isCorrect){
+      fb.className='q-feedback visible correct'; fb.innerHTML='✓ Resposta correta!';
+      card.classList.add('answered-correct'); correctCount++;
+    } else {
+      fb.className='q-feedback visible wrong'; fb.innerHTML='✗ Resposta incorreta. Veja o gabarito comentado abaixo.';
+      card.classList.add('answered-wrong');
+    }
+    card.classList.add('answered');
+    document.getElementById(cardId+'-gabarito').classList.add('visible');
+    document.getElementById('scoreNum').textContent = correctCount+' / '+totalQuestions;
+    document.getElementById('scoreFill').style.width = ((correctCount/totalQuestions)*100)+'%';
+    setTimeout(function(){ document.getElementById(cardId+'-gabarito').scrollIntoView({behavior:'smooth',block:'nearest'}); }, 200);
+  };
+})();
+
+// Scroll reveal
 (function(){
   var items = document.querySelectorAll('.reveal');
   if(!('IntersectionObserver' in window)){
@@ -1236,99 +935,23 @@
     entries.forEach(function(e){
       if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
     });
-  }, { threshold:.08, rootMargin:'0px 0px -3% 0px' });
-  items.forEach(function(el, i){
-    el.style.transitionDelay = (i * 40) + 'ms';
+  },{ threshold:.08, rootMargin:'0px 0px -3% 0px' });
+  items.forEach(function(el,i){
+    el.style.transitionDelay=(i*40)+'ms';
     io.observe(el);
   });
 })();
 
-/* ── accordion dos cards de conteúdo ── */
+// Cards expansíveis
 (function(){
   var cards = document.querySelectorAll('.card');
   cards.forEach(function(card){
     var btn = card.querySelector('.card-btn');
+    if(!btn) return;
     btn.addEventListener('click', function(){
       var isOpen = card.classList.contains('open');
-      cards.forEach(function(c){
-        c.classList.remove('open');
-        c.querySelector('.card-btn').setAttribute('aria-expanded','false');
-      });
-      if(!isOpen){
-        card.classList.add('open');
-        btn.setAttribute('aria-expanded','true');
-      }
-    });
-  });
-})();
-
-/* ── lógica das questões interativas ── */
-(function(){
-  var questCards = document.querySelectorAll('[data-quest]');
-
-  questCards.forEach(function(qcard){
-    var optionsContainer = qcard.querySelector('[data-correct]');
-    var correct = optionsContainer.getAttribute('data-correct');
-    var options  = optionsContainer.querySelectorAll('.quest-option');
-    var feedback = qcard.querySelector('[data-feedback]');
-    var resetWrap = qcard.querySelector('[data-resetwrap]');
-    var resetBtn  = qcard.querySelector('[data-reset]');
-    var badge     = qcard.querySelector('[data-badge]');
-
-    function activate(chosen){
-      var isRight = (chosen === correct);
-
-      options.forEach(function(opt){
-        var key = opt.getAttribute('data-opt');
-        opt.classList.add('disabled');
-        opt.removeAttribute('tabindex');
-        opt.setAttribute('aria-pressed', key === chosen ? 'true' : 'false');
-
-        if(key === chosen){
-          opt.classList.add(isRight ? 'chosen-correct' : 'chosen-wrong');
-        } else if(key === correct && !isRight){
-          opt.classList.add('reveal-correct');
-        }
-      });
-
-      feedback.classList.add('visible');
-      resetWrap.classList.add('visible');
-
-      badge.style.display = 'inline-block';
-      if(isRight){
-        badge.textContent = '✓ Acertou';
-        badge.className = 'quest-badge acerto';
-      } else {
-        badge.textContent = '✗ Errou';
-        badge.className = 'quest-badge erro';
-      }
-
-      feedback.scrollIntoView({ behavior:'smooth', block:'nearest' });
-    }
-
-    options.forEach(function(opt){
-      opt.addEventListener('click', function(){
-        if(opt.classList.contains('disabled')) return;
-        activate(opt.getAttribute('data-opt'));
-      });
-      opt.addEventListener('keydown', function(e){
-        if(e.key === 'Enter' || e.key === ' '){
-          e.preventDefault();
-          if(!opt.classList.contains('disabled'))
-            activate(opt.getAttribute('data-opt'));
-        }
-      });
-    });
-
-    resetBtn.addEventListener('click', function(){
-      options.forEach(function(opt){
-        opt.className = 'quest-option';
-        opt.setAttribute('tabindex','0');
-        opt.setAttribute('aria-pressed','false');
-      });
-      feedback.classList.remove('visible');
-      resetWrap.classList.remove('visible');
-      badge.style.display = 'none';
+      cards.forEach(function(c){ c.classList.remove('open'); var b=c.querySelector('.card-btn'); if(b) b.setAttribute('aria-expanded','false'); });
+      if(!isOpen){ card.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
     });
   });
 })();
