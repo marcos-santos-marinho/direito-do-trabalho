@@ -1,324 +1,865 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>11. Duração do Trabalho</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>11. Duração do Trabalho</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1b2436;--ink-soft:#414a5c;--paper:#edece5;--surface:#fbfaf7;
+  --accent:#7a2e37;--accent-soft:#a2545f;--iron:#8b8579;
+  --line:rgba(27,36,54,.13);--line-strong:rgba(27,36,54,.22);
+  --green:#166534;--green-bg:#f0fdf4;--green-line:#bbf7d0;
+  --red:#991b1b;--red-bg:#fef2f2;--red-line:#fecaca;
+  --display:"Fraunces",Georgia,serif;--body:"Spectral",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:19px;line-height:1.78;-webkit-font-smoothing:antialiased;}
+body::before{content:"";position:fixed;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 34%,var(--ink) 34%,var(--ink) 100%);z-index:50;}
+.wrap{max-width:760px;margin:0 auto;padding:0 22px 72px;}
 
-  <style>
-    :root{
-      --bg: #eaf3ff;
-      --panel: rgba(255,255,255,.75);
-      --card: #ffffff;
-      --text: #0f172a;
-      --muted: #475569;
-      --brand: #1d4ed8;
-      --line: rgba(15,23,42,.10);
-      --shadow: 0 18px 50px rgba(2,6,23,.12);
-      --shadow2: 0 10px 24px rgba(2,6,23,.10);
-      --radius: 22px;
-    }
+/* CABEÇALHO */
+.masthead{padding:56px 0 30px;border-bottom:1px solid var(--line-strong);animation:rise .7s cubic-bezier(.2,.7,.2,1) both;}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--accent);display:inline-block;}
+.eyebrow .dot{color:var(--line-strong);}
+.title-row{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;flex-wrap:wrap;}
+h1{font-family:var(--display);font-weight:500;font-size:clamp(2.3rem,6.5vw,3.8rem);line-height:1.04;letter-spacing:-.015em;max-width:14ch;}
+h1 .art{display:block;font-size:.42em;font-weight:600;letter-spacing:.02em;color:var(--accent);font-family:var(--mono);text-transform:uppercase;margin-bottom:.5em;}
+.slides-btn{flex-shrink:0;display:inline-flex;align-items:center;gap:12px;text-decoration:none;background:var(--ink);color:#f4f2ec;border-radius:4px;padding:13px 18px;font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;box-shadow:0 8px 22px -12px rgba(27,36,54,.7);transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s,background .25s;}
+.slides-btn:hover{background:var(--accent);transform:translateY(-2px);}
+.slides-btn .arw{transition:transform .25s;}
+.slides-btn:hover .arw{transform:translateX(4px);}
 
-    *{ box-sizing:border-box; }
+/* VERBETE */
+.verbete{margin:44px 0 8px;padding:6px 0 6px 30px;border-left:3px solid var(--accent);}
+.verbete .tag{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:14px;}
+.verbete p{font-family:var(--display);font-weight:400;font-size:clamp(1.15rem,2.8vw,1.45rem);line-height:1.45;color:var(--ink);margin:0;}
 
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(1200px 600px at 20% 0%, rgba(37,99,235,.20), transparent 60%),
-        radial-gradient(900px 500px at 90% 20%, rgba(29,78,216,.12), transparent 55%),
-        var(--bg);
-    }
+/* REF */
+.ref{font-family:var(--mono);font-size:.8em;color:var(--iron);background:rgba(139,133,121,.12);padding:2px 7px;border-radius:3px;white-space:nowrap;}
 
-    .wrap{
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 18px 16px 34px;
-    }
+/* SEÇÕES */
+.sec-head{display:flex;gap:16px;align-items:baseline;margin:44px 0 14px;padding-top:26px;border-top:1px solid var(--line);}
+.sec-head .num{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--accent);flex-shrink:0;padding-top:.35em;}
+h2{font-family:var(--display);font-weight:500;font-size:clamp(1.55rem,4vw,1.95rem);line-height:1.14;letter-spacing:-.01em;color:var(--ink);}
+h3{font-family:var(--display);font-weight:600;font-size:1.15rem;color:var(--ink);margin:22px 0 8px;}
+p{margin-bottom:14px;color:var(--ink-soft);}
 
-    .shell{
-      background: var(--panel);
-      border: 1px solid rgba(255,255,255,.65);
-      border-radius: calc(var(--radius) + 10px);
-      box-shadow: var(--shadow);
-      padding: 18px;
-      backdrop-filter: blur(10px);
-    }
+/* LISTA */
+.blist{list-style:none;padding:0;margin:10px 0 12px;display:flex;flex-direction:column;gap:3px;}
+.blist li{display:grid;grid-template-columns:22px 1fr;gap:8px;font-size:.93em;color:var(--ink-soft);line-height:1.65;padding:8px 0;border-bottom:1px solid var(--line);}
+.blist li:last-child{border-bottom:none;}
+.blist li .bul{color:var(--accent);font-family:var(--mono);font-size:.85em;padding-top:2px;}
 
-    header{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap: 14px;
-      padding: 6px 6px 2px;
-    }
+/* SUMULA */
+.sumula{margin:10px 0 6px;padding:12px 16px;border-left:2px solid var(--iron);background:var(--paper);border-radius:0 4px 4px 0;font-size:.89em;color:var(--ink-soft);line-height:1.65;}
+.sumula strong{font-family:var(--mono);font-size:.86em;letter-spacing:.08em;text-transform:uppercase;color:var(--iron);display:block;margin-bottom:4px;}
 
-    h1{
-      margin: 0;
-      font-size: clamp(28px, 4.4vw, 44px);
-      letter-spacing: -0.02em;
-      line-height: 1.05;
-      color: var(--brand);
-    }
+/* NOTA / ALERTA */
+.nota{margin:10px 0 6px;padding:13px 17px;background:rgba(122,46,55,.06);border-left:3px solid var(--accent);border-radius:0 5px 5px 0;font-size:.91em;color:var(--ink-soft);line-height:1.65;}
+.nota strong{color:var(--ink);}
 
-    .top-actions{
-      display:flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      justify-content:flex-end;
-    }
+/* TABELA */
+.tbl{margin:12px 0 6px;border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:.9em;}
+.tbl-head{display:grid;background:var(--ink);color:#f4f2ec;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;}
+.tbl-head div,.tbl-row div{padding:9px 14px;}
+.tbl-head div:not(:last-child){border-right:1px solid rgba(255,255,255,.15);}
+.tbl-row{display:grid;border-top:1px solid var(--line);}
+.tbl-row:nth-child(even) div{background:rgba(139,133,121,.04);}
+.tbl-row div{color:var(--ink-soft);display:flex;align-items:center;line-height:1.5;}
+.tbl-row div:not(:last-child){border-right:1px solid var(--line);}
+.tbl-3{grid-template-columns:1fr 1fr 1fr;}
+.tbl-2{grid-template-columns:1fr 1fr;}
+.tbl-head.tbl-3{grid-template-columns:1fr 1fr 1fr;}
+.tbl-head.tbl-2{grid-template-columns:1fr 1fr;}
 
-    .icon-card{
-      text-decoration:none;
-      color: var(--text);
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      box-shadow: var(--shadow2);
-      padding: 12px 14px;
-      min-width: 118px;
-      display:flex;
-      align-items:center;
-      gap: 10px;
-      transition: transform .12s ease, box-shadow .12s ease;
-      user-select:none;
-    }
-    .icon-card:hover{ transform: translateY(-1px); box-shadow: 0 14px 28px rgba(2,6,23,.14); }
+/* CARDS ACCORDION */
+.cards{display:flex;flex-direction:column;gap:3px;}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;transition:box-shadow .2s;}
+.card:hover{box-shadow:0 4px 18px -8px rgba(27,36,54,.2);}
+.card-btn{width:100%;background:none;border:none;cursor:pointer;display:grid;grid-template-columns:52px 1fr 34px;align-items:center;padding:0;text-align:left;color:inherit;}
+.card-icon{display:flex;align-items:center;justify-content:center;min-height:60px;border-right:1px solid var(--line);font-family:var(--mono);font-weight:700;font-size:11px;color:var(--accent);background:rgba(122,46,55,.05);text-align:center;padding:4px;line-height:1.3;}
+.card-head{padding:13px 16px;}
+.card-num{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--iron);display:block;margin-bottom:3px;}
+.card-title{font-family:var(--display);font-weight:600;font-size:1rem;line-height:1.2;color:var(--ink);}
+.card-chevron{display:flex;align-items:center;justify-content:center;padding-right:14px;color:var(--iron);font-size:13px;transition:transform .3s cubic-bezier(.2,.7,.2,1),color .2s;}
+.card.open .card-chevron{transform:rotate(180deg);color:var(--accent);}
+.card-body{display:none;padding:16px 20px 20px;border-top:1px solid var(--line);}
+.card.open .card-body{display:block;}
+.card-body p{color:var(--ink-soft);font-size:.93em;line-height:1.72;}
 
-    .icon-badge{
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
-      display:grid;
-      place-items:center;
-      background: linear-gradient(135deg, rgba(37,99,235,.14), rgba(29,78,216,.08));
-      border: 1px solid rgba(37,99,235,.18);
-      flex: 0 0 auto;
-    }
+/* ===== PLACAR ===== */
+.scoreboard{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:18px 22px;background:var(--surface);border:1px solid var(--line-strong);border-radius:8px;margin-bottom:8px;}
+.score-label{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--iron);}
+.score-nums{display:flex;align-items:baseline;gap:6px;}
+.score-current{font-family:var(--display);font-size:2.6rem;font-weight:600;color:var(--ink);line-height:1;}
+.score-total{font-family:var(--mono);font-size:1rem;color:var(--iron);}
+.score-bar-wrap{flex:1;min-width:120px;height:8px;background:var(--line);border-radius:99px;overflow:hidden;}
+.score-bar{height:100%;width:0%;background:var(--accent);border-radius:99px;transition:width .5s cubic-bezier(.2,.7,.2,1),background .3s;}
+.score-msg{font-family:var(--mono);font-size:12px;color:var(--iron);min-width:80px;}
+.btn-reset{margin-left:auto;border:1px solid var(--line-strong);background:none;color:var(--ink-soft);border-radius:4px;padding:7px 14px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:border-color .2s,color .2s;}
+.btn-reset:hover{border-color:var(--accent);color:var(--accent);}
 
-    .icon-card .lbl{
-      display:flex;
-      flex-direction:column;
-      line-height:1.05;
-    }
-    .icon-card .lbl strong{
-      font-size: 16px;
-      letter-spacing: .02em;
-    }
-    .icon-card .lbl span{
-      margin-top: 3px;
-      font-size: 12px;
-      color: var(--muted);
-    }
+/* CARD DE QUESTÃO */
+.q-card{background:var(--surface);border:1px solid var(--line);border-radius:8px;margin:14px 0;overflow:hidden;transition:border-color .25s,box-shadow .25s;}
+.q-card.answered-correct{border-color:var(--green-line);box-shadow:0 0 0 2px rgba(22,101,52,.12);}
+.q-card.answered-wrong{border-color:var(--red-line);box-shadow:0 0 0 2px rgba(153,27,27,.10);}
+.q-header{display:flex;align-items:flex-start;gap:12px;padding:16px 18px 12px;}
+.q-badge{flex-shrink:0;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--accent);background:rgba(122,46,55,.09);border:1px solid rgba(122,46,55,.18);border-radius:4px;padding:3px 9px;margin-top:3px;white-space:nowrap;}
+.q-text{font-family:var(--body);font-size:.96em;color:var(--ink);line-height:1.72;flex:1;margin:0;}
+.options{padding:0 18px 16px;display:flex;flex-direction:column;gap:7px;}
+.opt{display:flex;align-items:flex-start;gap:11px;padding:10px 13px;border:1px solid var(--line);border-radius:6px;cursor:pointer;background:var(--paper);transition:border-color .18s,background .18s;text-align:left;width:100%;font-family:var(--body);font-size:.92em;color:var(--ink-soft);line-height:1.6;}
+.opt:hover:not(:disabled){border-color:var(--accent-soft);background:#f7f3f1;}
+.opt-letter{flex-shrink:0;font-family:var(--mono);font-size:.8em;font-weight:700;color:var(--accent);width:20px;padding-top:2px;}
+.opt.selected{border-color:var(--accent);background:rgba(122,46,55,.06);}
+.opt.correct-final{border-color:var(--green);background:var(--green-bg);cursor:default;}
+.opt.correct-final .opt-letter{color:var(--green);}
+.opt.wrong-final{border-color:var(--red);background:var(--red-bg);cursor:default;}
+.opt.wrong-final .opt-letter{color:var(--red);}
+.opt.dimmed{opacity:.42;cursor:default;}
+.q-actions{padding:0 18px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.btn-confirm{display:inline-flex;align-items:center;gap:8px;padding:9px 20px;background:var(--ink);color:#f4f2ec;border:none;border-radius:4px;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;transition:background .2s,transform .2s;}
+.btn-confirm:hover:not(:disabled){background:var(--accent);transform:translateY(-1px);}
+.btn-confirm:disabled{opacity:.35;cursor:default;transform:none;}
+.toggle-gabarito{display:none;align-items:center;gap:7px;border:none;background:none;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--iron);cursor:pointer;transition:color .2s;padding:0;}
+.toggle-gabarito:hover{color:var(--accent);}
+.toggle-gabarito .chev{display:inline-block;font-size:10px;transition:transform .3s cubic-bezier(.2,.7,.2,1);}
+.toggle-gabarito.open .chev{transform:rotate(180deg);}
+.gabarito{border-top:1px solid var(--line);overflow:hidden;max-height:0;transition:max-height .45s cubic-bezier(.2,.7,.2,1);}
+.gabarito.open{max-height:1800px;}
+.gabarito-inner{padding:16px 18px 18px;}
+.gabarito-title{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--iron);margin-bottom:10px;}
+.gabarito-correct{display:flex;align-items:center;gap:10px;padding:9px 13px;background:var(--green-bg);border:1px solid var(--green-line);border-radius:6px;font-family:var(--mono);font-size:.84em;font-weight:700;color:var(--green);margin-bottom:12px;}
+.gabarito-body{font-size:.9em;color:var(--ink-soft);line-height:1.72;}
+.gabarito-body strong{color:var(--ink);}
+.gabarito-body .ref{font-family:var(--mono);font-size:.8em;color:var(--iron);background:rgba(139,133,121,.12);padding:2px 7px;border-radius:3px;white-space:nowrap;}
+.gabarito-body p{margin-bottom:9px;}
+.gabarito-body p:last-child{margin-bottom:0;}
 
-    .subtitle{
-      margin: 10px 6px 16px;
-      color: var(--muted);
-      font-size: 18px;
-      line-height: 1.55;
-    }
+/* RESULTADO */
+.result-banner{display:none;margin:28px 0 0;padding:26px 22px;border:1px solid var(--line-strong);border-radius:8px;background:var(--surface);text-align:center;}
+.result-banner.show{display:block;}
+.result-score{font-family:var(--display);font-size:3.2rem;font-weight:600;color:var(--accent);line-height:1;margin-bottom:6px;}
+.result-label{font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--iron);}
+.result-msg{margin-top:10px;font-size:.94em;color:var(--ink-soft);}
 
-    .grid{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
-      padding: 8px 6px 6px;
-    }
+/* VOLTAR */
+.back{margin-top:52px;display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line-strong);border-radius:6px;padding:20px 22px;font-family:var(--mono);font-size:14px;letter-spacing:.04em;transition:border-color .25s,transform .25s;}
+.back .arw{color:var(--accent);transition:transform .25s;font-size:18px;}
+.back:hover{border-color:var(--accent);transform:translateY(-2px);}
+.back:hover .arw{transform:translateX(-4px);}
 
-    .card{
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 18px 18px;
-      box-shadow: 0 10px 22px rgba(2,6,23,.07);
-    }
+@keyframes rise{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
+.reveal{opacity:0;transform:translateY(14px);}
+.reveal.in{opacity:1;transform:none;transition:opacity .5s ease,transform .5s cubic-bezier(.2,.7,.2,1);}
 
-    .card h2{
-      margin: 0 0 10px;
-      font-size: clamp(20px, 2.6vw, 26px);
-      letter-spacing: -0.01em;
-    }
-
-    .card h3{
-      margin: 14px 0 8px;
-      font-size: 20px;
-      letter-spacing: -0.01em;
-      color: #0b1220;
-    }
-
-    .card p{
-      margin: 0 0 10px;
-      font-size: 19px; /* fonte maior */
-      line-height: 1.75;
-      color: #0b1220;
-    }
-
-    .note{
-      margin-top: 10px;
-      padding: 14px 14px;
-      border-radius: 18px;
-      background: rgba(37,99,235,.06);
-      border: 1px solid rgba(37,99,235,.14);
-      color: #0b1220;
-      font-size: 18px;
-      line-height: 1.65;
-    }
-
-    ul{
-      margin: 10px 0 0 22px;
-      padding: 0;
-      font-size: 19px;
-      line-height: 1.75;
-    }
-    li{ margin: 6px 0; }
-
-    .pill{
-      display:inline-block;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(29,78,216,.08);
-      border: 1px solid rgba(29,78,216,.18);
-      color: #0b1220;
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: .02em;
-      margin-bottom: 10px;
-    }
-
-    .footer{
-      display:flex;
-      justify-content:center;
-      padding: 18px 6px 4px;
-    }
-
-    .back{
-      text-decoration:none;
-      background: #fff;
-      color: #0b1220;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      box-shadow: var(--shadow2);
-      padding: 14px 18px;
-      font-size: 18px;
-      font-weight: 700;
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      transition: transform .12s ease, box-shadow .12s ease;
-    }
-    .back:hover{ transform: translateY(-1px); box-shadow: 0 14px 28px rgba(2,6,23,.14); }
-  </style>
+@media(max-width:560px){
+  body{font-size:17.5px;}
+  .masthead{padding:40px 0 24px;}
+  .title-row{align-items:stretch;}
+  .slides-btn{width:100%;justify-content:center;}
+  .verbete{padding-left:18px;}
+  .scoreboard{flex-direction:column;align-items:flex-start;gap:10px;}
+  .btn-reset{margin-left:0;}
+  .tbl-3{grid-template-columns:1fr 1fr;}
+  .tbl-head.tbl-3 div:last-child,.tbl-3 .tbl-row div:last-child{display:none;}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;scroll-behavior:auto;}
+  .reveal{opacity:1;transform:none;}
+  .reveal.in{transition:none;}
+}
+</style>
 </head>
-
 <body>
-  <div class="wrap">
-    <div class="shell">
-      <header>
-        <div>
-          <h1>11. Duração do Trabalho</h1>
-        </div>
+<div class="wrap">
 
-        <div class="top-actions">
-          <a class="icon-card" href="https://drive.google.com/file/d/1VMD0nyiZ65uQKSGMJ55eJ5gheee_crKT/view?usp=sharing" target="_blank" rel="noopener">
-            <div class="icon-badge" aria-hidden="true">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-                <path d="M4 5.5C4 4.12 5.12 3 6.5 3h11C18.88 3 20 4.12 20 5.5v13c0 1.38-1.12 2.5-2.5 2.5h-11C5.12 21 4 19.88 4 18.5v-13Z" stroke="#1d4ed8" stroke-width="1.7"/>
-                <path d="M7 8h10M7 11h7M7 14h10M7 17h6" stroke="#1d4ed8" stroke-width="1.7" stroke-linecap="round"/>
-              </svg>
-            </div>
-            <div class="lbl">
-              <strong>Slides</strong>
-              <span>Abrir no Drive</span>
-            </div>
-          </a>
-        </div>
-      </header>
-
-      <div class="subtitle">
-        As normas sobre duração do trabalho estabelecem limites temporais ao labor prestado, com foco na proteção da saúde,
-        da integridade física e mental e na redução de riscos de acidentes.
-      </div>
-
-      <div class="grid">
-
-        <section class="card">
-          <div class="pill">Visão geral</div>
-          <p>O estudo da duração do trabalho costuma ser organizado em dois grandes blocos:</p>
-          <ul>
-            <li><strong>Jornada de trabalho</strong> (tempo diário ligado ao labor e à disponibilidade);</li>
-            <li><strong>Períodos de repouso</strong> (intervalos e descansos obrigatórios).</li>
-          </ul>
-        </section>
-
-        <section class="card">
-          <div class="pill">Jornada de trabalho</div>
-          <h2>Conceito</h2>
-          <p>
-            Jornada de trabalho é o período do dia em que o empregado permanece <strong>à disposição do empregador</strong>,
-            trabalhando ou aguardando ordens (art. 4º, CLT).
-          </p>
-
-          <div class="note">
-            <strong>Tempo de deslocamento:</strong> não integra a duração da jornada o tempo gasto até o local de trabalho e no retorno,
-            mesmo quando há transporte fornecido pelo empregador (art. 58, §2º, CLT).
-          </div>
-
-          <h3>Jornada normal</h3>
-          <p>
-            A jornada normal é o lapso de tempo em que o empregado deve prestar serviços ou permanecer à disposição do empregador.
-            Como limite máximo, a Constituição prevê <strong>8 horas diárias</strong> e <strong>44 horas semanais</strong> (art. 7º, XIII, CF).
-          </p>
-
-          <h3>Jornadas especiais</h3>
-          <p>
-            Jornadas especiais são fixadas por lei, por negociação coletiva ou contrato, com duração inferior à jornada normal máxima.
-          </p>
-          <ul>
-            <li>
-              <strong>Turnos ininterruptos de revezamento:</strong> regra de 6 horas diárias, salvo negociação coletiva (art. 7º, XIV, CF).
-            </li>
-            <li>
-              <strong>Tempo parcial (art. 58-A, CLT):</strong> até 30h/semana sem horas suplementares; ou 26h/semana com até 6h suplementares.
-            </li>
-          </ul>
-        </section>
-
-        <section class="card">
-          <div class="pill">Períodos de repouso</div>
-
-          <h2>Intervalos intrajornada</h2>
-          <p>
-            São períodos de descanso durante a jornada. Na CLT, o intervalo para repouso e alimentação (art. 71) é o modelo clássico.
-          </p>
-          <ul>
-            <li><strong>4 a 6 horas:</strong> intervalo obrigatório de <strong>15 minutos</strong>.</li>
-            <li><strong>Acima de 6 horas:</strong> intervalo de <strong>no mínimo 1 hora</strong> e <strong>no máximo 2 horas</strong>.</li>
-            <li><strong>Redução por negociação coletiva:</strong> possível até o mínimo de <strong>30 minutos</strong> para jornadas superiores a 6h (art. 611-A, III, CLT).</li>
-          </ul>
-
-          <div class="note">
-            <strong>Concessão parcial/ausência do intervalo:</strong> gera pagamento indenizatório do período suprimido,
-            com adicional mínimo de 50% (art. 71, §4º, CLT).
-          </div>
-
-          <h2>Intervalos interjornadas</h2>
-          <p>
-            São os descansos entre o término de uma jornada e o início da outra. A CLT prevê <strong>mínimo de 11 horas consecutivas</strong>
-            entre jornadas (art. 66, CLT).
-          </p>
-        </section>
-
-      </div>
-
-      <div class="footer">
-        <a class="back" href="../index.html">
-          <span aria-hidden="true">←</span>
-          <span>Voltar ao índice da disciplina</span>
-        </a>
-      </div>
-
-    </div>
+<!-- CABEÇALHO -->
+<header class="masthead">
+  <p class="eyebrow">Direito do Trabalho <span class="dot">·</span> Unidade 3 <span class="dot">·</span> Duração do trabalho</p>
+  <div class="title-row">
+    <h1><span class="art">Item 11</span>Duração do Trabalho</h1>
+    <a class="slides-btn" href="#" target="_blank" rel="noopener">
+      <span>▮</span><span>Slides da aula</span><span class="arw">→</span>
+    </a>
   </div>
+  <div class="verbete">
+    <span class="tag">Finalidade — arts. 58 e 7º, XIII, CF</span>
+    <p>As normas sobre duração do trabalho estabelecem limite temporal ao trabalho executado pelo empregado, visando à proteção da saúde e da integridade física do trabalhador. Dividem-se em normas sobre <strong>jornada de trabalho</strong> e sobre <strong>períodos de repouso</strong>.</p>
+  </div>
+</header>
+
+<!-- § 11.1 JORNADA DE TRABALHO -->
+<section>
+  <div class="sec-head reveal"><span class="num">§ 11.1</span><h2>Jornada de Trabalho</h2></div>
+  <p class="reveal">Jornada de trabalho é o período de um dia no qual o empregado permanece à disposição do empregador, trabalhando ou aguardando ordens <span class="ref">art. 4º, CLT</span> — <strong>teoria do tempo à disposição do empregador</strong>.</p>
+  <p class="reveal"><strong>Não se consideram</strong> como tempo à disposição os períodos em que o empregado, por escolha própria, buscar proteção pessoal em caso de insegurança nas vias públicas ou más condições climáticas, bem como adentrar nas dependências da empresa para exercer atividades particulares (práticas religiosas, descanso, lazer, estudo, alimentação, higiene pessoal, troca de roupa quando não há obrigatoriedade na empresa) <span class="ref">art. 4º, § 2º, CLT</span>.</p>
+  <p class="reveal">O tempo de deslocamento residência-trabalho <strong>não</strong> é jornada, mesmo que o transporte seja fornecido pelo empregador <span class="ref">art. 58, § 2º, CLT</span>.</p>
+
+  <h3 class="reveal">11.1.1 Jornada normal</h3>
+  <p class="reveal">Limitada a <strong>8 horas diárias e 44 horas semanais</strong> <span class="ref">art. 7º, XIII, CF</span>.</p>
+
+  <h3 class="reveal">11.1.2 Jornadas especiais</h3>
+  <p class="reveal">Fixadas por lei, acordo ou convenção coletiva, com duração inferior à jornada normal máxima. Exemplos:</p>
+  <div class="cards reveal">
+
+    <div class="card">
+      <button class="card-btn" aria-expanded="false">
+        <div class="card-icon">TIR</div>
+        <div class="card-head"><span class="card-num">art. 7º, XIV, CF</span><span class="card-title">Turnos Ininterruptos de Revezamento</span></div>
+        <div class="card-chevron">▾</div>
+      </button>
+      <div class="card-body" role="region">
+        <p>Jornada de <strong>6 horas</strong> diárias, salvo negociação coletiva. O trabalho em turnos <em>fixos</em> (sem alternância) não gera direito a essa jornada especial — aplica-se a jornada máxima de 8h/44h.</p>
+        <div class="sumula"><strong>Súmula 423, TST</strong> Estabelecida jornada superior a 6h e limitada a 8h por negociação coletiva, os empregados submetidos a TIR não têm direito ao pagamento da 7ª e 8ª horas como extras.</div>
+        <div class="sumula"><strong>Súmula 360, TST</strong> O intervalo para repouso e alimentação dentro do turno ou para repouso semanal não descaracteriza o TIR com jornada de 6h.</div>
+        <div class="sumula"><strong>Súmula 675, STF</strong> Os intervalos fixados para descanso e alimentação durante a jornada de 6h não descaracterizam o sistema de TIR.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <button class="card-btn" aria-expanded="false">
+        <div class="card-icon">T.P.</div>
+        <div class="card-head"><span class="card-num">art. 58-A, CLT</span><span class="card-title">Regime de Tempo Parcial</span></div>
+        <div class="card-chevron">▾</div>
+      </button>
+      <div class="card-body" role="region">
+        <p>Trabalho em tempo parcial é aquele cuja duração não exceda:</p>
+        <ul class="blist">
+          <li><span class="bul">■</span><span><strong>30 horas semanais</strong> — sem possibilidade de horas suplementares semanais</span></li>
+          <li><span class="bul">■</span><span><strong>26 horas semanais</strong> — com possibilidade de até <strong>6 horas suplementares semanais</strong></span></li>
+        </ul>
+        <p>Horas suplementares são pagas com acréscimo de 50% ou compensadas até a semana seguinte; se não compensadas, quitadas na folha do mês subsequente <span class="ref">art. 58-A, §§ 3º e 5º, CLT</span>. O salário é proporcional à jornada <span class="ref">art. 58-A, § 1º, CLT</span>. Férias: 30 dias corridos (reduzíveis por faltas, conforme art. 130 CLT) <span class="ref">art. 58-A, § 7º, CLT</span>.</p>
+        <div class="sumula"><strong>OJ SDI-1 358, TST</strong> Havendo contratação para jornada reduzida, é lícito o pagamento proporcional ao tempo trabalhado — salvo na Administração Pública direta, autárquica e fundacional, onde nunca poderá ser inferior ao salário mínimo.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <button class="card-btn" aria-expanded="false">
+        <div class="card-icon">Sob.<br>Pront.</div>
+        <div class="card-head"><span class="card-num">art. 244, CLT</span><span class="card-title">Sobreaviso e Prontidão</span></div>
+        <div class="card-chevron">▾</div>
+      </button>
+      <div class="card-body" role="region">
+        <p><strong>Sobreaviso:</strong> empregado que, fora do horário, permanece em local ajustado aguardando eventual convocação. Remunerado a <strong>1/3 do salário normal</strong>. Cada escala: máximo 24h <span class="ref">art. 244, § 2º, CLT</span>.</p>
+        <div class="sumula"><strong>Súmula 428, I, TST</strong> O uso de instrumentos telemáticos fornecidos pela empresa, por si só, não caracteriza sobreaviso.<br><strong>Súmula 428, II, TST</strong> Considera-se em sobreaviso o empregado que, à distância e sob controle patronal por instrumentos telemáticos, permanecer em plantão aguardando chamado durante o período de descanso.</div>
+        <p><strong>Prontidão:</strong> empregado que fica nas dependências da empresa aguardando ordens. Remunerado a <strong>2/3 do salário-hora normal</strong>. Escala: máximo 12h <span class="ref">art. 244, § 3º, CLT</span>.</p>
+        <div class="sumula"><strong>Súmula 229, TST</strong> As horas de sobreaviso dos eletricitários são remuneradas à razão de 1/3 sobre as parcelas de natureza salarial.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- § 11.2 JORNADA E HORÁRIO -->
+<section>
+  <div class="sec-head reveal"><span class="num">§ 11.2</span><h2>Jornada e Horário de Trabalho</h2></div>
+  <p class="reveal"><strong>Jornada de trabalho</strong> é o tempo que o empregado fica à disposição do empregador em dado período (dia ou semana). <strong>Horário de trabalho</strong> é a identificação de início e fim da jornada, considerando-se o intervalo intrajornada.</p>
+</section>
+
+<!-- § 11.3 CONTROLE DE HORÁRIO -->
+<section>
+  <div class="sec-head reveal"><span class="num">§ 11.3</span><h2>Controle de Horário</h2></div>
+  <p class="reveal">Estabelecimentos com mais de <strong>20 empregados</strong> são obrigados a efetuar o controle de ponto (manual, mecânico ou eletrônico) <span class="ref">art. 74, § 2º, CLT</span>. É permitida a utilização de <strong>registro por exceção</strong> mediante acordo individual escrito, CCT ou ACT <span class="ref">art. 74, § 4º, CLT</span>.</p>
+  <p class="reveal">Variações de horário <strong>não excedentes a 5 minutos</strong> por marcação (limite de <strong>10 minutos diários</strong>) não são descontadas nem computadas como hora extra <span class="ref">art. 58, § 1º, CLT</span>.</p>
+  <div class="sumula reveal"><strong>Súmula 338, I, TST</strong> A não apresentação injustificada dos registros de jornada gera <strong>presunção relativa</strong> de veracidade da jornada alegada pelo trabalhador, que pode ser elidida por prova em contrário.<br><strong>Súmula 338, III, TST</strong> Cartões de ponto que demonstram horários uniformes são inválidos como meio de prova, invertendo-se o ônus para o empregador.</div>
+</section>
+
+<!-- § 11.4 JORNADA EXTRAORDINÁRIA -->
+<section>
+  <div class="sec-head reveal"><span class="num">§ 11.4</span><h2>Jornada Extraordinária</h2></div>
+  <p class="reveal">Jornada prestada além da jornada normal. Requisitos cumulativos <span class="ref">art. 59, CLT; art. 7º, XVI, CF</span>:</p>
+  <ul class="blist reveal">
+    <li><span class="bul">a)</span><span><strong>Acordo escrito</strong> de prorrogação (individual ou coletivo)</span></li>
+    <li><span class="bul">b)</span><span>Máximo de <strong>2 horas extras por dia</strong></span></li>
+    <li><span class="bul">c)</span><span>Adicional mínimo de <strong>50%</strong> sobre a hora normal <span class="ref">art. 7º, XVI, CF</span></span></li>
+  </ul>
+  <div class="sumula reveal"><strong>Súmula 376, I, TST</strong> A limitação legal a duas horas diárias não exime o empregador de pagar todas as horas trabalhadas.<br><strong>Súmula 340, TST</strong> O empregado comissionista sujeito a controle de horário tem direito ao adicional mínimo de 50% calculado sobre o valor-hora das comissões recebidas no mês, considerando-se o número de horas efetivamente trabalhadas.</div>
+
+  <h3 class="reveal">11.4.1 Compensação da Jornada / Banco de Horas</h3>
+  <p class="reveal">Acréscimo em um dia compensado pela diminuição em outro, sem ultrapassar a jornada semanal — não é devido o adicional <span class="ref">art. 59, § 2º, CLT</span>. O banco de horas pode ser ajustado em até 1 ano, sem ultrapassar 10h diárias.</p>
+  <div class="tbl reveal">
+    <div class="tbl-head tbl-3"><div>Período de compensação</div><div>Forma do acordo</div><div>Base legal</div></div>
+    <div class="tbl-row tbl-3"><div>Anual</div><div>CCT ou ACT</div><div><span class="ref">art. 611-A, II, CLT</span></div></div>
+    <div class="tbl-row tbl-3"><div>Semestral</div><div>CCT, ACT ou acordo individual escrito</div><div><span class="ref">art. 59, § 5º, CLT</span></div></div>
+    <div class="tbl-row tbl-3"><div>Mensal</div><div>CCT, ACT ou acordo individual (tácito ou escrito)</div><div><span class="ref">art. 59, § 6º, CLT</span></div></div>
+  </div>
+  <p class="reveal" style="font-size:.93em;">A jornada <strong>12×36</strong> pode ser ajustada por acordo individual escrito, CCT ou ACT. A remuneração mensal abrange o DSR, feriados e prorrogações de trabalho noturno <span class="ref">art. 59-A, CLT</span>.</p>
+
+  <h3 class="reveal">11.4.2 Força Maior e Serviços Inadiáveis</h3>
+  <p class="reveal">Horas extras por força maior ou serviços inadiáveis independem de acordo de prorrogação <span class="ref">art. 61, § 1º, CLT</span>. Adicional mínimo de 50%. Limite: <strong>12 horas totais</strong> (jornada + extras = 8 + 4). Recuperação de horas: prorrogação posterior de até <strong>45 dias/ano</strong>, máximo 2h/dia, com autorização do Ministério do Trabalho <span class="ref">art. 61, § 3º, CLT</span>.</p>
+
+  <h3 class="reveal">11.4.3 Integração das Horas Extras</h3>
+  <p class="reveal">As horas extras <strong>habituais</strong> integram a remuneração para fins de: FGTS, férias, 13º salário, repouso semanal, aviso-prévio e indenização de 40% do FGTS.</p>
+  <div class="sumula reveal"><strong>Súmula 347, TST</strong> O cálculo das horas extras habituais para reflexos observará o número de horas efetivamente prestadas, aplicando-se o salário-hora da época do pagamento das verbas.<br><strong>Súmula 376, II, TST</strong> O valor das horas extras habitualmente prestadas integra o cálculo dos haveres trabalhistas, independentemente do limite do caput do art. 59, CLT.</div>
+
+  <h3 class="reveal">11.4.4 Supressão das Horas Extras</h3>
+  <p class="reveal">Na supressão total ou parcial de horas extras habituais prestadas <strong>por pelo menos 1 ano</strong>, o empregado faz jus a indenização de <strong>1 mês de horas suprimidas</strong> por ano (ou fração ≥ 6 meses) de serviço acima da jornada normal <span class="ref">Súmula 291, TST</span>.</p>
+
+  <h3 class="reveal">11.4.5 Empregados Excluídos das Regras de Limitação de Jornada</h3>
+  <p class="reveal">Não fazem jus a horas extras, nos termos do <span class="ref">art. 62, CLT</span>:</p>
+  <ul class="blist reveal">
+    <li><span class="bul">a)</span><span>Empregado em <strong>atividades externas</strong> incompatíveis com fixação de horário (condição anotada na CTPS); havendo controle de horário, o direito é restabelecido.</span></li>
+    <li><span class="bul">b)</span><span><strong>Gerentes e cargos de gestão</strong> (diretores, chefes de departamento/filial) cujo salário do cargo de confiança — incluída a gratificação de função — seja superior ao efetivo + 40% <span class="ref">parágrafo único, art. 62, CLT</span>.</span></li>
+    <li><span class="bul">c)</span><span>Empregados em <strong>teletrabalho por produção ou tarefa</strong> <span class="ref">art. 75-B, § 3º, e art. 62, III, CLT</span>.</span></li>
+  </ul>
+  <div class="nota reveal"><strong>Teletrabalho:</strong> deve constar do contrato escrito; alteração para presencial por determinação do empregador exige prazo mínimo de 15 dias e aditivo contratual <span class="ref">art. 75-C, § 2º, CLT</span>. Equipamentos e insumos: responsabilidade definida em contrato, sem integrar a remuneração <span class="ref">art. 75-D, CLT</span>. Prioridade a deficientes e empregados com filhos/criança até 4 anos <span class="ref">art. 75-F, CLT</span>.</div>
+</section>
+
+<!-- § 11.5 JORNADA NOTURNA -->
+<section>
+  <div class="sec-head reveal"><span class="num">§ 11.5</span><h2>Jornada Noturna</h2></div>
+  <div class="tbl reveal">
+    <div class="tbl-head tbl-3"><div>Categoria</div><div>Horário noturno</div><div>Adicional</div></div>
+    <div class="tbl-row tbl-3"><div>Urbanos e domésticos</div><div>22h às 5h</div><div>Mínimo 20% <span class="ref">art. 73, CLT</span></div></div>
+    <div class="tbl-row tbl-3"><div>Rural — agricultura</div><div>21h às 5h</div><div>25% <span class="ref">Lei 5.889/73</span></div></div>
+    <div class="tbl-row tbl-3"><div>Rural — pecuária</div><div>20h às 4h</div><div>25% <span class="ref">Lei 5.889/73</span></div></div>
+  </div>
+  <p class="reveal" style="font-size:.93em;"><strong>Hora noturna reduzida</strong> (urbanos e domésticos): a hora noturna equivale a 52 min e 30 s <span class="ref">art. 73, § 1º, CLT</span> — não se aplica aos rurais. A transferência do noturno para o diurno extingue o adicional: <em>sem direito adquirido</em> <span class="ref">Súmula 265, TST</span>. O adicional noturno habitual integra a remuneração para todos os efeitos <span class="ref">Súmula 60, I, TST</span>. Horas extras noturnas acumulam os dois adicionais <span class="ref">OJ SDI-1 97, TST; Súmula 60, II, TST</span>.</p>
+</section>
+
+<!-- § 11.6 PERÍODOS DE REPOUSO -->
+<section>
+  <div class="sec-head reveal"><span class="num">§ 11.6</span><h2>Períodos de Repouso</h2></div>
+
+  <h3 class="reveal">11.6.1 Intervalos Intrajornada</h3>
+  <p class="reveal">Ocorrem durante a jornada de trabalho. Intervalo não remunerado para repouso e alimentação <span class="ref">art. 71, CLT</span>:</p>
+  <div class="tbl reveal">
+    <div class="tbl-head tbl-2"><div>Duração da jornada</div><div>Intervalo obrigatório</div></div>
+    <div class="tbl-row tbl-2"><div>4h a 6h</div><div>15 minutos</div></div>
+    <div class="tbl-row tbl-2"><div>Superior a 6h</div><div>Mínimo 1h, máximo 2h</div></div>
+  </div>
+  <p class="reveal" style="font-size:.93em;">A não concessão ou concessão parcial gera pagamento de natureza <strong>indenizatória</strong> do período suprimido com acréscimo de <strong>no mínimo 50%</strong> <span class="ref">art. 71, § 4º, CLT</span>. ACT/CCT podem reduzir o intervalo até o mínimo de <strong>30 minutos</strong> para jornadas superiores a 6h <span class="ref">art. 611-A, III, CLT</span>.</p>
+  <div class="sumula reveal"><strong>Súmula 437, IV, TST</strong> Ultrapassada habitualmente a jornada de 6h, é devido o intervalo mínimo de 1h, devendo o empregador remunerar o período não usufruído como extra, acrescido do adicional.</div>
+
+  <p class="reveal" style="margin-top:16px;"><strong>Intervalos intrajornada remunerados</strong> (computados na jornada):</p>
+  <ul class="blist reveal">
+    <li><span class="bul">a)</span><span><strong>Mecanografia / digitação</strong>: a cada 90 min de trabalho consecutivo, 10 min de intervalo <span class="ref">art. 72, CLT; Súmula 346, TST</span></span></li>
+    <li><span class="bul">b)</span><span><strong>Câmaras frias</strong>: após 1h40min consecutivos, 20 min de intervalo <span class="ref">art. 253, CLT</span></span></li>
+    <li><span class="bul">c)</span><span><strong>Minas de subsolo</strong>: após 3h consecutivas, 15 min de intervalo <span class="ref">art. 298, CLT</span></span></li>
+  </ul>
+  <div class="sumula reveal"><strong>Súmula 118, TST</strong> Intervalos concedidos pelo empregador não previstos em lei representam tempo à disposição, remunerados como serviço extraordinário se acrescidos ao final da jornada.</div>
+
+  <h3 class="reveal">11.6.2 Intervalos Interjornadas</h3>
+  <p class="reveal"><strong>Não remunerado:</strong> intervalo mínimo de <strong>11 horas consecutivas</strong> entre duas jornadas <span class="ref">art. 66, CLT</span>. O desrespeito gera pagamento como hora extra <span class="ref">OJ SDI-1 355, TST</span>.</p>
+  <p class="reveal"><strong>Remunerado — Descanso Semanal Remunerado (DSR):</strong> 24 horas consecutivas por semana, preferencialmente aos domingos <span class="ref">art. 7º, XV, CF; art. 67, CLT; Lei n. 605/49</span>. Faltas injustificadas durante a semana implicam perda da remuneração do DSR. Trabalho no repouso ou feriado não compensado: pago em <strong>dobro</strong> <span class="ref">art. 9º, Lei n. 605/49; Súmula 146, TST</span>.</p>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     QUESTÕES OAB — itens 14 a 21
+═══════════════════════════════════════════════════ -->
+<section>
+  <div class="sec-head reveal"><span class="num">§</span><h2>Questões de Exame da OAB</h2></div>
+  <p class="reveal">Questões dos tópicos 14 a 21 do PDF de questões. Selecione a alternativa e clique em <strong>Confirmar resposta</strong>.</p>
+
+  <div class="scoreboard reveal">
+    <div><div class="score-label">Acertos</div><div class="score-nums"><span class="score-current" id="sc-current">0</span><span class="score-total">/ 14</span></div></div>
+    <div class="score-bar-wrap"><div class="score-bar" id="sc-bar"></div></div>
+    <div class="score-msg" id="sc-msg">0 respondidas</div>
+    <button class="btn-reset" onclick="resetQuiz()">↺ Reiniciar</button>
+  </div>
+
+  <!-- Q1 — XIX Exame — Teletrabalho acidente -->
+  <div class="q-card" id="q1">
+    <div class="q-header"><span class="q-badge">XIX Exame · FGV</span>
+      <p class="q-text">Jorge é um teletrabalhador e cumpre jornada preestabelecida pelo empregador, que a monitora por meios telemáticos. A empresa montou um <em>home office</em> na residência do empregado, fornecendo móveis, computador e impressora. Em determinado dia de trabalho, quando conferia relatórios, a cadeira em que Jorge estava sentado quebrou e ele, devido à queda violenta, machucou-se. Na hipótese, de acordo com a Lei,</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="1" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>ocorreu acidente do trabalho, sendo irrelevante se o trabalho é prestado na residência do empregado.</span></button>
+      <button class="opt" data-q="1" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>não se pode cogitar de acidente do trabalho no teletrabalho, pois o empregado está em seu domicílio e não sob as vistas do empregador.</span></button>
+      <button class="opt" data-q="1" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>o evento jamais poderá ser considerado acidente do trabalho, uma vez que a situação não foi testemunhada por ninguém.</span></button>
+      <button class="opt" data-q="1" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>todo acidente domiciliar é acidente do trabalho, segundo a legislação previdenciária.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q1-btn" disabled onclick="confirmAnswer(1,'A')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q1-tog" onclick="toggleGabarito(1)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q1-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa A — Acidente do trabalho independe do local</div>
+      <div class="gabarito-body">
+        <p><strong>A) Correta.</strong> O <span class="ref">art. 19 da Lei n. 8.213/91</span> considera acidente do trabalho aquele que ocorre pelo exercício do trabalho, <strong>independentemente de onde ele seja executado</strong>. No teletrabalho, o empregado está executando suas funções laborais quando o acidente ocorreu.</p>
+        <p><strong>B) Errada.</strong> O que importa é que o acidente ocorreu durante a execução de tarefas decorrentes do trabalho. O local (domicílio) é irrelevante para a caracterização do acidente.</p>
+        <p><strong>C) Errada.</strong> A lei não exige testemunhas para que o acidente seja caracterizado como acidente do trabalho.</p>
+        <p><strong>D) Errada.</strong> Não é todo acidente domiciliar que é acidente do trabalho — somente aquele que ocorre durante a execução de atividades laborais por determinação do empregador (<em>home office</em>).</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Q2 — XXV Exame — Tempo à disposição (uniforme, café, pingo pongue) -->
+  <div class="q-card" id="q2">
+    <div class="q-header"><span class="q-badge">XXV Exame · FGV</span>
+      <p class="q-text">Lúcio foi dispensado do emprego, no qual trabalhou de 17/11/2017 a 20/03/2018. Na empresa, batia o cartão de ponto apenas no início e no fim da jornada efetiva, sem considerar o tempo de café da manhã, de troca de uniforme (calça social, camisa social e sapato comum que ficavam na posse do empregado) e o tempo que jogava pingue-pongue após almoçar (15 minutos, podendo ficar jogando até o término do intervalo integral). Você foi procurado por Lúcio para ajuizar ação pleiteando horas extras pelo tempo indicado no enunciado não constante dos controles de horário. Sobre o caso, à luz da CLT, assinale a afirmativa correta.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="2" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Lúcio não faz jus às horas extras pelas atividades indicadas, pois as mesmas não constituem tempo à disposição do empregador.</span></button>
+      <button class="opt" data-q="2" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Lúcio faz jus às horas extras pelas atividades indicadas, pois as mesmas constituem tempo à disposição do empregador, já que Lúcio estava nas dependências da empresa.</span></button>
+      <button class="opt" data-q="2" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Apenas o tempo de alimentação e café da manhã devem ser considerados como tempo à disposição, já que o outro representa lazer do empregado.</span></button>
+      <button class="opt" data-q="2" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Apenas o tempo de pingue-pongue pode ser pretendido como hora extra, pois Lúcio não desfrutava integralmente da pausa alimentar.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q2-btn" disabled onclick="confirmAnswer(2,'A')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q2-tog" onclick="toggleGabarito(2)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q2-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa A — Nenhuma das atividades é tempo à disposição</div>
+      <div class="gabarito-body">
+        <p><strong>A) Correta.</strong> O <span class="ref">art. 4º, § 2º, CLT</span> não inclui na jornada: lazer (inciso III), alimentação (mesmo que nas dependências, quando represente lazer do empregado) e troca de uniforme comum, quando não houver obrigatoriedade de realizar a troca na empresa (inciso VIII). O uniforme era composto de roupas comuns (calça social, camisa e sapato) que ficavam na posse do empregado.</p>
+        <p><strong>B) Errada.</strong> O simples fato de estar nas dependências da empresa não basta para caracterizar tempo à disposição, quando as atividades são exercidas por escolha própria do empregado.</p>
+        <p><strong>C) Errada.</strong> A alimentação também não é tempo à disposição quando representa lazer do empregado, conforme <span class="ref">art. 4º, § 2º, CLT</span>.</p>
+        <p><strong>D) Errada.</strong> O pingue-pongue também não constitui tempo à disposição — trata-se de atividade de lazer por escolha própria do empregado, dentro do intervalo.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Q3 — XXVI Exame — Banco de horas / acordo individual -->
+  <div class="q-card" id="q3">
+    <div class="q-header"><span class="q-badge">XXVI Exame · FGV</span>
+      <p class="q-text">Felisberto foi contratado como técnico pela sociedade empresária Montagens Rápidas Ltda., em janeiro de 2018, recebendo salário correspondente ao mínimo legal. Trabalha de segunda a sexta-feira, das 10h às 19h48min com intervalo de uma hora, tendo assinado acordo particular por ocasião da admissão para não trabalhar aos sábados e trabalhar mais 48 minutos de segunda a sexta-feira. Com base na situação retratada e na Lei, considerando que a norma coletiva da categoria de Felisberto é silente a respeito, assinale a afirmativa correta.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="3" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Há direito ao pagamento de horas extras, porque a compensação de horas teria de ser feita por acordo coletivo ou convenção coletiva, não se admitindo acordo particular para tal fim.</span></button>
+      <button class="opt" data-q="3" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Não existe direito ao pagamento de sobrejornada, porque as partes podem estipular qualquer quantidade de jornada, independentemente de limites.</span></button>
+      <button class="opt" data-q="3" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>A Lei é omissa a respeito da forma de compensação, razão pela qual caberá ao juiz julgar por equidade.</span></button>
+      <button class="opt" data-q="3" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>A situação não gera direito a horas extras, porque é possível estipular compensação semanal de horas, inclusive por acordo particular, como foi o caso.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q3-btn" disabled onclick="confirmAnswer(3,'D')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q3-tog" onclick="toggleGabarito(3)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q3-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa D — Compensação semanal por acordo individual é válida</div>
+      <div class="gabarito-body">
+        <p><strong>A) Errada.</strong> O <span class="ref">art. 59, § 6º, CLT</span> permite expressamente a compensação mensal por acordo individual escrito. E a compensação semanal também é admitida individualmente.</p>
+        <p><strong>B) Errada.</strong> Há limite legal de jornada. No caso, não há sobrejornada em razão da compensação válida — mas a afirmativa está errada ao dizer que não há limites.</p>
+        <p><strong>C) Errada.</strong> Há previsão legal expressa sobre as formas de compensação de jornada (art. 59, CLT; art. 59-A e 59-B, CLT).</p>
+        <p><strong>D) Correta.</strong> Não há horas extras a serem pagas. A jornada semanal de 44 horas está sendo rigorosamente cumprida. De segunda a sexta-feira o empregado trabalha 8h48min, mas os 48 minutos excedentes decorrem da compensação da jornada do sábado. Esse acordo de compensação pode ser celebrado individualmente entre empregado e empregador <span class="ref">art. 59, § 6º, CLT</span>.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Q4 — XXXVII Exame — Escala 12×36 e feriados -->
+  <div class="q-card" id="q4">
+    <div class="q-header"><span class="q-badge">XXVIII Exame · FGV</span>
+      <p class="q-text">Rita de Cássia é enfermeira em um hospital desde 10/01/2018, no qual trabalha em regime de escala de 12×36 horas, no horário das 7:00 às 19:00 horas. Tal escala encontra-se prevista na convenção coletiva da categoria da empregada. Alguns plantões cumpridos por Rita de Cássia coincidiram com domingos e outros, com feriados. Em razão disso, a empregada solicitou ao seu gestor que as horas cumpridas nesses plantões fossem pagas em dobro. Sobre a pretensão da empregada, diante do que preconiza a CLT, assinale a afirmativa correta.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="4" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Ela fará jus ao pagamento com adicional de 100% apenas nos feriados.</span></button>
+      <button class="opt" data-q="4" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Ela não terá direito ao pagamento em dobro nem nos domingos nem nos feriados.</span></button>
+      <button class="opt" data-q="4" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Ela terá direito ao pagamento em dobro da escala que coincidir com o domingo.</span></button>
+      <button class="opt" data-q="4" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Ela receberá em dobro as horas trabalhadas nos domingos e feriados.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q4-btn" disabled onclick="confirmAnswer(4,'B')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q4-tog" onclick="toggleGabarito(4)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q4-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa B — Jornada 12×36 abrange DSR e feriados</div>
+      <div class="gabarito-body">
+        <p><strong>B) Correta.</strong> A remuneração mensal pactuada pelo horário 12×36 abrange os pagamentos devidos pelo descanso semanal remunerado <strong>e</strong> pelo descanso em feriados — ambos são considerados compensados. Além disso, também são compensadas as prorrogações de trabalho noturno, quando houver <span class="ref">art. 59-A, parágrafo único, CLT</span>. Portanto, Rita não tem direito ao pagamento em dobro.</p>
+        <p><strong>A) Errada.</strong> A remuneração da escala 12×36 já abrange os feriados — não há pagamento adicional de 100%.</p>
+        <p><strong>C) Errada.</strong> O domingo também está abrangido pela remuneração da escala 12×36.</p>
+        <p><strong>D) Errada.</strong> Nenhum dos casos gera pagamento em dobro, pois todos já estão compreendidos na remuneração mensal pactuada pelo regime 12×36.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Q5 — XXXIV Exame — Controle de ponto por exceção -->
+  <div class="q-card" id="q5">
+    <div class="q-header"><span class="q-badge">XXXIV Exame · FGV</span>
+      <p class="q-text">Milton possui uma fábrica de massas que conta com 23 (vinte e três) empregados. Em fevereiro de 2021, Milton conversou individualmente com cada empregado e propôs que dali em diante cada qual passasse a marcar ponto por exceção, ou seja, só marcaria a eventual hora extra realizada. Assim, caso a jornada fosse cumprida dentro das 8 (oito) horas diárias, não haveria necessidade de marcação. Diante da concordância, foi feito um termo individual para cada empregado, que foi assinado. Sobre a hipótese apresentada, de acordo com o disposto na CLT, assinale a afirmativa correta.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="5" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>O acordo é inválido, porque somente poderia ser feito por norma coletiva, e não individual.</span></button>
+      <button class="opt" data-q="5" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>O acerto é válido, porque o registro de ponto por exceção à jornada regular de trabalho pode ser feito por meio de acordo individual escrito.</span></button>
+      <button class="opt" data-q="5" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>A alteração, para ter validade, depende da homologação do Poder Judiciário, por meio de uma homologação de acordo extrajudicial.</span></button>
+      <button class="opt" data-q="5" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Para o acerto da marcação por exceção, é obrigatória a criação de uma comissão de empregados que vai negociar com o empregador e, em contrapartida, a empresa deve conceder alguma vantagem.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q5-btn" disabled onclick="confirmAnswer(5,'B')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q5-tog" onclick="toggleGabarito(5)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q5-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa B — Acordo individual escrito é suficiente (art. 74, § 4º, CLT)</div>
+      <div class="gabarito-body">
+        <p><strong>A) Errada.</strong> O <span class="ref">art. 74, § 4º, CLT</span> permite expressamente a utilização de registro de ponto por exceção mediante <strong>acordo individual escrito</strong>, convenção coletiva ou acordo coletivo de trabalho.</p>
+        <p><strong>B) Correta.</strong> De acordo com o <span class="ref">§ 4º do art. 74, CLT</span>, o registro por exceção à jornada regular pode ser feito por <strong>acordo individual escrito</strong>. Os termos individuais assinados pelos empregados atendem a esse requisito.</p>
+        <p><strong>C) Errada.</strong> Não há essa exigência no <span class="ref">§ 4º do art. 74, CLT</span>. Homologação judicial não é requisito.</p>
+        <p><strong>D) Errada.</strong> Não há essa exigência no <span class="ref">§ 4º do art. 74, CLT</span>. Comissão de empregados e concessão de vantagem não são requisitos legais.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Q6 — XXVII Exame — Jornada extraordinária / culto ecumênico -->
+  <div class="q-card" id="q6">
+    <div class="q-header"><span class="q-badge">XXVII Exame · FGV</span>
+      <p class="q-text">Renato trabalha na empresa Ramos Santos Ltda. exercendo a função de técnico de manutenção. De segunda a sexta-feira trabalha das 8h às 17h, com uma hora de almoço, e aos sábados, das 8h às 12h, sem intervalo. Por reivindicação de alguns funcionários, a empresa instituiu um culto ecumênico toda sexta-feira, ao final do expediente, das 17h às 18h, cujo comparecimento é facultativo. Renato passou a frequentá-lo. Na hipótese de você ser procurado como advogado(a) em consulta formulada por Renato sobre jornada extraordinária, assinale a afirmativa correta.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="6" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Renato não faz jus a qualquer valor de horas extras.</span></button>
+      <button class="opt" data-q="6" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Renato tem direito a uma hora extra semanal, pois o culto foi instituído pela empregadora.</span></button>
+      <button class="opt" data-q="6" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Renato tem direito a uma hora extra diária, de segunda a sexta-feira, em razão do horário de trabalho das 8h às 17h.</span></button>
+      <button class="opt" data-q="6" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Renato tem direito a nove horas extras semanais, sendo cinco de segunda a sexta-feira e mais as 4 aos sábados.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q6-btn" disabled onclick="confirmAnswer(6,'A')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q6-tog" onclick="toggleGabarito(6)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q6-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa A — Nenhuma hora extra é devida</div>
+      <div class="gabarito-body">
+        <p><strong>A) Correta.</strong> Não se considera tempo à disposição do empregador o período em que o empregado, por escolha própria, permanece nas dependências da empresa para exercer atividades particulares — incluindo práticas religiosas <span class="ref">art. 4º, § 2º, CLT</span>. O culto ecumênico é facultativo e constitui prática religiosa voluntária. A jornada semanal de Renato (8h × 5 + 4h sábado = 44h) está dentro do limite constitucional.</p>
+        <p><strong>B) Errada.</strong> Embora o culto tenha sido instituído pela empregadora, o comparecimento é facultativo e constitui prática religiosa por escolha própria do empregado.</p>
+        <p><strong>C) Errada.</strong> A jornada diária de 8h das 8h às 17h (com 1h de almoço) é exatamente a jornada normal máxima — não gera hora extra.</p>
+        <p><strong>D) Errada.</strong> A jornada semanal total é de 44h, exatamente dentro do limite. Não há horas extras.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Q7 — XXXVII Exame — Banco de horas até 6 meses -->
+  <div class="q-card" id="q7">
+    <div class="q-header"><span class="q-badge">XXXVII Exame · FGV</span>
+      <p class="q-text">A sociedade empresária Soluções Perfeitas Ltda. pretende implantar banco de horas com compensação das eventuais horas extras cumpridas em até 2 meses e, caso não compensadas, com pagamento ao empregado com adicional legal. Considerando esses fatos e o que dispõe a CLT, assinale a afirmativa correta.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="7" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>A instituição do banco de horas depende de norma coletiva para sua validade, porque a compensação será superior a 30 dias.</span></button>
+      <button class="opt" data-q="7" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>O banco de horas poderá ser pactuado por acordo individual escrito, porque a compensação será feita em menos de 6 meses.</span></button>
+      <button class="opt" data-q="7" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>O banco de horas é proibido por Lei, independentemente do tempo previsto para compensação das horas.</span></button>
+      <button class="opt" data-q="7" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>O banco de horas pode ser feito por acordo individual ou coletivo independentemente do tempo para compensação, desde que seja pago o adicional legal para as horas não compensadas.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q7-btn" disabled onclick="confirmAnswer(7,'B')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q7-tog" onclick="toggleGabarito(7)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q7-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa B — Banco de horas até 6 meses: acordo individual escrito é suficiente</div>
+      <div class="gabarito-body">
+        <p><strong>A) Errada.</strong> Só é necessário acordo coletivo para banco de horas <strong>superior a 6 meses</strong> <span class="ref">art. 59, § 5º, CLT</span>. Compensação em até 6 meses pode ser por acordo individual escrito.</p>
+        <p><strong>B) Correta.</strong> Banco de horas de até 6 meses pode ser pactuado por <strong>acordo individual escrito</strong> <span class="ref">art. 59, § 5º, CLT</span>. Como a compensação prevista é de até 2 meses, está dentro do limite semestral.</p>
+        <p><strong>C) Errada.</strong> O banco de horas é expressamente permitido pelo <span class="ref">art. 59, § 2º e seguintes, CLT</span>.</p>
+        <p><strong>D) Errada.</strong> Banco de horas superior a 6 meses precisa de norma coletiva — não pode ser por acordo individual independentemente do prazo.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Q8 — XIX Exame — Supressão de horas extras (Súmula 291) -->
+  <div class="q-card" id="q8">
+    <div class="q-header"><span class="q-badge">XIX Exame · FGV</span>
+      <p class="q-text">Maria trabalha como soldadora em uma empresa há 7 anos. Sua jornada contratual deveria ser de segunda a sexta-feira, das 9 às 18h, com intervalo de uma hora para refeição, e, aos sábados, das 8 às 12h. Nos últimos 3 anos, o empregador vem exigindo de Maria a realização de uma hora extra diária, pois realizou um grande negócio de exportação. Findo o contrato de exportação, o empregador determinou que Maria retornasse à sua jornada contratual original. Nesse caso, considerando o entendimento consolidado do TST, assinale a afirmativa correta.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="8" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>As horas extras se incorporaram ao salário de Maria e dela não podem ser retiradas, sendo vedada a alteração maléfica.</span></button>
+      <button class="opt" data-q="8" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>O empregador deverá pagar a Maria uma indenização de 1 mês de horas extras por cada ano de horas extras trabalhadas e, assim, suprimir o pagamento da sobrejornada.</span></button>
+      <button class="opt" data-q="8" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>O empregador deverá conceder uma indenização à empregada pelo prejuízo financeiro, que deverá ser arbitrada de comum acordo entre as partes e homologada no sindicato.</span></button>
+      <button class="opt" data-q="8" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Maria terá de continuar a trabalhar em regime de horas extras, pois não se admite a novação objetiva na relação de emprego.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q8-btn" disabled onclick="confirmAnswer(8,'B')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q8-tog" onclick="toggleGabarito(8)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q8-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa B — Indenização pela supressão (Súmula 291, TST)</div>
+      <div class="gabarito-body">
+        <p><strong>A) Errada.</strong> O adicional de horas extras é devido enquanto existir o trabalho extraordinário — não há incorporação ao salário. Não se trata de alteração prejudicial proibida, pois o trabalho em horas extras é excepcional <span class="ref">Súmula 291, TST</span>.</p>
+        <p><strong>B) Correta.</strong> A <strong>Súmula 291 do TST</strong> prevê que a supressão das horas extras habitualmente prestadas há mais de um ano gera ao empregado o direito a uma indenização de <strong>1 mês das horas suprimidas por ano</strong> (ou fração ≥ 6 meses) de serviço acima da jornada normal. Maria trabalhava 1h extra/dia por 3 anos = direito a 3 meses de indenização.</p>
+        <p><strong>C) Errada.</strong> A indenização não é arbitrada de comum acordo — está fixada pela Súmula 291/TST e não requer homologação sindical.</p>
+        <p><strong>D) Errada.</strong> O empregador pode suprimir as horas extras — devendo indenizar conforme a Súmula 291/TST. Não há obrigação de manter o regime extraordinário.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Q9 — XXVII Exame — Empregados excluídos (teletrabalho/gerente/externo) -->
+  <div class="q-card" id="q9">
+    <div class="q-header"><span class="q-badge">XXVII Exame · FGV</span>
+      <p class="q-text">Em determinada sociedade empresária trabalham, entre outras, as seguintes pessoas: José, que é teletrabalhador e recebe salário por produção; Vanilda, que trabalha externamente sem que o empregador consiga controlar o seu horário (condição anotada em sua CTPS e na ficha de registro); Regina, que exerce a função de gerente, comanda um grupo de 45 pessoas, é dispensada da marcação de ponto e recebe salário de R$ 8.000,00 acrescido de gratificação de função de R$ 4.000,00. De acordo com a CLT, em relação ao direito a horas extras, assinale a afirmativa correta.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="9" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Somente José terá direito a horas extras, caso ultrapassem a jornada constitucional.</span></button>
+      <button class="opt" data-q="9" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Nenhum dos empregados indicados no enunciado terá direito a horas extras.</span></button>
+      <button class="opt" data-q="9" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Vanilda e Regina terão direito a horas extras, caso ultrapassem a jornada constitucional.</span></button>
+      <button class="opt" data-q="9" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>José e Regina terão direito a horas extras, caso ultrapassem a jornada constitucional.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q9-btn" disabled onclick="confirmAnswer(9,'B')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q9-tog" onclick="toggleGabarito(9)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q9-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa B — Nenhum dos três tem direito a horas extras</div>
+      <div class="gabarito-body">
+        <p><strong>B) Correta.</strong> Nos termos do <span class="ref">art. 62, CLT</span>: <strong>José</strong> — teletrabalhador por produção ou tarefa, não tem direito a horas extras (inciso III); <strong>Vanilda</strong> — trabalha externamente com condição anotada na CTPS e sem possibilidade de controle de horário (inciso I); <strong>Regina</strong> — exerce cargo de gestão (gerente com 45 subordinados) e seu salário do cargo de confiança (R$ 8.000 + R$ 4.000 = R$ 12.000) é superior ao salário efetivo acrescido de 40% (R$ 8.000 × 1,40 = R$ 11.200) — inciso II e parágrafo único.</p>
+        <p><strong>A), C) e D) Erradas.</strong> Pelos fundamentos acima, nenhum dos três faz jus a horas extras.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Q10 — XXXV Exame — Controle de ponto por estabelecimento -->
+  <div class="q-card" id="q10">
+    <div class="q-header"><span class="q-badge">XXXV Exame · FGV</span>
+      <p class="q-text">Um empresário explora o ramo de farmácias e drogarias, possuindo 18 filiais divididas por dois estados da Federação. Cada filial tem 5 empregados, todos com CTPS assinada. O empresário, desejando saber se precisa manter controle escrito dos horários de entrada e saída dos empregados, procura você, como advogado(a), orientá-lo. Diante da situação retratada e com base na CLT, assinale a afirmativa correta.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="10" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>O controle de ponto deverá ser mantido, porque a empresa possui mais de 10 empregados.</span></button>
+      <button class="opt" data-q="10" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>A análise deverá ser feita por cada estado da Federação, sendo obrigatório o ponto se houver mais de 10 empregados no espaço geográfico do estado.</span></button>
+      <button class="opt" data-q="10" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>O empresário não precisará manter controle escrito, porque tem menos de 10 empregados por estabelecimento.</span></button>
+      <button class="opt" data-q="10" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>A Lei é omissa a respeito, daí porque, a título de cautela, é recomendável que seja marcado o controle, podendo haver a pré-assinalação da pausa alimentar.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q10-btn" disabled onclick="confirmAnswer(10,'C')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q10-tog" onclick="toggleGabarito(10)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q10-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa C — Controle obrigatório para estabelecimentos com mais de 20 empregados</div>
+      <div class="gabarito-body">
+        <p><strong>A) Errada.</strong> A obrigação de controle de jornada leva em conta o número de empregados do <strong>estabelecimento</strong> — e o limite é de <strong>20 empregados</strong>, não 10 <span class="ref">art. 74, § 2º, CLT</span>.</p>
+        <p><strong>B) Errada.</strong> A análise é feita por <strong>estabelecimento</strong>, e não por Estado da Federação.</p>
+        <p><strong>C) Correta.</strong> Nos termos do <span class="ref">§ 2º do art. 74, CLT</span>, o controle de jornada é obrigatório para os estabelecimentos com <strong>mais de 20 empregados</strong>. Cada filial tem apenas 5 empregados — abaixo do limite — portanto, não há obrigação.</p>
+        <p><strong>D) Errada.</strong> Não há omissão da lei. Há previsão expressa no <span class="ref">art. 74, § 2º, CLT</span>.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Q11 — XXVIII Exame — Teletrabalho — troca de uniforme (Sabrina) -->
+  <div class="q-card" id="q11">
+    <div class="q-header"><span class="q-badge">XXXVII Exame · FGV</span>
+      <p class="q-text">Sabrina era empregada de um grande escritório de contabilidade desde 2021, e sempre chegava ao local de trabalho com 5 minutos de antecedência em relação ao horário contratual para trocar a roupa e colocar o uniforme da sociedade empresária. O empregador permitia que o empregado chegasse uniformizado, mas Sabrina achava melhor trocar a roupa na empresa por questão de segurança. Da mesma forma, após terminar o horário contratual, Sabrina permanecia mais 5 minutos no emprego para tirar o uniforme e colocar a sua roupa pessoal. Sabrina foi dispensada em fevereiro de 2023 e ajuizou reclamação trabalhista postulando 10 minutos diários de horas extras relativas às trocas de roupa. Sobre a hipótese apresentada, diante do que dispõe a CLT, assinale a afirmativa correta.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="11" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Sabrina está correta na postulação e, caso comprovada, ensejará o pagamento de horas extras.</span></button>
+      <button class="opt" data-q="11" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>A sociedade empresária deverá pagar metade do período como hora extra, uma vez que o excesso era de 10 minutos diários e o objetivo era a troca de uniforme.</span></button>
+      <button class="opt" data-q="11" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Sabrina terá direito ao pagamento dos 10 minutos diários, mas não do adicional de 50%.</span></button>
+      <button class="opt" data-q="11" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Sabrina está errada, pois esse período não será descontado nem computado como jornada extraordinária.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q11-btn" disabled onclick="confirmAnswer(11,'D')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q11-tog" onclick="toggleGabarito(11)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q11-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa D — Variação de até 5 min por marcação não gera horas extras</div>
+      <div class="gabarito-body">
+        <p><strong>D) Correta.</strong> Nos termos do <span class="ref">art. 58, § 1º, CLT</span>, não serão descontadas nem computadas como jornada extraordinária as variações de horário no registro de ponto que <strong>não excedam 5 minutos</strong> por marcação, observado o limite máximo de <strong>10 minutos diários</strong>. Como Sabrina chegava 5 minutos antes e saía 5 minutos depois, as variações são de exatamente 5 minutos por marcação — dentro do limite legal. Além disso, a troca de uniforme quando não há obrigatoriedade de realizá-la na empresa (ela podia chegar uniformizada) não é tempo à disposição <span class="ref">art. 4º, § 2º, CLT</span>.</p>
+        <p><strong>A), B) e C) Erradas.</strong> Pelos fundamentos acima, não há que se falar em horas extras nem em qualquer pagamento adicional.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Q12 — XXXV Exame — Jornadas especiais: motorista e despachante -->
+  <div class="q-card" id="q12">
+    <div class="q-header"><span class="q-badge">XXXV Exame · FGV</span>
+      <p class="q-text">A sociedade empresária Transportes Canela Ltda., que realiza transporte rodoviário de passageiros, abriu processo seletivo para a contratação de motoristas profissionais e despachantes. Sérgio se apresentou como candidato ao cargo de motorista e Bárbara, ao cargo de despachante. A sociedade exigiu de ambos a realização de exame toxicológico para detecção de drogas ilícitas como condição para a admissão. Considerando a situação de fato e a previsão legal, assinale a afirmativa correta.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="12" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Em hipótese alguma, o exame poderia ser feito, uma vez que viola a intimidade dos trabalhadores.</span></button>
+      <button class="opt" data-q="12" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>O exame pode ser feito em ambos os empregados, desde que haja prévia autorização judicial.</span></button>
+      <button class="opt" data-q="12" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>O exame toxicológico seria válido para Sérgio por expressa previsão legal, mas seria ilegal para Bárbara.</span></button>
+      <button class="opt" data-q="12" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>É possível o exame em Bárbara se houver fundada desconfiança, mas, para Sérgio, não pode ser realizado.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q12-btn" disabled onclick="confirmAnswer(12,'C')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q12-tog" onclick="toggleGabarito(12)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q12-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa C — Exame válido apenas para motorista profissional</div>
+      <div class="gabarito-body">
+        <p><strong>C) Correta.</strong> Pode ser feito no motorista profissional empregado, por <strong>expressa autorização legal</strong> <span class="ref">art. 235-B, VII, CLT</span>, mas não pode ser feito para o despachante, pois não há autorização legal para tanto. Não há que se falar em autorização judicial — a lei já autoriza expressamente para motoristas.</p>
+        <p><strong>A) Errada.</strong> No caso do motorista profissional empregado, não só o exame pode ser feito, como é dever do motorista fazê-lo, sob pena de penalização <span class="ref">art. 235-B, VII e parágrafo único, CLT</span>.</p>
+        <p><strong>B) Errada.</strong> Somente pode ser feito no motorista profissional empregado, por expressa autorização legal. Não há que se falar em autorização judicial.</p>
+        <p><strong>D) Errada.</strong> A situação é contrária: pode ser feito para Sérgio (motorista), mas não para Bárbara (despachante). Não existe previsão de "fundada desconfiança" como critério legal.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Q13 — XXV Exame — Intervalos intrajornada (Súmula 71, § 4º) -->
+  <div class="q-card" id="q13">
+    <div class="q-header"><span class="q-badge">XXV Exame · FGV</span>
+      <p class="q-text">Jorge trabalhou para a Sapataria Bico Fino Ltda., de 16/11/2017 a 20/03/2018. Na ocasião realizava jornada das 9h às 18h, com 15 minutos de intervalo. Ao ser dispensado ajuizou ação trabalhista, reclamando o pagamento de uma hora integral pela ausência do intervalo, além dos reflexos disso nas demais parcelas intercorrentes do contrato de trabalho. Diante disso, e considerando o texto da CLT, assinale a afirmativa correta.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="13" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Jorge faz jus a 45 minutos acrescidos de 50%, porém sem os reflexos, dada a natureza jurídica indenizatória da parcela.</span></button>
+      <button class="opt" data-q="13" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Jorge faz jus a 45 minutos acrescidos de 50%, além dos reflexos, dada a natureza jurídica salarial da parcela.</span></button>
+      <button class="opt" data-q="13" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Jorge faz jus a uma hora integral acrescida de 50%, porém sem os reflexos, dada a natureza jurídica indenizatória da parcela.</span></button>
+      <button class="opt" data-q="13" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Jorge faz jus a uma hora integral acrescida de 50%, porém sem os reflexos, dada a natureza jurídica salarial da parcela.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q13-btn" disabled onclick="confirmAnswer(13,'A')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q13-tog" onclick="toggleGabarito(13)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q13-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa A — Pagamento indenizatório apenas do período suprimido + 50%</div>
+      <div class="gabarito-body">
+        <p><strong>A) Correta.</strong> O <span class="ref">art. 71, § 4º, CLT</span> prevê que a supressão <strong>parcial</strong> do intervalo intrajornada implica o pagamento, de natureza <strong>indenizatória</strong>, <em>apenas do período suprimido</em>, com acréscimo de no mínimo 50%. Jorge tinha direito a 1h de intervalo (jornada superior a 6h) e usufruiu 15 minutos — foram suprimidos <strong>45 minutos</strong>. Como é natureza indenizatória, <strong>não gera reflexos</strong> nas demais verbas.</p>
+        <p><strong>B) Errada.</strong> A natureza é indenizatória (e não salarial), portanto não gera reflexos.</p>
+        <p><strong>C) e D) Erradas.</strong> O pagamento é apenas do período suprimido (45 min), e não da hora integral.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Q14 — XXXIX Exame — Férias família (art. 136 CLT) -->
+  <div class="q-card" id="q14">
+    <div class="q-header"><span class="q-badge">XXXIX Exame · FGV</span>
+      <p class="q-text">Uma família, composta de pai, mãe e uma filha, respectivamente Jorge, Paula e Rita, trabalha na mesma sociedade empresária como funcionários do departamento de produção. Rita tem 16 anos de idade, estuda na parte da manhã em uma escola vizinha ao local de trabalho, e está cursando o primeiro ano do ensino médio. Os pais são responsáveis pelo setor de qualidade, que não conta com nenhum outro funcionário. Os três procuraram você, como advogado(a), porque desejam fazer coincidir as férias escolares de Rita, no mês de julho, com as férias de Jorge e Paula, a fim de viabilizar uma viagem familiar. Entretanto, o empregador indeferiu o requerimento das férias de Jorge e Paula, tendo deferido apenas o de Rita. Sobre o direito às férias, assinale a afirmativa correta.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="14" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Cabe o ajuizamento de reclamação trabalhista requerendo que o juiz marque as férias dos 3 membros da mesma família, pois Rita tem direito às férias no período escolar e deverá ser acompanhada pelos pais.</span></button>
+      <button class="opt" data-q="14" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Cabe aos empregados a designação do período de férias, inexistindo direito ao empregador de indeferi-las.</span></button>
+      <button class="opt" data-q="14" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Os três poderão gozar férias juntos, mas Rita não tem direito de requerer férias concomitantemente com o período de férias escolares.</span></button>
+      <button class="opt" data-q="14" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Rita tem direito a fazer coincidir suas férias no emprego com as férias escolares e seus pais terão direito a gozar férias no mesmo período, desde que isso não resulte prejuízo para o serviço, causa do indeferimento pelo empregador.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q14-btn" disabled onclick="confirmAnswer(14,'D')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q14-tog" onclick="toggleGabarito(14)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q14-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa D — Direito dos pais condicionado à ausência de prejuízo para o serviço</div>
+      <div class="gabarito-body">
+        <p><strong>D) Correta.</strong> Nos termos do <span class="ref">art. 136 da CLT</span>, a época da concessão das férias será a que melhor atenda aos interesses do empregador. O empregado estudante menor de 18 anos tem direito de fazer coincidir suas férias com as férias escolares <span class="ref">§ 2º, art. 136, CLT</span>, e os membros de uma família que trabalhem no mesmo estabelecimento têm direito a gozar férias no mesmo período, <strong>se assim o desejarem e desde que isso não resulte prejuízo para o serviço</strong> <span class="ref">§ 1º, art. 136, CLT</span>. No caso, o empregador justificou o indeferimento com o prejuízo para o serviço do setor de qualidade.</p>
+        <p><strong>A) Errada.</strong> O direito dos pais às férias concomitantes está condicionado à ausência de prejuízo para o serviço — que foi justamente o fundamento do indeferimento.</p>
+        <p><strong>B) Errada.</strong> A designação do período de férias é prerrogativa do empregador <span class="ref">art. 136, CLT</span>, com as ressalvas legais.</p>
+        <p><strong>C) Errada.</strong> Rita tem expressamente o direito de fazer coincidir suas férias com as escolares <span class="ref">§ 2º, art. 136, CLT</span>.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- RESULTADO FINAL -->
+  <div class="result-banner" id="result-banner">
+    <div class="result-score" id="result-score">0/14</div>
+    <div class="result-label">Resultado final</div>
+    <div class="result-msg" id="result-msg"></div>
+  </div>
+
+</section>
+
+<a class="back" href="../index.html"><span class="arw">←</span><span>Voltar ao índice da disciplina</span></a>
+
+</div><!-- /wrap -->
+
+<script>
+/* accordion de conteúdo */
+(function(){
+  var cards = document.querySelectorAll('.card');
+  cards.forEach(function(card){
+    var btn = card.querySelector('.card-btn');
+    if(!btn) return;
+    btn.addEventListener('click', function(){
+      var isOpen = card.classList.contains('open');
+      cards.forEach(function(c){c.classList.remove('open');var b=c.querySelector('.card-btn');if(b)b.setAttribute('aria-expanded','false');});
+      if(!isOpen){card.classList.add('open');btn.setAttribute('aria-expanded','true');}
+    });
+  });
+})();
+
+/* reveal on scroll */
+(function(){
+  var items=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){items.forEach(function(el){el.classList.add('in');});return;}
+  var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.08,rootMargin:'0px 0px -3% 0px'});
+  items.forEach(function(el,i){el.style.transitionDelay=(i*30)+'ms';io.observe(el);});
+})();
+
+/* ── QUIZ ── */
+var TOTAL=14, answered={};
+
+function selectOpt(el){
+  var q=el.dataset.q;
+  if(answered[q]!==undefined) return;
+  document.querySelectorAll('[data-q="'+q+'"]').forEach(function(o){o.classList.remove('selected');});
+  el.classList.add('selected');
+  document.getElementById('q'+q+'-btn').disabled=false;
+}
+
+function confirmAnswer(qNum,correctVal){
+  var opts=document.querySelectorAll('[data-q="'+qNum+'"]');
+  var btn=document.getElementById('q'+qNum+'-btn');
+  var card=document.getElementById('q'+qNum);
+  var tog=document.getElementById('q'+qNum+'-tog');
+  var chosen=null;
+  opts.forEach(function(o){if(o.classList.contains('selected'))chosen=o;});
+  if(!chosen) return;
+  var isCorrect=chosen.dataset.val===correctVal;
+  answered[qNum]=isCorrect;
+  opts.forEach(function(o){
+    o.disabled=true;
+    if(o.dataset.val===correctVal){o.classList.add('correct-final');}
+    else if(o.classList.contains('selected')&&!isCorrect){o.classList.add('wrong-final');}
+    else{o.classList.add('dimmed');}
+    o.classList.remove('selected');
+  });
+  card.classList.add(isCorrect?'answered-correct':'answered-wrong');
+  btn.disabled=true; btn.style.display='none';
+  tog.style.display='inline-flex';
+  updateScore(); checkAllDone();
+}
+
+function toggleGabarito(qNum){
+  var gab=document.getElementById('q'+qNum+'-gab');
+  var tog=document.getElementById('q'+qNum+'-tog');
+  var open=gab.classList.toggle('open');
+  tog.classList.toggle('open',open);
+}
+
+function updateScore(){
+  var done=Object.keys(answered).length;
+  var correct=Object.values(answered).filter(Boolean).length;
+  var pct=TOTAL>0?(correct/TOTAL)*100:0;
+  document.getElementById('sc-current').textContent=correct;
+  document.getElementById('sc-bar').style.width=pct+'%';
+  document.getElementById('sc-bar').style.background=pct>=70?'#166534':pct>=40?'#d97706':'#991b1b';
+  document.getElementById('sc-msg').textContent=done+' respondida'+(done!==1?'s':'');
+}
+
+function checkAllDone(){
+  if(Object.keys(answered).length<TOTAL) return;
+  var correct=Object.values(answered).filter(Boolean).length;
+  var banner=document.getElementById('result-banner');
+  var score=document.getElementById('result-score');
+  var msg=document.getElementById('result-msg');
+  score.textContent=correct+'/'+TOTAL;
+  var pct=correct/TOTAL;
+  if(pct===1) msg.textContent='🎉 Parabéns! Gabarito perfeito — você domina o tema.';
+  else if(pct>=.75) msg.textContent='✅ Muito bem! Revise os pontos que errou e estará pronto.';
+  else if(pct>=.5) msg.textContent='📖 Resultado razoável. Revise os comentários com atenção.';
+  else msg.textContent='🔁 Reforce o estudo e tente novamente. Os comentários ajudam!';
+  banner.classList.add('show');
+  banner.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+function resetQuiz(){
+  answered={};
+  for(var q=1;q<=TOTAL;q++){
+    document.querySelectorAll('[data-q="'+q+'"]').forEach(function(o){
+      o.disabled=false; o.classList.remove('selected','correct-final','wrong-final','dimmed');
+    });
+    document.getElementById('q'+q).classList.remove('answered-correct','answered-wrong');
+    var btn=document.getElementById('q'+q+'-btn');
+    btn.disabled=true; btn.style.display='';
+    var tog=document.getElementById('q'+q+'-tog');
+    tog.style.display='none'; tog.classList.remove('open');
+    document.getElementById('q'+q+'-gab').classList.remove('open');
+  }
+  document.getElementById('sc-current').textContent='0';
+  document.getElementById('sc-bar').style.width='0%';
+  document.getElementById('sc-msg').textContent='0 respondidas';
+  document.getElementById('result-banner').classList.remove('show');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
 </body>
 </html>
