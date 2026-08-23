@@ -20,6 +20,12 @@
     --iron:#8b8579;
     --line:rgba(27,36,54,.13);
     --line-strong:rgba(27,36,54,.22);
+    --green:#166534;
+    --green-bg:#f0fdf4;
+    --green-line:#bbf7d0;
+    --red:#991b1b;
+    --red-bg:#fef2f2;
+    --red-line:#fecaca;
     --display:"Fraunces", Georgia, "Times New Roman", serif;
     --body:"Spectral", Georgia, serif;
     --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
@@ -47,7 +53,7 @@
     z-index:50;
   }
 
-  .wrap{ max-width:760px; margin:0 auto; padding:0 22px 72px; }
+  .wrap{ max-width:760px; margin:0 auto; padding:0 22px 80px; }
 
   /* ===== CABEÇALHO ===== */
   .masthead{
@@ -375,7 +381,6 @@
     display:flex;
     flex-direction:column;
     gap:2px;
-    margin:10px 0 4px;
   }
   .dir-item{
     display:grid;
@@ -389,6 +394,282 @@
   }
   .dir-item:last-child{ border-bottom:none; }
   .dir-item .bul{ color:var(--accent); font-family:var(--mono); font-size:.85em; padding-top:2px; }
+
+  /* ===== PLACAR ===== */
+  .scoreboard{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    flex-wrap:wrap;
+    padding:18px 22px;
+    background:var(--surface);
+    border:1px solid var(--line-strong);
+    border-radius:8px;
+    margin-bottom:8px;
+  }
+  .score-label{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--iron);
+  }
+  .score-nums{
+    display:flex;
+    align-items:baseline;
+    gap:6px;
+  }
+  .score-current{
+    font-family:var(--display);
+    font-size:2.6rem;
+    font-weight:600;
+    color:var(--ink);
+    line-height:1;
+    transition:color .3s;
+  }
+  .score-total{
+    font-family:var(--mono);
+    font-size:1rem;
+    color:var(--iron);
+  }
+  .score-bar-wrap{
+    flex:1;
+    min-width:120px;
+    height:8px;
+    background:var(--line);
+    border-radius:99px;
+    overflow:hidden;
+  }
+  .score-bar{
+    height:100%;
+    width:0%;
+    background:var(--accent);
+    border-radius:99px;
+    transition:width .5s cubic-bezier(.2,.7,.2,1), background .3s;
+  }
+  .score-msg{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--iron);
+    min-width:80px;
+  }
+  .btn-reset{
+    margin-left:auto;
+    border:1px solid var(--line-strong);
+    background:none;
+    color:var(--ink-soft);
+    border-radius:4px;
+    padding:7px 14px;
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    cursor:pointer;
+    transition:border-color .2s, color .2s;
+  }
+  .btn-reset:hover{ border-color:var(--accent); color:var(--accent); }
+
+  /* ===== CARD DE QUESTÃO ===== */
+  .q-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:8px;
+    margin:16px 0;
+    overflow:hidden;
+    transition:border-color .25s, box-shadow .25s;
+  }
+  .q-card.answered-correct{ border-color:var(--green-line); box-shadow:0 0 0 2px rgba(22,101,52,.12); }
+  .q-card.answered-wrong  { border-color:var(--red-line);   box-shadow:0 0 0 2px rgba(153,27,27,.10); }
+
+  .q-header{
+    display:flex;
+    align-items:flex-start;
+    gap:14px;
+    padding:18px 20px 14px;
+  }
+  .q-badge{
+    flex-shrink:0;
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    color:var(--accent);
+    background:rgba(122,46,55,.09);
+    border:1px solid rgba(122,46,55,.18);
+    border-radius:4px;
+    padding:3px 9px;
+    margin-top:3px;
+    white-space:nowrap;
+  }
+  .q-text{
+    font-family:var(--body);
+    font-size:.97em;
+    color:var(--ink);
+    line-height:1.72;
+    flex:1;
+    margin:0;
+  }
+
+  /* alternativas */
+  .options{
+    padding:0 20px 18px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .opt{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    padding:11px 14px;
+    border:1px solid var(--line);
+    border-radius:6px;
+    cursor:pointer;
+    background:var(--paper);
+    transition:border-color .18s, background .18s;
+    text-align:left;
+    width:100%;
+    font-family:var(--body);
+    font-size:.93em;
+    color:var(--ink-soft);
+    line-height:1.6;
+  }
+  .opt:hover:not(:disabled){ border-color:var(--accent-soft); background:#f7f3f1; }
+  .opt-letter{
+    flex-shrink:0;
+    font-family:var(--mono);
+    font-size:.82em;
+    font-weight:700;
+    color:var(--accent);
+    width:20px;
+    padding-top:2px;
+  }
+  .opt.selected{ border-color:var(--accent); background:rgba(122,46,55,.06); }
+  .opt.correct-final{ border-color:var(--green); background:var(--green-bg); cursor:default; }
+  .opt.correct-final .opt-letter{ color:var(--green); }
+  .opt.wrong-final{ border-color:var(--red); background:var(--red-bg); cursor:default; }
+  .opt.wrong-final .opt-letter{ color:var(--red); }
+  .opt.dimmed{ opacity:.42; cursor:default; }
+
+  /* ações */
+  .q-actions{ padding:0 20px 18px; display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+  .btn-confirm{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:10px 22px;
+    background:var(--ink);
+    color:#f4f2ec;
+    border:none;
+    border-radius:4px;
+    font-family:var(--mono);
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:.07em;
+    text-transform:uppercase;
+    cursor:pointer;
+    transition:background .2s, transform .2s;
+  }
+  .btn-confirm:hover:not(:disabled){ background:var(--accent); transform:translateY(-1px); }
+  .btn-confirm:disabled{ opacity:.35; cursor:default; transform:none; }
+
+  /* gabarito comentado */
+  .toggle-gabarito{
+    display:none;
+    align-items:center;
+    gap:7px;
+    border:none;
+    background:none;
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--iron);
+    cursor:pointer;
+    transition:color .2s;
+    padding:0;
+  }
+  .toggle-gabarito:hover{ color:var(--accent); }
+  .toggle-gabarito .chev{ display:inline-block; font-size:10px; transition:transform .3s cubic-bezier(.2,.7,.2,1); }
+  .toggle-gabarito.open .chev{ transform:rotate(180deg); }
+
+  .gabarito{
+    border-top:1px solid var(--line);
+    overflow:hidden;
+    max-height:0;
+    transition:max-height .45s cubic-bezier(.2,.7,.2,1);
+  }
+  .gabarito.open{ max-height:1400px; }
+  .gabarito-inner{ padding:18px 20px 20px; }
+  .gabarito-title{
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--iron);
+    margin-bottom:12px;
+  }
+  .gabarito-correct{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:10px 14px;
+    background:var(--green-bg);
+    border:1px solid var(--green-line);
+    border-radius:6px;
+    font-family:var(--mono);
+    font-size:.85em;
+    font-weight:700;
+    color:var(--green);
+    margin-bottom:14px;
+  }
+  .gabarito-body{ font-size:.91em; color:var(--ink-soft); line-height:1.72; }
+  .gabarito-body strong{ color:var(--ink); }
+  .gabarito-body .ref{
+    font-family:var(--mono);
+    font-size:.8em;
+    color:var(--iron);
+    background:rgba(139,133,121,.12);
+    padding:2px 7px;
+    border-radius:3px;
+    white-space:nowrap;
+  }
+  .gabarito-body p{ margin-bottom:10px; }
+  .gabarito-body p:last-child{ margin-bottom:0; }
+
+  /* resultado final */
+  .result-banner{
+    display:none;
+    margin:32px 0 0;
+    padding:28px 24px;
+    border:1px solid var(--line-strong);
+    border-radius:8px;
+    background:var(--surface);
+    text-align:center;
+    animation:rise .5s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .result-banner.show{ display:block; }
+  .result-score{
+    font-family:var(--display);
+    font-size:3.2rem;
+    font-weight:600;
+    color:var(--accent);
+    line-height:1;
+    margin-bottom:6px;
+  }
+  .result-label{
+    font-family:var(--mono);
+    font-size:13px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--iron);
+  }
+  .result-msg{
+    margin-top:12px;
+    font-size:.95em;
+    color:var(--ink-soft);
+  }
 
   /* ===== BOTÃO VOLTAR ===== */
   .back{
@@ -431,6 +712,8 @@
     .card-btn{ grid-template-columns:44px 1fr 30px; }
     .tl-item{ grid-template-columns:48px 1fr; gap:16px; }
     .timeline::before{ left:calc(48px + 8px); }
+    .scoreboard{ flex-direction:column; align-items:flex-start; gap:10px; }
+    .btn-reset{ margin-left:0; }
   }
   @media (prefers-reduced-motion:reduce){
     *{ animation:none !important; scroll-behavior:auto; }
@@ -444,7 +727,7 @@
 <body>
 <div class="wrap">
 
-  <!-- CABEÇALHO -->
+  <!-- ══════════════ CABEÇALHO ══════════════ -->
   <header class="masthead">
     <p class="eyebrow">
       Direito do Trabalho
@@ -475,7 +758,7 @@
     </div>
   </header>
 
-  <!-- FATORES DISTINTIVOS -->
+  <!-- ══════════════ FATORES DISTINTIVOS ══════════════ -->
   <section>
     <div class="sec-head reveal">
       <span class="num">§</span>
@@ -524,7 +807,7 @@
     </div>
   </section>
 
-  <!-- EVOLUÇÃO CONSTITUCIONAL -->
+  <!-- ══════════════ EVOLUÇÃO CONSTITUCIONAL ══════════════ -->
   <section>
     <div class="sec-head reveal">
       <span class="num">§</span>
@@ -581,7 +864,7 @@
     </div>
   </section>
 
-  <!-- DIREITOS POR CATEGORIA -->
+  <!-- ══════════════ DIREITOS POR CATEGORIA ══════════════ -->
   <section>
     <div class="sec-head reveal">
       <span class="num">§</span>
@@ -663,14 +946,204 @@
     </div>
   </section>
 
+  <!-- ══════════════════════════════════════════════════════
+       QUESTÕES OAB — SEÇÃO INTERATIVA
+  ══════════════════════════════════════════════════════ -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="num">§</span>
+      <h2>Questões de Exame da OAB</h2>
+    </div>
+
+    <p class="reveal">
+      Selecione a alternativa que julgue correta e clique em <strong>Confirmar resposta</strong>.
+      Após a confirmação, o gabarito comentado fica disponível para expansão.
+    </p>
+
+    <!-- PLACAR -->
+    <div class="scoreboard reveal" id="scoreboard">
+      <div>
+        <div class="score-label">Acertos</div>
+        <div class="score-nums">
+          <span class="score-current" id="sc-current">0</span>
+          <span class="score-total" id="sc-total">/ 4</span>
+        </div>
+      </div>
+      <div class="score-bar-wrap">
+        <div class="score-bar" id="sc-bar"></div>
+      </div>
+      <div class="score-msg" id="sc-msg">0 respondidas</div>
+      <button class="btn-reset" onclick="resetQuiz()">↺ Reiniciar</button>
+    </div>
+
+    <!-- ── Q1 ── XXVII Exame ── -->
+    <div class="q-card" id="q1">
+      <div class="q-header">
+        <span class="q-badge">XXVII Exame · FGV</span>
+        <p class="q-text">
+          Paula trabalha na residência de Sílvia três vezes na semana como passadeira. Em geral, comparece às segundas, quartas e sextas, mas, se necessário, mediante comunicação prévia, comparece em outro dia da semana, exceto sábados, domingos e feriados. A CTPS não foi assinada e o pagamento é por dia de trabalho. Quando Paula não comparece, não recebe o pagamento e não sofre punição, mas Sílvia costuma sempre pedir que a ausência seja previamente comunicada. Paula procura você, como advogado(a), com dúvida acerca da sua situação jurídica. À luz da legislação específica em vigor, assinale a opção que contempla a situação de Paula.
+        </p>
+      </div>
+      <div class="options" id="q1-opts">
+        <button class="opt" data-q="1" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Paula é diarista, pois trabalha apenas 3 vezes na semana.</span></button>
+        <button class="opt" data-q="1" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Paula é autônoma, porque gerencia seu próprio trabalho, dias e horários.</span></button>
+        <button class="opt" data-q="1" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Paula é empregada eventual.</span></button>
+        <button class="opt" data-q="1" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Paula é empregada doméstica.</span></button>
+      </div>
+      <div class="q-actions">
+        <button class="btn-confirm" id="q1-btn" disabled onclick="confirmAnswer(1,'D')">Confirmar resposta →</button>
+        <button class="toggle-gabarito" id="q1-tog" onclick="toggleGabarito(1)">Gabarito comentado <span class="chev">▾</span></button>
+      </div>
+      <div class="gabarito" id="q1-gab">
+        <div class="gabarito-inner">
+          <div class="gabarito-title">Gabarito comentado</div>
+          <div class="gabarito-correct">✓ &nbsp;Alternativa D — Empregada doméstica</div>
+          <div class="gabarito-body">
+            <p><strong>A) Errada.</strong> Considera-se empregado doméstico aquele que presta serviços por <strong>mais de 2 dias por semana</strong> <span class="ref">art. 1º, LC n. 150/2015</span>. Paula trabalha 3 vezes por semana, ultrapassando o limite que distingue o diarista do doméstico.</p>
+            <p><strong>B) Errada.</strong> Paula não é autônoma — ela tem que comunicar previamente ausências e sujeita-se a padrões de comparecimento definidos por Sílvia, o que evidencia subordinação.</p>
+            <p><strong>C) Errada.</strong> Paula não é eventual. Trabalha três vezes na semana, todas as semanas — há regularidade e continuidade.</p>
+            <p><strong>D) Correta.</strong> Paula é empregada doméstica: presta serviços de forma contínua, subordinada, onerosa e pessoal, de finalidade não lucrativa à pessoa ou família, no âmbito residencial, por mais de 2 dias por semana <span class="ref">art. 1º, LC n. 150/2015</span>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Q2 ── XXII Exame ── -->
+    <div class="q-card" id="q2">
+      <div class="q-header">
+        <span class="q-badge">XXII Exame · FGV</span>
+        <p class="q-text">
+          Suely trabalha na casa de Rogério como cuidadora de seu pai, pessoa de idade avançada e enferma, comparecendo de segunda a sexta-feira, das 8:00 às 17:00 h, com intervalo de uma hora para refeição. De acordo com o caso narrado e a legislação de regência, assinale a afirmativa correta sobre a obrigação de controle de horário.
+        </p>
+      </div>
+      <div class="options" id="q2-opts">
+        <button class="opt" data-q="2" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>O controle escrito não é necessário, porque menos de 10 empregados trabalham na residência de Rogério.</span></button>
+        <button class="opt" data-q="2" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>A lei de regência prevê que as partes podem acertar, por escrito, a isenção de marcação da jornada normal, assinalando apenas a eventual hora extra.</span></button>
+        <button class="opt" data-q="2" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>A Lei é omissa a respeito, daí por que a existência de controle deve ser acertado entre as partes envolvidas no momento da contratação.</span></button>
+        <button class="opt" data-q="2" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Rogério deve, por força de Lei, manter controle escrito dos horários de entrada e saída da empregada doméstica.</span></button>
+      </div>
+      <div class="q-actions">
+        <button class="btn-confirm" id="q2-btn" disabled onclick="confirmAnswer(2,'D')">Confirmar resposta →</button>
+        <button class="toggle-gabarito" id="q2-tog" onclick="toggleGabarito(2)">Gabarito comentado <span class="chev">▾</span></button>
+      </div>
+      <div class="gabarito" id="q2-gab">
+        <div class="gabarito-inner">
+          <div class="gabarito-title">Gabarito comentado</div>
+          <div class="gabarito-correct">✓ &nbsp;Alternativa D — Controle escrito obrigatório por lei</div>
+          <div class="gabarito-body">
+            <p><strong>A) Errada.</strong> A LC n. 150/2015 prevê expressamente a necessidade de controle escrito de jornada <span class="ref">art. 12, LC n. 150/2015</span>. A quantidade de empregados na residência é irrelevante.</p>
+            <p><strong>B) Errada.</strong> A marcação da jornada é obrigação prevista em lei, independentemente de ser jornada normal ou extraordinária. Não há isenção por acordo entre as partes.</p>
+            <p><strong>C) Errada.</strong> A lei não é omissa: há previsão expressa na <span class="ref">art. 12, LC n. 150/2015</span>.</p>
+            <p><strong>D) Correta.</strong> Trata-se de obrigação legal. O empregador doméstico deve manter o controle escrito de jornada <span class="ref">art. 12, LC n. 150/2015</span>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Q3 ── XXXI Exame ── -->
+    <div class="q-card" id="q3">
+      <div class="q-header">
+        <span class="q-badge">XXXI Exame · FGV</span>
+        <p class="q-text">
+          Renato é um empregado doméstico que atua como caseiro no sítio de lazer do seu empregador. Contudo, a CTPS de Renato foi assinada como sendo operador de máquinas da empresa de titularidade do seu empregador. Renato tem receio de que, no futuro, não possa comprovar experiência na função de empregado doméstico e, por isso, intenciona ajuizar reclamação trabalhista para regularizar a situação. Considerando a situação narrada e o entendimento consolidado do TST, assinale a afirmativa correta.
+        </p>
+      </div>
+      <div class="options" id="q3-opts">
+        <button class="opt" data-q="3" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Caso comprove que, de fato, é doméstico, Renato conseguirá a retificação na CTPS, pois as anotações nela lançadas têm presunção relativa.</span></button>
+        <button class="opt" data-q="3" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Somente o salário poderia ser objeto de demanda judicial para se comprovar que o empregado recebia valor superior ao anotado, sendo que a alteração na função não é prevista, e a demanda não terá sucesso.</span></button>
+        <button class="opt" data-q="3" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Caso Renato comprove que é doméstico, o pedido será julgado procedente, mas a alteração será feita com modulação de efeitos, com retificação da data da sentença em diante.</span></button>
+        <button class="opt" data-q="3" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Renato não terá sucesso na sua reclamação trabalhista, porque a anotação feita na carteira profissional tem presunção absoluta.</span></button>
+      </div>
+      <div class="q-actions">
+        <button class="btn-confirm" id="q3-btn" disabled onclick="confirmAnswer(3,'A')">Confirmar resposta →</button>
+        <button class="toggle-gabarito" id="q3-tog" onclick="toggleGabarito(3)">Gabarito comentado <span class="chev">▾</span></button>
+      </div>
+      <div class="gabarito" id="q3-gab">
+        <div class="gabarito-inner">
+          <div class="gabarito-title">Gabarito comentado</div>
+          <div class="gabarito-correct">✓ &nbsp;Alternativa A — Presunção relativa da CTPS (Súmula 12/TST)</div>
+          <div class="gabarito-body">
+            <p><strong>A) Correta.</strong> De acordo com a <strong>Súmula 12 do TST</strong>, as anotações apostas pelo empregador na CTPS têm presunção <em>relativa</em>, não absoluta. Comprovada a função real de doméstico, Renato conseguirá a retificação com efeitos que retroagem à data da contratação, com base no princípio da primazia da realidade.</p>
+            <p><strong>B) Errada.</strong> A Súmula 12 do TST autoriza o ajuizamento de ação para pleitear também a alteração da função anotada, não apenas diferenças salariais.</p>
+            <p><strong>C) Errada.</strong> A retificação retroage à data da contratação. Não há modulação de efeitos para essa hipótese.</p>
+            <p><strong>D) Errada.</strong> A presunção é relativa — <span class="ref">Súmula 12, TST</span>. Admite prova em contrário.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Q4 ── 38º Exame ── -->
+    <div class="q-card" id="q4">
+      <div class="q-header">
+        <span class="q-badge">38º Exame · FGV</span>
+        <p class="q-text">
+          Francisco é caseiro desde 2019 em uma chácara localizada em área urbana, cujo proprietário aluga o imóvel por temporada por meio de um site especializado neste tipo de negociação. Francisco tem a incumbência de manter limpa a casa, receber os locatários e atender às eventuais necessidades deles no tocante ao conforto e à segurança. Além disso, de 2ª feira a sábado, Francisco faz a manutenção geral do local, independentemente de estar locado, para que a aparência esteja sempre impecável e, assim, os hóspedes recomendem a estadia na chácara a outros candidatos. Diante desta situação e das normas de regência, assinale a opção que indica a categoria profissional de Francisco.
+        </p>
+      </div>
+      <div class="options" id="q4-opts">
+        <button class="opt" data-q="4" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Trabalhador intermitente.</span></button>
+        <button class="opt" data-q="4" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Empregado doméstico.</span></button>
+        <button class="opt" data-q="4" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Empregado rural.</span></button>
+        <button class="opt" data-q="4" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Empregado comum (urbano).</span></button>
+      </div>
+      <div class="q-actions">
+        <button class="btn-confirm" id="q4-btn" disabled onclick="confirmAnswer(4,'D')">Confirmar resposta →</button>
+        <button class="toggle-gabarito" id="q4-tog" onclick="toggleGabarito(4)">Gabarito comentado <span class="chev">▾</span></button>
+      </div>
+      <div class="gabarito" id="q4-gab">
+        <div class="gabarito-inner">
+          <div class="gabarito-title">Gabarito comentado</div>
+          <div class="gabarito-correct">✓ &nbsp;Alternativa D — Empregado comum (urbano)</div>
+          <div class="gabarito-body">
+            <p><strong>A) Errada.</strong> O trabalho de Francisco é contínuo e não intermitente — ele trabalha de 2ª a sábado, independentemente de a chácara estar locada.</p>
+            <p><strong>B) Errada.</strong> O proprietário visa lucro com o aluguel por temporada — atividade econômica de finalidade lucrativa. O empregado doméstico exige que os serviços sejam prestados <em>sem finalidade lucrativa</em> <span class="ref">art. 1º, LC n. 150/2015</span>. Logo, Francisco não pode ser doméstico.</p>
+            <p><strong>C) Errada.</strong> Não há produção agroeconômica na propriedade. A atividade de Francisco não se enquadra no conceito de trabalhador rural.</p>
+            <p><strong>D) Correta.</strong> Como o empregador visa lucro (aluguel da chácara), o empregado é urbano comum. A finalidade lucrativa afasta o enquadramento como doméstico e, inexistindo atividade agrícola, também afasta o rural.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESULTADO FINAL -->
+    <div class="result-banner" id="result-banner">
+      <div class="result-score" id="result-score">0/4</div>
+      <div class="result-label">Resultado final</div>
+      <div class="result-msg" id="result-msg"></div>
+    </div>
+
+  </section>
+
+  <!-- ══════════════ VOLTAR ══════════════ -->
   <a class="back" href="../index.html">
     <span class="arw">←</span>
     <span>Voltar ao índice da disciplina</span>
   </a>
 
-</div>
+</div><!-- /wrap -->
 
 <script>
+  /* ── accordion de direitos ── */
+  (function(){
+    var cards = document.querySelectorAll('.card');
+    cards.forEach(function(card){
+      var btn = card.querySelector('.card-btn');
+      if(!btn) return;
+      btn.addEventListener('click', function(){
+        var isOpen = card.classList.contains('open');
+        cards.forEach(function(c){
+          c.classList.remove('open');
+          var b = c.querySelector('.card-btn');
+          if(b) b.setAttribute('aria-expanded','false');
+        });
+        if(!isOpen){
+          card.classList.add('open');
+          btn.setAttribute('aria-expanded','true');
+        }
+      });
+    });
+  })();
+
+  /* ── reveal on scroll ── */
   (function(){
     var items = document.querySelectorAll('.reveal');
     if(!('IntersectionObserver' in window)){
@@ -681,29 +1154,114 @@
         if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
       });
     }, { threshold:.08, rootMargin:'0px 0px -3% 0px' });
-    items.forEach(function(el, i){
+    items.forEach(function(el,i){
       el.style.transitionDelay = (i * 40) + 'ms';
       io.observe(el);
     });
   })();
 
-  (function(){
-    var cards = document.querySelectorAll('.card');
-    cards.forEach(function(card){
-      var btn = card.querySelector('.card-btn');
-      btn.addEventListener('click', function(){
-        var isOpen = card.classList.contains('open');
-        cards.forEach(function(c){
-          c.classList.remove('open');
-          c.querySelector('.card-btn').setAttribute('aria-expanded','false');
-        });
-        if(!isOpen){
-          card.classList.add('open');
-          btn.setAttribute('aria-expanded','true');
-        }
-      });
+  /* ══════════════════════════════════════
+     QUIZ
+  ══════════════════════════════════════ */
+  const TOTAL = 4;
+  var answered = {};
+
+  function selectOpt(el){
+    var q = el.dataset.q;
+    if(answered[q] !== undefined) return;
+    document.querySelectorAll('[data-q="' + q + '"]').forEach(function(o){ o.classList.remove('selected'); });
+    el.classList.add('selected');
+    document.getElementById('q' + q + '-btn').disabled = false;
+  }
+
+  function confirmAnswer(qNum, correctVal){
+    var opts = document.querySelectorAll('[data-q="' + qNum + '"]');
+    var btn  = document.getElementById('q' + qNum + '-btn');
+    var card = document.getElementById('q' + qNum);
+    var tog  = document.getElementById('q' + qNum + '-tog');
+    var chosen = null;
+    opts.forEach(function(o){ if(o.classList.contains('selected')) chosen = o; });
+    if(!chosen) return;
+
+    var isCorrect = chosen.dataset.val === correctVal;
+    answered[qNum] = isCorrect;
+
+    opts.forEach(function(o){
+      o.disabled = true;
+      if(o.dataset.val === correctVal){
+        o.classList.add('correct-final');
+      } else if(o.classList.contains('selected') && !isCorrect){
+        o.classList.add('wrong-final');
+      } else {
+        o.classList.add('dimmed');
+      }
+      o.classList.remove('selected');
     });
-  })();
+
+    card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+    btn.disabled = true;
+    btn.style.display = 'none';
+    tog.style.display = 'inline-flex';
+
+    updateScore();
+    checkAllDone();
+  }
+
+  function toggleGabarito(qNum){
+    var gab = document.getElementById('q' + qNum + '-gab');
+    var tog = document.getElementById('q' + qNum + '-tog');
+    var open = gab.classList.toggle('open');
+    tog.classList.toggle('open', open);
+  }
+
+  function updateScore(){
+    var done    = Object.keys(answered).length;
+    var correct = Object.values(answered).filter(Boolean).length;
+    var pct     = TOTAL > 0 ? (correct / TOTAL) * 100 : 0;
+    document.getElementById('sc-current').textContent = correct;
+    document.getElementById('sc-bar').style.width      = pct + '%';
+    document.getElementById('sc-bar').style.background = pct >= 70 ? '#166534' : pct >= 40 ? '#d97706' : '#991b1b';
+    document.getElementById('sc-msg').textContent      = done + ' respondida' + (done !== 1 ? 's' : '');
+  }
+
+  function checkAllDone(){
+    if(Object.keys(answered).length < TOTAL) return;
+    var correct = Object.values(answered).filter(Boolean).length;
+    var banner  = document.getElementById('result-banner');
+    var score   = document.getElementById('result-score');
+    var msg     = document.getElementById('result-msg');
+    score.textContent = correct + '/' + TOTAL;
+    var pct = correct / TOTAL;
+    if(pct === 1)       msg.textContent = '🎉 Parabéns! Gabarito perfeito — você domina o tema.';
+    else if(pct >= .75) msg.textContent = '✅ Muito bem! Revise os pontos que errou e estará pronto.';
+    else if(pct >= .5)  msg.textContent = '📖 Resultado razoável. Revise os comentários com atenção.';
+    else                msg.textContent = '🔁 Reforce o estudo e tente novamente. Os comentários ajudam!';
+    banner.classList.add('show');
+    banner.scrollIntoView({ behavior:'smooth', block:'center' });
+  }
+
+  function resetQuiz(){
+    answered = {};
+    for(var q = 1; q <= TOTAL; q++){
+      document.querySelectorAll('[data-q="' + q + '"]').forEach(function(o){
+        o.disabled = false;
+        o.classList.remove('selected','correct-final','wrong-final','dimmed');
+      });
+      document.getElementById('q' + q).classList.remove('answered-correct','answered-wrong');
+      var btn = document.getElementById('q' + q + '-btn');
+      btn.disabled = true;
+      btn.style.display = '';
+      var tog = document.getElementById('q' + q + '-tog');
+      tog.style.display = 'none';
+      tog.classList.remove('open');
+      document.getElementById('q' + q + '-gab').classList.remove('open');
+    }
+    document.getElementById('sc-current').textContent = '0';
+    document.getElementById('sc-bar').style.width = '0%';
+    document.getElementById('sc-msg').textContent = '0 respondidas';
+    document.getElementById('result-banner').classList.remove('show');
+    window.scrollTo({ top:0, behavior:'smooth' });
+  }
 </script>
 </body>
 </html>
