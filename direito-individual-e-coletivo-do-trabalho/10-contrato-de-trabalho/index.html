@@ -20,6 +20,12 @@
     --iron:#8b8579;
     --line:rgba(27,36,54,.13);
     --line-strong:rgba(27,36,54,.22);
+    --green:#166534;
+    --green-bg:#f0fdf4;
+    --green-line:#bbf7d0;
+    --red:#991b1b;
+    --red-bg:#fef2f2;
+    --red-line:#fecaca;
     --display:"Fraunces",Georgia,"Times New Roman",serif;
     --body:"Spectral",Georgia,serif;
     --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",monospace;
@@ -119,11 +125,67 @@
   .nota{margin:12px 0 4px;padding:14px 18px;background:rgba(122,46,55,.06);border-left:3px solid var(--accent);border-radius:0 5px 5px 0;font-size:.91em;color:var(--ink-soft);line-height:1.65;}
   .nota strong{color:var(--ink);}
 
+  /* ===== PLACAR ===== */
+  .scoreboard{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:18px 22px;background:var(--surface);border:1px solid var(--line-strong);border-radius:8px;margin-bottom:8px;}
+  .score-label{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--iron);}
+  .score-nums{display:flex;align-items:baseline;gap:6px;}
+  .score-current{font-family:var(--display);font-size:2.6rem;font-weight:600;color:var(--ink);line-height:1;transition:color .3s;}
+  .score-total{font-family:var(--mono);font-size:1rem;color:var(--iron);}
+  .score-bar-wrap{flex:1;min-width:120px;height:8px;background:var(--line);border-radius:99px;overflow:hidden;}
+  .score-bar{height:100%;width:0%;background:var(--accent);border-radius:99px;transition:width .5s cubic-bezier(.2,.7,.2,1),background .3s;}
+  .score-msg{font-family:var(--mono);font-size:12px;color:var(--iron);min-width:80px;}
+  .btn-reset{margin-left:auto;border:1px solid var(--line-strong);background:none;color:var(--ink-soft);border-radius:4px;padding:7px 14px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:border-color .2s,color .2s;}
+  .btn-reset:hover{border-color:var(--accent);color:var(--accent);}
+
+  /* ===== CARD DE QUESTÃO ===== */
+  .q-card{background:var(--surface);border:1px solid var(--line);border-radius:8px;margin:16px 0;overflow:hidden;transition:border-color .25s,box-shadow .25s;}
+  .q-card.answered-correct{border-color:var(--green-line);box-shadow:0 0 0 2px rgba(22,101,52,.12);}
+  .q-card.answered-wrong{border-color:var(--red-line);box-shadow:0 0 0 2px rgba(153,27,27,.10);}
+  .q-header{display:flex;align-items:flex-start;gap:14px;padding:18px 20px 14px;}
+  .q-badge{flex-shrink:0;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--accent);background:rgba(122,46,55,.09);border:1px solid rgba(122,46,55,.18);border-radius:4px;padding:3px 9px;margin-top:3px;white-space:nowrap;}
+  .q-text{font-family:var(--body);font-size:.97em;color:var(--ink);line-height:1.72;flex:1;margin:0;}
+  .options{padding:0 20px 18px;display:flex;flex-direction:column;gap:8px;}
+  .opt{display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border:1px solid var(--line);border-radius:6px;cursor:pointer;background:var(--paper);transition:border-color .18s,background .18s;text-align:left;width:100%;font-family:var(--body);font-size:.93em;color:var(--ink-soft);line-height:1.6;}
+  .opt:hover:not(:disabled){border-color:var(--accent-soft);background:#f7f3f1;}
+  .opt-letter{flex-shrink:0;font-family:var(--mono);font-size:.82em;font-weight:700;color:var(--accent);width:20px;padding-top:2px;}
+  .opt.selected{border-color:var(--accent);background:rgba(122,46,55,.06);}
+  .opt.correct-final{border-color:var(--green);background:var(--green-bg);cursor:default;}
+  .opt.correct-final .opt-letter{color:var(--green);}
+  .opt.wrong-final{border-color:var(--red);background:var(--red-bg);cursor:default;}
+  .opt.wrong-final .opt-letter{color:var(--red);}
+  .opt.dimmed{opacity:.42;cursor:default;}
+  .q-actions{padding:0 20px 18px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+  .btn-confirm{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;background:var(--ink);color:#f4f2ec;border:none;border-radius:4px;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;transition:background .2s,transform .2s;}
+  .btn-confirm:hover:not(:disabled){background:var(--accent);transform:translateY(-1px);}
+  .btn-confirm:disabled{opacity:.35;cursor:default;transform:none;}
+  .toggle-gabarito{display:none;align-items:center;gap:7px;border:none;background:none;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--iron);cursor:pointer;transition:color .2s;padding:0;}
+  .toggle-gabarito:hover{color:var(--accent);}
+  .toggle-gabarito .chev{display:inline-block;font-size:10px;transition:transform .3s cubic-bezier(.2,.7,.2,1);}
+  .toggle-gabarito.open .chev{transform:rotate(180deg);}
+  .gabarito{border-top:1px solid var(--line);overflow:hidden;max-height:0;transition:max-height .45s cubic-bezier(.2,.7,.2,1);}
+  .gabarito.open{max-height:1600px;}
+  .gabarito-inner{padding:18px 20px 20px;}
+  .gabarito-title{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--iron);margin-bottom:12px;}
+  .gabarito-correct{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--green-bg);border:1px solid var(--green-line);border-radius:6px;font-family:var(--mono);font-size:.85em;font-weight:700;color:var(--green);margin-bottom:14px;}
+  .gabarito-body{font-size:.91em;color:var(--ink-soft);line-height:1.72;}
+  .gabarito-body strong{color:var(--ink);}
+  .gabarito-body .ref{font-family:var(--mono);font-size:.8em;color:var(--iron);background:rgba(139,133,121,.12);padding:2px 7px;border-radius:3px;white-space:nowrap;}
+  .gabarito-body p{margin-bottom:10px;}
+  .gabarito-body p:last-child{margin-bottom:0;}
+
+  /* RESULTADO FINAL */
+  .result-banner{display:none;margin:32px 0 0;padding:28px 24px;border:1px solid var(--line-strong);border-radius:8px;background:var(--surface);text-align:center;animation:rise .5s cubic-bezier(.2,.7,.2,1) both;}
+  .result-banner.show{display:block;}
+  .result-score{font-family:var(--display);font-size:3.2rem;font-weight:600;color:var(--accent);line-height:1;margin-bottom:6px;}
+  .result-label{font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--iron);}
+  .result-msg{margin-top:12px;font-size:.95em;color:var(--ink-soft);}
+
   /* VOLTAR */
   .back{margin-top:56px;display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line-strong);border-radius:6px;padding:20px 22px;font-family:var(--mono);font-size:14px;letter-spacing:.04em;transition:border-color .25s,transform .25s;}
   .back .arw{color:var(--accent);transition:transform .25s;font-size:18px;}
   .back:hover{border-color:var(--accent);transform:translateY(-2px);}
   .back:hover .arw{transform:translateX(-4px);}
+  .back:focus-visible{outline:3px solid var(--accent-soft);outline-offset:3px;}
 
   @keyframes rise{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
   .reveal{opacity:0;transform:translateY(14px);}
@@ -140,6 +202,8 @@
     .tbl-head div:last-child,.tbl-row div:last-child{display:none;}
     .inv-row,.inv-head{grid-template-columns:1fr;}
     .inv-head div:first-child,.inv-row div:first-child{border-right:none;border-bottom:1px solid var(--line);}
+    .scoreboard{flex-direction:column;align-items:flex-start;gap:10px;}
+    .btn-reset{margin-left:0;}
   }
   @media(prefers-reduced-motion:reduce){
     *{animation:none !important;scroll-behavior:auto;}
@@ -152,6 +216,7 @@
 <body>
 <div class="wrap">
 
+<!-- ══════════════ CABEÇALHO ══════════════ -->
 <header class="masthead">
   <p class="eyebrow">
     Direito do Trabalho
@@ -449,14 +514,260 @@
   </div>
 </section>
 
+<!-- ══════════════════════════════════════════════════════
+     QUESTÕES OAB
+══════════════════════════════════════════════════════ -->
+<section>
+  <div class="sec-head reveal">
+    <span class="num">§</span>
+    <h2>Questões de Exame da OAB</h2>
+  </div>
+
+  <p class="reveal">Selecione a alternativa que julgue correta e clique em <strong>Confirmar resposta</strong>. O gabarito comentado fica disponível após a confirmação.</p>
+
+  <!-- PLACAR -->
+  <div class="scoreboard reveal">
+    <div>
+      <div class="score-label">Acertos</div>
+      <div class="score-nums">
+        <span class="score-current" id="sc-current">0</span>
+        <span class="score-total">/ 7</span>
+      </div>
+    </div>
+    <div class="score-bar-wrap"><div class="score-bar" id="sc-bar"></div></div>
+    <div class="score-msg" id="sc-msg">0 respondidas</div>
+    <button class="btn-reset" onclick="resetQuiz()">↺ Reiniciar</button>
+  </div>
+
+  <!-- ── Q1 ── XXIII Exame (del credere) ── -->
+  <div class="q-card" id="q1">
+    <div class="q-header">
+      <span class="q-badge">XXIII Exame · FGV</span>
+      <p class="q-text">Um representante comercial ajuíza ação na Justiça do Trabalho pedindo a devolução de descontos. Ele explica que sua comissão sobre as vendas é de 5%, mas que pode optar pelo percentual de 10%, desde que se comprometa a pagar o valor da venda, caso o comprador fique inadimplente. Alega que sempre fez a opção pelos 10%, e que, nos casos de inadimplência, teve de pagar o valor do negócio para depois tentar reaver a quantia do comprador, o que caracterizaria transferência do risco da atividade econômica. Diante do caso apresentado e da lei de regência, assinale a afirmativa correta.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="1" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>A prática é válida porque o representante não é empregado nos moldes da CLT, além de ter sido uma opção por ele tomada.</span></button>
+      <button class="opt" data-q="1" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>O caso traduz um <em>truck system</em>, sendo que a lei limita o prejuízo do representante comercial a 50% da venda não paga.</span></button>
+      <button class="opt" data-q="1" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>A norma de regência é omissa a respeito desta situação, razão pela qual é válida, na medida em que se trata de relação de direito privado.</span></button>
+      <button class="opt" data-q="1" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>A situação caracteriza a cláusula <em>del credere</em>, vedada pela Lei de Representação Comercial.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q1-btn" disabled onclick="confirmAnswer(1,'D')">Confirmar resposta →</button>
+      <button class="toggle-gabarito" id="q1-tog" onclick="toggleGabarito(1)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q1-gab">
+      <div class="gabarito-inner">
+        <div class="gabarito-title">Gabarito comentado</div>
+        <div class="gabarito-correct">✓ &nbsp;Alternativa D — Cláusula del credere vedada pela Lei de Representação Comercial</div>
+        <div class="gabarito-body">
+          <p><strong>A) Errada.</strong> Mesmo não sendo empregado, a prática não é válida porque é expressamente proibida pela Lei de Representação Comercial — independentemente de ter sido uma escolha do representante.</p>
+          <p><strong>B) Errada.</strong> <em>Truck system</em> refere-se ao pagamento de salário integralmente em bens <em>in natura</em>, em utilidades, não tendo nada a ver com o caso indicado na questão.</p>
+          <p><strong>C) Errada.</strong> A Lei de Representação Comercial tem previsão expressa proibindo a cláusula <em>del credere</em>. A norma não é omissa.</p>
+          <p><strong>D) Correta.</strong> A cláusula <em>del credere</em> corresponde à previsão pela qual a parte contratante descontaria os valores de comissões ou vendas do representante comercial na hipótese de a venda ou transação ser cancelada ou desfeita. O <span class="ref">art. 43 da Lei n. 4.886/65</span> prevê textualmente: "É vedada no contrato de representação comercial a inclusão de cláusulas <em>del credere</em>".</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Q2 ── XXXI Exame (arbitragem / hiperssuficiente) ── -->
+  <div class="q-card" id="q2">
+    <div class="q-header">
+      <span class="q-badge">XXXI Exame · FGV</span>
+      <p class="q-text">Gervásia é empregada na Lanchonete Pará desde fevereiro de 2018, exercendo a função de atendente e recebendo o valor correspondente a um salário mínimo por mês. Acerca da cláusula compromissória de arbitragem que o empregador pretende inserir no contrato da empregada, de acordo com a CLT, assinale a afirmativa correta.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="2" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>A inserção não é possível, porque, no Direito do Trabalho, não cabe arbitragem em lides individuais.</span></button>
+      <button class="opt" data-q="2" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>A cláusula compromissória de arbitragem não poderá ser inserida no contrato citado, em razão do salário recebido pela empregada.</span></button>
+      <button class="opt" data-q="2" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Não há mais óbice à inserção de cláusula compromissória de arbitragem nos contratos de trabalho, inclusive no de Gervásia.</span></button>
+      <button class="opt" data-q="2" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>A cláusula de arbitragem pode ser inserida em todos os contratos de trabalho, sendo admitida de forma expressa ou tácita.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q2-btn" disabled onclick="confirmAnswer(2,'B')">Confirmar resposta →</button>
+      <button class="toggle-gabarito" id="q2-tog" onclick="toggleGabarito(2)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q2-gab">
+      <div class="gabarito-inner">
+        <div class="gabarito-title">Gabarito comentado</div>
+        <div class="gabarito-correct">✓ &nbsp;Alternativa B — Arbitragem restrita a empregados hiperssuficientes</div>
+        <div class="gabarito-body">
+          <p><strong>A) Errada.</strong> Cabe arbitragem, mas somente para os empregados hiperssuficientes, se houver previsão em contrato <span class="ref">art. 507-A, CLT</span>.</p>
+          <p><strong>B) Correta.</strong> A cláusula compromissória de arbitragem somente é possível para os empregados <strong>hiperssuficientes</strong> — portadores de diploma de nível superior que percebam salário igual ou superior a duas vezes o limite máximo dos benefícios da Previdência Social <span class="ref">art. 444, parágrafo único, CLT</span>. Gervásia recebe salário mínimo; logo, não preenche esses requisitos.</p>
+          <p><strong>C) Errada.</strong> Há restrição expressa: a arbitragem somente é admitida para empregados hiperssuficientes <span class="ref">art. 507-A, CLT</span>.</p>
+          <p><strong>D) Errada.</strong> A cláusula de arbitragem não pode ser inserida tácita ou expressamente em todos os contratos — é restrita a empregados hiperssuficientes, mediante previsão expressa <span class="ref">art. 507-A, CLT</span>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Q3 ── XXXII Exame (teletrabalho / insumos) ── -->
+  <div class="q-card" id="q3">
+    <div class="q-header">
+      <span class="q-badge">XXXII Exame · FGV</span>
+      <p class="q-text">Luiz e Selma são casados e trabalham para o mesmo empregador. Ambos são teletrabalhadores, tendo o empregador montado um <em>home office</em> no apartamento do casal, de onde eles trabalham na recepção e no tratamento de dados informatizados. Para a impressão dos dados que serão objeto de análise, o casal necessitará de algumas resmas de papel, assim como de toner para a impressora que utilizarão. Assinale a opção que indica quem deverá arcar com esses gastos, de acordo com a CLT.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="3" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Cada parte deverá arcar com 50% desse gasto.</span></button>
+      <button class="opt" data-q="3" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>A empresa deverá arcar com o gasto porque é seu o risco do negócio.</span></button>
+      <button class="opt" data-q="3" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>A responsabilidade por esse gasto deverá ser prevista em contrato escrito.</span></button>
+      <button class="opt" data-q="3" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>O casal deverá arcar com o gasto, pois não há como o empregador fiscalizar se o material será utilizado apenas no trabalho.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q3-btn" disabled onclick="confirmAnswer(3,'C')">Confirmar resposta →</button>
+      <button class="toggle-gabarito" id="q3-tog" onclick="toggleGabarito(3)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q3-gab">
+      <div class="gabarito-inner">
+        <div class="gabarito-title">Gabarito comentado</div>
+        <div class="gabarito-correct">✓ &nbsp;Alternativa C — Responsabilidade definida em contrato escrito (art. 75-D, CLT)</div>
+        <div class="gabarito-body">
+          <p><strong>A) Errada.</strong> No teletrabalho, a responsabilidade pelo pagamento dos equipamentos e insumos deve ser objeto de previsão contratual — não existe divisão legal de 50% <span class="ref">art. 75-D, CLT</span>.</p>
+          <p><strong>B) Errada.</strong> Não há previsão legal de responsabilidade exclusiva do empregador. Deve ser objeto de previsão contratual <span class="ref">art. 75-D, CLT</span>.</p>
+          <p><strong>C) Correta.</strong> O legislador estabelece expressamente a necessidade de previsão em <strong>contrato escrito</strong> sobre quem arcará com as despesas de equipamentos e infraestrutura necessários ao teletrabalho <span class="ref">art. 75-D, CLT</span>.</p>
+          <p><strong>D) Errada.</strong> Não há previsão legal de responsabilidade exclusiva do empregado. O critério é a previsão contratual <span class="ref">art. 75-D, CLT</span>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Q4 ── XXXIV Exame (tempo parcial) ── -->
+  <div class="q-card" id="q4">
+    <div class="q-header">
+      <span class="q-badge">XXXIV Exame · FGV</span>
+      <p class="q-text">Determinada sociedade empresária propôs, em 2022, a um grupo de candidatos a emprego, um contrato de trabalho no qual a duração máxima seria de 30 (trinta) horas semanais, sem a possibilidade de horas extras. Como alternativa, propôs um contrato com duração de 26 (vinte e seis) horas semanais, com a possibilidade de, no máximo, 6 (seis) horas extras semanais. Um dos candidatos consultou você, na qualidade de advogado(a), sobre os contratos de trabalho oferecidos. Assinale a opção que apresenta, corretamente, sua resposta.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="4" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Os dois casos apresentam contratos de trabalho em regime de tempo parcial.</span></button>
+      <button class="opt" data-q="4" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>No primeiro caso, trata-se de contrato de trabalho em regime de tempo parcial; no segundo, trata-se de contrato de trabalho comum, dada a impossibilidade de horas extras nessa modalidade contratual.</span></button>
+      <button class="opt" data-q="4" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Os dois casos não são contratos em regime de tempo parcial, já que o primeiro excede o tempo total de horas semanais e, o segundo, contém horas extras, o que não é cabível.</span></button>
+      <button class="opt" data-q="4" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Não se trata de contrato por tempo parcial, pois, na hipótese, admite-se tempo inferior ao limite máximo, quando na modalidade de regime por tempo parcial os contratos só poderão ter 30 (trinta) ou 26 (vinte e seis) horas.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q4-btn" disabled onclick="confirmAnswer(4,'A')">Confirmar resposta →</button>
+      <button class="toggle-gabarito" id="q4-tog" onclick="toggleGabarito(4)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q4-gab">
+      <div class="gabarito-inner">
+        <div class="gabarito-title">Gabarito comentado</div>
+        <div class="gabarito-correct">✓ &nbsp;Alternativa A — Ambos são contratos em regime de tempo parcial (art. 58-A, CLT)</div>
+        <div class="gabarito-body">
+          <p><strong>A) Correta.</strong> De acordo com o <span class="ref">art. 58-A, CLT</span>, considera-se trabalho em regime de tempo parcial aquele cuja duração não exceda 30 horas semanais, sem horas suplementares, ou aquele cuja duração não exceda 26 horas semanais, com possibilidade de até 6 horas extras. Ambas as propostas se enquadram nessa definição.</p>
+          <p><strong>B) Errada.</strong> O segundo contrato (26h + até 6h extras) também é tempo parcial, conforme o <span class="ref">art. 58-A, CLT</span>. A alternativa erra ao classificar o segundo como contrato comum.</p>
+          <p><strong>C) Errada.</strong> Ambos os casos estão dentro dos limites previstos no <span class="ref">art. 58-A, CLT</span> para o regime de tempo parcial.</p>
+          <p><strong>D) Errada.</strong> O art. 58-A, CLT não exige exatamente 30 ou 26 horas — admite-se qualquer carga horária que não exceda esses limites. A alternativa inverte a lógica da norma.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Q5 ── XXXV Exame (contrato desportivo) ── -->
+  <div class="q-card" id="q5">
+    <div class="q-header">
+      <span class="q-badge">XXXV Exame · FGV</span>
+      <p class="q-text">Pedro Paulo joga futebol em um clube de sua cidade, que é classificado como formador, e possui com o referido clube um contrato de formação. Recentemente, recebeu uma proposta para assinar seu primeiro contrato profissional. Sabedor de que não há nenhum outro clube interessado em assinar um primeiro contrato especial de trabalho desportivo como profissional, Pedro Paulo consultou você, como advogado(a), para saber acerca da duração do referido contrato. Diante disso, observada a Lei Geral do Desporto, assinale a afirmativa correta.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="5" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>O contrato poderá ter prazo indeterminado.</span></button>
+      <button class="opt" data-q="5" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>O contrato poderá ter duração máxima de cinco anos.</span></button>
+      <button class="opt" data-q="5" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>O contrato poderá ter duração máxima de três anos.</span></button>
+      <button class="opt" data-q="5" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Não há prazo máximo estipulado, desde que seja por prazo determinado.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q5-btn" disabled onclick="confirmAnswer(5,'B')">Confirmar resposta →</button>
+      <button class="toggle-gabarito" id="q5-tog" onclick="toggleGabarito(5)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q5-gab">
+      <div class="gabarito-inner">
+        <div class="gabarito-title">Gabarito comentado</div>
+        <div class="gabarito-correct">✓ &nbsp;Alternativa B — Prazo máximo de 5 anos (art. 29, Lei n. 9.615/98)</div>
+        <div class="gabarito-body">
+          <p><strong>A) Errada.</strong> O contrato especial de trabalho desportivo tem prazo máximo determinado — não pode ser por prazo indeterminado <span class="ref">art. 29, Lei n. 9.615/98</span>.</p>
+          <p><strong>B) Correta.</strong> O contrato especial de trabalho desportivo terá prazo determinado, com vigência de no mínimo 3 meses e no máximo <strong>5 anos</strong>, conforme o <span class="ref">art. 29, Lei n. 9.615/98</span>.</p>
+          <p><strong>C) Errada.</strong> O prazo máximo é de 5 anos — não 3 anos <span class="ref">art. 29, Lei n. 9.615/98</span>.</p>
+          <p><strong>D) Errada.</strong> A Lei Geral do Desporto estabelece prazo máximo de 5 anos para o contrato especial de trabalho desportivo <span class="ref">art. 29, Lei n. 9.615/98</span>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Q6 ── XXXV Exame (propriedade intelectual) ── -->
+  <div class="q-card" id="q6">
+    <div class="q-header">
+      <span class="q-badge">XXXV Exame · FGV</span>
+      <p class="q-text">Paulo Sampaio foi chamado para uma entrevista de emprego em uma empresa de tecnologia. Sabendo que, se contratado, desenvolverá projetos de aplicativos para <em>smartphones</em>, dentre outras invenções, resolveu consultar você, como advogado(a), para saber sobre a propriedade intelectual sobre tais invenções, sendo certo que não foi tratada nenhuma condição contratual até agora. Diante disso, de acordo com a redação da CLT em vigor, assinale a afirmativa correta.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="6" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Na qualidade de empregado, toda a propriedade sobre as invenções será do empregador.</span></button>
+      <button class="opt" data-q="6" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>No curso do contrato de trabalho, as invenções realizadas pessoalmente pelo empregado, mas com utilização de equipamentos fornecidos pelo empregador, serão de propriedade comum, em partes iguais, salvo se o contrato de trabalho tiver por objeto pesquisa científica.</span></button>
+      <button class="opt" data-q="6" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>O empregador poderá explorar a invenção a qualquer tempo sem limitação de prazo após a concessão da patente, uma vez que se trata de contrato de trabalho.</span></button>
+      <button class="opt" data-q="6" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>A propriedade do invento deverá ser dividida proporcionalmente após a apuração da contribuição do empregado e o investimento em equipamentos feita pelo empregador.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q6-btn" disabled onclick="confirmAnswer(6,'B')">Confirmar resposta →</button>
+      <button class="toggle-gabarito" id="q6-tog" onclick="toggleGabarito(6)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q6-gab">
+      <div class="gabarito-inner">
+        <div class="gabarito-title">Gabarito comentado</div>
+        <div class="gabarito-correct">✓ &nbsp;Alternativa B — Propriedade comum quando não há previsão contratual (art. 454, CLT)</div>
+        <div class="gabarito-body">
+          <p><strong>A) Errada.</strong> A propriedade só será do empregador quando houver contrato de trabalho com objeto de pesquisa científica ou quando haja previsão contratual expressa nesse sentido. Sem previsão contratual e com uso de equipamentos do empregador, a propriedade é comum.</p>
+          <p><strong>B) Correta.</strong> Nos termos do <span class="ref">art. 454 da CLT</span>, no curso do contrato de trabalho, as invenções realizadas pessoalmente pelo empregado, mas com utilização de equipamentos fornecidos pelo empregador, serão de propriedade <strong>comum</strong>, em partes iguais, salvo se o contrato tiver por objeto pesquisa científica — hipótese em que a propriedade será do empregador.</p>
+          <p><strong>C) Errada.</strong> Em desacordo com a previsão legal. A exploração tem limites e não é irrestrita no tempo.</p>
+          <p><strong>D) Errada.</strong> Em desacordo com a previsão legal. A divisão é igualitária (partes iguais), não proporcional à contribuição ou investimento.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Q7 ── XXXVI Exame (dano pré-contratual) ── -->
+  <div class="q-card" id="q7">
+    <div class="q-header">
+      <span class="q-badge">XXXVI Exame · FGV</span>
+      <p class="q-text">João da Silva se submeteu, em novembro de 2021, a um processo seletivo para ingresso em um banco privado. Meses depois, recebeu um e-mail do banco informando que ele havia sido selecionado para a vaga. O e-mail solicitava a apresentação na sede do banco em 5 dias, com a carteira de trabalho e demais documentos pessoais, e, por causa disso, João da Silva recusou a participação em outros dois processos seletivos para os quais foi chamado. Ocorre que, no dia em que se apresentou no banco, o gerente do setor de Recursos Humanos pediu desculpas e alegou ter havido um engano: segundo ele, o selecionado foi realmente João da Silva, mas um homônimo, e, por descuido do setor, enviaram a informação da aprovação para o e-mail errado. Nenhum documento foi exibido a João da Silva. Diante dos fatos narrados e das normas de regência, assinale a afirmativa correta.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="7" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Nada há a fazer, pois a empresa se justificou, pediu desculpas e não houve prejuízo a João da Silva.</span></button>
+      <button class="opt" data-q="7" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>O banco deverá ser obrigado a contratar João da Silva, em razão da promessa constante do e-mail.</span></button>
+      <button class="opt" data-q="7" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>A situação envolve dano pré-contratual, de competência da Justiça do Trabalho.</span></button>
+      <button class="opt" data-q="7" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Uma vez que não houve contrato formalizado, a eventual responsabilidade civil deverá ser analisada pela Justiça Comum.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q7-btn" disabled onclick="confirmAnswer(7,'C')">Confirmar resposta →</button>
+      <button class="toggle-gabarito" id="q7-tog" onclick="toggleGabarito(7)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q7-gab">
+      <div class="gabarito-inner">
+        <div class="gabarito-title">Gabarito comentado</div>
+        <div class="gabarito-correct">✓ &nbsp;Alternativa C — Dano pré-contratual de competência da Justiça do Trabalho</div>
+        <div class="gabarito-body">
+          <p><strong>A) Errada.</strong> As promessas de emprego e a expectativa de contratação geram <strong>dano moral pré-contratual</strong>. João da Silva recusou outros processos seletivos com base na promessa — houve prejuízo real.</p>
+          <p><strong>B) Errada.</strong> Não há obrigação de contratar; contudo, o banco deverá <strong>indenizar o trabalhador pelo dano moral pré-contratual</strong> causado pela expectativa frustrada.</p>
+          <p><strong>C) Correta.</strong> Trata-se de situação que causou dano moral pré-contratual ao trabalhador. Ocorre dano moral pré-contratual quando a empresa cria para o trabalhador expectativa de contratação — sobretudo quando inclui realização de exames admissionais, abertura de conta salário etc., gerando quase certeza da admissão. Nos termos do <span class="ref">art. 114, I, CF</span>, as ações em que se pleiteie dano moral decorrente da relação de trabalho, seja na fase pré-contratual, contratual ou pós-contratual, são da competência da Justiça do Trabalho.</p>
+          <p><strong>D) Errada.</strong> Ocorreu dano moral pré-contratual, cuja análise é da competência da Justiça do Trabalho <span class="ref">art. 114, I, CF</span>. A ausência de contrato formalizado não desloca a competência para a Justiça Comum.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULTADO FINAL -->
+  <div class="result-banner" id="result-banner">
+    <div class="result-score" id="result-score">0/7</div>
+    <div class="result-label">Resultado final</div>
+    <div class="result-msg" id="result-msg"></div>
+  </div>
+
+</section>
+
+<!-- ══════════════ VOLTAR ══════════════ -->
 <a class="back" href="../index.html">
   <span class="arw">←</span>
   <span>Voltar ao índice da disciplina</span>
 </a>
 
-</div>
+</div><!-- /wrap -->
 
 <script>
+/* ── reveal on scroll ── */
 (function(){
   var items = document.querySelectorAll('.reveal');
   if(!('IntersectionObserver' in window)){
@@ -473,15 +784,18 @@
   });
 })();
 
+/* ── accordion dos cards de conteúdo ── */
 (function(){
   var cards = document.querySelectorAll('.card');
   cards.forEach(function(card){
     var btn = card.querySelector('.card-btn');
+    if(!btn) return;
     btn.addEventListener('click', function(){
       var isOpen = card.classList.contains('open');
       cards.forEach(function(c){
         c.classList.remove('open');
-        c.querySelector('.card-btn').setAttribute('aria-expanded','false');
+        var b = c.querySelector('.card-btn');
+        if(b) b.setAttribute('aria-expanded','false');
       });
       if(!isOpen){
         card.classList.add('open');
@@ -490,6 +804,109 @@
     });
   });
 })();
+
+/* ══════════════════════════════════════
+   QUIZ
+══════════════════════════════════════ */
+var TOTAL = 7;
+var answered = {};
+
+function selectOpt(el){
+  var q = el.dataset.q;
+  if(answered[q] !== undefined) return;
+  document.querySelectorAll('[data-q="'+q+'"]').forEach(function(o){ o.classList.remove('selected'); });
+  el.classList.add('selected');
+  document.getElementById('q'+q+'-btn').disabled = false;
+}
+
+function confirmAnswer(qNum, correctVal){
+  var opts = document.querySelectorAll('[data-q="'+qNum+'"]');
+  var btn  = document.getElementById('q'+qNum+'-btn');
+  var card = document.getElementById('q'+qNum);
+  var tog  = document.getElementById('q'+qNum+'-tog');
+  var chosen = null;
+  opts.forEach(function(o){ if(o.classList.contains('selected')) chosen = o; });
+  if(!chosen) return;
+
+  var isCorrect = chosen.dataset.val === correctVal;
+  answered[qNum] = isCorrect;
+
+  opts.forEach(function(o){
+    o.disabled = true;
+    if(o.dataset.val === correctVal){
+      o.classList.add('correct-final');
+    } else if(o.classList.contains('selected') && !isCorrect){
+      o.classList.add('wrong-final');
+    } else {
+      o.classList.add('dimmed');
+    }
+    o.classList.remove('selected');
+  });
+
+  card.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+  btn.disabled = true;
+  btn.style.display = 'none';
+  tog.style.display = 'inline-flex';
+
+  updateScore();
+  checkAllDone();
+}
+
+function toggleGabarito(qNum){
+  var gab = document.getElementById('q'+qNum+'-gab');
+  var tog = document.getElementById('q'+qNum+'-tog');
+  var open = gab.classList.toggle('open');
+  tog.classList.toggle('open', open);
+}
+
+function updateScore(){
+  var done    = Object.keys(answered).length;
+  var correct = Object.values(answered).filter(Boolean).length;
+  var pct     = TOTAL > 0 ? (correct/TOTAL)*100 : 0;
+  document.getElementById('sc-current').textContent = correct;
+  document.getElementById('sc-bar').style.width     = pct+'%';
+  document.getElementById('sc-bar').style.background = pct>=70 ? '#166534' : pct>=40 ? '#d97706' : '#991b1b';
+  document.getElementById('sc-msg').textContent     = done+' respondida'+(done!==1?'s':'');
+}
+
+function checkAllDone(){
+  if(Object.keys(answered).length < TOTAL) return;
+  var correct = Object.values(answered).filter(Boolean).length;
+  var banner  = document.getElementById('result-banner');
+  var score   = document.getElementById('result-score');
+  var msg     = document.getElementById('result-msg');
+  score.textContent = correct+'/'+TOTAL;
+  var pct = correct/TOTAL;
+  if(pct===1)       msg.textContent = '🎉 Parabéns! Gabarito perfeito — você domina o tema.';
+  else if(pct>=.75) msg.textContent = '✅ Muito bem! Revise os pontos que errou e estará pronto.';
+  else if(pct>=.5)  msg.textContent = '📖 Resultado razoável. Revise os comentários com atenção.';
+  else              msg.textContent = '🔁 Reforce o estudo e tente novamente. Os comentários ajudam!';
+  banner.classList.add('show');
+  banner.scrollIntoView({ behavior:'smooth', block:'center' });
+}
+
+function resetQuiz(){
+  answered = {};
+  for(var q=1; q<=TOTAL; q++){
+    document.querySelectorAll('[data-q="'+q+'"]').forEach(function(o){
+      o.disabled = false;
+      o.classList.remove('selected','correct-final','wrong-final','dimmed');
+    });
+    document.getElementById('q'+q).classList.remove('answered-correct','answered-wrong');
+    var btn = document.getElementById('q'+q+'-btn');
+    btn.disabled = true;
+    btn.style.display = '';
+    var tog = document.getElementById('q'+q+'-tog');
+    tog.style.display = 'none';
+    tog.classList.remove('open');
+    document.getElementById('q'+q+'-gab').classList.remove('open');
+  }
+  document.getElementById('sc-current').textContent = '0';
+  document.getElementById('sc-bar').style.width = '0%';
+  document.getElementById('sc-msg').textContent = '0 respondidas';
+  document.getElementById('result-banner').classList.remove('show');
+  window.scrollTo({ top:0, behavior:'smooth' });
+}
 </script>
 </body>
 </html>
