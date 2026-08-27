@@ -1,399 +1,692 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>11. Defesa do reclamado</title>
-  <style>
-    :root{
-      --bg:#eef5ff;
-      --card:#ffffff;
-      --text:#0f172a;
-      --muted:#475569;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>11. Defesa do Reclamado</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1b2436;--ink-soft:#414a5c;--paper:#edece5;--surface:#fbfaf7;
+  --accent:#7a2e37;--accent-soft:#a2545f;--iron:#8b8579;
+  --line:rgba(27,36,54,.13);--line-strong:rgba(27,36,54,.22);
+  --green:#166534;--green-bg:#f0fdf4;--green-line:#bbf7d0;
+  --red:#991b1b;--red-bg:#fef2f2;--red-line:#fecaca;
+  --display:"Fraunces",Georgia,serif;
+  --body:"Spectral",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:19px;line-height:1.78;-webkit-font-smoothing:antialiased;}
+body::before{content:"";position:fixed;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 34%,var(--ink) 34%,var(--ink) 100%);z-index:50;}
+.wrap{max-width:760px;margin:0 auto;padding:0 22px 72px;}
 
-      --primary:#1d4ed8;
-      --primary2:#2563eb;
+/* ── CABEÇALHO ── */
+.masthead{padding:56px 0 30px;border-bottom:1px solid var(--line-strong);animation:rise .7s cubic-bezier(.2,.7,.2,1) both;}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--accent);display:inline-block;}
+.eyebrow .dot{color:var(--line-strong);}
+.title-row{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;flex-wrap:wrap;}
+h1{font-family:var(--display);font-weight:500;font-size:clamp(2.3rem,6.5vw,3.8rem);line-height:1.04;letter-spacing:-.015em;max-width:14ch;}
+h1 .art{display:block;font-size:.42em;font-weight:600;letter-spacing:.02em;color:var(--accent);font-family:var(--mono);text-transform:uppercase;margin-bottom:.5em;}
+.slides-btn{flex-shrink:0;display:inline-flex;align-items:center;gap:12px;text-decoration:none;background:var(--ink);color:#f4f2ec;border-radius:4px;padding:13px 18px;font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;box-shadow:0 8px 22px -12px rgba(27,36,54,.7);transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s,background .25s;}
+.slides-btn:hover{background:var(--accent);transform:translateY(-2px);}
+.slides-btn .arw{transition:transform .25s;}
+.slides-btn:hover .arw{transform:translateX(4px);}
 
-      --border:rgba(15,23,42,.10);
-      --shadow: 0 10px 28px rgba(15,23,42,.10);
-      --shadow2: 0 6px 18px rgba(15,23,42,.10);
+/* ── VERBETE ── */
+.verbete{margin:44px 0 8px;padding:6px 0 6px 30px;border-left:3px solid var(--accent);}
+.verbete .tag{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:14px;}
+.verbete p{font-family:var(--display);font-weight:400;font-size:clamp(1.15rem,2.8vw,1.45rem);line-height:1.45;color:var(--ink);margin:0;}
 
-      --chipBg: rgba(37,99,235,.10);
-      --chipBd: rgba(37,99,235,.18);
-      --chipTx: #0b2a7a;
+.ref{font-family:var(--mono);font-size:.8em;color:var(--iron);background:rgba(139,133,121,.12);padding:2px 7px;border-radius:3px;white-space:nowrap;}
 
-      --okBd: rgba(22,163,74,.55);
-      --okBg: rgba(22,163,74,.06);
+/* ── SEÇÕES ── */
+.sec-head{display:flex;gap:16px;align-items:baseline;margin:44px 0 14px;padding-top:26px;border-top:1px solid var(--line);}
+.sec-head .num{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--accent);flex-shrink:0;padding-top:.35em;}
+h2{font-family:var(--display);font-weight:500;font-size:clamp(1.55rem,4vw,1.95rem);line-height:1.14;letter-spacing:-.01em;color:var(--ink);}
+h3{font-family:var(--display);font-weight:600;font-size:1.15rem;color:var(--ink);margin:22px 0 8px;}
+p{margin-bottom:14px;color:var(--ink-soft);}
 
-      --warnBg: rgba(245,158,11,.10);
-      --warnBd: rgba(245,158,11,.22);
-      --warnTx: #7c2d12;
-    }
+/* ── ARTIGO LITERAL ── */
+.artigo-literal{margin:14px 0;padding:16px 20px;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:0 6px 6px 0;font-size:.93em;color:var(--ink);line-height:1.72;}
+.artigo-literal .art-label{font-family:var(--mono);font-size:.8em;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px;}
 
-    *{ box-sizing:border-box; }
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color:var(--text);
-      background:
-        radial-gradient(1000px 600px at 50% -120px, rgba(37,99,235,.22), transparent 60%),
-        linear-gradient(180deg, #f7fbff 0%, var(--bg) 100%);
-    }
+/* ── SÚMULA ── */
+.sumula{margin:12px 0 6px;padding:12px 16px;border-left:2px solid var(--iron);background:var(--paper);border-radius:0 4px 4px 0;font-size:.89em;color:var(--ink-soft);line-height:1.65;}
+.sumula strong{font-family:var(--mono);font-size:.86em;letter-spacing:.08em;text-transform:uppercase;color:var(--iron);display:block;margin-bottom:4px;}
 
-    .wrap{
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 22px 16px 38px;
-    }
+/* ── NOTA ── */
+.nota{margin:12px 0 6px;padding:13px 17px;background:rgba(122,46,55,.06);border-left:3px solid var(--accent);border-radius:0 5px 5px 0;font-size:.91em;color:var(--ink-soft);line-height:1.65;}
+.nota strong{color:var(--ink);}
 
-    .shell{
-      background: rgba(255,255,255,.55);
-      border: 1px solid rgba(29,78,216,.10);
-      border-radius: 18px;
-      box-shadow: var(--shadow);
-      padding: 18px;
-      backdrop-filter: blur(6px);
-    }
+/* ── LISTA PRINCÍPIOS ── */
+.principio-list{display:flex;flex-direction:column;gap:3px;margin:14px 0;}
+.principio-item{display:grid;grid-template-columns:36px 1fr;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;}
+.principio-num{display:flex;align-items:center;justify-content:center;padding:12px 8px;font-family:var(--mono);font-weight:700;font-size:13px;color:var(--accent);background:rgba(122,46,55,.06);border-right:1px solid var(--line);}
+.principio-body{padding:13px 16px;font-size:.93em;color:var(--ink-soft);line-height:1.65;}
+.principio-body strong{color:var(--ink);}
 
-    .topbar{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap: 14px;
-      margin-bottom: 12px;
-    }
+/* ── CARDS ACCORDION ── */
+.cards{display:flex;flex-direction:column;gap:3px;}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;transition:box-shadow .2s;}
+.card:hover{box-shadow:0 4px 18px -8px rgba(27,36,54,.2);}
+.card-btn{width:100%;background:none;border:none;cursor:pointer;display:grid;grid-template-columns:52px 1fr 34px;align-items:center;padding:0;text-align:left;color:inherit;}
+.card-icon{display:flex;align-items:center;justify-content:center;min-height:60px;border-right:1px solid var(--line);font-family:var(--mono);font-weight:700;font-size:11px;color:var(--accent);background:rgba(122,46,55,.05);text-align:center;padding:4px;line-height:1.3;}
+.card-head{padding:13px 16px;}
+.card-num{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--iron);display:block;margin-bottom:3px;}
+.card-title{font-family:var(--display);font-weight:600;font-size:1rem;line-height:1.2;color:var(--ink);}
+.card-chevron{display:flex;align-items:center;justify-content:center;padding-right:14px;color:var(--iron);font-size:13px;transition:transform .3s cubic-bezier(.2,.7,.2,1),color .2s;}
+.card.open .card-chevron{transform:rotate(180deg);color:var(--accent);}
+.card-body{display:none;padding:16px 20px 20px;border-top:1px solid var(--line);}
+.card.open .card-body{display:block;}
+.card-body p{color:var(--ink-soft);font-size:.93em;line-height:1.72;}
 
-    h1{
-      margin:0;
-      font-size: clamp(28px, 4vw, 40px);
-      line-height: 1.12;
-      color: var(--primary);
-      letter-spacing: -0.5px;
-    }
+/* ── STEPS (procedimento) ── */
+.steps{display:flex;flex-direction:column;gap:2px;margin:12px 0;}
+.step{display:grid;grid-template-columns:32px 1fr;gap:0;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;}
+.step-n{display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:700;font-size:12px;color:var(--accent);background:rgba(122,46,55,.06);border-right:1px solid var(--line);padding:4px;}
+.step-body{padding:11px 14px;font-size:.91em;color:var(--ink-soft);line-height:1.65;}
+.step-body strong{color:var(--ink);}
 
-    .subtitle{
-      margin: 10px 0 0;
-      font-size: 18px;
-      line-height: 1.65;
-      color: var(--muted);
-      max-width: 72ch;
-    }
+/* ── BLIST ── */
+.blist{list-style:none;padding:0;margin:10px 0 12px;display:flex;flex-direction:column;gap:3px;}
+.blist li{display:grid;grid-template-columns:22px 1fr;gap:8px;font-size:.93em;color:var(--ink-soft);line-height:1.65;padding:8px 0;border-bottom:1px solid var(--line);}
+.blist li:last-child{border-bottom:none;}
+.blist li .bul{color:var(--accent);font-family:var(--mono);font-size:.85em;padding-top:2px;}
 
-    /* Botão Slides */
-    .slide-btn{
-      flex: 0 0 auto;
-      text-decoration:none;
-      color: var(--text);
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      box-shadow: var(--shadow2);
-      padding: 10px 12px;
-      display:flex;
-      align-items:center;
-      gap: 10px;
-      min-width: 150px;
-      transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
-    }
-    .slide-btn:hover{
-      transform: translateY(-1px);
-      box-shadow: 0 14px 32px rgba(15,23,42,.12);
-      border-color: rgba(29,78,216,.22);
-    }
-    .slide-ic{
-      width:42px; height:42px;
-      border-radius: 12px;
-      display:grid; place-items:center;
-      background: linear-gradient(180deg, rgba(37,99,235,.14), rgba(37,99,235,.06));
-      border: 1px solid rgba(37,99,235,.20);
-    }
-    .slide-txt{ display:flex; flex-direction:column; line-height:1.1; }
-    .slide-txt strong{ font-size: 14px; }
-    .slide-txt span{ font-size: 12px; color: var(--muted); margin-top: 2px; }
+/* ── PLACAR ── */
+.scoreboard{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:18px 22px;background:var(--surface);border:1px solid var(--line-strong);border-radius:8px;margin-bottom:8px;}
+.score-label{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--iron);}
+.score-nums{display:flex;align-items:baseline;gap:6px;}
+.score-current{font-family:var(--display);font-size:2.6rem;font-weight:600;color:var(--ink);line-height:1;}
+.score-total{font-family:var(--mono);font-size:1rem;color:var(--iron);}
+.score-bar-wrap{flex:1;min-width:120px;height:8px;background:var(--line);border-radius:99px;overflow:hidden;}
+.score-bar{height:100%;width:0%;background:var(--accent);border-radius:99px;transition:width .5s cubic-bezier(.2,.7,.2,1),background .3s;}
+.score-msg{font-family:var(--mono);font-size:12px;color:var(--iron);min-width:80px;}
+.btn-reset{margin-left:auto;border:1px solid var(--line-strong);background:none;color:var(--ink-soft);border-radius:4px;padding:7px 14px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:border-color .2s,color .2s;}
+.btn-reset:hover{border-color:var(--accent);color:var(--accent);}
 
-    .grid{
-      display:grid;
-      gap: 14px;
-      margin-top: 16px;
-    }
+/* ── QUESTÕES ── */
+.q-card{background:var(--surface);border:1px solid var(--line);border-radius:8px;margin:14px 0;overflow:hidden;transition:border-color .25s,box-shadow .25s;}
+.q-card.answered-correct{border-color:var(--green-line);box-shadow:0 0 0 2px rgba(22,101,52,.12);}
+.q-card.answered-wrong{border-color:var(--red-line);box-shadow:0 0 0 2px rgba(153,27,27,.10);}
+.q-header{display:flex;align-items:flex-start;gap:12px;padding:16px 18px 12px;}
+.q-badge{flex-shrink:0;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--accent);background:rgba(122,46,55,.09);border:1px solid rgba(122,46,55,.18);border-radius:4px;padding:3px 9px;margin-top:3px;white-space:nowrap;}
+.q-text{font-family:var(--body);font-size:.96em;color:var(--ink);line-height:1.72;flex:1;margin:0;}
+.options{padding:0 18px 16px;display:flex;flex-direction:column;gap:7px;}
+.opt{display:flex;align-items:flex-start;gap:11px;padding:10px 13px;border:1px solid var(--line);border-radius:6px;cursor:pointer;background:var(--paper);transition:border-color .18s,background .18s;text-align:left;width:100%;font-family:var(--body);font-size:.92em;color:var(--ink-soft);line-height:1.6;}
+.opt:hover:not(:disabled){border-color:var(--accent-soft);background:#f7f3f1;}
+.opt-letter{flex-shrink:0;font-family:var(--mono);font-size:.8em;font-weight:700;color:var(--accent);width:20px;padding-top:2px;}
+.opt.selected{border-color:var(--accent);background:rgba(122,46,55,.06);}
+.opt.correct-final{border-color:var(--green);background:var(--green-bg);cursor:default;}
+.opt.correct-final .opt-letter{color:var(--green);}
+.opt.wrong-final{border-color:var(--red);background:var(--red-bg);cursor:default;}
+.opt.wrong-final .opt-letter{color:var(--red);}
+.opt.dimmed{opacity:.42;cursor:default;}
+.q-actions{padding:0 18px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.btn-confirm{display:inline-flex;align-items:center;gap:8px;padding:9px 20px;background:var(--ink);color:#f4f2ec;border:none;border-radius:4px;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;transition:background .2s,transform .2s;}
+.btn-confirm:hover:not(:disabled){background:var(--accent);transform:translateY(-1px);}
+.btn-confirm:disabled{opacity:.35;cursor:default;transform:none;}
+.toggle-gabarito{display:none;align-items:center;gap:7px;border:none;background:none;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--iron);cursor:pointer;transition:color .2s;padding:0;}
+.toggle-gabarito:hover{color:var(--accent);}
+.toggle-gabarito .chev{display:inline-block;font-size:10px;transition:transform .3s cubic-bezier(.2,.7,.2,1);}
+.toggle-gabarito.open .chev{transform:rotate(180deg);}
+.gabarito{border-top:1px solid var(--line);overflow:hidden;max-height:0;transition:max-height .45s cubic-bezier(.2,.7,.2,1);}
+.gabarito.open{max-height:1800px;}
+.gabarito-inner{padding:16px 18px 18px;}
+.gabarito-title{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--iron);margin-bottom:10px;}
+.gabarito-correct{display:flex;align-items:center;gap:10px;padding:9px 13px;background:var(--green-bg);border:1px solid var(--green-line);border-radius:6px;font-family:var(--mono);font-size:.84em;font-weight:700;color:var(--green);margin-bottom:12px;}
+.gabarito-body{font-size:.9em;color:var(--ink-soft);line-height:1.72;}
+.gabarito-body strong{color:var(--ink);}
+.gabarito-body .ref{font-family:var(--mono);font-size:.8em;color:var(--iron);background:rgba(139,133,121,.12);padding:2px 7px;border-radius:3px;white-space:nowrap;}
+.gabarito-body p{margin-bottom:9px;}
+.gabarito-body p:last-child{margin-bottom:0;}
 
-    .card{
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      box-shadow: var(--shadow2);
-      padding: 16px;
-    }
+/* ── RESULTADO / VOLTAR ── */
+.result-banner{display:none;margin:28px 0 0;padding:26px 22px;border:1px solid var(--line-strong);border-radius:8px;background:var(--surface);text-align:center;}
+.result-banner.show{display:block;}
+.result-score{font-family:var(--display);font-size:3.2rem;font-weight:600;color:var(--accent);line-height:1;margin-bottom:6px;}
+.result-label{font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--iron);}
+.result-msg{margin-top:10px;font-size:.94em;color:var(--ink-soft);}
+.reveal{opacity:0;transform:translateY(14px);}
+.reveal.in{opacity:1;transform:none;transition:opacity .5s ease,transform .5s cubic-bezier(.2,.7,.2,1);}
+.back{margin-top:52px;display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line-strong);border-radius:6px;padding:20px 22px;font-family:var(--mono);font-size:14px;letter-spacing:.04em;transition:border-color .25s,transform .25s;}
+.back .arw{color:var(--accent);transition:transform .25s;font-size:18px;}
+.back:hover{border-color:var(--accent);transform:translateY(-2px);}
+.back:hover .arw{transform:translateX(-4px);}
 
-    .pill{
-      display:inline-block;
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--chipTx);
-      background: var(--chipBg);
-      border: 1px solid var(--chipBd);
-      padding: 6px 10px;
-      border-radius: 999px;
-      margin-bottom: 10px;
-    }
-
-    .card h2{
-      margin: 0 0 10px;
-      font-size: 22px;
-      letter-spacing: -0.2px;
-    }
-
-    .card p{
-      margin: 0 0 12px;
-      font-size: 18px;
-      line-height: 1.75;
-      color: var(--text);
-    }
-    .card p:last-child{ margin-bottom:0; }
-
-    ul{
-      margin: 0;
-      padding-left: 20px;
-      font-size: 18px;
-      line-height: 1.75;
-    }
-    li{ margin: 8px 0; }
-
-    .box-ok{
-      border: 2px solid var(--okBd);
-      background: linear-gradient(180deg, var(--okBg), rgba(22,163,74,.03));
-      border-radius: 16px;
-      padding: 14px;
-    }
-
-    .box-warn{
-      border: 1px solid var(--warnBd);
-      background: linear-gradient(180deg, var(--warnBg), rgba(245,158,11,.06));
-      border-radius: 14px;
-      padding: 12px 14px;
-      color: var(--warnTx);
-    }
-
-    .note{
-      background: rgba(29,78,216,.06);
-      border: 1px solid rgba(29,78,216,.14);
-      border-radius: 14px;
-      padding: 12px 14px;
-      color: var(--text);
-    }
-
-    .back-wrap{
-      display:flex;
-      justify-content:center;
-      margin-top: 18px;
-    }
-
-    .back{
-      text-decoration:none;
-      display:inline-flex;
-      align-items:center;
-      gap: 10px;
-      font-weight: 800;
-      color: #0f172a;
-      background: #fff;
-      border: 1px solid rgba(15,23,42,.12);
-      border-radius: 14px;
-      padding: 14px 18px;
-      box-shadow: var(--shadow2);
-      transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
-      min-width: 280px;
-      justify-content:center;
-    }
-    .back:hover{
-      transform: translateY(-1px);
-      box-shadow: 0 14px 32px rgba(15,23,42,.12);
-      border-color: rgba(29,78,216,.22);
-    }
-
-    @media (max-width: 640px){
-      .shell{ padding: 16px; }
-      .topbar{ flex-direction:column; align-items:stretch; }
-      .slide-btn{ width: 100%; }
-      .subtitle{ font-size: 17px; }
-      .card p, ul{ font-size: 17px; }
-    }
-  </style>
+@keyframes rise{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
+@media(max-width:560px){
+  body{font-size:17.5px;}
+  .masthead{padding:40px 0 24px;}
+  .title-row{align-items:stretch;}
+  .slides-btn{width:100%;justify-content:center;}
+  .principio-item{grid-template-columns:28px 1fr;}
+  .scoreboard{flex-direction:column;align-items:flex-start;gap:10px;}
+  .btn-reset{margin-left:0;}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto;}.reveal{opacity:1;transform:none;}.reveal.in{transition:none;}}
+</style>
 </head>
-
 <body>
-  <main class="wrap">
-    <section class="shell">
-      <div class="topbar">
-        <div>
-          <h1>11. Defesa do reclamado</h1>
-          <p class="subtitle">
-            No processo do trabalho, a defesa é apresentada em audiência, por ser um dos atos processuais
-            realizados naquela oportunidade, conforme o princípio da concentração dos atos processuais.
-          </p>
+<div class="wrap">
+
+<!-- ══════════════ CABEÇALHO ══════════════ -->
+<header class="masthead">
+  <p class="eyebrow">
+    Direito Processual do Trabalho
+    <span class="dot">·</span> Unidade 11
+    <span class="dot">·</span> Defesa do Reclamado
+  </p>
+  <div class="title-row">
+    <h1><span class="art">Item 11</span>Defesa do Reclamado</h1>
+    <a class="slides-btn" href="#" target="_blank" rel="noopener">
+      <span>▮</span><span>Slides da aula</span><span class="arw">→</span>
+    </a>
+  </div>
+  <div class="verbete">
+    <span class="tag">Princípio da concentração — art. 847, CLT</span>
+    <p>No processo do trabalho, a defesa é apresentada em audiência. O reclamado pode valer-se de quatro peças: <strong>contestação</strong> (principal), <strong>exceções</strong> (suspeição, impedimento e incompetência) e <strong>reconvenção</strong>. Todas devem ser apresentadas no mesmo momento, salvo a exceção de incompetência.</p>
+  </div>
+</header>
+
+<!-- ══════════════ § 11.1 FORMA DE APRESENTAÇÃO ══════════════ -->
+<section>
+  <div class="sec-head reveal"><span class="num">§ 11.1</span><h2>Forma de Apresentação da Defesa</h2></div>
+
+  <p class="reveal">Prevista no <span class="ref">art. 847, CLT</span>, a defesa do reclamado é, em regra, apresentada <strong>oralmente</strong>, por até <strong>20 minutos</strong>. A Reforma Trabalhista inseriu o parágrafo único permitindo a apresentação escrita:</p>
+
+  <div class="artigo-literal reveal">
+    <span class="art-label">Art. 847, parágrafo único, CLT — inserido pela Reforma Trabalhista</span>
+    "A parte poderá apresentar defesa escrita pelo sistema de processo judicial eletrônico até a audiência."
+  </div>
+
+  <div class="nota reveal">
+    <strong>Distinção prática:</strong> a defesa <strong>oral</strong> é apresentada <em>na</em> audiência; a defesa <strong>escrita</strong> deve ser apresentada <em>antes</em> da audiência, pelo sistema PJe. Na prática, 99,9% das defesas são escritas. A Reforma apenas positivou o que já era a realidade.
+  </div>
+</section>
+
+<!-- ══════════════ § 11.2 CONTESTAÇÃO ══════════════ -->
+<section>
+  <div class="sec-head reveal"><span class="num">§ 11.2</span><h2>Contestação</h2></div>
+
+  <p class="reveal">A contestação é a <strong>principal peça de defesa</strong>, prevista no <span class="ref">art. 335 do CPC/2015</span>, aplicável ao processo do trabalho por lacuna da CLT. Divide-se em duas partes:</p>
+
+  <div class="cards reveal">
+
+    <div class="card">
+      <button class="card-btn" aria-expanded="false">
+        <div class="card-icon">Pre<br>lim.</div>
+        <div class="card-head">
+          <span class="card-num">art. 337, CPC/2015</span>
+          <span class="card-title">Preliminares de mérito</span>
         </div>
-
-        <!-- Troque pelo seu link real -->
-        <a class="slide-btn" href="https://drive.google.com/file/d/1YQy2rJdwdLIIloEN9uQKxRPwm9-3CQNL/view?usp=sharing" target="_blank" rel="noopener">
-          <div class="slide-ic" aria-hidden="true">
-            <!-- ícone "documento" (mesmo estilo dos anteriores) -->
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-              <path d="M7 3h7l3 3v15a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" stroke="#1d4ed8" stroke-width="1.8"/>
-              <path d="M14 3v3h3" stroke="#1d4ed8" stroke-width="1.8"/>
-              <path d="M8 11h8M8 15h8M8 19h6" stroke="#1d4ed8" stroke-width="1.8" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="slide-txt">
-            <strong>Slides</strong>
-            <span>Abrir no Drive</span>
-          </div>
-        </a>
-      </div>
-
-      <div class="grid">
-        <div class="card">
-          <span class="pill">11.1 Forma de apresentação da defesa</span>
-          <p>
-            A defesa do reclamado está prevista no art. 847 da CLT. Em regra, a defesa é apresentada
-            <strong>oralmente</strong>, por até <strong>20 minutos</strong> (caput).
-          </p>
-          <p>
-            Com a Reforma Trabalhista, foi incluído o <strong>parágrafo único</strong>:
-            a parte poderá apresentar <strong>defesa escrita</strong> pelo sistema de processo judicial eletrônico
-            <strong>até a audiência</strong>.
-          </p>
-          <div class="box-warn">
-            <strong>Dica para prova (OAB):</strong> a defesa <strong>oral</strong> é apresentada em audiência;
-            a defesa <strong>escrita</strong> deve ser juntada <strong>antes</strong> da audiência pelo PJe.
-          </div>
+        <div class="card-chevron">▾</div>
+      </button>
+      <div class="card-body" role="region">
+        <p>Vícios processuais que impedem ou dilatam a análise do mérito. Dividem-se em:</p>
+        <ul class="blist">
+          <li><span class="bul">■</span><span><strong>Peremptórias:</strong> ao serem reconhecidas, impedem a análise do mérito e determinam a extinção do processo (ex.: coisa julgada, perempção).</span></li>
+          <li><span class="bul">■</span><span><strong>Dilatórias:</strong> ao serem reconhecidas, dilatam o procedimento, gerando outra consequência (concessão de prazo, remessa para outro juízo).</span></li>
+        </ul>
+        <p>As preliminares podem ser reconhecidas de ofício pelo Magistrado, mas cabe à parte alegá-las na contestação, sob pena de arcar com os custos do processo.</p>
+        <div class="nota" style="margin-top:10px;">
+          <strong>Atenção — incompetência relativa:</strong> apesar de o <span class="ref">art. 337, CPC</span> prever a incompetência relativa como preliminar, no processo do trabalho ela deve ser alegada por exceção específica (art. 800, CLT), antes da audiência, no prazo de <strong>5 dias</strong> a contar do recebimento da notificação — não na contestação.
         </div>
-
-        <div class="card">
-          <span class="pill">11.2 Contestação</span>
-          <p>
-            A principal peça de defesa é a <strong>contestação</strong>, prevista no art. 335 do CPC/2015,
-            aplicável ao processo do trabalho (quando a CLT não disciplina a matéria).
-          </p>
-
-          <div class="box-ok">
-            <p style="margin:0 0 10px;"><strong>Estrutura geral:</strong></p>
-            <ul>
-              <li><strong>Preliminares</strong> (art. 337 do CPC/2015): vícios processuais que podem impedir a análise do mérito ou dilatar o procedimento.</li>
-              <li><strong>Defesa de mérito</strong>: impugnação dos fatos/pedidos do autor para afastar as pretensões.</li>
-            </ul>
-          </div>
-
-          <p style="margin-top:12px;">
-            As preliminares podem ser classificadas em <strong>peremptórias</strong> (impedem o julgamento do mérito,
-            gerando extinção do processo) e <strong>dilatórias</strong> (apenas alongam o procedimento, como concessão de prazo
-            ou remessa a outro juízo).
-          </p>
-
-          <div class="note">
-            Observação: embora o art. 337 trate de incompetência relativa, no processo do trabalho a
-            <strong>incompetência territorial</strong> segue o procedimento do art. 800 da CLT (Reforma Trabalhista),
-            como visto no tópico de exceções.
-          </div>
-
-          <p style="margin-top:12px;">
-            Na defesa de mérito, o reclamado deve observar dois princípios essenciais:
-          </p>
-          <ul>
-            <li><strong>Princípio da eventualidade</strong> (art. 336 do CPC/2015): alegar todos os fundamentos de defesa de uma só vez, sob pena de preclusão.</li>
-            <li><strong>Impugnação especificada</strong> (art. 341 do CPC/2015): não basta negar genericamente; deve impugnar fato a fato, pedido a pedido.</li>
-          </ul>
-
-          <p style="margin-top:12px;">
-            Regra importante: as peças de defesa devem ser apresentadas em conjunto e no mesmo momento,
-            <strong>com exceção da incompetência territorial</strong>, que deve ser arguida antes da audiência (art. 800 da CLT).
-          </p>
-
-          <p>
-            A arbitragem no contrato de trabalho passou a ser possível em situações específicas após a reforma (art. 507-A da CLT).
-          </p>
-        </div>
-
-        <div class="card">
-          <span class="pill">11.3 Exceções</span>
-          <p>
-            A Reforma Trabalhista alterou o art. 800 da CLT para a <strong>exceção de incompetência territorial</strong>.
-            O reclamado, ao receber a notificação, pode apresentar a exceção no prazo de <strong>5 dias</strong>, antes da audiência.
-            O processo fica suspenso e a audiência não se realiza.
-          </p>
-          <p>
-            Pela Instrução Normativa 41/2018 do TST, a regra se aplica aos processos em curso quando a notificação tiver sido recebida após 11/11/2017.
-          </p>
-
-          <div class="box-ok">
-            <p style="margin:0 0 10px;"><strong>Passos essenciais (art. 800, CLT):</strong></p>
-            <ul>
-              <li>Exceção em 5 dias, antes da audiência;</li>
-              <li>Suspensão do processo e cancelamento da audiência;</li>
-              <li>Prazo de 5 dias para manifestação do exceto (§2º);</li>
-              <li>Se necessário, prova oral com audiência específica, inclusive por carta precatória;</li>
-              <li>Definido o juízo competente, redesignação da audiência no juízo correto.</li>
-            </ul>
-          </div>
-
-          <p style="margin-top:12px;">
-            Há também as exceções de <strong>suspeição</strong> e <strong>impedimento</strong> (arts. 144 e 145 do CPC/2015),
-            com procedimento no art. 146 do CPC/2015. A finalidade é demonstrar ausência de isenção do julgador (ou de outros sujeitos do processo).
-          </p>
-
-          <div class="note">
-            Resumo do procedimento (art. 146, CPC): reconhecimento de ofício pelo juiz; se não, parte argui;
-            juiz pode reconhecer após provocação; se não reconhecer, apresenta defesa e remete ao Tribunal; Tribunal decide
-            (podendo condenar o juiz em custas se reconhecer o vício).
-          </div>
-        </div>
-
-        <div class="card">
-          <span class="pill">11.4 Reconvenção</span>
-          <p>
-            A <strong>reconvenção</strong> é o “contra-ataque” do réu: em vez de apenas se defender, o réu formula um pedido contra o autor.
-            Atualmente, está no art. 343 do CPC/2015 e é aplicável ao processo do trabalho.
-          </p>
-
-          <div class="box-ok">
-            <p style="margin:0 0 10px;"><strong>Pontos importantes:</strong></p>
-            <ul>
-              <li>Com o CPC/2015, a reconvenção passou a ser apresentada na própria contestação (não mais peça autônoma).</li>
-              <li>É possível reconvir mesmo sem contestar (§6º do art. 343, CPC).</li>
-              <li>A ação e a reconvenção são autônomas: desistência/extinção de uma não extingue necessariamente a outra.</li>
-              <li>No processo do trabalho, se a reconvenção for apresentada em audiência, costuma-se designar nova data para a resposta do autor e produção de provas, com julgamento conjunto na mesma sentença.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="card">
-          <span class="pill">11.5 Revelia</span>
-          <p>
-            A ausência do reclamado em audiência importa em <strong>revelia</strong> (art. 844 da CLT),
-            pois não haverá apresentação de defesa, tornando-se, em regra, incontroversos os fatos narrados na petição inicial.
-          </p>
-          <p>
-            A revelia também pode ocorrer se o reclamado estiver presente, mas não apresentar defesa de mérito,
-            ou se apresentar defesa genérica (violando o princípio da impugnação especificada).
-          </p>
-
-          <div class="note">
-            Efeitos clássicos: presunção de veracidade (efeito material — art. 344 do CPC),
-            julgamento antecipado (art. 355 do CPC) e dispensa de intimações ao revel sem advogado (art. 346 do CPC).
-          </div>
-
-          <div class="box-warn" style="margin-top:12px;">
-            <strong>Importante:</strong> o art. 844, §4º, da CLT prevê hipóteses em que a revelia não produz seus efeitos:
-            litisconsorte apresenta defesa; direitos indisponíveis; ausência de documentos indispensáveis; alegações inverossímeis/contraditórias.
-            E, em insalubridade/periculosidade, a prova pericial é obrigatória (art. 195, §2º, CLT), não cabendo presunção automática.
-          </div>
-        </div>
-
-        <div class="back-wrap">
-          <!-- Volta para o índice do curso: direito-processual-do-trabalho/index.html -->
-          <a class="back" href="../index.html">← Voltar ao índice da disciplina</a>
+        <div class="nota" style="margin-top:8px;">
+          <strong>Arbitragem:</strong> passa a ser possível a partir da Reforma Trabalhista, nos termos do <span class="ref">art. 507-A, CLT</span>.
         </div>
       </div>
-    </section>
-  </main>
+    </div>
+
+    <div class="card">
+      <button class="card-btn" aria-expanded="false">
+        <div class="card-icon">Mér.<br>ito</div>
+        <div class="card-head">
+          <span class="card-num">arts. 336 e 341, CPC/2015</span>
+          <span class="card-title">Defesa de mérito e seus princípios</span>
+        </div>
+        <div class="card-chevron">▾</div>
+      </button>
+      <div class="card-body" role="region">
+        <p>O reclamado demonstra que os fatos narrados na petição inicial não são verdadeiros e que as pretensões devem ser rechaçadas. Dois princípios fundamentais regem essa fase:</p>
+        <div class="principio-list" style="margin-top:10px;">
+          <div class="principio-item">
+            <div class="principio-num">I</div>
+            <div class="principio-body">
+              <strong>Princípio da eventualidade</strong> <span class="ref">art. 336, CPC</span> — o reclamado deve alegar <em>todos</em> os fundamentos de defesa na contestação, pois ela é a única oportunidade de defesa. Fundamentos não alegados ficam sujeitos à <strong>preclusão</strong>.
+            </div>
+          </div>
+          <div class="principio-item">
+            <div class="principio-num">II</div>
+            <div class="principio-body">
+              <strong>Princípio da impugnação especificada dos fatos</strong> <span class="ref">art. 341, CPC</span> — a defesa não pode ser genérica. O reclamado deve impugnar <em>fato a fato</em>, todos os fatos, fundamentos e pedidos do autor. Fato não impugnado é presumido verdadeiro.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Desistência após defesa -->
+  <h3 class="reveal">Desistência após apresentação da defesa</h3>
+  <div class="artigo-literal reveal">
+    <span class="art-label">Art. 841, § 3º, CLT</span>
+    Não poderá o autor desistir da ação após o oferecimento da defesa, <strong>mesmo que de forma eletrônica</strong>, sem o <strong>consentimento do reclamado</strong>.
+  </div>
+  <p class="reveal" style="font-size:.93em;">Isso vale tanto para defesa oral quanto para defesa escrita apresentada pelo PJe — o que importa é o <strong>oferecimento da defesa</strong>, não a forma. Se o reclamado já apresentou defesa, apenas com seu consentimento o reclamante pode desistir da ação.</p>
+</section>
+
+<!-- ══════════════ § 11.3 EXCEÇÕES ══════════════ -->
+<section>
+  <div class="sec-head reveal"><span class="num">§ 11.3</span><h2>Exceções</h2></div>
+
+  <div class="cards reveal">
+
+    <div class="card">
+      <button class="card-btn" aria-expanded="false">
+        <div class="card-icon">Incomp.<br>territ.</div>
+        <div class="card-head">
+          <span class="card-num">art. 800, CLT — Reforma Trabalhista</span>
+          <span class="card-title">Exceção de incompetência territorial</span>
+        </div>
+        <div class="card-chevron">▾</div>
+      </button>
+      <div class="card-body" role="region">
+        <p>A Reforma Trabalhista alterou o <span class="ref">art. 800, CLT</span>, criando procedimento específico para a exceção de incompetência territorial:</p>
+        <ul class="blist">
+          <li><span class="bul">■</span><span>Prazo: <strong>5 dias</strong> a contar do recebimento da notificação</span></li>
+          <li><span class="bul">■</span><span>Deve ser apresentada <strong>antes da audiência</strong></span></li>
+          <li><span class="bul">■</span><span>O processo fica <strong>suspenso</strong> e a audiência não se realiza enquanto pendente</span></li>
+          <li><span class="bul">■</span><span>O exceto tem <strong>5 dias</strong> para se manifestar (antes da Reforma eram 24 horas)</span></li>
+          <li><span class="bul">■</span><span>Se necessária prova oral, designa-se audiência, garantindo-se ao excipiente oitiva por <strong>carta precatória</strong> no juízo que considera competente</span></li>
+        </ul>
+        <div class="nota" style="margin-top:10px;">
+          <strong>IN n. 41/2018 do TST:</strong> a nova regra aplica-se aos processos em que o reclamado recebeu a notificação após <strong>11-11-2017</strong>.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <button class="card-btn" aria-expanded="false">
+        <div class="card-icon">Susp.<br>Imp.</div>
+        <div class="card-head">
+          <span class="card-num">arts. 144, 145 e 146, CPC/2015</span>
+          <span class="card-title">Exceções de suspeição e impedimento</span>
+        </div>
+        <div class="card-chevron">▾</div>
+      </button>
+      <div class="card-body" role="region">
+        <p>Demonstram que o Magistrado (também o Ministério Público, serventuários, perito etc.) não possui a <strong>isenção necessária</strong> para julgar o conflito: parentesco, atuação anterior no processo (como advogado, MP, testemunha), amizade íntima ou inimizade com uma das partes. Procedimento idêntico para ambas <span class="ref">art. 146, CPC</span>:</p>
+        <div class="steps" style="margin-top:10px;">
+          <div class="step"><div class="step-n">1</div><div class="step-body">O Juiz, ao perceber que se encontra em hipótese dos arts. 144/145 CPC, deve reconhecer <strong>de ofício</strong> e remeter os autos ao substituto legal.</div></div>
+          <div class="step"><div class="step-n">2</div><div class="step-body">Se não o fizer, a parte pode provocá-lo apresentando a exceção.</div></div>
+          <div class="step"><div class="step-n">3</div><div class="step-body">Recebida a exceção, o Juiz tem nova oportunidade para reconhecer-se suspeito/impedido e remeter ao substituto.</div></div>
+          <div class="step"><div class="step-n">4</div><div class="step-body">Não reconhecendo, pode apresentar <strong>defesa em 15 dias</strong>, com provas, sendo o procedimento remetido ao Tribunal.</div></div>
+          <div class="step"><div class="step-n">5</div><div class="step-body"><strong>Se procedente:</strong> Tribunal condena o Juiz ao pagamento das custas e remete ao substituto. <strong>Se improcedente:</strong> Tribunal arquiva a exceção.</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════ § 11.4 RECONVENÇÃO ══════════════ -->
+<section>
+  <div class="sec-head reveal"><span class="num">§ 11.4</span><h2>Reconvenção</h2></div>
+
+  <p class="reveal">A reconvenção é o <strong>"contra-ataque" do réu ao autor</strong>: em vez de apenas se defender, o réu apresenta um pedido de condenação do autor, saindo da defensiva para a ofensiva. Está prevista no <span class="ref">art. 343, CPC/2015</span>, aplicável ao processo do trabalho.</p>
+
+  <ul class="blist reveal">
+    <li><span class="bul">■</span><span><strong>Forma:</strong> o CPC/2015 eliminou a petição inicial autônoma — a reconvenção é apresentada <em>dentro da própria contestação</em>, como tópico (semelhante ao pedido contraposto dos Juizados Especiais).</span></li>
+    <li><span class="bul">■</span><span><strong>Independência:</strong> é possível reconvir <em>sem apresentar contestação</em> <span class="ref">art. 343, § 6º, CPC</span>.</span></li>
+    <li><span class="bul">■</span><span><strong>Autonomia:</strong> a desistência da ação principal não importa desistência da reconvenção, e vice-versa. A extinção de uma não gera a extinção da outra.</span></li>
+    <li><span class="bul">■</span><span><strong>Terceiro:</strong> é possível incluir na reconvenção pessoa que não figurava na ação principal, como litisconsorte <span class="ref">art. 343, § 3º, CPC</span>.</span></li>
+    <li><span class="bul">■</span><span><strong>Procedimento na JT:</strong> apresentada a reconvenção em audiência, designa-se nova data para que o autor apresente sua defesa à reconvenção. Ação e reconvenção são julgadas prioritariamente na mesma sentença.</span></li>
+  </ul>
+</section>
+
+<!-- ══════════════ § 11.5 REVELIA ══════════════ -->
+<section>
+  <div class="sec-head reveal"><span class="num">§ 11.5</span><h2>Revelia</h2></div>
+
+  <p class="reveal">A revelia ocorre pela <strong>ausência do réu em audiência</strong> <span class="ref">art. 844, CLT</span> ou pela <strong>ausência de defesa de mérito</strong> ou defesa genérica (violação do princípio da impugnação especificada).</p>
+
+  <h3 class="reveal">Efeitos da revelia</h3>
+  <ul class="blist reveal">
+    <li><span class="bul">■</span><span><strong>Material:</strong> presunção de veracidade dos fatos afirmados na petição inicial <span class="ref">art. 344, CPC</span>.</span></li>
+    <li><span class="bul">■</span><span><strong>Processual:</strong> julgamento antecipado do mérito <span class="ref">art. 355, CPC</span>.</span></li>
+    <li><span class="bul">■</span><span><strong>Processual:</strong> ausência de intimação do réu revel sem procurador nos autos <span class="ref">art. 346, CPC</span>.</span></li>
+  </ul>
+
+  <h3 class="reveal">Hipóteses em que a revelia não produz efeitos</h3>
+  <p class="reveal">O <span class="ref">art. 844, § 4º, CLT</span> (inserido pela Reforma Trabalhista) prevê que o réu é revel mas os efeitos não se produzem quando:</p>
+  <ul class="blist reveal">
+    <li><span class="bul">a)</span><span>A defesa é apresentada por <strong>litisconsorte</strong> do réu revel.</span></li>
+    <li><span class="bul">b)</span><span>A hipótese for de <strong>direitos indisponíveis</strong>.</span></li>
+    <li><span class="bul">c)</span><span>Houver <strong>ausência de documentos indispensáveis</strong>.</span></li>
+    <li><span class="bul">d)</span><span>As alegações forem <strong>inverossímeis ou em contradição</strong> com as provas do processo.</span></li>
+    <li><span class="bul">e)</span><span><strong>Insalubridade ou periculosidade</strong> <span class="ref">art. 195, § 2º, CLT</span>: a prova pericial é obrigatória; não cabe presunção de veracidade.</span></li>
+  </ul>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     QUESTÕES OAB — 9. Contestação (PDF)
+══════════════════════════════════════════════ -->
+<section>
+  <div class="sec-head reveal"><span class="num">§</span><h2>Questões de Exame da OAB</h2></div>
+  <p class="reveal">Questões do tópico <strong>9. Contestação</strong> do caderno de questões OAB/FGV. Selecione a alternativa e clique em <strong>Confirmar resposta</strong>.</p>
+
+  <div class="scoreboard reveal">
+    <div>
+      <div class="score-label">Acertos</div>
+      <div class="score-nums">
+        <span class="score-current" id="sc-current">0</span>
+        <span class="score-total">/ 6</span>
+      </div>
+    </div>
+    <div class="score-bar-wrap"><div class="score-bar" id="sc-bar"></div></div>
+    <div class="score-msg" id="sc-msg">0 respondidas</div>
+    <button class="btn-reset" onclick="resetQuiz()">↺ Reiniciar</button>
+  </div>
+
+  <!-- Q1 — XXIX Exame — Desistência após defesa eletrônica -->
+  <div class="q-card" id="q1">
+    <div class="q-header">
+      <span class="q-badge">XXIX Exame · FGV</span>
+      <p class="q-text">O réu, em sede de reclamação trabalhista ajuizada em 20-4-2018, apresentou defesa no processo eletrônico, a qual não foi oferecida sob sigilo. Feito o pregão, logo após a abertura da audiência, a parte autora manifestou interesse em desistir da ação. Sobre a desistência da ação pela parte autora, assinale a afirmativa correta.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="1" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>O juiz deverá, imediatamente, homologar a desistência.</span></button>
+      <button class="opt" data-q="1" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Não é possível desistir da ação após a propositura desta.</span></button>
+      <button class="opt" data-q="1" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Oferecida a contestação, ainda que eletronicamente, o reclamante não poderá, sem o consentimento do reclamado, desistir da ação.</span></button>
+      <button class="opt" data-q="1" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>O oferecimento da defesa pelo réu em nada se relaciona à questão da desistência de pedidos ou da demanda.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q1-btn" disabled onclick="confirmAnswer(1,'C')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q1-tog" onclick="toggleGabarito(1)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q1-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa C — Desistência exige consentimento do reclamado após a defesa</div>
+      <div class="gabarito-body">
+        <p><strong>A) Errada.</strong> A desistência depende do consentimento do reclamado, pois já foi apresentada a defesa. O juiz não pode homologá-la imediatamente.</p>
+        <p><strong>B) Errada.</strong> A desistência é possível, mas somente com o consentimento do reclamado quando este já apresentou defesa.</p>
+        <p><strong>C) Correta.</strong> Nos termos do <span class="ref">art. 841, § 3º, CLT</span>, não poderá o autor desistir da ação após o oferecimento da defesa, <strong>mesmo que de forma eletrônica</strong>, sem o consentimento do reclamado. Na hipótese, somente se o reclamado concordar é que o autor poderá desistir da ação. A forma da defesa (oral ou eletrônica) é irrelevante — o que importa é o <em>oferecimento</em> da defesa.</p>
+        <p><strong>D) Errada.</strong> O oferecimento da defesa vincula diretamente a necessidade de consentimento do reclamado para a desistência da ação.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Q2 — XXXVI Exame — Desistência após defesa PJe sem sigilo -->
+  <div class="q-card" id="q2">
+    <div class="q-header">
+      <span class="q-badge">XXXVI Exame · FGV</span>
+      <p class="q-text">Amanda ajuizou reclamação trabalhista contra a Sociedade Empresária Brinquedos Infantis Ltda. A reclamada apresentou defesa sem sigilo no sistema PJe, com os documentos, 2 dias antes da audiência. No dia da audiência, feito o pregão, a juíza tentou a conciliação, sem sucesso. Então recebeu formalmente a defesa e deu vista à advogada da autora. Após analisar a contestação, a advogada de Amanda pediu a palavra e requereu a desistência da reclamação, com o que não concordou o advogado da reclamada. Assinale a afirmativa correta.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="2" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>A desistência pode ser homologada, porque requerida antes do início da instrução.</span></button>
+      <button class="opt" data-q="2" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>O requerimento deve ser homologado pelo magistrado, uma vez que a desistência jamais depende da concordância do reclamado.</span></button>
+      <button class="opt" data-q="2" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>A desistência não poderá ser homologada, porque tendo a contestação sido oferecida, a desistência depende da concordância do reclamado.</span></button>
+      <button class="opt" data-q="2" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>O requerimento não pode ser atendido, porque tanto a desistência quanto a renúncia dependem de aquiescência do reclamado se a defesa tiver sido apresentada sem sigilo.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q2-btn" disabled onclick="confirmAnswer(2,'C')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q2-tog" onclick="toggleGabarito(2)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q2-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa C — Desistência depende da concordância do reclamado</div>
+      <div class="gabarito-body">
+        <p><strong>A) Errada.</strong> O momento da instrução é irrelevante. O que determina a necessidade de consentimento é o oferecimento da defesa, não o início da instrução.</p>
+        <p><strong>B) Errada.</strong> Após a apresentação da defesa, a desistência <em>sempre</em> depende do consentimento do reclamado.</p>
+        <p><strong>C) Correta.</strong> A desistência da ação depende do consentimento do reclamado, uma vez que já houve a apresentação de defesa, nos termos do <span class="ref">§ 3º do art. 841, CLT</span>. A reclamada discordou, portanto a desistência não pode ser homologada.</p>
+        <p><strong>D) Errada.</strong> Independentemente de a defesa ter sido apresentada com ou sem sigilo, não cabe a desistência sem consentimento após a defesa ser oferecida. O sigilo é irrelevante para essa análise.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Q3 — Princípio da eventualidade -->
+  <div class="q-card" id="q3">
+    <div class="q-header">
+      <span class="q-badge">OAB — Contestação</span>
+      <p class="q-text">A empresa Gama Ltda. foi reclamada em ação trabalhista. Seu advogado, ao preparar a contestação, decidiu não alegar a prescrição bienal porque achava que poderia fazê-lo em momento posterior, caso o mérito principal fosse desfavorável à empresa. Na audiência, a empresa apresentou contestação sem alegação de prescrição. Após a sentença que condenou a empresa, em grau de recurso, o advogado tentou alegar a prescrição pela primeira vez. Considerando o princípio aplicável à defesa no processo do trabalho, assinale a afirmativa correta.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="3" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>A alegação de prescrição é possível em qualquer momento processual, pois se trata de matéria de ordem pública.</span></button>
+      <button class="opt" data-q="3" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>A alegação de prescrição em grau recursal é válida, pois o prazo prescricional pode ser alegado a qualquer tempo, inclusive após a sentença.</span></button>
+      <button class="opt" data-q="3" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Pelo princípio da eventualidade, a empresa deveria ter alegado todos os fundamentos de defesa na contestação; fundamentos não alegados ficam sujeitos à preclusão.</span></button>
+      <button class="opt" data-q="3" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>A empresa pode alegar prescrição em grau de recurso, pois o princípio da eventualidade não se aplica ao processo do trabalho.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q3-btn" disabled onclick="confirmAnswer(3,'C')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q3-tog" onclick="toggleGabarito(3)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q3-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa C — Princípio da eventualidade: preclusão dos fundamentos não alegados</div>
+      <div class="gabarito-body">
+        <p><strong>A) Errada.</strong> Embora a prescrição possa ser reconhecida de ofício, no processo do trabalho a parte deve alegá-la na contestação para evitar a preclusão. O fato de ser matéria de ordem pública não afasta a preclusão.</p>
+        <p><strong>B) Errada.</strong> O princípio da eventualidade exige que todos os fundamentos sejam alegados na contestação. Fundamentos não alegados naquele momento ficam sujeitos à preclusão.</p>
+        <p><strong>C) Correta.</strong> O <strong>Princípio da eventualidade</strong> <span class="ref">art. 336, CPC/2015</span> dispõe que o reclamado deve alegar <em>todos</em> os fundamentos de defesa na contestação, pois ela é a única oportunidade de defesa. Fundamentos não alegados ficam sujeitos à <strong>preclusão</strong>. A empresa deveria ter alegado a prescrição na contestação.</p>
+        <p><strong>D) Errada.</strong> O princípio da eventualidade se aplica ao processo do trabalho por aplicação subsidiária do CPC/2015.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Q4 — Reconvenção com terceiro -->
+  <div class="q-card" id="q4">
+    <div class="q-header">
+      <span class="q-badge">XXII Exame · FGV</span>
+      <p class="q-text">A sociedade empresária Sanear Conservação e Limpeza Ltda. ajuizou ação de consignação em pagamento em face do ex-empregado Pedro Braga, afirmando que ele se negava a receber as verbas resilitórias a que faria jus. Citado, Pedro Braga apresentou contestação e reconvenção, postulando diversos direitos alegadamente lesados e incluindo no polo passivo a sociedade empresária Réptil Imobiliária, tomadora dos serviços terceirizados, requerendo dela a responsabilidade subsidiária. Diante da situação e da norma de regência, assinale a afirmativa correta.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="4" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Não é possível, em sede de reconvenção, ajuizar ação contra quem não é parte na lide principal.</span></button>
+      <button class="opt" data-q="4" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>A pretensão de Pedro somente se viabilizará se a sociedade empresária Réptil Imobiliária concordar em figurar na reconvenção.</span></button>
+      <button class="opt" data-q="4" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Não há óbice a se incluir na reconvenção pessoa que não figure na lide original.</span></button>
+      <button class="opt" data-q="4" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>A Lei processual é omissa a respeito; assim ficará a critério do juiz aceitar a inclusão da sociedade empresária Réptil Imobiliária.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q4-btn" disabled onclick="confirmAnswer(4,'C')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q4-tog" onclick="toggleGabarito(4)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q4-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa C — É possível incluir terceiro na reconvenção (art. 343, § 3º, CPC)</div>
+      <div class="gabarito-body">
+        <p><strong>A) Errada.</strong> É possível a inclusão de litisconsorte que não era parte no processo em sede de reconvenção, conforme o <span class="ref">art. 343, § 3º, CPC</span>.</p>
+        <p><strong>B) Errada.</strong> Não há necessidade de concordância do terceiro para ser incluído como réu na reconvenção.</p>
+        <p><strong>C) Correta.</strong> A possibilidade de inclusão de terceiro em reconvenção está expressamente prevista no <span class="ref">art. 343, § 3º, CPC</span> — pode o réu apresentar a reconvenção em face do autor <em>e</em> de terceiro, como no caso da Réptil Imobiliária.</p>
+        <p><strong>D) Errada.</strong> Não há omissão. O <span class="ref">art. 343, § 3º, CPC</span> trata da questão, possibilitando a inclusão.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Q5 — Revelia: hipóteses sem efeito -->
+  <div class="q-card" id="q5">
+    <div class="q-header">
+      <span class="q-badge">OAB — Revelia</span>
+      <p class="q-text">A empresa Delta Ltda. foi citada para audiência em reclamação trabalhista na qual o reclamante pleiteia, entre outros pedidos, o pagamento de adicional de insalubridade. A empresa não compareceu à audiência inaugural. O juiz decretou a revelia da empresa. Considerando o art. 844, § 4º, da CLT e o art. 195, § 2º, da CLT, assinale a afirmativa correta sobre os efeitos da revelia no caso.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="5" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>A revelia produz todos os seus efeitos, inclusive a presunção de veracidade quanto ao pedido de insalubridade, dispensando a realização de perícia.</span></button>
+      <button class="opt" data-q="5" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>A revelia não produz qualquer efeito no processo do trabalho, pois os direitos trabalhistas são indisponíveis.</span></button>
+      <button class="opt" data-q="5" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>A revelia produz seus efeitos para os demais pedidos, mas não em relação ao adicional de insalubridade, para o qual a prova pericial é obrigatória, não cabendo presunção de veracidade.</span></button>
+      <button class="opt" data-q="5" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>A revelia impede o julgamento antecipado do mérito, pois exige a realização de perícia para todos os pedidos.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q5-btn" disabled onclick="confirmAnswer(5,'C')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q5-tog" onclick="toggleGabarito(5)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q5-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa C — Insalubridade exige perícia obrigatória mesmo com revelia</div>
+      <div class="gabarito-body">
+        <p><strong>A) Errada.</strong> O <span class="ref">art. 195, § 2º, CLT</span> prevê que insalubridade e periculosidade são apuradas por <strong>prova pericial obrigatória</strong>. Mesmo com revelia, não cabe presunção de veracidade para esse pedido específico — a perícia é indispensável.</p>
+        <p><strong>B) Errada.</strong> A revelia produz efeitos no processo do trabalho. A indisponibilidade dos direitos é apenas uma das hipóteses em que os efeitos não se produzem, mas não afasta a revelia em relação a todos os pedidos.</p>
+        <p><strong>C) Correta.</strong> A revelia produz seus efeitos normais (presunção de veracidade, julgamento antecipado) para os demais pedidos. Porém, em relação ao <strong>adicional de insalubridade</strong>, a prova pericial é <strong>obrigatória</strong> por força do <span class="ref">art. 195, § 2º, CLT</span>, não cabendo a presunção de veracidade decorrente da revelia para esse pedido específico.</p>
+        <p><strong>D) Errada.</strong> O julgamento antecipado é possível para os demais pedidos. Apenas o pedido de insalubridade/periculosidade exige perícia.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Q6 — Reconvenção: autonomia (extinção da ação) -->
+  <div class="q-card" id="q6">
+    <div class="q-header">
+      <span class="q-badge">OAB — Reconvenção</span>
+      <p class="q-text">Em reclamação trabalhista ajuizada por Carlos contra a empresa Ômega Ltda., a empresa apresentou contestação e reconvenção, pleiteando indenização por danos causados pelo ex-empregado ao patrimônio da empresa. Durante o processo, Carlos desistiu da ação principal, com o consentimento da empresa. O juiz homologou a desistência e extinguiu a ação principal sem resolução do mérito. Sobre a reconvenção, considerando o art. 343 do CPC/2015, assinale a afirmativa correta.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="6" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>A extinção da ação principal implica automaticamente a extinção da reconvenção, pois são peças indissociáveis.</span></button>
+      <button class="opt" data-q="6" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>A reconvenção prossegue normalmente, pois há autonomia entre ação e reconvenção — a extinção de uma não gera a extinção da outra.</span></button>
+      <button class="opt" data-q="6" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>A reconvenção só pode prosseguir se Carlos apresentar nova contestação em resposta à reconvenção.</span></button>
+      <button class="opt" data-q="6" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>A desistência da ação principal sem concordância da reconvenção é inválida e deve ser desconstituída.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q6-btn" disabled onclick="confirmAnswer(6,'B')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q6-tog" onclick="toggleGabarito(6)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q6-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa B — Autonomia entre ação e reconvenção (art. 343, CPC)</div>
+      <div class="gabarito-body">
+        <p><strong>A) Errada.</strong> A relação entre ação e reconvenção é de <strong>autonomia</strong>. O <span class="ref">art. 343, CPC</span> é expresso: a extinção da ação não gera a extinção da reconvenção, e a inadmissão de uma não importa inadmissão da outra.</p>
+        <p><strong>B) Correta.</strong> O <span class="ref">art. 343, CPC/2015</span> consagra a <strong>autonomia</strong> da reconvenção em relação à ação principal. A desistência ou extinção da ação não importa desistência da reconvenção. A empresa Ômega continua tendo direito ao julgamento de seu pedido reconvencional, mesmo com a extinção da ação de Carlos.</p>
+        <p><strong>C) Errada.</strong> Não há exigência de nova contestação. Carlos já é réu na reconvenção — o processo prossegue normalmente para julgamento desta.</p>
+        <p><strong>D) Errada.</strong> A desistência foi feita com o consentimento da empresa (reclamada), o que é suficiente. O consentimento da "reconvenção" não é um requisito autônomo — o que se exige é o consentimento do reclamado, que foi dado.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- RESULTADO FINAL -->
+  <div class="result-banner" id="result-banner">
+    <div class="result-score" id="result-score">0/6</div>
+    <div class="result-label">Resultado final</div>
+    <div class="result-msg" id="result-msg"></div>
+  </div>
+
+</section>
+
+<a class="back" href="../index.html">
+  <span class="arw">←</span>
+  <span>Voltar ao índice da disciplina</span>
+</a>
+
+</div><!-- /wrap -->
+
+<script>
+/* accordion */
+(function(){
+  var cards=document.querySelectorAll('.card');
+  cards.forEach(function(card){
+    var btn=card.querySelector('.card-btn');
+    if(!btn) return;
+    btn.addEventListener('click',function(){
+      var isOpen=card.classList.contains('open');
+      cards.forEach(function(c){c.classList.remove('open');var b=c.querySelector('.card-btn');if(b)b.setAttribute('aria-expanded','false');});
+      if(!isOpen){card.classList.add('open');btn.setAttribute('aria-expanded','true');}
+    });
+  });
+})();
+
+/* reveal */
+(function(){
+  var items=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){items.forEach(function(el){el.classList.add('in');});return;}
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:.08,rootMargin:'0px 0px -3% 0px'});
+  items.forEach(function(el,i){el.style.transitionDelay=(i*35)+'ms';io.observe(el);});
+})();
+
+/* ── QUIZ ── */
+var TOTAL=6, answered={};
+
+function selectOpt(el){
+  var q=el.dataset.q;
+  if(answered[q]!==undefined) return;
+  document.querySelectorAll('[data-q="'+q+'"]').forEach(function(o){o.classList.remove('selected');});
+  el.classList.add('selected');
+  document.getElementById('q'+q+'-btn').disabled=false;
+}
+
+function confirmAnswer(qNum,correctVal){
+  var opts=document.querySelectorAll('[data-q="'+qNum+'"]');
+  var btn=document.getElementById('q'+qNum+'-btn');
+  var card=document.getElementById('q'+qNum);
+  var tog=document.getElementById('q'+qNum+'-tog');
+  var chosen=null;
+  opts.forEach(function(o){if(o.classList.contains('selected'))chosen=o;});
+  if(!chosen) return;
+  var isCorrect=chosen.dataset.val===correctVal;
+  answered[qNum]=isCorrect;
+  opts.forEach(function(o){
+    o.disabled=true;
+    if(o.dataset.val===correctVal){o.classList.add('correct-final');}
+    else if(o.classList.contains('selected')&&!isCorrect){o.classList.add('wrong-final');}
+    else{o.classList.add('dimmed');}
+    o.classList.remove('selected');
+  });
+  card.classList.add(isCorrect?'answered-correct':'answered-wrong');
+  btn.disabled=true; btn.style.display='none';
+  tog.style.display='inline-flex';
+  updateScore(); checkAllDone();
+}
+
+function toggleGabarito(qNum){
+  var gab=document.getElementById('q'+qNum+'-gab');
+  var tog=document.getElementById('q'+qNum+'-tog');
+  var open=gab.classList.toggle('open');
+  tog.classList.toggle('open',open);
+}
+
+function updateScore(){
+  var done=Object.keys(answered).length;
+  var correct=Object.values(answered).filter(Boolean).length;
+  var pct=TOTAL>0?(correct/TOTAL)*100:0;
+  document.getElementById('sc-current').textContent=correct;
+  document.getElementById('sc-bar').style.width=pct+'%';
+  document.getElementById('sc-bar').style.background=pct>=70?'#166534':pct>=40?'#d97706':'#991b1b';
+  document.getElementById('sc-msg').textContent=done+' respondida'+(done!==1?'s':'');
+}
+
+function checkAllDone(){
+  if(Object.keys(answered).length<TOTAL) return;
+  var correct=Object.values(answered).filter(Boolean).length;
+  var banner=document.getElementById('result-banner');
+  document.getElementById('result-score').textContent=correct+'/'+TOTAL;
+  var pct=correct/TOTAL;
+  var msg=document.getElementById('result-msg');
+  if(pct===1) msg.textContent='🎉 Parabéns! Gabarito perfeito — você domina o tema.';
+  else if(pct>=.75) msg.textContent='✅ Muito bem! Revise os pontos que errou e estará pronto.';
+  else if(pct>=.5) msg.textContent='📖 Resultado razoável. Revise os comentários com atenção.';
+  else msg.textContent='🔁 Reforce o estudo e tente novamente. Os comentários ajudam!';
+  banner.classList.add('show');
+  banner.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+function resetQuiz(){
+  answered={};
+  for(var q=1;q<=TOTAL;q++){
+    document.querySelectorAll('[data-q="'+q+'"]').forEach(function(o){
+      o.disabled=false; o.classList.remove('selected','correct-final','wrong-final','dimmed');
+    });
+    document.getElementById('q'+q).classList.remove('answered-correct','answered-wrong');
+    var btn=document.getElementById('q'+q+'-btn'); btn.disabled=true; btn.style.display='';
+    var tog=document.getElementById('q'+q+'-tog'); tog.style.display='none'; tog.classList.remove('open');
+    document.getElementById('q'+q+'-gab').classList.remove('open');
+  }
+  document.getElementById('sc-current').textContent='0';
+  document.getElementById('sc-bar').style.width='0%';
+  document.getElementById('sc-msg').textContent='0 respondidas';
+  document.getElementById('result-banner').classList.remove('show');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
 </body>
 </html>
-
