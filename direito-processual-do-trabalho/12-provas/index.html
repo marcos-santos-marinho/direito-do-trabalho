@@ -1,6 +1,710 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>12. Provas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1b2436;--ink-soft:#414a5c;--paper:#edece5;--surface:#fbfaf7;
+  --accent:#7a2e37;--accent-soft:#a2545f;--iron:#8b8579;
+  --line:rgba(27,36,54,.13);--line-strong:rgba(27,36,54,.22);
+  --green:#166534;--green-bg:#f0fdf4;--green-line:#bbf7d0;
+  --red:#991b1b;--red-bg:#fef2f2;--red-line:#fecaca;
+  --display:"Fraunces",Georgia,serif;
+  --body:"Spectral",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:19px;line-height:1.78;-webkit-font-smoothing:antialiased;}
+body::before{content:"";position:fixed;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 34%,var(--ink) 34%,var(--ink) 100%);z-index:50;}
+.wrap{max-width:760px;margin:0 auto;padding:0 22px 72px;}
+
+/* CABEÇALHO */
+.masthead{padding:56px 0 30px;border-bottom:1px solid var(--line-strong);animation:rise .7s cubic-bezier(.2,.7,.2,1) both;}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--accent);display:inline-block;}
+.eyebrow .dot{color:var(--line-strong);}
+.title-row{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;flex-wrap:wrap;}
+h1{font-family:var(--display);font-weight:500;font-size:clamp(2.3rem,6.5vw,3.8rem);line-height:1.04;letter-spacing:-.015em;max-width:14ch;}
+h1 .art{display:block;font-size:.42em;font-weight:600;letter-spacing:.02em;color:var(--accent);font-family:var(--mono);text-transform:uppercase;margin-bottom:.5em;}
+.slides-btn{flex-shrink:0;display:inline-flex;align-items:center;gap:12px;text-decoration:none;background:var(--ink);color:#f4f2ec;border-radius:4px;padding:13px 18px;font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;box-shadow:0 8px 22px -12px rgba(27,36,54,.7);transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s,background .25s;}
+.slides-btn:hover{background:var(--accent);transform:translateY(-2px);}
+.slides-btn .arw{transition:transform .25s;}
+.slides-btn:hover .arw{transform:translateX(4px);}
+
+/* VERBETE */
+.verbete{margin:44px 0 8px;padding:6px 0 6px 30px;border-left:3px solid var(--accent);}
+.verbete .tag{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:14px;}
+.verbete p{font-family:var(--display);font-weight:400;font-size:clamp(1.15rem,2.8vw,1.45rem);line-height:1.45;color:var(--ink);margin:0;}
+
+.ref{font-family:var(--mono);font-size:.8em;color:var(--iron);background:rgba(139,133,121,.12);padding:2px 7px;border-radius:3px;white-space:nowrap;}
+
+/* SEÇÕES */
+.sec-head{display:flex;gap:16px;align-items:baseline;margin:44px 0 14px;padding-top:26px;border-top:1px solid var(--line);}
+.sec-head .num{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--accent);flex-shrink:0;padding-top:.35em;}
+h2{font-family:var(--display);font-weight:500;font-size:clamp(1.55rem,4vw,1.95rem);line-height:1.14;letter-spacing:-.01em;color:var(--ink);}
+h3{font-family:var(--display);font-weight:600;font-size:1.15rem;color:var(--ink);margin:22px 0 8px;}
+p{margin-bottom:14px;color:var(--ink-soft);}
+
+/* ARTIGO LITERAL */
+.artigo-literal{margin:14px 0;padding:16px 20px;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:0 6px 6px 0;font-size:.93em;color:var(--ink);line-height:1.72;}
+.artigo-literal .art-label{font-family:var(--mono);font-size:.8em;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px;}
+
+/* SÚMULA */
+.sumula{margin:12px 0 6px;padding:12px 16px;border-left:2px solid var(--iron);background:var(--paper);border-radius:0 4px 4px 0;font-size:.89em;color:var(--ink-soft);line-height:1.65;}
+.sumula strong{font-family:var(--mono);font-size:.86em;letter-spacing:.08em;text-transform:uppercase;color:var(--iron);display:block;margin-bottom:4px;}
+
+/* NOTA */
+.nota{margin:12px 0 6px;padding:13px 17px;background:rgba(122,46,55,.06);border-left:3px solid var(--accent);border-radius:0 5px 5px 0;font-size:.91em;color:var(--ink-soft);line-height:1.65;}
+.nota strong{color:var(--ink);}
+
+/* TABELA */
+.tbl{margin:12px 0 6px;border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:.9em;}
+.tbl-head{display:grid;grid-template-columns:1fr 1fr 1fr;background:var(--ink);color:#f4f2ec;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;}
+.tbl-head div,.tbl-row div{padding:9px 14px;}
+.tbl-head div:not(:last-child){border-right:1px solid rgba(255,255,255,.15);}
+.tbl-row{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid var(--line);}
+.tbl-row div{color:var(--ink-soft);line-height:1.55;}
+.tbl-row div:not(:last-child){border-right:1px solid var(--line);}
+.tbl-row:nth-child(even) div{background:rgba(139,133,121,.04);}
+.tbl-row .lbl{font-family:var(--mono);font-size:.85em;font-weight:600;color:var(--accent);}
+
+/* CARDS ACCORDION */
+.cards{display:flex;flex-direction:column;gap:3px;}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;transition:box-shadow .2s;}
+.card:hover{box-shadow:0 4px 18px -8px rgba(27,36,54,.2);}
+.card-btn{width:100%;background:none;border:none;cursor:pointer;display:grid;grid-template-columns:52px 1fr 34px;align-items:center;padding:0;text-align:left;color:inherit;}
+.card-icon{display:flex;align-items:center;justify-content:center;min-height:60px;border-right:1px solid var(--line);font-family:var(--mono);font-weight:700;font-size:11px;color:var(--accent);background:rgba(122,46,55,.05);text-align:center;padding:4px;line-height:1.3;}
+.card-head{padding:13px 16px;}
+.card-num{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--iron);display:block;margin-bottom:3px;}
+.card-title{font-family:var(--display);font-weight:600;font-size:1rem;line-height:1.2;color:var(--ink);}
+.card-chevron{display:flex;align-items:center;justify-content:center;padding-right:14px;color:var(--iron);font-size:13px;transition:transform .3s cubic-bezier(.2,.7,.2,1),color .2s;}
+.card.open .card-chevron{transform:rotate(180deg);color:var(--accent);}
+.card-body{display:none;padding:16px 20px 20px;border-top:1px solid var(--line);}
+.card.open .card-body{display:block;}
+.card-body p{color:var(--ink-soft);font-size:.93em;line-height:1.72;}
+
+/* BLIST */
+.blist{list-style:none;padding:0;margin:10px 0 12px;display:flex;flex-direction:column;gap:3px;}
+.blist li{display:grid;grid-template-columns:22px 1fr;gap:8px;font-size:.93em;color:var(--ink-soft);line-height:1.65;padding:8px 0;border-bottom:1px solid var(--line);}
+.blist li:last-child{border-bottom:none;}
+.blist li .bul{color:var(--accent);font-family:var(--mono);font-size:.85em;padding-top:2px;}
+
+/* TEORIAS */
+.teoria-grid{display:flex;flex-direction:column;gap:3px;margin:12px 0;}
+.teoria{background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;}
+.teoria-head{display:flex;align-items:center;gap:14px;padding:12px 16px;border-bottom:1px solid var(--line);background:rgba(122,46,55,.04);}
+.teoria-badge{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--accent);background:rgba(122,46,55,.1);border:1px solid rgba(122,46,55,.2);border-radius:4px;padding:3px 10px;white-space:nowrap;}
+.teoria-title{font-family:var(--display);font-weight:600;font-size:1rem;color:var(--ink);}
+.teoria-body{padding:12px 16px;font-size:.92em;color:var(--ink-soft);line-height:1.68;}
+
+/* PLACAR */
+.scoreboard{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:18px 22px;background:var(--surface);border:1px solid var(--line-strong);border-radius:8px;margin-bottom:8px;}
+.score-label{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--iron);}
+.score-nums{display:flex;align-items:baseline;gap:6px;}
+.score-current{font-family:var(--display);font-size:2.6rem;font-weight:600;color:var(--ink);line-height:1;}
+.score-total{font-family:var(--mono);font-size:1rem;color:var(--iron);}
+.score-bar-wrap{flex:1;min-width:120px;height:8px;background:var(--line);border-radius:99px;overflow:hidden;}
+.score-bar{height:100%;width:0%;background:var(--accent);border-radius:99px;transition:width .5s cubic-bezier(.2,.7,.2,1),background .3s;}
+.score-msg{font-family:var(--mono);font-size:12px;color:var(--iron);min-width:80px;}
+.btn-reset{margin-left:auto;border:1px solid var(--line-strong);background:none;color:var(--ink-soft);border-radius:4px;padding:7px 14px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:border-color .2s,color .2s;}
+.btn-reset:hover{border-color:var(--accent);color:var(--accent);}
+
+/* QUESTÕES */
+.q-card{background:var(--surface);border:1px solid var(--line);border-radius:8px;margin:14px 0;overflow:hidden;transition:border-color .25s,box-shadow .25s;}
+.q-card.answered-correct{border-color:var(--green-line);box-shadow:0 0 0 2px rgba(22,101,52,.12);}
+.q-card.answered-wrong{border-color:var(--red-line);box-shadow:0 0 0 2px rgba(153,27,27,.10);}
+.q-header{display:flex;align-items:flex-start;gap:12px;padding:16px 18px 12px;}
+.q-badge{flex-shrink:0;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--accent);background:rgba(122,46,55,.09);border:1px solid rgba(122,46,55,.18);border-radius:4px;padding:3px 9px;margin-top:3px;white-space:nowrap;}
+.q-text{font-family:var(--body);font-size:.96em;color:var(--ink);line-height:1.72;flex:1;margin:0;}
+.options{padding:0 18px 16px;display:flex;flex-direction:column;gap:7px;}
+.opt{display:flex;align-items:flex-start;gap:11px;padding:10px 13px;border:1px solid var(--line);border-radius:6px;cursor:pointer;background:var(--paper);transition:border-color .18s,background .18s;text-align:left;width:100%;font-family:var(--body);font-size:.92em;color:var(--ink-soft);line-height:1.6;}
+.opt:hover:not(:disabled){border-color:var(--accent-soft);background:#f7f3f1;}
+.opt-letter{flex-shrink:0;font-family:var(--mono);font-size:.8em;font-weight:700;color:var(--accent);width:20px;padding-top:2px;}
+.opt.selected{border-color:var(--accent);background:rgba(122,46,55,.06);}
+.opt.correct-final{border-color:var(--green);background:var(--green-bg);cursor:default;}
+.opt.correct-final .opt-letter{color:var(--green);}
+.opt.wrong-final{border-color:var(--red);background:var(--red-bg);cursor:default;}
+.opt.wrong-final .opt-letter{color:var(--red);}
+.opt.dimmed{opacity:.42;cursor:default;}
+.q-actions{padding:0 18px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.btn-confirm{display:inline-flex;align-items:center;gap:8px;padding:9px 20px;background:var(--ink);color:#f4f2ec;border:none;border-radius:4px;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;transition:background .2s,transform .2s;}
+.btn-confirm:hover:not(:disabled){background:var(--accent);transform:translateY(-1px);}
+.btn-confirm:disabled{opacity:.35;cursor:default;transform:none;}
+.toggle-gabarito{display:none;align-items:center;gap:7px;border:none;background:none;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--iron);cursor:pointer;transition:color .2s;padding:0;}
+.toggle-gabarito:hover{color:var(--accent);}
+.toggle-gabarito .chev{display:inline-block;font-size:10px;transition:transform .3s cubic-bezier(.2,.7,.2,1);}
+.toggle-gabarito.open .chev{transform:rotate(180deg);}
+.gabarito{border-top:1px solid var(--line);overflow:hidden;max-height:0;transition:max-height .45s cubic-bezier(.2,.7,.2,1);}
+.gabarito.open{max-height:1800px;}
+.gabarito-inner{padding:16px 18px 18px;}
+.gabarito-title{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--iron);margin-bottom:10px;}
+.gabarito-correct{display:flex;align-items:center;gap:10px;padding:9px 13px;background:var(--green-bg);border:1px solid var(--green-line);border-radius:6px;font-family:var(--mono);font-size:.84em;font-weight:700;color:var(--green);margin-bottom:12px;}
+.gabarito-body{font-size:.9em;color:var(--ink-soft);line-height:1.72;}
+.gabarito-body strong{color:var(--ink);}
+.gabarito-body .ref{font-family:var(--mono);font-size:.8em;color:var(--iron);background:rgba(139,133,121,.12);padding:2px 7px;border-radius:3px;white-space:nowrap;}
+.gabarito-body p{margin-bottom:9px;}
+.gabarito-body p:last-child{margin-bottom:0;}
+
+/* RESULTADO / VOLTAR */
+.result-banner{display:none;margin:28px 0 0;padding:26px 22px;border:1px solid var(--line-strong);border-radius:8px;background:var(--surface);text-align:center;}
+.result-banner.show{display:block;}
+.result-score{font-family:var(--display);font-size:3.2rem;font-weight:600;color:var(--accent);line-height:1;margin-bottom:6px;}
+.result-label{font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--iron);}
+.result-msg{margin-top:10px;font-size:.94em;color:var(--ink-soft);}
+.reveal{opacity:0;transform:translateY(14px);}
+.reveal.in{opacity:1;transform:none;transition:opacity .5s ease,transform .5s cubic-bezier(.2,.7,.2,1);}
+.back{margin-top:52px;display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line-strong);border-radius:6px;padding:20px 22px;font-family:var(--mono);font-size:14px;letter-spacing:.04em;transition:border-color .25s,transform .25s;}
+.back .arw{color:var(--accent);transition:transform .25s;font-size:18px;}
+.back:hover{border-color:var(--accent);transform:translateY(-2px);}
+.back:hover .arw{transform:translateX(-4px);}
+
+@keyframes rise{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
+@media(max-width:560px){
+  body{font-size:17.5px;}
+  .masthead{padding:40px 0 24px;}
+  .title-row{align-items:stretch;}
+  .slides-btn{width:100%;justify-content:center;}
+  .tbl-head,.tbl-row{grid-template-columns:1fr 1fr;}
+  .tbl-head div:last-child,.tbl-row div:last-child{display:none;}
+  .scoreboard{flex-direction:column;align-items:flex-start;gap:10px;}
+  .btn-reset{margin-left:0;}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto;}.reveal{opacity:1;transform:none;}.reveal.in{transition:none;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ══════════════ CABEÇALHO ══════════════ -->
+<header class="masthead">
+  <p class="eyebrow">
+    Direito Processual do Trabalho
+    <span class="dot">·</span> Unidade 12
+    <span class="dot">·</span> Provas
+  </p>
+  <div class="title-row">
+    <h1><span class="art">Item 12</span>Provas</h1>
+    <a class="slides-btn" href="#" target="_blank" rel="noopener">
+      <span>▮</span><span>Slides da aula</span><span class="arw">→</span>
+    </a>
+  </div>
+  <div class="verbete">
+    <span class="tag">Finalidade — art. 369, CPC/2015</span>
+    <p>As provas são produzidas para demonstrar a veracidade dos <strong>fatos controvertidos</strong> — os fatos incontroversos (confessados ou não impugnados) são presumidos verdadeiros e dispensam prova. As provas incidem sobre <em>fatos</em>, não sobre o direito (<em>iura novit curia</em>), salvo normas estaduais, municipais, estrangeiras e consuetudinárias.</p>
+  </div>
+</header>
+
+<!-- ══════════════ § 12.1 PODERES INSTRUTÓRIOS ══════════════ -->
+<section>
+  <div class="sec-head reveal"><span class="num">§ 12.1</span><h2>Poderes Instrutórios do Juiz</h2></div>
+
+  <p class="reveal">
+    O Juiz comanda a produção das provas, determinando os meios que serão produzidos e indeferindo os desnecessários
+    <span class="ref">art. 370, CPC/2015</span>. Como destinatário da prova, pode deferi-la ou determiná-la de ofício.
+  </p>
+
+  <div class="nota reveal">
+    <strong>Exemplo:</strong> se o reclamado requer prova pericial para provar um fato que pode ser facilmente demonstrado por documentos ou prova testemunhal, o Magistrado pode indeferir a perícia (mais cara e demorada) e determinar a produção da prova mais adequada.
+  </div>
+
+  <p class="reveal">
+    Também o <span class="ref">art. 765, CLT</span> confere ao Magistrado ampla liberdade na condução e produção das provas, inclusive podendo alterar a <strong>ordem de produção das provas</strong> quando necessário ao julgamento do caso, nos termos do <span class="ref">art. 139, VI, CPC</span>, aplicável subsidiariamente pela IN n. 39/2016 do TST.
+  </p>
+
+  <div class="artigo-literal reveal">
+    <span class="art-label">Art. 820, CLT — Sistema presidencial (indireto)</span>
+    O depoimento das testemunhas no processo do trabalho é feito <strong>por intermédio do Juiz</strong>. As partes não formulam perguntas diretamente às testemunhas — as indagações são endereçadas ao Magistrado, que as repassa. O art. 459 do CPC não se aplica ao processo do trabalho neste ponto <span class="ref">IN 39/2016, TST</span>.
+  </div>
+</section>
+
+<!-- ══════════════ § 12.2 ÔNUS DA PROVA ══════════════ -->
+<section>
+  <div class="sec-head reveal"><span class="num">§ 12.2</span><h2>Ônus da Prova</h2></div>
+
+  <p class="reveal">
+    A distribuição do ônus da prova é tratada pelo <span class="ref">art. 818, CLT</span> e <span class="ref">art. 373, CPC</span>. Com a Reforma Trabalhista, o art. 818 da CLT foi equiparado ao art. 373 do CPC, passando a prever duas teorias:
+  </p>
+
+  <div class="teoria-grid reveal">
+    <div class="teoria">
+      <div class="teoria-head">
+        <span class="teoria-badge">Estática</span>
+        <span class="teoria-title">Teoria estática de distribuição do ônus da prova</span>
+      </div>
+      <div class="teoria-body">
+        Prevista no <span class="ref">art. 818, caput, CLT</span>: o <strong>autor</strong> tem o ônus de provar os <em>fatos constitutivos</em> do seu direito; o <strong>réu</strong> tem o ônus de provar os <em>fatos extintivos, modificativos e impeditivos</em>. Regra geral — aplica-se na ausência de determinação judicial de alteração.
+      </div>
+    </div>
+    <div class="teoria">
+      <div class="teoria-head">
+        <span class="teoria-badge">Dinâmica</span>
+        <span class="teoria-title">Teoria dinâmica de distribuição do ônus da prova</span>
+      </div>
+      <div class="teoria-body">
+        Prevista nos <span class="ref">§§ 1º a 3º do art. 818, CLT</span>: o Juiz pode, no caso concreto, <strong>modificar a distribuição do ônus</strong> para incumbir a parte com <em>melhores condições</em> de produzir a prova. Requisitos: a) decisão <strong>fundamentada</strong>; b) proferida <strong>antes do início da instrução</strong> (para não surpreender a parte); c) pode ser requerido o adiamento da audiência.<br><br>
+        <strong>Atenção:</strong> a modificação somente pode ocorrer por <strong>determinação do Juiz</strong> — não cabe acordo entre as partes para alterar o ônus da prova.
+      </div>
+    </div>
+  </div>
+
+  <div class="sumula reveal">
+    <strong>Súmula 461, TST — Vale-transporte</strong>
+    É do empregador o ônus de comprovar que o empregado não satisfaz os requisitos indispensáveis para a concessão do vale-transporte ou que o Vale-Transporte foi concedido corretamente.
+  </div>
+
+  <div class="sumula reveal">
+    <strong>Súmula 462, TST — FGTS</strong>
+    É do empregador o ônus de provar que os depósitos do FGTS foram realizados regularmente, mediante apresentação dos extratos.
+  </div>
+</section>
+
+<!-- ══════════════ § 12.3 MEIOS DE PROVA ══════════════ -->
+<section>
+  <div class="sec-head reveal"><span class="num">§ 12.3</span><h2>Meios de Prova</h2></div>
+
+  <p class="reveal">São admitidos todos os meios lícitos de prova <span class="ref">art. 369, CPC</span>. Os principais meios no processo do trabalho:</p>
+
+  <div class="cards reveal">
+
+    <!-- Testemunhal -->
+    <div class="card">
+      <button class="card-btn" aria-expanded="false">
+        <div class="card-icon">Test.</div>
+        <div class="card-head">
+          <span class="card-num">art. 821 e 825, CLT</span>
+          <span class="card-title">Prova Testemunhal</span>
+        </div>
+        <div class="card-chevron">▾</div>
+      </button>
+      <div class="card-body" role="region">
+        <p>No processo do trabalho, <strong>não há intimação prévia</strong> de testemunhas nem apresentação de rol prévio <span class="ref">art. 825, CLT</span>. As testemunhas comparecem por <em>convite</em> da parte ou voluntariamente. Se não comparecerem, pode-se requerer a <strong>intimação judicial</strong>; nova falta enseja <strong>condução coercitiva</strong>.</p>
+        <p><strong>Limite de testemunhas por parte:</strong></p>
+        <div class="tbl">
+          <div class="tbl-head"><div>Rito</div><div>Máximo por parte</div><div>Base legal</div></div>
+          <div class="tbl-row"><div class="lbl">Ordinário</div><div>3 testemunhas</div><div><span class="ref">art. 821, CLT</span></div></div>
+          <div class="tbl-row"><div class="lbl">Sumaríssimo</div><div>2 testemunhas</div><div><span class="ref">art. 852-H, § 2º, CLT</span></div></div>
+          <div class="tbl-row"><div class="lbl">Inquérito por falta grave</div><div>6 testemunhas</div><div><span class="ref">art. 853, CLT</span></div></div>
+        </div>
+        <div class="sumula" style="margin-top:12px;">
+          <strong>Súmula 357, TST</strong>
+          Não é suspeita a testemunha que, na condição de empregado, ajuizou ação contra o mesmo empregador.
+        </div>
+      </div>
+    </div>
+
+    <!-- Documental -->
+    <div class="card">
+      <button class="card-btn" aria-expanded="false">
+        <div class="card-icon">Doc.</div>
+        <div class="card-head">
+          <span class="card-num">art. 830, CLT</span>
+          <span class="card-title">Prova Documental</span>
+        </div>
+        <div class="card-chevron">▾</div>
+      </button>
+      <div class="card-body" role="region">
+        <p>Documentos podem ser juntados em <strong>original</strong>, <strong>cópia autenticada</strong> ou <strong>cópia simples autenticada pelo advogado</strong> <span class="ref">art. 830, CLT</span>.</p>
+        <p><strong>Momentos de juntada:</strong></p>
+        <ul class="blist">
+          <li><span class="bul">■</span><span>Autor: na <strong>petição inicial</strong> <span class="ref">art. 320, CPC</span></span></li>
+          <li><span class="bul">■</span><span>Réu: na <strong>defesa</strong> <span class="ref">art. 336, CPC</span></span></li>
+          <li><span class="bul">■</span><span>No curso do processo: excepcionalmente, nas hipóteses do <span class="ref">art. 435, CPC</span>, com intimação da parte contrária para manifestação em <strong>15 dias</strong> <span class="ref">art. 437, § 1º, CPC</span></span></li>
+          <li><span class="bul">■</span><span>Em grau recursal: excepcionalmente, conforme <strong>Súmula 8, TST</strong></span></li>
+        </ul>
+        <div class="sumula" style="margin-top:8px;">
+          <strong>Súmula 8, TST</strong>
+          A juntada de documentos na fase recursal só se justifica quando provado o justo impedimento para sua oportuna apresentação ou se referir a fato posterior à sentença.
+        </div>
+      </div>
+    </div>
+
+    <!-- Pericial -->
+    <div class="card">
+      <button class="card-btn" aria-expanded="false">
+        <div class="card-icon">Per.</div>
+        <div class="card-head">
+          <span class="card-num">art. 464, CPC; art. 195, § 2º, CLT</span>
+          <span class="card-title">Prova Pericial</span>
+        </div>
+        <div class="card-chevron">▾</div>
+      </button>
+      <div class="card-body" role="region">
+        <p>Realizada quando a análise depende de <strong>conhecimento técnico</strong> do qual não dispõe o julgador (exame, vistoria ou avaliação) <span class="ref">art. 464, CPC</span>. O Juiz pode substituir a perícia por <strong>prova técnica simplificada</strong> em hipóteses de menor complexidade.</p>
+        <p><strong>Perícia obrigatória:</strong> ações de adicional de <strong>insalubridade</strong> e <strong>periculosidade</strong> <span class="ref">art. 195, § 2º, CLT</span>. Exceções:</p>
+        <ul class="blist">
+          <li><span class="bul">■</span><span><strong>OJ n. 278, SDI-1, TST</strong> — impossibilidade de realização da perícia (ex.: empresa extinta): dispensa a perícia na insalubridade.</span></li>
+          <li><span class="bul">■</span><span><strong>Súmula 453, TST</strong> — pagamento espontâneo de algum percentual de periculosidade torna incontroverso o trabalho nessas condições, dispensando a perícia.</span></li>
+        </ul>
+        <p><strong>Honorários periciais</strong> <span class="ref">art. 790-B, CLT</span>: a responsabilidade é da parte <strong>sucumbente na pretensão objeto da perícia</strong>, salvo se beneficiária da justiça gratuita.</p>
+        <div class="sumula" style="margin-top:8px;">
+          <strong>Súmula 341, TST — Assistente técnico</strong>
+          Os honorários do assistente técnico são de responsabilidade exclusiva da <strong>parte que o contratou</strong>, independentemente do resultado da perícia. Não há ressarcimento pela parte contrária.
+        </div>
+        <p style="font-size:.92em;margin-top:10px;">O Magistrado não está vinculado ao laudo pericial — pode concordar ou discordar do perito, desde que fundamente a sentença <span class="ref">art. 479, CPC</span>.</p>
+        <div class="nota" style="margin-top:8px;">
+          <strong>Súmula 364 × Súmula 453, TST:</strong> a Súmula 364 continua vedando a concessão do adicional de periculosidade de forma fracionada (inferior a 30%). A Súmula 453 apenas dispensa a perícia quando já há pagamento espontâneo de <em>algum</em> percentual.
+        </div>
+      </div>
+    </div>
+
+    <!-- Depoimento pessoal e inspeção -->
+    <div class="card">
+      <button class="card-btn" aria-expanded="false">
+        <div class="card-icon">Dep.<br>Insp.</div>
+        <div class="card-head">
+          <span class="card-num">CLT + art. 481, CPC</span>
+          <span class="card-title">Depoimento Pessoal e Inspeção Judicial</span>
+        </div>
+        <div class="card-chevron">▾</div>
+      </button>
+      <div class="card-body" role="region">
+        <p><strong>Depoimento pessoal:</strong> oitiva da parte mediante requerimento da parte contrária, visando à <em>confissão</em>. Realizado na audiência.</p>
+        <p>Difere do <strong>interrogatório</strong>, que é determinado de ofício pelo Juiz para esclarecer fatos — pode ser realizado a qualquer momento e mais de uma vez.</p>
+        <p><strong>Inspeção judicial</strong> <span class="ref">art. 481, CPC</span>: o Juiz inspeciona pessoas e coisas para esclarecer dúvidas sobre fatos. Pode ser realizada de ofício ou a requerimento das partes.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════ § 12.4 ENCERRAMENTO DA INSTRUÇÃO ══════════════ -->
+<section>
+  <div class="sec-head reveal"><span class="num">§ 12.4</span><h2>Encerramento da Instrução</h2></div>
+
+  <p class="reveal">
+    Após a produção das provas, o Juiz aplica o <span class="ref">art. 850, CLT</span>, abrindo prazo de <strong>10 minutos</strong> para cada parte apresentar as <strong>alegações finais</strong> (razões finais). Em seguida:
+  </p>
+
+  <ul class="blist reveal">
+    <li><span class="bul">1.</span><span><strong>Segunda tentativa obrigatória de conciliação</strong> — sob pena de nulidade do processo.</span></li>
+    <li><span class="bul">2.</span><span><strong>Homologação do acordo</strong> → sentença de extinção com resolução do mérito, da qual as partes <em>não podem recorrer</em> (ausência de interesse recursal). A ação rescisória é a única forma de impugnação posterior <span class="ref">art. 966, CPC</span>.</span></li>
+    <li><span class="bul">3.</span><span><strong>Sem acordo</strong> → sentença oral, com os requisitos do <span class="ref">art. 832, CLT</span> e <span class="ref">art. 489, CPC</span>: relatório, fundamentação e dispositivo.</span></li>
+  </ul>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     QUESTÕES OAB — 11. Provas (Q45–Q50 do PDF)
+══════════════════════════════════════════════ -->
+<section>
+  <div class="sec-head reveal"><span class="num">§</span><h2>Questões de Exame da OAB</h2></div>
+  <p class="reveal">Questões do tópico <strong>11. Provas</strong> do caderno OAB/FGV. Selecione a alternativa e clique em <strong>Confirmar resposta</strong>.</p>
+
+  <div class="scoreboard reveal">
+    <div>
+      <div class="score-label">Acertos</div>
+      <div class="score-nums">
+        <span class="score-current" id="sc-current">0</span>
+        <span class="score-total">/ 6</span>
+      </div>
+    </div>
+    <div class="score-bar-wrap"><div class="score-bar" id="sc-bar"></div></div>
+    <div class="score-msg" id="sc-msg">0 respondidas</div>
+    <button class="btn-reset" onclick="resetQuiz()">↺ Reiniciar</button>
+  </div>
+
+  <!-- Q1 — XVIII Exame — Honorários periciais: sucumbente na pretensão -->
+  <div class="q-card" id="q1">
+    <div class="q-header">
+      <span class="q-badge">XVIII Exame · FGV</span>
+      <p class="q-text">Marcos ajuizou reclamação trabalhista em face de sua ex-empregadora, a sociedade empresária Cardinal Roupas Ltda., afirmando ter sofrido acidente do trabalho (doença profissional). Em razão disso, requereu indenização por danos material e moral. Foi determinada a realização de perícia, que concluiu pela <strong>ausência de nexo causal</strong> entre o problema sofrido e as condições ambientais. Na audiência de instrução, foram ouvidas cinco testemunhas e colhidos os depoimentos pessoais. Com base na prova oral, o juiz se convenceu de que havia o nexo causal e os demais requisitos para a responsabilidade civil, pelo que <strong>deferiu o pedido</strong>. Em relação aos honorários periciais, assinale a afirmativa correta.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="1" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>O trabalhador sucumbiu no objeto da perícia feita pelo expert, de modo que pagará os honorários.</span></button>
+      <button class="opt" data-q="1" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Uma vez que a perícia não identificou o nexo causal, mas o juiz, sim, os honorários serão rateados entre as partes.</span></button>
+      <button class="opt" data-q="1" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>A empresa pagará os honorários, pois foi sucumbente na pretensão objeto da perícia.</span></button>
+      <button class="opt" data-q="1" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Não havendo disposição a respeito, ficará a critério do juiz, com liberdade, determinar quem pagará os honorários.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q1-btn" disabled onclick="confirmAnswer(1,'C')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q1-tog" onclick="toggleGabarito(1)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q1-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa C — Empresa sucumbente na pretensão paga os honorários</div>
+      <div class="gabarito-body">
+        <p><strong>A) Errada.</strong> Não houve sucumbência do trabalhador na pretensão objeto da perícia — o pedido foi julgado <em>procedente</em> pelo Juiz, ou seja, a empresa foi condenada. Isso que determina quem sucumbiu, não o laudo.</p>
+        <p><strong>B) Errada.</strong> Não há previsão legal para rateamento dos honorários periciais. O <span class="ref">art. 790-B, CLT</span> determina o pagamento integral pela parte sucumbente na pretensão.</p>
+        <p><strong>C) Correta.</strong> O laudo pericial foi contrário ao reclamante (sem nexo causal), mas a decisão foi favorável ao pedido — a empresa foi condenada. Portanto, a empresa foi <strong>sucumbente na pretensão objeto da perícia</strong> e deve arcar com os honorários periciais, nos termos do <span class="ref">art. 790-B, CLT</span>: "A responsabilidade pelo pagamento dos honorários periciais é da parte sucumbente na pretensão objeto da perícia, salvo se beneficiária de justiça gratuita." O critério é a <em>pretensão</em> (pedido), não o laudo.</p>
+        <p><strong>D) Errada.</strong> Há previsão expressa no <span class="ref">art. 790-B, CLT</span>. O Juiz não tem liberdade irrestrita — deve observar a regra legal.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Q2 — XXI Exame — Assistente técnico: responsabilidade exclusiva do contratante -->
+  <div class="q-card" id="q2">
+    <div class="q-header">
+      <span class="q-badge">XXI Exame · FGV</span>
+      <p class="q-text">Em pedido de reenquadramento formulado em reclamação trabalhista, foi designada perícia, com honorários adiantados pelo autor, e ambas as partes indicaram assistentes técnicos. Após a análise das provas, o pedido foi julgado procedente. Diante da situação, da legislação em vigor e do entendimento consolidado do TST, assinale a afirmativa correta.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="2" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>O autor, tendo se sagrado vencedor, será ressarcido pelos honorários pagos ao perito e ao seu assistente técnico.</span></button>
+      <button class="opt" data-q="2" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>O autor não terá o ressarcimento dos honorários que pagou ao seu assistente técnico, porque sua indicação é faculdade da parte.</span></button>
+      <button class="opt" data-q="2" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>O autor, segundo previsão da CLT, terá o ressarcimento integral dos honorários pagos ao perito e metade daquilo pago ao seu assistente técnico.</span></button>
+      <button class="opt" data-q="2" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>O juiz, inexistindo previsão legal ou jurisprudencial, deverá decidir se os honorários do assistente técnico da parte serão ressarcidos.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q2-btn" disabled onclick="confirmAnswer(2,'B')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q2-tog" onclick="toggleGabarito(2)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q2-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa B — Assistente técnico: responsabilidade exclusiva do contratante</div>
+      <div class="gabarito-body">
+        <p><strong>A) Errada.</strong> Não há ressarcimento dos valores pagos ao assistente técnico, independentemente do resultado da perícia. Os honorários periciais do perito do juízo serão pagos pelo réu (sucumbente na pretensão), mas o assistente técnico do autor é pago pelo próprio autor.</p>
+        <p><strong>B) Correta.</strong> Os honorários do assistente técnico são de responsabilidade <strong>exclusiva da parte contratante</strong>, independentemente do resultado da perícia, pois a contratação é facultativa. Não há possibilidade de impor à parte contrária o dever de ressarcir o valor pago, mesmo que a perícia seja favorável — <span class="ref">Súmula 341, TST</span>. O autor receberá de volta os honorários do perito do juízo (pois ganhou), mas não os do assistente técnico.</p>
+        <p><strong>C) Errada.</strong> Não há qualquer ressarcimento dos honorários do assistente técnico, nem integral nem parcial.</p>
+        <p><strong>D) Errada.</strong> A <span class="ref">Súmula 341, TST</span> é clara: os honorários do assistente técnico cabem exclusivamente ao contratante.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Q3 — XXIII Exame — Honorários periciais x honorários do assistente técnico -->
+  <div class="q-card" id="q3">
+    <div class="q-header">
+      <span class="q-badge">XXIII Exame · FGV</span>
+      <p class="q-text">Rômulo ajuizou ação trabalhista em face de sua ex-empregadora. Dentre outros pedidos, pretendeu horas extras, férias vencidas não gozadas e <strong>adicional de periculosidade</strong>. Na audiência, foi requerida e deferida a perícia, custeada por Rômulo, que se sagrou <strong>vitorioso</strong> no respectivo pedido. Os pedidos de horas extras e férias foram <strong>julgados improcedentes</strong>. Rômulo também indicou e custeou assistente técnico, que cobrou o mesmo valor de honorários que o perito do juízo. Na qualidade de advogado(a), orientando Rômulo acerca do custeio dos honorários periciais e do assistente técnico, assinale a afirmativa correta.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="3" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Tendo Rômulo sido vitorioso no objeto da perícia, não há que se falar em pagamento de honorários periciais e do assistente técnico, pois a ré os custeará.</span></button>
+      <button class="opt" data-q="3" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Independentemente do resultado no objeto da perícia, como ao final o rol de pedidos foi parcialmente procedente, Rômulo custeará os honorários periciais e do assistente técnico.</span></button>
+      <button class="opt" data-q="3" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Em virtude da aplicação do princípio da celeridade, descabe a indicação de assistente técnico no processo do trabalho.</span></button>
+      <button class="opt" data-q="3" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Tendo Rômulo sido vitorioso no objeto da perícia, os honorários periciais serão custeados pela parte sucumbente no seu objeto, porém os honorários do assistente técnico serão de responsabilidade da parte que o indicou.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q3-btn" disabled onclick="confirmAnswer(3,'D')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q3-tog" onclick="toggleGabarito(3)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q3-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa D — Regras distintas: perito (sucumbente na pretensão) × assistente técnico (contratante)</div>
+      <div class="gabarito-body">
+        <p><strong>A) Errada.</strong> A ré não pagará os honorários do assistente técnico de Rômulo. Cada parte paga o seu.</p>
+        <p><strong>B) Errada.</strong> Os honorários periciais são pagos pela parte sucumbente <em>no pedido relacionado à perícia</em>, independentemente dos demais pedidos. A improcedência das horas extras e férias não afeta o pagamento dos honorários periciais.</p>
+        <p><strong>C) Errada.</strong> É possível a indicação de assistente técnico no processo do trabalho — tanto que a <span class="ref">Súmula 341, TST</span> trata exatamente da sua remuneração.</p>
+        <p><strong>D) Correta.</strong> Duas regras distintas se aplicam: (i) <strong>Honorários periciais:</strong> pagos pela parte sucumbente na pretensão objeto da perícia <span class="ref">art. 790-B, CLT</span> — a ex-empregadora foi vencida no pedido de adicional de periculosidade, logo paga os honorários do perito; (ii) <strong>Assistente técnico:</strong> pagos pela <em>parte contratante</em>, independentemente do resultado <span class="ref">Súmula 341, TST</span> — Rômulo paga o seu assistente técnico.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Q4 — XXIV Exame — Sistema presidencial (art. 820 CLT) -->
+  <div class="q-card" id="q4">
+    <div class="q-header">
+      <span class="q-badge">XXIV Exame · FGV</span>
+      <p class="q-text">Rodolfo Alencar ajuizou reclamação trabalhista postulando horas extras não pagas. Na audiência, cada parte conduziu duas testemunhas. Após o magistrado fazer as perguntas que desejava, abriu oportunidade para que os advogados fizessem indagações, e o patrono do autor passou a fazer suas perguntas <strong>diretamente à testemunha</strong>, contra o que se opôs o juiz, afirmando que as perguntas deveriam ser feitas a ele, que, em seguida, perguntaria à testemunha. Diante do incidente e de acordo com o regramento da CLT, assinale a afirmativa correta.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="4" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Correto o advogado, pois, de acordo com o CPC, o advogado fará perguntas diretamente à testemunha.</span></button>
+      <button class="opt" data-q="4" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>A CLT não tem dispositivo próprio, daí por que poderia ser admitido tanto o sistema direto quanto o indireto.</span></button>
+      <button class="opt" data-q="4" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>A CLT determina que o sistema seja híbrido, intercalando perguntas feitas diretamente pelo advogado com indagações realizadas pelo juiz.</span></button>
+      <button class="opt" data-q="4" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Correto o magistrado, pois a CLT determina que o sistema seja indireto ou presidencial.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q4-btn" disabled onclick="confirmAnswer(4,'D')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q4-tog" onclick="toggleGabarito(4)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q4-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa D — Sistema presidencial/indireto obrigatório (art. 820, CLT)</div>
+      <div class="gabarito-body">
+        <p><strong>A) Errada.</strong> O CPC não se aplica subsidiariamente ao processo do trabalho neste ponto, conforme <span class="ref">IN 39/2016, TST</span>. A CLT tem dispositivo próprio que trata da matéria.</p>
+        <p><strong>B) Errada.</strong> A CLT tem dispositivo próprio: o <span class="ref">art. 820, CLT</span>. Não há lacuna que justifique aplicação subsidiária do CPC.</p>
+        <p><strong>C) Errada.</strong> Não há previsão de sistema híbrido. As perguntas devem ser formuladas ao Juiz, que as repassa.</p>
+        <p><strong>D) Correta.</strong> O <span class="ref">art. 820, CLT</span> prescreve o sistema <strong>indireto ou presidencial</strong>: o depoimento das testemunhas é feito por intermédio do Juiz. As partes endereçam as perguntas ao Magistrado, que as repassa à testemunha se as considerar pertinentes. O art. 459 do CPC (perguntas diretas) <strong>não se aplica</strong> ao processo do trabalho <span class="ref">IN 39/2016, TST</span>.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Q5 — XXXIX Exame — Poderes instrutórios: alteração da ordem de oitiva -->
+  <div class="q-card" id="q5">
+    <div class="q-header">
+      <span class="q-badge">XXXIX Exame · FGV</span>
+      <p class="q-text">Em uma reclamação trabalhista na qual o reclamante postula apenas o pagamento das verbas devidas pela extinção do contrato, a sociedade empresária alegou em sua defesa que nada seria devido porque o ex-empregado praticou uma falta grave e, por isso, foi dispensado por justa causa. Na audiência de instrução, cada parte conduziu duas testemunhas e, após ouvir os depoimentos pessoais, e considerando a tese da contestação, o juiz decidiu ouvir <strong>primeiramente as testemunhas do reclamado</strong> e após as do reclamante. Diante dos fatos e da previsão contida na CLT, assinale a afirmativa correta.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="5" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Errou o juiz, pois de acordo com a CLT as testemunhas do reclamante devem ser ouvidas antes daquelas conduzidas pelo reclamado, haja vista o direito de defesa.</span></button>
+      <button class="opt" data-q="5" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Uma vez que a CLT não dispõe sobre a ordem de produção das provas, fica a critério do magistrado a definição, inclusive a ordem de produção da prova oral e a quantidade de testemunhas admitidas.</span></button>
+      <button class="opt" data-q="5" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>O juiz tem o poder de alterar a ordem de realização das provas, inclusive a oitiva das testemunhas, tendo em vista as alegações das partes e adequando-as às necessidades do conflito.</span></button>
+      <button class="opt" data-q="5" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>A forma realizada pelo magistrado nulificou a produção das provas e a sentença, que poderá ser anulada para que a instrução seja refeita com renovação das provas na ordem correta.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q5-btn" disabled onclick="confirmAnswer(5,'C')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q5-tog" onclick="toggleGabarito(5)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q5-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa C — Juiz pode alterar a ordem de produção das provas (art. 139, VI, CPC)</div>
+      <div class="gabarito-body">
+        <p><strong>A) Errada.</strong> O <span class="ref">art. 139, VI, CPC</span> permite que o juiz excepcionalmente altere a ordem de produção da prova quando necessário. Não há violação ao direito de defesa.</p>
+        <p><strong>B) Errada.</strong> Trata-se de situação excepcional — não de liberdade irrestrita do Magistrado. O juiz alterará a ordem quando necessário ao julgamento do caso concreto, não arbitrariamente.</p>
+        <p><strong>C) Correta.</strong> O juiz pode alterar a ordem de realização das provas, adequando-a à solução do conflito, nos termos do <span class="ref">art. 139, VI, CPC</span>, aplicável subsidiariamente pela <span class="ref">IN n. 39/2016, TST</span>. Além disso, o <span class="ref">art. 765, CLT</span> confere ao Magistrado ampla liberdade na condução e produção das provas. No caso, a defesa alegou justa causa — faz sentido ouvir primeiro as testemunhas do reclamado.</p>
+        <p><strong>D) Errada.</strong> Não há erro que acarrete prejuízo capaz de gerar nulidade. A alteração da ordem de produção da prova é permitida e não causa nulidade por si só.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Q6 — XLII Exame — Honorários: perito (sucumbente) + assistente técnico (contratante) -->
+  <div class="q-card" id="q6">
+    <div class="q-header">
+      <span class="q-badge">XLII Exame · FGV</span>
+      <p class="q-text">Em uma reclamação trabalhista requerendo a responsabilidade civil do empregador em razão de uma alegada doença profissional, o Juiz deferiu a realização de perícia, sendo que ambas as partes quesitaram e indicaram assistentes técnicos. No laudo, foi detectado que realmente houve a doença ocupacional. Com base nele, o Juiz julgou procedente o pedido. Sobre os honorários do perito e dos assistentes, considerando o entendimento consolidado do TST, assinale a afirmativa correta.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="6" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>A empresa deverá arcar com os honorários do perito e do assistente técnico do autor.</span></button>
+      <button class="opt" data-q="6" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>A Justiça arcará com os honorários do perito, e cada parte será responsável pelos honorários do seu assistente técnico.</span></button>
+      <button class="opt" data-q="6" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Cada parte arcará com metade do valor dos honorários do perito e integralmente com os honorários de seu assistente técnico.</span></button>
+      <button class="opt" data-q="6" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>O réu será condenado a pagar os honorários do perito, porque sucumbiu no objeto da prova, e arcará com os honorários do assistente técnico por ele indicado.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q6-btn" disabled onclick="confirmAnswer(6,'D')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q6-tog" onclick="toggleGabarito(6)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q6-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa D — Empresa paga honorários do perito + seu próprio assistente técnico</div>
+      <div class="gabarito-body">
+        <p><strong>A) Errada.</strong> O assistente técnico do autor será pago pelo próprio autor — cada parte arca com os honorários do seu assistente técnico <span class="ref">Súmula 341, TST</span>.</p>
+        <p><strong>B) Errada.</strong> Como não houve justiça gratuita para o réu, o Estado não arcará com os honorários do perito. A parte sucumbente na pretensão (empresa) é quem paga.</p>
+        <p><strong>C) Errada.</strong> O sucumbente paga <em>integralmente</em> os honorários do perito — não há previsão legal de divisão em metade.</p>
+        <p><strong>D) Correta.</strong> Aplicam-se as duas regras distintas: (i) <strong>Honorários do perito:</strong> o réu (empresa) foi condenado, logo foi sucumbente na pretensão objeto da perícia e deve arcar com os honorários do perito <span class="ref">art. 790-B, CLT</span>; (ii) <strong>Assistente técnico:</strong> cada parte paga o seu próprio, independentemente do resultado <span class="ref">Súmula 341, TST</span> — portanto, a empresa paga o seu assistente técnico e o autor paga o dele.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- RESULTADO FINAL -->
+  <div class="result-banner" id="result-banner">
+    <div class="result-score" id="result-score">0/6</div>
+    <div class="result-label">Resultado final</div>
+    <div class="result-msg" id="result-msg"></div>
+  </div>
+
+</section>
+
+<a class="back" href="../index.html">
+  <span class="arw">←</span>
+  <span>Voltar ao índice da disciplina</span>
+</a>
+
+</div><!-- /wrap -->
+
+<script>
+/* accordion */
+(function(){
+  var cards=document.querySelectorAll('.card');
+  cards.forEach(function(card){
+    var btn=card.querySelector('.card-btn');
+    if(!btn) return;
+    btn.addEventListener('click',function(){
+      var isOpen=card.classList.contains('open');
+      cards.forEach(function(c){c.classList.remove('open');var b=c.querySelector('.card-btn');if(b)b.setAttribute('aria-expanded','false');});
+      if(!isOpen){card.classList.add('open');btn.setAttribute('aria-expanded','true');}
+    });
+  });
+})();
+
+/* reveal */
+(function(){
+  var items=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){items.forEach(function(el){el.classList.add('in');});return;}
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:.08,rootMargin:'0px 0px -3% 0px'});
+  items.forEach(function(el,i){el.style.transitionDelay=(i*35)+'ms';io.observe(el);});
+})();
+
+/* QUIZ */
+var TOTAL=6, answered={};
+
+function selectOpt(el){
+  var q=el.dataset.q;
+  if(answered[q]!==undefined) return;
+  document.querySelectorAll('[data-q="'+q+'"]').forEach(function(o){o.classList.remove('selected');});
+  el.classList.add('selected');
+  document.getElementById('q'+q+'-btn').disabled=false;
+}
+
+function confirmAnswer(qNum,correctVal){
+  var opts=document.querySelectorAll('[data-q="'+qNum+'"]');
+  var btn=document.getElementById('q'+qNum+'-btn');
+  var card=document.getElementById('q'+qNum);
+  var tog=document.getElementById('q'+qNum+'-tog');
+  var chosen=null;
+  opts.forEach(function(o){if(o.classList.contains('selected'))chosen=o;});
+  if(!chosen) return;
+  var isCorrect=chosen.dataset.val===correctVal;
+  answered[qNum]=isCorrect;
+  opts.forEach(function(o){
+    o.disabled=true;
+    if(o.dataset.val===correctVal){o.classList.add('correct-final');}
+    else if(o.classList.contains('selected')&&!isCorrect){o.classList.add('wrong-final');}
+    else{o.classList.add('dimmed');}
+    o.classList.remove('selected');
+  });
+  card.classList.add(isCorrect?'answered-correct':'answered-wrong');
+  btn.disabled=true; btn.style.display='none';
+  tog.style.display='inline-flex';
+  updateScore(); checkAllDone();
+}
+
+function toggleGabarito(qNum){
+  var gab=document.getElementById('q'+qNum+'-gab');
+  var tog=document.getElementById('q'+qNum+'-tog');
+  var open=gab.classList.toggle('open');
+  tog.classList.toggle('open',open);
+}
+
+function updateScore(){
+  var done=Object.keys(answered).length;
+  var correct=Object.values(answered).filter(Boolean).length;
+  var pct=TOTAL>0?(correct/TOTAL)*100:0;
+  document.getElementById('sc-current').textContent=correct;
+  document.getElementById('sc-bar').style.width=pct+'%';
+  document.getElementById('sc-bar').style.background=pct>=70?'#166534':pct>=40?'#d97706':'#991b1b';
+  document.getElementById('sc-msg').textContent=done+' respondida'+(done!==1?'s':'');
+}
+
+function checkAllDone(){
+  if(Object.keys(answered).length<TOTAL) return;
+  var correct=Object.values(answered).filter(Boolean).length;
+  var banner=document.getElementById('result-banner');
+  document.getElementById('result-score').textContent=correct+'/'+TOTAL;
+  var pct=correct/TOTAL;
+  var msg=document.getElementById('result-msg');
+  if(pct===1) msg.textContent='🎉 Parabéns! Gabarito perfeito — você domina o tema.';
+  else if(pct>=.75) msg.textContent='✅ Muito bem! Revise os pontos que errou e estará pronto.';
+  else if(pct>=.5) msg.textContent='📖 Resultado razoável. Revise os comentários com atenção.';
+  else msg.textContent='🔁 Reforce o estudo e tente novamente. Os comentários ajudam!';
+  banner.classList.add('show');
+  banner.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+function resetQuiz(){
+  answered={};
+  for(var q=1;q<=TOTAL;q++){
+    document.querySelectorAll('[data-q="'+q+'"]').forEach(function(o){
+      o.disabled=false; o.classList.remove('selected','correct-final','wrong-final','dimmed');
+    });
+    document.getElementById('q'+q).classList.remove('answered-correct','answered-wrong');
+    var btn=document.getElementById('q'+q+'-btn'); btn.disabled=true; btn.style.display='';
+    var tog=document.getElementById('q'+q+'-tog'); tog.style.display='none'; tog.classList.remove('open');
+    document.getElementById('q'+q+'-gab').classList.remove('open');
+  }
+  document.getElementById('sc-current').textContent='0';
+  document.getElementById('sc-bar').style.width='0%';
+  document.getElementById('sc-msg').textContent='0 respondidas';
+  document.getElementById('result-banner').classList.remove('show');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html><!DOCTYPE html>
+<html lang="pt-BR">
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>11. Provas</title>
