@@ -1,336 +1,665 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>10. Audiências trabalhistas</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>10. Audiência Trabalhista</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1b2436;--ink-soft:#414a5c;--paper:#edece5;--surface:#fbfaf7;
+  --accent:#7a2e37;--accent-soft:#a2545f;--iron:#8b8579;
+  --line:rgba(27,36,54,.13);--line-strong:rgba(27,36,54,.22);
+  --green:#166534;--green-bg:#f0fdf4;--green-line:#bbf7d0;
+  --red:#991b1b;--red-bg:#fef2f2;--red-line:#fecaca;
+  --display:"Fraunces",Georgia,serif;
+  --body:"Spectral",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:19px;line-height:1.78;-webkit-font-smoothing:antialiased;}
+body::before{content:"";position:fixed;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 34%,var(--ink) 34%,var(--ink) 100%);z-index:50;}
+.wrap{max-width:760px;margin:0 auto;padding:0 22px 72px;}
 
-  <style>
-    :root{
-      --bg:#eaf3ff;
-      --panel: rgba(255,255,255,.82);
-      --card:#ffffff;
-      --card2:#f7fbff;
-      --text:#0f172a;
-      --muted:#475569;
-      --brand:#2563eb;
-      --line: rgba(15,23,42,.10);
-      --shadow: 0 18px 50px rgba(2,6,23,.12);
-      --shadow2: 0 10px 24px rgba(2,6,23,.10);
-      --radius: 22px;
-      --radius2: 18px;
-    }
+/* ── CABEÇALHO ── */
+.masthead{padding:56px 0 30px;border-bottom:1px solid var(--line-strong);animation:rise .7s cubic-bezier(.2,.7,.2,1) both;}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--accent);display:inline-block;}
+.eyebrow .dot{color:var(--line-strong);}
+.title-row{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;flex-wrap:wrap;}
+h1{font-family:var(--display);font-weight:500;font-size:clamp(2.3rem,6.5vw,3.8rem);line-height:1.04;letter-spacing:-.015em;max-width:14ch;}
+h1 .art{display:block;font-size:.42em;font-weight:600;letter-spacing:.02em;color:var(--accent);font-family:var(--mono);text-transform:uppercase;margin-bottom:.5em;}
+.slides-btn{flex-shrink:0;display:inline-flex;align-items:center;gap:12px;text-decoration:none;background:var(--ink);color:#f4f2ec;border-radius:4px;padding:13px 18px;font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;box-shadow:0 8px 22px -12px rgba(27,36,54,.7);transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s,background .25s;}
+.slides-btn:hover{background:var(--accent);transform:translateY(-2px);}
+.slides-btn .arw{transition:transform .25s;}
+.slides-btn:hover .arw{transform:translateX(4px);}
 
-    *{ box-sizing:border-box; }
+/* ── VERBETE ── */
+.verbete{margin:44px 0 8px;padding:6px 0 6px 30px;border-left:3px solid var(--accent);}
+.verbete .tag{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:14px;}
+.verbete p{font-family:var(--display);font-weight:400;font-size:clamp(1.15rem,2.8vw,1.45rem);line-height:1.45;color:var(--ink);margin:0;}
 
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(1200px 600px at 20% 0%, rgba(37,99,235,.20), transparent 60%),
-        radial-gradient(900px 500px at 90% 20%, rgba(29,78,216,.12), transparent 55%),
-        var(--bg);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      line-height: 1.78;
-    }
+/* ── REFERÊNCIA ── */
+.ref{font-family:var(--mono);font-size:.8em;color:var(--iron);background:rgba(139,133,121,.12);padding:2px 7px;border-radius:3px;white-space:nowrap;}
 
-    .wrap{
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 18px 14px 34px;
-    }
+/* ── SEÇÕES ── */
+.sec-head{display:flex;gap:16px;align-items:baseline;margin:44px 0 14px;padding-top:26px;border-top:1px solid var(--line);}
+.sec-head .num{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--accent);flex-shrink:0;padding-top:.35em;}
+h2{font-family:var(--display);font-weight:500;font-size:clamp(1.55rem,4vw,1.95rem);line-height:1.14;letter-spacing:-.01em;color:var(--ink);}
+p{margin-bottom:14px;color:var(--ink-soft);}
 
-    .shell{
-      background: var(--panel);
-      border: 1px solid rgba(255,255,255,.65);
-      border-radius: calc(var(--radius) + 10px);
-      box-shadow: var(--shadow);
-      padding: 16px;
-      backdrop-filter: blur(10px);
-    }
+/* ── ARTIGO LITERAL ── */
+.artigo-literal{margin:14px 0;padding:16px 20px;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:0 6px 6px 0;font-size:.92em;color:var(--ink);line-height:1.72;}
+.artigo-literal .art-label{font-family:var(--mono);font-size:.8em;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px;}
 
-    header{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap: 14px;
-      padding: 6px 6px 2px;
-    }
+/* ── SUMULA ── */
+.sumula{margin:12px 0 6px;padding:12px 16px;border-left:2px solid var(--iron);background:var(--paper);border-radius:0 4px 4px 0;font-size:.89em;color:var(--ink-soft);line-height:1.65;}
+.sumula strong{font-family:var(--mono);font-size:.86em;letter-spacing:.08em;text-transform:uppercase;color:var(--iron);display:block;margin-bottom:4px;}
 
-    h1{
-      margin: 0;
-      font-size: clamp(28px, 4.8vw, 46px);
-      letter-spacing: -0.02em;
-      line-height: 1.06;
-      color: var(--brand);
-    }
+/* ── NOTA ── */
+.nota{margin:12px 0 6px;padding:13px 17px;background:rgba(122,46,55,.06);border-left:3px solid var(--accent);border-radius:0 5px 5px 0;font-size:.91em;color:var(--ink-soft);line-height:1.65;}
+.nota strong{color:var(--ink);}
 
-    .subtitle{
-      margin: 10px 6px 16px;
-      color: var(--muted);
-      font-size: 18px;
-      line-height: 1.55;
-    }
+/* ── ROLES (falas dos personagens) ── */
+.role-list{display:flex;flex-direction:column;gap:3px;margin:14px 0;}
+.role-item{display:grid;grid-template-columns:120px 1fr;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:.92em;}
+.role-tag{display:flex;align-items:center;justify-content:center;padding:12px 10px;font-family:var(--mono);font-weight:700;font-size:11px;letter-spacing:.08em;text-transform:uppercase;text-align:center;line-height:1.3;border-right:1px solid var(--line);}
+.role-tag.reclamante{background:#dcfce7;color:#166534;}
+.role-tag.reclamado {background:#ede9fe;color:#5b21b6;}
+.role-tag.ambos     {background:#fef9c3;color:#854d0e;}
+.role-body{padding:12px 16px;color:var(--ink-soft);line-height:1.65;}
+.role-body strong{color:var(--ink);}
 
-    /* Botão Slides (premium) */
-    .slidesBtn{
-      text-decoration:none;
-      color: var(--text);
-      background: #fff;
-      border: 1px solid rgba(37,99,235,.18);
-      border-radius: 18px;
-      box-shadow: var(--shadow2);
-      padding: 12px 14px;
-      min-width: 140px;
-      display:flex;
-      align-items:center;
-      gap: 10px;
-      transition: transform .12s ease, box-shadow .12s ease;
-      user-select:none;
-      justify-content:center;
-      flex: 0 0 auto;
-    }
-    .slidesBtn:hover{
-      transform: translateY(-1px);
-      box-shadow: 0 14px 28px rgba(2,6,23,.14);
-    }
-    .slidesIcon{
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
-      display:grid;
-      place-items:center;
-      background: linear-gradient(135deg, rgba(37,99,235,.14), rgba(29,78,216,.08));
-      border: 1px solid rgba(37,99,235,.18);
-      flex: 0 0 auto;
-    }
-    .slidesIcon svg{ width: 22px; height: 22px; }
-    .slidesLbl{
-      display:flex;
-      flex-direction:column;
-      line-height:1.05;
-      text-align:left;
-    }
-    .slidesLbl strong{ font-size: 15px; }
-    .slidesLbl span{ margin-top: 3px; font-size: 12px; color: var(--muted); }
+/* ── CENÁRIOS ── */
+.cenario{margin:10px 0;padding:14px 18px;border:1px solid var(--line);border-radius:6px;background:var(--surface);font-size:.92em;color:var(--ink-soft);line-height:1.7;}
+.cenario-num{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--accent);display:block;margin-bottom:6px;letter-spacing:.1em;text-transform:uppercase;}
 
-    .grid{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
-      padding: 8px 6px 6px;
-    }
+/* ── TABELA ATRASO ── */
+.tbl{margin:12px 0 6px;border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:.9em;}
+.tbl-head{display:grid;grid-template-columns:1fr 1fr;background:var(--ink);color:#f4f2ec;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;}
+.tbl-head div,.tbl-row div{padding:9px 14px;}
+.tbl-head div:first-child{border-right:1px solid rgba(255,255,255,.15);}
+.tbl-row{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);}
+.tbl-row div{color:var(--ink-soft);line-height:1.55;}
+.tbl-row div:first-child{border-right:1px solid var(--line);font-family:var(--mono);font-size:.88em;font-weight:600;color:var(--accent);}
+.tbl-row:nth-child(even) div{background:rgba(139,133,121,.04);}
 
-    .card{
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 18px 18px;
-      box-shadow: 0 10px 22px rgba(2,6,23,.07);
-    }
+/* ── PLACAR ── */
+.scoreboard{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:18px 22px;background:var(--surface);border:1px solid var(--line-strong);border-radius:8px;margin-bottom:8px;}
+.score-label{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--iron);}
+.score-nums{display:flex;align-items:baseline;gap:6px;}
+.score-current{font-family:var(--display);font-size:2.6rem;font-weight:600;color:var(--ink);line-height:1;}
+.score-total{font-family:var(--mono);font-size:1rem;color:var(--iron);}
+.score-bar-wrap{flex:1;min-width:120px;height:8px;background:var(--line);border-radius:99px;overflow:hidden;}
+.score-bar{height:100%;width:0%;background:var(--accent);border-radius:99px;transition:width .5s cubic-bezier(.2,.7,.2,1),background .3s;}
+.score-msg{font-family:var(--mono);font-size:12px;color:var(--iron);min-width:80px;}
+.btn-reset{margin-left:auto;border:1px solid var(--line-strong);background:none;color:var(--ink-soft);border-radius:4px;padding:7px 14px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:border-color .2s,color .2s;}
+.btn-reset:hover{border-color:var(--accent);color:var(--accent);}
 
-    .card h2{
-      margin: 0 0 10px;
-      font-size: clamp(20px, 2.6vw, 26px);
-      letter-spacing: -0.01em;
-      color:#0b1220;
-    }
+/* ── QUESTÕES ── */
+.q-card{background:var(--surface);border:1px solid var(--line);border-radius:8px;margin:14px 0;overflow:hidden;transition:border-color .25s,box-shadow .25s;}
+.q-card.answered-correct{border-color:var(--green-line);box-shadow:0 0 0 2px rgba(22,101,52,.12);}
+.q-card.answered-wrong{border-color:var(--red-line);box-shadow:0 0 0 2px rgba(153,27,27,.10);}
+.q-header{display:flex;align-items:flex-start;gap:12px;padding:16px 18px 12px;}
+.q-badge{flex-shrink:0;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--accent);background:rgba(122,46,55,.09);border:1px solid rgba(122,46,55,.18);border-radius:4px;padding:3px 9px;margin-top:3px;white-space:nowrap;}
+.q-text{font-family:var(--body);font-size:.96em;color:var(--ink);line-height:1.72;flex:1;margin:0;}
+.options{padding:0 18px 16px;display:flex;flex-direction:column;gap:7px;}
+.opt{display:flex;align-items:flex-start;gap:11px;padding:10px 13px;border:1px solid var(--line);border-radius:6px;cursor:pointer;background:var(--paper);transition:border-color .18s,background .18s;text-align:left;width:100%;font-family:var(--body);font-size:.92em;color:var(--ink-soft);line-height:1.6;}
+.opt:hover:not(:disabled){border-color:var(--accent-soft);background:#f7f3f1;}
+.opt-letter{flex-shrink:0;font-family:var(--mono);font-size:.8em;font-weight:700;color:var(--accent);width:20px;padding-top:2px;}
+.opt.selected{border-color:var(--accent);background:rgba(122,46,55,.06);}
+.opt.correct-final{border-color:var(--green);background:var(--green-bg);cursor:default;}
+.opt.correct-final .opt-letter{color:var(--green);}
+.opt.wrong-final{border-color:var(--red);background:var(--red-bg);cursor:default;}
+.opt.wrong-final .opt-letter{color:var(--red);}
+.opt.dimmed{opacity:.42;cursor:default;}
+.q-actions{padding:0 18px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.btn-confirm{display:inline-flex;align-items:center;gap:8px;padding:9px 20px;background:var(--ink);color:#f4f2ec;border:none;border-radius:4px;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;transition:background .2s,transform .2s;}
+.btn-confirm:hover:not(:disabled){background:var(--accent);transform:translateY(-1px);}
+.btn-confirm:disabled{opacity:.35;cursor:default;transform:none;}
+.toggle-gabarito{display:none;align-items:center;gap:7px;border:none;background:none;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--iron);cursor:pointer;transition:color .2s;padding:0;}
+.toggle-gabarito:hover{color:var(--accent);}
+.toggle-gabarito .chev{display:inline-block;font-size:10px;transition:transform .3s cubic-bezier(.2,.7,.2,1);}
+.toggle-gabarito.open .chev{transform:rotate(180deg);}
+.gabarito{border-top:1px solid var(--line);overflow:hidden;max-height:0;transition:max-height .45s cubic-bezier(.2,.7,.2,1);}
+.gabarito.open{max-height:1600px;}
+.gabarito-inner{padding:16px 18px 18px;}
+.gabarito-title{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--iron);margin-bottom:10px;}
+.gabarito-correct{display:flex;align-items:center;gap:10px;padding:9px 13px;background:var(--green-bg);border:1px solid var(--green-line);border-radius:6px;font-family:var(--mono);font-size:.84em;font-weight:700;color:var(--green);margin-bottom:12px;}
+.gabarito-body{font-size:.9em;color:var(--ink-soft);line-height:1.72;}
+.gabarito-body strong{color:var(--ink);}
+.gabarito-body .ref{font-family:var(--mono);font-size:.8em;color:var(--iron);background:rgba(139,133,121,.12);padding:2px 7px;border-radius:3px;white-space:nowrap;}
+.gabarito-body p{margin-bottom:9px;}
+.gabarito-body p:last-child{margin-bottom:0;}
 
-    .card p{
-      margin: 0 0 12px;
-      font-size: 19px;
-      color: #0b1220;
-    }
+/* ── RESULTADO FINAL ── */
+.result-banner{display:none;margin:28px 0 0;padding:26px 22px;border:1px solid var(--line-strong);border-radius:8px;background:var(--surface);text-align:center;}
+.result-banner.show{display:block;}
+.result-score{font-family:var(--display);font-size:3.2rem;font-weight:600;color:var(--accent);line-height:1;margin-bottom:6px;}
+.result-label{font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--iron);}
+.result-msg{margin-top:10px;font-size:.94em;color:var(--ink-soft);}
 
-    ul{
-      margin: 10px 0 0 22px;
-      padding: 0;
-      font-size: 19px;
-      line-height: 1.75;
-    }
-    li{ margin: 6px 0; }
+/* ── REVEAL / VOLTAR ── */
+.reveal{opacity:0;transform:translateY(14px);}
+.reveal.in{opacity:1;transform:none;transition:opacity .5s ease,transform .5s cubic-bezier(.2,.7,.2,1);}
+.back{margin-top:52px;display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line-strong);border-radius:6px;padding:20px 22px;font-family:var(--mono);font-size:14px;letter-spacing:.04em;transition:border-color .25s,transform .25s;}
+.back .arw{color:var(--accent);transition:transform .25s;font-size:18px;}
+.back:hover{border-color:var(--accent);transform:translateY(-2px);}
+.back:hover .arw{transform:translateX(-4px);}
 
-    .pill{
-      display:inline-block;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(29,78,216,.08);
-      border: 1px solid rgba(29,78,216,.18);
-      color: #0b1220;
-      font-size: 14px;
-      font-weight: 900;
-      letter-spacing: .02em;
-      margin-bottom: 10px;
-    }
-
-    .note{
-      margin-top: 10px;
-      padding: 14px 14px;
-      border-radius: var(--radius2);
-      background: var(--card2);
-      border: 1px solid rgba(37,99,235,.14);
-      color: #0b1220;
-      font-size: 18px;
-      line-height: 1.65;
-    }
-
-    .quote{
-      margin-top: 12px;
-      padding: 14px 14px;
-      border-radius: var(--radius2);
-      background: #ffffff;
-      border: 1px solid rgba(15,23,42,.10);
-      box-shadow: 0 8px 18px rgba(2,6,23,.06);
-      font-size: 18px;
-      line-height: 1.7;
-    }
-
-    .footer{
-      display:flex;
-      justify-content:center;
-      padding: 18px 6px 4px;
-    }
-
-    .back{
-      text-decoration:none;
-      background: #fff;
-      color: #0b1220;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      box-shadow: var(--shadow2);
-      padding: 14px 18px;
-      font-size: 18px;
-      font-weight: 900;
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      transition: transform .12s ease, box-shadow .12s ease;
-      min-width: min(520px, 100%);
-      justify-content:center;
-    }
-    .back:hover{ transform: translateY(-1px); box-shadow: 0 14px 28px rgba(2,6,23,.14); }
-
-    @media (max-width: 520px){
-      .slidesBtn{ min-width: 124px; padding: 10px 12px; }
-      .card p, ul{ font-size: 17px; }
-      .subtitle{ font-size: 16px; }
-      .quote{ font-size: 16.5px; }
-    }
-  </style>
+@keyframes rise{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
+@media(max-width:560px){
+  body{font-size:17.5px;}
+  .masthead{padding:40px 0 24px;}
+  .title-row{align-items:stretch;}
+  .slides-btn{width:100%;justify-content:center;}
+  .role-item{grid-template-columns:90px 1fr;}
+  .scoreboard{flex-direction:column;align-items:flex-start;gap:10px;}
+  .btn-reset{margin-left:0;}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto;}.reveal{opacity:1;transform:none;}.reveal.in{transition:none;}}
+</style>
 </head>
-
 <body>
-  <div class="wrap">
-    <div class="shell">
+<div class="wrap">
 
-      <header>
-        <div>
-          <h1>10. Audiências trabalhistas</h1>
-          <div class="subtitle">
-            O dia da audiência é o mais importante do processo trabalhista, pois nele se concentram diversos atos processuais
-            (princípio da concentração).
-          </div>
-        </div>
+<!-- ══════════════ CABEÇALHO ══════════════ -->
+<header class="masthead">
+  <p class="eyebrow">
+    Direito Processual do Trabalho
+    <span class="dot">·</span> Unidade 10
+    <span class="dot">·</span> Audiência Trabalhista
+  </p>
+  <div class="title-row">
+    <h1><span class="art">Item 10</span>Audiência Trabalhista</h1>
+    <a class="slides-btn" href="#" target="_blank" rel="noopener">
+      <span>▮</span><span>Slides da aula</span><span class="arw">→</span>
+    </a>
+  </div>
+  <div class="verbete">
+    <span class="tag">Princípio da concentração — arts. 813 e 844, CLT</span>
+    <p>O dia da audiência é o mais importante do processo trabalhista, pois nele são praticados, em regra de forma concentrada, todos os atos processuais essenciais: tentativa de conciliação, entrega da defesa, instrução probatória e prolação ou designação da sentença.</p>
+  </div>
+</header>
 
-        <!-- Troque pelo link real dos seus slides -->
-        <a class="slidesBtn" href="https://drive.google.com/file/d/1mi7smg_mbMw6oTChZ0qR1dqEi0a1UmxX/view?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Abrir slides no Google Drive">
-          <div class="slidesIcon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none">
-              <path d="M7 4h7l3 3v13a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" stroke="#1d4ed8" stroke-width="1.8"/>
-              <path d="M14 4v3a1 1 0 0 0 1 1h3" stroke="#1d4ed8" stroke-width="1.8"/>
-              <path d="M8 12h8M8 15h8M8 18h6" stroke="#1d4ed8" stroke-width="1.8" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="slidesLbl">
-            <strong>Slides</strong>
-            <span>Abrir no Drive</span>
-          </div>
-        </a>
-      </header>
+<!-- ══════════════ § 10.1 NORMAS DE REALIZAÇÃO ══════════════ -->
+<section>
+  <div class="sec-head reveal"><span class="num">§ 10.1</span><h2>Normas sobre Realização da Audiência</h2></div>
 
-      <div class="grid">
+  <p class="reveal">
+    Apesar de os atos processuais em geral serem praticados em dias úteis das 6h às 20h
+    <span class="ref">art. 770, CLT</span>, a audiência possui regra específica:
+  </p>
 
-        <section class="card">
-          <div class="pill">10.1 Normas sobre realização da audiência</div>
-          <p>
-            Embora os atos processuais em geral sejam praticados em dias úteis, das 6h às 20h (art. 770, CLT),
-            a audiência tem regra específica: deve ocorrer em dias úteis, das 8h às 18h, e não pode ultrapassar
-            5 horas seguidas, salvo matéria urgente (art. 813, CLT).
-          </p>
-        </section>
+  <div class="artigo-literal reveal">
+    <span class="art-label">Art. 813, CLT</span>
+    A audiência será realizada em dias úteis, das <strong>8h às 18h</strong>, não podendo ultrapassar <strong>5 horas seguidas</strong>, salvo quando houver matéria urgente.
+  </div>
+</section>
 
-        <section class="card">
-          <div class="pill">10.2 Comparecimento das partes</div>
-          <p>
-            O comparecimento é, como regra, <b>pessoal</b>, nos termos dos arts. 843 e 844 da CLT.
-            A presença somente do advogado não supre a ausência da parte, porque o advogado é facultativo no processo do trabalho
-            (jus postulandi), ao passo que as partes devem comparecer.
-          </p>
+<!-- ══════════════ § 10.2 COMPARECIMENTO DAS PARTES ══════════════ -->
+<section>
+  <div class="sec-head reveal"><span class="num">§ 10.2</span><h2>Comparecimento das Partes</h2></div>
 
-          <h2>Exceções relevantes</h2>
-          <ul>
-            <li>
-              <b>Ações plúrimas</b> (litisconsórcio) e <b>ações de cumprimento</b>: pode haver representação, inclusive por sindicato.
-            </li>
-            <li>
-              <b>Preposto do empregador</b>: o empregador pode ser representado por preposto. Após a Reforma Trabalhista, o preposto
-              <b>não precisa ser empregado</b>, mas deve ter conhecimento dos fatos; suas declarações obrigam o proponente.
-            </li>
-            <li>
-              <b>Reclamante impossibilitado</b> (doença/justificativa séria): pode ser representado por outro empregado da mesma profissão
-              ou pelo sindicato apenas para justificar a ausência e evitar arquivamento (art. 843, §2º, CLT).
-            </li>
-          </ul>
+  <p class="reveal">
+    O comparecimento deve ser <strong>pessoal</strong>
+    <span class="ref">arts. 843 e 844, CLT</span>. A presença apenas do advogado acarreta as consequências da ausência da parte, pois a atuação do advogado é facultativa no processo do trabalho (<em>jus postulandi</em>).
+  </p>
 
-          <div class="note">
-            <b>Consequências da ausência (art. 844, CLT):</b><br>
-            • Ausência do reclamante: arquivamento e custas (podendo justificar em 15 dias).<br>
-            • Ausência do reclamado: revelia e confissão quanto à matéria de fato.<br>
-            • Ausência de ambos: arquivamento (pregão chama primeiro o reclamante).
-          </div>
+  <!-- PREPOSTO -->
+  <h3 class="reveal" style="font-family:var(--display);font-size:1.15rem;color:var(--ink);margin:22px 0 8px;">Preposto do empregador</h3>
+  <p class="reveal">
+    O empregador pode ser representado por <strong>preposto</strong>
+    <span class="ref">art. 843, § 1º, CLT</span>. A partir da Reforma Trabalhista
+    <span class="ref">Lei n. 13.467/2017 — vigência: 11-11-2017</span>, o preposto
+    <strong>não precisa mais ser empregado</strong> da empresa
+    <span class="ref">art. 843, § 3º, CLT</span>, podendo ser qualquer pessoa — desde que
+    tenha <strong>conhecimento dos fatos</strong>. Suas declarações obrigam o proponente.
+    Não é necessário que tenha presenciado os fatos ou que seja contemporâneo ao reclamante.
+  </p>
+  <div class="nota reveal">
+    <strong>IN n. 41/2018 do TST:</strong> a nova regra sobre o preposto somente se aplica às audiências realizadas <strong>após 11-11-2017</strong>. Para audiências anteriores, o preposto deveria necessariamente ser empregado da empresa.
+  </div>
 
-          <div class="note">
-            <b>Súmula 9 do TST:</b> se a instrução for adiada após a contestação, a ausência do reclamante na audiência de prosseguimento
-            não importa arquivamento.
-          </div>
-        </section>
+  <!-- REPRESENTAÇÃO DO RECLAMANTE -->
+  <h3 class="reveal" style="font-family:var(--display);font-size:1.15rem;color:var(--ink);margin:22px 0 8px;">Representação excepcional do reclamante</h3>
+  <p class="reveal">
+    O reclamante pode ser representado por <strong>outro empregado da mesma profissão</strong> ou pelo <strong>sindicato</strong> quando não puder comparecer por <strong>doença ou justificativa séria</strong>
+    <span class="ref">art. 843, § 2º, CLT</span>. O representante somente justifica a ausência, evitando o arquivamento — <strong>não pode praticar qualquer ato processual</strong>.
+  </p>
+  <p class="reveal">
+    Em <strong>ações plúrimas</strong> (litisconsórcio) e <strong>ações de cumprimento</strong>, as partes podem ser representadas pelo sindicato, dispensando a presença de todos os autores
+    <span class="ref">art. 843, CLT</span>.
+  </p>
 
-        <section class="card">
-          <div class="pill">10.3 Atraso das partes e do juiz</div>
-          <p>
-            O atraso do juiz e o atraso das partes recebem tratamento diferente.
-          </p>
+  <!-- CONSEQUÊNCIAS DA AUSÊNCIA -->
+  <h3 class="reveal" style="font-family:var(--display);font-size:1.15rem;color:var(--ink);margin:22px 0 8px;">Consequências da ausência — Art. 844, CLT</h3>
 
-          <h2>Atraso do juiz (art. 815, CLT)</h2>
-          <ul>
-            <li>As partes, em regra, aguardam até <b>15 minutos</b> para início da audiência; ultrapassado, podem se retirar.</li>
-            <li>Com a Lei 14.657/2023, há previsão de retirada sem penalidade quando o atraso for <b>injustificado</b> e superior a <b>30 minutos</b>.</li>
-          </ul>
+  <div class="artigo-literal reveal">
+    <span class="art-label">Art. 844, CLT — Texto literal</span>
+    O não comparecimento do reclamante à audiência importa o <strong>arquivamento da reclamação</strong>, e o não comparecimento do reclamado importa <strong>revelia</strong>, além de <strong>confissão quanto à matéria de fato</strong>.
+  </div>
 
-          <h2>Atraso das partes (OJ 245 da SDI-1/TST)</h2>
-          <div class="note">
-            <b>Não existe tolerância legal para atraso das partes.</b> Chegou depois, assume as consequências (OJ 245).
-            Também não se aplica subsidiariamente o art. 362 do CPC/2015 (IN 39/2016 do TST).
-          </div>
-
-          <div class="quote">
-            <b>Dica prática:</b> para prova, memorize o “combo”: art. 813 (horário/duração), art. 843/844 (presença e ausência),
-            art. 815 (atraso do juiz) + OJ 245 (atraso das partes) + Súmula 9 (prosseguimento).
-          </div>
-        </section>
-
+  <div class="role-list reveal">
+    <div class="role-item">
+      <div class="role-tag reclamante">Ausência do<br>Reclamante</div>
+      <div class="role-body">
+        <strong>Arquivamento</strong> do processo (extinção sem resolução do mérito) + <strong>condenação às custas</strong>, ainda que beneficiário da justiça gratuita <span class="ref">art. 844, § 2º, CLT</span>.<br>
+        O reclamante pode, em <strong>15 dias</strong>, demonstrar que a ausência decorreu de motivo justificável para ser isento das custas <span class="ref">art. 844, § 2º, CLT</span>.<br>
+        Se mantida a condenação, o pagamento das custas é <strong>indispensável ao ajuizamento de nova demanda</strong> <span class="ref">art. 844, § 3º, CLT</span>.
       </div>
-
-      <div class="footer">
-        <a class="back" href="../index.html">
-          <span aria-hidden="true">←</span>
-          <span>Voltar ao índice da disciplina</span>
-        </a>
+    </div>
+    <div class="role-item">
+      <div class="role-tag reclamado">Ausência do<br>Reclamado</div>
+      <div class="role-body">
+        <strong>Revelia</strong>: presunção de veracidade dos fatos afirmados na petição inicial <span class="ref">art. 844, CLT</span>.
       </div>
-
+    </div>
+    <div class="role-item">
+      <div class="role-tag ambos">Ausência<br>de Ambos</div>
+      <div class="role-body">
+        <strong>Arquivamento</strong>, pois o primeiro a ser chamado no pregão é o reclamante — sua ausência já determina o arquivamento imediato.
+      </div>
     </div>
   </div>
+
+  <!-- AUSÊNCIA EM AUDIÊNCIA DE PROSSEGUIMENTO -->
+  <h3 class="reveal" style="font-family:var(--display);font-size:1.15rem;color:var(--ink);margin:22px 0 8px;">Ausência em audiência de prosseguimento</h3>
+
+  <div class="sumula reveal">
+    <strong>Súmula 9, TST</strong>
+    A ausência do reclamante, quando adiada a instrução <em>após contestada a ação em audiência</em>, não importa arquivamento do processo.
+  </div>
+
+  <p class="reveal">O resultado depende de ter havido ou não a apresentação da defesa na primeira audiência:</p>
+
+  <div class="cenario reveal">
+    <span class="cenario-num">Cenário A — Defesa NÃO apresentada na 1ª audiência</span>
+    A 1ª audiência foi adiada (ex.: falta justificada do reclamante) sem que o reclamado tivesse entregado a contestação. Se o reclamante faltar na 2ª audiência, o processo <strong>será arquivado</strong>.
+  </div>
+
+  <div class="cenario reveal">
+    <span class="cenario-num">Cenário B — Defesa JÁ apresentada na 1ª audiência</span>
+    A 1ª audiência teve início, houve tentativa de acordo (frustrada) e o reclamado entregou a defesa. O juiz adiou a audiência (ex.: ausência das testemunhas). Se o reclamante faltar na 2ª audiência, o processo <strong>não será arquivado</strong> — o reclamante apenas perde a oportunidade de participar da produção das provas naquela sessão.
+  </div>
+</section>
+
+<!-- ══════════════ § 10.3 ATRASO DAS PARTES E DO JUIZ ══════════════ -->
+<section>
+  <div class="sec-head reveal"><span class="num">§ 10.3</span><h2>Atraso das Partes e do Juiz</h2></div>
+
+  <p class="reveal">
+    O atraso é tratado de forma <strong>absolutamente diferente</strong> pelo legislador conforme se trate do Juiz ou das partes:
+  </p>
+
+  <div class="tbl reveal">
+    <div class="tbl-head"><div>Sujeito</div><div>Regra de atraso</div></div>
+    <div class="tbl-row"><div>Juiz</div><div>Tolerância de <strong>até 15 minutos</strong>. Após esse prazo, as partes podem se retirar. Se o atraso se der em razão de outro ato processual (ex.: outra audiência em curso), as partes devem aguardar — salvo se o atraso for injustificado e superior a <strong>30 minutos</strong>, hipótese em que podem se retirar sem penalidade <span class="ref">art. 815, caput e §§ 2º e 3º, CLT — Lei n. 14.657/2023</span>.</div></div>
+    <div class="tbl-row"><div>Partes</div><div><strong>Tolerância zero</strong> — as partes não podem se atrasar um minuto sequer. Não há previsão legal de qualquer tolerância <span class="ref">OJ n. 245, SDI-1, TST</span>.</div></div>
+  </div>
+
+  <div class="nota reveal">
+    <strong>IN n. 39/2016 do TST:</strong> não se aplica o <span class="ref">art. 362 do CPC/2015</span> (adiamento de audiência por atraso) ao processo do trabalho. As partes devem aguardar a realização de outras audiências e atos processuais pelo Juiz.
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     QUESTÕES OAB
+══════════════════════════════════════════════ -->
+<section>
+  <div class="sec-head reveal"><span class="num">§</span><h2>Questões de Exame da OAB</h2></div>
+  <p class="reveal">Selecione a alternativa que julgue correta e clique em <strong>Confirmar resposta</strong>. O gabarito comentado fica disponível após a confirmação.</p>
+
+  <div class="scoreboard reveal">
+    <div>
+      <div class="score-label">Acertos</div>
+      <div class="score-nums">
+        <span class="score-current" id="sc-current">0</span>
+        <span class="score-total">/ 8</span>
+      </div>
+    </div>
+    <div class="score-bar-wrap"><div class="score-bar" id="sc-bar"></div></div>
+    <div class="score-msg" id="sc-msg">0 respondidas</div>
+    <button class="btn-reset" onclick="resetQuiz()">↺ Reiniciar</button>
+  </div>
+
+  <!-- Q1 — Ausência do reclamante: custas + prazo 15 dias -->
+  <div class="q-card" id="q1">
+    <div class="q-header">
+      <span class="q-badge">OAB — Audiência</span>
+      <p class="q-text">Renato ajuizou reclamação trabalhista contra sua ex-empregadora e obteve os benefícios da justiça gratuita. Na data designada para a audiência inaugural, Renato não compareceu ao ato e seu advogado estava presente. Considerando a situação e o disposto na CLT, assinale a afirmativa correta.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="1" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>O processo não será arquivado, pois o advogado de Renato estava presente e poderá representá-lo.</span></button>
+      <button class="opt" data-q="1" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>O processo será arquivado e Renato não será condenado ao pagamento de custas por ser beneficiário da justiça gratuita.</span></button>
+      <button class="opt" data-q="1" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>O processo será arquivado e Renato será condenado ao pagamento de custas, podendo, em 15 dias, demonstrar motivo justificável para se isentar do pagamento.</span></button>
+      <button class="opt" data-q="1" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>O processo continuará normalmente, mas Renato será punido com pena de multa por ato atentatório à dignidade da Justiça.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q1-btn" disabled onclick="confirmAnswer(1,'C')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q1-tog" onclick="toggleGabarito(1)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q1-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa C — Arquivamento + custas, com prazo de 15 dias para justificativa</div>
+      <div class="gabarito-body">
+        <p><strong>A) Errada.</strong> A presença apenas do advogado não supre o comparecimento pessoal do reclamante. A atuação do advogado no processo do trabalho é <strong>facultativa</strong> (<em>jus postulandi</em>), razão pela qual a sua presença não evita as consequências da ausência da parte <span class="ref">art. 843, CLT</span>.</p>
+        <p><strong>B) Errada.</strong> A concessão dos benefícios da justiça gratuita <strong>não isenta</strong> o reclamante do pagamento de custas na hipótese de arquivamento por ausência — esta é uma regra expressa do <span class="ref">art. 844, § 2º, CLT</span>.</p>
+        <p><strong>C) Correta.</strong> O processo será arquivado e Renato será condenado ao pagamento de custas, ainda que beneficiário da justiça gratuita <span class="ref">art. 844, § 2º, CLT</span>. Contudo, poderá, no prazo de <strong>15 dias</strong>, demonstrar que a ausência decorreu de motivo justificável, isentando-se daquele pagamento.</p>
+        <p><strong>D) Errada.</strong> Não há previsão de multa por ato atentatório à dignidade da Justiça nessa hipótese. O efeito é o arquivamento do processo.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Q2 — Ausência do reclamado: revelia -->
+  <div class="q-card" id="q2">
+    <div class="q-header">
+      <span class="q-badge">OAB — Audiência</span>
+      <p class="q-text">A empresa Beta Ltda. foi citada para comparecer à audiência inaugural de reclamação trabalhista ajuizada por Carlos. Na data designada, a empresa não compareceu ao ato, embora seu advogado estivesse presente e pretendesse apresentar a contestação. Considerando o disposto na CLT, assinale a afirmativa correta sobre os efeitos processuais da ausência da empresa.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="2" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>A empresa será considerada revel, com presunção de veracidade dos fatos afirmados na inicial, e o advogado poderá apresentar a contestação para afastar esse efeito.</span></button>
+      <button class="opt" data-q="2" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>A empresa será considerada revel, com presunção de veracidade dos fatos afirmados na inicial, e o advogado não poderá apresentar a contestação para afastar esse efeito.</span></button>
+      <button class="opt" data-q="2" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>O processo será arquivado, pois a parte não compareceu ao ato.</span></button>
+      <button class="opt" data-q="2" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>O juiz deverá suspender o processo e designar nova data para que a empresa compareça.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q2-btn" disabled onclick="confirmAnswer(2,'B')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q2-tog" onclick="toggleGabarito(2)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q2-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa B — Revelia sem possibilidade de defesa pelo advogado</div>
+      <div class="gabarito-body">
+        <p><strong>B) Correta.</strong> A ausência do reclamado gera <strong>revelia</strong> e confissão quanto à matéria de fato <span class="ref">art. 844, CLT</span>. Como o comparecimento é pessoal e obrigatório, a presença apenas do advogado não supre a ausência da parte — e, por isso, o advogado <strong>não poderá apresentar a contestação</strong> para afastar os efeitos da revelia nessa hipótese.</p>
+        <p><strong>A) Errada.</strong> O advogado não pode apresentar a contestação em substituição ao comparecimento pessoal do preposto da empresa. A defesa só é recebida quando a parte (ou seu preposto) está presente.</p>
+        <p><strong>C) Errada.</strong> O arquivamento é o efeito da ausência do <em>reclamante</em>. A ausência do reclamado gera revelia, não arquivamento.</p>
+        <p><strong>D) Errada.</strong> Não há previsão legal de suspensão do processo ou de nova designação de audiência nessa hipótese.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Q3 — Preposto não empregado -->
+  <div class="q-card" id="q3">
+    <div class="q-header">
+      <span class="q-badge">OAB — Preposto</span>
+      <p class="q-text">A sociedade empresária Alfa Ltda. foi condenada em reclamação trabalhista ajuizada por Júlia em 2019. Inconformada, apelou ao TRT. Em razão da interposição do recurso, foi designada nova audiência em 2022. Nessa nova audiência, a empresa pretende ser representada por Lucas, que não é seu empregado, mas conhece os fatos discutidos na ação por ter trabalhado como consultor externo durante o período em que Júlia esteve empregada. Considerando a legislação aplicável, assinale a afirmativa correta.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="3" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Lucas pode ser preposto da empresa, pois, desde a Reforma Trabalhista, o preposto não precisa ser empregado, bastando que tenha conhecimento dos fatos.</span></button>
+      <button class="opt" data-q="3" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Lucas não pode ser preposto, pois o preposto deve necessariamente ser empregado da empresa reclamada.</span></button>
+      <button class="opt" data-q="3" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Lucas pode ser preposto, desde que obtenha procuração com poderes especiais outorgada pela empresa.</span></button>
+      <button class="opt" data-q="3" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Lucas não pode ser preposto porque não presenciou os fatos pessoalmente como empregado da empresa.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q3-btn" disabled onclick="confirmAnswer(3,'A')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q3-tog" onclick="toggleGabarito(3)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q3-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa A — Preposto não precisa ser empregado após a Reforma Trabalhista</div>
+      <div class="gabarito-body">
+        <p><strong>A) Correta.</strong> A partir da Reforma Trabalhista <span class="ref">Lei n. 13.467/2017</span>, o <span class="ref">art. 843, § 3º, CLT</span> passou a prever que o preposto <strong>não precisa mais ser empregado</strong> da empresa. Basta que tenha <strong>conhecimento dos fatos</strong>. Além disso, não há necessidade de que tenha presenciado os fatos ou que seja contemporâneo ao reclamante. Lucas atende ao requisito.</p>
+        <p><strong>B) Errada.</strong> Essa era a regra anterior à Reforma Trabalhista. Após novembro de 2017, não há mais essa exigência.</p>
+        <p><strong>C) Errada.</strong> Não há exigência de procuração com poderes especiais para o preposto — o que se exige é o conhecimento dos fatos.</p>
+        <p><strong>D) Errada.</strong> A lei não exige que o preposto tenha presenciado os fatos ou seja contemporâneo ao reclamante <span class="ref">art. 843, § 1º e § 3º, CLT</span>.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Q4 — Audiência de prosseguimento / Súmula 9 -->
+  <div class="q-card" id="q4">
+    <div class="q-header">
+      <span class="q-badge">OAB — Súmula 9/TST</span>
+      <p class="q-text">Paulo ajuizou reclamação trabalhista contra a empresa Ômega Ltda. Na data da audiência inaugural, Paulo compareceue a empresa também. Houve a primeira tentativa de conciliação, que restou frustrada. Em seguida, a empresa apresentou sua contestação. Após a entrega da defesa, o juiz determinou o adiamento da audiência para outra data, pois as testemunhas de Paulo não estavam presentes. Na data da segunda audiência (em prosseguimento), Paulo não compareceu. Considerando a Súmula 9 do TST, assinale a afirmativa correta.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="4" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>O processo será arquivado, pois Paulo não compareceu à audiência.</span></button>
+      <button class="opt" data-q="4" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>O processo não será arquivado, pois a defesa já foi apresentada na primeira audiência, e Paulo apenas perderá a oportunidade de participar da produção de provas.</span></button>
+      <button class="opt" data-q="4" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>O processo não será arquivado, mas Paulo será considerado revel.</span></button>
+      <button class="opt" data-q="4" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>O processo será arquivado e Paulo será condenado ao pagamento de custas, salvo se provar motivo justificável em 15 dias.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q4-btn" disabled onclick="confirmAnswer(4,'B')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q4-tog" onclick="toggleGabarito(4)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q4-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa B — Sem arquivamento: defesa já apresentada (Súmula 9/TST)</div>
+      <div class="gabarito-body">
+        <p><strong>B) Correta.</strong> Nos termos da <strong>Súmula 9 do TST</strong>, a ausência do reclamante quando a instrução é adiada <em>após contestada a ação em audiência</em> <strong>não importa arquivamento do processo</strong>. No caso, a defesa foi apresentada na primeira audiência, de modo que Paulo apenas perde a oportunidade de participar da produção das provas na audiência em que faltou — o processo prossegue normalmente.</p>
+        <p><strong>A) Errada.</strong> O arquivamento ocorreria se a defesa ainda não tivesse sido apresentada. Como houve contestação, a Súmula 9/TST afasta o arquivamento.</p>
+        <p><strong>C) Errada.</strong> A revelia é efeito da ausência do <em>reclamado</em>, não do reclamante.</p>
+        <p><strong>D) Errada.</strong> Como a defesa já foi apresentada, aplica-se a Súmula 9/TST — sem arquivamento e sem condenação em custas por essa ausência.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Q5 — Atraso do juiz -->
+  <div class="q-card" id="q5">
+    <div class="q-header">
+      <span class="q-badge">OAB — Art. 815, CLT</span>
+      <p class="q-text">As partes compareceram pontualmente à audiência designada às 14h. Às 14h20min, o juiz ainda não havia iniciado a sessão porque estava concluindo outra audiência que se estendeu. Às 14h35min, o juiz ainda não aparecera. Diante dessa situação e considerando as normas da CLT, assinale a afirmativa correta sobre a possibilidade de as partes se retirarem sem penalidade.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="5" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>As partes poderiam ter se retirado às 14h15min, pois o juiz tem tolerância de apenas 15 minutos, independentemente do motivo do atraso.</span></button>
+      <button class="opt" data-q="5" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>As partes devem aguardar indefinidamente, pois o juiz está realizando outro ato processual, sem qualquer limite de tempo.</span></button>
+      <button class="opt" data-q="5" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Como o atraso decorre de outro ato processual, as partes devem aguardar; porém, se o atraso for injustificado e superior a 30 minutos, podem se retirar sem penalidade.</span></button>
+      <button class="opt" data-q="5" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>As partes podiam ter se retirado às 14h30min, pois a tolerância do juiz é sempre de 30 minutos, qualquer que seja o motivo do atraso.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q5-btn" disabled onclick="confirmAnswer(5,'C')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q5-tog" onclick="toggleGabarito(5)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q5-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa C — Atraso por outro ato processual: aguardar, mas com limite de 30 min</div>
+      <div class="gabarito-body">
+        <p><strong>C) Correta.</strong> O <span class="ref">art. 815, CLT</span> prevê tolerância de 15 minutos para o juiz. Porém, se o atraso decorrer da prática de <strong>outro ato processual</strong> (ex.: audiência em curso), as partes devem aguardar. Contudo, com a alteração promovida pela <span class="ref">Lei n. 14.657/2023</span>, os <strong>§§ 2º e 3º do art. 815, CLT</strong> passaram a prever que, se o atraso for injustificado e <strong>superior a 30 minutos</strong>, as partes podem se retirar sem aplicação de qualquer penalidade. No caso, às 14h35min (35 minutos de espera), as partes já poderiam se retirar.</p>
+        <p><strong>A) Errada.</strong> A tolerância de 15 minutos se aplica ao atraso <em>sem motivo</em>. Quando o juiz está realizando outro ato processual, as partes devem aguardar além dos 15 minutos.</p>
+        <p><strong>B) Errada.</strong> O aguardo não é indefinido — a partir de 30 minutos de atraso injustificado (mesmo por outro ato processual), as partes podem se retirar <span class="ref">art. 815, §§ 2º e 3º, CLT</span>.</p>
+        <p><strong>D) Errada.</strong> A tolerância padrão do juiz é de 15 minutos — não de 30. Os 30 minutos são o limite específico para o caso de atraso decorrente de outro ato processual.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Q6 — Atraso das partes (OJ 245) -->
+  <div class="q-card" id="q6">
+    <div class="q-header">
+      <span class="q-badge">OAB — OJ 245/SDI-1/TST</span>
+      <p class="q-text">A audiência de Marcos foi designada para as 10h. Marcos chegou às 10h05min, ou seja, com 5 minutos de atraso. O juiz já havia anunciado o início da audiência e, diante da ausência de Marcos, determinou o arquivamento do processo. Sobre a situação apresentada e o entendimento consolidado do TST, assinale a afirmativa correta.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="6" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>A decisão de arquivamento é ilegal, pois a CLT prevê tolerância de 15 minutos de atraso para as partes, por analogia às normas que regem o atraso do juiz.</span></button>
+      <button class="opt" data-q="6" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>A decisão de arquivamento é ilegal, pois a CLT prevê tolerância de 5 minutos de atraso para as partes.</span></button>
+      <button class="opt" data-q="6" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>A decisão de arquivamento é correta, pois não há previsão legal de qualquer tolerância de atraso para as partes.</span></button>
+      <button class="opt" data-q="6" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>A decisão de arquivamento é ilegal, pois somente gera arquivamento o atraso superior a 30 minutos.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q6-btn" disabled onclick="confirmAnswer(6,'C')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q6-tog" onclick="toggleGabarito(6)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q6-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa C — Tolerância zero para as partes (OJ 245/SDI-1/TST)</div>
+      <div class="gabarito-body">
+        <p><strong>C) Correta.</strong> Diferentemente do juiz, que possui previsão de tolerância, as partes <strong>não podem se atrasar um minuto sequer</strong>. O legislador não previu qualquer tolerância para as partes, o que é confirmado pela <strong>OJ n. 245 da SDI-1 do TST</strong>, que expressamente afirma não haver previsão legal de atraso para as partes. A decisão de arquivamento é, portanto, correta.</p>
+        <p><strong>A) Errada.</strong> Não cabe analogia entre as regras do juiz e das partes. A OJ 245/SDI-1/TST é clara: <strong>tolerância zero</strong> para as partes.</p>
+        <p><strong>B) Errada.</strong> Não há previsão de 5 minutos de tolerância para as partes. Essa tolerância existe apenas para as variações de ponto em relação ao controle de jornada de empregados.</p>
+        <p><strong>D) Errada.</strong> O limite de 30 minutos refere-se ao atraso do juiz decorrente de outro ato processual — não ao atraso das partes.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Q7 — Representação excepcional do reclamante doente -->
+  <div class="q-card" id="q7">
+    <div class="q-header">
+      <span class="q-badge">OAB — Art. 843, § 2º, CLT</span>
+      <p class="q-text">Sandra ajuizou reclamação trabalhista. Na data da audiência inaugural, Sandra estava internada no hospital por problema de saúde grave e não pôde comparecer ao ato. Seu advogado estava presente e também havia comparecido João, colega de profissão de Sandra na empresa reclamada, disposto a representá-la. Considerando o disposto no art. 843, § 2º, da CLT, assinale a afirmativa correta.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="7" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>João pode representar Sandra e praticar todos os atos processuais em audiência em nome dela, inclusive fazer acordo.</span></button>
+      <button class="opt" data-q="7" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>João pode representar Sandra apenas para justificar sua ausência e evitar o arquivamento, não podendo praticar qualquer ato processual.</span></button>
+      <button class="opt" data-q="7" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>João não pode representar Sandra, pois é empregado da empresa reclamada, o que configura conflito de interesses.</span></button>
+      <button class="opt" data-q="7" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>João não pode representar Sandra, pois somente o sindicato da categoria tem legitimidade para fazê-lo nessa situação.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q7-btn" disabled onclick="confirmAnswer(7,'B')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q7-tog" onclick="toggleGabarito(7)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q7-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa B — Representação apenas para justificar a ausência</div>
+      <div class="gabarito-body">
+        <p><strong>B) Correta.</strong> O <span class="ref">art. 843, § 2º, CLT</span> permite que o reclamante, quando não puder comparecer por doença ou outra justificativa séria, seja representado por <strong>outro empregado da mesma profissão</strong> ou pelo <strong>sindicato</strong>. Porém, o representante <strong>tão somente justificará a ausência</strong> do reclamante — não pode praticar qualquer ato processual em audiência (como produzir provas, fazer acordo, etc.).</p>
+        <p><strong>A) Errada.</strong> A representação é limitada à justificação da ausência. O representante não pode praticar atos processuais em audiência.</p>
+        <p><strong>C) Errada.</strong> O fato de João ser empregado da empresa reclamada não é vedação prevista em lei para essa hipótese de representação. O requisito é ser empregado da <em>mesma profissão</em> — não da mesma empresa.</p>
+        <p><strong>D) Errada.</strong> O <span class="ref">art. 843, § 2º, CLT</span> prevê <strong>duas</strong> alternativas: empregado da mesma profissão ou sindicato — não apenas o sindicato.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Q8 — Horário de realização da audiência -->
+  <div class="q-card" id="q8">
+    <div class="q-header">
+      <span class="q-badge">OAB — Art. 813, CLT</span>
+      <p class="q-text">O juiz da 3ª Vara do Trabalho designou audiência para as 7h30min de uma segunda-feira, alegando que o grande volume de processos na pauta exigia o início antecipado dos trabalhos. Uma das partes questionou a legalidade desse horário. Considerando as normas da CLT sobre a realização de audiências trabalhistas, assinale a afirmativa correta.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="8" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>O horário é válido, pois a CLT permite a prática de atos processuais das 6h às 20h em dias úteis.</span></button>
+      <button class="opt" data-q="8" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>O horário é inválido, pois as audiências trabalhistas somente podem ser realizadas das 8h às 18h em dias úteis, nos termos do art. 813 da CLT.</span></button>
+      <button class="opt" data-q="8" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>O horário é válido, desde que as partes consintam expressamente com a antecipação.</span></button>
+      <button class="opt" data-q="8" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>O horário é inválido, pois audiências trabalhistas somente podem ser realizadas das 8h às 20h.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q8-btn" disabled onclick="confirmAnswer(8,'B')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q8-tog" onclick="toggleGabarito(8)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q8-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa B — Audiências somente das 8h às 18h (art. 813, CLT)</div>
+      <div class="gabarito-body">
+        <p><strong>B) Correta.</strong> O <span class="ref">art. 813, CLT</span> prevê regra específica para as audiências, diferente da regra geral dos atos processuais. As audiências trabalhistas somente podem ser realizadas em dias úteis, <strong>das 8h às 18h</strong>, não podendo ultrapassar 5 horas seguidas, salvo em caso de matéria urgente. O horário das 7h30min viola essa norma.</p>
+        <p><strong>A) Errada.</strong> A regra geral de prática de atos processuais (das 6h às 20h — <span class="ref">art. 770, CLT</span>) <strong>não se aplica às audiências</strong>, que possuem regra específica no <span class="ref">art. 813, CLT</span>.</p>
+        <p><strong>C) Errada.</strong> O horário de realização das audiências é norma cogente — não pode ser afastada pelo consentimento das partes.</p>
+        <p><strong>D) Errada.</strong> O limite final das audiências é às 18h, e não às 20h. O horário das 20h é o limite geral para outros atos processuais.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- RESULTADO FINAL -->
+  <div class="result-banner" id="result-banner">
+    <div class="result-score" id="result-score">0/8</div>
+    <div class="result-label">Resultado final</div>
+    <div class="result-msg" id="result-msg"></div>
+  </div>
+
+</section>
+
+<a class="back" href="../index.html">
+  <span class="arw">←</span>
+  <span>Voltar ao índice da disciplina</span>
+</a>
+
+</div><!-- /wrap -->
+
+<script>
+/* reveal on scroll */
+(function(){
+  var items=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){items.forEach(function(el){el.classList.add('in');});return;}
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:.08,rootMargin:'0px 0px -3% 0px'});
+  items.forEach(function(el,i){el.style.transitionDelay=(i*35)+'ms';io.observe(el);});
+})();
+
+/* ── QUIZ ── */
+var TOTAL=8, answered={};
+
+function selectOpt(el){
+  var q=el.dataset.q;
+  if(answered[q]!==undefined) return;
+  document.querySelectorAll('[data-q="'+q+'"]').forEach(function(o){o.classList.remove('selected');});
+  el.classList.add('selected');
+  document.getElementById('q'+q+'-btn').disabled=false;
+}
+
+function confirmAnswer(qNum,correctVal){
+  var opts=document.querySelectorAll('[data-q="'+qNum+'"]');
+  var btn=document.getElementById('q'+qNum+'-btn');
+  var card=document.getElementById('q'+qNum);
+  var tog=document.getElementById('q'+qNum+'-tog');
+  var chosen=null;
+  opts.forEach(function(o){if(o.classList.contains('selected'))chosen=o;});
+  if(!chosen) return;
+  var isCorrect=chosen.dataset.val===correctVal;
+  answered[qNum]=isCorrect;
+  opts.forEach(function(o){
+    o.disabled=true;
+    if(o.dataset.val===correctVal){o.classList.add('correct-final');}
+    else if(o.classList.contains('selected')&&!isCorrect){o.classList.add('wrong-final');}
+    else{o.classList.add('dimmed');}
+    o.classList.remove('selected');
+  });
+  card.classList.add(isCorrect?'answered-correct':'answered-wrong');
+  btn.disabled=true; btn.style.display='none';
+  tog.style.display='inline-flex';
+  updateScore(); checkAllDone();
+}
+
+function toggleGabarito(qNum){
+  var gab=document.getElementById('q'+qNum+'-gab');
+  var tog=document.getElementById('q'+qNum+'-tog');
+  var open=gab.classList.toggle('open');
+  tog.classList.toggle('open',open);
+}
+
+function updateScore(){
+  var done=Object.keys(answered).length;
+  var correct=Object.values(answered).filter(Boolean).length;
+  var pct=TOTAL>0?(correct/TOTAL)*100:0;
+  document.getElementById('sc-current').textContent=correct;
+  document.getElementById('sc-bar').style.width=pct+'%';
+  document.getElementById('sc-bar').style.background=pct>=70?'#166534':pct>=40?'#d97706':'#991b1b';
+  document.getElementById('sc-msg').textContent=done+' respondida'+(done!==1?'s':'');
+}
+
+function checkAllDone(){
+  if(Object.keys(answered).length<TOTAL) return;
+  var correct=Object.values(answered).filter(Boolean).length;
+  var banner=document.getElementById('result-banner');
+  document.getElementById('result-score').textContent=correct+'/'+TOTAL;
+  var pct=correct/TOTAL;
+  var msg=document.getElementById('result-msg');
+  if(pct===1) msg.textContent='🎉 Parabéns! Gabarito perfeito — você domina o tema.';
+  else if(pct>=.75) msg.textContent='✅ Muito bem! Revise os pontos que errou e estará pronto.';
+  else if(pct>=.5) msg.textContent='📖 Resultado razoável. Revise os comentários com atenção.';
+  else msg.textContent='🔁 Reforce o estudo e tente novamente. Os comentários ajudam!';
+  banner.classList.add('show');
+  banner.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+function resetQuiz(){
+  answered={};
+  for(var q=1;q<=TOTAL;q++){
+    document.querySelectorAll('[data-q="'+q+'"]').forEach(function(o){
+      o.disabled=false; o.classList.remove('selected','correct-final','wrong-final','dimmed');
+    });
+    document.getElementById('q'+q).classList.remove('answered-correct','answered-wrong');
+    var btn=document.getElementById('q'+q+'-btn'); btn.disabled=true; btn.style.display='';
+    var tog=document.getElementById('q'+q+'-tog'); tog.style.display='none'; tog.classList.remove('open');
+    document.getElementById('q'+q+'-gab').classList.remove('open');
+  }
+  document.getElementById('sc-current').textContent='0';
+  document.getElementById('sc-bar').style.width='0%';
+  document.getElementById('sc-msg').textContent='0 respondidas';
+  document.getElementById('result-banner').classList.remove('show');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
 </body>
 </html>
