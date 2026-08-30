@@ -1,7 +1,419 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8" /><!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>13. Sentença e Coisa Julgada</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1b2436;--ink-soft:#414a5c;--paper:#edece5;--surface:#fbfaf7;
+  --accent:#7a2e37;--accent-soft:#a2545f;--iron:#8b8579;
+  --line:rgba(27,36,54,.13);--line-strong:rgba(27,36,54,.22);
+  --green:#166534;--green-bg:#f0fdf4;--green-line:#bbf7d0;
+  --red:#991b1b;--red-bg:#fef2f2;--red-line:#fecaca;
+  --display:"Fraunces",Georgia,serif;
+  --body:"Spectral",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:19px;line-height:1.78;-webkit-font-smoothing:antialiased;}
+body::before{content:"";position:fixed;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 34%,var(--ink) 34%,var(--ink) 100%);z-index:50;}
+.wrap{max-width:760px;margin:0 auto;padding:0 22px 72px;}
+
+/* CABEÇALHO */
+.masthead{padding:56px 0 30px;border-bottom:1px solid var(--line-strong);animation:rise .7s cubic-bezier(.2,.7,.2,1) both;}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--accent);display:inline-block;}
+.eyebrow .dot{color:var(--line-strong);}
+.title-row{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;flex-wrap:wrap;}
+h1{font-family:var(--display);font-weight:500;font-size:clamp(2.1rem,6vw,3.5rem);line-height:1.06;letter-spacing:-.015em;max-width:16ch;}
+h1 .art{display:block;font-size:.42em;font-weight:600;letter-spacing:.02em;color:var(--accent);font-family:var(--mono);text-transform:uppercase;margin-bottom:.5em;}
+.slides-btn{flex-shrink:0;display:inline-flex;align-items:center;gap:12px;text-decoration:none;background:var(--ink);color:#f4f2ec;border-radius:4px;padding:13px 18px;font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;box-shadow:0 8px 22px -12px rgba(27,36,54,.7);transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s,background .25s;}
+.slides-btn:hover{background:var(--accent);transform:translateY(-2px);}
+.slides-btn .arw{transition:transform .25s;}
+.slides-btn:hover .arw{transform:translateX(4px);}
+
+/* VERBETE */
+.verbete{margin:44px 0 8px;padding:6px 0 6px 30px;border-left:3px solid var(--accent);}
+.verbete .tag{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:14px;}
+.verbete p{font-family:var(--display);font-weight:400;font-size:clamp(1.1rem,2.6vw,1.4rem);line-height:1.45;color:var(--ink);margin:0;}
+
+.ref{font-family:var(--mono);font-size:.8em;color:var(--iron);background:rgba(139,133,121,.12);padding:2px 7px;border-radius:3px;white-space:nowrap;}
+
+/* SEÇÕES */
+.sec-head{display:flex;gap:16px;align-items:baseline;margin:44px 0 14px;padding-top:26px;border-top:1px solid var(--line);}
+.sec-head .num{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--accent);flex-shrink:0;padding-top:.35em;}
+h2{font-family:var(--display);font-weight:500;font-size:clamp(1.5rem,4vw,1.9rem);line-height:1.14;letter-spacing:-.01em;color:var(--ink);}
+h3{font-family:var(--display);font-weight:600;font-size:1.15rem;color:var(--ink);margin:22px 0 8px;}
+p{margin-bottom:14px;color:var(--ink-soft);}
+
+/* ARTIGO LITERAL */
+.artigo-literal{margin:14px 0;padding:16px 20px;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:0 6px 6px 0;font-size:.93em;color:var(--ink);line-height:1.72;}
+.artigo-literal .art-label{font-family:var(--mono);font-size:.8em;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px;}
+
+/* SÚMULA */
+.sumula{margin:12px 0 6px;padding:12px 16px;border-left:2px solid var(--iron);background:var(--paper);border-radius:0 4px 4px 0;font-size:.89em;color:var(--ink-soft);line-height:1.65;}
+.sumula strong{font-family:var(--mono);font-size:.86em;letter-spacing:.08em;text-transform:uppercase;color:var(--iron);display:block;margin-bottom:4px;}
+
+/* NOTA */
+.nota{margin:12px 0 6px;padding:13px 17px;background:rgba(122,46,55,.06);border-left:3px solid var(--accent);border-radius:0 5px 5px 0;font-size:.91em;color:var(--ink-soft);line-height:1.65;}
+.nota strong{color:var(--ink);}
+
+/* EXEMPLO */
+.exemplo{margin:12px 0 6px;padding:13px 17px;background:var(--surface);border:1px dashed var(--line-strong);border-radius:6px;font-size:.91em;color:var(--ink-soft);line-height:1.65;}
+.exemplo .exemplo-label{font-family:var(--mono);font-size:.78em;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px;}
+
+/* TEORIAS / GRID DE CONCEITOS */
+.teoria-grid{display:flex;flex-direction:column;gap:3px;margin:12px 0;}
+.teoria{background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;}
+.teoria-head{display:flex;align-items:center;gap:14px;padding:12px 16px;border-bottom:1px solid var(--line);background:rgba(122,46,55,.04);}
+.teoria-badge{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--accent);background:rgba(122,46,55,.1);border:1px solid rgba(122,46,55,.2);border-radius:4px;padding:3px 10px;white-space:nowrap;}
+.teoria-title{font-family:var(--display);font-weight:600;font-size:1rem;color:var(--ink);}
+.teoria-body{padding:12px 16px;font-size:.92em;color:var(--ink-soft);line-height:1.68;}
+
+/* BLIST */
+.blist{list-style:none;padding:0;margin:10px 0 12px;display:flex;flex-direction:column;gap:3px;}
+.blist li{display:grid;grid-template-columns:22px 1fr;gap:8px;font-size:.93em;color:var(--ink-soft);line-height:1.65;padding:8px 0;border-bottom:1px solid var(--line);}
+.blist li:last-child{border-bottom:none;}
+.blist li .bul{color:var(--accent);font-family:var(--mono);font-size:.85em;padding-top:2px;}
+
+/* CARDS ACCORDION (hipóteses de retratação) */
+.cards{display:flex;flex-direction:column;gap:3px;}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;transition:box-shadow .2s;}
+.card:hover{box-shadow:0 4px 18px -8px rgba(27,36,54,.2);}
+.card-btn{width:100%;background:none;border:none;cursor:pointer;display:grid;grid-template-columns:52px 1fr 34px;align-items:center;padding:0;text-align:left;color:inherit;}
+.card-icon{display:flex;align-items:center;justify-content:center;min-height:60px;border-right:1px solid var(--line);font-family:var(--mono);font-weight:700;font-size:11px;color:var(--accent);background:rgba(122,46,55,.05);text-align:center;padding:4px;line-height:1.3;}
+.card-head{padding:13px 16px;}
+.card-num{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--iron);display:block;margin-bottom:3px;}
+.card-title{font-family:var(--display);font-weight:600;font-size:1rem;line-height:1.2;color:var(--ink);}
+.card-chevron{display:flex;align-items:center;justify-content:center;padding-right:14px;color:var(--iron);font-size:13px;transition:transform .3s cubic-bezier(.2,.7,.2,1),color .2s;}
+.card.open .card-chevron{transform:rotate(180deg);color:var(--accent);}
+.card-body{display:none;padding:16px 20px 20px;border-top:1px solid var(--line);}
+.card.open .card-body{display:block;}
+.card-body p{color:var(--ink-soft);font-size:.93em;line-height:1.72;}
+
+/* FLUXO COISA JULGADA */
+.fluxo{display:flex;flex-direction:column;gap:0;margin:14px 0;border:1px solid var(--line);border-radius:8px;overflow:hidden;}
+.fluxo-step{display:grid;grid-template-columns:44px 1fr;gap:14px;padding:14px 16px;background:var(--surface);border-bottom:1px solid var(--line);}
+.fluxo-step:last-child{border-bottom:none;}
+.fluxo-step .fn{font-family:var(--mono);font-weight:700;font-size:13px;color:var(--accent);background:rgba(122,46,55,.08);border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;}
+.fluxo-step .ft{font-family:var(--display);font-weight:600;font-size:1rem;color:var(--ink);margin-bottom:3px;}
+.fluxo-step .fd{font-size:.92em;color:var(--ink-soft);line-height:1.65;}
+
+.reveal{opacity:0;transform:translateY(14px);}
+.reveal.in{opacity:1;transform:none;transition:opacity .5s ease,transform .5s cubic-bezier(.2,.7,.2,1);}
+.back{margin-top:52px;display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line-strong);border-radius:6px;padding:20px 22px;font-family:var(--mono);font-size:14px;letter-spacing:.04em;transition:border-color .25s,transform .25s;}
+.back .arw{color:var(--accent);transition:transform .25s;font-size:18px;}
+.back:hover{border-color:var(--accent);transform:translateY(-2px);}
+.back:hover .arw{transform:translateX(-4px);}
+
+@keyframes rise{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
+@media(max-width:560px){
+  body{font-size:17.5px;}
+  .masthead{padding:40px 0 24px;}
+  .title-row{align-items:stretch;}
+  .slides-btn{width:100%;justify-content:center;}
+  .fluxo-step{grid-template-columns:36px 1fr;}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto;}.reveal{opacity:1;transform:none;}.reveal.in{transition:none;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ══════════════ CABEÇALHO ══════════════ -->
+<header class="masthead">
+  <p class="eyebrow">
+    Direito Processual do Trabalho
+    <span class="dot">·</span> Unidade 13
+    <span class="dot">·</span> Sentença e Coisa Julgada
+  </p>
+  <div class="title-row">
+    <h1><span class="art">Item 13</span>Sentença e Coisa Julgada</h1>
+    <a class="slides-btn" href="https://drive.google.com/" target="_blank" rel="noopener">
+      <span>▮</span><span>Slides da aula</span><span class="arw">→</span>
+    </a>
+  </div>
+  <div class="verbete">
+    <span class="tag">Sentenças definitivas × terminativas</span>
+    <p>Iniciando o estudo da sentença, temos que relembrar os conceitos de sentença <strong>definitiva</strong> e <strong>terminativa</strong>, que estão atrelados ao tema coisa julgada.</p>
+  </div>
+</header>
+
+<!-- ══════════════ § 13.1 CONCEITOS ══════════════ -->
+<section>
+  <div class="sec-head reveal"><span class="num">§ 13.1</span><h2>Conceitos</h2></div>
+
+  <p class="reveal">
+    As sentenças <strong>definitivas</strong> constam no <span class="ref">art. 487, CPC/2015</span>, que traz as hipóteses de extinção do processo com resolução do mérito. Já as <strong>terminativas</strong> são aquelas em que não há análise do mérito, já que o <span class="ref">art. 485, CPC/2015</span> trata das situações de extinção sem resolução do mérito.
+  </p>
+
+  <p class="reveal">A relação com o instituto da coisa julgada pode ser assim resumida:</p>
+
+  <div class="teoria-grid reveal">
+    <div class="teoria">
+      <div class="teoria-head">
+        <span class="teoria-badge">Com mérito</span>
+        <span class="teoria-title">Extinção com resolução do mérito</span>
+      </div>
+      <div class="teoria-body">
+        Haverá a formação da <strong>coisa julgada material</strong>, relacionada à análise do mérito, já que a decisão se tornará <strong>definitiva e imutável</strong> com o trânsito em julgado.
+      </div>
+    </div>
+    <div class="teoria">
+      <div class="teoria-head">
+        <span class="teoria-badge">Sem mérito</span>
+        <span class="teoria-title">Extinção sem resolução do mérito</span>
+      </div>
+      <div class="teoria-body">
+        Haverá a formação de <strong>coisa julgada formal</strong>, que impedirá a prática de atos no <em>próprio</em> processo, mas sem qualquer análise dos pedidos que foram formulados.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ § 13.2 PRINCÍPIO DA CONGRUÊNCIA ══════════════ -->
+<section>
+  <div class="sec-head reveal"><span class="num">§ 13.2</span><h2>Princípio da Congruência</h2></div>
+
+  <p class="reveal">
+    O princípio da congruência também pode ser encontrado nas provas como <strong>"princípio da correlação"</strong> ou <strong>"princípio da adstrição"</strong>, estando previsto no <span class="ref">art. 141, CPC/2015</span> como um limitador da atuação do Juiz, que não pode julgar fora dos pedidos que foram formulados pelas partes.
+  </p>
+
+  <p class="reveal">
+    Caso o Juiz profira decisão fora do que foi pedido, além do que foi pedido ou deixar de julgar algo que foi pedido, estará proferindo sentenças <strong>extra</strong>, <strong>ultra</strong> e <strong>infra (citra) petita</strong>, respectivamente. Assim, se o autor requer a condenação do réu ao pagamento de danos materiais apenas, não pode o Juiz conceder dano moral, mesmo que evidente na hipótese. Se requerida a condenação em R$ 10.000,00 de danos materiais, não poderá o Juiz condenar ao pagamento de R$ 20.000,00, pois não estaria respeitado o princípio em estudo <span class="ref">GARCIA, 2012</span>.
+  </p>
+
+  <p class="reveal">
+    Contudo, existem exceções à regra, na medida em que alguns pedidos não precisam ser formulados, já que considerados <strong>implícitos</strong>, como ocorre com os juros e correção monetária, que a teor da <span class="ref">Súmula 211, TST</span> podem ser incluídos na sentença mesmo que ausentes tais parcelas na petição inicial. Também a <span class="ref">Súmula 396, TST</span> afirma que, na hipótese de ser requerida a reintegração do empregado, pode o Juiz conceder indenização em substituição àquele pedido, já que a substituição estaria implícita, não sendo a decisão considerada extra petita.
+  </p>
+
+  <div class="sumula reveal">
+    <strong>Súmula 211, TST</strong>
+    Os juros de mora e a correção monetária incluem-se na liquidação, ainda que omisso o pedido inicial ou a condenação.
+  </div>
+
+  <div class="sumula reveal">
+    <strong>Súmula 396, TST</strong>
+    Exaurido o prazo do art. 495 da CLT, é conferido ao empregador o direito de opção pela indenização, sendo possível a conversão do pedido de reintegração em indenização.
+  </div>
+
+  <div class="exemplo reveal">
+    <span class="exemplo-label">Exemplo</span>
+    Mesmo que não haja pedido de condenação ao pagamento de juros e correção monetária, pode o Juiz condenar ao pagamento das parcelas, uma vez que são considerados <strong>pedidos implícitos</strong>, que não precisam ser explicitamente formulados. Mesmo que o Juiz não condene, na liquidação de sentença poderá a quantia ser incluída, tudo em conformidade com a <span class="ref">Súmula 211, TST</span>.
+  </div>
+</section>
+
+<!-- ══════════════ § 13.3 REQUISITOS E FUNDAMENTAÇÃO ══════════════ -->
+<section>
+  <div class="sec-head reveal"><span class="num">§ 13.3</span><h2>Requisitos e Fundamentação</h2></div>
+
+  <p class="reveal">
+    Dispõem os <span class="ref">art. 832, CLT</span> e <span class="ref">art. 489, CPC/2015</span> que as sentenças devem possuir os seguintes requisitos ou partes essenciais: <strong>relatório, fundamentação e dispositivo</strong>. O primeiro — relatório — é um resumo dos principais acontecimentos do processo, enquanto o segundo é a análise que o Magistrado faz dos fatos e fundamentos levados ao processo pelas partes. Por fim, o dispositivo é a conclusão a que chegou o Juiz, extinguindo com ou sem resolução do mérito, julgando procedente ou improcedente os pedidos formulados etc.
+  </p>
+
+  <p class="reveal">
+    Já foi dito que no <strong>rito sumaríssimo</strong> o relatório está dispensado pelo <span class="ref">art. 852-H, CLT</span>, para facilitar o proferimento da sentença oral, em audiência.
+  </p>
+
+  <div class="artigo-literal reveal">
+    <span class="art-label">Art. 489, § 1º, CPC/2015 — Fundamentação vedada</span>
+    Um dos pontos mais importantes sobre sentença, inserido pelo CPC/2015, é a necessidade de seguir os ditames do § 1º do art. 489, que deixa claro que a fundamentação deve ser <strong>completa, minuciosa</strong>, sem frases feitas e genéricas, sem mera indicação de dispositivos de lei, súmulas ou OJs do TST.
+  </div>
+
+  <p class="reveal">
+    Para o Juiz aplicar a <span class="ref">Súmula 6, TST</span>, ao julgar um pedido de equiparação salarial, deverá ele demonstrar de que forma aquela súmula se relaciona ao caso concreto, porque é hipótese de aplicação daquele entendimento, não podendo apenas indicá-lo. Frases do tipo "violou o princípio da boa-fé" não são mais admitidas sem a precisa indicação do ato que teria violado o referido princípio <span class="ref">SCHIAVI, 2015</span>.
+  </p>
+
+  <p class="reveal">
+    Além dos requisitos essenciais, já estudados, podemos falar em <strong>requisitos complementares</strong>, constantes no <span class="ref">art. 832, CLT</span> e que são a indicação do valor das custas e responsável pelo seu pagamento, bem como a natureza jurídica das parcelas. O Magistrado, ao final de sentença, mencionará o valor das custas em reais, levando-se em consideração os critérios do <span class="ref">art. 789, CLT</span>, indicando ainda as parcelas que constam da condenação, já que a análise acerca da natureza jurídica — salarial ou indenizatória — é fundamental para a verificação da incidência de contribuição previdenciária devida à União.
+  </p>
+
+  <div class="nota reveal">
+    <strong>Atenção:</strong> talvez um dos pontos mais importantes do CPC/2015, de aplicação subsidiária no processo do trabalho por determinação da <span class="ref">IN n. 39/16, TST</span>, esteja no § 1º do art. 489, que impede o proferimento de sentenças genéricas, sem análise específica dos fundamentos das partes. Não pode mais o juiz decidir apenas mencionando dispositivos de lei, súmulas e OJs do TST, devendo demonstrar a relação entre aqueles e a situação julgada.
+  </div>
+</section>
+
+<!-- ══════════════ § 13.4 JUÍZO DE RETRATAÇÃO ══════════════ -->
+<section>
+  <div class="sec-head reveal"><span class="num">§ 13.4</span><h2>Juízo de Retratação</h2></div>
+
+  <p class="reveal">
+    Uma vez proferida a sentença, o Juiz pode "voltar atrás" e decidir novamente? Poderá reconhecer um equívoco na sentença e alterá-la? A regra geral do <span class="ref">art. 494, CPC/2015</span> é no sentido de que o Juiz, ao proferir a sentença e publicá-la, não poderá alterá-la, a não ser que seja para reconhecer <strong>erros materiais</strong> (erro de cálculo, erro de digitação) ou através do julgamento do recurso de <strong>embargos de declaração</strong> <span class="ref">MIESSA, 2016</span>.
+  </p>
+
+  <p class="reveal">
+    Ocorre que, excepcionalmente, cabe o <strong>juízo de retratação</strong> da sentença, hipóteses em que o Juiz pode reconsiderar a decisão e proferir outra ou tomar outro rumo no processo. As hipóteses são:
+  </p>
+
+  <div class="cards reveal">
+    <div class="card">
+      <button class="card-btn" aria-expanded="false">
+        <div class="card-icon">1</div>
+        <div class="card-head">
+          <span class="card-num">art. 331, CPC/2015</span>
+          <span class="card-title">Indeferimento da petição inicial</span>
+        </div>
+        <div class="card-chevron">▾</div>
+      </button>
+      <div class="card-body" role="region">
+        <p>Se o Juiz proferir sentença de indeferimento da petição inicial e o autor interpuser recurso, poderá o Magistrado retratar-se em <strong>5 dias</strong>.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <button class="card-btn" aria-expanded="false">
+        <div class="card-icon">2</div>
+        <div class="card-head">
+          <span class="card-num">art. 332, § 3º, CPC/2015</span>
+          <span class="card-title">Improcedência liminar</span>
+        </div>
+        <div class="card-chevron">▾</div>
+      </button>
+      <div class="card-body" role="region">
+        <p>Se o mérito for julgado improcedente, na hipótese do art. 332, e o autor interpuser recurso, poderá o Magistrado retratar-se em <strong>5 dias</strong>.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <button class="card-btn" aria-expanded="false">
+        <div class="card-icon">3</div>
+        <div class="card-head">
+          <span class="card-num">art. 485, § 7º, CPC/2015</span>
+          <span class="card-title">Sentença de extinção sem resolução do mérito</span>
+        </div>
+        <div class="card-chevron">▾</div>
+      </button>
+      <div class="card-body" role="region">
+        <p>Sempre que o Juiz extinguir o processo sem resolução do mérito, por qualquer motivo, caberá a retratação em <strong>5 dias</strong> se a parte interpuser recurso.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ § 13.5 JULGAMENTO ANTECIPADO PARCIAL ══════════════ -->
+<section>
+  <div class="sec-head reveal"><span class="num">§ 13.5</span><h2>Julgamento Antecipado Parcial</h2></div>
+
+  <p class="reveal">
+    Um novo instituto, inserido no <span class="ref">art. 356, CPC/2015</span> e aplicável ao processo do trabalho por determinação da <span class="ref">IN n. 39/2016, TST</span>, o <strong>julgamento antecipado parcial</strong> permite que sejam proferidas duas ou mais sentenças em um único processo, em momentos distintos, já que o mérito pode ser julgado progressivamente, de maneira parcial.
+  </p>
+
+  <p class="reveal">
+    As hipóteses muito bem definidas pelo legislador ocorrem quando um ou mais pedidos foram <strong>incontroversos</strong> ou estiverem em condições de imediato julgamento, por não haver necessidade de produção de qualquer outro meio de prova ou por ter sido o réu considerado <strong>revel</strong>, com a consequente presunção de veracidade dos fatos afirmados na petição inicial.
+  </p>
+
+  <div class="exemplo reveal">
+    <span class="exemplo-label">Exemplo</span>
+    Se ajuizada ação requerendo a condenação do reclamado ao pagamento de danos materiais e morais, poderá o Juiz, estando presente alguma hipótese do <span class="ref">art. 356, CPC/2015</span>, julgar de imediato o dano material por sentença e prosseguir o processo em relação ao dano moral, que será julgado em nova sentença.
+  </div>
+</section>
+
+<!-- ══════════════ § 13.6 COISA JULGADA ══════════════ -->
+<section>
+  <div class="sec-head reveal"><span class="num">§ 13.6</span><h2>Coisa Julgada</h2></div>
+
+  <p class="reveal">
+    Ao proferir uma sentença — terminativa ou extintiva — poderá a parte <strong>sucumbente</strong> (prejudicada) recorrer daquela, impugnando os fundamentos do Juiz e requerendo a sua modificação.
+  </p>
+
+  <p class="reveal">
+    Alguns são os recursos que podem ser interpostos em sequência, fazendo com que uma ação que tramita na Vara do Trabalho chegue ao Supremo Tribunal Federal, órgão de cúpula do Poder Judiciário, passando pelo Tribunal Regional do Trabalho (TRT) e Tribunal Superior do Trabalho (TST). Imaginemos que a parte prejudicada se valha de absolutamente todos os recursos previstos em lei. Chegará um determinado momento em que não caberá mais nenhum recurso, por total ausência de mecanismo para impugnação. Nesse momento, teremos o <strong>trânsito em julgado</strong>, que é a passagem da decisão de um estado de mutabilidade para imutabilidade, ou seja, com o trânsito em julgado a decisão que poderia ser modificada passa a ser imutável, formando-se a coisa julgada, que pode ser <strong>formal</strong> ou <strong>material</strong>, dependendo se o mérito foi analisado ou não.
+  </p>
+
+  <div class="exemplo reveal">
+    <span class="exemplo-label">Exemplo — coisa julgada material</span>
+    Imaginemos que João tenha ajuizado uma ação em face da empresa Alfa, requerendo a condenação ao pagamento de danos morais por suposta perseguição que ele estava sofrendo, o que teria caracterizado o assédio moral. Se a sentença foi de improcedência e não for modificada em grau de recurso, transitará em julgado em determinado momento e aquela decisão se tornará imutável e indiscutível, já que será formada a <strong>coisa julgada material</strong>, que nos termos do <span class="ref">art. 502, CPC/2015</span> é "a autoridade que torna imutável e indiscutível a decisão de mérito não mais sujeita a recurso". Significa dizer que o dano moral não foi reconhecido naquele processo e nunca mais poderá ser discutido em qualquer outro processo. A coisa julgada material, que produz os seus efeitos para fora do processo, é por isso denominada <strong>extraprocessual</strong>.
+  </div>
+
+  <p class="reveal">
+    Agora, o que ocorreria se o processo tivesse sido extinto sem resolução do mérito? Da mesma forma caberia recurso da sentença e em determinado momento, quando não coubesse mais recurso, haveria o trânsito em julgado. Contudo, por não ter sido analisado o mérito, a parte poderia discutir a questão em outro processo, isto é, poderia ajuizar novamente aquela ação, pois na hipótese houve a formação apenas de <strong>coisa julgada formal</strong>, que impede a prática de atos no processo em que foi formada, não impedindo a rediscussão em outra relação processual.
+  </p>
+
+  <p class="reveal">
+    Por fim, a coisa julgada material, que torna imutável e indiscutível a decisão de mérito proferida, pode ser excepcionalmente <strong>desconstituída, rescindida</strong>, caso proferida em processo que contenha vício grave descrito em lei e analisado através de uma ação especial de nome <strong>ação rescisória</strong>, prevista nos <span class="ref">arts. 966 e s., CPC/2015</span> e que será objeto de estudo em item específico, por ser um dos "procedimentos especiais trabalhistas" que podem ser objeto de cobrança no Exame da OAB.
+  </p>
+
+  <div class="fluxo reveal">
+    <div class="fluxo-step">
+      <span class="fn">1</span>
+      <div>
+        <div class="ft">Sentença</div>
+        <div class="fd">Terminativa (sem mérito) ou definitiva (com mérito) — cabe recurso da parte sucumbente.</div>
+      </div>
+    </div>
+    <div class="fluxo-step">
+      <span class="fn">2</span>
+      <div>
+        <div class="ft">Esgotamento dos recursos</div>
+        <div class="fd">A decisão pode percorrer Vara do Trabalho → TRT → TST → STF, até não caber mais nenhum recurso.</div>
+      </div>
+    </div>
+    <div class="fluxo-step">
+      <span class="fn">3</span>
+      <div>
+        <div class="ft">Trânsito em julgado</div>
+        <div class="fd">Passagem da decisão de um estado de mutabilidade para imutabilidade.</div>
+      </div>
+    </div>
+    <div class="fluxo-step">
+      <span class="fn">4</span>
+      <div>
+        <div class="ft">Coisa julgada formal ou material</div>
+        <div class="fd">Formal (sem mérito) permite renovar a ação; material (com mérito) torna a decisão imutável e indiscutível <span class="ref">art. 502, CPC</span>.</div>
+      </div>
+    </div>
+    <div class="fluxo-step">
+      <span class="fn">5</span>
+      <div>
+        <div class="ft">Ação rescisória (exceção)</div>
+        <div class="fd">Única via para desconstituir a coisa julgada material em caso de vício grave <span class="ref">arts. 966 e s., CPC</span>.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<a class="back" href="../index.html">
+  <span class="arw">←</span>
+  <span>Voltar ao índice da disciplina</span>
+</a>
+
+</div><!-- /wrap -->
+
+<script>
+/* accordion */
+(function(){
+  var cards=document.querySelectorAll('.card');
+  cards.forEach(function(card){
+    var btn=card.querySelector('.card-btn');
+    if(!btn) return;
+    btn.addEventListener('click',function(){
+      var isOpen=card.classList.contains('open');
+      cards.forEach(function(c){c.classList.remove('open');var b=c.querySelector('.card-btn');if(b)b.setAttribute('aria-expanded','false');});
+      if(!isOpen){card.classList.add('open');btn.setAttribute('aria-expanded','true');}
+    });
+  });
+})();
+
+/* reveal */
+(function(){
+  var items=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){items.forEach(function(el){el.classList.add('in');});return;}
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:.08,rootMargin:'0px 0px -3% 0px'});
+  items.forEach(function(el,i){el.style.transitionDelay=(i*35)+'ms';io.observe(el);});
+})();
+</script>
+</body>
+</html>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>11. Defesa do reclamado</title>
   <style>
