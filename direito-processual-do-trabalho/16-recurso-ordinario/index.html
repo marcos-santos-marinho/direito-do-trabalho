@@ -1,923 +1,654 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>15.5.2 Recurso Ordinário — Direito Processual do Trabalho</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;1,9..144,700&family=Spectral:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-/* ── TOKENS ── */
-:root {
-  --paper:      #edece5;
-  --ink:        #1a1a18;
-  --accent:     #7a2e37;
-  --accent-lt:  #f3eaea;
-  --accent-mid: #b87378;
-  --rule:       #cac8be;
-  --white:      #ffffff;
-  --warn-bg:    #fff8e1;
-  --warn-bdr:   #c9a227;
-  --ok:         #4a9e6e;
-  --err:        #c0392b;
-  --font-body:  'Spectral', Georgia, serif;
-  --font-ui:    'IBM Plex Mono', 'Courier New', monospace;
-  --font-disp:  'Fraunces', Georgia, serif;
+:root{
+  --ink:#1b2436;--ink-soft:#414a5c;--paper:#edece5;--surface:#fbfaf7;
+  --accent:#7a2e37;--accent-soft:#a2545f;--iron:#8b8579;
+  --line:rgba(27,36,54,.13);--line-strong:rgba(27,36,54,.22);
+  --green:#166534;--green-bg:#f0fdf4;--green-line:#bbf7d0;
+  --red:#991b1b;--red-bg:#fef2f2;--red-line:#fecaca;
+  --display:"Fraunces",Georgia,serif;
+  --body:"Spectral",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
 }
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:19px;line-height:1.78;-webkit-font-smoothing:antialiased;}
+body::before{content:"";position:fixed;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 34%,var(--ink) 34%,var(--ink) 100%);z-index:50;}
+.wrap{max-width:760px;margin:0 auto;padding:0 22px 72px;}
 
-/* ── RESET ── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-img { max-width: 100%; display: block; }
+/* CABEÇALHO */
+.masthead{padding:56px 0 30px;border-bottom:1px solid var(--line-strong);animation:rise .7s cubic-bezier(.2,.7,.2,1) both;}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--accent);display:inline-block;}
+.eyebrow .dot{color:var(--line-strong);}
+.title-row{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;flex-wrap:wrap;}
+h1{font-family:var(--display);font-weight:500;font-size:clamp(2.1rem,6vw,3.5rem);line-height:1.06;letter-spacing:-.015em;max-width:16ch;}
+h1 .art{display:block;font-size:.42em;font-weight:600;letter-spacing:.02em;color:var(--accent);font-family:var(--mono);text-transform:uppercase;margin-bottom:.5em;}
 
-/* ── BASE ── */
-body {
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--font-body);
-  font-size: 1.04rem;
-  line-height: 1.75;
-  padding-top: 4px;
-}
+/* VERBETE */
+.verbete{margin:44px 0 8px;padding:6px 0 6px 30px;border-left:3px solid var(--accent);}
+.verbete .tag{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:14px;}
+.verbete p{font-family:var(--display);font-weight:400;font-size:clamp(1.1rem,2.6vw,1.4rem);line-height:1.45;color:var(--ink);margin:0;}
 
-/* top stripe */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0 0 auto 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--accent), #2c1a1d);
-  z-index: 999;
-}
+.ref{font-family:var(--mono);font-size:.8em;color:var(--iron);background:rgba(139,133,121,.12);padding:2px 7px;border-radius:3px;white-space:nowrap;}
 
-/* ── LAYOUT ── */
-.breadcrumb {
-  font-family: var(--font-ui);
-  font-size: .7rem;
-  letter-spacing: .05em;
-  color: var(--accent-mid);
-  padding: 1.4rem 1.5rem .4rem;
-}
+/* SEÇÕES */
+.sec-head{display:flex;gap:16px;align-items:baseline;margin:44px 0 14px;padding-top:26px;border-top:1px solid var(--line);}
+.sec-head .num{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--accent);flex-shrink:0;padding-top:.35em;}
+h2{font-family:var(--display);font-weight:500;font-size:clamp(1.45rem,4vw,1.85rem);line-height:1.14;letter-spacing:-.01em;color:var(--ink);}
+h3{font-family:var(--display);font-weight:600;font-size:1.1rem;color:var(--ink);margin:22px 0 8px;}
+p{margin-bottom:14px;color:var(--ink-soft);}
 
-.wrap {
-  max-width: 820px;
-  margin: 0 auto;
-  padding: 0 1.5rem 5rem;
-}
+/* ARTIGO LITERAL */
+.artigo-literal{margin:14px 0;padding:16px 20px;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:0 6px 6px 0;font-size:.93em;color:var(--ink);line-height:1.72;}
+.artigo-literal .art-label{font-family:var(--mono);font-size:.8em;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px;}
+.artigo-literal p{margin-bottom:8px;color:var(--ink);}
+.artigo-literal p:last-child{margin-bottom:0;}
 
-/* ── HERO ── */
-.hero {
-  padding: 2rem 0 1.8rem;
-  border-bottom: 1.5px solid var(--rule);
-  margin-bottom: 2.5rem;
-}
-.hero .eyebrow {
-  font-family: var(--font-ui);
-  font-size: .7rem;
-  letter-spacing: .12em;
-  color: var(--accent-mid);
-  margin-bottom: .5rem;
-}
-.hero h1 {
-  font-family: var(--font-disp);
-  font-size: clamp(1.9rem, 5vw, 2.9rem);
-  font-weight: 700;
-  line-height: 1.1;
-  color: var(--ink);
-}
-.h1-italic {
-  font-family: 'Fraunces', Georgia, serif;
-  font-style: italic;
-  font-weight: 700;
-  font-variation-settings: 'ital' 1, 'opsz' 72, 'wght' 700;
-  color: var(--accent);
-  display: inline;
-}
-.hero .subtitle {
-  font-family: var(--font-body);
-  font-style: italic;
-  color: #666;
-  margin-top: .8rem;
-  font-size: 1rem;
-}
+/* SÚMULA */
+.sumula{margin:12px 0 6px;padding:12px 16px;border-left:2px solid var(--iron);background:var(--paper);border-radius:0 4px 4px 0;font-size:.89em;color:var(--ink-soft);line-height:1.65;}
+.sumula strong{font-family:var(--mono);font-size:.86em;letter-spacing:.08em;text-transform:uppercase;color:var(--iron);display:block;margin-bottom:4px;}
+.sumula p{margin-bottom:8px;color:var(--ink-soft);}
+.sumula p:last-child{margin-bottom:0;}
 
-/* ── HEADINGS ── */
-h2 {
-  font-family: var(--font-disp);
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: var(--accent);
-  margin: 2.8rem 0 .9rem;
-  padding-bottom: .35rem;
-  border-bottom: 1px solid var(--rule);
-}
-h3 {
-  font-family: var(--font-disp);
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: var(--ink);
-  margin: 1.5rem 0 .5rem;
-}
+/* NOTA */
+.nota{margin:12px 0 6px;padding:13px 17px;background:rgba(122,46,55,.06);border-left:3px solid var(--accent);border-radius:0 5px 5px 0;font-size:.91em;color:var(--ink-soft);line-height:1.65;}
+.nota strong{color:var(--ink);}
 
-p { margin-bottom: .9rem; }
+/* BLIST */
+.blist{list-style:none;padding:0;margin:10px 0 12px;display:flex;flex-direction:column;gap:3px;}
+.blist li{display:grid;grid-template-columns:22px 1fr;gap:8px;font-size:.93em;color:var(--ink-soft);line-height:1.65;padding:10px 0;border-bottom:1px solid var(--line);}
+.blist li:last-child{border-bottom:none;}
+.blist li .bul{color:var(--accent);font-family:var(--mono);font-size:.85em;padding-top:2px;}
 
-/* ── BULLET LIST (simples, sem grid) ── */
-.blist {
-  list-style: none;
-  padding: 0;
-  margin: 1rem 0 1.4rem;
-}
-.blist > li {
-  padding-left: 1.6rem;
-  position: relative;
-  margin-bottom: 1rem;
-  font-size: 1rem;
-}
-.blist > li::before {
-  content: '▪';
-  position: absolute;
-  left: 0;
-  top: .05em;
-  color: var(--accent);
-  font-size: .85rem;
-}
+/* TEORIAS */
+.teoria-grid{display:flex;flex-direction:column;gap:3px;margin:12px 0;}
+.teoria{background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;}
+.teoria-head{display:flex;align-items:center;gap:14px;padding:12px 16px;border-bottom:1px solid var(--line);background:rgba(122,46,55,.04);}
+.teoria-badge{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--accent);background:rgba(122,46,55,.1);border:1px solid rgba(122,46,55,.2);border-radius:4px;padding:3px 10px;white-space:nowrap;}
+.teoria-title{font-family:var(--display);font-weight:600;font-size:.98rem;color:var(--ink);}
+.teoria-body{padding:12px 16px;font-size:.92em;color:var(--ink-soft);line-height:1.68;}
 
-/* ── ARTIGO LITERAL ── */
-.artigo {
-  background: var(--white);
-  border-left: 3px solid var(--accent);
-  border-radius: 0 4px 4px 0;
-  padding: .85rem 1.15rem;
-  margin: 1.1rem 0;
-  font-size: .96rem;
-  line-height: 1.65;
-}
-.artigo .ref {
-  font-family: var(--font-ui);
-  font-size: .68rem;
-  letter-spacing: .08em;
-  color: var(--accent-mid);
-  display: block;
-  margin-bottom: .4rem;
-}
+/* FLOW */
+.flow{margin:16px 0 18px;}
+.flow-step{display:flex;align-items:flex-start;gap:14px;margin-bottom:0;}
+.flow-num{flex-shrink:0;width:28px;height:28px;background:var(--accent);color:#fff;border-radius:50%;font-family:var(--mono);font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:center;margin-top:2px;}
+.flow-txt{font-size:.93em;color:var(--ink-soft);line-height:1.65;padding:6px 0;}
+.flow-arrow{margin-left:13px;color:var(--iron);font-family:var(--mono);font-size:14px;line-height:1;padding:2px 0;}
 
-/* ── SÚMULA ── */
-.sumula {
-  background: var(--accent-lt);
-  border: 1px solid var(--accent-mid);
-  border-radius: 4px;
-  padding: .85rem 1.15rem;
-  margin: 1.1rem 0;
-  font-size: .96rem;
-  line-height: 1.65;
-}
-.sumula .ref {
-  font-family: var(--font-ui);
-  font-size: .68rem;
-  letter-spacing: .08em;
-  color: var(--accent);
-  font-weight: 500;
-  display: block;
-  margin-bottom: .4rem;
-}
+/* PLACAR */
+.scoreboard{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:18px 22px;background:var(--surface);border:1px solid var(--line-strong);border-radius:8px;margin-bottom:8px;}
+.score-label{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--iron);}
+.score-nums{display:flex;align-items:baseline;gap:6px;}
+.score-current{font-family:var(--display);font-size:2.6rem;font-weight:600;color:var(--ink);line-height:1;}
+.score-total{font-family:var(--mono);font-size:1rem;color:var(--iron);}
+.score-bar-wrap{flex:1;min-width:120px;height:8px;background:var(--line);border-radius:99px;overflow:hidden;}
+.score-bar{height:100%;width:0%;background:var(--accent);border-radius:99px;transition:width .5s cubic-bezier(.2,.7,.2,1),background .3s;}
+.score-msg{font-family:var(--mono);font-size:12px;color:var(--iron);min-width:80px;}
+.btn-reset{margin-left:auto;border:1px solid var(--line-strong);background:none;color:var(--ink-soft);border-radius:4px;padding:7px 14px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:border-color .2s,color .2s;}
+.btn-reset:hover{border-color:var(--accent);color:var(--accent);}
 
-/* ── NOTA ── */
-.nota {
-  background: var(--warn-bg);
-  border-left: 3px solid var(--warn-bdr);
-  border-radius: 0 4px 4px 0;
-  padding: .75rem 1.1rem;
-  margin: 1.1rem 0;
-  font-size: .94rem;
-  line-height: 1.6;
-}
-.nota .tag {
-  font-family: var(--font-ui);
-  font-size: .68rem;
-  font-weight: 500;
-  letter-spacing: .06em;
-  color: var(--warn-bdr);
-  display: block;
-  margin-bottom: .3rem;
-}
+/* QUESTÕES */
+.q-card{background:var(--surface);border:1px solid var(--line);border-radius:8px;margin:14px 0;overflow:hidden;transition:border-color .25s,box-shadow .25s;}
+.q-card.answered-correct{border-color:var(--green-line);box-shadow:0 0 0 2px rgba(22,101,52,.12);}
+.q-card.answered-wrong{border-color:var(--red-line);box-shadow:0 0 0 2px rgba(153,27,27,.10);}
+.q-header{display:flex;align-items:flex-start;gap:12px;padding:16px 18px 12px;}
+.q-badge{flex-shrink:0;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--accent);background:rgba(122,46,55,.09);border:1px solid rgba(122,46,55,.18);border-radius:4px;padding:3px 9px;margin-top:3px;white-space:nowrap;}
+.q-text{font-family:var(--body);font-size:.96em;color:var(--ink);line-height:1.72;flex:1;margin:0;}
+.options{padding:0 18px 16px;display:flex;flex-direction:column;gap:7px;}
+.opt{display:flex;align-items:flex-start;gap:11px;padding:10px 13px;border:1px solid var(--line);border-radius:6px;cursor:pointer;background:var(--paper);transition:border-color .18s,background .18s;text-align:left;width:100%;font-family:var(--body);font-size:.92em;color:var(--ink-soft);line-height:1.6;}
+.opt:hover:not(:disabled){border-color:var(--accent-soft);background:#f7f3f1;}
+.opt-letter{flex-shrink:0;font-family:var(--mono);font-size:.8em;font-weight:700;color:var(--accent);width:20px;padding-top:2px;}
+.opt.selected{border-color:var(--accent);background:rgba(122,46,55,.06);}
+.opt.correct-final{border-color:var(--green);background:var(--green-bg);cursor:default;}
+.opt.correct-final .opt-letter{color:var(--green);}
+.opt.wrong-final{border-color:var(--red);background:var(--red-bg);cursor:default;}
+.opt.wrong-final .opt-letter{color:var(--red);}
+.opt.dimmed{opacity:.42;cursor:default;}
+.q-actions{padding:0 18px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.btn-confirm{display:inline-flex;align-items:center;gap:8px;padding:9px 20px;background:var(--ink);color:#f4f2ec;border:none;border-radius:4px;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;transition:background .2s,transform .2s;}
+.btn-confirm:hover:not(:disabled){background:var(--accent);transform:translateY(-1px);}
+.btn-confirm:disabled{opacity:.35;cursor:default;transform:none;}
+.toggle-gabarito{display:none;align-items:center;gap:7px;border:none;background:none;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--iron);cursor:pointer;transition:color .2s;padding:0;}
+.toggle-gabarito:hover{color:var(--accent);}
+.toggle-gabarito .chev{display:inline-block;font-size:10px;transition:transform .3s cubic-bezier(.2,.7,.2,1);}
+.toggle-gabarito.open .chev{transform:rotate(180deg);}
+.gabarito{border-top:1px solid var(--line);overflow:hidden;max-height:0;transition:max-height .45s cubic-bezier(.2,.7,.2,1);}
+.gabarito.open{max-height:1800px;}
+.gabarito-inner{padding:16px 18px 18px;}
+.gabarito-title{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--iron);margin-bottom:10px;}
+.gabarito-correct{display:flex;align-items:center;gap:10px;padding:9px 13px;background:var(--green-bg);border:1px solid var(--green-line);border-radius:6px;font-family:var(--mono);font-size:.84em;font-weight:700;color:var(--green);margin-bottom:12px;}
+.gabarito-body{font-size:.9em;color:var(--ink-soft);line-height:1.72;}
+.gabarito-body strong{color:var(--ink);}
+.gabarito-body .ref{font-family:var(--mono);font-size:.8em;color:var(--iron);background:rgba(139,133,121,.12);padding:2px 7px;border-radius:3px;white-space:nowrap;}
+.gabarito-body p{margin-bottom:9px;}
+.gabarito-body p:last-child{margin-bottom:0;}
 
-/* ── TEORIA GRID (2 colunas) ── */
-.teoria-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  margin: 1.3rem 0;
-}
-@media (max-width: 580px) { .teoria-grid { grid-template-columns: 1fr; } }
+/* RESULTADO / VOLTAR */
+.result-banner{display:none;margin:28px 0 0;padding:26px 22px;border:1px solid var(--line-strong);border-radius:8px;background:var(--surface);text-align:center;}
+.result-banner.show{display:block;}
+.result-score{font-family:var(--display);font-size:3.2rem;font-weight:600;color:var(--accent);line-height:1;margin-bottom:6px;}
+.result-label{font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--iron);}
+.result-msg{margin-top:10px;font-size:.94em;color:var(--ink-soft);}
+.reveal{opacity:0;transform:translateY(14px);}
+.reveal.in{opacity:1;transform:none;transition:opacity .5s ease,transform .5s cubic-bezier(.2,.7,.2,1);}
+.back{margin-top:52px;display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line-strong);border-radius:6px;padding:20px 22px;font-family:var(--mono);font-size:14px;letter-spacing:.04em;transition:border-color .25s,transform .25s;}
+.back .arw{color:var(--accent);transition:transform .25s;font-size:18px;}
+.back:hover{border-color:var(--accent);transform:translateY(-2px);}
+.back:hover .arw{transform:translateX(-4px);}
 
-.tcard {
-  background: var(--white);
-  border: 1px solid var(--rule);
-  border-radius: 6px;
-  padding: 1rem 1.1rem;
+@keyframes rise{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
+@media(max-width:560px){
+  body{font-size:17.5px;}
+  .masthead{padding:40px 0 24px;}
+  .title-row{align-items:stretch;}
+  .scoreboard{flex-direction:column;align-items:flex-start;gap:10px;}
+  .btn-reset{margin-left:0;}
 }
-.tcard h4 {
-  font-family: var(--font-ui);
-  font-size: .75rem;
-  letter-spacing: .07em;
-  color: var(--accent);
-  font-weight: 500;
-  margin-bottom: .5rem;
-}
-.tcard p { font-size: .95rem; margin-bottom: 0; }
-
-/* ── FLOW / PROCEDIMENTO ── */
-.flow { margin: 1.3rem 0; }
-.flow-item {
-  display: flex;
-  align-items: flex-start;
-  gap: .75rem;
-  margin-bottom: .5rem;
-}
-.flow-item .num {
-  flex-shrink: 0;
-  width: 1.55rem;
-  height: 1.55rem;
-  background: var(--accent);
-  color: #fff;
-  border-radius: 50%;
-  font-family: var(--font-ui);
-  font-size: .72rem;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: .18rem;
-}
-.flow-item .txt { font-size: .97rem; line-height: 1.55; }
-.flow-arrow {
-  font-family: var(--font-ui);
-  color: var(--accent-mid);
-  font-size: .85rem;
-  margin-left: .78rem;
-  line-height: 1;
-  margin-bottom: .3rem;
-}
-
-/* ── REVEAL ANIMATION ── */
-.reveal {
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity .45s ease, transform .45s ease;
-}
-.reveal.vis { opacity: 1; transform: none; }
-
-/* ════════════════════════════════
-   QUIZ
-   ════════════════════════════════ */
-.quiz-wrap {
-  margin-top: 3.5rem;
-  padding-top: 2rem;
-  border-top: 2px solid var(--accent);
-}
-.quiz-wrap > h2 {
-  border-bottom: none;
-  padding-bottom: 0;
-  font-size: 1.55rem;
-}
-.quiz-intro {
-  font-style: italic;
-  color: #666;
-  font-size: .95rem;
-  margin: .5rem 0 1.8rem;
-}
-
-/* Scoreboard */
-.scoreboard {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-  background: var(--white);
-  border: 1px solid var(--rule);
-  border-radius: 8px;
-  padding: 1rem 1.4rem;
-  margin-bottom: 2rem;
-}
-.sb-group { display: flex; flex-direction: column; }
-.sb-label {
-  font-family: var(--font-ui);
-  font-size: .66rem;
-  letter-spacing: .08em;
-  color: var(--accent-mid);
-}
-.sb-val {
-  font-family: var(--font-disp);
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--accent);
-  line-height: 1;
-}
-.sb-bar-wrap { flex: 1; min-width: 140px; }
-.sb-bar-bg {
-  height: 8px;
-  background: var(--rule);
-  border-radius: 4px;
-  overflow: hidden;
-}
-.sb-bar-fill {
-  height: 100%;
-  width: 0%;
-  background: var(--accent);
-  border-radius: 4px;
-  transition: width .4s ease;
-}
-.sb-bar-label {
-  font-family: var(--font-ui);
-  font-size: .66rem;
-  color: #999;
-  margin-top: .3rem;
-}
-
-/* Q-card */
-.q-card {
-  background: var(--white);
-  border: 1px solid var(--rule);
-  border-radius: 8px;
-  padding: 1.3rem 1.4rem;
-  margin-bottom: 1.4rem;
-  transition: border-color .2s;
-}
-.q-card.correct { border-color: var(--ok); }
-.q-card.wrong   { border-color: var(--err); }
-
-.q-meta {
-  font-family: var(--font-ui);
-  font-size: .68rem;
-  letter-spacing: .05em;
-  color: var(--accent-mid);
-  margin-bottom: .55rem;
-}
-.q-texto {
-  font-size: .99rem;
-  font-weight: 600;
-  line-height: 1.58;
-  margin-bottom: 1rem;
-}
-
-/* Options */
-.q-opts { list-style: none; display: flex; flex-direction: column; gap: .45rem; }
-.q-opts li label {
-  display: flex;
-  align-items: flex-start;
-  gap: .6rem;
-  padding: .5rem .85rem;
-  border-radius: 5px;
-  border: 1px solid var(--rule);
-  background: var(--paper);
-  cursor: pointer;
-  font-size: .97rem;
-  line-height: 1.5;
-  transition: background .15s, border-color .15s;
-}
-.q-opts li label:hover { background: var(--white); border-color: var(--accent-mid); }
-.q-opts li input[type="radio"] {
-  margin-top: .25rem;
-  accent-color: var(--accent);
-  flex-shrink: 0;
-}
-
-/* States after answer */
-.q-opts li label.ok  { background: #eafaf2; border-color: var(--ok); }
-.q-opts li label.err { background: #fdf0ee; border-color: var(--err); }
-.q-opts li label.reveal { background: #eafaf2; border-color: var(--ok); font-weight: 600; }
-
-/* Confirm button */
-.btn-confirm {
-  margin-top: .9rem;
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: .48rem 1.2rem;
-  font-family: var(--font-ui);
-  font-size: .8rem;
-  letter-spacing: .04em;
-  cursor: pointer;
-  transition: background .2s;
-}
-.btn-confirm:hover { background: #5e2029; }
-.btn-confirm:disabled { background: #bbb; cursor: default; }
-
-/* Gabarito */
-.gabarito {
-  display: none;
-  margin-top: .8rem;
-  padding: .8rem 1rem;
-  border-radius: 5px;
-  font-size: .93rem;
-  line-height: 1.6;
-}
-.gabarito.show { display: block; }
-.gabarito.ok-g  { background: #eafaf2; border-left: 3px solid var(--ok); }
-.gabarito.err-g { background: #fdf0ee; border-left: 3px solid var(--err); }
-.gab-tag {
-  font-family: var(--font-ui);
-  font-size: .7rem;
-  font-weight: 500;
-  letter-spacing: .05em;
-  display: block;
-  margin-bottom: .35rem;
-}
-.ok-g  .gab-tag { color: var(--ok); }
-.err-g .gab-tag { color: var(--err); }
-
-/* Result banner */
-.result {
-  display: none;
-  background: var(--accent);
-  color: #fff;
-  border-radius: 8px;
-  padding: 1.6rem 2rem;
-  margin-top: 2rem;
-  text-align: center;
-}
-.result.show { display: block; }
-.result-num {
-  font-family: var(--font-disp);
-  font-size: 3rem;
-  font-weight: 700;
-  line-height: 1;
-}
-.result-msg { margin-top: .5rem; font-size: 1rem; opacity: .9; }
-.btn-reset {
-  margin-top: 1.2rem;
-  background: #fff;
-  color: var(--accent);
-  border: none;
-  border-radius: 5px;
-  padding: .5rem 1.4rem;
-  font-family: var(--font-ui);
-  font-size: .8rem;
-  font-weight: 500;
-  letter-spacing: .04em;
-  cursor: pointer;
-}
-.btn-reset:hover { opacity: .85; }
-
-/* ── BOTÃO DE RETORNO ── */
-.btn-back-wrap {
-  margin-top: 3rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--rule);
-  display: flex;
-  justify-content: flex-start;
-}
-.btn-back {
-  display: inline-flex;
-  align-items: center;
-  gap: .5rem;
-  background: transparent;
-  color: var(--accent);
-  border: 1.5px solid var(--accent);
-  border-radius: 5px;
-  padding: .55rem 1.2rem;
-  font-family: var(--font-ui);
-  font-size: .8rem;
-  letter-spacing: .05em;
-  cursor: pointer;
-  text-decoration: none;
-  transition: background .2s, color .2s;
-}
-.btn-back:hover {
-  background: var(--accent);
-  color: #fff;
-}
-.btn-back svg {
-  flex-shrink: 0;
-}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto;}.reveal{opacity:1;transform:none;}.reveal.in{transition:none;}}
 </style>
 </head>
 <body>
-
-<p class="breadcrumb">Direito Processual do Trabalho › 15. Recursos Trabalhistas › 15.5.2</p>
-
 <div class="wrap">
 
-  <!-- ── HERO ── -->
-  <header class="hero reveal">
-    <p class="eyebrow">CLT art. 895 · OAB Primeira Fase</p>
-    <h1>Recurso <span class="h1-italic">Ordinário</span></h1>
-    <p class="subtitle">Cabimento, prazo, procedimento e formas de julgamento</p>
-  </header>
-
-  <!-- ── 1. CABIMENTO ── -->
-  <section class="reveal">
-    <h2>1. Cabimento</h2>
-
-    <p>O recurso ordinário, previsto no <strong>art. 895 da CLT</strong>, apesar de ser o recurso mais utilizado no dia a dia da Justiça do Trabalho, não é o mais importante para os Exames da OAB, sendo dificilmente cobrado nas provas. Talvez o ponto mais importante e que deve ser lembrado pelos examinandos seja o cabimento, já que há uma tendência de se lembrar apenas da principal hipótese de cabimento, esquecendo-se das demais. Vejamos em que situações o RO pode ser utilizado:</p>
-
-    <ul class="blist">
-      <li>
-        <strong>Sentença — art. 895, I, da CLT:</strong> trata-se da hipótese mais comum de cabimento do recurso ordinário e por muitos o único lembrado, aqui residindo o risco. Não se pode dizer que o RO só cabe de sentença, assim como está errado afirmar que o RO é sempre julgado pelo TRT, já que existem outras hipóteses de cabimento que fogem às situações geralmente utilizadas no dia a dia. A sentença é uma das decisões passíveis de impugnação por recurso ordinário, independentemente de seu conteúdo, ou seja, se é uma sentença definitiva (que extinguiu o processo com resolução do mérito) ou terminativa (que extinguiu o processo sem resolução do mérito).
-      </li>
-      <li>
-        <strong>Acórdão — art. 895, II, da CLT:</strong> a hipótese é bem específica, pois o RO cabe de acórdãos proferidos em ações de competência originária dos TRTs, ou seja, processos que têm o início já naquele tribunal, como, por exemplo, os mandados de segurança, dissídios coletivos, ações rescisórias e ações cautelares, que já são ajuizadas perante o TRT por conterem regras específicas de competência. Assim, as ações referidas serão decididas por acórdão, cabendo o RO que será dirigido e julgado pelo TST.
-      </li>
-      <li>
-        <strong>Decisões interlocutórias — art. 799, § 2.º, da CLT e Súmula 214, c, do TST:</strong> as situações são aquelas excepcionais em que cabe recurso de imediato contra decisões interlocutórias, sendo o recurso cabível o ordinário. Assim, se o Juiz do Trabalho reconhecer a incompetência absoluta da Justiça do Trabalho e determinar a remessa dos autos para outra justiça, caberá RO da decisão interlocutória, visando a que o processo permaneça na Justiça do Trabalho. Caso o Juiz do Trabalho, após provocado pela parte, reconheça a incompetência territorial e determine a remessa dos autos para outra Vara do Trabalho vinculada a outro TRT, caberá o RO em face da decisão para que o processo permaneça na mesma Vara do Trabalho.
-      </li>
-    </ul>
-  </section>
-
-  <!-- ── 2. PROCEDIMENTO ── -->
-  <section class="reveal">
-    <h2>2. Procedimento</h2>
-
-    <p>O recurso será interposto no prazo de <strong>8 dias</strong>, seguindo-se a regra da uniformidade dos prazos recursais, sendo interposto perante o <strong>juízo <em>a quo</em></strong>, ou seja, aquele que proferiu a decisão e que, ao receber o recurso, realizará o primeiro juízo de admissibilidade, analisando a presença ou ausência dos pressupostos recursais (tempestividade, legitimidade, preparo etc.). Presentes os referidos pressupostos, isto é, sendo positivo o juízo, o Magistrado intima a parte contrária para apresentação de contrarrazões no prazo de <strong>8 dias</strong>, que não são obrigatórias, mas surgem como uma ótima oportunidade para demonstrar que a decisão impugnada está correta e deve ser mantida. Após o prazo das contrarrazões, com ou sem a sua apresentação, os autos serão remetidos para o <strong>juízo <em>ad quem</em></strong>, que realizará o segundo juízo de admissibilidade e, se também positivo, julgará o recurso pelo colegiado ou monocraticamente (SARAIVA; MANFREDINI, 2016).</p>
-
-    <div class="flow">
-      <div class="flow-item">
-        <span class="num">1</span>
-        <span class="txt">Interposição no <strong>juízo <em>a quo</em></strong> — prazo de <strong>8 dias</strong></span>
-      </div>
-      <p class="flow-arrow">↓</p>
-      <div class="flow-item">
-        <span class="num">2</span>
-        <span class="txt"><strong>1.º juízo de admissibilidade</strong> — tempestividade, legitimidade, preparo</span>
-      </div>
-      <p class="flow-arrow">↓</p>
-      <div class="flow-item">
-        <span class="num">3</span>
-        <span class="txt">Intimação da parte contrária para <strong>contrarrazões</strong> — prazo de <strong>8 dias</strong></span>
-      </div>
-      <p class="flow-arrow">↓</p>
-      <div class="flow-item">
-        <span class="num">4</span>
-        <span class="txt">Remessa ao <strong>juízo <em>ad quem</em></strong></span>
-      </div>
-      <p class="flow-arrow">↓</p>
-      <div class="flow-item">
-        <span class="num">5</span>
-        <span class="txt"><strong>2.º juízo de admissibilidade</strong> → julgamento (colegiado ou monocrático)</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── 3. JULGAMENTO ── -->
-  <section class="reveal">
-    <h2>3. Formas de Julgamento</h2>
-
-    <p>O julgamento pode ocorrer de duas formas (SARAIVA; MANFREDINI, 2016):</p>
-
-    <div class="teoria-grid">
-      <div class="tcard">
-        <h4>Decisão Colegiada</h4>
-        <p>É a <strong>regra geral</strong> dos julgamentos dos tribunais, havendo a reunião de Magistrados para, em conjunto, analisarem a situação, proferindo um acórdão — que nos termos do art. 204 do CPC/2015 é o pronunciamento colegiado dos Tribunais.</p>
-      </div>
-      <div class="tcard">
-        <h4>Decisão Monocrática</h4>
-        <p>Excepcionalmente admite-se que o julgamento seja feito por um único Magistrado nos tribunais — o <strong>Relator</strong> —, que assume a função de decidir o mérito. O art. 932 do CPC/2015 atribuiu ao Relator tal função, sendo admitida tal espécie de julgamento na <strong>Súmula 435 do TST</strong>.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── 4. NORMAS ── -->
-  <section class="reveal">
-    <h2>4. Normas e Precedentes Essenciais</h2>
-
-    <div class="artigo">
-      <span class="ref">CLT — Art. 895</span>
-      Cabe recurso ordinário para a instância superior: I — das decisões definitivas ou terminativas das Varas e Juízos, no prazo de 8 (oito) dias; II — das decisões definitivas ou terminativas dos Tribunais Regionais, em processos de sua competência originária, no prazo de 8 (oito) dias, quer nos dissídios individuais, quer nos dissídios coletivos.
-    </div>
-
-    <div class="sumula">
-      <span class="ref">Súmula 214, c — TST</span>
-      Na Justiça do Trabalho, nos termos do art. 893, § 1.º, da CLT, as decisões interlocutórias não ensejam recurso imediato, salvo nas hipóteses de decisão: c) que acolher exceção de incompetência territorial, com a remessa dos autos para Tribunal Regional distinto daquele a que se vincula o juízo excepcionado, consoante o disposto no art. 799, § 2.º, da CLT.
-    </div>
-
-    <div class="sumula">
-      <span class="ref">Súmula 435 — TST</span>
-      Aplica-se ao recurso ordinário, por analogia, o disposto no art. 557 do CPC de 1973 (art. 932 do CPC de 2015), autorizando-se o relator a decidir monocraticamente o recurso em determinadas hipóteses.
-    </div>
-  </section>
-
-  <!-- ── 5. MAPA DE CABIMENTO ── -->
-  <section class="reveal">
-    <h2>5. Mapa de Cabimento: RO × Órgão Julgador</h2>
-
-    <ul class="blist">
-      <li>
-        <strong>Sentença da Vara do Trabalho → RO julgado pelo TRT</strong> (hipótese mais comum — art. 895, I)
-      </li>
-      <li>
-        <strong>Acórdão do TRT em competência originária → RO julgado pelo TST</strong> (mandado de segurança, dissídio coletivo, ação rescisória, cautelar — art. 895, II)
-      </li>
-      <li>
-        <strong>Decisão interlocutória que reconhece incompetência absoluta → RO imediato</strong> (Súmula 214, TST)
-      </li>
-      <li>
-        <strong>Decisão que acolhe exceção de incompetência territorial e remete a TRT diferente → RO imediato</strong> (Súmula 214, c, TST)
-      </li>
-    </ul>
-
-    <div class="nota">
-      <span class="tag">atenção — erro clássico</span>
-      Afirmar que o RO é <em>sempre</em> julgado pelo TRT é errado. Nas hipóteses de competência originária do TRT (mandado de segurança, dissídio coletivo, ação rescisória, cautelar), o acórdão é atacado por RO dirigido ao <strong>TST</strong>.
-    </div>
-  </section>
-
-
-  <!-- ══════════════════════════════════════════
-       QUIZ — Questões OAB/FGV · Recurso Ordinário
-       ══════════════════════════════════════════ -->
-  <div class="quiz-wrap reveal">
-
-    <h2>Questões — Exame de Ordem OAB/FGV</h2>
-    <p class="quiz-intro">9 questões de provas anteriores (seção 16 do banco). Selecione a alternativa e confirme para ver o gabarito comentado.</p>
-
-    <!-- Scoreboard -->
-    <div class="scoreboard">
-      <div class="sb-group">
-        <span class="sb-label">ACERTOS</span>
-        <span class="sb-val" id="sb-ac">0</span>
-      </div>
-      <div class="sb-group">
-        <span class="sb-label">RESPONDIDAS</span>
-        <span class="sb-val" id="sb-re">0</span>
-      </div>
-      <div class="sb-bar-wrap">
-        <div class="sb-bar-bg">
-          <div class="sb-bar-fill" id="sb-fill"></div>
-        </div>
-        <div class="sb-bar-label" id="sb-lbl">0 de 9 questões respondidas</div>
-      </div>
-    </div>
-
-    <!-- ── Q 64 ── -->
-    <div class="q-card" id="qc64">
-      <p class="q-meta">Q.64 · XXIV Exame de Ordem Unificado / FGV</p>
-      <p class="q-texto">Contra ato de Juiz do Trabalho que determinou a antecipação de honorários periciais do seu cliente, mesmo não tendo ele condições financeiras para arcar com esse custo, você, na defesa dos interesses do cliente, impetrou mandado de segurança contra o ato judicial, mas, por unanimidade, não teve a segurança concedida. De acordo com a CLT, assinale a opção que indica o procedimento a ser adotado para tentar reverter a decisão.</p>
-      <ul class="q-opts">
-        <li><label><input type="radio" name="q64" value="A"><span><strong>A)</strong> Interpor recurso ordinário para o TST.</span></label></li>
-        <li><label><input type="radio" name="q64" value="B"><span><strong>B)</strong> Interpor agravo de instrumento para o STF.</span></label></li>
-        <li><label><input type="radio" name="q64" value="C"><span><strong>C)</strong> Interpor agravo interno para o próprio TRT.</span></label></li>
-        <li><label><input type="radio" name="q64" value="D"><span><strong>D)</strong> Nada mais pode ser feito, porque se trata de decisão irrecorrível.</span></label></li>
-      </ul>
-      <button class="btn-confirm" onclick="confirmar('q64','A')">Confirmar resposta</button>
-      <div class="gabarito" id="g64">
-        <span class="gab-tag"></span>
-        Aplica-se o inciso II do art. 895 da CLT, que trata do cabimento do recurso ordinário de acórdão proferido pelo TRT em processos de sua competência originária — como o mandado de segurança. A competência para o recurso ordinário será do <strong>TST</strong>, uma vez que o acórdão foi proferido pelo TRT. O agravo de instrumento é apenas para inadmissão de outro recurso; o agravo interno não se aplica pois não há decisão monocrática; a decisão não é irrecorrível, pois estamos diante de um acórdão.
-      </div>
-    </div>
-
-    <!-- ── Q 65 ── -->
-    <div class="q-card" id="qc65">
-      <p class="q-meta">Q.65 · XXV Exame de Ordem Unificado / FGV</p>
-      <p class="q-texto">Em determinada Vara do Trabalho foi prolatada uma sentença que, após publicada, não foi objeto de recurso por nenhum dos litigantes. Quinze meses depois, uma das partes ajuizou ação rescisória perante o Tribunal Regional do Trabalho local, tendo o acórdão julgado improcedente o pedido da rescisória. Ainda inconformada, a parte deseja que o TST aprecie a demanda. Assinale a opção que indica, na hipótese, o recurso cabível para o Tribunal Superior do Trabalho.</p>
-      <ul class="q-opts">
-        <li><label><input type="radio" name="q65" value="A"><span><strong>A)</strong> Recurso Ordinário.</span></label></li>
-        <li><label><input type="radio" name="q65" value="B"><span><strong>B)</strong> Recurso de Revista.</span></label></li>
-        <li><label><input type="radio" name="q65" value="C"><span><strong>C)</strong> Recurso Especial.</span></label></li>
-        <li><label><input type="radio" name="q65" value="D"><span><strong>D)</strong> Agravo de Instrumento.</span></label></li>
-      </ul>
-      <button class="btn-confirm" onclick="confirmar('q65','A')">Confirmar resposta</button>
-      <div class="gabarito" id="g65">
-        <span class="gab-tag"></span>
-        A questão trata do cabimento do recurso ordinário contra acórdão do TRT, proferido em ação de sua competência originária, conforme prescreve o art. 895, II, da CLT. Tendo sido ajuizada ação rescisória perante o TRT, do acórdão pode a parte interpor o recurso ordinário, que será julgado pelo TST. Não há acórdão em grau de recurso ordinário para ser interposto o recurso de revista; não há o cabimento do recurso especial no processo do trabalho; o agravo de instrumento é utilizado no processo do trabalho para impugnar a inadmissão de outro recurso.
-      </div>
-    </div>
-
-    <!-- ── Q 66 ── -->
-    <div class="q-card" id="qc66">
-      <p class="q-meta">Q.66 · XXVIII Exame de Ordem Unificado / FGV</p>
-      <p class="q-texto">Francisco trabalhou em favor de uma empresa em Goiânia/GO. Após ser dispensado, mudou-se para São Paulo e neste Estado ajuizou reclamação trabalhista contra o ex-empregador. Este, após citado em Goiânia/GO, apresentou petição de exceção de incompetência territorial logo no segundo dia. Em razão disso, o juiz suspendeu o processo e conferiu vista ao excepto. Em seguida, proferiu decisão acolhendo a exceção e determinando a remessa dos autos ao juízo distribuidor de Goiânia/GO, local onde os serviços de Francisco foram prestados e que, no entendimento do magistrado, seria o juízo competente para julgar a reclamação trabalhista. Diante da situação retratada e do entendimento consolidado do TST, assinale a afirmativa correta.</p>
-      <ul class="q-opts">
-        <li><label><input type="radio" name="q66" value="A"><span><strong>A)</strong> O reclamante nada poderá fazer por se tratar de decisão interlocutória.</span></label></li>
-        <li><label><input type="radio" name="q66" value="B"><span><strong>B)</strong> Francisco poderá interpor de imediato Recurso Ordinário no prazo de 8 dias.</span></label></li>
-        <li><label><input type="radio" name="q66" value="C"><span><strong>C)</strong> Sendo as decisões interlocutórias irrecorríveis, Pedro deverá impetrar Mandado de Segurança.</span></label></li>
-        <li><label><input type="radio" name="q66" value="D"><span><strong>D)</strong> O recurso cabível para tentar reverter a decisão é o Agravo de Petição.</span></label></li>
-      </ul>
-      <button class="btn-confirm" onclick="confirmar('q66','B')">Confirmar resposta</button>
-      <div class="gabarito" id="g66">
-        <span class="gab-tag"></span>
-        O recurso cabível é o <strong>recurso ordinário</strong>, nos termos da Súmula 214, c, do TST: a exceção de incompetência foi julgada procedente, com remessa dos autos de São Paulo para Goiânia, ou seja, para outro TRT. Apesar de ser uma decisão interlocutória, a parte prejudicada pode interpor o RO de imediato. Não cabe o mandado de segurança — sendo cabível um recurso, o MS está automaticamente excluído. O agravo de petição é inadequado, pois não há decisão em execução (art. 897, a, da CLT).
-      </div>
-    </div>
-
-    <!-- ── Q 67 ── -->
-    <div class="q-card" id="qc67">
-      <p class="q-meta">Q.67 · XXIX Exame de Ordem Unificado / FGV</p>
-      <p class="q-texto">Em março de 2019, durante uma audiência trabalhista que envolvia a sociedade empresária ABC S/A, o juiz indagou à pessoa que se apresentou como preposto se ela era empregada da empresa, recebendo como resposta que não. O juiz, então, manifestou seu entendimento de que uma sociedade anônima deveria, obrigatoriamente, fazer-se representar por empregado, concluindo que a sociedade empresária não estava adequadamente representada. Decretou, então, a revelia, excluiu a defesa protocolizada e sentenciou o feito na própria audiência, julgando os pedidos inteiramente procedentes. Diante desse quadro e do que prevê a CLT, assinale a afirmativa correta.</p>
-      <ul class="q-opts">
-        <li><label><input type="radio" name="q67" value="A"><span><strong>A)</strong> Nada há a ser feito, porque uma S/A, por exceção, precisa conduzir um empregado para representá-la.</span></label></li>
-        <li><label><input type="radio" name="q67" value="B"><span><strong>B)</strong> O advogado da ré deverá interpor recurso ordinário no prazo de 8 dias, buscando anular a sentença, pois o preposto não precisa ser empregado da reclamada.</span></label></li>
-        <li><label><input type="radio" name="q67" value="C"><span><strong>C)</strong> O advogado da ré deverá impetrar mandado de segurança, porque a exigência de que o preposto seja empregado violou direito líquido e certo da empresa.</span></label></li>
-        <li><label><input type="radio" name="q67" value="D"><span><strong>D)</strong> Uma vez que a CLT faculta ao juiz aceitar ou não como preposto pessoa que não seja empregada, o advogado deverá formular pedido de reconsideração judicial.</span></label></li>
-      </ul>
-      <button class="btn-confirm" onclick="confirmar('q67','B')">Confirmar resposta</button>
-      <div class="gabarito" id="g67">
-        <span class="gab-tag"></span>
-        Não há mais a necessidade de que o preposto seja empregado da reclamada, já que a reforma trabalhista incluiu o § 3.º do art. 843 da CLT afirmando que pode ser qualquer pessoa que tenha conhecimento dos fatos. Logo, não mais se aplica a Súmula 377 do TST, que foi cancelada expressamente pelo TST em 2025. A sentença deve ser anulada no julgamento do <strong>recurso ordinário</strong>. Não cabe mandado de segurança — foi proferida sentença, e o remédio adequado é o RO. Não há faculdade legal para "reconsideração judicial".
-      </div>
-    </div>
-
-    <!-- ── Q 68 ── -->
-    <div class="q-card" id="qc68">
-      <p class="q-meta">Q.68 · XXIX Exame de Ordem Unificado / FGV</p>
-      <p class="q-texto">Augusto foi empregado de uma lavanderia por 2 anos, tendo sido desligado em setembro de 2018. Após receber as verbas da ruptura, procurou um advogado com a intenção de ajuizar reclamação trabalhista para postular horas extras não recebidas durante o pacto laboral. Após a entrevista e colheita de todas as informações, o advogado de Augusto entrou em contato com a ex-empregadora na tentativa de formular um acordo, que, após debatido e negociado, teve sucesso e foi reduzido a termo. Então, as partes ajuizaram uma homologação de acordo extrajudicial na Justiça do Trabalho, em petição conjunta assinada pelo advogado de cada requerente, mas que não foi homologado pelo juiz, por este entender que o valor da conciliação era desfavorável ao trabalhador. Desse modo, o magistrado extinguiu o feito sem resolução do mérito. Diante da situação e dos termos da CLT, assinale a afirmativa correta.</p>
-      <ul class="q-opts">
-        <li><label><input type="radio" name="q68" value="A"><span><strong>A)</strong> Agiu corretamente o juiz, porque não há previsão desse tipo de demanda na Justiça do Trabalho.</span></label></li>
-        <li><label><input type="radio" name="q68" value="B"><span><strong>B)</strong> As partes poderão interpor recurso ordinário da decisão que negou a homologação desejada.</span></label></li>
-        <li><label><input type="radio" name="q68" value="C"><span><strong>C)</strong> Augusto e seu ex-empregador deverão propor novamente a ação, que deverá ser levada à livre distribuição para outro juízo.</span></label></li>
-        <li><label><input type="radio" name="q68" value="D"><span><strong>D)</strong> Nada poderá ser feito na ação proposta, porque o juiz não é obrigado a homologar acordo.</span></label></li>
-      </ul>
-      <button class="btn-confirm" onclick="confirmar('q68','B')">Confirmar resposta</button>
-      <div class="gabarito" id="g68">
-        <span class="gab-tag"></span>
-        Há previsão de tal ação no art. 855-B e seguintes da CLT (inseridos pela reforma trabalhista). Da decisão que nega a homologação do acordo extrajudicial é cabível o <strong>recurso ordinário</strong>, na medida em que é proferida uma sentença que extingue o procedimento de forma total. Apesar de o juiz não ser obrigado a homologar o acordo, as partes podem interpor o RO. Não haverá livre distribuição para outro juízo — a Vara do Trabalho está preventa.
-      </div>
-    </div>
-
-    <!-- ── Q 69 ── -->
-    <div class="q-card" id="qc69">
-      <p class="q-meta">Q.69 · XXX Exame de Ordem Unificado / FGV</p>
-      <p class="q-texto">Wilma foi dispensada sem justa causa e recebeu a indenização correspondente do ex-empregador. Ela, no entanto, alega ter direito a uma equiparação salarial com um colega que realizava as mesmas atividades. Em razão disso, Wilma procura você, como advogado(a), e, com sua assessoria, dá início a um acordo extrajudicial com o ex-empregador. O acordo é materializado em documento, especificando o valor e a identificação da parcela, sendo assinado pelas partes e seus respectivos advogados, e levado à Justiça do Trabalho para homologação. Contudo, a juíza do caso nega-se a homologar o acordo, argumentando que ele seria lesivo à trabalhadora, proferindo decisão nesse sentido. Diante disso, e de acordo com a norma legal, assinale a opção que indica a medida processual adequada para buscar a reforma da decisão proferida.</p>
-      <ul class="q-opts">
-        <li><label><input type="radio" name="q69" value="A"><span><strong>A)</strong> Não há medida cabível, por se tratar de decisão interlocutória.</span></label></li>
-        <li><label><input type="radio" name="q69" value="B"><span><strong>B)</strong> Recurso Ordinário.</span></label></li>
-        <li><label><input type="radio" name="q69" value="C"><span><strong>C)</strong> Mandado de Segurança.</span></label></li>
-        <li><label><input type="radio" name="q69" value="D"><span><strong>D)</strong> Novo pedido de homologação de acordo extrajudicial idêntico, mas agora dirigido para outra Vara.</span></label></li>
-      </ul>
-      <button class="btn-confirm" onclick="confirmar('q69','B')">Confirmar resposta</button>
-      <div class="gabarito" id="g69">
-        <span class="gab-tag"></span>
-        Não se trata de decisão interlocutória — o procedimento é finalizado por uma <strong>sentença</strong> que indeferiu a homologação. Sendo o pedido de homologação de acordo extrajudicial indeferido, deve ser interposto o <strong>recurso ordinário</strong>. Se é cabível o RO da sentença, está afastada a utilização do mandado de segurança. Não pode ser formulado novo pedido dirigido a outra Vara: a Vara do Trabalho estará preventa para a análise.
-      </div>
-    </div>
-
-    <!-- ── Q 70 ── -->
-    <div class="q-card" id="qc70">
-      <p class="q-meta">Q.70 · XXXI Exame de Ordem Unificado / FGV</p>
-      <p class="q-texto">Em setembro de 2019, durante a audiência de um caso que envolvia apenas pedido de adicional de insalubridade, o Juiz do Trabalho determinou a realização de perícia e que a reclamada antecipasse os honorários periciais. Inconformada com essa decisão, a sociedade empresária impetrou mandado de segurança contra esse ato judicial, mas o TRT, em decisão colegiada, não concedeu a segurança. Caso a sociedade empresária pretenda recorrer dessa decisão, assinale a opção que indica a medida recursal da qual deverá se valer.</p>
-      <ul class="q-opts">
-        <li><label><input type="radio" name="q70" value="A"><span><strong>A)</strong> Agravo de Instrumento.</span></label></li>
-        <li><label><input type="radio" name="q70" value="B"><span><strong>B)</strong> Recurso Ordinário.</span></label></li>
-        <li><label><input type="radio" name="q70" value="C"><span><strong>C)</strong> Agravo de Petição.</span></label></li>
-        <li><label><input type="radio" name="q70" value="D"><span><strong>D)</strong> Recurso de Revista.</span></label></li>
-      </ul>
-      <button class="btn-confirm" onclick="confirmar('q70','B')">Confirmar resposta</button>
-      <div class="gabarito" id="g70">
-        <span class="gab-tag"></span>
-        O mandado de segurança é ação de competência originária do TRT; o acórdão colegiado que o denega desafia o <strong>recurso ordinário para o TST</strong> (art. 895, II, da CLT). O agravo de instrumento é utilizado apenas para impugnar inadmissão de outro recurso; o agravo de petição é cabível apenas no processo de execução; o recurso de revista somente é interposto de acórdão do TRT no julgamento de recurso ordinário em ações iniciadas na Vara do Trabalho — o que não é a hipótese.
-      </div>
-    </div>
-
-    <!-- ── Q 71 ── -->
-    <div class="q-card" id="qc71">
-      <p class="q-meta">Q.71 · 38.º Exame de Ordem Unificado / FGV</p>
-      <p class="q-texto">Depois de fracassar a tentativa pacífica de negociação para realizar uma convenção coletiva de âmbito municipal, o sindicato dos empregados ajuizou dissídio coletivo que, depois de regularmente processado nos moldes da Lei, recebeu sua sentença normativa. Ocorre que o sindicato dos empregadores não concorda com algumas das cláusulas fixadas, e pretende recorrer da decisão. Diante da situação retratada e dos termos da CLT, assinale a afirmativa correta.</p>
-      <ul class="q-opts">
-        <li><label><input type="radio" name="q71" value="A"><span><strong>A)</strong> Caberá recurso ordinário para o TST.</span></label></li>
-        <li><label><input type="radio" name="q71" value="B"><span><strong>B)</strong> Por se tratar de sentença normativa, é irrecorrível.</span></label></li>
-        <li><label><input type="radio" name="q71" value="C"><span><strong>C)</strong> Caberá recurso de revista para o TST.</span></label></li>
-        <li><label><input type="radio" name="q71" value="D"><span><strong>D)</strong> Caberá recurso ordinário para o TRT.</span></label></li>
-      </ul>
-      <button class="btn-confirm" onclick="confirmar('q71','A')">Confirmar resposta</button>
-      <div class="gabarito" id="g71">
-        <span class="gab-tag"></span>
-        O dissídio coletivo é de competência originária do TRT (conflito municipal). A sentença normativa proferida pelo TRT — que na verdade é um acórdão — é impugnada por <strong>recurso ordinário para o TST</strong> (art. 895, II, da CLT). Não é irrecorrível. Não cabe recurso de revista, pois o dissídio não é individual (art. 896 da CLT). Não cabe RO para o TRT — o acórdão foi proferido pelo TRT, logo o recurso é dirigido ao TST.
-      </div>
-    </div>
-
-    <!-- ── Q 72 ── -->
-    <div class="q-card" id="qc72">
-      <p class="q-meta">Q.72 · 41.º Exame de Ordem Unificado / FGV</p>
-      <p class="q-texto">Pietro está sendo executado na Justiça do Trabalho e, em seu processo, o juiz acionou todas as ferramentas tecnológicas disponíveis para tentar apreender dinheiro ou bens, mas não teve sucesso. Como última e radical tentativa de coerção, o exequente requereu a suspensão do passaporte de Pietro, o que foi deferido pelo magistrado e cumprido. Inconformado, Pietro o contratou como advogado(a) e você impetrou <em>habeas corpus</em> para garantir o direito de locomoção do seu cliente, comprovando que ele adquiriu passagem aérea para uma viagem ao exterior, mas que estava impossibilitado de deixar o território nacional. Em decisão colegiada, o TRT negou, no mérito, o salvo conduto a Pietro, e, em razão disso, você pretende recorrer da decisão. Assinale a opção que indica a medida judicial correta que você deverá apresentar e para que órgão.</p>
-      <ul class="q-opts">
-        <li><label><input type="radio" name="q72" value="A"><span><strong>A)</strong> Recurso Ordinário para o TST.</span></label></li>
-        <li><label><input type="radio" name="q72" value="B"><span><strong>B)</strong> Agravo de Petição para o STJ.</span></label></li>
-        <li><label><input type="radio" name="q72" value="C"><span><strong>C)</strong> Recurso de Revista para o TST.</span></label></li>
-        <li><label><input type="radio" name="q72" value="D"><span><strong>D)</strong> Agravo de Instrumento para o TRT da Região.</span></label></li>
-      </ul>
-      <button class="btn-confirm" onclick="confirmar('q72','A')">Confirmar resposta</button>
-      <div class="gabarito" id="g72">
-        <span class="gab-tag"></span>
-        O <em>habeas corpus</em> é ação de competência originária do TRT (art. 895, II, da CLT). A decisão colegiada do TRT que o denega desafia o <strong>recurso ordinário para o TST</strong>. Não há decisão no processo de execução nem competência do STJ. Não se tem processo iniciado na Vara do Trabalho para interpor recurso de revista. Não houve inadmissão de outro recurso — pressuposto necessário para o agravo de instrumento.
-      </div>
-    </div>
-
-    <!-- Result banner -->
-    <div class="result" id="result">
-      <div class="result-num" id="res-num"></div>
-      <div class="result-msg" id="res-msg"></div>
-      <button class="btn-reset" onclick="resetar()">Refazer o quiz</button>
-    </div>
-
-  </div><!-- /quiz-wrap -->
-
-
-  <!-- ── BOTÃO DE RETORNO ── -->
-  <div class="btn-back-wrap">
-    <button class="btn-back" onclick="history.back()">
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M8.5 2L3.5 7L8.5 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      Retornar
-    </button>
+<!-- ══════════════ CABEÇALHO ══════════════ -->
+<header class="masthead">
+  <p class="eyebrow">
+    Direito Processual do Trabalho
+    <span class="dot">·</span> Unidade 15
+    <span class="dot">·</span> 15.5.2 Recurso Ordinário
+  </p>
+  <div class="title-row">
+    <h1><span class="art">CLT art. 895 · OAB Primeira Fase</span>Recurso Ordinário</h1>
   </div>
+  <div class="verbete">
+    <span class="tag">Cabimento, prazo, procedimento e formas de julgamento</span>
+    <p>O recurso ordinário, previsto no <strong>art. 895 da CLT</strong>, apesar de ser o recurso mais utilizado no dia a dia da Justiça do Trabalho, não é o mais importante para os Exames da OAB, sendo dificilmente cobrado nas provas. Talvez o ponto mais importante e que deve ser lembrado pelos examinandos seja o <strong>cabimento</strong>, já que há uma tendência de se lembrar apenas da principal hipótese de cabimento, esquecendo-se das demais.</p>
+  </div>
+</header>
+
+<!-- ══════════════ § 1 CABIMENTO ══════════════ -->
+<section>
+  <div class="sec-head reveal"><span class="num">§ 1</span><h2>Cabimento</h2></div>
+
+  <p class="reveal">Vejamos em que situações o RO pode ser utilizado:</p>
+
+  <ul class="blist reveal">
+    <li><span class="bul">■</span><span><strong>Sentença — art. 895, I, da CLT:</strong> trata-se da hipótese mais comum de cabimento do recurso ordinário e por muitos o único lembrado, aqui residindo o risco. Não se pode dizer que o RO só cabe de sentença, assim como está errado afirmar que o RO é sempre julgado pelo TRT, já que existem outras hipóteses de cabimento que fogem às situações geralmente utilizadas no dia a dia. A sentença é uma das decisões passíveis de impugnação por recurso ordinário, independentemente de seu conteúdo, ou seja, se é uma sentença definitiva (que extinguiu o processo com resolução do mérito) ou terminativa (que extinguiu o processo sem resolução do mérito).</span></li>
+    <li><span class="bul">■</span><span><strong>Acórdão — art. 895, II, da CLT:</strong> a hipótese é bem específica, pois o RO cabe de acórdãos proferidos em ações de competência originária dos TRTs, ou seja, processos que têm o início já naquele tribunal, como, por exemplo, os mandados de segurança, dissídios coletivos, ações rescisórias e ações cautelares, que já são ajuizadas perante o TRT por conterem regras específicas de competência. Assim, as ações referidas serão decididas por acórdão, cabendo o RO que será dirigido e julgado pelo TST.</span></li>
+    <li><span class="bul">■</span><span><strong>Decisões interlocutórias — art. 799, § 2.º, da CLT e Súmula 214, c, do TST:</strong> as situações são aquelas excepcionais em que cabe recurso de imediato contra decisões interlocutórias, sendo o recurso cabível o ordinário. Assim, se o Juiz do Trabalho reconhecer a incompetência absoluta da Justiça do Trabalho e determinar a remessa dos autos para outra justiça, caberá RO da decisão interlocutória, visando a que o processo permaneça na Justiça do Trabalho. Caso o Juiz do Trabalho, após provocado pela parte, reconheça a incompetência territorial e determine a remessa dos autos para outra Vara do Trabalho vinculada a outro TRT, caberá o RO em face da decisão para que o processo permaneça na mesma Vara do Trabalho.</span></li>
+  </ul>
+</section>
+
+<!-- ══════════════ § 2 PROCEDIMENTO ══════════════ -->
+<section>
+  <div class="sec-head reveal"><span class="num">§ 2</span><h2>Procedimento</h2></div>
+
+  <p class="reveal">O recurso será interposto no prazo de <strong>8 dias</strong>, seguindo-se a regra da uniformidade dos prazos recursais, sendo interposto perante o <strong>juízo <em>a quo</em></strong>, ou seja, aquele que proferiu a decisão e que, ao receber o recurso, realizará o primeiro juízo de admissibilidade, analisando a presença ou ausência dos pressupostos recursais (tempestividade, legitimidade, preparo etc.). Presentes os referidos pressupostos, isto é, sendo positivo o juízo, o Magistrado intima a parte contrária para apresentação de contrarrazões no prazo de <strong>8 dias</strong>, que não são obrigatórias, mas surgem como uma ótima oportunidade para demonstrar que a decisão impugnada está correta e deve ser mantida. Após o prazo das contrarrazões, com ou sem a sua apresentação, os autos serão remetidos para o <strong>juízo <em>ad quem</em></strong>, que realizará o segundo juízo de admissibilidade e, se também positivo, julgará o recurso pelo colegiado ou monocraticamente <span class="ref">SARAIVA; MANFREDINI, 2016</span>.</p>
+
+  <div class="flow reveal">
+    <div class="flow-step">
+      <span class="flow-num">1</span>
+      <span class="flow-txt">Interposição no <strong>juízo <em>a quo</em></strong> — prazo de <strong>8 dias</strong></span>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step">
+      <span class="flow-num">2</span>
+      <span class="flow-txt"><strong>1.º juízo de admissibilidade</strong> — tempestividade, legitimidade, preparo</span>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step">
+      <span class="flow-num">3</span>
+      <span class="flow-txt">Intimação da parte contrária para <strong>contrarrazões</strong> — prazo de <strong>8 dias</strong></span>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step">
+      <span class="flow-num">4</span>
+      <span class="flow-txt">Remessa ao <strong>juízo <em>ad quem</em></strong></span>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step">
+      <span class="flow-num">5</span>
+      <span class="flow-txt"><strong>2.º juízo de admissibilidade</strong> → julgamento (colegiado ou monocrático)</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ § 3 FORMAS DE JULGAMENTO ══════════════ -->
+<section>
+  <div class="sec-head reveal"><span class="num">§ 3</span><h2>Formas de Julgamento</h2></div>
+
+  <p class="reveal">O julgamento pode ocorrer de duas formas <span class="ref">SARAIVA; MANFREDINI, 2016</span>:</p>
+
+  <div class="teoria-grid reveal">
+    <div class="teoria">
+      <div class="teoria-head">
+        <span class="teoria-badge">Regra</span>
+        <span class="teoria-title">Decisão Colegiada</span>
+      </div>
+      <div class="teoria-body">
+        É a <strong>regra geral</strong> dos julgamentos dos tribunais, havendo a reunião de Magistrados para, em conjunto, analisarem a situação, proferindo um acórdão — que nos termos do <span class="ref">art. 204, CPC/2015</span> é o pronunciamento colegiado dos Tribunais.
+      </div>
+    </div>
+    <div class="teoria">
+      <div class="teoria-head">
+        <span class="teoria-badge">Exceção</span>
+        <span class="teoria-title">Decisão Monocrática</span>
+      </div>
+      <div class="teoria-body">
+        Excepcionalmente admite-se que o julgamento seja feito por um único Magistrado nos tribunais — o <strong>Relator</strong> —, que assume a função de decidir o mérito. O <span class="ref">art. 932, CPC/2015</span> atribuiu ao Relator tal função, sendo admitida tal espécie de julgamento na <strong>Súmula 435 do TST</strong>.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ § 4 NORMAS E PRECEDENTES ══════════════ -->
+<section>
+  <div class="sec-head reveal"><span class="num">§ 4</span><h2>Normas e Precedentes Essenciais</h2></div>
+
+  <div class="artigo-literal reveal">
+    <span class="art-label">CLT — Art. 895</span>
+    <p>Cabe recurso ordinário para a instância superior: I — das decisões definitivas ou terminativas das Varas e Juízos, no prazo de 8 (oito) dias; II — das decisões definitivas ou terminativas dos Tribunais Regionais, em processos de sua competência originária, no prazo de 8 (oito) dias, quer nos dissídios individuais, quer nos dissídios coletivos.</p>
+  </div>
+
+  <div class="sumula reveal">
+    <strong>Súmula 214, c — TST</strong>
+    <p>Na Justiça do Trabalho, nos termos do art. 893, § 1.º, da CLT, as decisões interlocutórias não ensejam recurso imediato, salvo nas hipóteses de decisão: c) que acolher exceção de incompetência territorial, com a remessa dos autos para Tribunal Regional distinto daquele a que se vincula o juízo excepcionado, consoante o disposto no art. 799, § 2.º, da CLT.</p>
+  </div>
+
+  <div class="sumula reveal">
+    <strong>Súmula 435 — TST</strong>
+    <p>Aplica-se ao recurso ordinário, por analogia, o disposto no art. 557 do CPC de 1973 (art. 932 do CPC de 2015), autorizando-se o relator a decidir monocraticamente o recurso em determinadas hipóteses.</p>
+  </div>
+</section>
+
+<!-- ══════════════ § 5 MAPA DE CABIMENTO ══════════════ -->
+<section>
+  <div class="sec-head reveal"><span class="num">§ 5</span><h2>Mapa de Cabimento: RO × Órgão Julgador</h2></div>
+
+  <ul class="blist reveal">
+    <li><span class="bul">■</span><span><strong>Sentença da Vara do Trabalho → RO julgado pelo TRT</strong> (hipótese mais comum — <span class="ref">art. 895, I</span>)</span></li>
+    <li><span class="bul">■</span><span><strong>Acórdão do TRT em competência originária → RO julgado pelo TST</strong> (mandado de segurança, dissídio coletivo, ação rescisória, cautelar — <span class="ref">art. 895, II</span>)</span></li>
+    <li><span class="bul">■</span><span><strong>Decisão interlocutória que reconhece incompetência absoluta → RO imediato</strong> (<span class="ref">Súmula 214, TST</span>)</span></li>
+    <li><span class="bul">■</span><span><strong>Decisão que acolhe exceção de incompetência territorial e remete a TRT diferente → RO imediato</strong> (<span class="ref">Súmula 214, c, TST</span>)</span></li>
+  </ul>
+
+  <div class="nota reveal">
+    <strong>Atenção — erro clássico:</strong> Afirmar que o RO é <em>sempre</em> julgado pelo TRT é errado. Nas hipóteses de competência originária do TRT (mandado de segurança, dissídio coletivo, ação rescisória, cautelar), o acórdão é atacado por RO dirigido ao <strong>TST</strong>.
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     QUESTÕES OAB — 16. Recurso Ordinário
+══════════════════════════════════════════════ -->
+<section>
+  <div class="sec-head reveal"><span class="num">§</span><h2>Questões de Exame da OAB</h2></div>
+  <p class="reveal">9 questões de provas anteriores (seção 16 do banco). Selecione a alternativa e clique em <strong>Confirmar resposta</strong>.</p>
+
+  <div class="scoreboard reveal">
+    <div>
+      <div class="score-label">Acertos</div>
+      <div class="score-nums">
+        <span class="score-current" id="sc-current">0</span>
+        <span class="score-total">/ 9</span>
+      </div>
+    </div>
+    <div class="score-bar-wrap"><div class="score-bar" id="sc-bar"></div></div>
+    <div class="score-msg" id="sc-msg">0 respondidas</div>
+    <button class="btn-reset" onclick="resetQuiz()">↺ Reiniciar</button>
+  </div>
+
+  <!-- Q1 — XXIV Exame -->
+  <div class="q-card" id="q1">
+    <div class="q-header">
+      <span class="q-badge">Q.64 · XXIV Exame · FGV</span>
+      <p class="q-text">Contra ato de Juiz do Trabalho que determinou a antecipação de honorários periciais do seu cliente, mesmo não tendo ele condições financeiras para arcar com esse custo, você, na defesa dos interesses do cliente, impetrou mandado de segurança contra o ato judicial, mas, por unanimidade, não teve a segurança concedida. De acordo com a CLT, assinale a opção que indica o procedimento a ser adotado para tentar reverter a decisão.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="1" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Interpor recurso ordinário para o TST.</span></button>
+      <button class="opt" data-q="1" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Interpor agravo de instrumento para o STF.</span></button>
+      <button class="opt" data-q="1" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Interpor agravo interno para o próprio TRT.</span></button>
+      <button class="opt" data-q="1" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Nada mais pode ser feito, porque se trata de decisão irrecorrível.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q1-btn" disabled onclick="confirmAnswer(1,'A')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q1-tog" onclick="toggleGabarito(1)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q1-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa A — Recurso ordinário para o TST</div>
+      <div class="gabarito-body">
+        <p>Aplica-se o inciso II do <span class="ref">art. 895, CLT</span>, que trata do cabimento do recurso ordinário de acórdão proferido pelo TRT em processos de sua competência originária — como o mandado de segurança. A competência para o recurso ordinário será do <strong>TST</strong>, uma vez que o acórdão foi proferido pelo TRT.</p>
+        <p>O agravo de instrumento é apenas para inadmissão de outro recurso; o agravo interno não se aplica pois não há decisão monocrática; a decisão não é irrecorrível, pois estamos diante de um acórdão.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Q2 — XXV Exame -->
+  <div class="q-card" id="q2">
+    <div class="q-header">
+      <span class="q-badge">Q.65 · XXV Exame · FGV</span>
+      <p class="q-text">Em determinada Vara do Trabalho foi prolatada uma sentença que, após publicada, não foi objeto de recurso por nenhum dos litigantes. Quinze meses depois, uma das partes ajuizou ação rescisória perante o Tribunal Regional do Trabalho local, tendo o acórdão julgado improcedente o pedido da rescisória. Ainda inconformada, a parte deseja que o TST aprecie a demanda. Assinale a opção que indica, na hipótese, o recurso cabível para o Tribunal Superior do Trabalho.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="2" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Recurso Ordinário.</span></button>
+      <button class="opt" data-q="2" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Recurso de Revista.</span></button>
+      <button class="opt" data-q="2" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Recurso Especial.</span></button>
+      <button class="opt" data-q="2" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Agravo de Instrumento.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q2-btn" disabled onclick="confirmAnswer(2,'A')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q2-tog" onclick="toggleGabarito(2)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q2-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa A — Recurso Ordinário</div>
+      <div class="gabarito-body">
+        <p>A questão trata do cabimento do recurso ordinário contra acórdão do TRT, proferido em ação de sua competência originária, conforme prescreve o <span class="ref">art. 895, II, CLT</span>. Tendo sido ajuizada ação rescisória perante o TRT, do acórdão pode a parte interpor o recurso ordinário, que será julgado pelo TST.</p>
+        <p>Não há acórdão em grau de recurso ordinário para ser interposto o recurso de revista; não há o cabimento do recurso especial no processo do trabalho; o agravo de instrumento é utilizado no processo do trabalho para impugnar a inadmissão de outro recurso.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Q3 — XXVIII Exame -->
+  <div class="q-card" id="q3">
+    <div class="q-header">
+      <span class="q-badge">Q.66 · XXVIII Exame · FGV</span>
+      <p class="q-text">Francisco trabalhou em favor de uma empresa em Goiânia/GO. Após ser dispensado, mudou-se para São Paulo e neste Estado ajuizou reclamação trabalhista contra o ex-empregador. Este, após citado em Goiânia/GO, apresentou petição de exceção de incompetência territorial logo no segundo dia. Em razão disso, o juiz suspendeu o processo e conferiu vista ao excepto. Em seguida, proferiu decisão acolhendo a exceção e determinando a remessa dos autos ao juízo distribuidor de Goiânia/GO, local onde os serviços de Francisco foram prestados e que, no entendimento do magistrado, seria o juízo competente para julgar a reclamação trabalhista. Diante da situação retratada e do entendimento consolidado do TST, assinale a afirmativa correta.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="3" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>O reclamante nada poderá fazer por se tratar de decisão interlocutória.</span></button>
+      <button class="opt" data-q="3" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Francisco poderá interpor de imediato Recurso Ordinário no prazo de 8 dias.</span></button>
+      <button class="opt" data-q="3" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Sendo as decisões interlocutórias irrecorríveis, Pedro deverá impetrar Mandado de Segurança.</span></button>
+      <button class="opt" data-q="3" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>O recurso cabível para tentar reverter a decisão é o Agravo de Petição.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q3-btn" disabled onclick="confirmAnswer(3,'B')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q3-tog" onclick="toggleGabarito(3)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q3-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa B — RO imediato (Súmula 214, c, TST)</div>
+      <div class="gabarito-body">
+        <p>O recurso cabível é o <strong>recurso ordinário</strong>, nos termos da <span class="ref">Súmula 214, c, TST</span>: a exceção de incompetência foi julgada procedente, com remessa dos autos de São Paulo para Goiânia, ou seja, para outro TRT. Apesar de ser uma decisão interlocutória, a parte prejudicada pode interpor o RO de imediato.</p>
+        <p>Não cabe o mandado de segurança — sendo cabível um recurso, o MS está automaticamente excluído. O agravo de petição é inadequado, pois não há decisão em execução (<span class="ref">art. 897, a, CLT</span>).</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Q4 — XXIX Exame (preposto) -->
+  <div class="q-card" id="q4">
+    <div class="q-header">
+      <span class="q-badge">Q.67 · XXIX Exame · FGV</span>
+      <p class="q-text">Em março de 2019, durante uma audiência trabalhista que envolvia a sociedade empresária ABC S/A, o juiz indagou à pessoa que se apresentou como preposto se ela era empregada da empresa, recebendo como resposta que não. O juiz, então, manifestou seu entendimento de que uma sociedade anônima deveria, obrigatoriamente, fazer-se representar por empregado, concluindo que a sociedade empresária não estava adequadamente representada. Decretou, então, a revelia, excluiu a defesa protocolizada e sentenciou o feito na própria audiência, julgando os pedidos inteiramente procedentes. Diante desse quadro e do que prevê a CLT, assinale a afirmativa correta.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="4" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Nada há a ser feito, porque uma S/A, por exceção, precisa conduzir um empregado para representá-la.</span></button>
+      <button class="opt" data-q="4" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>O advogado da ré deverá interpor recurso ordinário no prazo de 8 dias, buscando anular a sentença, pois o preposto não precisa ser empregado da reclamada.</span></button>
+      <button class="opt" data-q="4" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>O advogado da ré deverá impetrar mandado de segurança, porque a exigência de que o preposto seja empregado violou direito líquido e certo da empresa.</span></button>
+      <button class="opt" data-q="4" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Uma vez que a CLT faculta ao juiz aceitar ou não como preposto pessoa que não seja empregada, o advogado deverá formular pedido de reconsideração judicial.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q4-btn" disabled onclick="confirmAnswer(4,'B')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q4-tog" onclick="toggleGabarito(4)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q4-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa B — RO para anular sentença (preposto não precisa ser empregado)</div>
+      <div class="gabarito-body">
+        <p>Não há mais a necessidade de que o preposto seja empregado da reclamada, já que a reforma trabalhista incluiu o <span class="ref">§ 3.º do art. 843, CLT</span> afirmando que pode ser qualquer pessoa que tenha conhecimento dos fatos. Logo, não mais se aplica a Súmula 377 do TST, que foi cancelada expressamente pelo TST em 2025.</p>
+        <p>A sentença deve ser anulada no julgamento do <strong>recurso ordinário</strong>. Não cabe mandado de segurança — foi proferida sentença, e o remédio adequado é o RO. Não há faculdade legal para "reconsideração judicial".</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Q5 — XXIX Exame (acordo extrajudicial) -->
+  <div class="q-card" id="q5">
+    <div class="q-header">
+      <span class="q-badge">Q.68 · XXIX Exame · FGV</span>
+      <p class="q-text">Augusto foi empregado de uma lavanderia por 2 anos, tendo sido desligado em setembro de 2018. Após receber as verbas da ruptura, procurou um advogado com a intenção de ajuizar reclamação trabalhista para postular horas extras não recebidas durante o pacto laboral. Após a entrevista e colheita de todas as informações, o advogado de Augusto entrou em contato com a ex-empregadora na tentativa de formular um acordo, que, após debatido e negociado, teve sucesso e foi reduzido a termo. Então, as partes ajuizaram uma homologação de acordo extrajudicial na Justiça do Trabalho, em petição conjunta assinada pelo advogado de cada requerente, mas que não foi homologado pelo juiz, por este entender que o valor da conciliação era desfavorável ao trabalhador. Desse modo, o magistrado extinguiu o feito sem resolução do mérito. Diante da situação e dos termos da CLT, assinale a afirmativa correta.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="5" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Agiu corretamente o juiz, porque não há previsão desse tipo de demanda na Justiça do Trabalho.</span></button>
+      <button class="opt" data-q="5" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>As partes poderão interpor recurso ordinário da decisão que negou a homologação desejada.</span></button>
+      <button class="opt" data-q="5" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Augusto e seu ex-empregador deverão propor novamente a ação, que deverá ser levada à livre distribuição para outro juízo.</span></button>
+      <button class="opt" data-q="5" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Nada poderá ser feito na ação proposta, porque o juiz não é obrigado a homologar acordo.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q5-btn" disabled onclick="confirmAnswer(5,'B')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q5-tog" onclick="toggleGabarito(5)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q5-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa B — RO da sentença que negou homologação de acordo extrajudicial</div>
+      <div class="gabarito-body">
+        <p>Há previsão de tal ação no <span class="ref">art. 855-B e seguintes, CLT</span> (inseridos pela reforma trabalhista). Da decisão que nega a homologação do acordo extrajudicial é cabível o <strong>recurso ordinário</strong>, na medida em que é proferida uma sentença que extingue o procedimento de forma total.</p>
+        <p>Apesar de o juiz não ser obrigado a homologar o acordo, as partes podem interpor o RO. Não haverá livre distribuição para outro juízo — a Vara do Trabalho está preventa.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Q6 — XXX Exame -->
+  <div class="q-card" id="q6">
+    <div class="q-header">
+      <span class="q-badge">Q.69 · XXX Exame · FGV</span>
+      <p class="q-text">Wilma foi dispensada sem justa causa e recebeu a indenização correspondente do ex-empregador. Ela, no entanto, alega ter direito a uma equiparação salarial com um colega que realizava as mesmas atividades. Em razão disso, Wilma procura você, como advogado(a), e, com sua assessoria, dá início a um acordo extrajudicial com o ex-empregador. O acordo é materializado em documento, especificando o valor e a identificação da parcela, sendo assinado pelas partes e seus respectivos advogados, e levado à Justiça do Trabalho para homologação. Contudo, a juíza do caso nega-se a homologar o acordo, argumentando que ele seria lesivo à trabalhadora, proferindo decisão nesse sentido. Diante disso, e de acordo com a norma legal, assinale a opção que indica a medida processual adequada para buscar a reforma da decisão proferida.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="6" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Não há medida cabível, por se tratar de decisão interlocutória.</span></button>
+      <button class="opt" data-q="6" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Recurso Ordinário.</span></button>
+      <button class="opt" data-q="6" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Mandado de Segurança.</span></button>
+      <button class="opt" data-q="6" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Novo pedido de homologação de acordo extrajudicial idêntico, mas agora dirigido para outra Vara.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q6-btn" disabled onclick="confirmAnswer(6,'B')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q6-tog" onclick="toggleGabarito(6)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q6-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa B — Recurso Ordinário</div>
+      <div class="gabarito-body">
+        <p>Não se trata de decisão interlocutória — o procedimento é finalizado por uma <strong>sentença</strong> que indeferiu a homologação. Sendo o pedido de homologação de acordo extrajudicial indeferido, deve ser interposto o <strong>recurso ordinário</strong>.</p>
+        <p>Se é cabível o RO da sentença, está afastada a utilização do mandado de segurança. Não pode ser formulado novo pedido dirigido a outra Vara: a Vara do Trabalho estará preventa para a análise.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Q7 — XXXI Exame -->
+  <div class="q-card" id="q7">
+    <div class="q-header">
+      <span class="q-badge">Q.70 · XXXI Exame · FGV</span>
+      <p class="q-text">Em setembro de 2019, durante a audiência de um caso que envolvia apenas pedido de adicional de insalubridade, o Juiz do Trabalho determinou a realização de perícia e que a reclamada antecipasse os honorários periciais. Inconformada com essa decisão, a sociedade empresária impetrou mandado de segurança contra esse ato judicial, mas o TRT, em decisão colegiada, não concedeu a segurança. Caso a sociedade empresária pretenda recorrer dessa decisão, assinale a opção que indica a medida recursal da qual deverá se valer.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="7" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Agravo de Instrumento.</span></button>
+      <button class="opt" data-q="7" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Recurso Ordinário.</span></button>
+      <button class="opt" data-q="7" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Agravo de Petição.</span></button>
+      <button class="opt" data-q="7" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Recurso de Revista.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q7-btn" disabled onclick="confirmAnswer(7,'B')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q7-tog" onclick="toggleGabarito(7)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q7-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa B — Recurso Ordinário para o TST</div>
+      <div class="gabarito-body">
+        <p>O mandado de segurança é ação de competência originária do TRT; o acórdão colegiado que o denega desafia o <strong>recurso ordinário para o TST</strong> (<span class="ref">art. 895, II, CLT</span>).</p>
+        <p>O agravo de instrumento é utilizado apenas para impugnar inadmissão de outro recurso; o agravo de petição é cabível apenas no processo de execução; o recurso de revista somente é interposto de acórdão do TRT no julgamento de recurso ordinário em ações iniciadas na Vara do Trabalho — o que não é a hipótese.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Q8 — 38.º Exame -->
+  <div class="q-card" id="q8">
+    <div class="q-header">
+      <span class="q-badge">Q.71 · 38.º Exame · FGV</span>
+      <p class="q-text">Depois de fracassar a tentativa pacífica de negociação para realizar uma convenção coletiva de âmbito municipal, o sindicato dos empregados ajuizou dissídio coletivo que, depois de regularmente processado nos moldes da Lei, recebeu sua sentença normativa. Ocorre que o sindicato dos empregadores não concorda com algumas das cláusulas fixadas, e pretende recorrer da decisão. Diante da situação retratada e dos termos da CLT, assinale a afirmativa correta.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="8" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Caberá recurso ordinário para o TST.</span></button>
+      <button class="opt" data-q="8" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Por se tratar de sentença normativa, é irrecorrível.</span></button>
+      <button class="opt" data-q="8" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Caberá recurso de revista para o TST.</span></button>
+      <button class="opt" data-q="8" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Caberá recurso ordinário para o TRT.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q8-btn" disabled onclick="confirmAnswer(8,'A')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q8-tog" onclick="toggleGabarito(8)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q8-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa A — Recurso ordinário para o TST</div>
+      <div class="gabarito-body">
+        <p>O dissídio coletivo é de competência originária do TRT (conflito municipal). A sentença normativa proferida pelo TRT — que na verdade é um acórdão — é impugnada por <strong>recurso ordinário para o TST</strong> (<span class="ref">art. 895, II, CLT</span>).</p>
+        <p>Não é irrecorrível. Não cabe recurso de revista, pois o dissídio não é individual (<span class="ref">art. 896, CLT</span>). Não cabe RO para o TRT — o acórdão foi proferido pelo TRT, logo o recurso é dirigido ao TST.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Q9 — 41.º Exame -->
+  <div class="q-card" id="q9">
+    <div class="q-header">
+      <span class="q-badge">Q.72 · 41.º Exame · FGV</span>
+      <p class="q-text">Pietro está sendo executado na Justiça do Trabalho e, em seu processo, o juiz acionou todas as ferramentas tecnológicas disponíveis para tentar apreender dinheiro ou bens, mas não teve sucesso. Como última e radical tentativa de coerção, o exequente requereu a suspensão do passaporte de Pietro, o que foi deferido pelo magistrado e cumprido. Inconformado, Pietro o contratou como advogado(a) e você impetrou <em>habeas corpus</em> para garantir o direito de locomoção do seu cliente, comprovando que ele adquiriu passagem aérea para uma viagem ao exterior, mas que estava impossibilitado de deixar o território nacional. Em decisão colegiada, o TRT negou, no mérito, o salvo conduto a Pietro, e, em razão disso, você pretende recorrer da decisão. Assinale a opção que indica a medida judicial correta que você deverá apresentar e para que órgão.</p>
+    </div>
+    <div class="options">
+      <button class="opt" data-q="9" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Recurso Ordinário para o TST.</span></button>
+      <button class="opt" data-q="9" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Agravo de Petição para o STJ.</span></button>
+      <button class="opt" data-q="9" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Recurso de Revista para o TST.</span></button>
+      <button class="opt" data-q="9" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Agravo de Instrumento para o TRT da Região.</span></button>
+    </div>
+    <div class="q-actions">
+      <button class="btn-confirm" id="q9-btn" disabled onclick="confirmAnswer(9,'A')">Confirmar →</button>
+      <button class="toggle-gabarito" id="q9-tog" onclick="toggleGabarito(9)">Gabarito comentado <span class="chev">▾</span></button>
+    </div>
+    <div class="gabarito" id="q9-gab"><div class="gabarito-inner">
+      <div class="gabarito-title">Gabarito comentado</div>
+      <div class="gabarito-correct">✓ Alternativa A — Recurso Ordinário para o TST</div>
+      <div class="gabarito-body">
+        <p>O <em>habeas corpus</em> é ação de competência originária do TRT (<span class="ref">art. 895, II, CLT</span>). A decisão colegiada do TRT que o denega desafia o <strong>recurso ordinário para o TST</strong>.</p>
+        <p>Não há decisão no processo de execução nem competência do STJ. Não se tem processo iniciado na Vara do Trabalho para interpor recurso de revista. Não houve inadmissão de outro recurso — pressuposto necessário para o agravo de instrumento.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- RESULTADO FINAL -->
+  <div class="result-banner" id="result-banner">
+    <div class="result-score" id="result-score">0/9</div>
+    <div class="result-label">Resultado final</div>
+    <div class="result-msg" id="result-msg"></div>
+  </div>
+
+</section>
+
+<a class="back" href="../index.html">
+  <span class="arw">←</span>
+  <span>Voltar ao índice da disciplina</span>
+</a>
 
 </div><!-- /wrap -->
 
 <script>
-/* ── IntersectionObserver para reveal ── */
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); }
-  });
-}, { threshold: 0.07 });
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+/* reveal */
+(function(){
+  var items=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){items.forEach(function(el){el.classList.add('in');});return;}
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:.08,rootMargin:'0px 0px -3% 0px'});
+  items.forEach(function(el,i){el.style.transitionDelay=(i*35)+'ms';io.observe(el);});
+})();
 
-/* ── Quiz ── */
-const TOTAL = 9;
-const state = {};  // { q64: {correct:bool, chosen:str}, … }
+/* QUIZ */
+var TOTAL=9, answered={};
 
-function atualizar() {
-  const resp = Object.keys(state).length;
-  const ac   = Object.values(state).filter(v => v.correct).length;
-  document.getElementById('sb-ac').textContent   = ac;
-  document.getElementById('sb-re').textContent   = resp;
-  document.getElementById('sb-fill').style.width = Math.round(resp / TOTAL * 100) + '%';
-  document.getElementById('sb-lbl').textContent  = resp + ' de ' + TOTAL + ' questões respondidas';
-  if (resp === TOTAL) mostrarResultado(ac);
+function selectOpt(el){
+  var q=el.dataset.q;
+  if(answered[q]!==undefined) return;
+  document.querySelectorAll('[data-q="'+q+'"]').forEach(function(o){o.classList.remove('selected');});
+  el.classList.add('selected');
+  document.getElementById('q'+q+'-btn').disabled=false;
 }
 
-function confirmar(qId, gabarito) {
-  if (state[qId]) return;
-
-  const selecionado = document.querySelector(`input[name="${qId}"]:checked`);
-  if (!selecionado) { alert('Selecione uma alternativa antes de confirmar.'); return; }
-
-  const escolha   = selecionado.value;
-  const correto   = escolha === gabarito;
-  state[qId]      = { correct: correto, chosen: escolha };
-
-  /* colorir opções */
-  document.querySelectorAll(`input[name="${qId}"]`).forEach(r => {
-    r.disabled = true;
-    const lbl  = r.closest('label');
-    if (r.value === escolha && correto)   lbl.classList.add('ok');
-    if (r.value === escolha && !correto)  lbl.classList.add('err');
-    if (r.value === gabarito && !correto) lbl.classList.add('reveal');
+function confirmAnswer(qNum,correctVal){
+  var opts=document.querySelectorAll('[data-q="'+qNum+'"]');
+  var btn=document.getElementById('q'+qNum+'-btn');
+  var card=document.getElementById('q'+qNum);
+  var tog=document.getElementById('q'+qNum+'-tog');
+  var chosen=null;
+  opts.forEach(function(o){if(o.classList.contains('selected'))chosen=o;});
+  if(!chosen) return;
+  var isCorrect=chosen.dataset.val===correctVal;
+  answered[qNum]=isCorrect;
+  opts.forEach(function(o){
+    o.disabled=true;
+    if(o.dataset.val===correctVal){o.classList.add('correct-final');}
+    else if(o.classList.contains('selected')&&!isCorrect){o.classList.add('wrong-final');}
+    else{o.classList.add('dimmed');}
+    o.classList.remove('selected');
   });
-
-  /* borda no card */
-  const card = document.getElementById('qc' + qId.slice(1));
-  card.classList.add(correto ? 'correct' : 'wrong');
-
-  /* gabarito */
-  const numId  = qId.slice(1);   // '64'
-  const gabEl  = document.getElementById('g' + numId);
-  gabEl.classList.add('show', correto ? 'ok-g' : 'err-g');
-  gabEl.querySelector('.gab-tag').textContent = correto
-    ? '✓ Correto — alternativa ' + gabarito
-    : '✗ Incorreto — gabarito: alternativa ' + gabarito;
-
-  /* desabilitar botão */
-  card.querySelector('.btn-confirm').disabled = true;
-
-  atualizar();
+  card.classList.add(isCorrect?'answered-correct':'answered-wrong');
+  btn.disabled=true; btn.style.display='none';
+  tog.style.display='inline-flex';
+  updateScore(); checkAllDone();
 }
 
-function mostrarResultado(ac) {
-  const pct = Math.round(ac / TOTAL * 100);
-  document.getElementById('res-num').textContent = ac + ' / ' + TOTAL;
-  document.getElementById('res-msg').textContent =
-    pct === 100 ? 'Excelente! Domínio completo do tema.' :
-    pct >= 77   ? 'Muito bom! Desempenho acima da média.' :
-    pct >= 55   ? 'Bom resultado. Revise os pontos errados.' :
-                  'Revise a teoria e tente novamente.';
-  const banner = document.getElementById('result');
+function toggleGabarito(qNum){
+  var gab=document.getElementById('q'+qNum+'-gab');
+  var tog=document.getElementById('q'+qNum+'-tog');
+  var open=gab.classList.toggle('open');
+  tog.classList.toggle('open',open);
+}
+
+function updateScore(){
+  var done=Object.keys(answered).length;
+  var correct=Object.values(answered).filter(Boolean).length;
+  var pct=TOTAL>0?(correct/TOTAL)*100:0;
+  document.getElementById('sc-current').textContent=correct;
+  document.getElementById('sc-bar').style.width=pct+'%';
+  document.getElementById('sc-bar').style.background=pct>=70?'#166534':pct>=40?'#d97706':'#991b1b';
+  document.getElementById('sc-msg').textContent=done+' respondida'+(done!==1?'s':'');
+}
+
+function checkAllDone(){
+  if(Object.keys(answered).length<TOTAL) return;
+  var correct=Object.values(answered).filter(Boolean).length;
+  var banner=document.getElementById('result-banner');
+  document.getElementById('result-score').textContent=correct+'/'+TOTAL;
+  var pct=correct/TOTAL;
+  var msg=document.getElementById('result-msg');
+  if(pct===1) msg.textContent='🎉 Parabéns! Gabarito perfeito — você domina o tema.';
+  else if(pct>=.75) msg.textContent='✅ Muito bem! Revise os pontos que errou e estará pronto.';
+  else if(pct>=.5) msg.textContent='📖 Resultado razoável. Revise os comentários com atenção.';
+  else msg.textContent='🔁 Reforce o estudo e tente novamente. Os comentários ajudam!';
   banner.classList.add('show');
-  banner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  banner.scrollIntoView({behavior:'smooth',block:'center'});
 }
 
-function resetar() {
-  for (const k in state) delete state[k];
-
-  document.querySelectorAll('.q-card').forEach(card => {
-    card.classList.remove('correct', 'wrong');
-    card.querySelectorAll('input[type="radio"]').forEach(r => {
-      r.checked  = false;
-      r.disabled = false;
-      r.closest('label').classList.remove('ok','err','reveal');
+function resetQuiz(){
+  answered={};
+  for(var q=1;q<=TOTAL;q++){
+    document.querySelectorAll('[data-q="'+q+'"]').forEach(function(o){
+      o.disabled=false; o.classList.remove('selected','correct-final','wrong-final','dimmed');
     });
-    const gab = card.querySelector('.gabarito');
-    gab.classList.remove('show','ok-g','err-g');
-    gab.querySelector('.gab-tag').textContent = '';
-    card.querySelector('.btn-confirm').disabled = false;
-  });
-
-  document.getElementById('sb-ac').textContent   = '0';
-  document.getElementById('sb-re').textContent   = '0';
-  document.getElementById('sb-fill').style.width = '0%';
-  document.getElementById('sb-lbl').textContent  = '0 de ' + TOTAL + ' questões respondidas';
-  document.getElementById('result').classList.remove('show');
+    document.getElementById('q'+q).classList.remove('answered-correct','answered-wrong');
+    var btn=document.getElementById('q'+q+'-btn'); btn.disabled=true; btn.style.display='';
+    var tog=document.getElementById('q'+q+'-tog'); tog.style.display='none'; tog.classList.remove('open');
+    document.getElementById('q'+q+'-gab').classList.remove('open');
+  }
+  document.getElementById('sc-current').textContent='0';
+  document.getElementById('sc-bar').style.width='0%';
+  document.getElementById('sc-msg').textContent='0 respondidas';
+  document.getElementById('result-banner').classList.remove('show');
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 </script>
 </body>
