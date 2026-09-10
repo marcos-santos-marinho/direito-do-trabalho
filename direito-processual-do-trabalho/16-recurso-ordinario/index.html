@@ -32,6 +32,10 @@ body::before{content:"";position:fixed;inset:0 0 auto 0;height:4px;background:li
 .title-row{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;flex-wrap:wrap;}
 h1{font-family:var(--display);font-weight:500;font-size:clamp(2.1rem,6vw,3.5rem);line-height:1.06;letter-spacing:-.015em;max-width:16ch;}
 h1 .art{display:block;font-size:.42em;font-weight:600;letter-spacing:.02em;color:var(--accent);font-family:var(--mono);text-transform:uppercase;margin-bottom:.5em;}
+.slides-btn{flex-shrink:0;display:inline-flex;align-items:center;gap:12px;text-decoration:none;background:var(--ink);color:#f4f2ec;border-radius:4px;padding:13px 18px;font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;box-shadow:0 8px 22px -12px rgba(27,36,54,.7);transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s,background .25s;}
+.slides-btn:hover{background:var(--accent);transform:translateY(-2px);}
+.slides-btn .arw{transition:transform .25s;}
+.slides-btn:hover .arw{transform:translateX(4px);}
 
 /* VERBETE */
 .verbete{margin:44px 0 8px;padding:6px 0 6px 30px;border-left:3px solid var(--accent);}
@@ -168,6 +172,9 @@ p{margin-bottom:14px;color:var(--ink-soft);}
   </p>
   <div class="title-row">
     <h1><span class="art">CLT art. 895 · OAB Primeira Fase</span>Recurso Ordinário</h1>
+    <a class="slides-btn" href="https://drive.google.com/file/d/1lki0zssOMDKhc179ztJdn2I5GiIQcQDV/view?usp=sharing" target="_blank" rel="noopener">
+      <span>▮</span><span>Slides da aula</span><span class="arw">→</span>
+    </a>
   </div>
   <div class="verbete">
     <span class="tag">Cabimento, prazo, procedimento e formas de julgamento</span>
