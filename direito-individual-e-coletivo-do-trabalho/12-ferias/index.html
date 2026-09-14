@@ -1,230 +1,359 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>12. Férias</title>
-
-<style>
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>12. Férias</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"><style>
 :root{
-  --bg:#f4f7fb;
-  --card:#ffffff;
-  --primary:#2f5bd3;
-  --text:#1f2d3d;
-  --muted:#6b7c93;
-  --border:#d9e2ec;
-  --shadow:0 8px 24px rgba(0,0,0,0.08);
+  --ink:#1b2436;--ink-soft:#414a5c;--paper:#edece5;--surface:#fbfaf7;
+  --accent:#7a2e37;--accent-soft:#a2545f;--iron:#8b8579;
+  --line:rgba(27,36,54,.13);--line-strong:rgba(27,36,54,.22);
+  --green:#166534;--green-bg:#f0fdf4;--green-line:#bbf7d0;
+  --red:#991b1b;--red-bg:#fef2f2;--red-line:#fecaca;
+  --display:"Fraunces",Georgia,serif;--body:"Spectral",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
 }
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:19px;line-height:1.78;-webkit-font-smoothing:antialiased;}
+body::before{content:"";position:fixed;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 34%,var(--ink) 34%,var(--ink) 100%);z-index:50;}
+.wrap{max-width:760px;margin:0 auto;padding:0 22px 72px;}
 
-*{box-sizing:border-box;}
+/* CABEÇALHO */
+.masthead{padding:56px 0 30px;border-bottom:1px solid var(--line-strong);animation:rise .7s cubic-bezier(.2,.7,.2,1) both;}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--accent);display:inline-block;}
+.eyebrow .dot{color:var(--line-strong);}
+.title-row{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;flex-wrap:wrap;}
+h1{font-family:var(--display);font-weight:500;font-size:clamp(2.3rem,6.5vw,3.8rem);line-height:1.04;letter-spacing:-.015em;max-width:14ch;}
+h1 .art{display:block;font-size:.42em;font-weight:600;letter-spacing:.02em;color:var(--accent);font-family:var(--mono);text-transform:uppercase;margin-bottom:.5em;}
+.slides-btn{flex-shrink:0;display:inline-flex;align-items:center;gap:12px;text-decoration:none;background:var(--ink);color:#f4f2ec;border-radius:4px;padding:13px 18px;font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;box-shadow:0 8px 22px -12px rgba(27,36,54,.7);transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s,background .25s;}
+.slides-btn:hover{background:var(--accent);transform:translateY(-2px);}
+.slides-btn .arw{transition:transform .25s;}
+.slides-btn:hover .arw{transform:translateX(4px);}
 
-body{
-  margin:0;
-  font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  line-height:1.7;
-  font-size:18px;
+/* VERBETE */
+.verbete{margin:44px 0 8px;padding:6px 0 6px 30px;border-left:3px solid var(--accent);}
+.verbete .tag{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:14px;}
+.verbete p{font-family:var(--display);font-weight:400;font-size:clamp(1.15rem,2.8vw,1.45rem);line-height:1.45;color:var(--ink);margin:0;}
+
+/* REF */
+.ref{font-family:var(--mono);font-size:.8em;color:var(--iron);background:rgba(139,133,121,.12);padding:2px 7px;border-radius:3px;white-space:nowrap;}
+
+/* SEÇÕES */
+.sec-head{display:flex;gap:16px;align-items:baseline;margin:44px 0 14px;padding-top:26px;border-top:1px solid var(--line);}
+.sec-head .num{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--accent);flex-shrink:0;padding-top:.35em;}
+h2{font-family:var(--display);font-weight:500;font-size:clamp(1.55rem,4vw,1.95rem);line-height:1.14;letter-spacing:-.01em;color:var(--ink);}
+h3{font-family:var(--display);font-weight:600;font-size:1.15rem;color:var(--ink);margin:22px 0 8px;}
+p{margin-bottom:14px;color:var(--ink-soft);}
+
+/* LISTA */
+.blist{list-style:none;padding:0;margin:10px 0 12px;display:flex;flex-direction:column;gap:3px;}
+.blist li{display:grid;grid-template-columns:22px 1fr;gap:8px;font-size:.93em;color:var(--ink-soft);line-height:1.65;padding:8px 0;border-bottom:1px solid var(--line);}
+.blist li:last-child{border-bottom:none;}
+.blist li .bul{color:var(--accent);font-family:var(--mono);font-size:.85em;padding-top:2px;}
+
+/* SUMULA */
+.sumula{margin:10px 0 6px;padding:12px 16px;border-left:2px solid var(--iron);background:var(--paper);border-radius:0 4px 4px 0;font-size:.89em;color:var(--ink-soft);line-height:1.65;}
+.sumula strong{font-family:var(--mono);font-size:.86em;letter-spacing:.08em;text-transform:uppercase;color:var(--iron);display:block;margin-bottom:4px;}
+
+/* NOTA / ALERTA */
+.nota{margin:10px 0 6px;padding:13px 17px;background:rgba(122,46,55,.06);border-left:3px solid var(--accent);border-radius:0 5px 5px 0;font-size:.91em;color:var(--ink-soft);line-height:1.65;}
+.nota strong{color:var(--ink);}
+
+/* TABELA */
+.tbl{margin:12px 0 6px;border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:.9em;}
+.tbl-head{display:grid;background:var(--ink);color:#f4f2ec;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;}
+.tbl-head div,.tbl-row div{padding:9px 14px;}
+.tbl-head div:not(:last-child){border-right:1px solid rgba(255,255,255,.15);}
+.tbl-row{display:grid;border-top:1px solid var(--line);}
+.tbl-row:nth-child(even) div{background:rgba(139,133,121,.04);}
+.tbl-row div{color:var(--ink-soft);display:flex;align-items:center;line-height:1.5;}
+.tbl-row div:not(:last-child){border-right:1px solid var(--line);}
+.tbl-3{grid-template-columns:1fr 1fr 1fr;}
+.tbl-2{grid-template-columns:1fr 1fr;}
+.tbl-head.tbl-3{grid-template-columns:1fr 1fr 1fr;}
+.tbl-head.tbl-2{grid-template-columns:1fr 1fr;}
+
+/* CARDS ACCORDION */
+.cards{display:flex;flex-direction:column;gap:3px;}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;transition:box-shadow .2s;}
+.card:hover{box-shadow:0 4px 18px -8px rgba(27,36,54,.2);}
+.card-btn{width:100%;background:none;border:none;cursor:pointer;display:grid;grid-template-columns:52px 1fr 34px;align-items:center;padding:0;text-align:left;color:inherit;}
+.card-icon{display:flex;align-items:center;justify-content:center;min-height:60px;border-right:1px solid var(--line);font-family:var(--mono);font-weight:700;font-size:11px;color:var(--accent);background:rgba(122,46,55,.05);text-align:center;padding:4px;line-height:1.3;}
+.card-head{padding:13px 16px;}
+.card-num{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--iron);display:block;margin-bottom:3px;}
+.card-title{font-family:var(--display);font-weight:600;font-size:1rem;line-height:1.2;color:var(--ink);}
+.card-chevron{display:flex;align-items:center;justify-content:center;padding-right:14px;color:var(--iron);font-size:13px;transition:transform .3s cubic-bezier(.2,.7,.2,1),color .2s;}
+.card.open .card-chevron{transform:rotate(180deg);color:var(--accent);}
+.card-body{display:none;padding:16px 20px 20px;border-top:1px solid var(--line);}
+.card.open .card-body{display:block;}
+.card-body p{color:var(--ink-soft);font-size:.93em;line-height:1.72;}
+
+/* ===== PLACAR ===== */
+.scoreboard{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:18px 22px;background:var(--surface);border:1px solid var(--line-strong);border-radius:8px;margin-bottom:8px;}
+.score-label{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--iron);}
+.score-nums{display:flex;align-items:baseline;gap:6px;}
+.score-current{font-family:var(--display);font-size:2.6rem;font-weight:600;color:var(--ink);line-height:1;}
+.score-total{font-family:var(--mono);font-size:1rem;color:var(--iron);}
+.score-bar-wrap{flex:1;min-width:120px;height:8px;background:var(--line);border-radius:99px;overflow:hidden;}
+.score-bar{height:100%;width:0%;background:var(--accent);border-radius:99px;transition:width .5s cubic-bezier(.2,.7,.2,1),background .3s;}
+.score-msg{font-family:var(--mono);font-size:12px;color:var(--iron);min-width:80px;}
+.btn-reset{margin-left:auto;border:1px solid var(--line-strong);background:none;color:var(--ink-soft);border-radius:4px;padding:7px 14px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:border-color .2s,color .2s;}
+.btn-reset:hover{border-color:var(--accent);color:var(--accent);}
+
+/* CARD DE QUESTÃO */
+.q-card{background:var(--surface);border:1px solid var(--line);border-radius:8px;margin:14px 0;overflow:hidden;transition:border-color .25s,box-shadow .25s;}
+.q-card.answered-correct{border-color:var(--green-line);box-shadow:0 0 0 2px rgba(22,101,52,.12);}
+.q-card.answered-wrong{border-color:var(--red-line);box-shadow:0 0 0 2px rgba(153,27,27,.10);}
+.q-header{display:flex;align-items:flex-start;gap:12px;padding:16px 18px 12px;}
+.q-badge{flex-shrink:0;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--accent);background:rgba(122,46,55,.09);border:1px solid rgba(122,46,55,.18);border-radius:4px;padding:3px 9px;margin-top:3px;white-space:nowrap;}
+.q-text{font-family:var(--body);font-size:.96em;color:var(--ink);line-height:1.72;flex:1;margin:0;}
+.options{padding:0 18px 16px;display:flex;flex-direction:column;gap:7px;}
+.opt{display:flex;align-items:flex-start;gap:11px;padding:10px 13px;border:1px solid var(--line);border-radius:6px;cursor:pointer;background:var(--paper);transition:border-color .18s,background .18s;text-align:left;width:100%;font-family:var(--body);font-size:.92em;color:var(--ink-soft);line-height:1.6;}
+.opt:hover:not(:disabled){border-color:var(--accent-soft);background:#f7f3f1;}
+.opt-letter{flex-shrink:0;font-family:var(--mono);font-size:.8em;font-weight:700;color:var(--accent);width:20px;padding-top:2px;}
+.opt.selected{border-color:var(--accent);background:rgba(122,46,55,.06);}
+.opt.correct-final{border-color:var(--green);background:var(--green-bg);cursor:default;}
+.opt.correct-final .opt-letter{color:var(--green);}
+.opt.wrong-final{border-color:var(--red);background:var(--red-bg);cursor:default;}
+.opt.wrong-final .opt-letter{color:var(--red);}
+.opt.dimmed{opacity:.42;cursor:default;}
+.q-actions{padding:0 18px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.btn-confirm{display:inline-flex;align-items:center;gap:8px;padding:9px 20px;background:var(--ink);color:#f4f2ec;border:none;border-radius:4px;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;transition:background .2s,transform .2s;}
+.btn-confirm:hover:not(:disabled){background:var(--accent);transform:translateY(-1px);}
+.btn-confirm:disabled{opacity:.35;cursor:default;transform:none;}
+.toggle-gabarito{display:none;align-items:center;gap:7px;border:none;background:none;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--iron);cursor:pointer;transition:color .2s;padding:0;}
+.toggle-gabarito:hover{color:var(--accent);}
+.toggle-gabarito .chev{display:inline-block;font-size:10px;transition:transform .3s cubic-bezier(.2,.7,.2,1);}
+.toggle-gabarito.open .chev{transform:rotate(180deg);}
+.gabarito{border-top:1px solid var(--line);overflow:hidden;max-height:0;transition:max-height .45s cubic-bezier(.2,.7,.2,1);}
+.gabarito.open{max-height:1800px;}
+.gabarito-inner{padding:16px 18px 18px;}
+.gabarito-title{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--iron);margin-bottom:10px;}
+.gabarito-correct{display:flex;align-items:center;gap:10px;padding:9px 13px;background:var(--green-bg);border:1px solid var(--green-line);border-radius:6px;font-family:var(--mono);font-size:.84em;font-weight:700;color:var(--green);margin-bottom:12px;}
+.gabarito-body{font-size:.9em;color:var(--ink-soft);line-height:1.72;}
+.gabarito-body strong{color:var(--ink);}
+.gabarito-body .ref{font-family:var(--mono);font-size:.8em;color:var(--iron);background:rgba(139,133,121,.12);padding:2px 7px;border-radius:3px;white-space:nowrap;}
+.gabarito-body p{margin-bottom:9px;}
+.gabarito-body p:last-child{margin-bottom:0;}
+
+/* RESULTADO */
+.result-banner{display:none;margin:28px 0 0;padding:26px 22px;border:1px solid var(--line-strong);border-radius:8px;background:var(--surface);text-align:center;}
+.result-banner.show{display:block;}
+.result-score{font-family:var(--display);font-size:3.2rem;font-weight:600;color:var(--accent);line-height:1;margin-bottom:6px;}
+.result-label{font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--iron);}
+.result-msg{margin-top:10px;font-size:.94em;color:var(--ink-soft);}
+
+/* VOLTAR */
+.back{margin-top:52px;display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line-strong);border-radius:6px;padding:20px 22px;font-family:var(--mono);font-size:14px;letter-spacing:.04em;transition:border-color .25s,transform .25s;}
+.back .arw{color:var(--accent);transition:transform .25s;font-size:18px;}
+.back:hover{border-color:var(--accent);transform:translateY(-2px);}
+.back:hover .arw{transform:translateX(-4px);}
+
+@keyframes rise{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
+.reveal{opacity:0;transform:translateY(14px);}
+.reveal.in{opacity:1;transform:none;transition:opacity .5s ease,transform .5s cubic-bezier(.2,.7,.2,1);}
+
+@media(max-width:560px){
+  body{font-size:17.5px;}
+  .masthead{padding:40px 0 24px;}
+  .title-row{align-items:stretch;}
+  .slides-btn{width:100%;justify-content:center;}
+  .verbete{padding-left:18px;}
+  .scoreboard{flex-direction:column;align-items:flex-start;gap:10px;}
+  .btn-reset{margin-left:0;}
+  .tbl-3{grid-template-columns:1fr 1fr;}
+  .tbl-head.tbl-3 div:last-child,.tbl-3 .tbl-row div:last-child{display:none;}
 }
-
-.container{
-  max-width:1000px;
-  margin:auto;
-  padding:40px 20px 80px;
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;scroll-behavior:auto;}
+  .reveal{opacity:1;transform:none;}
+  .reveal.in{transition:none;}
 }
+</style></head><body>
+<div class="wrap">
+<header class="masthead">
+  <p class="eyebrow">Direito do Trabalho <span class="dot">·</span> Unidade 3 <span class="dot">·</span> Férias</p>
+  <div class="title-row"><h1><span class="art">Item 12</span>Férias</h1><a class="slides-btn" href="https://drive.google.com/file/d/1zHQrP-lladW79YScfJHwFmpFlhfW_U_b/view?usp=sharing" target="_blank" rel="noopener"><span>▮</span><span>Slides da aula</span><span class="arw">→</span></a></div>
+  <div class="verbete"><span class="tag">Direito fundamental — art. 7º, XVII, CF</span><p>Todo trabalhador urbano, rural ou doméstico tem direito ao <strong>gozo de férias anuais remuneradas</strong> com, pelo menos, <strong>um terço a mais</strong> do que o salário normal. A CLT e a Convenção n. 132 da OIT disciplinam a aquisição, a concessão e o pagamento desse descanso.</p></div>
+</header>
 
-.header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  flex-wrap:wrap;
-}
+<section><div class="sec-head reveal"><span class="num">§ 12.1</span><h2>Fundamento e natureza jurídica</h2></div>
+<p class="reveal">A Constituição Federal, em seu art. 7º, XVII, assegura aos trabalhadores urbanos, rurais e domésticos o “gozo de férias anuais remuneradas com, pelo menos, um terço a mais do que o salário normal”. A CLT, em seus arts. 129 e seguintes, e o Decreto n. 10.088/2019, que promulgou a Convenção n. 132 da OIT sobre férias, disciplinam a matéria.</p>
+<p class="reveal">Sendo remuneradas e computadas, para todos os efeitos, como tempo de serviço <span class="ref">art. 130, § 2º, CLT</span>, as férias caracterizam-se como período de <strong>interrupção do contrato de trabalho</strong>.</p></section>
 
-h1{
-  font-size:34px;
-  color:var(--primary);
-  margin:0 0 20px 0;
-}
+<section><div class="sec-head reveal"><span class="num">§ 12.2</span><h2>Período aquisitivo</h2></div>
+<p class="reveal">O direito a férias depende da implementação de um período aquisitivo, correspondente a <strong>12 meses de vigência do contrato de trabalho</strong>. A cada 12 meses, o empregado adquire novo direito a férias enquanto durar o contrato <span class="ref">art. 130, CLT</span>.</p></section>
 
-.slide-btn{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  background:#fff;
-  padding:14px 20px;
-  border-radius:14px;
-  text-decoration:none;
-  color:var(--text);
-  font-weight:600;
-  box-shadow:var(--shadow);
-  transition:all .2s ease;
-  border:1px solid var(--border);
-}
+<section><div class="sec-head reveal"><span class="num">§ 12.3</span><h2>Duração e faltas</h2></div>
+<p class="reveal">A duração das férias, inclusive para empregados que trabalham em tempo parcial, depende do número de faltas injustificadas no período aquisitivo, na proporção do art. 130 da CLT, sendo de no máximo 30 dias.</p>
+<div class="tbl reveal"><div class="tbl-head tbl-2"><div>Faltas injustificadas</div><div>Dias de férias</div></div><div class="tbl-row tbl-2"><div>Até 5 faltas</div><div><strong>30 dias</strong></div></div><div class="tbl-row tbl-2"><div>De 6 a 14 faltas</div><div><strong>24 dias</strong></div></div><div class="tbl-row tbl-2"><div>De 15 a 23 faltas</div><div><strong>18 dias</strong></div></div><div class="tbl-row tbl-2"><div>De 24 a 32 faltas</div><div><strong>12 dias</strong></div></div></div>
+<p class="reveal">É vedado descontar da remuneração das férias as faltas do empregado ao serviço <span class="ref">art. 130, § 1º, CLT</span>. As faltas justificadas previstas no art. 131 da CLT não reduzem o período de férias.</p></section>
 
-.slide-btn:hover{
-  transform:translateY(-2px);
-  box-shadow:0 10px 28px rgba(0,0,0,0.12);
-}
+<section><div class="sec-head reveal"><span class="num">§ 12.4</span><h2>Fracionamento</h2></div>
+<p class="reveal">Como regra, as férias são concedidas em um só período. Havendo concordância do empregado, podem ser usufruídas em até três períodos <span class="ref">art. 134, caput e § 1º, CLT</span>.</p>
+<div class="cards reveal"><div class="card"><button class="card-btn" aria-expanded="false"><div class="card-icon">1º</div><div class="card-head"><span class="card-num">Período principal</span><span class="card-title">No mínimo 14 dias corridos</span></div><div class="card-chevron">▾</div></button><div class="card-body" role="region"><p>Um dos períodos não poderá ser inferior a 14 dias corridos.</p></div></div><div class="card"><button class="card-btn" aria-expanded="false"><div class="card-icon">2º<br>3º</div><div class="card-head"><span class="card-num">Demais períodos</span><span class="card-title">No mínimo 5 dias corridos cada</span></div><div class="card-chevron">▾</div></button><div class="card-body" role="region"><p>Os outros dois períodos, quando utilizados, não poderão ser inferiores a 5 dias corridos cada.</p></div></div></div>
+<div class="nota reveal"><strong>Faixa etária:</strong> com a revogação do § 2º do art. 134 pela Lei n. 13.467/2017, não há mais vedação ao fracionamento das férias de empregados maiores de 50 anos ou menores de 18 anos.</div></section>
 
-.slide-btn img{
-  width:28px;
-}
+<section><div class="sec-head reveal"><span class="num">§ 12.5</span><h2>Período concessivo e escolha da época</h2></div>
+<p class="reveal">As férias serão concedidas por ato do empregador nos <strong>12 meses subsequentes</strong> ao período aquisitivo <span class="ref">art. 134, CLT</span>. A época será a que melhor consulte os interesses do empregador.</p>
+<ul class="blist reveal"><li><span class="bul">■</span><span>Empregado estudante menor de 18 anos: férias coincidentes com as férias escolares.</span></li><li><span class="bul">■</span><span>Membros de uma mesma família que trabalhem para o mesmo empregador: férias em conjunto, salvo se disso resultar prejuízo para o serviço.</span></li></ul>
+<p class="reveal">A concessão será comunicada por escrito ao empregado com antecedência mínima de <strong>30 dias</strong> <span class="ref">art. 135, CLT</span>. É vedado iniciar as férias nos dois dias que antecedem feriado ou repouso semanal remunerado <span class="ref">art. 134, § 3º, CLT</span>.</p></section>
 
-.card{
-  background:var(--card);
-  padding:28px;
-  border-radius:16px;
-  box-shadow:var(--shadow);
-  margin-bottom:25px;
-}
+<section><div class="sec-head reveal"><span class="num">§ 12.6</span><h2>Remuneração e pagamento</h2></div>
+<p class="reveal">A remuneração das férias equivale à remuneração normal do empregado acrescida de <strong>1/3 constitucional</strong> <span class="ref">art. 142, CLT; art. 7º, XVII, CF</span>. O cálculo da remuneração normal segue as regras do art. 142 da CLT.</p>
+<p class="reveal">O pagamento deve ser feito até <strong>2 dias antes</strong> do início das férias, mediante recibo com indicação do início e do término do período <span class="ref">art. 145, CLT</span>.</p>
+<div class="nota reveal"><strong>ADPF 501:</strong> o STF declarou inconstitucional a Súmula 450 do TST, que impunha o pagamento em dobro, incluído o terço constitucional, quando o empregador atrasava o pagamento das férias.</div></section>
 
-.card h2{
-  color:var(--primary);
-  margin-top:0;
-}
+<section><div class="sec-head reveal"><span class="num">§ 12.7</span><h2>Concessão fora do prazo</h2></div>
+<p class="reveal">A concessão após o período concessivo obriga o empregador a pagar em dobro a respectiva remuneração: <strong>(remuneração normal + 1/3) × 2</strong>. Vencido o período sem concessão, o empregado pode ajuizar reclamação trabalhista para que a época do gozo seja fixada por sentença <span class="ref">art. 137, CLT</span>.</p>
+<div class="sumula reveal"><strong>Súmula 7, TST</strong>A indenização pelo não deferimento das férias no tempo oportuno será calculada com base na remuneração devida ao empregado na época da reclamação ou, se for o caso, na época da extinção do contrato.</div></section>
 
-ul{
-  padding-left:22px;
-}
+<section><div class="sec-head reveal"><span class="num">§ 12.8</span><h2>Irrenunciabilidade e trabalho nas férias</h2></div>
+<p class="reveal">O direito a férias é irrenunciável. O descanso deve ser efetivamente observado e o empregado não poderá prestar serviços a outro empregador durante as férias, salvo se estiver obrigado a fazê-lo em virtude de contrato de trabalho regularmente mantido com aquele <span class="ref">art. 138, CLT</span>.</p></section>
 
-.highlight{
-  background:#eef3ff;
-  padding:16px;
-  border-left:4px solid var(--primary);
-  border-radius:8px;
-  margin:20px 0;
-}
+<section><div class="sec-head reveal"><span class="num">§ 12.9</span><h2>Abono pecuniário</h2></div>
+<p class="reveal">É facultado ao empregado, inclusive ao contratado em tempo parcial, converter <strong>1/3 do período de férias</strong> a que tiver direito em trabalho e receber o abono pecuniário correspondente aos dias trabalhados <span class="ref">art. 143, CLT</span>.</p>
+<ul class="blist reveal"><li><span class="bul">■</span><span>Pedido: até 15 dias antes do término do período aquisitivo.</span></li><li><span class="bul">■</span><span>Pagamento: no mesmo prazo e da mesma forma da remuneração das férias <span class="ref">art. 145, CLT</span>.</span></li></ul></section>
 
-.back-btn{
-  display:inline-block;
-  margin-top:30px;
-  padding:14px 26px;
-  border-radius:14px;
-  background:#fff;
-  border:1px solid var(--border);
-  text-decoration:none;
-  color:var(--text);
-  font-weight:600;
-  box-shadow:var(--shadow);
-  transition:all .2s ease;
-}
+<section><div class="sec-head reveal"><span class="num">§ 12.10</span><h2>Férias coletivas</h2></div>
+<p class="reveal">O art. 139 da CLT faculta ao empregador conceder férias coletivas a todos os empregados da empresa ou apenas aos empregados de determinados estabelecimentos ou setores.</p>
+<p class="reveal">Podem ser fracionadas em até <strong>dois períodos anuais</strong>, desde que nenhum deles seja inferior a <strong>10 dias</strong>. A concessão deve ser comunicada, com antecedência mínima de 15 dias:</p>
+<ul class="blist reveal"><li><span class="bul">a)</span><span>à Delegacia Regional do Trabalho DRT;</span></li><li><span class="bul">b)</span><span>ao sindicato dos trabalhadores; e</span></li><li><span class="bul">c)</span><span>aos próprios trabalhadores.</span></li></ul></section>
 
-.back-btn:hover{
-  transform:translateY(-2px);
-}
+<section><div class="sec-head reveal"><span class="num">§ 12.11</span><h2>Cessação do contrato de trabalho</h2></div>
+<p class="reveal">Na cessação do contrato, qualquer que seja a causa, será devida a remuneração simples ou em dobro, conforme o caso, correspondente ao período de férias cujo direito já tenha sido adquirido — as chamadas férias indenizadas.</p>
+<p class="reveal">Também são devidas férias proporcionais referentes ao período aquisitivo incompleto, na proporção de <strong>1/12 por mês completo</strong> de serviço ou fração superior a 14 dias <span class="ref">arts. 146 e 147, CLT</span>.</p>
+<div class="cards reveal"><div class="card"><button class="card-btn" aria-expanded="false"><div class="card-icon">171</div><div class="card-head"><span class="card-num">Súmula 171, TST</span><span class="card-title">Férias proporcionais e justa causa</span></div><div class="card-chevron">▾</div></button><div class="card-body"><p>Salvo na hipótese de dispensa por justa causa, a extinção contratual sujeita o empregador ao pagamento das férias proporcionais, ainda que incompleto o período aquisitivo de 12 meses.</p></div></div><div class="card"><button class="card-btn" aria-expanded="false"><div class="card-icon">262</div><div class="card-head"><span class="card-num">Súmula 262, TST</span><span class="card-title">Pedido de demissão</span></div><div class="card-chevron">▾</div></button><div class="card-body"><p>O empregado que se demite antes de completar 12 meses de serviço tem direito a férias proporcionais.</p></div></div><div class="card"><button class="card-btn" aria-expanded="false"><div class="card-icon">14</div><div class="card-head"><span class="card-num">Súmula 14, TST</span><span class="card-title">Culpa recíproca</span></div><div class="card-chevron">▾</div></button><div class="card-body"><p>O dispensado por justa causa não tem direito a férias proporcionais. Em caso de culpa recíproca, o empregado tem direito a 50% das férias proporcionais.</p></div></div></div></section>
 
-@media(max-width:768px){
-  h1{font-size:26px;}
-  body{font-size:17px;}
-}
-</style>
-</head>
+<section><div class="sec-head reveal"><span class="num">§ 12.12</span><h2>Prescrição</h2></div><p class="reveal">A prescrição do direito de reclamar a concessão das férias e o respectivo pagamento é contada do término do período concessivo ou, se for o caso, da cessação do contrato de trabalho <span class="ref">art. 149, CLT</span>.</p></section>
 
-<body>
-
-<div class="container">
-
-<div class="header">
-<h1>12. Férias</h1>
-
-<a class="slide-btn" 
-   href="https://drive.google.com/file/d/1zHQrP-lladW79YScfJHwFmpFlhfW_U_b/view?usp=sharing" 
-   target="_blank">
-   <img src="https://cdn-icons-png.flaticon.com/512/888/888879.png">
-   Slides
-</a>
+<section><div class="sec-head reveal"><span class="num">REVISÃO</span><h2>Teste seus conhecimentos</h2></div>
+<div class="scoreboard reveal"><div><div class="score-label">Pontuação</div><div class="score-nums"><span class="score-current" id="sc-current">0</span><span class="score-total">/ 3</span></div></div><div class="score-bar-wrap"><div class="score-bar" id="sc-bar"></div></div><div class="score-msg" id="sc-msg">0 respondidas</div><button class="btn-reset" onclick="resetQuiz()">Reiniciar</button></div>
+  <div class="q-card" id="q1">
+  <div class="q-header"><span class="q-badge">Questão 58 · XVIII Exame · FGV</span><p class="q-text">Jorge, Luiz e Pedro trabalham na mesma empresa. Na época designada para o gozo das férias, eles foram informados pelo empregador que Jorge não teria direito às férias porque havia faltado, injustificadamente, 34 dias ao longo do período aquisitivo; que Luiz teria que fracionar as férias em três períodos de 10 dias e que Pedro deveria converter 2/3 das férias em abono pecuniário, podendo gozar de apenas 1/3 destas, em razão da necessidade de serviço do setor de ambos. Diante disso, assinale a afirmativa correta.</p></div>
+  <div class="options"><button class="opt" data-q="1" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>A informação do empregador foi correta nos três casos.</span></button><button class="opt" data-q="1" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Apenas no caso de Jorge o empregador está correto.</span></button><button class="opt" data-q="1" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>O empregador agiu corretamente nos casos de Jorge e de Luiz, mas não no de Pedro.</span></button><button class="opt" data-q="1" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>O empregador está errado nas três hipóteses.</span></button></div>
+  <div class="q-actions"><button class="btn-confirm" id="q1-btn" disabled onclick="confirmAnswer(1,'B')">Confirmar →</button><button class="toggle-gabarito" id="q1-tog" onclick="toggleGabarito(1)">Gabarito comentado <span class="chev">▾</span></button></div>
+  <div class="gabarito" id="q1-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Alternativa B — Somente a situação de Jorge está correta</div><div class="gabarito-body"><p><strong>A situação de Jorge está correta:</strong> com 34 faltas injustificadas, ele ultrapassou o limite de 32 faltas previsto no <span class="ref">art. 130, CLT</span>.</p><p><strong>A situação de Luiz está errada:</strong> pela redação atual do <span class="ref">art. 134, § 1º, CLT</span>, o fracionamento exige concordância do empregado e pode ocorrer em até três períodos, sendo um de no mínimo 14 dias corridos e os demais de no mínimo 5 dias cada. Três períodos de 10 dias não atendem à regra.</p><p><strong>A situação de Pedro está errada:</strong> a conversão em abono pecuniário é faculdade do empregado e limita-se a 1/3 do período de férias <span class="ref">art. 143, CLT</span>.</p><p><strong>Nota de atualização:</strong> a justificativa original da questão menciona a regra anterior à Reforma Trabalhista. O gabarito permanece B sob a legislação vigente.</p></div></div></div>
 </div>
-
-<div class="card">
-<h2>Fundamento Constitucional e Legal</h2>
-<p>A Constituição Federal, em seu art. 7º, XVII, assegura aos trabalhadores urbanos, rurais e domésticos o “gozo de férias anuais remuneradas com, pelo menos, um terço a mais do que o salário normal”.</p>
-<p>A CLT (arts. 129 e seguintes) e o Decreto nº 10.088/2019 (Convenção nº 132 da OIT) disciplinam a matéria.</p>
-<p>As férias são período de interrupção do contrato de trabalho, sendo remuneradas e computadas como tempo de serviço (art. 130, §2º, CLT).</p>
+<div class="q-card" id="q2">
+  <div class="q-header"><span class="q-badge">Questão 59 · 39º Exame · FGV</span><p class="q-text">Uma família, composta de pai, mãe e uma filha, respectivamente Jorge, Paula e Rita, trabalha na mesma sociedade empresária como funcionários do departamento de produção. Rita tem 16 anos de idade, estuda na parte da manhã em uma escola vizinha ao local de trabalho, e está cursando o primeiro ano do ensino médio. Os pais são responsáveis pelo setor de qualidade, que não conta com nenhum outro funcionário. Os três procuraram você, como advogado(a), porque desejam fazer coincidir as férias escolares de Rita, no mês de julho, com as férias de Jorge e Paula, a fim de viabilizar uma viagem familiar. Entretanto, o empregador indeferiu o requerimento das férias de Jorge e Paula, tendo deferido apenas o de Rita. Sobre o direito às férias, assinale a afirmativa correta.</p></div>
+  <div class="options"><button class="opt" data-q="2" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Cabe o ajuizamento de reclamação trabalhista requerendo que o juiz marque as férias dos 3 membros da mesma família, pois Rita tem direito às férias no período escolar e deverá ser acompanhada pelos pais.</span></button><button class="opt" data-q="2" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Cabe aos empregados a designação do período de férias, inexistindo direito ao empregador de indeferi-las.</span></button><button class="opt" data-q="2" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Os três poderão gozar férias juntos, mas Rita não tem direito de requerer férias concomitantemente com o período de férias escolares.</span></button><button class="opt" data-q="2" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Rita tem direito a fazer coincidir suas férias no emprego com as férias escolares e seus pais terão direito a gozar férias no mesmo período, desde que isso não resulte prejuízo para o serviço, causa do indeferimento pelo empregador.</span></button></div>
+  <div class="q-actions"><button class="btn-confirm" id="q2-btn" disabled onclick="confirmAnswer(2,'D')">Confirmar →</button><button class="toggle-gabarito" id="q2-tog" onclick="toggleGabarito(2)">Gabarito comentado <span class="chev">▾</span></button></div>
+  <div class="gabarito" id="q2-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Alternativa D — Férias escolares e ausência de prejuízo ao serviço</div><div class="gabarito-body"><p><strong>D) Correta.</strong> A época das férias é, em regra, a que melhor atenda aos interesses do empregador. O estudante menor de 18 anos tem direito à coincidência com as férias escolares <span class="ref">art. 136, § 2º, CLT</span>. Os membros da família que trabalhem no mesmo estabelecimento podem gozar férias no mesmo período, se assim desejarem e se disso não resultar prejuízo para o serviço <span class="ref">art. 136, § 1º, CLT</span>.</p><p><strong>A) Errada.</strong> O direito dos pais está condicionado à inexistência de prejuízo para o serviço. <strong>B) Errada.</strong> A designação não cabe livremente aos empregados. <strong>C) Errada.</strong> Rita possui expressamente o direito de fazer coincidir as férias com as escolares.</p></div></div></div>
 </div>
-
-<div class="card">
-<h2>Período Aquisitivo e Duração</h2>
-<p>O direito a férias surge após 12 meses de vigência do contrato (período aquisitivo).</p>
-
-<ul>
-<li>Até 5 faltas – 30 dias</li>
-<li>De 6 a 14 faltas – 24 dias</li>
-<li>De 15 a 23 faltas – 18 dias</li>
-<li>De 24 a 32 faltas – 12 dias</li>
-</ul>
-
-<p>Faltas justificadas (art. 131 da CLT) não reduzem as férias.</p>
+<div class="q-card" id="q3">
+  <div class="q-header"><span class="q-badge">Questão 60 · 42º Exame · FGV</span><p class="q-text">Leopoldo foi contratado, em 2020, por uma sociedade empresária de terceirização, como auxiliar de limpeza. Ele cumpre jornada em regime de tempo parcial de 22 horas semanais, conforme previsto e autorizado na norma coletiva da sua categoria. Após um ano de trabalho sem faltas injustificadas, é chegado o momento de Leopoldo fruir férias. Sobre a solicitação de Leopoldo, considerando o que dispõe a CLT, assinale a afirmativa correta.</p></div>
+  <div class="options"><button class="opt" data-q="3" data-val="A" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Por ser empregado em regime de tempo parcial, ele não terá direito a férias remuneradas.</span></button><button class="opt" data-q="3" data-val="B" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Tal qual os demais empregados, ele terá direito a 30 dias de férias com adicional de 1/3.</span></button><button class="opt" data-q="3" data-val="C" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Ele somente terá direito a férias se isso estiver expressamente previsto na convenção coletiva de sua categoria.</span></button><button class="opt" data-q="3" data-val="D" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Por cumprir apenas a metade da jornada dos demais empregados, ele terá direito a 15 dias de férias com adicional de 1/3.</span></button></div>
+  <div class="q-actions"><button class="btn-confirm" id="q3-btn" disabled onclick="confirmAnswer(3,'B')">Confirmar →</button><button class="toggle-gabarito" id="q3-tog" onclick="toggleGabarito(3)">Gabarito comentado <span class="chev">▾</span></button></div>
+  <div class="gabarito" id="q3-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Alternativa B — Tempo parcial também assegura 30 dias</div><div class="gabarito-body"><p><strong>B) Correta.</strong> Leopoldo tem direito a 30 dias de férias e ao adicional de 1/3, pois não teve faltas injustificadas. A Lei n. 13.467/2017 revogou o art. 130-A da CLT, eliminando a antiga diferenciação da duração das férias no regime de tempo parcial.</p><p><strong>A) Errada.</strong> O regime parcial não elimina as férias remuneradas. <strong>C) Errada.</strong> O direito decorre da lei e não depende de previsão coletiva. <strong>D) Errada.</strong> A duração das férias não é reduzida proporcionalmente à jornada semanal.</p></div></div></div>
 </div>
-
-<div class="card">
-<h2>Fracionamento</h2>
-<p>Como regra, as férias são concedidas em um único período. Contudo, podem ser divididas em até três períodos, sendo:</p>
-
-<ul>
-<li>Um período mínimo de 14 dias corridos;</li>
-<li>Os demais com no mínimo 5 dias corridos cada.</li>
-</ul>
-
-<p>Não há mais restrição para maiores de 50 anos ou menores de 18 anos (Reforma Trabalhista).</p>
+<div class="result-banner" id="result-banner"><div class="result-score" id="result-score">0/3</div><div class="result-label">Resultado final</div><div class="result-msg" id="result-msg"></div></div></section>
+<a class="back" href="../index.html"><span class="arw">←</span><span>Voltar ao índice da disciplina</span></a>
 </div>
+<script>
+/* accordion de conteúdo */
+(function(){
+  var cards = document.querySelectorAll('.card');
+  cards.forEach(function(card){
+    var btn = card.querySelector('.card-btn');
+    if(!btn) return;
+    btn.addEventListener('click', function(){
+      var isOpen = card.classList.contains('open');
+      cards.forEach(function(c){c.classList.remove('open');var b=c.querySelector('.card-btn');if(b)b.setAttribute('aria-expanded','false');});
+      if(!isOpen){card.classList.add('open');btn.setAttribute('aria-expanded','true');}
+    });
+  });
+})();
 
-<div class="card">
-<h2>Período Concessivo</h2>
-<p>As férias devem ser concedidas nos 12 meses subsequentes ao período aquisitivo.</p>
+/* reveal on scroll */
+(function(){
+  var items=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){items.forEach(function(el){el.classList.add('in');});return;}
+  var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.08,rootMargin:'0px 0px -3% 0px'});
+  items.forEach(function(el,i){el.style.transitionDelay=(i*30)+'ms';io.observe(el);});
+})();
 
-<p>A comunicação deve ocorrer com antecedência mínima de 30 dias.</p>
+/* ── QUIZ ── */
+var TOTAL=3, answered={};
 
-<p>É vedado iniciar férias dois dias antes de feriado ou repouso semanal remunerado.</p>
-</div>
+function selectOpt(el){
+  var q=el.dataset.q;
+  if(answered[q]!==undefined) return;
+  document.querySelectorAll('[data-q="'+q+'"]').forEach(function(o){o.classList.remove('selected');});
+  el.classList.add('selected');
+  document.getElementById('q'+q+'-btn').disabled=false;
+}
 
-<div class="card">
-<h2>Remuneração</h2>
-<p>A remuneração equivale ao salário normal acrescido de 1/3 constitucional.</p>
+function confirmAnswer(qNum,correctVal){
+  var opts=document.querySelectorAll('[data-q="'+qNum+'"]');
+  var btn=document.getElementById('q'+qNum+'-btn');
+  var card=document.getElementById('q'+qNum);
+  var tog=document.getElementById('q'+qNum+'-tog');
+  var chosen=null;
+  opts.forEach(function(o){if(o.classList.contains('selected'))chosen=o;});
+  if(!chosen) return;
+  var isCorrect=chosen.dataset.val===correctVal;
+  answered[qNum]=isCorrect;
+  opts.forEach(function(o){
+    o.disabled=true;
+    if(o.dataset.val===correctVal){o.classList.add('correct-final');}
+    else if(o.classList.contains('selected')&&!isCorrect){o.classList.add('wrong-final');}
+    else{o.classList.add('dimmed');}
+    o.classList.remove('selected');
+  });
+  card.classList.add(isCorrect?'answered-correct':'answered-wrong');
+  btn.disabled=true; btn.style.display='none';
+  tog.style.display='inline-flex';
+  updateScore(); checkAllDone();
+}
 
-<p>O pagamento deve ocorrer até 2 dias antes do início das férias.</p>
+function toggleGabarito(qNum){
+  var gab=document.getElementById('q'+qNum+'-gab');
+  var tog=document.getElementById('q'+qNum+'-tog');
+  var open=gab.classList.toggle('open');
+  tog.classList.toggle('open',open);
+}
 
-<div class="highlight">
-O STF declarou inconstitucional a Súmula 450 do TST (ADPF 501). O simples atraso no pagamento não gera automaticamente pagamento em dobro.
-</div>
+function updateScore(){
+  var done=Object.keys(answered).length;
+  var correct=Object.values(answered).filter(Boolean).length;
+  var pct=TOTAL>0?(correct/TOTAL)*100:0;
+  document.getElementById('sc-current').textContent=correct;
+  document.getElementById('sc-bar').style.width=pct+'%';
+  document.getElementById('sc-bar').style.background=pct>=70?'#166534':pct>=40?'#d97706':'#991b1b';
+  document.getElementById('sc-msg').textContent=done+' respondida'+(done!==1?'s':'');
+}
 
-<p>Se as férias não forem concedidas dentro do período concessivo, o empregador deverá pagar em dobro.</p>
-</div>
+function checkAllDone(){
+  if(Object.keys(answered).length<TOTAL) return;
+  var correct=Object.values(answered).filter(Boolean).length;
+  var banner=document.getElementById('result-banner');
+  var score=document.getElementById('result-score');
+  var msg=document.getElementById('result-msg');
+  score.textContent=correct+'/'+TOTAL;
+  var pct=correct/TOTAL;
+  if(pct===1) msg.textContent='🎉 Parabéns! Gabarito perfeito — você domina o tema.';
+  else if(pct>=.75) msg.textContent='✅ Muito bem! Revise os pontos que errou e estará pronto.';
+  else if(pct>=.5) msg.textContent='📖 Resultado razoável. Revise os comentários com atenção.';
+  else msg.textContent='🔁 Reforce o estudo e tente novamente. Os comentários ajudam!';
+  banner.classList.add('show');
+  banner.scrollIntoView({behavior:'smooth',block:'center'});
+}
 
-<div class="card">
-<h2>Abono Pecuniário</h2>
-<p>O empregado pode converter 1/3 das férias em abono (venda de férias).</p>
-<p>O requerimento deve ser feito até 15 dias antes do término do período aquisitivo.</p>
-</div>
-
-<div class="card">
-<h2>Férias Coletivas</h2>
-<p>Podem ser concedidas a todos ou a determinados setores da empresa.</p>
-<p>Devem ser comunicadas com antecedência mínima de 15 dias ao sindicato, trabalhadores e DRT.</p>
-</div>
-
-<div class="card">
-<h2>Férias na Rescisão</h2>
-<p>Na cessação do contrato são devidas:</p>
-
-<ul>
-<li>Férias vencidas (simples ou em dobro);</li>
-<li>Férias proporcionais (1/12 por mês ou fração superior a 14 dias).</li>
-</ul>
-
-<p>Súmula 171 do TST: devidas férias proporcionais salvo justa causa.</p>
-<p>Súmula 262 do TST: pedido de demissão gera direito a férias proporcionais.</p>
-<p>Súmula 14 do TST: culpa recíproca gera direito a 50%.</p>
-</div>
-
-<div class="card">
-<h2>Prescrição</h2>
-<p>Conta-se do término do período concessivo ou da cessação do contrato (art. 149 da CLT).</p>
-</div>
-
-<a class="back-btn" href="../index.html">← Voltar ao índice da disciplina</a>
-
-</div>
-
-</body>
-</html>
-
+function resetQuiz(){
+  answered={};
+  for(var q=1;q<=TOTAL;q++){
+    document.querySelectorAll('[data-q="'+q+'"]').forEach(function(o){
+      o.disabled=false; o.classList.remove('selected','correct-final','wrong-final','dimmed');
+    });
+    document.getElementById('q'+q).classList.remove('answered-correct','answered-wrong');
+    var btn=document.getElementById('q'+q+'-btn');
+    btn.disabled=true; btn.style.display='';
+    var tog=document.getElementById('q'+q+'-tog');
+    tog.style.display='none'; tog.classList.remove('open');
+    document.getElementById('q'+q+'-gab').classList.remove('open');
+  }
+  document.getElementById('sc-current').textContent='0';
+  document.getElementById('sc-bar').style.width='0%';
+  document.getElementById('sc-msg').textContent='0 respondidas';
+  document.getElementById('result-banner').classList.remove('show');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script></body></html>
