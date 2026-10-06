@@ -1,234 +1,189 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>14. Alteração do Contrato de Trabalho</title>
-
-<style>
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>14. Alteração do Contrato de Trabalho</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"><style>
 :root{
-  --bg:#eaf3ff;
-  --panel:#f8fbff;
-  --card:#ffffff;
-  --title:#1f4fd8;
-  --text:#0f172a;
-  --muted:#475569;
-  --border:rgba(15,23,42,.14);
-  --shadow:0 14px 34px rgba(15,23,42,.12);
-  --blueSoft:#e8f0ff;
-  --greenSoft:#ecfdf5;
-  --orangeSoft:#fff7ed;
-  --purpleSoft:#f5f3ff;
-  --redSoft:#fef2f2;
+  --ink:#1b2436;--ink-soft:#414a5c;--paper:#edece5;--surface:#fbfaf7;
+  --accent:#7a2e37;--accent-soft:#a2545f;--iron:#8b8579;
+  --line:rgba(27,36,54,.13);--line-strong:rgba(27,36,54,.22);
+  --green:#166534;--green-bg:#f0fdf4;--green-line:#bbf7d0;
+  --red:#991b1b;--red-bg:#fef2f2;--red-line:#fecaca;
+  --display:"Fraunces",Georgia,serif;--body:"Spectral",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:19px;line-height:1.78;-webkit-font-smoothing:antialiased;}
+body::before{content:"";position:fixed;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 34%,var(--ink) 34%,var(--ink) 100%);z-index:50;}
+.wrap{max-width:760px;margin:0 auto;padding:0 22px 72px;}
+
+/* CABEÇALHO */
+.masthead{padding:56px 0 30px;border-bottom:1px solid var(--line-strong);animation:rise .7s cubic-bezier(.2,.7,.2,1) both;}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--accent);display:inline-block;}
+.eyebrow .dot{color:var(--line-strong);}
+.title-row{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;flex-wrap:wrap;}
+h1{font-family:var(--display);font-weight:500;font-size:clamp(2.3rem,6.5vw,3.8rem);line-height:1.04;letter-spacing:-.015em;max-width:14ch;}
+h1 .art{display:block;font-size:.42em;font-weight:600;letter-spacing:.02em;color:var(--accent);font-family:var(--mono);text-transform:uppercase;margin-bottom:.5em;}
+.slides-btn{flex-shrink:0;display:inline-flex;align-items:center;gap:12px;text-decoration:none;background:var(--ink);color:#f4f2ec;border-radius:4px;padding:13px 18px;font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;box-shadow:0 8px 22px -12px rgba(27,36,54,.7);transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s,background .25s;}
+.slides-btn:hover{background:var(--accent);transform:translateY(-2px);}
+.slides-btn .arw{transition:transform .25s;}
+.slides-btn:hover .arw{transform:translateX(4px);}
+
+/* VERBETE */
+.verbete{margin:44px 0 8px;padding:6px 0 6px 30px;border-left:3px solid var(--accent);}
+.verbete .tag{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:14px;}
+.verbete p{font-family:var(--display);font-weight:400;font-size:clamp(1.15rem,2.8vw,1.45rem);line-height:1.45;color:var(--ink);margin:0;}
+
+/* REF */
+.ref{font-family:var(--mono);font-size:.8em;color:var(--iron);background:rgba(139,133,121,.12);padding:2px 7px;border-radius:3px;white-space:nowrap;}
+
+/* SEÇÕES */
+.sec-head{display:flex;gap:16px;align-items:baseline;margin:44px 0 14px;padding-top:26px;border-top:1px solid var(--line);}
+.sec-head .num{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--accent);flex-shrink:0;padding-top:.35em;}
+h2{font-family:var(--display);font-weight:500;font-size:clamp(1.55rem,4vw,1.95rem);line-height:1.14;letter-spacing:-.01em;color:var(--ink);}
+h3{font-family:var(--display);font-weight:600;font-size:1.15rem;color:var(--ink);margin:22px 0 8px;}
+p{margin-bottom:14px;color:var(--ink-soft);}
+
+/* LISTA */
+.blist{list-style:none;padding:0;margin:10px 0 12px;display:flex;flex-direction:column;gap:3px;}
+.blist li{display:grid;grid-template-columns:22px 1fr;gap:8px;font-size:.93em;color:var(--ink-soft);line-height:1.65;padding:8px 0;border-bottom:1px solid var(--line);}
+.blist li:last-child{border-bottom:none;}
+.blist li .bul{color:var(--accent);font-family:var(--mono);font-size:.85em;padding-top:2px;}
+
+/* SUMULA */
+.sumula{margin:10px 0 6px;padding:12px 16px;border-left:2px solid var(--iron);background:var(--paper);border-radius:0 4px 4px 0;font-size:.89em;color:var(--ink-soft);line-height:1.65;}
+.sumula strong{font-family:var(--mono);font-size:.86em;letter-spacing:.08em;text-transform:uppercase;color:var(--iron);display:block;margin-bottom:4px;}
+
+/* NOTA / ALERTA */
+.nota{margin:10px 0 6px;padding:13px 17px;background:rgba(122,46,55,.06);border-left:3px solid var(--accent);border-radius:0 5px 5px 0;font-size:.91em;color:var(--ink-soft);line-height:1.65;}
+.nota strong{color:var(--ink);}
+
+/* TABELA */
+.tbl{margin:12px 0 6px;border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:.9em;}
+.tbl-head{display:grid;background:var(--ink);color:#f4f2ec;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;}
+.tbl-head div,.tbl-row div{padding:9px 14px;}
+.tbl-head div:not(:last-child){border-right:1px solid rgba(255,255,255,.15);}
+.tbl-row{display:grid;border-top:1px solid var(--line);}
+.tbl-row:nth-child(even) div{background:rgba(139,133,121,.04);}
+.tbl-row div{color:var(--ink-soft);display:flex;align-items:center;line-height:1.5;}
+.tbl-row div:not(:last-child){border-right:1px solid var(--line);}
+.tbl-3{grid-template-columns:1fr 1fr 1fr;}
+.tbl-2{grid-template-columns:1fr 1fr;}
+.tbl-head.tbl-3{grid-template-columns:1fr 1fr 1fr;}
+.tbl-head.tbl-2{grid-template-columns:1fr 1fr;}
+
+/* CARDS ACCORDION */
+.cards{display:flex;flex-direction:column;gap:3px;}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;transition:box-shadow .2s;}
+.card:hover{box-shadow:0 4px 18px -8px rgba(27,36,54,.2);}
+.card-btn{width:100%;background:none;border:none;cursor:pointer;display:grid;grid-template-columns:52px 1fr 34px;align-items:center;padding:0;text-align:left;color:inherit;}
+.card-icon{display:flex;align-items:center;justify-content:center;min-height:60px;border-right:1px solid var(--line);font-family:var(--mono);font-weight:700;font-size:11px;color:var(--accent);background:rgba(122,46,55,.05);text-align:center;padding:4px;line-height:1.3;}
+.card-head{padding:13px 16px;}
+.card-num{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--iron);display:block;margin-bottom:3px;}
+.card-title{font-family:var(--display);font-weight:600;font-size:1rem;line-height:1.2;color:var(--ink);}
+.card-chevron{display:flex;align-items:center;justify-content:center;padding-right:14px;color:var(--iron);font-size:13px;transition:transform .3s cubic-bezier(.2,.7,.2,1),color .2s;}
+.card.open .card-chevron{transform:rotate(180deg);color:var(--accent);}
+.card-body{display:none;padding:16px 20px 20px;border-top:1px solid var(--line);}
+.card.open .card-body{display:block;}
+.card-body p{color:var(--ink-soft);font-size:.93em;line-height:1.72;}
+
+/* ===== PLACAR ===== */
+.scoreboard{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:18px 22px;background:var(--surface);border:1px solid var(--line-strong);border-radius:8px;margin-bottom:8px;}
+.score-label{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--iron);}
+.score-nums{display:flex;align-items:baseline;gap:6px;}
+.score-current{font-family:var(--display);font-size:2.6rem;font-weight:600;color:var(--ink);line-height:1;}
+.score-total{font-family:var(--mono);font-size:1rem;color:var(--iron);}
+.score-bar-wrap{flex:1;min-width:120px;height:8px;background:var(--line);border-radius:99px;overflow:hidden;}
+.score-bar{height:100%;width:0%;background:var(--accent);border-radius:99px;transition:width .5s cubic-bezier(.2,.7,.2,1),background .3s;}
+.score-msg{font-family:var(--mono);font-size:12px;color:var(--iron);min-width:80px;}
+.btn-reset{margin-left:auto;border:1px solid var(--line-strong);background:none;color:var(--ink-soft);border-radius:4px;padding:7px 14px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:border-color .2s,color .2s;}
+.btn-reset:hover{border-color:var(--accent);color:var(--accent);}
+
+/* CARD DE QUESTÃO */
+.q-card{background:var(--surface);border:1px solid var(--line);border-radius:8px;margin:14px 0;overflow:hidden;transition:border-color .25s,box-shadow .25s;}
+.q-card.answered-correct{border-color:var(--green-line);box-shadow:0 0 0 2px rgba(22,101,52,.12);}
+.q-card.answered-wrong{border-color:var(--red-line);box-shadow:0 0 0 2px rgba(153,27,27,.10);}
+.q-header{display:flex;align-items:flex-start;gap:12px;padding:16px 18px 12px;}
+.q-badge{flex-shrink:0;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--accent);background:rgba(122,46,55,.09);border:1px solid rgba(122,46,55,.18);border-radius:4px;padding:3px 9px;margin-top:3px;white-space:nowrap;}
+.q-text{font-family:var(--body);font-size:.96em;color:var(--ink);line-height:1.72;flex:1;margin:0;}
+.options{padding:0 18px 16px;display:flex;flex-direction:column;gap:7px;}
+.opt{display:flex;align-items:flex-start;gap:11px;padding:10px 13px;border:1px solid var(--line);border-radius:6px;cursor:pointer;background:var(--paper);transition:border-color .18s,background .18s;text-align:left;width:100%;font-family:var(--body);font-size:.92em;color:var(--ink-soft);line-height:1.6;}
+.opt:hover:not(:disabled){border-color:var(--accent-soft);background:#f7f3f1;}
+.opt-letter{flex-shrink:0;font-family:var(--mono);font-size:.8em;font-weight:700;color:var(--accent);width:20px;padding-top:2px;}
+.opt.selected{border-color:var(--accent);background:rgba(122,46,55,.06);}
+.opt.correct-final{border-color:var(--green);background:var(--green-bg);cursor:default;}
+.opt.correct-final .opt-letter{color:var(--green);}
+.opt.wrong-final{border-color:var(--red);background:var(--red-bg);cursor:default;}
+.opt.wrong-final .opt-letter{color:var(--red);}
+.opt.dimmed{opacity:.42;cursor:default;}
+.q-actions{padding:0 18px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.btn-confirm{display:inline-flex;align-items:center;gap:8px;padding:9px 20px;background:var(--ink);color:#f4f2ec;border:none;border-radius:4px;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;transition:background .2s,transform .2s;}
+.btn-confirm:hover:not(:disabled){background:var(--accent);transform:translateY(-1px);}
+.btn-confirm:disabled{opacity:.35;cursor:default;transform:none;}
+.toggle-gabarito{display:none;align-items:center;gap:7px;border:none;background:none;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--iron);cursor:pointer;transition:color .2s;padding:0;}
+.toggle-gabarito:hover{color:var(--accent);}
+.toggle-gabarito .chev{display:inline-block;font-size:10px;transition:transform .3s cubic-bezier(.2,.7,.2,1);}
+.toggle-gabarito.open .chev{transform:rotate(180deg);}
+.gabarito{border-top:1px solid var(--line);overflow:hidden;max-height:0;transition:max-height .45s cubic-bezier(.2,.7,.2,1);}
+.gabarito.open{max-height:1800px;}
+.gabarito-inner{padding:16px 18px 18px;}
+.gabarito-title{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--iron);margin-bottom:10px;}
+.gabarito-correct{display:flex;align-items:center;gap:10px;padding:9px 13px;background:var(--green-bg);border:1px solid var(--green-line);border-radius:6px;font-family:var(--mono);font-size:.84em;font-weight:700;color:var(--green);margin-bottom:12px;}
+.gabarito-body{font-size:.9em;color:var(--ink-soft);line-height:1.72;}
+.gabarito-body strong{color:var(--ink);}
+.gabarito-body .ref{font-family:var(--mono);font-size:.8em;color:var(--iron);background:rgba(139,133,121,.12);padding:2px 7px;border-radius:3px;white-space:nowrap;}
+.gabarito-body p{margin-bottom:9px;}
+.gabarito-body p:last-child{margin-bottom:0;}
+
+/* RESULTADO */
+.result-banner{display:none;margin:28px 0 0;padding:26px 22px;border:1px solid var(--line-strong);border-radius:8px;background:var(--surface);text-align:center;}
+.result-banner.show{display:block;}
+.result-score{font-family:var(--display);font-size:3.2rem;font-weight:600;color:var(--accent);line-height:1;margin-bottom:6px;}
+.result-label{font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--iron);}
+.result-msg{margin-top:10px;font-size:.94em;color:var(--ink-soft);}
+
+/* VOLTAR */
+.back{margin-top:52px;display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line-strong);border-radius:6px;padding:20px 22px;font-family:var(--mono);font-size:14px;letter-spacing:.04em;transition:border-color .25s,transform .25s;}
+.back .arw{color:var(--accent);transition:transform .25s;font-size:18px;}
+.back:hover{border-color:var(--accent);transform:translateY(-2px);}
+.back:hover .arw{transform:translateX(-4px);}
+
+@keyframes rise{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
+.reveal{opacity:0;transform:translateY(14px);}
+.reveal.in{opacity:1;transform:none;transition:opacity .5s ease,transform .5s cubic-bezier(.2,.7,.2,1);}
+
+@media(max-width:560px){
+  body{font-size:17.5px;}
+  .masthead{padding:40px 0 24px;}
+  .title-row{align-items:stretch;}
+  .slides-btn{width:100%;justify-content:center;}
+  .verbete{padding-left:18px;}
+  .scoreboard{flex-direction:column;align-items:flex-start;gap:10px;}
+  .btn-reset{margin-left:0;}
+  .tbl-3{grid-template-columns:1fr 1fr;}
+  .tbl-head.tbl-3 div:last-child,.tbl-3 .tbl-row div:last-child{display:none;}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;scroll-behavior:auto;}
+  .reveal{opacity:1;transform:none;}
+  .reveal.in{transition:none;}
 }
 
-*{ box-sizing:border-box; }
-
-body{
-  margin:0;
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  background:radial-gradient(900px 420px at 30% 0%, #d8ecff 0%, var(--bg) 60%);
-  color:var(--text);
-  font-size:19px;
-  line-height:1.8;
-}
-
-.wrap{
-  max-width:980px;
-  margin:auto;
-  padding:18px 14px 40px;
-}
-
-.panel{
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:24px;
-  box-shadow:var(--shadow);
-  padding:18px;
-}
-
-h1{
-  color:var(--title);
-  font-size:34px;
-  line-height:1.15;
-  margin:6px 0 14px;
-  text-align:center;
-}
-
-h2{
-  color:#0b2fb3;
-  font-size:24px;
-  margin:22px 0 12px;
-}
-
-p{
-  margin:0 0 14px;
-  text-align:justify;
-}
-
-.card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:18px;
-  box-shadow:0 8px 20px rgba(15,23,42,.08);
-  padding:18px;
-  margin:14px 0;
-}
-
-.section-blue{ border-left:7px solid #2563eb; }
-.section-green{ border-left:7px solid #16a34a; }
-.section-orange{ border-left:7px solid #f97316; }
-.section-purple{ border-left:7px solid #7c3aed; }
-.section-red{ border-left:7px solid #dc2626; }
-
-.box{
-  padding:14px;
-  border-radius:14px;
-  margin:14px 0;
-  border:1px solid var(--border);
-}
-
-.oab{ background:var(--orangeSoft); border-left:6px solid #f97316; }
-.sumula{ background:var(--greenSoft); border-left:6px solid #16a34a; }
-.artigo{ background:var(--blueSoft); border-left:6px solid #2563eb; }
-.obs{ background:var(--purpleSoft); border-left:6px solid #7c3aed; }
-.alerta{ background:var(--redSoft); border-left:6px solid #dc2626; }
-
-.bullet{
-  margin:10px 0 14px;
-  padding-left:0;
-  list-style:none;
-}
-
-.bullet li{
-  margin:10px 0;
-  padding:12px 14px;
-  background:#fff;
-  border-radius:14px;
-  border:1px solid var(--border);
-  box-shadow:0 5px 12px rgba(15,23,42,.05);
-}
-
-.bullet li::before{
-  content:"■ ";
-  color:#1f4fd8;
-  font-weight:900;
-}
-
-.slides-area{
-  display:flex;
-  justify-content:center;
-  margin:10px 0 22px;
-}
-
-.slides-btn{
-  text-decoration:none;
-  color:var(--text);
-  background:#fff;
-  border:1px solid rgba(37,99,235,.22);
-  border-radius:22px;
-  box-shadow:var(--shadow);
-  padding:16px 22px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:14px;
-  min-width:min(420px,100%);
-  font-weight:900;
-  transition:.18s;
-}
-
-.slides-btn:hover{
-  transform:translateY(-2px);
-  box-shadow:0 20px 42px rgba(15,23,42,.16);
-}
-
-.icon{
-  width:54px;
-  height:54px;
-  border-radius:18px;
-  display:grid;
-  place-items:center;
-  background:linear-gradient(135deg,#dbeafe,#ffffff);
-  border:1px solid rgba(37,99,235,.24);
-}
-
-.icon svg{ width:30px; height:30px; }
-
-.slides-text{
-  display:flex;
-  flex-direction:column;
-  line-height:1.15;
-}
-
-.slides-text strong{ font-size:20px; }
-.slides-text span{ font-size:14px; color:var(--muted); }
-
-.back{
-  display:flex;
-  justify-content:center;
-  margin-top:20px;
-}
-
-.back a{
-  width:min(560px,100%);
-  text-align:center;
-  text-decoration:none;
-  background:#fff;
-  padding:16px 18px;
-  border-radius:16px;
-  border:1px solid var(--border);
-  box-shadow:0 8px 20px rgba(15,23,42,.08);
-  color:var(--text);
-  font-weight:900;
-}
-
-@media(max-width:520px){
-  body{font-size:17px;}
-  h1{font-size:28px;}
-  h2{font-size:21px;}
-  .slides-btn{padding:14px;}
-}
-</style>
-</head>
-
-<body>
-<div class="wrap">
-<div class="panel">
-
-<h1>14. Alteração do Contrato de Trabalho</h1>
-
-<div class="slides-area">
-  <a class="slides-btn" href="https://drive.google.com/file/d/1rQE318iOB5CIo5GuMXASH_wzH79SM-GI/view?usp=sharing" target="_blank" rel="noopener">
-    <span class="icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none">
-        <rect x="3" y="4" width="18" height="12" rx="2" stroke="#1f4fd8" stroke-width="1.8"/>
-        <path d="M8 20h8M12 16v4" stroke="#1f4fd8" stroke-width="1.8" stroke-linecap="round"/>
-        <path d="M7 9h10M7 12h7" stroke="#1f4fd8" stroke-width="1.8" stroke-linecap="round"/>
-      </svg>
-    </span>
-    <span class="slides-text">
-      <strong>Slides</strong>
-      <span>Abrir no Google Drive</span>
-    </span>
-  </a>
-</div>
-
-<div class="card section-blue">
-<h2>14.ALTERAÇÃO DO CONTRATO DE TRABALHO</h2>
-
-<p>O art. 468 da CLT estabelece que no contrato individual de trabalho só é lícita a alteração das respectivas condições por mútuo consentimento, e ainda assim desde que não resultem, direta ou indiretamente, prejuízos ao empregado, sob pena de nulidade da cláusula infringente desta garantia".</p>
+.q-header{flex-wrap:wrap}.q-text{flex-basis:100%}.q-badge{white-space:normal}
+.card-body ul{padding-left:24px}.card-body li{margin-bottom:12px}
+.card-body .nota p:last-child{margin-bottom:0}
+.score-msg{white-space:nowrap}.source{font-size:.8em;margin-top:20px}
+@media(max-width:560px){.score-bar-wrap{width:100%;flex:auto}.ref{white-space:normal}}
+</style></head><body><div class="wrap"><header class="masthead"><p class="eyebrow">Direito do Trabalho <span class="dot">·</span> Alteração contratual</p><div class="title-row"><h1><span class="art">Item 14</span>Alteração do contrato de trabalho</h1><a class="slides-btn" href="https://drive.google.com/file/d/1rQE318iOB5CIo5GuMXASH_wzH79SM-GI/view?usp=sharing" target="_blank" rel="noopener"><span>▮</span><span>Slides da aula</span><span class="arw">→</span></a></div><div class="verbete"><span class="tag">Princípio da inalterabilidade contratual lesiva</span><p>A alteração das condições de trabalho exige, como regra, <strong>mútuo consentimento</strong> e <strong>ausência de prejuízo ao empregado</strong>, observadas as hipóteses legais de alteração.</p></div></header><section><div class="sec-head reveal"><span class="num">§ 14.1</span><h2>Requisitos e efeitos da alteração</h2></div><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-1"><span class="card-icon">01</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Requisitos e efeitos da alteração</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-1"><p>O art. 468 da CLT estabelece que no contrato individual de trabalho só é lícita a alteração das respectivas condições por mútuo consentimento, e ainda assim desde que não resultem, direta ou indiretamente, prejuízos ao empregado, sob pena de nulidade da cláusula infringente desta garantia.</p>
 
 <p>Requisitos para validade da alteração do contrato de trabalho:</p>
 
 <ul class="bullet">
 <li>a) mútuo consentimento (concordância do empregado);</li>
-<li>b) inexistência de qualquer tipo de prejuízo para o empregado (esse requisito não se aplica aos empregados "hipersuficientes" previstos no parágrafo único do art. 444 da CLT – para esses trabalhadores, basta a sua simples concordância para que a alteração seja considerada lícita).</li>
+<li>b) inexistência de qualquer tipo de prejuízo para o empregado (a negociação individual do empregado hipersuficiente deve observar os limites do art. 444, parágrafo único, da CLT; não há autorização genérica para qualquer alteração prejudicial).</li>
 </ul>
 
-<p>Portanto, nenhuma condição de trabalho pode ser modificada unilateralmente pelo empregador e, até mesmo a alteração bilateral é vedada se dela resultarem prejuízos para o trabalhador.</p>
+<p>Como regra, nenhuma condição de trabalho pode ser modificada unilateralmente pelo empregador e, até mesmo a alteração bilateral é vedada se dela resultarem prejuízos para o trabalhador.</p>
 
-<p>Alteração unilateral ou alteração que gere prejuízo para o empregado → nulidade.</p>
+<p>Alteração prejudicial ou unilateral fora das hipóteses legais → nulidade.</p>
 
 <p>Consequências da nulidade:</p>
 
@@ -237,12 +192,8 @@ p{
 <li>b) devem ser pagos ao empregado os prejuízos havidos com a alteração prejudicial;</li>
 <li>c) é possível também que o contrato de trabalho seja rescindido por culpa grave do empregador, com pagamento das verbas daí decorrentes.</li>
 </ul>
-</div>
-
-<div class="card section-green">
-<h2>Alteração de função</h2>
-
-<p>As alterações do contrato de trabalho podem ser de diversas ordens. No entanto, merecem destaque a alteração de função, a alteração salarial, a alteração de jornada e a alteração de localidade da prestação dos serviços (transferência).</p>
+</div></div></div></section>
+<section><div class="sec-head reveal"><span class="num">§ 14.2</span><h2>Alteração de função</h2></div><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-2"><span class="card-icon">02</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Alteração de função</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-2"><p>As alterações do contrato de trabalho podem ser de diversas ordens. No entanto, merecem destaque a alteração de função, a alteração salarial, a alteração de jornada e a alteração de localidade da prestação dos serviços (transferência).</p>
 
 <p>Alteração de função: pode ocorrer no plano horizontal (mudança dentro do mesmo nível hierárquico) ou no plano vertical (ocorre entre níveis hierárquicos diferentes e pode ser ascendente – promoção, ou descendente – rebaixamento, reversão ou retorno).</p>
 
@@ -259,34 +210,22 @@ p{
 <p>Permissões legais de alteração vertical descendente de função:</p>
 
 <ul class="bullet">
-<li>1. reversão ao cargo efetivo, anteriormente ocupado, deixando o exercício de função de confiança (art. 468, parágrafo único, e art. 499, CLT). A reversão, com ou sem justo motivo, não assegura ao empregado o direito à manutenção do pagamento da gratificação correspondente, que não será incorporada, independentemente do tempo de exercício da respectiva função (art. 468, § 2º, CLT);</li>
+<li>1. reversão ao cargo efetivo, anteriormente ocupado, deixando o exercício de função de confiança (art. 468, § 1º, e art. 499, CLT). A reversão, com ou sem justo motivo, não assegura ao empregado o direito à manutenção do pagamento da gratificação correspondente, que não será incorporada, independentemente do tempo de exercício da respectiva função (art. 468, § 2º, CLT);</li>
 <li>2. reversão ao cargo anterior, deixando cargo em comissão, ocupado interinamente (art. 450, CLT);</li>
 <li>3. retorno do substituto ao seu cargo original, após o período de substituição que não tenha caráter meramente eventual (art. 450, CLT e Súmula 159, TST);</li>
 <li>4. empregado readaptado de função em razão de deficiência física ou mental atestada pelo INSS (art. 461, § 4º, CLT).</li>
 <li>c) Alteração horizontal: é permitida, desde que justificada e desde que não implique prejuízo de qualquer ordem para o empregado.</li>
 </ul>
-</div>
-
-<div class="card section-orange">
-<h2>Alteração de salário</h2>
-
-<p>Alteração de salário: a alteração quanto ao valor do salário é regulada pelo art. 7º, VI, da Constituição Federal, que consagra o princípio da irredutibilidade salarial, permitindo a redução, porém, quando decorrente de previsão em convenção ou acordo coletivo de trabalho.</p>
+</div></div></div></section>
+<section><div class="sec-head reveal"><span class="num">§ 14.3</span><h2>Alteração de salário</h2></div><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-3"><span class="card-icon">03</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Alteração de salário</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-3"><p>Alteração de salário: a alteração quanto ao valor do salário é regulada pelo art. 7º, VI, da Constituição Federal, que consagra o princípio da irredutibilidade salarial, permitindo a redução, porém, quando decorrente de previsão em convenção ou acordo coletivo de trabalho.</p>
 
 <p>A alteração das formas e meios de pagamento do salário (ex.: salário era fixo e foi alterado para salário variável) somente será válida se o empregado concordar com ela e, ainda assim, desde que dela não decorram prejuízos a ele.</p>
-</div>
-
-<div class="card section-purple">
-<h2>Alteração de jornada</h2>
-
-<p>Alteração de jornada: a jornada de trabalho também é inalterável, mas de forma menos rígida. Dentro do mesmo turno será possível a modificação, salvo prejuízo comprovado.</p>
+</div></div></div></section>
+<section><div class="sec-head reveal"><span class="num">§ 14.4</span><h2>Alteração de jornada</h2></div><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-4"><span class="card-icon">04</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Alteração de jornada</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-4"><p>Alteração de jornada: a jornada de trabalho também é inalterável, mas de forma menos rígida. Dentro do mesmo turno será possível a modificação, salvo prejuízo comprovado.</p>
 
 <p>Além disso, a modificação do horário noturno para o horário diurno e a supressão do trabalho em jornada extraordinária são válidas, tendo em vista que gera uma condição mais benéfica para o empregado, no sentido de preservação de sua saúde e de sua integridade física. Sua alteração é de interesse social (Súmulas 265 e 291, TST).</p>
-</div>
-
-<div class="card section-red">
-<h2>Alteração de lugar (transferência)</h2>
-
-<p>Alteração de lugar (transferência): a transferência é a modificação da localidade da prestação de serviços. Ao empregador é vedado transferir o empregado, sem sua anuência, para localidade diversa da que resultar do contrato (art. 469, CLT).</p>
+</div></div></div></section>
+<section><div class="sec-head reveal"><span class="num">§ 14.5</span><h2>Alteração de lugar (transferência)</h2></div><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-5"><span class="card-icon">05</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Alteração de lugar (transferência)</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-5"><p>Alteração de lugar (transferência): a transferência é a modificação da localidade da prestação de serviços. Ao empregador é vedado transferir o empregado, sem sua anuência, para localidade diversa da que resultar do contrato (art. 469, CLT).</p>
 
 <p>A localidade resultante do contrato é a que foi pactuada expressamente no início ou a fixada durante o decorrer de sua vigência.</p>
 
@@ -294,28 +233,130 @@ p{
 
 <p>O § 1º, art. 469, CLT, estabelece que não estão compreendidos na proibição de transferência sem anuência os empregados que exerçam cargo de confiança e aqueles cujos contratos contenham condição implícita ou explícita de transferência. Mas, em qualquer um destes casos, a transferência somente será válida se decorrer de real necessidade de serviço (necessidade de serviço devidamente comprovada). A não comprovação da necessidade de serviço permite que o empregado pleiteie judicialmente liminar para evitar a transferência (art. 659, IX, CLT).</p>
 
-<p>É lícita a transferência do empregado quando ocorrer a extinção do estabelecimento em que o mesmo trabalhar (§ 3º, art. 469, CLT).</p>
+<p>É lícita a transferência do empregado quando ocorrer a extinção do estabelecimento em que o mesmo trabalhar (§ 2º, art. 469, CLT).</p>
 
-<p>Somente nos casos de transferência provisória será devido ao empregado adicional de transferência de 25% sobre o salário contratual, que deverá ser pago enquanto durar a transferência (§ 3º, art. 469, CLT).</p>
-</div>
-
-<div class="card section-blue">
-<h2>Alteração de regulamento interno da empresa</h2>
-
-<div class="box obs">
+<p>Somente nos casos de transferência provisória será devido ao empregado adicional de transferência de, no mínimo, 25% sobre o salário contratual, que deverá ser pago enquanto durar a transferência (§ 3º, art. 469, CLT).</p>
+</div></div></div></section>
+<section><div class="sec-head reveal"><span class="num">§ 14.6</span><h2>Alteração de regulamento interno da empresa</h2></div><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-6"><span class="card-icon">06</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Alteração de regulamento interno da empresa</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-6"><div class="nota">
 <p><strong>Observação:</strong> alteração de regulamento interno da empresa – As cláusulas de regulamento interno da empresa que revoguem ou alterem vantagens deferidas anteriormente, só atingirão os trabalhadores admitidos após a revogação ou alteração do regulamento (Súmula 51, I, TST).</p>
 </div>
 
-<div class="box sumula">
+<div class="sumula">
 <p><strong>Súmula 51, II, TST:</strong> Havendo a coexistência de dois regulamentos da empresa, a opção do empregado por um deles tem efeito jurídico de renúncia às regras do sistema do outro.</p>
 </div>
+</div></div></div></section><section><div class="sec-head reveal"><span class="num">REVISÃO</span><h2>Teste seus conhecimentos</h2></div>
+<p class="reveal">Questões 84 a 86 do tópico 25 — Alteração do contrato de trabalho. Selecione uma alternativa e confirme para ver a correção.</p><div class="scoreboard reveal" aria-live="polite"><div><div class="score-label">Pontuação</div><div class="score-nums"><span class="score-current" id="sc-current">0</span><span class="score-total">/ 3</span></div></div><div class="score-bar-wrap"><div class="score-bar" id="sc-bar"></div></div><div class="score-msg" id="sc-msg">0 respondidas</div><button class="btn-reset" onclick="resetQuiz()">Reiniciar</button></div>
+<div class="q-card" id="q1"><div class="q-header"><span class="q-badge">Questão 84 · XIX Exame · FGV</span><p class="q-text">Jonilson trabalhava na sociedade empresária XYZ Ltda. e atuava como analista financeiro. Mostrando bom desempenho, o empregador o promoveu ao cargo de confiança de gerente financeiro e, dali em diante, passou a lhe pagar, além do salário, uma gratificação de função de 50% do salário. Oito anos após, a empresa resolveu retornar Jonilson ao cargo de origem e suprimiu a gratificação de função. Diante da situação apresentada, nos termos da CLT, assinale a afirmativa correta.</p></div><div class="options"><button class="opt" data-q="1" data-val="A" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Uma alteração desse vulto necessitaria de ordem judicial, a ser declarada em ação revisional.</span></button><button class="opt" data-q="1" data-val="B" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>A reversão é válida, pois não há estabilidade em cargos de gerência.</span></button><button class="opt" data-q="1" data-val="C" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Pode haver a reversão, mas a gratificação de função não pode ser suprimida.</span></button><button class="opt" data-q="1" data-val="D" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>A alteração contratual é nula, tratando-se na verdade de rebaixamento.</span></button></div><div class="q-actions"><button class="btn-confirm" id="q1-btn" disabled onclick="confirmAnswer(1,'B')">Confirmar →</button><button class="toggle-gabarito" id="q1-tog" aria-expanded="false" aria-controls="q1-gab" onclick="toggleGabarito(1)">Gabarito comentado <span class="chev">▾</span></button></div><div class="gabarito" id="q1-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Alternativa B — Reversão ao cargo de origem</div><div class="gabarito-body"><p>A reversão ao cargo efetivo anteriormente ocupado é permitida pelo art. 468, § 1º, da CLT. Não exige ordem judicial e não se confunde com rebaixamento ilícito.</p><p>Nota sobre o material: o comentário original utiliza a redação anterior à Reforma Trabalhista e menciona dez anos de gratificação. A questão descreve oito anos e tem gabarito B. Na redação introduzida pela Lei nº 13.467/2017, o art. 468, § 2º, prevê a não incorporação da gratificação independentemente do tempo de exercício, observada a análise temporal em situações anteriores à reforma.</p></div></div></div></div><div class="q-card" id="q2"><div class="q-header"><span class="q-badge">Questão 85 · XXXIV Exame · FGV</span><p class="q-text">Eduarda é auditora contábil e trabalha na sociedade empresarial Calculadora Certa Ltda., exercendo sua atividade junto aos vários clientes do seu empregador. Por necessidade de serviço, e tendo em vista a previsão expressa em seu contrato de trabalho, Eduarda será transferida por 4 (quatro) meses para um distante Estado da Federação, pois realizará a auditoria física no maior cliente do seu empregador. Considerando essa situação e os termos da CLT, assinale a afirmativa correta.</p></div><div class="options"><button class="opt" data-q="2" data-val="A" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>A transferência é nula, porque o empregado tem a expectativa de permanecer em um só lugar.</span></button><button class="opt" data-q="2" data-val="B" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>A empregada pode ser transferida e receberá um adicional de 10% (dez por cento), que será incorporado ao seu salário mesmo após o retorno.</span></button><button class="opt" data-q="2" data-val="C" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>A transferência somente será possível se houver prévia autorização judicial e, caso permitida, Eduarda fará jus a um adicional mínimo de 50% (cinquenta por cento).</span></button><button class="opt" data-q="2" data-val="D" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Eduarda poderá ser transferida e terá direito a um adicional não inferior a 25% (vinte e cinco por cento) sobre seu salário, enquanto estiver na outra localidade.</span></button></div><div class="q-actions"><button class="btn-confirm" id="q2-btn" disabled onclick="confirmAnswer(2,'D')">Confirmar →</button><button class="toggle-gabarito" id="q2-tog" aria-expanded="false" aria-controls="q2-gab" onclick="toggleGabarito(2)">Gabarito comentado <span class="chev">▾</span></button></div><div class="gabarito" id="q2-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Alternativa D — Transferência provisória e adicional mínimo de 25%</div><div class="gabarito-body"><p>A previsão contratual expressa e a real necessidade do serviço permitem a transferência. Como a mudança é provisória, por quatro meses, é devido adicional não inferior a 25% enquanto durar essa situação (art. 469, §§ 1º e 3º, CLT).</p><p>A) A transferência não é nula quando atende aos requisitos legais. B) O percentual não é de 10% e o adicional não se incorpora após o retorno. C) Não se exige autorização judicial prévia e o mínimo legal não é de 50%.</p></div></div></div></div><div class="q-card" id="q3"><div class="q-header"><span class="q-badge">Questão 86 · 36º Exame · FGV</span><p class="q-text">Sua cliente é uma empresa do setor calçadista com sede em Sapiranga, no Rio Grande do Sul, e lhe procurou indagando acerca da possibilidade de transferir alguns empregados para outras localidades. Diante disso, considerando o texto da CLT em vigor e o entendimento jurisprudencial consolidado do TST, assinale a afirmativa correta.</p></div><div class="options"><button class="opt" data-q="3" data-val="A" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>O empregado com contrato de trabalho no qual consta cláusula expressa de transferência decorrente de comprovada real necessidade de serviço obrigatoriamente deve aquiescer com a transferência, sendo tal concordância requisito indispensável para a validade da transferência.</span></button><button class="opt" data-q="3" data-val="B" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Apenas serão consideradas transferências aquelas que acarretarem, necessariamente, a mudança de domicílio do empregado.</span></button><button class="opt" data-q="3" data-val="C" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Em caso de necessidade de serviço, o empregador será livre para transferir o empregado provisoriamente, desde que com a aquiescência deste, sendo desnecessário o pagamento de qualquer outra vantagem ou benefício ao empregado, exceto a ajuda de custo para a mudança.</span></button><button class="opt" data-q="3" data-val="D" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Havendo transferência provisória com o pagamento do respectivo adicional, as despesas resultantes da transferência serão do empregado, uma vez que já indenizada a transferência pelo adicional respectivo.</span></button></div><div class="q-actions"><button class="btn-confirm" id="q3-btn" disabled onclick="confirmAnswer(3,'B')">Confirmar →</button><button class="toggle-gabarito" id="q3-tog" aria-expanded="false" aria-controls="q3-gab" onclick="toggleGabarito(3)">Gabarito comentado <span class="chev">▾</span></button></div><div class="gabarito" id="q3-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Alternativa B — Mudança necessária de domicílio</div><div class="gabarito-body"><p>O art. 469, caput, da CLT estabelece que a mudança de localidade sem a necessária mudança de domicílio não caracteriza transferência para esses efeitos.</p><p>A) A cláusula expressa e a real necessidade de serviço permitem a transferência sem nova concordância do empregado (art. 469, § 1º). C) A transferência provisória gera o adicional previsto no art. 469, § 3º. D) As despesas da transferência são do empregador (art. 470), mesmo quando também é devido o adicional.</p></div></div></div></div><div class="result-banner" id="result-banner"><div class="result-score" id="result-score">0/3</div><div class="result-label">Resultado final</div><div class="result-msg" id="result-msg"></div></div></section>
+<p class="source">Questões: PDF fornecido, tópico 25, páginas 28–29. Comentários adaptados para estudo. Referência legislativa: <a href="https://www2.camara.leg.br/legin/fed/declei/1940-1949/decreto-lei-5452-1-maio-1943-415500-normaatualizada-pe.html" target="_blank" rel="noopener">CLT — arts. 444, 468, 469 e 470</a>.</p><a class="back" href="../index.html"><span class="arw">←</span><span>Voltar ao índice da disciplina</span></a>
 </div>
+<script>
+/* accordion de conteúdo */
+(function(){
+  var cards = document.querySelectorAll('.card');
+  cards.forEach(function(card){
+    var btn = card.querySelector('.card-btn');
+    if(!btn) return;
+    btn.addEventListener('click', function(){
+      var isOpen = card.classList.contains('open');
+      cards.forEach(function(c){c.classList.remove('open');var b=c.querySelector('.card-btn');if(b)b.setAttribute('aria-expanded','false');});
+      if(!isOpen){card.classList.add('open');btn.setAttribute('aria-expanded','true');}
+    });
+  });
+})();
 
-<div class="back">
-<a href="../index.html">← Voltar ao índice da disciplina</a>
-</div>
+/* reveal on scroll */
+(function(){
+  var items=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){items.forEach(function(el){el.classList.add('in');});return;}
+  var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.08,rootMargin:'0px 0px -3% 0px'});
+  items.forEach(function(el,i){el.style.transitionDelay=(Math.min(i,6)*30)+'ms';io.observe(el);});
+})();
 
-</div>
-</div>
-</body>
-</html>
+/* ── QUIZ ── */
+var TOTAL=3, answered={};
+
+function selectOpt(el){
+  var q=el.dataset.q;
+  if(answered[q]!==undefined) return;
+  document.querySelectorAll('[data-q="'+q+'"]').forEach(function(o){o.classList.remove('selected');o.setAttribute('aria-pressed','false');});
+  el.classList.add('selected');el.setAttribute('aria-pressed','true');
+  document.getElementById('q'+q+'-btn').disabled=false;
+}
+
+function confirmAnswer(qNum,correctVal){
+  if(answered[qNum]!==undefined) return;
+  var opts=document.querySelectorAll('[data-q="'+qNum+'"]');
+  var btn=document.getElementById('q'+qNum+'-btn');
+  var card=document.getElementById('q'+qNum);
+  var tog=document.getElementById('q'+qNum+'-tog');
+  var chosen=null;
+  opts.forEach(function(o){if(o.classList.contains('selected'))chosen=o;});
+  if(!chosen) return;
+  var isCorrect=chosen.dataset.val===correctVal;
+  answered[qNum]=isCorrect;
+  opts.forEach(function(o){
+    o.disabled=true;
+    if(o.dataset.val===correctVal){o.classList.add('correct-final');}
+    else if(o.classList.contains('selected')&&!isCorrect){o.classList.add('wrong-final');}
+    else{o.classList.add('dimmed');}
+    o.classList.remove('selected');
+  });
+  card.classList.add(isCorrect?'answered-correct':'answered-wrong');
+  btn.disabled=true; btn.style.display='none';
+  tog.style.display='inline-flex';
+  updateScore(); checkAllDone();
+}
+
+function toggleGabarito(qNum){
+  var gab=document.getElementById('q'+qNum+'-gab');
+  var tog=document.getElementById('q'+qNum+'-tog');
+  var open=gab.classList.toggle('open');
+  tog.classList.toggle('open',open);tog.setAttribute('aria-expanded',String(open));
+}
+
+function updateScore(){
+  var done=Object.keys(answered).length;
+  var correct=Object.values(answered).filter(Boolean).length;
+  var pct=TOTAL>0?(correct/TOTAL)*100:0;
+  document.getElementById('sc-current').textContent=correct;
+  document.getElementById('sc-bar').style.width=pct+'%';
+  document.getElementById('sc-bar').style.background=pct>=70?'#166534':pct>=40?'#d97706':'#991b1b';
+  document.getElementById('sc-msg').textContent=done+' respondida'+(done!==1?'s':'');
+}
+
+function checkAllDone(){
+  if(Object.keys(answered).length<TOTAL) return;
+  var correct=Object.values(answered).filter(Boolean).length;
+  var banner=document.getElementById('result-banner');
+  var score=document.getElementById('result-score');
+  var msg=document.getElementById('result-msg');
+  score.textContent=correct+'/'+TOTAL;
+  var pct=correct/TOTAL;
+  if(pct===1) msg.textContent='🎉 Parabéns! Gabarito perfeito — você domina o tema.';
+  else if(pct>=.75) msg.textContent='✅ Muito bem! Revise os pontos que errou e estará pronto.';
+  else if(pct>=.5) msg.textContent='📖 Resultado razoável. Revise os comentários com atenção.';
+  else msg.textContent='🔁 Reforce o estudo e tente novamente. Os comentários ajudam!';
+  banner.classList.add('show');
+  banner.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+function resetQuiz(){
+  answered={};
+  for(var q=1;q<=TOTAL;q++){
+    document.querySelectorAll('[data-q="'+q+'"]').forEach(function(o){
+      o.disabled=false;o.setAttribute('aria-pressed','false'); o.classList.remove('selected','correct-final','wrong-final','dimmed');
+    });
+    document.getElementById('q'+q).classList.remove('answered-correct','answered-wrong');
+    var btn=document.getElementById('q'+q+'-btn');
+    btn.disabled=true; btn.style.display='';
+    var tog=document.getElementById('q'+q+'-tog');
+    tog.style.display='none'; tog.classList.remove('open');tog.setAttribute('aria-expanded','false');
+    document.getElementById('q'+q+'-gab').classList.remove('open');
+  }
+  document.getElementById('sc-current').textContent='0';
+  document.getElementById('sc-bar').style.width='0%';
+  document.getElementById('sc-msg').textContent='0 respondidas';
+  document.getElementById('result-banner').classList.remove('show');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script></body></html>
