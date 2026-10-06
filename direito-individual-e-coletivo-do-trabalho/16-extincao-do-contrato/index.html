@@ -1,426 +1,312 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>16. Extinção do Contrato de Trabalho</title>
-
-<style>
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>16. Extinção do Contrato de Trabalho</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"><style>
 :root{
-  --bg:#eaf3ff;
-  --panel:#f8fbff;
-  --card:#ffffff;
-  --title:#1f4fd8;
-  --text:#0f172a;
-  --muted:#475569;
-  --border:rgba(15,23,42,.14);
-  --shadow:0 14px 34px rgba(15,23,42,.12);
-  --blueSoft:#e8f0ff;
-  --greenSoft:#ecfdf5;
-  --orangeSoft:#fff7ed;
-  --purpleSoft:#f5f3ff;
-  --redSoft:#fef2f2;
+  --ink:#1b2436;--ink-soft:#414a5c;--paper:#edece5;--surface:#fbfaf7;
+  --accent:#7a2e37;--accent-soft:#a2545f;--iron:#8b8579;
+  --line:rgba(27,36,54,.13);--line-strong:rgba(27,36,54,.22);
+  --green:#166534;--green-bg:#f0fdf4;--green-line:#bbf7d0;
+  --red:#991b1b;--red-bg:#fef2f2;--red-line:#fecaca;
+  --display:"Fraunces",Georgia,serif;--body:"Spectral",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:19px;line-height:1.78;-webkit-font-smoothing:antialiased;}
+body::before{content:"";position:fixed;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 34%,var(--ink) 34%,var(--ink) 100%);z-index:50;}
+.wrap{max-width:760px;margin:0 auto;padding:0 22px 72px;}
+
+/* CABEÇALHO */
+.masthead{padding:56px 0 30px;border-bottom:1px solid var(--line-strong);animation:rise .7s cubic-bezier(.2,.7,.2,1) both;}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--accent);display:inline-block;}
+.eyebrow .dot{color:var(--line-strong);}
+.title-row{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;flex-wrap:wrap;}
+h1{font-family:var(--display);font-weight:500;font-size:clamp(2.3rem,6.5vw,3.8rem);line-height:1.04;letter-spacing:-.015em;max-width:14ch;}
+h1 .art{display:block;font-size:.42em;font-weight:600;letter-spacing:.02em;color:var(--accent);font-family:var(--mono);text-transform:uppercase;margin-bottom:.5em;}
+.slides-btn{flex-shrink:0;display:inline-flex;align-items:center;gap:12px;text-decoration:none;background:var(--ink);color:#f4f2ec;border-radius:4px;padding:13px 18px;font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;box-shadow:0 8px 22px -12px rgba(27,36,54,.7);transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s,background .25s;}
+.slides-btn:hover{background:var(--accent);transform:translateY(-2px);}
+.slides-btn .arw{transition:transform .25s;}
+.slides-btn:hover .arw{transform:translateX(4px);}
+
+/* VERBETE */
+.verbete{margin:44px 0 8px;padding:6px 0 6px 30px;border-left:3px solid var(--accent);}
+.verbete .tag{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:14px;}
+.verbete p{font-family:var(--display);font-weight:400;font-size:clamp(1.15rem,2.8vw,1.45rem);line-height:1.45;color:var(--ink);margin:0;}
+
+/* REF */
+.ref{font-family:var(--mono);font-size:.8em;color:var(--iron);background:rgba(139,133,121,.12);padding:2px 7px;border-radius:3px;white-space:nowrap;}
+
+/* SEÇÕES */
+.sec-head{display:flex;gap:16px;align-items:baseline;margin:44px 0 14px;padding-top:26px;border-top:1px solid var(--line);}
+.sec-head .num{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--accent);flex-shrink:0;padding-top:.35em;}
+h2{font-family:var(--display);font-weight:500;font-size:clamp(1.55rem,4vw,1.95rem);line-height:1.14;letter-spacing:-.01em;color:var(--ink);}
+h3{font-family:var(--display);font-weight:600;font-size:1.15rem;color:var(--ink);margin:22px 0 8px;}
+p{margin-bottom:14px;color:var(--ink-soft);}
+
+/* LISTA */
+.blist{list-style:none;padding:0;margin:10px 0 12px;display:flex;flex-direction:column;gap:3px;}
+.blist li{display:grid;grid-template-columns:22px 1fr;gap:8px;font-size:.93em;color:var(--ink-soft);line-height:1.65;padding:8px 0;border-bottom:1px solid var(--line);}
+.blist li:last-child{border-bottom:none;}
+.blist li .bul{color:var(--accent);font-family:var(--mono);font-size:.85em;padding-top:2px;}
+
+/* SUMULA */
+.sumula{margin:10px 0 6px;padding:12px 16px;border-left:2px solid var(--iron);background:var(--paper);border-radius:0 4px 4px 0;font-size:.89em;color:var(--ink-soft);line-height:1.65;}
+.sumula strong{font-family:var(--mono);font-size:.86em;letter-spacing:.08em;text-transform:uppercase;color:var(--iron);display:block;margin-bottom:4px;}
+
+/* NOTA / ALERTA */
+.nota{margin:10px 0 6px;padding:13px 17px;background:rgba(122,46,55,.06);border-left:3px solid var(--accent);border-radius:0 5px 5px 0;font-size:.91em;color:var(--ink-soft);line-height:1.65;}
+.nota strong{color:var(--ink);}
+
+/* TABELA */
+.tbl{margin:12px 0 6px;border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:.9em;}
+.tbl-head{display:grid;background:var(--ink);color:#f4f2ec;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;}
+.tbl-head div,.tbl-row div{padding:9px 14px;}
+.tbl-head div:not(:last-child){border-right:1px solid rgba(255,255,255,.15);}
+.tbl-row{display:grid;border-top:1px solid var(--line);}
+.tbl-row:nth-child(even) div{background:rgba(139,133,121,.04);}
+.tbl-row div{color:var(--ink-soft);display:flex;align-items:center;line-height:1.5;}
+.tbl-row div:not(:last-child){border-right:1px solid var(--line);}
+.tbl-3{grid-template-columns:1fr 1fr 1fr;}
+.tbl-2{grid-template-columns:1fr 1fr;}
+.tbl-head.tbl-3{grid-template-columns:1fr 1fr 1fr;}
+.tbl-head.tbl-2{grid-template-columns:1fr 1fr;}
+
+/* CARDS ACCORDION */
+.cards{display:flex;flex-direction:column;gap:3px;}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;transition:box-shadow .2s;}
+.card:hover{box-shadow:0 4px 18px -8px rgba(27,36,54,.2);}
+.card-btn{width:100%;background:none;border:none;cursor:pointer;display:grid;grid-template-columns:52px 1fr 34px;align-items:center;padding:0;text-align:left;color:inherit;}
+.card-icon{display:flex;align-items:center;justify-content:center;min-height:60px;border-right:1px solid var(--line);font-family:var(--mono);font-weight:700;font-size:11px;color:var(--accent);background:rgba(122,46,55,.05);text-align:center;padding:4px;line-height:1.3;}
+.card-head{padding:13px 16px;}
+.card-num{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--iron);display:block;margin-bottom:3px;}
+.card-title{font-family:var(--display);font-weight:600;font-size:1rem;line-height:1.2;color:var(--ink);}
+.card-chevron{display:flex;align-items:center;justify-content:center;padding-right:14px;color:var(--iron);font-size:13px;transition:transform .3s cubic-bezier(.2,.7,.2,1),color .2s;}
+.card.open .card-chevron{transform:rotate(180deg);color:var(--accent);}
+.card-body{display:none;padding:16px 20px 20px;border-top:1px solid var(--line);}
+.card.open .card-body{display:block;}
+.card-body p{color:var(--ink-soft);font-size:.93em;line-height:1.72;}
+
+/* ===== PLACAR ===== */
+.scoreboard{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:18px 22px;background:var(--surface);border:1px solid var(--line-strong);border-radius:8px;margin-bottom:8px;}
+.score-label{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--iron);}
+.score-nums{display:flex;align-items:baseline;gap:6px;}
+.score-current{font-family:var(--display);font-size:2.6rem;font-weight:600;color:var(--ink);line-height:1;}
+.score-total{font-family:var(--mono);font-size:1rem;color:var(--iron);}
+.score-bar-wrap{flex:1;min-width:120px;height:8px;background:var(--line);border-radius:99px;overflow:hidden;}
+.score-bar{height:100%;width:0%;background:var(--accent);border-radius:99px;transition:width .5s cubic-bezier(.2,.7,.2,1),background .3s;}
+.score-msg{font-family:var(--mono);font-size:12px;color:var(--iron);min-width:80px;}
+.btn-reset{margin-left:auto;border:1px solid var(--line-strong);background:none;color:var(--ink-soft);border-radius:4px;padding:7px 14px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:border-color .2s,color .2s;}
+.btn-reset:hover{border-color:var(--accent);color:var(--accent);}
+
+/* CARD DE QUESTÃO */
+.q-card{background:var(--surface);border:1px solid var(--line);border-radius:8px;margin:14px 0;overflow:hidden;transition:border-color .25s,box-shadow .25s;}
+.q-card.answered-correct{border-color:var(--green-line);box-shadow:0 0 0 2px rgba(22,101,52,.12);}
+.q-card.answered-wrong{border-color:var(--red-line);box-shadow:0 0 0 2px rgba(153,27,27,.10);}
+.q-header{display:flex;align-items:flex-start;gap:12px;padding:16px 18px 12px;}
+.q-badge{flex-shrink:0;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--accent);background:rgba(122,46,55,.09);border:1px solid rgba(122,46,55,.18);border-radius:4px;padding:3px 9px;margin-top:3px;white-space:nowrap;}
+.q-text{font-family:var(--body);font-size:.96em;color:var(--ink);line-height:1.72;flex:1;margin:0;}
+.options{padding:0 18px 16px;display:flex;flex-direction:column;gap:7px;}
+.opt{display:flex;align-items:flex-start;gap:11px;padding:10px 13px;border:1px solid var(--line);border-radius:6px;cursor:pointer;background:var(--paper);transition:border-color .18s,background .18s;text-align:left;width:100%;font-family:var(--body);font-size:.92em;color:var(--ink-soft);line-height:1.6;}
+.opt:hover:not(:disabled){border-color:var(--accent-soft);background:#f7f3f1;}
+.opt-letter{flex-shrink:0;font-family:var(--mono);font-size:.8em;font-weight:700;color:var(--accent);width:20px;padding-top:2px;}
+.opt.selected{border-color:var(--accent);background:rgba(122,46,55,.06);}
+.opt.correct-final{border-color:var(--green);background:var(--green-bg);cursor:default;}
+.opt.correct-final .opt-letter{color:var(--green);}
+.opt.wrong-final{border-color:var(--red);background:var(--red-bg);cursor:default;}
+.opt.wrong-final .opt-letter{color:var(--red);}
+.opt.dimmed{opacity:.42;cursor:default;}
+.q-actions{padding:0 18px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.btn-confirm{display:inline-flex;align-items:center;gap:8px;padding:9px 20px;background:var(--ink);color:#f4f2ec;border:none;border-radius:4px;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;transition:background .2s,transform .2s;}
+.btn-confirm:hover:not(:disabled){background:var(--accent);transform:translateY(-1px);}
+.btn-confirm:disabled{opacity:.35;cursor:default;transform:none;}
+.toggle-gabarito{display:none;align-items:center;gap:7px;border:none;background:none;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--iron);cursor:pointer;transition:color .2s;padding:0;}
+.toggle-gabarito:hover{color:var(--accent);}
+.toggle-gabarito .chev{display:inline-block;font-size:10px;transition:transform .3s cubic-bezier(.2,.7,.2,1);}
+.toggle-gabarito.open .chev{transform:rotate(180deg);}
+.gabarito{border-top:1px solid var(--line);overflow:hidden;max-height:0;transition:max-height .45s cubic-bezier(.2,.7,.2,1);}
+.gabarito.open{max-height:1800px;}
+.gabarito-inner{padding:16px 18px 18px;}
+.gabarito-title{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--iron);margin-bottom:10px;}
+.gabarito-correct{display:flex;align-items:center;gap:10px;padding:9px 13px;background:var(--green-bg);border:1px solid var(--green-line);border-radius:6px;font-family:var(--mono);font-size:.84em;font-weight:700;color:var(--green);margin-bottom:12px;}
+.gabarito-body{font-size:.9em;color:var(--ink-soft);line-height:1.72;}
+.gabarito-body strong{color:var(--ink);}
+.gabarito-body .ref{font-family:var(--mono);font-size:.8em;color:var(--iron);background:rgba(139,133,121,.12);padding:2px 7px;border-radius:3px;white-space:nowrap;}
+.gabarito-body p{margin-bottom:9px;}
+.gabarito-body p:last-child{margin-bottom:0;}
+
+/* RESULTADO */
+.result-banner{display:none;margin:28px 0 0;padding:26px 22px;border:1px solid var(--line-strong);border-radius:8px;background:var(--surface);text-align:center;}
+.result-banner.show{display:block;}
+.result-score{font-family:var(--display);font-size:3.2rem;font-weight:600;color:var(--accent);line-height:1;margin-bottom:6px;}
+.result-label{font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--iron);}
+.result-msg{margin-top:10px;font-size:.94em;color:var(--ink-soft);}
+
+/* VOLTAR */
+.back{margin-top:52px;display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line-strong);border-radius:6px;padding:20px 22px;font-family:var(--mono);font-size:14px;letter-spacing:.04em;transition:border-color .25s,transform .25s;}
+.back .arw{color:var(--accent);transition:transform .25s;font-size:18px;}
+.back:hover{border-color:var(--accent);transform:translateY(-2px);}
+.back:hover .arw{transform:translateX(-4px);}
+
+@keyframes rise{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
+.reveal{opacity:0;transform:translateY(14px);}
+.reveal.in{opacity:1;transform:none;transition:opacity .5s ease,transform .5s cubic-bezier(.2,.7,.2,1);}
+
+@media(max-width:560px){
+  body{font-size:17.5px;}
+  .masthead{padding:40px 0 24px;}
+  .title-row{align-items:stretch;}
+  .slides-btn{width:100%;justify-content:center;}
+  .verbete{padding-left:18px;}
+  .scoreboard{flex-direction:column;align-items:flex-start;gap:10px;}
+  .btn-reset{margin-left:0;}
+  .tbl-3{grid-template-columns:1fr 1fr;}
+  .tbl-head.tbl-3 div:last-child,.tbl-3 .tbl-row div:last-child{display:none;}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;scroll-behavior:auto;}
+  .reveal{opacity:1;transform:none;}
+  .reveal.in{transition:none;}
 }
 
-*{ box-sizing:border-box; }
+.q-header{flex-wrap:wrap}.q-text{flex-basis:100%}.q-badge{white-space:normal}
+.card-body ul{padding-left:24px}.card-body li{margin-bottom:12px}
+.card-body .nota p:last-child{margin-bottom:0}
+.score-msg{white-space:nowrap}.source{font-size:.8em;margin-top:20px}
+@media(max-width:560px){.score-bar-wrap{width:100%;flex:auto}.ref{white-space:normal}}
 
-body{
-  margin:0;
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  background:radial-gradient(900px 420px at 30% 0%, #d8ecff 0%, var(--bg) 60%);
-  color:var(--text);
-  font-size:19px;
-  line-height:1.8;
+.compare-table{width:100%;border-collapse:collapse;background:var(--surface);font-size:.9em;margin:22px 0}
+.compare-table th,.compare-table td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;overflow-wrap:anywhere}
+.compare-table th{color:var(--accent);font-family:var(--display)}
+@media(max-width:560px){.compare-table{font-size:.8em}.compare-table th,.compare-table td{padding:9px 6px}}
+</style></head><body><div class="wrap"><header class="masthead"><p class="eyebrow">Direito do Trabalho <span class="dot">·</span> Término do vínculo</p><div class="title-row"><h1><span class="art">Item 16</span>Extinção do contrato de trabalho</h1><a class="slides-btn" href="https://drive.google.com/file/d/1_4UfcG_eoVDqYw6mtt7Ub7u9Z1awWUoI/view?usp=sharing" target="_blank" rel="noopener"><span>▮</span><span>Slides da aula</span><span class="arw">→</span></a></div><div class="verbete"><span class="tag">Modalidades e verbas rescisórias</span><p>A forma de encerramento do vínculo determina os <strong>direitos rescisórios</strong>: iniciativa do empregado, do empregador, acordo entre as partes ou fatos alheios à sua vontade.</p></div></header><section><div class="sec-head reveal"><span class="num">§ 16.1</span><h2>Contrato por prazo determinado</h2></div><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-1"><span class="card-icon">01</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Contrato por prazo determinado</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-1"><p>A extinção se dá em decorrência do cumprimento integral, quer pelo término do prazo, quer pelo advento da condição resolutiva (art. 443, § 1º, CLT).</p><p>Verbas rescisórias devidas: saldo de salário, 13º salário proporcional, férias proporcionais + 1/3, levantamento do FGTS.</p><p>Rescisão antecipada: não havendo cumprimento integral do contrato porque houve decisão de uma das partes em rescindi-lo antecipadamente, o legislador impõe punição à parte que assim agir:</p><ul class="bullet"><li>a) por iniciativa do empregador: este será obrigado a pagar ao empregado, a título de indenização, a metade do valor da remuneração a que o mesmo teria direito até o término do contrato (art. 479, CLT). Trata-se de indenização por perdas e danos decorrentes da violação do pactuado;</li><li>b) por iniciativa do empregado: este deverá indenizar o empregador dos prejuízos que desse fato lhe resultarem, em valor que não poderá ser superior ao que o empregador lhe pagaria se tivesse sido daquele a iniciativa da rescisão antecipada (art. 480, CLT).</li></ul><p>Observação: a indenização prevista nos arts. 479 e 480 da CLT não será devida quando o contrato por prazo determinado contiver cláusula assecuratória do direito recíproco de rescisão antecipada. Neste caso, se exercida a faculdade prevista na cláusula por qualquer uma das partes, a rescisão será regida pelas mesmas regras de extinção previstas para os contratos por prazo indeterminado (art. 481, CLT).</p><div class="nota"><strong>Complemento:</strong> férias já adquiridas e ainda não gozadas também devem ser quitadas, com 1/3, quando existentes. A indenização do art. 480 depende de prejuízo demonstrado pelo empregador; não é multa automática equivalente à metade do período restante.</div></div></div></div></section>
+<section><div class="sec-head reveal"><span class="num">§ 16.2</span><h2>Contrato por prazo indeterminado</h2></div><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-2"><span class="card-icon">02</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Contrato por prazo indeterminado</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-2"><p>A extinção pode ocorrer por iniciativa do empregado, por iniciativa do empregador, ou por fatos alheios à vontade das partes.</p></div></div></div></section>
+<section><div class="sec-head reveal"><span class="num">§ 16.3</span><h2>Pedido de demissão e rescisão indireta</h2></div><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-3"><span class="card-icon">03</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Pedido de demissão e rescisão indireta</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-3"><ul class="bullet"><li>a) Pedido de demissão: é a comunicação do empregado ao empregador de que não pretende dar mais continuidade ao contrato de trabalho.</li></ul><p>Não tem forma prevista em lei, mas como o pedido de demissão precisa ser provado pelo empregador (presume-se que a rescisão do contrato de trabalho se deu por iniciativa do empregador, salvo se houver prova em sentido contrário – Súmula 212, TST), costuma-se exigir que seja feito por escrito.</p><p>Verbas rescisórias: saldo de salário, 13º salário proporcional, férias proporcionais + 1/3 (mesmo que o empregado tenha menos de 12 meses de serviço – Súmula 261, TST). O empregado não pode levantar o FGTS. O aviso-prévio somente será pago se for cumprido pelo empregado. Recusando-se o empregado a cumpri-lo, o empregador pode descontar o salário correspondente ao período respectivo.</p><ul class="bullet"><li>b) Dispensa indireta: é a rescisão contratual pelo empregado, tendo em vista justa causa praticada pelo empregador.</li></ul><p>As faltas graves do empregador são previstas no art. 483, CLT:</p><ul class="bullet"><li>1. exigência de serviços superiores às forças do empregado, defesos por lei, contrários aos bons costumes, ou alheios ao contrato;</li><li>2. rigor excessivo contra o empregado;</li><li>3. exposição do empregado a perigo manifesto de mal considerável;</li><li>4. descumprimento de obrigações contratuais;</li><li>5. prática pelo empregador ou por seus prepostos de atos lesivos à honra e à boa fama do empregado ou de seus familiares;</li><li>6. prática pelo empregador ou por seus prepostos de ofensas físicas ao empregado, salvo legítima defesa;</li><li>7. redução injustificada do trabalho do empregado, quando este for realizado por produção ou por tarefa, de modo a diminuir sensivelmente sua remuneração.</li></ul><p>Verbas rescisórias: o empregado receberá todas as verbas rescisórias que receberia caso tivesse sido dispensado sem justa causa.</p><div class="nota"><strong>Ressalva:</strong> o pedido de demissão não autoriza o saque-rescisão do FGTS, sem impedir outras hipóteses legais de movimentação. Há exigências especiais de assistência em situações como a do empregado estável (art. 500, CLT).</div></div></div></div></section>
+<section><div class="sec-head reveal"><span class="num">§ 16.4</span><h2>Dispensa pelo empregador e limites da justa causa</h2></div><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-4"><span class="card-icon">04</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Dispensa pelo empregador e limites da justa causa</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-4"><ul class="bullet"><li>a) Dispensa sem justa causa: é a ruptura do contrato de trabalho por ato unilateral e imediato do empregador, independentemente da vontade do empregado.</li></ul><p>A dispensa sem justa causa não é vedada por lei. No entanto, a relação de emprego é protegida contra dispensa arbitrária ou sem justa causa, sendo devida indenização compensatória em favor do empregado (art. 7º, I, CF). A indenização corresponde a 40% dos depósitos do FGTS efetuados durante a vigência do contrato de trabalho (art. 18, § 1º, Lei n. 8.036/90).</p><p>Verbas rescisórias: saldo de salário, aviso-prévio, 13º salário proporcional, férias proporcionais + 1/3, 40% do FGTS. O empregado pode levantar o valor do FGTS depositado em sua conta vinculada.</p><ul class="bullet"><li>b) Dispensa por justa causa: é a rescisão do contrato de trabalho em decorrência da prática de falta grave pelo empregado. A prática da justa causa torna insustentável a manutenção do vínculo de emprego, levando à imediata rescisão do contrato e desonerando o empregador de algumas reparações econômicas que seriam devidas caso o contrato tivesse sido rescindido sem justa causa.</li></ul><p>Caracterização e limitações da justa causa:</p><ul class="bullet"><li>legalidade – somente podem ser consideradas justa causa hipóteses expressamente previstas em lei (o art. 482 da CLT prevê as hipóteses gerais de justa causa; outros dispositivos legais podem prever hipóteses específicas de justa causa);</li><li>taxatividade – as hipóteses de justa causa são taxativamente previstas em lei; a enumeração não é meramente exemplificativa;</li><li>imediatidade – a reação do empregador, dando por rescindido o contrato, deve ser imediata, o que não afasta o decurso de tempo razoável para apuração dos fatos, variando tal prazo de acordo com a complexidade organizacional da empresa. A falta da imediatidade faz presumir perdão tácito;</li><li>perdão – inexistência de perdão tácito ou expresso;</li><li>causalidade – que o fato seja efetivamente determinante da rescisão (nexo causal);</li><li>non bis in idem – não se admite que um mesmo fato possa ser punido mais de uma vez. Se o fato já foi punido com advertência ou com suspensão, não pode ser aplicada justa causa. Caso o empregado pratique novamente um fato idêntico ao primeiro, para este segundo fato, se não foi aplicada nenhuma outra punição, pode o contrato ser rescindido por justa causa.</li></ul><p>Observações: a punição não pode ser excessiva; deve haver proporcionalidade entre a gravidade da falta e a gravidade da punição aplicada. Caso a falta tenha sido praticada por diversos empregados ao mesmo tempo, o empregado tem de ser punido da mesma forma que os outros envolvidos na prática da falta. A ausência de isonomia descaracteriza a punição.</p><div class="nota"><strong>Ressalva:</strong> a dispensa sem justa causa deve respeitar garantias de emprego e vedações de discriminação. A análise da isonomia disciplinar considera as circunstâncias e a responsabilidade de cada envolvido. Na dispensa coletiva, observar também o Tema 638 do STF, tratado na questão 100.</div></div></div></div></section>
+<section><div class="sec-head reveal"><span class="num">§ 16.5</span><h2>Hipóteses de justa causa — art. 482</h2></div><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-5"><span class="card-icon">05</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Hipóteses de justa causa — art. 482</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-5"><ul class="bullet"><li>1. Ato de improbidade – atentado contra o patrimônio do empregador ou de terceiros ligados ao trabalho (ex.: colegas de trabalho, clientes, fornecedores). É o ato desonesto, malicioso, que foi praticado intencionalmente pelo empregado (dolo).</li><li>2. Incontinência de conduta ou mau procedimento – a incontinência de conduta caracteriza-se pela conduta irregular do empregado, incompatível com a moral sexual; o mau procedimento é o comportamento irregular do empregado, incompatível com as normas exigidas pelo senso comum do homem médio.</li><li>3. Negociação habitual – é o ato de concorrência desleal para com o empregador ou o exercício do comércio em paralelo com o exercício da função decorrente do contrato de trabalho, ou quando for prejudicial ao serviço. A autorização tácita ou expressa do empregador descaracteriza a justa causa.</li><li>4. Condenação criminal sem direito a suspensão da execução da pena – o fato de o empregado estar respondendo processo criminal não permite a caracterização de justa causa. É necessário que tenha havido condenação criminal, já transitada em julgado, e, ainda, que não caiba suspensão da execução da pena.</li><li>5. Desídia – é o desempenho das funções com negligência, desleixo, descaso. É a baixa produtividade e perfeição técnica do trabalho decorrente da falta de interesse do empregado. Requer habitualidade e, ainda, punições para as práticas anteriores (o empregado já praticou este tipo de falta anteriormente e foi punido com advertência ou com suspensão, ou seja, o empregado já tem histórico faltoso).</li><li>6. Embriaguez habitual ou em serviço – haverá embriaguez sempre que o empregado, sob o efeito de álcool ou de outra substância entorpecente, perde o governo de suas faculdades a ponto de tornar-se incapaz de executar as tarefas a que está obrigado. Embriaguez habitual = é a embriaguez constante, fora do serviço, mas que reflete diretamente no comportamento do empregado no ambiente de trabalho.</li></ul><p>Embriaguez em serviço = é a que ocorre durante a jornada de trabalho e que impede que o empregado cumpra suas tarefas de forma adequada e, ainda, coloca em risco a integridade dele ou de terceiros.</p><ul class="bullet"><li>7. Violação de segredo – divulgação não autorizada de informação, fato ou dado de uso e conhecimento exclusivo do empregador. Para que possa ser caracterizada a justa causa, é necessário que a informação seja realmente sigilosa e que o empregado tenha tomado conhecimento da mesma em decorrência de sua função, tendo o dever de sigilo em relação à mesma.</li><li>8. Indisciplina – descumprimento de ordens gerais de serviço, dirigidas impessoalmente a todos os empregados.</li><li>9. Insubordinação – descumprimento de ordens pessoais de serviço, que foram dadas diretamente ao empregado.</li><li>10. Abandono de emprego – é caracterizado por dois requisitos: a) o decurso de um período determinado de ausência injustificada ao serviço, fixado pela jurisprudência em 30 dias (as faltas injustificadas por mais de 30 dias presumem abandono de emprego); b) intenção manifesta do empregado em romper o contrato. O empregador precisa diligenciar no sentido de comprovadamente convocar o empregado para retornar ao trabalho (por carta, telegrama, notificação por cartório etc.).</li></ul><p>Presume-se o abandono de emprego se o trabalhador não retornar ao serviço no prazo de 30 dias após a cessação do benefício previdenciário nem justificar o motivo de não o fazer (Súmula 32, TST).</p><ul class="bullet"><li>11. Ato lesivo à honra e à boa fama – é a ofensa à honra, do empregador ou de terceiro ligado ao serviço (colegas de trabalho, clientes, fornecedores), caracterizando injúria, difamação ou calúnia, salvo hipótese de legítima defesa, própria ou de outrem.</li><li>12. Ofensas físicas – prática de agressão, tentada ou consumada, contra o empregador, superior hierárquico, colegas ou terceiros, no local de trabalho ou situação de estreita relação com o serviço (não ocorreu nas dependências da empresa, mas teve relação com o serviço em si), salvo hipótese de legítima defesa, própria ou de outrem.</li><li>13. Prática constante de jogos de azar – jogos de azar são os jogos de aposta, que não dependem de habilidade do jogador, mas de sua sorte. Refere-se a aposta em dinheiro. Para caracterização da justa causa é necessário que a prática ocorra no ambiente de trabalho.</li><li>14. Perda da habilitação ou dos requisitos estabelecidos em lei para o exercício da profissão, em decorrência de conduta dolosa do empregado – trata-se de hipótese de empregado que precisa de habilitação ou precisa preencher um requisito específico para poder exercer sua atividade profissional. Somente restará caracterizada a justa causa se a perda decorrer de conduta dolosa do empregado. Negligência, imprudência ou imperícia (culpa) não caracterizam justa causa.</li></ul><div class="nota"><strong>Ressalvas ao material:</strong> dependência alcoólica deve ser distinguida de infração disciplinar, por seu caráter de doença. O abandono exige ausência injustificada e intenção de abandonar; não há automatismo geral no 30º dia. O prazo da Súmula 32 refere-se especificamente ao não retorno após a cessação do benefício. A desídia é geralmente reiterada, mas a gravidade concreta exige análise.</div></div></div></div></section>
+<section><div class="sec-head reveal"><span class="num">§ 16.6</span><h2>Outras faltas graves e culpa recíproca</h2></div><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-6"><span class="card-icon">06</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Outras faltas graves e culpa recíproca</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-6"><ul class="bullet"><li>1. Empregado que se recusa a atender normas de segurança no trabalho e a usar equipamentos de proteção individual (EPI) – (art. 158, CLT).</li><li>2. Ferroviário que recusa prorrogação de horário em certos casos (art. 240, CLT).</li><li>3. Falta disciplinar grave do aprendiz (art. 433, CLT).</li><li>4. Grevista que praticar excessos e não respeitar os limites previstos em lei para o exercício do direito de greve (Lei n. 7.783/89).</li></ul><p>Verbas rescisórias: o empregado dispensado por justa causa não tem direito a 13º salário proporcional, a férias proporcionais, a aviso-prévio, a 40% do FGTS. Não pode levantar o FGTS.</p><p>Culpa recíproca: decorre da prática simultânea, pelo empregado e pelo empregador, de falta grave.</p><p>No caso de culpa recíproca, o empregado tem direito de receber metade da indenização a que teria direito (20% do FGTS), metade do aviso-prévio, das férias proporcionais e do 13º salário proporcional (art. 484, CLT, e Súmula 14, TST).</p><div class="nota"><strong>Verbas preservadas:</strong> mesmo na justa causa, são devidos o saldo salarial e as férias já adquiridas e não gozadas, com 1/3, quando existentes. A exclusão das férias proporcionais corresponde à orientação da Súmula 171 usada no material-base. As hipóteses especiais exigem seus requisitos legais: por exemplo, a recusa injustificada do art. 158 da CLT.</div></div></div></div></section>
+<section><div class="sec-head reveal"><span class="num">§ 16.7</span><h2>Extinção por acordo</h2></div><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-7"><span class="card-icon">07</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Extinção por acordo</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-7"><p>Não havendo mais interesse recíproco na manutenção da relação de emprego, empregado e empregador podem, por comum acordo, extinguir o contrato de trabalho, na forma prevista no art. 484-A, CLT.</p><p>Verbas rescisórias: saldo de salário; 50% do valor do aviso-prévio, se indenizado; 13º salário proporcional; férias vencidas, acrescidas de 1/3, se houver; férias proporcionais acrescidas de 1/3; indenização de 20% dos depósitos do FGTS.</p><p>Essa modalidade de extinção do contrato de trabalho permite a movimentação da conta vinculada do trabalhador no FGTS, ficando limitada a 80% do valor dos depósitos efetuados ao longo da vigência do contrato de trabalho (art. 484-A, § 1º, CLT), mas não autoriza o ingresso no Programa de Seguro-Desemprego (art. 484-A, § 2º, CLT).</p><div class="nota"><strong>Atenção:</strong> no acordo do art. 484-A, a redução de 50% do aviso-prévio aplica-se ao aviso <em>indenizado</em>. Se houver trabalho, os dias efetivamente trabalhados são remunerados integralmente. A movimentação do FGTS depende também da modalidade de saque e das restrições legais aplicáveis.</div></div></div></div></section>
+<section><div class="sec-head reveal"><span class="num">§ 16.8</span><h2>Morte, ato de autoridade e aposentadoria</h2></div><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-8"><span class="card-icon">08</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Morte, ato de autoridade e aposentadoria</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-8"><ul class="bullet"><li>a) Morte do empregado: tendo em vista que o contrato de trabalho é pessoal em relação ao sujeito empregado, o desaparecimento deste implica necessariamente a rescisão do liame contratual.</li></ul><p>Pagamento das verbas rescisórias: será efetuado aos dependentes do empregado falecido, indicados perante a Previdência Social. Na falta de dependentes, o pagamento será feito aos herdeiros, na forma da lei civil.</p><p>Verbas rescisórias: saldo de salário, 13º salário proporcional, férias proporcionais + 1/3. Autorizado o levantamento do FGTS. Indevidos aviso-prévio e 40% do FGTS.</p><ul class="bullet"><li>b) Factum principis: a rescisão do contrato de trabalho decorre de ato de autoridade municipal, estadual ou federal, ou, ainda, de promulgação de lei ou de resolução que impossibilite a continuidade da atividade.</li></ul><p>Verbas rescisórias: saldo de salário, 13º salário proporcional, férias proporcionais + 1/3, aviso-prévio. Autorizado o levantamento do FGTS. A indenização de 40% do FGTS ficará a cargo do Governo responsável pela determinação que levou à rescisão do contrato de trabalho (art. 486, CLT).</p><p>Observação: Aposentadoria do empregado – A aposentadoria só é considerada causa de extinção do contrato de trabalho se o empregado deixar de trabalhar para o empregador.</p><p>A aposentadoria espontânea não é causa de extinção do contrato de trabalho se o empregado permanece prestando serviços ao empregador após a jubilação. Assim, por ocasião da sua dispensa imotivada, o empregado tem direito à multa de 40% do FGTS sobre a totalidade dos depósitos efetuados no curso do pacto laboral (OJ SDI-1 361, TST).</p><div class="nota"><strong>Delimitação:</strong> o <em>factum principis</em> exige os pressupostos do art. 486 e não decorre automaticamente de qualquer ato público que afete a atividade. A orientação sobre aposentadoria espontânea apresentada refere-se ao vínculo comum na iniciativa privada; regimes específicos podem ter regras próprias.</div></div></div></div></section>
+<section><div class="sec-head reveal"><span class="num">REVISÃO</span><h2>Teste seus conhecimentos</h2></div>
+<p class="reveal">Questões 96 a 104 do tópico 27 — Extinção do contrato de trabalho. Selecione uma alternativa e confirme para ver a correção. A pontuação segue os gabaritos do PDF; as questões 96, 99 e 100 trazem ressalvas nos comentários.</p><div class="scoreboard reveal" aria-live="polite"><div><div class="score-label">Pontuação</div><div class="score-nums"><span class="score-current" id="sc-current">0</span><span class="score-total">/ 9</span></div></div><div class="score-bar-wrap"><div class="score-bar" id="sc-bar"></div></div><div class="score-msg" id="sc-msg">0 respondidas</div><button class="btn-reset" onclick="resetQuiz()">Reiniciar</button></div>
+<div class="q-card" id="q1"><div class="q-header"><span class="q-badge">Questão 96 · XXI Exame · FGV</span><p class="q-text">Plínio é empregado da empresa Vigilância e Segurança Ltda., a qual não lhe paga salário há dois meses e não lhe fornece vale-transporte há cinco meses. Plínio não tem mais condições de ir ao trabalho e não consegue prover seu sustento e de sua família. Na qualidade de advogado(a) de Plínio, de acordo com a CLT, assinale a opção que melhor atende aos interesses do seu cliente.</p></div><div class="options"><button class="opt" data-q="1" data-val="A" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Propor uma ação trabalhista pedindo a rescisão indireta em razão do descumprimento do contrato por não concessão do vale-transporte, podendo permanecer, ou não, no serviço até decisão do processo.</span></button><button class="opt" data-q="1" data-val="B" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Propor uma ação trabalhista pedindo a rescisão indireta em razão do descumprimento do contrato por mora salarial.</span></button><button class="opt" data-q="1" data-val="C" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Propor uma ação trabalhista pedindo a rescisão indireta em razão do descumprimento do contrato por não concessão do vale-transporte, mas deverá continuar trabalhando até a data da sentença.</span></button><button class="opt" data-q="1" data-val="D" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Propor uma ação trabalhista pedindo as parcelas decorrentes da ruptura contratual por pedido de demissão, além do vale-transporte e salários atrasados e indenização por dano moral, mas seu cliente deve pedir demissão.</span></button></div><div class="q-actions"><button class="btn-confirm" id="q1-btn" disabled onclick="confirmAnswer(1,'A')">Confirmar →</button><button class="toggle-gabarito" id="q1-tog" aria-expanded="false" aria-controls="q1-gab" onclick="toggleGabarito(1)">Gabarito comentado <span class="chev">▾</span></button></div><div class="gabarito" id="q1-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Gabarito do PDF A</div><div class="gabarito-body"><p>Gabarito do PDF: A. A falta de fornecimento do vale-transporte caracteriza descumprimento de obrigação contratual. Nas hipóteses do art. 483, d e g, o § 3º permite ao empregado permanecer ou não no serviço enquanto pleiteia a rescisão indireta.</p><p>Ressalva ao comentário original: o atraso salarial também pode fundamentar a rescisão indireta. Não se deve tratar três meses de atraso como requisito mínimo absoluto. A alternativa A foi mantida como resposta do material, mas a alternativa B merece discussão em aula. C impõe continuidade obrigatória indevida; D substitui a rescisão indireta por pedido de demissão.</p></div></div></div></div>
+<div class="q-card" id="q2"><div class="q-header"><span class="q-badge">Questão 97 · XXIII Exame · FGV</span><p class="q-text">João era proprietário de uma padaria em uma rua movimentada do centro da cidade. Em razão de obras municipais, a referida rua foi interditada para veículos e pedestres. Por conta disso, dada a ausência de movimento, João foi obrigado a extinguir seu estabelecimento comercial, implicando a paralisação definitiva do trabalho. Acerca da indenização dos empregados pela extinção da empresa, à luz da CLT, assinale a afirmativa correta.</p></div><div class="options"><button class="opt" data-q="2" data-val="A" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Caberá indenização ao empregado, a ser paga pelo Município.</span></button><button class="opt" data-q="2" data-val="B" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Caberá indenização ao empregado, a ser paga pela União.</span></button><button class="opt" data-q="2" data-val="C" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Caberá indenização ao empregado, a ser paga pelo empregador, sem possibilidade de ressarcimento.</span></button><button class="opt" data-q="2" data-val="D" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Tratando-se de motivo de força maior, não há pagamento de indenização.</span></button></div><div class="q-actions"><button class="btn-confirm" id="q2-btn" disabled onclick="confirmAnswer(2,'A')">Confirmar →</button><button class="toggle-gabarito" id="q2-tog" aria-expanded="false" aria-controls="q2-gab" onclick="toggleGabarito(2)">Gabarito comentado <span class="chev">▾</span></button></div><div class="gabarito" id="q2-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Alternativa A</div><div class="gabarito-body"><p>Gabarito: A. Na hipótese de factum principis descrita no enunciado, a indenização fica a cargo do governo responsável pelo ato que impossibilitou a continuidade da atividade (art. 486, CLT). Como a interdição foi municipal, a alternativa aponta o Município.</p><p>A questão trata especificamente da indenização atribuída ao poder público, e não da transferência automática de todas as verbas rescisórias. B aponta ente diverso do responsável; C e D não correspondem ao enquadramento adotado pelo exame.</p></div></div></div></div>
+<div class="q-card" id="q3"><div class="q-header"><span class="q-badge">Questão 98 · XXV Exame · FGV</span><p class="q-text">Ferdinando trabalha na sociedade empresária Alfa S.A. há 4 anos, mas anda desestimulado com o emprego e deseja dar um novo rumo à sua vida, retornando, em tempo integral, aos estudos para tentar uma outra carreira profissional. Imbuído desta intenção, Ferdinando procurou seu chefe, em 08/03/2018, e apresentou uma proposta para, de comum acordo, ser dispensado da empresa, com formulação de um distrato. Diante do caso apresentado e dos termos da CLT, assinale a afirmativa correta.</p></div><div class="options"><button class="opt" data-q="3" data-val="A" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>A realização da extinção contratual por vontade mútua é viável, mas a indenização será reduzida pela metade e o empregado não receberá seguro desemprego.</span></button><button class="opt" data-q="3" data-val="B" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>A ruptura contratual por consenso pode ser feita, mas depende de homologação judicial ou do sindicato de classe do empregado.</span></button><button class="opt" data-q="3" data-val="C" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>O contrato não pode ser extinto por acordo entre as partes, já que falta previsão legal para tanto, cabendo ao empregado pedir demissão ou o empregador o dispensar sem justa causa.</span></button><button class="opt" data-q="3" data-val="D" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>O caso pode ser considerado desídia por parte do empregado, gerando então a dispensa por justa causa, sem direito a qualquer indenização.</span></button></div><div class="q-actions"><button class="btn-confirm" id="q3-btn" disabled onclick="confirmAnswer(3,'A')">Confirmar →</button><button class="toggle-gabarito" id="q3-tog" aria-expanded="false" aria-controls="q3-gab" onclick="toggleGabarito(3)">Gabarito comentado <span class="chev">▾</span></button></div><div class="gabarito" id="q3-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Alternativa A</div><div class="gabarito-body"><p>Gabarito: A. O art. 484-A da CLT admite a extinção por acordo. A indenização sobre o FGTS é reduzida de 40% para 20%, e não há acesso ao seguro-desemprego por essa modalidade.</p><p>O aviso-prévio, se indenizado, é pago pela metade. As demais verbas são integrais e o saque do FGTS é limitado a 80%, observadas as regras de movimentação. B exige homologação que não é regra geral dessa modalidade; C nega previsão existente; D confunde o acordo com desídia.</p></div></div></div></div>
+<div class="q-card" id="q4"><div class="q-header"><span class="q-badge">Questão 99 · XXVII Exame · FGV</span><p class="q-text">Gilda e Renan são empregados da sociedade empresária Alfa Calçados Ltda. há 8 meses, mas, em razão da crise econômica no setor, o empregador resolveu dispensá-los em outubro de 2018. Nesse sentido, concedeu aviso prévio indenizado de 30 dias a Gilda e aviso prévio trabalhado de 30 dias a Renan. Em relação ao prazo máximo, previsto na CLT, para pagamento das verbas devidas pela extinção, assinale a afirmativa correta.</p></div><div class="options"><button class="opt" data-q="4" data-val="A" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Ambos os empregados receberão em até 10 dias contados do término do aviso prévio.</span></button><button class="opt" data-q="4" data-val="B" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Gilda receberá até o 10º dia do término do aviso e Renan, até o 1º dia útil seguinte ao término do aviso prévio.</span></button><button class="opt" data-q="4" data-val="C" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Gilda e Renan receberão seus créditos em até 10 dias contados da concessão do aviso prévio.</span></button><button class="opt" data-q="4" data-val="D" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Gilda receberá até o 1º dia útil seguinte ao término do aviso prévio e Renan, até o 10º dia do término do aviso.</span></button></div><div class="q-actions"><button class="btn-confirm" id="q4-btn" disabled onclick="confirmAnswer(4,'A')">Confirmar →</button><button class="toggle-gabarito" id="q4-tog" aria-expanded="false" aria-controls="q4-gab" onclick="toggleGabarito(4)">Gabarito comentado <span class="chev">▾</span></button></div><div class="gabarito" id="q4-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Gabarito do PDF A</div><div class="gabarito-body"><p>Gabarito apresentado pelo PDF: A. O material associa o prazo de dez dias do art. 477, § 6º, ao término do aviso, inclusive quando indenizado. A pontuação desta questão reproduz esse gabarito para estudo do exame.</p><p>Ressalva importante: não utilize essa explicação como autorização para adiar o pagamento até o fim da projeção do aviso indenizado. No aviso trabalhado, o prazo é contado do término efetivo; no indenizado, considera-se o desligamento, sem aguardar a projeção ficta. As alternativas do enunciado não retratam adequadamente essa distinção.</p></div></div></div></div>
+<div class="q-card" id="q5"><div class="q-header"><span class="q-badge">Questão 100 · XXVIII Exame · FGV</span><p class="q-text">A sociedade empresária Beta Ltda. está passando por grave crise econômica e financeira e, em razão disso, resolveu reduzir drasticamente suas atividades, encerrando unidades e terceirizando grande parte dos seus serviços. Por conta disso, a empresa, que possuía 500 empregados, dispensou 450 deles no dia 23 de janeiro de 2018. Diante do caso apresentado e dos preceitos da CLT, assinale a afirmativa correta.</p></div><div class="options"><button class="opt" data-q="5" data-val="A" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Trata-se de dispensa em massa, sendo nula porque não autorizada em norma coletiva.</span></button><button class="opt" data-q="5" data-val="B" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Equivocou-se a empresa, porque para realizar a dispensa coletiva ela é obrigada a oferecer antes adesão ao Programa de Demissão Voluntária (PDV).</span></button><button class="opt" data-q="5" data-val="C" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>A ordem de antiguidade obrigatoriamente deve ser respeitada, pelo que os 50 empregados mais antigos não poderão ser dispensados.</span></button><button class="opt" data-q="5" data-val="D" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>A dispensa ocorreu validamente, pois a dispensa coletiva é equiparada à dispensa individual.</span></button></div><div class="q-actions"><button class="btn-confirm" id="q5-btn" disabled onclick="confirmAnswer(5,'D')">Confirmar →</button><button class="toggle-gabarito" id="q5-tog" aria-expanded="false" aria-controls="q5-gab" onclick="toggleGabarito(5)">Gabarito comentado <span class="chev">▾</span></button></div><div class="gabarito" id="q5-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Gabarito do PDF D</div><div class="gabarito-body"><p>Gabarito histórico: D. O enunciado situa a dispensa em janeiro de 2018 e cobra o art. 477-A da CLT, que equipara as dispensas individuais, plúrimas e coletivas e não exige autorização sindical ou celebração de instrumento coletivo.</p><p>Atualização — Tema 638 do STF: a intervenção sindical prévia é requisito procedimental para dispensas em massa, sem significar autorização sindical nem obrigação de celebrar acordo ou convenção. O STF modulou a exigência para as demissões posteriores a 14/06/2022. Portanto, não se deve generalizar a frase do PDF de que a dispensa coletiva não sofre qualquer restrição.</p></div></div></div></div>
+<div class="q-card" id="q6"><div class="q-header"><span class="q-badge">Questão 101 · XXVIII Exame · FGV</span><p class="q-text">Gerson Filho é motorista rodoviário e trabalha na sociedade empresária Viação Canela de Ouro Ltda. No dia 20 de agosto de 2018, ele se envolveu em grave acidente automobilístico, sendo, ao final da investigação, verificado que Gerson foi o responsável pelo sinistro, tendo atuado com dolo no evento danoso. Em razão disso, teve a perda da sua habilitação determinada pela autoridade competente. O empregador procura você, como advogado(a), afirmando que não há vaga disponível para Gerson em outra atividade na empresa e desejando saber o que deverá fazer para solucionar a questão da maneira mais econômica e em obediência às normas de regência. Diante desta situação e dos termos da CLT, assinale a afirmativa correta.</p></div><div class="options"><button class="opt" data-q="6" data-val="A" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>O contrato de Gerson deverá ser suspenso.</span></button><button class="opt" data-q="6" data-val="B" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>O empregador deverá interromper o contrato de Gerson.</span></button><button class="opt" data-q="6" data-val="C" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>O contrato do empregado deverá ser rompido por justa causa.</span></button><button class="opt" data-q="6" data-val="D" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>A empresa deverá dispensar Gerson sem justa causa.</span></button></div><div class="q-actions"><button class="btn-confirm" id="q6-btn" disabled onclick="confirmAnswer(6,'C')">Confirmar →</button><button class="toggle-gabarito" id="q6-tog" aria-expanded="false" aria-controls="q6-gab" onclick="toggleGabarito(6)">Gabarito comentado <span class="chev">▾</span></button></div><div class="gabarito" id="q6-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Alternativa C</div><div class="gabarito-body"><p>Gabarito: C. A perda da habilitação necessária ao exercício profissional decorrente de conduta dolosa do empregado enquadra-se no art. 482, m, da CLT. O enunciado informa expressamente o dolo e a perda da habilitação.</p><p>No caso apresentado, a justa causa é a solução prevista entre as opções. A e B não correspondem ao enquadramento legal; D desconsidera a falta grave. A perda da habilitação por mera culpa não preenche, por si só, essa alínea.</p></div></div></div></div>
+<div class="q-card" id="q7"><div class="q-header"><span class="q-badge">Questão 102 · XXXIII Exame · FGV</span><p class="q-text">Walmir foi empregado da sociedade empresária Lanchonete Chapa Quente Ltda., na qual atuou como atendente por um ano e três meses, sendo dispensado sem justa causa em julho de 2021. A sociedade empresária procura você, como advogado(a), para saber o modo de pagamento dos direitos devidos a Walmir. De acordo com o que dispõe a CLT, sabendo-se que a norma coletiva nada dispõe a respeito, assinale a afirmativa correta.</p></div><div class="options"><button class="opt" data-q="7" data-val="A" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Uma vez que o contrato vigorou por mais de um ano, deve ser feita a homologação perante o sindicato de classe do empregado ou perante o Ministério do Trabalho.</span></button><button class="opt" data-q="7" data-val="B" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>O pagamento poderá ocorrer na própria empresa, pois não há mais necessidade de homologação da rescisão contratual pelo sindicato profissional ou pelo Ministério do Trabalho.</span></button><button class="opt" data-q="7" data-val="C" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Não havendo discórdia sobre o valor devido a Walmir, deverá ser apresentada uma homologação de acordo extrajudicial na Justiça do Trabalho, com assinatura de advogado comum.</span></button><button class="opt" data-q="7" data-val="D" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>A sociedade empresária, ao optar por fazer o pagamento em suas próprias instalações, deverá obrigatoriamente depositar o valor na conta do trabalhador para ter a prova futura do adimplemento.</span></button></div><div class="q-actions"><button class="btn-confirm" id="q7-btn" disabled onclick="confirmAnswer(7,'B')">Confirmar →</button><button class="toggle-gabarito" id="q7-tog" aria-expanded="false" aria-controls="q7-gab" onclick="toggleGabarito(7)">Gabarito comentado <span class="chev">▾</span></button></div><div class="gabarito" id="q7-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Alternativa B</div><div class="gabarito-body"><p>Gabarito: B. A Reforma Trabalhista revogou a exigência geral de homologação sindical ou no Ministério do Trabalho apenas em razão de o contrato ter mais de um ano. No caso descrito, sem previsão coletiva específica, o pagamento pode ocorrer na empresa.</p><p>A reproduz a regra antiga. C exige indevidamente homologação judicial e advogado comum; o procedimento dos arts. 855-B e seguintes tem requisitos próprios. D afirma obrigatoriedade de depósito bancário que não decorre como regra geral do art. 477, § 4º.</p></div></div></div></div>
+<div class="q-card" id="q8"><div class="q-header"><span class="q-badge">Questão 103 · XXXIII Exame · FGV</span><p class="q-text">Suelen trabalhava na Churrascaria Boi Mal Passado Ltda. como auxiliar de cozinha, recebendo salário fixo de R$ 1.500,00 (um mil e quinhentos reais) mensais. Por encontrar-se em dificuldade financeira, Suelen pediu ao seu empregador um empréstimo de R$ 4.500,00 (quatro mil e quinhentos reais) para ser descontado em parcelas de R$ 500,00 (quinhentos reais) ao longo do tempo. Sensibilizado com a situação da empregada, a sociedade empresária fez o empréstimo solicitado, mas 1 mês após Suelen pediu demissão, sem ter pago qualquer parcela do empréstimo. Considerando a situação de fato, a previsão da CLT e que a empresa elaborará o termo de rescisão do contrato de trabalho (TRCT), assinale a afirmativa correta.</p></div><div class="options"><button class="opt" data-q="8" data-val="A" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>A sociedade empresária poderá descontar todo o resíduo do empréstimo do TRCT.</span></button><button class="opt" data-q="8" data-val="B" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>A sociedade empresária poderá, no máximo, descontar no TRCT o valor de R$ 1.500,00 (um mil e quinhentos reais).</span></button><button class="opt" data-q="8" data-val="C" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Não pode haver qualquer desconto no TRCT, porque o empréstimo tem a natureza de contrato civil, de modo que a sociedade empresária deverá cobrá-lo na justiça comum.</span></button><button class="opt" data-q="8" data-val="D" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Por Lei, a sociedade empresária tem direito de descontar no TRCT o dobro da remuneração do empregado por eventual dívida dele.</span></button></div><div class="q-actions"><button class="btn-confirm" id="q8-btn" disabled onclick="confirmAnswer(8,'B')">Confirmar →</button><button class="toggle-gabarito" id="q8-tog" aria-expanded="false" aria-controls="q8-gab" onclick="toggleGabarito(8)">Gabarito comentado <span class="chev">▾</span></button></div><div class="gabarito" id="q8-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Alternativa B</div><div class="gabarito-body"><p>Gabarito: B. O art. 477, § 5º, da CLT limita a compensação no pagamento rescisório ao equivalente a um mês de remuneração. Como Suelen recebe R$ 1.500,00, esse é o limite aplicável ao empréstimo descrito.</p><p>A dívida de R$ 4.500,00 não permite descontar todo o saldo no TRCT. O limite não equivale a perdão da diferença, que pode ser cobrada pela via adequada. C veda desconto permitido; D duplica indevidamente o teto legal.</p></div></div></div></div>
+<div class="q-card" id="q9"><div class="q-header"><span class="q-badge">Questão 104 · 38º Exame · FGV</span><p class="q-text">Vladimir, formado em Educação Física, 28 anos de idade, era instrutor em uma academia de ginástica há 1 ano, com a CTPS devidamente assinada. Ao ser comunicado pelo empregador de sua dispensa sem justa causa, com aviso prévio que deveria ser trabalhado, Vladimir foi tomado de intensa emoção e teve um ataque cardíaco fulminante, vindo a óbito. De acordo com a situação retratada e a norma de regência, assinale a afirmativa correta.</p></div><div class="options"><button class="opt" data-q="9" data-val="A" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>A sociedade empresária será condenada pelo acidente do trabalho sofrido, mas não haverá indenização pela extinção do contrato porque o aviso prévio não foi cumprido.</span></button><button class="opt" data-q="9" data-val="B" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>As verbas devidas serão pagas, em quotas iguais, aos dependentes de Vladimir habilitados perante a Previdência Social e, na falta, aos sucessores previstos na lei civil.</span></button><button class="opt" data-q="9" data-val="C" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Não haverá responsabilidade civil do empregador por se tratar de caso fortuito e a Lei determina, no caso de morte suspeita, a consignação em pagamento dos valores devidos.</span></button><button class="opt" data-q="9" data-val="D" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>A morte do empregado extingue o contrato de trabalho e a indenização a ser paga será a metade do que é devido pela dispensa sem justa causa.</span></button></div><div class="q-actions"><button class="btn-confirm" id="q9-btn" disabled onclick="confirmAnswer(9,'B')">Confirmar →</button><button class="toggle-gabarito" id="q9-tog" aria-expanded="false" aria-controls="q9-gab" onclick="toggleGabarito(9)">Gabarito comentado <span class="chev">▾</span></button></div><div class="gabarito" id="q9-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Alternativa B</div><div class="gabarito-body"><p>Gabarito: B. A Lei nº 6.858/1980 prevê o pagamento dos valores devidos pelo empregador em quotas iguais aos dependentes habilitados perante a Previdência Social. Na falta deles, o pagamento é feito aos sucessores da lei civil, indicados em alvará judicial, independentemente de inventário ou arrolamento.</p><p>A responsabilidade civil pelo óbito não pode ser presumida apenas pela narrativa. Não há regra geral que reduza todas as verbas à metade por morte do empregado, nem imposição automática de consignação por suposta morte suspeita.</p></div></div></div></div>
+<div class="result-banner" id="result-banner"><div class="result-score" id="result-score">0/9</div><div class="result-label">Resultado final</div><div class="result-msg" id="result-msg"></div></div></section>
+<p class="source">Conteúdo-base: 16. Extinção do contrato de trabalho. Questões: Oab Trabalho.pdf, tópico 27. Enunciados e gabaritos do material preservados; comentários adaptados e ressalvas sinalizadas. Referências: <a href="https://www.planalto.gov.br/ccivil_03/decreto-lei/del5452.htm" target="_blank" rel="noopener">CLT</a>; <a href="https://www.planalto.gov.br/ccivil_03/leis/l6858.htm" target="_blank" rel="noopener">Lei nº 6.858/1980</a>; <a href="https://noticias.stf.jus.br/postsnoticias/exigencia-de-intervencao-sindical-em-demissoes-em-massa-vale-a-partir-da-publicacao-da-ata-da-decisao-do-stf/" target="_blank" rel="noopener">STF — Tema 638</a>; <a href="https://www.tst.jus.br/-/atraso-no-pagamento-de-salario-motivou-rescisao-indireta" target="_blank" rel="noopener">TST — mora salarial</a>.</p><a class="back" href="../index.html"><span class="arw">←</span><span>Voltar ao índice da disciplina</span></a>
+</div>
+<script>
+/* accordion de conteúdo */
+(function(){
+  var cards = document.querySelectorAll('.card');
+  cards.forEach(function(card){
+    var btn = card.querySelector('.card-btn');
+    if(!btn) return;
+    btn.addEventListener('click', function(){
+      var isOpen = card.classList.contains('open');
+      cards.forEach(function(c){c.classList.remove('open');var b=c.querySelector('.card-btn');if(b)b.setAttribute('aria-expanded','false');});
+      if(!isOpen){card.classList.add('open');btn.setAttribute('aria-expanded','true');}
+    });
+  });
+})();
+
+/* reveal on scroll */
+(function(){
+  var items=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){items.forEach(function(el){el.classList.add('in');});return;}
+  var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.08,rootMargin:'0px 0px -3% 0px'});
+  items.forEach(function(el,i){el.style.transitionDelay=(Math.min(i,6)*30)+'ms';io.observe(el);});
+})();
+
+/* ── QUIZ ── */
+var TOTAL=9, answered={};
+
+function selectOpt(el){
+  var q=el.dataset.q;
+  if(answered[q]!==undefined) return;
+  document.querySelectorAll('[data-q="'+q+'"]').forEach(function(o){o.classList.remove('selected');o.setAttribute('aria-pressed','false');});
+  el.classList.add('selected');el.setAttribute('aria-pressed','true');
+  document.getElementById('q'+q+'-btn').disabled=false;
 }
 
-.wrap{
-  max-width:980px;
-  margin:auto;
-  padding:18px 14px 40px;
+function confirmAnswer(qNum,correctVal){
+  if(answered[qNum]!==undefined) return;
+  var opts=document.querySelectorAll('[data-q="'+qNum+'"]');
+  var btn=document.getElementById('q'+qNum+'-btn');
+  var card=document.getElementById('q'+qNum);
+  var tog=document.getElementById('q'+qNum+'-tog');
+  var chosen=null;
+  opts.forEach(function(o){if(o.classList.contains('selected'))chosen=o;});
+  if(!chosen) return;
+  var isCorrect=chosen.dataset.val===correctVal;
+  answered[qNum]=isCorrect;
+  opts.forEach(function(o){
+    o.disabled=true;
+    if(o.dataset.val===correctVal){o.classList.add('correct-final');}
+    else if(o.classList.contains('selected')&&!isCorrect){o.classList.add('wrong-final');}
+    else{o.classList.add('dimmed');}
+    o.classList.remove('selected');
+  });
+  card.classList.add(isCorrect?'answered-correct':'answered-wrong');
+  btn.disabled=true; btn.style.display='none';
+  tog.style.display='inline-flex';
+  updateScore(); checkAllDone();
 }
 
-.panel{
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:24px;
-  box-shadow:var(--shadow);
-  padding:18px;
+function toggleGabarito(qNum){
+  var gab=document.getElementById('q'+qNum+'-gab');
+  var tog=document.getElementById('q'+qNum+'-tog');
+  var open=gab.classList.toggle('open');
+  tog.classList.toggle('open',open);tog.setAttribute('aria-expanded',String(open));
 }
 
-h1{
-  color:var(--title);
-  font-size:34px;
-  line-height:1.15;
-  margin:6px 0 14px;
-  text-align:center;
+function updateScore(){
+  var done=Object.keys(answered).length;
+  var correct=Object.values(answered).filter(Boolean).length;
+  var pct=TOTAL>0?(correct/TOTAL)*100:0;
+  document.getElementById('sc-current').textContent=correct;
+  document.getElementById('sc-bar').style.width=pct+'%';
+  document.getElementById('sc-bar').style.background=pct>=70?'#166534':pct>=40?'#d97706':'#991b1b';
+  document.getElementById('sc-msg').textContent=done+' respondida'+(done!==1?'s':'');
 }
 
-h2{
-  color:#0b2fb3;
-  font-size:24px;
-  margin:22px 0 12px;
+function checkAllDone(){
+  if(Object.keys(answered).length<TOTAL) return;
+  var correct=Object.values(answered).filter(Boolean).length;
+  var banner=document.getElementById('result-banner');
+  var score=document.getElementById('result-score');
+  var msg=document.getElementById('result-msg');
+  score.textContent=correct+'/'+TOTAL;
+  var pct=correct/TOTAL;
+  if(pct===1) msg.textContent='🎉 Parabéns! Gabarito perfeito — você domina o tema.';
+  else if(pct>=.75) msg.textContent='✅ Muito bem! Revise os pontos que errou e estará pronto.';
+  else if(pct>=.5) msg.textContent='📖 Resultado razoável. Revise os comentários com atenção.';
+  else msg.textContent='🔁 Reforce o estudo e tente novamente. Os comentários ajudam!';
+  banner.classList.add('show');
+  banner.scrollIntoView({behavior:'smooth',block:'center'});
 }
 
-p{
-  margin:0 0 14px;
-  text-align:justify;
+function resetQuiz(){
+  answered={};
+  for(var q=1;q<=TOTAL;q++){
+    document.querySelectorAll('[data-q="'+q+'"]').forEach(function(o){
+      o.disabled=false;o.setAttribute('aria-pressed','false'); o.classList.remove('selected','correct-final','wrong-final','dimmed');
+    });
+    document.getElementById('q'+q).classList.remove('answered-correct','answered-wrong');
+    var btn=document.getElementById('q'+q+'-btn');
+    btn.disabled=true; btn.style.display='';
+    var tog=document.getElementById('q'+q+'-tog');
+    tog.style.display='none'; tog.classList.remove('open');tog.setAttribute('aria-expanded','false');
+    document.getElementById('q'+q+'-gab').classList.remove('open');
+  }
+  document.getElementById('sc-current').textContent='0';
+  document.getElementById('sc-bar').style.width='0%';
+  document.getElementById('sc-msg').textContent='0 respondidas';
+  document.getElementById('result-banner').classList.remove('show');
+  window.scrollTo({top:0,behavior:'smooth'});
 }
-
-.card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:18px;
-  box-shadow:0 8px 20px rgba(15,23,42,.08);
-  padding:18px;
-  margin:14px 0;
-}
-
-.section-blue{ border-left:7px solid #2563eb; }
-.section-green{ border-left:7px solid #16a34a; }
-.section-orange{ border-left:7px solid #f97316; }
-.section-purple{ border-left:7px solid #7c3aed; }
-.section-red{ border-left:7px solid #dc2626; }
-
-.box{
-  padding:14px;
-  border-radius:14px;
-  margin:14px 0;
-  border:1px solid var(--border);
-}
-
-.oab{ background:var(--orangeSoft); border-left:6px solid #f97316; }
-.sumula{ background:var(--greenSoft); border-left:6px solid #16a34a; }
-.artigo{ background:var(--blueSoft); border-left:6px solid #2563eb; }
-.obs{ background:var(--purpleSoft); border-left:6px solid #7c3aed; }
-.alerta{ background:var(--redSoft); border-left:6px solid #dc2626; }
-
-.bullet{
-  margin:10px 0 14px;
-  padding-left:0;
-  list-style:none;
-}
-
-.bullet li{
-  margin:10px 0;
-  padding:12px 14px;
-  background:#fff;
-  border-radius:14px;
-  border:1px solid var(--border);
-  box-shadow:0 5px 12px rgba(15,23,42,.05);
-}
-
-.bullet li::before{
-  content:"■ ";
-  color:#1f4fd8;
-  font-weight:900;
-}
-
-.slides-area{
-  display:flex;
-  justify-content:center;
-  margin:10px 0 22px;
-}
-
-.slides-btn{
-  text-decoration:none;
-  color:var(--text);
-  background:#fff;
-  border:1px solid rgba(37,99,235,.22);
-  border-radius:22px;
-  box-shadow:var(--shadow);
-  padding:16px 22px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:14px;
-  min-width:min(420px,100%);
-  font-weight:900;
-  transition:.18s;
-}
-
-.slides-btn:hover{
-  transform:translateY(-2px);
-  box-shadow:0 20px 42px rgba(15,23,42,.16);
-}
-
-.icon{
-  width:54px;
-  height:54px;
-  border-radius:18px;
-  display:grid;
-  place-items:center;
-  background:linear-gradient(135deg,#dbeafe,#ffffff);
-  border:1px solid rgba(37,99,235,.24);
-}
-
-.icon svg{ width:30px; height:30px; }
-
-.slides-text{
-  display:flex;
-  flex-direction:column;
-  line-height:1.15;
-}
-
-.slides-text strong{ font-size:20px; }
-.slides-text span{ font-size:14px; color:var(--muted); }
-
-.back{
-  display:flex;
-  justify-content:center;
-  margin-top:20px;
-}
-
-.back a{
-  width:min(560px,100%);
-  text-align:center;
-  text-decoration:none;
-  background:#fff;
-  padding:16px 18px;
-  border-radius:16px;
-  border:1px solid var(--border);
-  box-shadow:0 8px 20px rgba(15,23,42,.08);
-  color:var(--text);
-  font-weight:900;
-}
-
-@media(max-width:520px){
-  body{font-size:17px;}
-  h1{font-size:28px;}
-  h2{font-size:21px;}
-  .slides-btn{padding:14px;}
-}
-</style>
-</head>
-
-<body>
-<div class="wrap">
-<div class="panel">
-
-<h1>16. Extinção do Contrato de Trabalho</h1>
-
-<div class="slides-area">
-  <a class="slides-btn" href="https://drive.google.com/file/d/1_4UfcG_eoVDqYw6mtt7Ub7u9Z1awWUoI/view?usp=sharing" target="_blank" rel="noopener">
-    <span class="icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none">
-        <rect x="3" y="4" width="18" height="12" rx="2" stroke="#1f4fd8" stroke-width="1.8"/>
-        <path d="M8 20h8M12 16v4" stroke="#1f4fd8" stroke-width="1.8" stroke-linecap="round"/>
-        <path d="M7 9h10M7 12h7" stroke="#1f4fd8" stroke-width="1.8" stroke-linecap="round"/>
-      </svg>
-    </span>
-    <span class="slides-text">
-      <strong>Slides</strong>
-      <span>Abrir no Google Drive</span>
-    </span>
-  </a>
-</div>
-
-<div class="card section-blue">
-<h2>16.EXTINÇÃO DO CONTRATO DE TRABALHO</h2>
-</div>
-
-<div class="card section-green">
-<h2>16.1. Extinção do contrato de trabalho por prazo determinado</h2>
-
-<p>A extinção se dá em decorrência do cumprimento integral, quer pelo término do prazo, quer pelo advento da condição resolutiva (art. 443, § 1º, CLT).</p>
-
-<p>Verbas rescisórias devidas: saldo de salário, 13º salário proporcional, férias proporcionais + 1/3, levantamento do FGTS.</p>
-
-<p>Rescisão antecipada: não havendo cumprimento integral do contrato porque houve decisão de uma das partes em rescindi-lo antecipadamente, o legislador impõe punição à parte que assim agir:</p>
-
-<ul class="bullet">
-<li>a) por iniciativa do empregador: este será obrigado a pagar ao empregado, a título de indenização, a metade do valor da remuneração a que o mesmo teria direito até o término do contrato (art. 479, CLT). Trata-se de indenização por perdas e danos decorrentes da violação do pactuado;</li>
-
-<li>b) por iniciativa do empregado: este deverá indenizar o empregador dos prejuízos que desse fato lhe resultarem, em valor que não poderá ser superior ao que o empregador lhe pagaria se tivesse sido daquele a iniciativa da rescisão antecipada (art. 480, CLT).</li>
-</ul>
-
-<div class="box artigo">
-<p><strong>Observação:</strong> a indenização prevista nos arts. 479 e 480 da CLT não será devida quando o contrato por prazo determinado contiver cláusula assecuratória do direito recíproco de rescisão antecipada. Neste caso, se exercida a faculdade prevista na cláusula por qualquer uma das partes, a rescisão será regida pelas mesmas regras de extinção previstas para os contratos por prazo indeterminado (art. 481, CLT).</p>
-</div>
-</div>
-
-<div class="card section-orange">
-<h2>16.2. Extinção do contrato por prazo indeterminado</h2>
-
-<p>A extinção pode ocorrer por iniciativa do empregado, por iniciativa do empregador, ou por fatos alheios à vontade das partes.</p>
-
-<h2>Por iniciativa do empregado:</h2>
-
-<ul class="bullet">
-<li>a) Pedido de demissão: é a comunicação do empregado ao empregador de que não pretende dar mais continuidade ao contrato de trabalho.</li>
-</ul>
-
-<p>Não tem forma prevista em lei, mas como o pedido de demissão precisa ser provado pelo empregador (presume-se que a rescisão do contrato de trabalho se deu por iniciativa do empregador, salvo se houver prova em sentido contrário – Súmula 212, TST), costuma-se exigir que seja feito por escrito.</p>
-
-<div class="box sumula">
-<p><strong>Súmula 212, TST:</strong> o texto menciona que se presume que a rescisão do contrato de trabalho se deu por iniciativa do empregador, salvo se houver prova em sentido contrário.</p>
-</div>
-
-<p>Verbas rescisórias: saldo de salário, 13º salário proporcional, férias proporcionais + 1/3 (mesmo que o empregado tenha menos de 12 meses de serviço – Súmula 261, TST). O empregado não pode levantar o FGTS. O aviso-prévio somente será pago se for cumprido pelo empregado. Recusando-se o empregado a cumpri-lo, o empregador pode descontar o salário correspondente ao período respectivo.</p>
-
-<div class="box sumula">
-<p><strong>Súmula 261, TST:</strong> o texto menciona férias proporcionais + 1/3 mesmo que o empregado tenha menos de 12 meses de serviço.</p>
-</div>
-
-<ul class="bullet">
-<li>b) Dispensa indireta: é a rescisão contratual pelo empregado, tendo em vista justa causa praticada pelo empregador.</li>
-</ul>
-
-<p>As faltas graves do empregador são previstas no art. 483, CLT:</p>
-
-<ul class="bullet">
-<li>1. exigência de serviços superiores às forças do empregado, defesos por lei, contrários aos bons costumes, ou alheios ao contrato;</li>
-<li>2. rigor excessivo contra o empregado;</li>
-<li>3. exposição do empregado a perigo manifesto de mal considerável;</li>
-<li>4. descumprimento de obrigações contratuais;</li>
-<li>5. prática pelo empregador ou por seus prepostos de atos lesivos à honra e à boa fama do empregado ou de seus familiares;</li>
-<li>6. prática pelo empregador ou por seus prepostos de ofensas físicas ao empregado, salvo legítima defesa;</li>
-<li>7. redução injustificada do trabalho do empregado, quando este for realizado por produção ou por tarefa, de modo a diminuir sensivelmente sua remuneração.</li>
-</ul>
-
-<p>Verbas rescisórias: o empregado receberá todas as verbas rescisórias que receberia caso tivesse sido dispensado sem justa causa.</p>
-</div>
-
-<div class="card section-purple">
-<h2>Por iniciativa do empregador:</h2>
-
-<ul class="bullet">
-<li>a) Dispensa sem justa causa: é a ruptura do contrato de trabalho por ato unilateral e imediato do empregador, independentemente da vontade do empregado.</li>
-</ul>
-
-<p>A dispensa sem justa causa não é vedada por lei. No entanto, a relação de emprego é protegida contra dispensa arbitrária ou sem justa causa, sendo devida indenização compensatória em favor do empregado (art. 7º, I, CF). A indenização corresponde a 40% dos depósitos do FGTS efetuados durante a vigência do contrato de trabalho (art. 18, § 1º, Lei n. 8.036/90).</p>
-
-<p>Verbas rescisórias: saldo de salário, aviso-prévio, 13º salário proporcional, férias proporcionais + 1/3, 40% do FGTS. O empregado pode levantar o valor do FGTS depositado em sua conta vinculada.</p>
-
-<ul class="bullet">
-<li>b) Dispensa por justa causa: é a rescisão do contrato de trabalho em decorrência da prática de falta grave pelo empregado. A prática da justa causa torna insustentável a manutenção do vínculo de emprego, levando à imediata rescisão do contrato e desonerando o empregador de algumas reparações econômicas que seriam devidas caso o contrato tivesse sido rescindido sem justa causa.</li>
-</ul>
-
-<p>Caracterização e limitações da justa causa:</p>
-
-<ul class="bullet">
-<li>legalidade – somente podem ser consideradas justa causa hipóteses expressamente previstas em lei (o art. 482 da CLT prevê as hipóteses gerais de justa causa; outros dispositivos legais podem prever hipóteses específicas de justa causa);</li>
-<li>taxatividade – as hipóteses de justa causa são taxativamente previstas em lei; a enumeração não é meramente exemplificativa;</li>
-<li>imediatidade – a reação do empregador, dando por rescindido o contrato, deve ser imediata, o que não afasta o decurso de tempo razoável para apuração dos fatos, variando tal prazo de acordo com a complexidade organizacional da empresa. A falta da imediatidade faz presumir perdão tácito;</li>
-<li>perdão – inexistência de perdão tácito ou expresso;</li>
-<li>causalidade – que o fato seja efetivamente determinante da rescisão (nexo causal);</li>
-<li>non bis in idem – não se admite que um mesmo fato possa ser punido mais de uma vez. Se o fato já foi punido com advertência ou com suspensão, não pode ser aplicada justa causa. Caso o empregado pratique novamente um fato idêntico ao primeiro, para este segundo fato, se não foi aplicada nenhuma outra punição, pode o contrato ser rescindido por justa causa.</li>
-</ul>
-
-<div class="box oab">
-<p><strong>Caixa OAB:</strong> atenção aos limites da justa causa: legalidade, taxatividade, imediatidade, perdão, causalidade e non bis in idem.</p>
-</div>
-
-<p>Observações: a punição não pode ser excessiva; deve haver proporcionalidade entre a gravidade da falta e a gravidade da punição aplicada. Caso a falta tenha sido praticada por diversos empregados ao mesmo tempo, o empregado tem de ser punido da mesma forma que os outros envolvidos na prática da falta. A ausência de isonomia descaracteriza a punição.</p>
-</div>
-
-<div class="card section-red">
-<h2>Hipóteses de justa causa (art. 482, CLT):</h2>
-
-<ul class="bullet">
-<li>1. Ato de improbidade – atentado contra o patrimônio do empregador ou de terceiros ligados ao trabalho (ex.: colegas de trabalho, clientes, fornecedores). É o ato desonesto, malicioso, que foi praticado intencionalmente pelo empregado (dolo).</li>
-
-<li>2. Incontinência de conduta ou mau procedimento – a incontinência de conduta caracteriza-se pela conduta irregular do empregado, incompatível com a moral sexual; o mau procedimento é o comportamento irregular do empregado, incompatível com as normas exigidas pelo senso comum do homem médio.</li>
-
-<li>3. Negociação habitual – é o ato de concorrência desleal para com o empregador ou o exercício do comércio em paralelo com o exercício da função decorrente do contrato de trabalho, ou quando for prejudicial ao serviço. A autorização tácita ou expressa do empregador descaracteriza a justa causa.</li>
-
-<li>4. Condenação criminal sem direito a suspensão da execução da pena – o fato de o empregado estar respondendo processo criminal não permite a caracterização de justa causa. É necessário que tenha havido condenação criminal, já transitada em julgado, e, ainda, que não caiba suspensão da execução da pena.</li>
-
-<li>5. Desídia – é o desempenho das funções com negligência, desleixo, descaso. É a baixa produtividade e perfeição técnica do trabalho decorrente da falta de interesse do empregado. Requer habitualidade e, ainda, punições para as práticas anteriores (o empregado já praticou este tipo de falta anteriormente e foi punido com advertência ou com suspensão, ou seja, o empregado já tem histórico faltoso).</li>
-
-<li>6. Embriaguez habitual ou em serviço – haverá embriaguez sempre que o empregado, sob o efeito de álcool ou de outra substância entorpecente, perde o governo de suas faculdades a ponto de tornar-se incapaz de executar as tarefas a que está obrigado. Embriaguez habitual = é a embriaguez constante, fora do serviço, mas que reflete diretamente no comportamento do empregado no ambiente de trabalho.</li>
-</ul>
-
-<p>Embriaguez em serviço = é a que ocorre durante a jornada de trabalho e que impede que o empregado cumpra suas tarefas de forma adequada e, ainda, coloca em risco a integridade dele ou de terceiros.</p>
-
-<ul class="bullet">
-<li>7. Violação de segredo – divulgação não autorizada de informação, fato ou dado de uso e conhecimento exclusivo do empregador. Para que possa ser caracterizada a justa causa, é necessário que a informação seja realmente sigilosa e que o empregado tenha tomado conhecimento da mesma em decorrência de sua função, tendo o dever de sigilo em relação à mesma.</li>
-
-<li>8. Indisciplina – descumprimento de ordens gerais de serviço, dirigidas impessoalmente a todos os empregados.</li>
-
-<li>9. Insubordinação – descumprimento de ordens pessoais de serviço, que foram dadas diretamente ao empregado.</li>
-
-<li>10. Abandono de emprego – é caracterizado por dois requisitos: a) o decurso de um período determinado de ausência injustificada ao serviço, fixado pela jurisprudência em 30 dias (as faltas injustificadas por mais de 30 dias presumem abandono de emprego); b) intenção manifesta do empregado em romper o contrato. O empregador precisa diligenciar no sentido de comprovadamente convocar o empregado para retornar ao trabalho (por carta, telegrama, notificação por cartório etc.).</li>
-</ul>
-
-<div class="box sumula">
-<p><strong>Súmula 32, TST:</strong> Presume-se o abandono de emprego se o trabalhador não retornar ao serviço no prazo de 30 dias após a cessação do benefício previdenciário nem justificar o motivo de não o fazer.</p>
-</div>
-
-<ul class="bullet">
-<li>11. Ato lesivo à honra e à boa fama – é a ofensa à honra, do empregador ou de terceiro ligado ao serviço (colegas de trabalho, clientes, fornecedores), caracterizando injúria, difamação ou calúnia, salvo hipótese de legítima defesa, própria ou de outrem.</li>
-
-<li>12. Ofensas físicas – prática de agressão, tentada ou consumada, contra o empregador, superior hierárquico, colegas ou terceiros, no local de trabalho ou situação de estreita relação com o serviço (não ocorreu nas dependências da empresa, mas teve relação com o serviço em si), salvo hipótese de legítima defesa, própria ou de outrem.</li>
-
-<li>13. Prática constante de jogos de azar – jogos de azar são os jogos de aposta, que não dependem de habilidade do jogador, mas de sua sorte. Refere-se a aposta em dinheiro. Para caracterização da justa causa é necessário que a prática ocorra no ambiente de trabalho.</li>
-
-<li>14. Perda da habilitação ou dos requisitos estabelecidos em lei para o exercício da profissão, em decorrência de conduta dolosa do empregado – trata-se de hipótese de empregado que precisa de habilitação ou precisa preencher um requisito específico para poder exercer sua atividade profissional. Somente restará caracterizada a justa causa se a perda decorrer de conduta dolosa do empregado. Negligência, imprudência ou imperícia (culpa) não caracterizam justa causa.</li>
-</ul>
-</div>
-
-<div class="card section-blue">
-<h2>Outras hipóteses de justa causa:</h2>
-
-<ul class="bullet">
-<li>1. Empregado que se recusa a atender normas de segurança no trabalho e a usar equipamentos de proteção individual (EPI) – (art. 158, CLT).</li>
-<li>2. Ferroviário que recusa prorrogação de horário em certos casos (art. 240, CLT).</li>
-<li>3. Falta disciplinar grave do aprendiz (art. 433, CLT).</li>
-<li>4. Grevista que praticar excessos e não respeitar os limites previstos em lei para o exercício do direito de greve (Lei n. 7.783/89).</li>
-</ul>
-
-<p>Verbas rescisórias: o empregado dispensado por justa causa não tem direito a 13º salário proporcional, a férias proporcionais, a aviso-prévio, a 40% do FGTS. Não pode levantar o FGTS.</p>
-
-<p>Culpa recíproca: decorre da prática simultânea, pelo empregado e pelo empregador, de falta grave.</p>
-
-<p>No caso de culpa recíproca, o empregado tem direito de receber metade da indenização a que teria direito (20% do FGTS), metade do aviso-prévio, das férias proporcionais e do 13º salário proporcional (art. 484, CLT, e Súmula 14, TST).</p>
-
-<div class="box sumula">
-<p><strong>Súmula 14, TST:</strong> o texto menciona que, no caso de culpa recíproca, o empregado tem direito de receber metade da indenização, metade do aviso-prévio, das férias proporcionais e do 13º salário proporcional.</p>
-</div>
-</div>
-
-<div class="card section-green">
-<h2>Por acordo entre empregado e empregador:</h2>
-
-<p>Não havendo mais interesse recíproco na manutenção da relação de emprego, empregado e empregador podem, por comum acordo, extinguir o contrato de trabalho, na forma prevista no art. 484-A, CLT.</p>
-
-<p>Verbas rescisórias: saldo de salário; 50% do valor do aviso-prévio; 13º salário proporcional; férias vencidas, acrescidas de 1/3, se houver; férias proporcionais acrescidas de 1/3; indenização de 20% dos depósitos do FGTS.</p>
-
-<p>Essa modalidade de extinção do contrato de trabalho permite a movimentação da conta vinculada do trabalhador no FGTS, ficando limitada a 80% do valor dos depósitos efetuados ao longo da vigência do contrato de trabalho (art. 484-A, § 1º, CLT), mas não autoriza o ingresso no Programa de Seguro-Desemprego (art. 484-A, § 2º, CLT).</p>
-</div>
-
-<div class="card section-orange">
-<h2>Por fatos alheios à vontade das partes:</h2>
-
-<ul class="bullet">
-<li>a) Morte do empregado: tendo em vista que o contrato de trabalho é pessoal em relação ao sujeito empregado, o desaparecimento deste implica necessariamente a rescisão do liame contratual.</li>
-</ul>
-
-<p>Pagamento das verbas rescisórias: será efetuado aos dependentes do empregado falecido, indicados perante a Previdência Social. Na falta de dependentes, o pagamento será feito aos herdeiros, na forma da lei civil.</p>
-
-<p>Verbas rescisórias: saldo de salário, 13º salário proporcional, férias proporcionais + 1/3. Autorizado o levantamento do FGTS. Indevidos aviso-prévio e 40% do FGTS.</p>
-
-<ul class="bullet">
-<li>b) Factum principis: a rescisão do contrato de trabalho decorre de ato de autoridade municipal, estadual ou federal, ou, ainda, de promulgação de lei ou de resolução que impossibilite a continuidade da atividade.</li>
-</ul>
-
-<p>Verbas rescisórias: saldo de salário, 13º salário proporcional, férias proporcionais + 1/3, aviso-prévio. Autorizado o levantamento do FGTS. A indenização de 40% do FGTS ficará a cargo do Governo responsável pela determinação que levou à rescisão do contrato de trabalho (art. 486, CLT).</p>
-
-<div class="box obs">
-<p><strong>Observação:</strong> Aposentadoria do empregado – A aposentadoria só é considerada causa de extinção do contrato de trabalho se o empregado deixar de trabalhar para o empregador.</p>
-</div>
-
-<p>A aposentadoria espontânea não é causa de extinção do contrato de trabalho se o empregado permanece prestando serviços ao empregador após a jubilação. Assim, por ocasião da sua dispensa imotivada, o empregado tem direito à multa de 40% do FGTS sobre a totalidade dos depósitos efetuados no curso do pacto laboral (OJ SDI-1 361, TST).</p>
-
-<div class="box sumula">
-<p><strong>OJ SDI-1 361, TST:</strong> a aposentadoria espontânea não extingue o contrato se o empregado permanece prestando serviços; na dispensa imotivada, há direito à multa de 40% do FGTS sobre a totalidade dos depósitos.</p>
-</div>
-</div>
-
-<div class="back">
-<a href="../index.html">← Voltar ao índice da disciplina</a>
-</div>
-
-</div>
-</div>
-</body>
-</html>
+</script></body></html>
