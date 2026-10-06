@@ -1,375 +1,309 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>15. Suspensão e Interrupção do Contrato de Trabalho</title>
-
-<style>
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>15. Suspensão e Interrupção do Contrato de Trabalho</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"><style>
 :root{
-  --bg:#eaf3ff;
-  --panel:#f8fbff;
-  --card:#ffffff;
-  --title:#1f4fd8;
-  --text:#0f172a;
-  --muted:#475569;
-  --border:rgba(15,23,42,.14);
-  --shadow:0 14px 34px rgba(15,23,42,.12);
-  --blueSoft:#e8f0ff;
-  --greenSoft:#ecfdf5;
-  --orangeSoft:#fff7ed;
-  --purpleSoft:#f5f3ff;
-  --redSoft:#fef2f2;
+  --ink:#1b2436;--ink-soft:#414a5c;--paper:#edece5;--surface:#fbfaf7;
+  --accent:#7a2e37;--accent-soft:#a2545f;--iron:#8b8579;
+  --line:rgba(27,36,54,.13);--line-strong:rgba(27,36,54,.22);
+  --green:#166534;--green-bg:#f0fdf4;--green-line:#bbf7d0;
+  --red:#991b1b;--red-bg:#fef2f2;--red-line:#fecaca;
+  --display:"Fraunces",Georgia,serif;--body:"Spectral",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:19px;line-height:1.78;-webkit-font-smoothing:antialiased;}
+body::before{content:"";position:fixed;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 34%,var(--ink) 34%,var(--ink) 100%);z-index:50;}
+.wrap{max-width:760px;margin:0 auto;padding:0 22px 72px;}
+
+/* CABEÇALHO */
+.masthead{padding:56px 0 30px;border-bottom:1px solid var(--line-strong);animation:rise .7s cubic-bezier(.2,.7,.2,1) both;}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--accent);display:inline-block;}
+.eyebrow .dot{color:var(--line-strong);}
+.title-row{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;flex-wrap:wrap;}
+h1{font-family:var(--display);font-weight:500;font-size:clamp(2.3rem,6.5vw,3.8rem);line-height:1.04;letter-spacing:-.015em;max-width:14ch;}
+h1 .art{display:block;font-size:.42em;font-weight:600;letter-spacing:.02em;color:var(--accent);font-family:var(--mono);text-transform:uppercase;margin-bottom:.5em;}
+.slides-btn{flex-shrink:0;display:inline-flex;align-items:center;gap:12px;text-decoration:none;background:var(--ink);color:#f4f2ec;border-radius:4px;padding:13px 18px;font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;box-shadow:0 8px 22px -12px rgba(27,36,54,.7);transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s,background .25s;}
+.slides-btn:hover{background:var(--accent);transform:translateY(-2px);}
+.slides-btn .arw{transition:transform .25s;}
+.slides-btn:hover .arw{transform:translateX(4px);}
+
+/* VERBETE */
+.verbete{margin:44px 0 8px;padding:6px 0 6px 30px;border-left:3px solid var(--accent);}
+.verbete .tag{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:14px;}
+.verbete p{font-family:var(--display);font-weight:400;font-size:clamp(1.15rem,2.8vw,1.45rem);line-height:1.45;color:var(--ink);margin:0;}
+
+/* REF */
+.ref{font-family:var(--mono);font-size:.8em;color:var(--iron);background:rgba(139,133,121,.12);padding:2px 7px;border-radius:3px;white-space:nowrap;}
+
+/* SEÇÕES */
+.sec-head{display:flex;gap:16px;align-items:baseline;margin:44px 0 14px;padding-top:26px;border-top:1px solid var(--line);}
+.sec-head .num{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--accent);flex-shrink:0;padding-top:.35em;}
+h2{font-family:var(--display);font-weight:500;font-size:clamp(1.55rem,4vw,1.95rem);line-height:1.14;letter-spacing:-.01em;color:var(--ink);}
+h3{font-family:var(--display);font-weight:600;font-size:1.15rem;color:var(--ink);margin:22px 0 8px;}
+p{margin-bottom:14px;color:var(--ink-soft);}
+
+/* LISTA */
+.blist{list-style:none;padding:0;margin:10px 0 12px;display:flex;flex-direction:column;gap:3px;}
+.blist li{display:grid;grid-template-columns:22px 1fr;gap:8px;font-size:.93em;color:var(--ink-soft);line-height:1.65;padding:8px 0;border-bottom:1px solid var(--line);}
+.blist li:last-child{border-bottom:none;}
+.blist li .bul{color:var(--accent);font-family:var(--mono);font-size:.85em;padding-top:2px;}
+
+/* SUMULA */
+.sumula{margin:10px 0 6px;padding:12px 16px;border-left:2px solid var(--iron);background:var(--paper);border-radius:0 4px 4px 0;font-size:.89em;color:var(--ink-soft);line-height:1.65;}
+.sumula strong{font-family:var(--mono);font-size:.86em;letter-spacing:.08em;text-transform:uppercase;color:var(--iron);display:block;margin-bottom:4px;}
+
+/* NOTA / ALERTA */
+.nota{margin:10px 0 6px;padding:13px 17px;background:rgba(122,46,55,.06);border-left:3px solid var(--accent);border-radius:0 5px 5px 0;font-size:.91em;color:var(--ink-soft);line-height:1.65;}
+.nota strong{color:var(--ink);}
+
+/* TABELA */
+.tbl{margin:12px 0 6px;border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:.9em;}
+.tbl-head{display:grid;background:var(--ink);color:#f4f2ec;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;}
+.tbl-head div,.tbl-row div{padding:9px 14px;}
+.tbl-head div:not(:last-child){border-right:1px solid rgba(255,255,255,.15);}
+.tbl-row{display:grid;border-top:1px solid var(--line);}
+.tbl-row:nth-child(even) div{background:rgba(139,133,121,.04);}
+.tbl-row div{color:var(--ink-soft);display:flex;align-items:center;line-height:1.5;}
+.tbl-row div:not(:last-child){border-right:1px solid var(--line);}
+.tbl-3{grid-template-columns:1fr 1fr 1fr;}
+.tbl-2{grid-template-columns:1fr 1fr;}
+.tbl-head.tbl-3{grid-template-columns:1fr 1fr 1fr;}
+.tbl-head.tbl-2{grid-template-columns:1fr 1fr;}
+
+/* CARDS ACCORDION */
+.cards{display:flex;flex-direction:column;gap:3px;}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;transition:box-shadow .2s;}
+.card:hover{box-shadow:0 4px 18px -8px rgba(27,36,54,.2);}
+.card-btn{width:100%;background:none;border:none;cursor:pointer;display:grid;grid-template-columns:52px 1fr 34px;align-items:center;padding:0;text-align:left;color:inherit;}
+.card-icon{display:flex;align-items:center;justify-content:center;min-height:60px;border-right:1px solid var(--line);font-family:var(--mono);font-weight:700;font-size:11px;color:var(--accent);background:rgba(122,46,55,.05);text-align:center;padding:4px;line-height:1.3;}
+.card-head{padding:13px 16px;}
+.card-num{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--iron);display:block;margin-bottom:3px;}
+.card-title{font-family:var(--display);font-weight:600;font-size:1rem;line-height:1.2;color:var(--ink);}
+.card-chevron{display:flex;align-items:center;justify-content:center;padding-right:14px;color:var(--iron);font-size:13px;transition:transform .3s cubic-bezier(.2,.7,.2,1),color .2s;}
+.card.open .card-chevron{transform:rotate(180deg);color:var(--accent);}
+.card-body{display:none;padding:16px 20px 20px;border-top:1px solid var(--line);}
+.card.open .card-body{display:block;}
+.card-body p{color:var(--ink-soft);font-size:.93em;line-height:1.72;}
+
+/* ===== PLACAR ===== */
+.scoreboard{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:18px 22px;background:var(--surface);border:1px solid var(--line-strong);border-radius:8px;margin-bottom:8px;}
+.score-label{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--iron);}
+.score-nums{display:flex;align-items:baseline;gap:6px;}
+.score-current{font-family:var(--display);font-size:2.6rem;font-weight:600;color:var(--ink);line-height:1;}
+.score-total{font-family:var(--mono);font-size:1rem;color:var(--iron);}
+.score-bar-wrap{flex:1;min-width:120px;height:8px;background:var(--line);border-radius:99px;overflow:hidden;}
+.score-bar{height:100%;width:0%;background:var(--accent);border-radius:99px;transition:width .5s cubic-bezier(.2,.7,.2,1),background .3s;}
+.score-msg{font-family:var(--mono);font-size:12px;color:var(--iron);min-width:80px;}
+.btn-reset{margin-left:auto;border:1px solid var(--line-strong);background:none;color:var(--ink-soft);border-radius:4px;padding:7px 14px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:border-color .2s,color .2s;}
+.btn-reset:hover{border-color:var(--accent);color:var(--accent);}
+
+/* CARD DE QUESTÃO */
+.q-card{background:var(--surface);border:1px solid var(--line);border-radius:8px;margin:14px 0;overflow:hidden;transition:border-color .25s,box-shadow .25s;}
+.q-card.answered-correct{border-color:var(--green-line);box-shadow:0 0 0 2px rgba(22,101,52,.12);}
+.q-card.answered-wrong{border-color:var(--red-line);box-shadow:0 0 0 2px rgba(153,27,27,.10);}
+.q-header{display:flex;align-items:flex-start;gap:12px;padding:16px 18px 12px;}
+.q-badge{flex-shrink:0;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--accent);background:rgba(122,46,55,.09);border:1px solid rgba(122,46,55,.18);border-radius:4px;padding:3px 9px;margin-top:3px;white-space:nowrap;}
+.q-text{font-family:var(--body);font-size:.96em;color:var(--ink);line-height:1.72;flex:1;margin:0;}
+.options{padding:0 18px 16px;display:flex;flex-direction:column;gap:7px;}
+.opt{display:flex;align-items:flex-start;gap:11px;padding:10px 13px;border:1px solid var(--line);border-radius:6px;cursor:pointer;background:var(--paper);transition:border-color .18s,background .18s;text-align:left;width:100%;font-family:var(--body);font-size:.92em;color:var(--ink-soft);line-height:1.6;}
+.opt:hover:not(:disabled){border-color:var(--accent-soft);background:#f7f3f1;}
+.opt-letter{flex-shrink:0;font-family:var(--mono);font-size:.8em;font-weight:700;color:var(--accent);width:20px;padding-top:2px;}
+.opt.selected{border-color:var(--accent);background:rgba(122,46,55,.06);}
+.opt.correct-final{border-color:var(--green);background:var(--green-bg);cursor:default;}
+.opt.correct-final .opt-letter{color:var(--green);}
+.opt.wrong-final{border-color:var(--red);background:var(--red-bg);cursor:default;}
+.opt.wrong-final .opt-letter{color:var(--red);}
+.opt.dimmed{opacity:.42;cursor:default;}
+.q-actions{padding:0 18px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.btn-confirm{display:inline-flex;align-items:center;gap:8px;padding:9px 20px;background:var(--ink);color:#f4f2ec;border:none;border-radius:4px;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;transition:background .2s,transform .2s;}
+.btn-confirm:hover:not(:disabled){background:var(--accent);transform:translateY(-1px);}
+.btn-confirm:disabled{opacity:.35;cursor:default;transform:none;}
+.toggle-gabarito{display:none;align-items:center;gap:7px;border:none;background:none;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--iron);cursor:pointer;transition:color .2s;padding:0;}
+.toggle-gabarito:hover{color:var(--accent);}
+.toggle-gabarito .chev{display:inline-block;font-size:10px;transition:transform .3s cubic-bezier(.2,.7,.2,1);}
+.toggle-gabarito.open .chev{transform:rotate(180deg);}
+.gabarito{border-top:1px solid var(--line);overflow:hidden;max-height:0;transition:max-height .45s cubic-bezier(.2,.7,.2,1);}
+.gabarito.open{max-height:1800px;}
+.gabarito-inner{padding:16px 18px 18px;}
+.gabarito-title{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--iron);margin-bottom:10px;}
+.gabarito-correct{display:flex;align-items:center;gap:10px;padding:9px 13px;background:var(--green-bg);border:1px solid var(--green-line);border-radius:6px;font-family:var(--mono);font-size:.84em;font-weight:700;color:var(--green);margin-bottom:12px;}
+.gabarito-body{font-size:.9em;color:var(--ink-soft);line-height:1.72;}
+.gabarito-body strong{color:var(--ink);}
+.gabarito-body .ref{font-family:var(--mono);font-size:.8em;color:var(--iron);background:rgba(139,133,121,.12);padding:2px 7px;border-radius:3px;white-space:nowrap;}
+.gabarito-body p{margin-bottom:9px;}
+.gabarito-body p:last-child{margin-bottom:0;}
+
+/* RESULTADO */
+.result-banner{display:none;margin:28px 0 0;padding:26px 22px;border:1px solid var(--line-strong);border-radius:8px;background:var(--surface);text-align:center;}
+.result-banner.show{display:block;}
+.result-score{font-family:var(--display);font-size:3.2rem;font-weight:600;color:var(--accent);line-height:1;margin-bottom:6px;}
+.result-label{font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--iron);}
+.result-msg{margin-top:10px;font-size:.94em;color:var(--ink-soft);}
+
+/* VOLTAR */
+.back{margin-top:52px;display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line-strong);border-radius:6px;padding:20px 22px;font-family:var(--mono);font-size:14px;letter-spacing:.04em;transition:border-color .25s,transform .25s;}
+.back .arw{color:var(--accent);transition:transform .25s;font-size:18px;}
+.back:hover{border-color:var(--accent);transform:translateY(-2px);}
+.back:hover .arw{transform:translateX(-4px);}
+
+@keyframes rise{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
+.reveal{opacity:0;transform:translateY(14px);}
+.reveal.in{opacity:1;transform:none;transition:opacity .5s ease,transform .5s cubic-bezier(.2,.7,.2,1);}
+
+@media(max-width:560px){
+  body{font-size:17.5px;}
+  .masthead{padding:40px 0 24px;}
+  .title-row{align-items:stretch;}
+  .slides-btn{width:100%;justify-content:center;}
+  .verbete{padding-left:18px;}
+  .scoreboard{flex-direction:column;align-items:flex-start;gap:10px;}
+  .btn-reset{margin-left:0;}
+  .tbl-3{grid-template-columns:1fr 1fr;}
+  .tbl-head.tbl-3 div:last-child,.tbl-3 .tbl-row div:last-child{display:none;}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;scroll-behavior:auto;}
+  .reveal{opacity:1;transform:none;}
+  .reveal.in{transition:none;}
 }
 
-*{
-  box-sizing:border-box;
+.q-header{flex-wrap:wrap}.q-text{flex-basis:100%}.q-badge{white-space:normal}
+.card-body ul{padding-left:24px}.card-body li{margin-bottom:12px}
+.card-body .nota p:last-child{margin-bottom:0}
+.score-msg{white-space:nowrap}.source{font-size:.8em;margin-top:20px}
+@media(max-width:560px){.score-bar-wrap{width:100%;flex:auto}.ref{white-space:normal}}
+
+.compare-table{width:100%;border-collapse:collapse;background:var(--surface);font-size:.9em;margin:22px 0}
+.compare-table th,.compare-table td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;overflow-wrap:anywhere}
+.compare-table th{color:var(--accent);font-family:var(--display)}
+@media(max-width:560px){.compare-table{font-size:.8em}.compare-table th,.compare-table td{padding:9px 6px}}
+</style></head><body><div class="wrap"><header class="masthead"><p class="eyebrow">Direito do Trabalho <span class="dot">·</span> Efeitos do contrato</p><div class="title-row"><h1><span class="art">Item 15</span>Suspensão e interrupção do contrato de trabalho</h1><a class="slides-btn" href="https://drive.google.com/file/d/1L9XuAq2sh69scmUdHWmuXs93ibwz6XGM/view?usp=sharing" target="_blank" rel="noopener"><span>▮</span><span>Slides da aula</span><span class="arw">→</span></a></div><div class="verbete"><span class="tag">O vínculo permanece</span><p>O contrato continua vigente. O que muda é a exigibilidade das obrigações: na <strong>suspensão</strong>, em regra, não há trabalho nem salário; na <strong>interrupção</strong>, a remuneração e o tempo de serviço são preservados.</p></div></header><section><div class="sec-head reveal"><span class="num">§ 15.1</span><h2>Conceito e distinção</h2></div><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-1"><span class="card-icon">01</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Conceito e distinção</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-1"><p>Referem-se a paralisações dos efeitos do contrato de trabalho.</p><p>Em ambas as hipóteses o contrato de trabalho continua vigente, mas as principais obrigações dele decorrentes não são temporariamente exigíveis de forma total (suspensão) ou de forma parcial (interrupção).</p><div class="nota"><strong>Regra geral:</strong> na suspensão, não há prestação de serviços nem pagamento de salário pelo empregador, e não se computa o tempo de serviço. Na interrupção, não há trabalho, mas se preservam a remuneração e a contagem do tempo. Há exceções legais, especialmente no afastamento acidentário.</div></div></div></div><table class="compare-table reveal"><caption>Comparação — regra geral</caption><thead><tr><th scope="col">Efeito</th><th scope="col">Suspensão</th><th scope="col">Interrupção</th></tr></thead><tbody><tr><th scope="row">Trabalho</th><td>Não há</td><td>Não há</td></tr><tr><th scope="row">Salário</th><td>Não há salário pago pelo empregador</td><td>Remuneração preservada</td></tr><tr><th scope="row">Tempo de serviço</th><td>Não conta, ressalvadas exceções</td><td>Conta</td></tr></tbody></table></section>
+<section><div class="sec-head reveal"><span class="num">§ 15.2</span><h2>Hipóteses de interrupção</h2></div><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-2"><span class="card-icon">02</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Hipóteses de interrupção</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-2"><ul class="bullet"><li>descanso semanal e feriados;</li><li>férias;</li><li>faltas justificadas;</li><li>licença-paternidade;</li><li>licença-maternidade;</li><li>afastamento por doença ou acidente (15 primeiros dias);</li></ul><div class="nota">Os primeiros 15 dias de afastamento do empregado por incapacidade são remunerados pela empresa. Na licença-maternidade, há salário-maternidade, com disciplina previdenciária própria.</div></div></div></div></section>
+<section><div class="sec-head reveal"><span class="num">§ 15.3</span><h2>Hipóteses de suspensão</h2></div><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-3"><span class="card-icon">03</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Hipóteses de suspensão</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-3"><ul class="bullet"><li>licença não remunerada;</li><li>afastamento por doença ou acidente a partir do 16º dia, durante o benefício previdenciário;</li><li>suspensão disciplinar;</li><li>faltas injustificadas;</li><li>período de participação do empregado em curso ou programa de qualificação profissional oferecido pelo empregador (art. 476-A, CLT);</li><li>aposentadoria por invalidez (art. 475, CLT).</li></ul><div class="nota"><strong>Suspensão disciplinar:</strong> não pode ultrapassar 30 dias consecutivos (art. 474, CLT).</div></div></div></div></section>
+<section><div class="sec-head reveal"><span class="num">§ 15.4</span><h2>Greve e suspensão pactuada</h2></div><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-4"><span class="card-icon">04</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Greve e suspensão pactuada</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-4"><p>Como regra, a participação em greve suspende o contrato. Os efeitos sobre as obrigações durante a paralisação são disciplinados por acordo, convenção, laudo arbitral ou decisão da Justiça do Trabalho (art. 7º da Lei nº 7.783/1989).</p><div class="nota"><strong>Ressalva ao material-base:</strong> a ausência de abusividade não transforma, por si só, a greve em interrupção remunerada. É preciso examinar a disciplina aplicável aos dias parados.</div><p>A suspensão não pode ser imposta livremente para transferir ao empregado os riscos econômicos da atividade. Existem, porém, hipóteses admitidas pelo ordenamento, como a licença não remunerada e a suspensão para qualificação profissional.</p><p>O art. 476-A da CLT prevê suspensão de dois a cinco meses para curso ou programa de qualificação profissional oferecido pelo empregador, com previsão em convenção ou acordo coletivo e aquiescência formal do empregado, além dos demais requisitos legais.</p><div class="nota"><strong>Ressalva ao material-base:</strong> a afirmação de que a suspensão jamais pode ser estipulada por acordo individual ou coletivo é excessivamente ampla. A validade depende da hipótese e dos requisitos aplicáveis.</div></div></div></div></section>
+<section><div class="sec-head reveal"><span class="num">§ 15.5</span><h2>Exceções e efeitos preservados</h2></div><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-5"><span class="card-icon">05</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Exceções e efeitos preservados</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-5"><p>Serão computados na contagem de tempo de serviço, para efeito de indenização e estabilidade, os períodos em que o empregado estiver afastado do trabalho por motivo de acidente do trabalho (art. 4º, § 1º, CLT).</p><p>No afastamento por acidente do trabalho, o empregador permanece obrigado a depositar o FGTS (art. 15, § 5º, Lei nº 8.036/1990).</p><div class="sumula"><strong>Súmula 269 — Diretor eleito</strong>O empregado eleito para ocupar cargo de diretor tem o contrato suspenso, sem contagem do tempo de serviço, salvo se permanecer a subordinação jurídica inerente à relação de emprego.</div><div class="sumula"><strong>Súmula 440 — Plano de saúde</strong>O plano de saúde oferecido pela empresa deve ser mantido na suspensão por auxílio-doença acidentário ou aposentadoria por invalidez.</div><p>Ao retornar, o empregado tem asseguradas as vantagens atribuídas à sua categoria na empresa durante o afastamento (art. 471, CLT).</p></div></div></div></section>
+<section><div class="sec-head reveal"><span class="num">REVISÃO</span><h2>Teste seus conhecimentos</h2></div>
+<p class="reveal">Questões 87 a 95 do tópico 26 — Suspensão e interrupção do contrato de trabalho. Selecione uma alternativa e confirme para ver a correção.</p><div class="scoreboard reveal" aria-live="polite"><div><div class="score-label">Pontuação</div><div class="score-nums"><span class="score-current" id="sc-current">0</span><span class="score-total">/ 9</span></div></div><div class="score-bar-wrap"><div class="score-bar" id="sc-bar"></div></div><div class="score-msg" id="sc-msg">0 respondidas</div><button class="btn-reset" onclick="resetQuiz()">Reiniciar</button></div>
+<div class="q-card" id="q1"><div class="q-header"><span class="q-badge">Questão 87 · XIX Exame · FGV</span><p class="q-text">Maria trabalha para a sociedade empresária Beta e recentemente foi aposentada por invalidez. Diante desse fato, a empresa cancelou o plano de saúde de Maria. Em relação à hipótese retratada e de acordo com a lei e o entendimento sumulado do TST, assinale a afirmativa correta.</p></div><div class="options"><button class="opt" data-q="1" data-val="A" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>A sociedade empresária agiu corretamente, pois a aposentadoria por invalidez rompeu o contrato de trabalho.</span></button><button class="opt" data-q="1" data-val="B" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>A sociedade empresária poderia, diante da situação retratada e a seu exclusivo critério, manter ou não o plano de saúde.</span></button><button class="opt" data-q="1" data-val="C" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>A sociedade empresária terá obrigação de manter o plano por 12 meses, quando terminaria a estabilidade da obreira.</span></button><button class="opt" data-q="1" data-val="D" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>A sociedade empresária se equivocou, porque o contrato está suspenso, devendo ser mantido o plano de saúde.</span></button></div><div class="q-actions"><button class="btn-confirm" id="q1-btn" disabled onclick="confirmAnswer(1,'D')">Confirmar →</button><button class="toggle-gabarito" id="q1-tog" aria-expanded="false" aria-controls="q1-gab" onclick="toggleGabarito(1)">Gabarito comentado <span class="chev">▾</span></button></div><div class="gabarito" id="q1-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Alternativa D</div><div class="gabarito-body"><p>A aposentadoria por invalidez (incapacidade permanente) suspende o contrato, sem extingui-lo (art. 475, CLT). A Súmula 440 do TST assegura a manutenção do plano de saúde oferecido pela empresa nessa hipótese.</p><p>A) O vínculo não foi rompido. B) A manutenção não fica a critério exclusivo da empresa. C) Não há limitação a 12 meses: a proteção acompanha a suspensão contratual.</p></div></div></div></div>
+<div class="q-card" id="q2"><div class="q-header"><span class="q-badge">Questão 88 · XXI Exame · FGV</span><p class="q-text">Paula e Joyce são empregadas de uma mesma sociedade empresária. O irmão de Paula faleceu e o empregador não autorizou sua ausência ao trabalho. Vinte dias depois, Joyce se casou e o empregador também não autorizou sua ausência ao trabalho em nenhum dia. Como advogado(a) das empregadas, você deverá requerer</p></div><div class="options"><button class="opt" data-q="2" data-val="A" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>em ambos os casos, a ausência ao trabalho por três dias consecutivos.</span></button><button class="opt" data-q="2" data-val="B" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>um dia de ausência ao trabalho para Paula e de três dias para Joyce.</span></button><button class="opt" data-q="2" data-val="C" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>a ausência ao trabalho por dois dias consecutivos, no caso de Paula e, de até três dias, para Joyce.</span></button><button class="opt" data-q="2" data-val="D" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>a ausência ao trabalho por dois úteis dias no caso de Paula e, de até três dias úteis, para Joyce.</span></button></div><div class="q-actions"><button class="btn-confirm" id="q2-btn" disabled onclick="confirmAnswer(2,'C')">Confirmar →</button><button class="toggle-gabarito" id="q2-tog" aria-expanded="false" aria-controls="q2-gab" onclick="toggleGabarito(2)">Gabarito comentado <span class="chev">▾</span></button></div><div class="gabarito" id="q2-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Alternativa C</div><div class="gabarito-body"><p>O art. 473, I e II, da CLT prevê ausência remunerada de até dois dias consecutivos pelo falecimento de irmão e de até três dias consecutivos por casamento. Assim, Paula e Joyce têm os direitos indicados na alternativa C.</p><p>A) Os dois afastamentos não têm a mesma duração. B) O falecimento de irmão autoriza até dois dias, não apenas um. D) A lei utiliza dias consecutivos, e não dias úteis.</p></div></div></div></div>
+<div class="q-card" id="q3"><div class="q-header"><span class="q-badge">Questão 89 · XXVI Exame · FGV</span><p class="q-text">Considerando a grave crise financeira que o país atravessa, a fim de evitar a dispensa de alguns funcionários, a metalúrgica Multiforte Ltda. pretende suspender sua produção por um mês. O Sindicato dos Empregados da indústria metalúrgica contratou você para, como advogado, buscar a solução para o caso. Segundo o texto da CLT, assinale a opção que apresenta a solução de acordo mais favorável aos interesses dos empregados.</p></div><div class="options"><button class="opt" data-q="3" data-val="A" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Implementar a suspensão dos contratos de trabalho dos empregados por 30 dias, por meio de acordo individual de trabalho.</span></button><button class="opt" data-q="3" data-val="B" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Conceder férias coletivas de 30 dias.</span></button><button class="opt" data-q="3" data-val="C" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Promover o lockout.</span></button><button class="opt" data-q="3" data-val="D" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Implementar a suspensão dos contratos de trabalho dos empregados por 30 dias, por meio de acordo coletivo de trabalho.</span></button></div><div class="q-actions"><button class="btn-confirm" id="q3-btn" disabled onclick="confirmAnswer(3,'B')">Confirmar →</button><button class="toggle-gabarito" id="q3-tog" aria-expanded="false" aria-controls="q3-gab" onclick="toggleGabarito(3)">Gabarito comentado <span class="chev">▾</span></button></div><div class="gabarito" id="q3-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Alternativa B</div><div class="gabarito-body"><p>Entre as alternativas, a concessão de férias coletivas por 30 dias é a solução compatível com o art. 139 da CLT, observados os requisitos legais e a situação de cada empregado. O lockout é vedado pelo art. 17 da Lei nº 7.783/1989.</p><p>A crise econômica, isoladamente, não autoriza a suspensão sem salários descrita nas alternativas A e D. Isso não significa proibição absoluta de suspensão pactuada: o art. 476-A da CLT admite suspensão para qualificação profissional mediante requisitos específicos, ausentes no enunciado.</p></div></div></div></div>
+<div class="q-card" id="q4"><div class="q-header"><span class="q-badge">Questão 90 · XXVIII Exame · FGV</span><p class="q-text">Determinada sociedade empresária ampliou os benefícios de seus empregados para fidelizá-los e evidenciar sua responsabilidade social. Dentre outras medidas, aderiu voluntariamente ao programa de empresa cidadã e, assim, aumentou o período de licença-maternidade e o de licença-paternidade de seus empregados. Marcondes, empregado da referida empresa, que será pai em breve, requereu ao setor de recursos humanos a ampliação do seu período de licença-paternidade, e agora deseja saber quanto tempo ficará afastado. Assinale a opção que, de acordo com a Lei, indica o período total da licença-paternidade que Marcondes aproveitará.</p></div><div class="options"><button class="opt" data-q="4" data-val="A" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>5 dias.</span></button><button class="opt" data-q="4" data-val="B" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>10 dias.</span></button><button class="opt" data-q="4" data-val="C" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>15 dias.</span></button><button class="opt" data-q="4" data-val="D" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>20 dias.</span></button></div><div class="q-actions"><button class="btn-confirm" id="q4-btn" disabled onclick="confirmAnswer(4,'D')">Confirmar →</button><button class="toggle-gabarito" id="q4-tog" aria-expanded="false" aria-controls="q4-gab" onclick="toggleGabarito(4)">Gabarito comentado <span class="chev">▾</span></button></div><div class="gabarito" id="q4-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Alternativa D</div><div class="gabarito-body"><p>Gabarito do exame: D, 20 dias. No regime considerado pela questão, os cinco dias de licença-paternidade são acrescidos de 15 dias pelo Programa Empresa Cidadã, observados os requisitos da Lei nº 11.770/2008.</p><p>Nota temporal — outubro de 2026: a Lei nº 15.371/2026 estabeleceu novas regras com vigência a partir de 1º de janeiro de 2027. O enunciado histórico e o gabarito foram preservados; não se deve transportar automaticamente a soma de 5 + 15 dias para situações regidas pela nova lei.</p></div></div></div></div>
+<div class="q-card" id="q5"><div class="q-header"><span class="q-badge">Questão 91 · XXXII Exame · FGV</span><p class="q-text">Bruno era empregado em uma sociedade empresária, na qual atuava como teleoperador de vendas on-line de livros e artigos religiosos, usando, em sua estação de trabalho, computador e headset. Em determinado dia, o sistema de câmeras internas flagrou Bruno acessando, pelo computador, um site pornográfico por 30 minutos, durante o horário de expediente. Esse fato foi levado à direção no dia seguinte, que, indignada, puniu Bruno com suspensão por 40 dias, apesar de ele nunca ter tido qualquer deslize funcional anterior. Diante da situação apresentada e dos termos da CLT, assinale a afirmativa correta.</p></div><div class="options"><button class="opt" data-q="5" data-val="A" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>A punição, tal qual aplicada pela empresa, importa na rescisão injusta do contrato de trabalho.</span></button><button class="opt" data-q="5" data-val="B" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>A punição é compatível com a gravidade da falta, devendo Bruno retornar ao emprego após os 40 dias de suspensão.</span></button><button class="opt" data-q="5" data-val="C" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>A empresa deveria dispensar Bruno por justa causa, porque pornografia é crime, e, como não o fez, considera-se perdoada a falta.</span></button><button class="opt" data-q="5" data-val="D" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>A empresa errou, porque, sendo a primeira falta praticada pelo empregado, a Lei determina que se aplique a pena de advertência.</span></button></div><div class="q-actions"><button class="btn-confirm" id="q5-btn" disabled onclick="confirmAnswer(5,'A')">Confirmar →</button><button class="toggle-gabarito" id="q5-tog" aria-expanded="false" aria-controls="q5-gab" onclick="toggleGabarito(5)">Gabarito comentado <span class="chev">▾</span></button></div><div class="gabarito" id="q5-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Alternativa A</div><div class="gabarito-body"><p>A suspensão disciplinar por mais de 30 dias consecutivos importa na rescisão injusta do contrato, nos termos do art. 474 da CLT. A suspensão de 40 dias ultrapassa esse limite.</p><p>B) A gravidade alegada não autoriza ultrapassar o limite legal. C) A justa causa não é obrigatória, e a suspensão não equivale a perdão. D) A CLT não impõe advertência prévia em toda e qualquer primeira infração; a sanção deve ser analisada conforme a gravidade e a proporcionalidade.</p></div></div></div></div>
+<div class="q-card" id="q6"><div class="q-header"><span class="q-badge">Questão 92 · 37º Exame · FGV</span><p class="q-text">João Luiz trabalha desde os 18 anos no Banco Dinheiro Futuro S/A. Começou como caixa em 1990. Devido ao seu desempenho brilhante, agora, no dia 30-5-2022, foi eleito diretor. Em razão dessa nova condição, consultou você, na qualidade de advogado(a), acerca dos desdobramentos jurídicos relacionados ao seu contrato de trabalho. Sobre a hipótese, considerando o teor das normas trabalhistas em vigor e o entendimento jurisprudencial consolidado do TST, assinale a afirmativa correta.</p></div><div class="options"><button class="opt" data-q="6" data-val="A" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>O empregado eleito para ocupar cargo de diretor tem o respectivo contrato de trabalho suspenso, não se computando o tempo de serviço deste período, salvo se permanecer a subordinação jurídica inerente à relação de emprego.</span></button><button class="opt" data-q="6" data-val="B" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Com a eleição do empregado para o cargo de diretor, o respectivo contrato de trabalho será extinto com o pagamento dos direitos rescisórios pertinentes.</span></button><button class="opt" data-q="6" data-val="C" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>A eleição de empregado para o cargo de diretor não induz suspensão ou interrupção do contrato de trabalho, uma vez que se considera promoção, podendo haver a reversão ao cargo efetivo após o término do mandato.</span></button><button class="opt" data-q="6" data-val="D" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>O contrato de trabalho ficará interrompido, já que permanecem as obrigações de pagamento de remuneração, contagem do tempo de serviço e de recolhimento do FGTS.</span></button></div><div class="q-actions"><button class="btn-confirm" id="q6-btn" disabled onclick="confirmAnswer(6,'A')">Confirmar →</button><button class="toggle-gabarito" id="q6-tog" aria-expanded="false" aria-controls="q6-gab" onclick="toggleGabarito(6)">Gabarito comentado <span class="chev">▾</span></button></div><div class="gabarito" id="q6-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Alternativa A</div><div class="gabarito-body"><p>Segundo a Súmula 269 do TST, a eleição para cargo de diretor suspende o contrato, sem cômputo do tempo de serviço, salvo se permanecer a subordinação jurídica inerente à relação de emprego.</p><p>B) A eleição não extingue automaticamente o vínculo. C) Não se trata simplesmente de promoção sem efeitos sobre o contrato. D) A regra é suspensão, não interrupção.</p></div></div></div></div>
+<div class="q-card" id="q7"><div class="q-header"><span class="q-badge">Questão 93 · 37º Exame · FGV</span><p class="q-text">Pedro é empregado em uma indústria farmacêutica, atuando como propagandista. Desejoso de lutar por melhores condições para os brasileiros, Pedro se filiou a um partido político e lançou sua candidatura a deputado federal. Em razão disso, Pedro requereu ao empregador uma licença remunerada por 30 dias para poder se dedicar à campanha eleitoral e aumentar suas chances de ser eleito, já informando que, no caso de indeferimento, irá judicializar a questão. Sobre o caso apresentado, sabendo-se que a norma coletiva da categoria de Pedro nada diz a respeito dessa situação, assinale a afirmativa correta.</p></div><div class="options"><button class="opt" data-q="7" data-val="A" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Pedro não poderá exigir a interrupção do seu contrato porque não há tal previsão na CLT.</span></button><button class="opt" data-q="7" data-val="B" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>A pretensão de Pedro somente teria cabimento se a campanha fosse para cargo político estadual ou municipal, não prevalecendo se for federal.</span></button><button class="opt" data-q="7" data-val="C" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>O contrato de trabalho de Pedro ficará automaticamente suspenso a partir do lançamento da candidatura.</span></button><button class="opt" data-q="7" data-val="D" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Pedro poderá ser dispensado por justa causa, pelo fato de concorrer às eleições sem comunicar previamente o empregador.</span></button></div><div class="q-actions"><button class="btn-confirm" id="q7-btn" disabled onclick="confirmAnswer(7,'A')">Confirmar →</button><button class="toggle-gabarito" id="q7-tog" aria-expanded="false" aria-controls="q7-gab" onclick="toggleGabarito(7)">Gabarito comentado <span class="chev">▾</span></button></div><div class="gabarito" id="q7-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Alternativa A</div><div class="gabarito-body"><p>No caso descrito, empregado de empresa privada sem previsão coletiva específica, a CLT não garante licença remunerada para campanha eleitoral. Pedro não pode exigir a interrupção do contrato pelo simples lançamento da candidatura.</p><p>B) O nível federal, estadual ou municipal do cargo não cria a licença pleiteada. C) A candidatura não suspende automaticamente o contrato. D) Concorrer à eleição, por si só, não constitui justa causa.</p></div></div></div></div>
+<div class="q-card" id="q8"><div class="q-header"><span class="q-badge">Questão 94 · 39º Exame · FGV</span><p class="q-text">Você, como advogado, trabalha no setor de recursos humanos de uma grande empresa multinacional. Como o gerente do setor está de férias, e é ele, na condição de gerente, que defere ou indefere as licenças reivindicadas pelos funcionários, a secretária do setor, agora, lhe indagou sobre as solicitações de quatro funcionários: o primeiro está com o contrato suspenso por doença, em gozo de benefício previdenciário de auxílio doença comum e requer pagamento de salário; o segundo requereu o abono de um dia de trabalho, em razão de doação de sangue; o terceiro formulou requerimento de dispensa para ser ouvido como testemunha na Justiça do Trabalho em audiência presencial e, o quarto e último, aduziu que o primo faleceu e requereu a dispensa do dia de trabalho. Sobre as solicitações, considerando o teor da legislação trabalhista em vigor, assinale a afirmativa correta.</p></div><div class="options"><button class="opt" data-q="8" data-val="A" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Na hipótese de falecimento do primo, sendo parente do funcionário, a dispensa ao trabalho é devida por um dia.</span></button><button class="opt" data-q="8" data-val="B" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Em caso de doação de sangue voluntária, devidamente comprovada, o empregado tem direito a um dia de licença remunerada a cada 12 meses.</span></button><button class="opt" data-q="8" data-val="C" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>O empregado em gozo de auxílio-doença tem direito a receber a complementação salarial da diferença entre o benefício previdenciário e o salário.</span></button><button class="opt" data-q="8" data-val="D" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>A ausência ao trabalho para comparecimento em juízo refere-se tão somente aos casos de o empregado ser parte na demanda, mas não para servir como testemunha.</span></button></div><div class="q-actions"><button class="btn-confirm" id="q8-btn" disabled onclick="confirmAnswer(8,'B')">Confirmar →</button><button class="toggle-gabarito" id="q8-tog" aria-expanded="false" aria-controls="q8-gab" onclick="toggleGabarito(8)">Gabarito comentado <span class="chev">▾</span></button></div><div class="gabarito" id="q8-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Alternativa B</div><div class="gabarito-body"><p>A doação voluntária de sangue, devidamente comprovada, autoriza um dia de ausência sem prejuízo do salário a cada 12 meses (art. 473, IV, CLT).</p><p>A) O falecimento de primo, apenas por esse parentesco, não está na hipótese do art. 473, I. C) A CLT não estabelece complementação salarial geral durante o benefício por doença comum. D) O comparecimento necessário em juízo abrange também a testemunha (art. 473, VIII, e art. 822, CLT).</p></div></div></div></div>
+<div class="q-card" id="q9"><div class="q-header"><span class="q-badge">Questão 95 · 39º Exame · FGV</span><p class="q-text">Plínio Salgado ficou afastado do trabalho por 8 meses em benefício previdenciário decorrente de doença ocupacional relacionada ao trabalho. Ao retornar após a alta médica, foi informado que não teria direito ao gozo de férias, pois necessitaria cumprir mais um ano de trabalho, bem como seu FGTS deixou de ser depositado, já que não houve trabalho. Além disso, seu salário permaneceu congelado, por não haver trabalho, não lhe sendo devidas as diferenças salariais decorrentes do aumento espontâneo concedido pelo empregador aos empregados que estavam ativos. Na qualidade de advogado(a) de Plínio, assinale a opção que, corretamente, contempla os efetivos direitos de seu cliente.</p></div><div class="options"><button class="opt" data-q="9" data-val="A" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Plínio apenas faz jus aos depósitos do FGTS do período de afastamento, bem como ao reajuste salarial concedido pelo empregador.</span></button><button class="opt" data-q="9" data-val="B" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Plínio faz jus aos depósitos do FGTS do período de afastamento, bem como ao reajuste salarial concedido pelo empregador e ao cômputo do período de afastamento no período aquisitivo de férias.</span></button><button class="opt" data-q="9" data-val="C" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Plínio não tem direito ao reajuste salarial, pois não houve contraprestação no período do aumento espontâneo, não se tratando de norma coletiva.</span></button><button class="opt" data-q="9" data-val="D" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Plínio não tem direito aos valores do FGTS do período, pois em gozo do benefício previdenciário não há cômputo do tempo de serviço.</span></button></div><div class="q-actions"><button class="btn-confirm" id="q9-btn" disabled onclick="confirmAnswer(9,'A')">Confirmar →</button><button class="toggle-gabarito" id="q9-tog" aria-expanded="false" aria-controls="q9-gab" onclick="toggleGabarito(9)">Gabarito comentado <span class="chev">▾</span></button></div><div class="gabarito" id="q9-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Alternativa A</div><div class="gabarito-body"><p>No afastamento por doença ocupacional, são devidos os depósitos do FGTS (art. 15, § 5º, Lei nº 8.036/1990). No retorno, o empregado tem direito às vantagens atribuídas à sua categoria na empresa durante a ausência (art. 471, CLT).</p><p>Quanto às férias, o recebimento de benefício previdenciário por mais de seis meses, ainda que descontínuos, no mesmo período aquisitivo afasta o direito às férias desse período (art. 133, IV, CLT). Inicia-se novo período aquisitivo quando o empregado retorna (art. 133, § 2º). A questão adota essa hipótese, razão do gabarito A; férias já adquiridas em períodos anteriores não são eliminadas.</p></div></div></div></div>
+<div class="result-banner" id="result-banner"><div class="result-score" id="result-score">0/9</div><div class="result-label">Resultado final</div><div class="result-msg" id="result-msg"></div></div></section>
+<p class="source">Conteúdo-base: documento 15. Questões: PDF fornecido, tópico 26, páginas 30–32. Enunciados e gabaritos preservados; comentários adaptados para estudo. Ressalvas de revisão sinalizadas na aula. Referências: <a href="https://www.planalto.gov.br/ccivil_03/decreto-lei/del5452.htm" target="_blank" rel="noopener">CLT</a>; <a href="https://www.planalto.gov.br/ccivil_03/leis/l7783.htm" target="_blank" rel="noopener">Lei de Greve</a>; <a href="https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2026/lei/l15371.htm" target="_blank" rel="noopener">Lei nº 15.371/2026</a>.</p><a class="back" href="../index.html"><span class="arw">←</span><span>Voltar ao índice da disciplina</span></a>
+</div>
+<script>
+/* accordion de conteúdo */
+(function(){
+  var cards = document.querySelectorAll('.card');
+  cards.forEach(function(card){
+    var btn = card.querySelector('.card-btn');
+    if(!btn) return;
+    btn.addEventListener('click', function(){
+      var isOpen = card.classList.contains('open');
+      cards.forEach(function(c){c.classList.remove('open');var b=c.querySelector('.card-btn');if(b)b.setAttribute('aria-expanded','false');});
+      if(!isOpen){card.classList.add('open');btn.setAttribute('aria-expanded','true');}
+    });
+  });
+})();
+
+/* reveal on scroll */
+(function(){
+  var items=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){items.forEach(function(el){el.classList.add('in');});return;}
+  var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.08,rootMargin:'0px 0px -3% 0px'});
+  items.forEach(function(el,i){el.style.transitionDelay=(Math.min(i,6)*30)+'ms';io.observe(el);});
+})();
+
+/* ── QUIZ ── */
+var TOTAL=9, answered={};
+
+function selectOpt(el){
+  var q=el.dataset.q;
+  if(answered[q]!==undefined) return;
+  document.querySelectorAll('[data-q="'+q+'"]').forEach(function(o){o.classList.remove('selected');o.setAttribute('aria-pressed','false');});
+  el.classList.add('selected');el.setAttribute('aria-pressed','true');
+  document.getElementById('q'+q+'-btn').disabled=false;
 }
 
-body{
-  margin:0;
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  background:radial-gradient(900px 420px at 30% 0%, #d8ecff 0%, var(--bg) 60%);
-  color:var(--text);
-  font-size:19px;
-  line-height:1.8;
+function confirmAnswer(qNum,correctVal){
+  if(answered[qNum]!==undefined) return;
+  var opts=document.querySelectorAll('[data-q="'+qNum+'"]');
+  var btn=document.getElementById('q'+qNum+'-btn');
+  var card=document.getElementById('q'+qNum);
+  var tog=document.getElementById('q'+qNum+'-tog');
+  var chosen=null;
+  opts.forEach(function(o){if(o.classList.contains('selected'))chosen=o;});
+  if(!chosen) return;
+  var isCorrect=chosen.dataset.val===correctVal;
+  answered[qNum]=isCorrect;
+  opts.forEach(function(o){
+    o.disabled=true;
+    if(o.dataset.val===correctVal){o.classList.add('correct-final');}
+    else if(o.classList.contains('selected')&&!isCorrect){o.classList.add('wrong-final');}
+    else{o.classList.add('dimmed');}
+    o.classList.remove('selected');
+  });
+  card.classList.add(isCorrect?'answered-correct':'answered-wrong');
+  btn.disabled=true; btn.style.display='none';
+  tog.style.display='inline-flex';
+  updateScore(); checkAllDone();
 }
 
-.wrap{
-  max-width:980px;
-  margin:auto;
-  padding:18px 14px 40px;
+function toggleGabarito(qNum){
+  var gab=document.getElementById('q'+qNum+'-gab');
+  var tog=document.getElementById('q'+qNum+'-tog');
+  var open=gab.classList.toggle('open');
+  tog.classList.toggle('open',open);tog.setAttribute('aria-expanded',String(open));
 }
 
-.panel{
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:24px;
-  box-shadow:var(--shadow);
-  padding:18px;
+function updateScore(){
+  var done=Object.keys(answered).length;
+  var correct=Object.values(answered).filter(Boolean).length;
+  var pct=TOTAL>0?(correct/TOTAL)*100:0;
+  document.getElementById('sc-current').textContent=correct;
+  document.getElementById('sc-bar').style.width=pct+'%';
+  document.getElementById('sc-bar').style.background=pct>=70?'#166534':pct>=40?'#d97706':'#991b1b';
+  document.getElementById('sc-msg').textContent=done+' respondida'+(done!==1?'s':'');
 }
 
-h1{
-  color:var(--title);
-  font-size:34px;
-  line-height:1.15;
-  margin:6px 0 14px;
-  text-align:center;
+function checkAllDone(){
+  if(Object.keys(answered).length<TOTAL) return;
+  var correct=Object.values(answered).filter(Boolean).length;
+  var banner=document.getElementById('result-banner');
+  var score=document.getElementById('result-score');
+  var msg=document.getElementById('result-msg');
+  score.textContent=correct+'/'+TOTAL;
+  var pct=correct/TOTAL;
+  if(pct===1) msg.textContent='🎉 Parabéns! Gabarito perfeito — você domina o tema.';
+  else if(pct>=.75) msg.textContent='✅ Muito bem! Revise os pontos que errou e estará pronto.';
+  else if(pct>=.5) msg.textContent='📖 Resultado razoável. Revise os comentários com atenção.';
+  else msg.textContent='🔁 Reforce o estudo e tente novamente. Os comentários ajudam!';
+  banner.classList.add('show');
+  banner.scrollIntoView({behavior:'smooth',block:'center'});
 }
 
-h2{
-  color:#0b2fb3;
-  font-size:24px;
-  margin:22px 0 12px;
-}
-
-p{
-  margin:0 0 14px;
-  text-align:justify;
-}
-
-.card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:18px;
-  box-shadow:0 8px 20px rgba(15,23,42,.08);
-  padding:18px;
-  margin:14px 0;
-}
-
-.section-blue{border-left:7px solid #2563eb;}
-.section-green{border-left:7px solid #16a34a;}
-.section-orange{border-left:7px solid #f97316;}
-.section-purple{border-left:7px solid #7c3aed;}
-.section-red{border-left:7px solid #dc2626;}
-
-.box{
-  padding:14px;
-  border-radius:14px;
-  margin:14px 0;
-  border:1px solid var(--border);
-}
-
-.oab{background:var(--orangeSoft); border-left:6px solid #f97316;}
-.sumula{background:var(--greenSoft); border-left:6px solid #16a34a;}
-.artigo{background:var(--blueSoft); border-left:6px solid #2563eb;}
-.obs{background:var(--purpleSoft); border-left:6px solid #7c3aed;}
-.alerta{background:var(--redSoft); border-left:6px solid #dc2626;}
-
-.bullet{
-  margin:10px 0 14px;
-  padding-left:0;
-  list-style:none;
-}
-
-.bullet li{
-  margin:10px 0;
-  padding:12px 14px;
-  background:#fff;
-  border-radius:14px;
-  border:1px solid var(--border);
-  box-shadow:0 5px 12px rgba(15,23,42,.05);
-}
-
-.bullet li::before{
-  content:"■ ";
-  color:#1f4fd8;
-  font-weight:900;
-}
-
-.compare{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
-  margin:16px 0;
-}
-
-.compare-card{
-  background:#fff;
-  border:1px solid var(--border);
-  border-radius:18px;
-  box-shadow:0 8px 20px rgba(15,23,42,.08);
-  padding:16px;
-}
-
-.compare-card h2{
-  margin-top:0;
-  text-align:center;
-}
-
-.compare-card.suspensao{
-  border-top:7px solid #dc2626;
-}
-
-.compare-card.interrupcao{
-  border-top:7px solid #16a34a;
-}
-
-.slides-area{
-  display:flex;
-  justify-content:center;
-  margin:10px 0 22px;
-}
-
-.slides-btn{
-  text-decoration:none;
-  color:var(--text);
-  background:#fff;
-  border:1px solid rgba(37,99,235,.22);
-  border-radius:22px;
-  box-shadow:var(--shadow);
-  padding:16px 22px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:14px;
-  min-width:min(420px,100%);
-  font-weight:900;
-  transition:.18s;
-}
-
-.slides-btn:hover{
-  transform:translateY(-2px);
-  box-shadow:0 20px 42px rgba(15,23,42,.16);
-}
-
-.icon{
-  width:54px;
-  height:54px;
-  border-radius:18px;
-  display:grid;
-  place-items:center;
-  background:linear-gradient(135deg,#dbeafe,#ffffff);
-  border:1px solid rgba(37,99,235,.24);
-}
-
-.icon svg{
-  width:30px;
-  height:30px;
-}
-
-.slides-text{
-  display:flex;
-  flex-direction:column;
-  line-height:1.15;
-}
-
-.slides-text strong{
-  font-size:20px;
-}
-
-.slides-text span{
-  font-size:14px;
-  color:var(--muted);
-}
-
-.back{
-  display:flex;
-  justify-content:center;
-  margin-top:20px;
-}
-
-.back a{
-  width:min(560px,100%);
-  text-align:center;
-  text-decoration:none;
-  background:#fff;
-  padding:16px 18px;
-  border-radius:16px;
-  border:1px solid var(--border);
-  box-shadow:0 8px 20px rgba(15,23,42,.08);
-  color:var(--text);
-  font-weight:900;
-}
-
-@media(max-width:720px){
-  .compare{
-    grid-template-columns:1fr;
+function resetQuiz(){
+  answered={};
+  for(var q=1;q<=TOTAL;q++){
+    document.querySelectorAll('[data-q="'+q+'"]').forEach(function(o){
+      o.disabled=false;o.setAttribute('aria-pressed','false'); o.classList.remove('selected','correct-final','wrong-final','dimmed');
+    });
+    document.getElementById('q'+q).classList.remove('answered-correct','answered-wrong');
+    var btn=document.getElementById('q'+q+'-btn');
+    btn.disabled=true; btn.style.display='';
+    var tog=document.getElementById('q'+q+'-tog');
+    tog.style.display='none'; tog.classList.remove('open');tog.setAttribute('aria-expanded','false');
+    document.getElementById('q'+q+'-gab').classList.remove('open');
   }
+  document.getElementById('sc-current').textContent='0';
+  document.getElementById('sc-bar').style.width='0%';
+  document.getElementById('sc-msg').textContent='0 respondidas';
+  document.getElementById('result-banner').classList.remove('show');
+  window.scrollTo({top:0,behavior:'smooth'});
 }
-
-@media(max-width:520px){
-  body{
-    font-size:17px;
-  }
-
-  h1{
-    font-size:28px;
-  }
-
-  h2{
-    font-size:21px;
-  }
-
-  .panel{
-    padding:14px;
-    border-radius:18px;
-  }
-
-  .card{
-    padding:15px;
-  }
-
-  .slides-btn{
-    padding:14px;
-  }
-}
-</style>
-</head>
-
-<body>
-<div class="wrap">
-<div class="panel">
-
-<h1>15. Suspensão e Interrupção do Contrato de Trabalho</h1>
-
-<div class="slides-area">
-  <a class="slides-btn" href="https://drive.google.com/file/d/1L9XuAq2sh69scmUdHWmuXs93ibwz6XGM/view?usp=sharing" target="_blank" rel="noopener">
-    <span class="icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none">
-        <rect x="3" y="4" width="18" height="12" rx="2" stroke="#1f4fd8" stroke-width="1.8"/>
-        <path d="M8 20h8M12 16v4" stroke="#1f4fd8" stroke-width="1.8" stroke-linecap="round"/>
-        <path d="M7 9h10M7 12h7" stroke="#1f4fd8" stroke-width="1.8" stroke-linecap="round"/>
-      </svg>
-    </span>
-    <span class="slides-text">
-      <strong>Slides</strong>
-      <span>Abrir no Google Drive</span>
-    </span>
-  </a>
-</div>
-
-<div class="card section-blue">
-<h2>15.SUSPENSÃO E INTERRUPÇÃO DO CONTRATO DE TRABALHO</h2>
-
-<p>Referem-se a paralisações dos efeitos do contrato de trabalho.</p>
-
-<p>Em ambas as hipóteses o contrato de trabalho continua vigente, mas as principais obrigações dele decorrentes não são temporariamente exigíveis de forma total (suspensão) ou de forma parcial (interrupção).</p>
-
-<div class="compare">
-  <div class="compare-card suspensao">
-    <h2>Suspensão</h2>
-    <ul class="bullet">
-      <li>não há trabalho</li>
-      <li>não há salário</li>
-      <li>não conta tempo de serviço</li>
-    </ul>
-  </div>
-
-  <div class="compare-card interrupcao">
-    <h2>Interrupção</h2>
-    <ul class="bullet">
-      <li>não há trabalho</li>
-      <li>há salário</li>
-      <li>conta tempo de serviço</li>
-    </ul>
-  </div>
-</div>
-
-<div class="box oab">
-<p><strong>Caixa OAB:</strong> na suspensão não há trabalho, não há salário e não conta tempo de serviço. Na interrupção não há trabalho, mas há salário e conta tempo de serviço.</p>
-</div>
-</div>
-
-<div class="card section-green">
-<h2>Hipóteses de interrupção do contrato de trabalho:</h2>
-
-<ul class="bullet">
-<li>descanso semanal e feriados;</li>
-<li>férias;</li>
-<li>faltas justificadas;</li>
-<li>licença-paternidade;</li>
-<li>licença-maternidade;</li>
-<li>afastamento por doença ou acidente (15 primeiros dias);</li>
-<li>período de greve, quando esta não for considerada abusiva pelo Tribunal.</li>
-</ul>
-</div>
-
-<div class="card section-red">
-<h2>Hipóteses de suspensão do contrato de trabalho:</h2>
-
-<ul class="bullet">
-<li>licença não remunerada;</li>
-<li>afastamento por doença ou acidente (por mais de 15 dias);</li>
-<li>suspensão disciplinar;</li>
-<li>faltas injustificadas;</li>
-<li>período de participação do empregado em curso ou programa de qualificação profissional oferecido pelo empregador (art. 476-A, CLT);</li>
-<li>período de greve, quando esta for considerada abusiva pelo Tribunal;</li>
-<li>aposentadoria por invalidez (art. 475, CLT).</li>
-</ul>
-
-<div class="box artigo">
-<p><strong>Artigos mencionados:</strong> art. 476-A, CLT; art. 475, CLT.</p>
-</div>
-</div>
-
-<div class="card section-orange">
-<h2>Observações importantes</h2>
-
-<p>Por se tratar de circunstância em que o empregado não receberá salário e nem terá o tempo de serviço computado, a suspensão do contrato de trabalho é excepcional e não pode ser estipulada nem por acordo entre as partes e nem por acordo coletivo de trabalho.</p>
-
-<p>Serão computados na contagem de tempo de serviço, para efeito de indenização e estabilidade, os períodos em que o empregado estiver afastado do trabalho por motivo de acidente do trabalho (art. 4º, § 1º, CLT).</p>
-
-<div class="box artigo">
-<p><strong>Artigo mencionado:</strong> art. 4º, § 1º, CLT.</p>
-</div>
-
-<p>Observações: o empregado eleito para ocupar cargo de diretor tem o respectivo contrato de trabalho suspenso, não se computando o tempo de serviço deste período, salvo se permanecer a subordinação jurídica inerente à relação de emprego (Súmula 269, TST). No caso de suspensão do contrato de trabalho em decorrência de acidente do trabalho, o empregador permanece com a obrigação de depositar FGTS (art. 15, § 5º, Lei n. 8.036/90).</p>
-
-<div class="box sumula">
-<p><strong>Súmula 269, TST:</strong> o empregado eleito para ocupar cargo de diretor tem o respectivo contrato de trabalho suspenso, não se computando o tempo de serviço deste período, salvo se permanecer a subordinação jurídica inerente à relação de emprego.</p>
-</div>
-
-<div class="box artigo">
-<p><strong>Artigo mencionado:</strong> art. 15, § 5º, Lei n. 8.036/90.</p>
-</div>
-</div>
-
-<div class="back">
-<a href="../index.html">← Voltar ao índice da disciplina</a>
-</div>
-
-</div>
-</div>
-</body>
-</html>
+</script></body></html>
