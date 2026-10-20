@@ -1,432 +1,273 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>2ª Peça — Contestação Trabalhista</title>
-
-<style>
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2ª Peça — Contestação Trabalhista</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"><style>
 :root{
-  --bg:#eaf3ff;
-  --panel:#f8fbff;
-  --card:#ffffff;
-  --title:#1f4fd8;
-  --text:#0f172a;
-  --muted:#475569;
-  --border:rgba(15,23,42,.14);
-  --shadow:0 14px 34px rgba(15,23,42,.12);
-  --blueSoft:#e8f0ff;
-  --greenSoft:#ecfdf5;
-  --orangeSoft:#fff7ed;
-  --purpleSoft:#f5f3ff;
-  --redSoft:#fef2f2;
+  --ink:#1b2436;--ink-soft:#414a5c;--paper:#edece5;--surface:#fbfaf7;
+  --accent:#7a2e37;--accent-soft:#a2545f;--iron:#8b8579;
+  --line:rgba(27,36,54,.13);--line-strong:rgba(27,36,54,.22);
+  --green:#166534;--green-bg:#f0fdf4;--green-line:#bbf7d0;
+  --red:#991b1b;--red-bg:#fef2f2;--red-line:#fecaca;
+  --display:"Fraunces",Georgia,serif;--body:"Spectral",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
 }
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:19px;line-height:1.78;-webkit-font-smoothing:antialiased;}
+body::before{content:"";position:fixed;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 34%,var(--ink) 34%,var(--ink) 100%);z-index:50;}
+.wrap{max-width:760px;margin:0 auto;padding:0 22px 72px;}
 
-*{ box-sizing:border-box; }
+/* CABEÇALHO */
+.masthead{padding:56px 0 30px;border-bottom:1px solid var(--line-strong);animation:rise .7s cubic-bezier(.2,.7,.2,1) both;}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--accent);display:inline-block;}
+.eyebrow .dot{color:var(--line-strong);}
+.title-row{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;flex-wrap:wrap;}
+h1{font-family:var(--display);font-weight:500;font-size:clamp(2.3rem,6.5vw,3.8rem);line-height:1.04;letter-spacing:-.015em;max-width:14ch;}
+h1 .art{display:block;font-size:.42em;font-weight:600;letter-spacing:.02em;color:var(--accent);font-family:var(--mono);text-transform:uppercase;margin-bottom:.5em;}
+.slides-btn{flex-shrink:0;display:inline-flex;align-items:center;gap:12px;text-decoration:none;background:var(--ink);color:#f4f2ec;border-radius:4px;padding:13px 18px;font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;box-shadow:0 8px 22px -12px rgba(27,36,54,.7);transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s,background .25s;}
+.slides-btn:hover{background:var(--accent);transform:translateY(-2px);}
+.slides-btn .arw{transition:transform .25s;}
+.slides-btn:hover .arw{transform:translateX(4px);}
 
-body{
-  margin:0;
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  background:radial-gradient(900px 420px at 30% 0%, #d8ecff 0%, var(--bg) 60%);
-  color:var(--text);
-  font-size:19px;
-  line-height:1.8;
-}
+/* VERBETE */
+.verbete{margin:44px 0 8px;padding:6px 0 6px 30px;border-left:3px solid var(--accent);}
+.verbete .tag{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:14px;}
+.verbete p{font-family:var(--display);font-weight:400;font-size:clamp(1.15rem,2.8vw,1.45rem);line-height:1.45;color:var(--ink);margin:0;}
 
-.wrap{
-  max-width:980px;
-  margin:auto;
-  padding:18px 14px 40px;
-}
+/* REF */
+.ref{font-family:var(--mono);font-size:.8em;color:var(--iron);background:rgba(139,133,121,.12);padding:2px 7px;border-radius:3px;white-space:nowrap;}
 
-.panel{
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:24px;
-  box-shadow:var(--shadow);
-  padding:18px;
-}
+/* SEÇÕES */
+.sec-head{display:flex;gap:16px;align-items:baseline;margin:44px 0 14px;padding-top:26px;border-top:1px solid var(--line);}
+.sec-head .num{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--accent);flex-shrink:0;padding-top:.35em;}
+h2{font-family:var(--display);font-weight:500;font-size:clamp(1.55rem,4vw,1.95rem);line-height:1.14;letter-spacing:-.01em;color:var(--ink);}
+h3{font-family:var(--display);font-weight:600;font-size:1.15rem;color:var(--ink);margin:22px 0 8px;}
+p{margin-bottom:14px;color:var(--ink-soft);}
 
-h1{
-  color:var(--title);
-  font-size:34px;
-  line-height:1.15;
-  margin:6px 0 4px;
-  text-align:center;
-}
+/* LISTA */
+.blist{list-style:none;padding:0;margin:10px 0 12px;display:flex;flex-direction:column;gap:3px;}
+.blist li{display:grid;grid-template-columns:22px 1fr;gap:8px;font-size:.93em;color:var(--ink-soft);line-height:1.65;padding:8px 0;border-bottom:1px solid var(--line);}
+.blist li:last-child{border-bottom:none;}
+.blist li .bul{color:var(--accent);font-family:var(--mono);font-size:.85em;padding-top:2px;}
 
-.prazo{
-  text-align:center;
-  font-size:17px;
-  font-weight:700;
-  color:#dc2626;
-  margin:0 0 18px;
-  letter-spacing:.02em;
-}
+/* SUMULA */
+.sumula{margin:10px 0 6px;padding:12px 16px;border-left:2px solid var(--iron);background:var(--paper);border-radius:0 4px 4px 0;font-size:.89em;color:var(--ink-soft);line-height:1.65;}
+.sumula strong{font-family:var(--mono);font-size:.86em;letter-spacing:.08em;text-transform:uppercase;color:var(--iron);display:block;margin-bottom:4px;}
 
-h2{
-  color:#0b2fb3;
-  font-size:24px;
-  margin:22px 0 12px;
-}
+/* NOTA / ALERTA */
+.nota{margin:10px 0 6px;padding:13px 17px;background:rgba(122,46,55,.06);border-left:3px solid var(--accent);border-radius:0 5px 5px 0;font-size:.91em;color:var(--ink-soft);line-height:1.65;}
+.nota strong{color:var(--ink);}
 
-p{ margin:0 0 14px; text-align:justify; }
+/* TABELA */
+.tbl{margin:12px 0 6px;border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:.9em;}
+.tbl-head{display:grid;background:var(--ink);color:#f4f2ec;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;}
+.tbl-head div,.tbl-row div{padding:9px 14px;}
+.tbl-head div:not(:last-child){border-right:1px solid rgba(255,255,255,.15);}
+.tbl-row{display:grid;border-top:1px solid var(--line);}
+.tbl-row:nth-child(even) div{background:rgba(139,133,121,.04);}
+.tbl-row div{color:var(--ink-soft);display:flex;align-items:center;line-height:1.5;}
+.tbl-row div:not(:last-child){border-right:1px solid var(--line);}
+.tbl-3{grid-template-columns:1fr 1fr 1fr;}
+.tbl-2{grid-template-columns:1fr 1fr;}
+.tbl-head.tbl-3{grid-template-columns:1fr 1fr 1fr;}
+.tbl-head.tbl-2{grid-template-columns:1fr 1fr;}
 
-.card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:18px;
-  box-shadow:0 8px 20px rgba(15,23,42,.08);
-  padding:18px;
-  margin:14px 0;
-}
+/* CARDS ACCORDION */
+.cards{display:flex;flex-direction:column;gap:3px;}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;transition:box-shadow .2s;}
+.card:hover{box-shadow:0 4px 18px -8px rgba(27,36,54,.2);}
+.card-btn{width:100%;background:none;border:none;cursor:pointer;display:grid;grid-template-columns:52px 1fr 34px;align-items:center;padding:0;text-align:left;color:inherit;}
+.card-icon{display:flex;align-items:center;justify-content:center;min-height:60px;border-right:1px solid var(--line);font-family:var(--mono);font-weight:700;font-size:11px;color:var(--accent);background:rgba(122,46,55,.05);text-align:center;padding:4px;line-height:1.3;}
+.card-head{padding:13px 16px;}
+.card-num{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--iron);display:block;margin-bottom:3px;}
+.card-title{font-family:var(--display);font-weight:600;font-size:1rem;line-height:1.2;color:var(--ink);}
+.card-chevron{display:flex;align-items:center;justify-content:center;padding-right:14px;color:var(--iron);font-size:13px;transition:transform .3s cubic-bezier(.2,.7,.2,1),color .2s;}
+.card.open .card-chevron{transform:rotate(180deg);color:var(--accent);}
+.card-body{display:none;padding:16px 20px 20px;border-top:1px solid var(--line);}
+.card.open .card-body{display:block;}
+.card-body p{color:var(--ink-soft);font-size:.93em;line-height:1.72;}
 
-.section-blue   { border-left:7px solid #2563eb; }
-.section-green  { border-left:7px solid #16a34a; }
-.section-orange { border-left:7px solid #f97316; }
-.section-purple { border-left:7px solid #7c3aed; }
-.section-red    { border-left:7px solid #dc2626; }
-.section-teal   { border-left:7px solid #0d9488; }
-.section-indigo { border-left:7px solid #4f46e5; }
-.section-amber  { border-left:7px solid #d97706; }
+/* ===== PLACAR ===== */
+.scoreboard{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:18px 22px;background:var(--surface);border:1px solid var(--line-strong);border-radius:8px;margin-bottom:8px;}
+.score-label{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--iron);}
+.score-nums{display:flex;align-items:baseline;gap:6px;}
+.score-current{font-family:var(--display);font-size:2.6rem;font-weight:600;color:var(--ink);line-height:1;}
+.score-total{font-family:var(--mono);font-size:1rem;color:var(--iron);}
+.score-bar-wrap{flex:1;min-width:120px;height:8px;background:var(--line);border-radius:99px;overflow:hidden;}
+.score-bar{height:100%;width:0%;background:var(--accent);border-radius:99px;transition:width .5s cubic-bezier(.2,.7,.2,1),background .3s;}
+.score-msg{font-family:var(--mono);font-size:12px;color:var(--iron);min-width:80px;}
+.btn-reset{margin-left:auto;border:1px solid var(--line-strong);background:none;color:var(--ink-soft);border-radius:4px;padding:7px 14px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:border-color .2s,color .2s;}
+.btn-reset:hover{border-color:var(--accent);color:var(--accent);}
 
-.box{
-  padding:14px;
-  border-radius:14px;
-  margin:14px 0;
-  border:1px solid var(--border);
-}
+/* CARD DE QUESTÃO */
+.q-card{background:var(--surface);border:1px solid var(--line);border-radius:8px;margin:14px 0;overflow:hidden;transition:border-color .25s,box-shadow .25s;}
+.q-card.answered-correct{border-color:var(--green-line);box-shadow:0 0 0 2px rgba(22,101,52,.12);}
+.q-card.answered-wrong{border-color:var(--red-line);box-shadow:0 0 0 2px rgba(153,27,27,.10);}
+.q-header{display:flex;align-items:flex-start;gap:12px;padding:16px 18px 12px;}
+.q-badge{flex-shrink:0;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--accent);background:rgba(122,46,55,.09);border:1px solid rgba(122,46,55,.18);border-radius:4px;padding:3px 9px;margin-top:3px;white-space:nowrap;}
+.q-text{font-family:var(--body);font-size:.96em;color:var(--ink);line-height:1.72;flex:1;margin:0;}
+.options{padding:0 18px 16px;display:flex;flex-direction:column;gap:7px;}
+.opt{display:flex;align-items:flex-start;gap:11px;padding:10px 13px;border:1px solid var(--line);border-radius:6px;cursor:pointer;background:var(--paper);transition:border-color .18s,background .18s;text-align:left;width:100%;font-family:var(--body);font-size:.92em;color:var(--ink-soft);line-height:1.6;}
+.opt:hover:not(:disabled){border-color:var(--accent-soft);background:#f7f3f1;}
+.opt-letter{flex-shrink:0;font-family:var(--mono);font-size:.8em;font-weight:700;color:var(--accent);width:20px;padding-top:2px;}
+.opt.selected{border-color:var(--accent);background:rgba(122,46,55,.06);}
+.opt.correct-final{border-color:var(--green);background:var(--green-bg);cursor:default;}
+.opt.correct-final .opt-letter{color:var(--green);}
+.opt.wrong-final{border-color:var(--red);background:var(--red-bg);cursor:default;}
+.opt.wrong-final .opt-letter{color:var(--red);}
+.opt.dimmed{opacity:.42;cursor:default;}
+.q-actions{padding:0 18px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.btn-confirm{display:inline-flex;align-items:center;gap:8px;padding:9px 20px;background:var(--ink);color:#f4f2ec;border:none;border-radius:4px;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;transition:background .2s,transform .2s;}
+.btn-confirm:hover:not(:disabled){background:var(--accent);transform:translateY(-1px);}
+.btn-confirm:disabled{opacity:.35;cursor:default;transform:none;}
+.toggle-gabarito{display:none;align-items:center;gap:7px;border:none;background:none;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--iron);cursor:pointer;transition:color .2s;padding:0;}
+.toggle-gabarito:hover{color:var(--accent);}
+.toggle-gabarito .chev{display:inline-block;font-size:10px;transition:transform .3s cubic-bezier(.2,.7,.2,1);}
+.toggle-gabarito.open .chev{transform:rotate(180deg);}
+.gabarito{border-top:1px solid var(--line);overflow:hidden;max-height:0;transition:max-height .45s cubic-bezier(.2,.7,.2,1);}
+.gabarito.open{max-height:1800px;}
+.gabarito-inner{padding:16px 18px 18px;}
+.gabarito-title{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--iron);margin-bottom:10px;}
+.gabarito-correct{display:flex;align-items:center;gap:10px;padding:9px 13px;background:var(--green-bg);border:1px solid var(--green-line);border-radius:6px;font-family:var(--mono);font-size:.84em;font-weight:700;color:var(--green);margin-bottom:12px;}
+.gabarito-body{font-size:.9em;color:var(--ink-soft);line-height:1.72;}
+.gabarito-body strong{color:var(--ink);}
+.gabarito-body .ref{font-family:var(--mono);font-size:.8em;color:var(--iron);background:rgba(139,133,121,.12);padding:2px 7px;border-radius:3px;white-space:nowrap;}
+.gabarito-body p{margin-bottom:9px;}
+.gabarito-body p:last-child{margin-bottom:0;}
 
-.oab    { background:var(--orangeSoft); border-left:6px solid #f97316; }
-.sumula { background:var(--greenSoft);  border-left:6px solid #16a34a; }
-.artigo { background:var(--blueSoft);   border-left:6px solid #2563eb; }
-.obs    { background:var(--purpleSoft); border-left:6px solid #7c3aed; }
-.alerta { background:var(--redSoft);    border-left:6px solid #dc2626; }
+/* RESULTADO */
+.result-banner{display:none;margin:28px 0 0;padding:26px 22px;border:1px solid var(--line-strong);border-radius:8px;background:var(--surface);text-align:center;}
+.result-banner.show{display:block;}
+.result-score{font-family:var(--display);font-size:3.2rem;font-weight:600;color:var(--accent);line-height:1;margin-bottom:6px;}
+.result-label{font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--iron);}
+.result-msg{margin-top:10px;font-size:.94em;color:var(--ink-soft);}
 
-.bullet{
-  margin:10px 0 14px;
-  padding-left:0;
-  list-style:none;
-}
+/* VOLTAR */
+.back{margin-top:52px;display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line-strong);border-radius:6px;padding:20px 22px;font-family:var(--mono);font-size:14px;letter-spacing:.04em;transition:border-color .25s,transform .25s;}
+.back .arw{color:var(--accent);transition:transform .25s;font-size:18px;}
+.back:hover{border-color:var(--accent);transform:translateY(-2px);}
+.back:hover .arw{transform:translateX(-4px);}
 
-.bullet li{
-  margin:10px 0;
-  padding:12px 14px;
-  background:#fff;
-  border-radius:14px;
-  border:1px solid var(--border);
-  box-shadow:0 5px 12px rgba(15,23,42,.05);
-}
-
-.bullet li::before{
-  content:"■ ";
-  color:#1f4fd8;
-  font-weight:900;
-}
-
-.letter-list{
-  margin:10px 0 14px;
-  padding-left:0;
-  list-style:none;
-}
-
-.letter-list li{
-  margin:10px 0;
-  padding:12px 14px;
-  background:#fff;
-  border-radius:14px;
-  border:1px solid var(--border);
-  box-shadow:0 5px 12px rgba(15,23,42,.05);
-}
-
-/* ── Área dos dois botões ── */
-.btns-area{
-  display:flex;
-  gap:14px;
-  justify-content:center;
-  flex-wrap:wrap;
-  margin:10px 0 26px;
-}
-
-.drive-btn{
-  text-decoration:none;
-  color:var(--text);
-  background:#fff;
-  border:1px solid rgba(37,99,235,.22);
-  border-radius:22px;
-  box-shadow:var(--shadow);
-  padding:16px 22px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-  flex:1 1 220px;
-  max-width:340px;
-  font-weight:900;
-  transition:.18s;
-  text-align:center;
-}
-
-.drive-btn:hover{
-  transform:translateY(-2px);
-  box-shadow:0 20px 42px rgba(15,23,42,.16);
-}
-
-.drive-btn .btn-top{
-  display:flex;
-  align-items:center;
-  gap:14px;
-}
-
-.drive-btn .btn-label{
-  font-size:13px;
-  color:var(--muted);
-  font-weight:500;
-  margin-top:2px;
-}
-
-/* ícone azul — slides */
-.icon-slides{
-  width:54px; height:54px;
-  border-radius:18px;
-  display:grid; place-items:center;
-  background:linear-gradient(135deg,#dbeafe,#ffffff);
-  border:1px solid rgba(37,99,235,.24);
-  flex-shrink:0;
-}
-
-/* ícone verde — enunciado */
-.icon-enunciado{
-  width:54px; height:54px;
-  border-radius:18px;
-  display:grid; place-items:center;
-  background:linear-gradient(135deg,#d1fae5,#ffffff);
-  border:1px solid rgba(22,163,74,.28);
-  flex-shrink:0;
-}
-
-.icon-slides svg,
-.icon-enunciado svg{ width:30px; height:30px; }
-
-.btn-text{
-  display:flex;
-  flex-direction:column;
-  line-height:1.15;
-  text-align:left;
-}
-
-.btn-text strong{ font-size:19px; }
-.btn-text span{ font-size:14px; color:var(--muted); }
-
-.back{
-  display:flex;
-  justify-content:center;
-  margin-top:20px;
-}
-
-.back a{
-  width:min(560px,100%);
-  text-align:center;
-  text-decoration:none;
-  background:#fff;
-  padding:16px 18px;
-  border-radius:16px;
-  border:1px solid var(--border);
-  box-shadow:0 8px 20px rgba(15,23,42,.08);
-  color:var(--text);
-  font-weight:900;
-}
+@keyframes rise{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
+.reveal{opacity:0;transform:translateY(14px);}
+.reveal.in{opacity:1;transform:none;transition:opacity .5s ease,transform .5s cubic-bezier(.2,.7,.2,1);}
 
 @media(max-width:560px){
-  body{ font-size:17px; }
-  h1{ font-size:26px; }
-  h2{ font-size:21px; }
-  .drive-btn{ padding:14px; }
+  body{font-size:17.5px;}
+  .masthead{padding:40px 0 24px;}
+  .title-row{align-items:stretch;}
+  .slides-btn{width:100%;justify-content:center;}
+  .verbete{padding-left:18px;}
+  .scoreboard{flex-direction:column;align-items:flex-start;gap:10px;}
+  .btn-reset{margin-left:0;}
+  .tbl-3{grid-template-columns:1fr 1fr;}
+  .tbl-head.tbl-3 div:last-child,.tbl-3 .tbl-row div:last-child{display:none;}
 }
-</style>
-</head>
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;scroll-behavior:auto;}
+  .reveal{opacity:1;transform:none;}
+  .reveal.in{transition:none;}
+}
 
-<body>
-<div class="wrap">
-<div class="panel">
+.q-header{flex-wrap:wrap}.q-text{flex-basis:100%}.q-badge{white-space:normal}
+.card-body ul{padding-left:24px}.card-body li{margin-bottom:12px}
+.card-body .nota p:last-child{margin-bottom:0}
+.score-msg{white-space:nowrap}.source{font-size:.8em;margin-top:20px}
+@media(max-width:560px){.score-bar-wrap{width:100%;flex:auto}.ref{white-space:normal}}
 
-<h1>2ª Peça — Contestação Trabalhista</h1>
-<p class="prazo">⏱ PRAZO: 30/10/2026</p>
+.compare-table{width:100%;border-collapse:collapse;background:var(--surface);font-size:.9em;margin:22px 0}
+.compare-table th,.compare-table td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;overflow-wrap:anywhere}
+.compare-table th{color:var(--accent);font-family:var(--display)}
+@media(max-width:560px){.compare-table{font-size:.8em}.compare-table th,.compare-table td{padding:9px 6px}}
+</style><style>
+.materials{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}.deadline,.source{font-family:var(--mono);font-size:12px;color:var(--iron);line-height:1.8}.deadline{margin-top:20px;color:var(--accent)}.lesson-nav{display:flex;gap:8px;flex-wrap:wrap;margin:25px 0}.lesson-nav a,.expand-all{font-family:var(--mono);font-size:11px;color:var(--accent);border:1px solid var(--line-strong);border-radius:4px;padding:8px 11px;text-decoration:none;background:transparent;cursor:pointer}.expand-all{margin-left:auto}.card-body ul,.card-body ol{padding-left:23px;margin:12px 0}.card-body li{margin:9px 0;color:var(--ink-soft)}.box{margin:16px 0;padding:15px 18px;background:rgba(122,46,55,.055);border-left:3px solid var(--accent);font-size:.92em}.box.sumula{background:var(--paper);border-color:var(--iron)}.table-scroll{overflow-x:auto;margin:16px 0}table{border-collapse:collapse;width:100%;font-size:.85em;line-height:1.55}th,td{padding:12px;text-align:left;vertical-align:top;border:1px solid var(--line)}th{background:var(--ink);color:var(--surface);font-family:var(--mono);font-size:12px}tr:nth-child(even){background:var(--paper)}.piece{white-space:pre-wrap;background:var(--paper);padding:20px;border:1px solid var(--line);border-radius:4px;font-size:.88em;line-height:1.8}details{border:1px solid var(--line);border-radius:4px;margin:12px 0;padding:16px}summary{cursor:pointer;font-family:var(--display);font-weight:600;color:var(--ink);line-height:1.5}details[open]>summary{margin-bottom:16px}details details{background:var(--paper)}.checklist{list-style:none!important;padding-left:0!important}input[type=checkbox]{width:17px;height:17px;accent-color:var(--accent);margin-right:8px}.page-footer{border-top:1px solid var(--line-strong);padding-top:24px;margin-top:45px;font-family:var(--mono);font-size:12px}.page-footer a{color:var(--accent)}section{scroll-margin-top:20px}button:focus-visible,summary:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}@media(max-width:540px){.materials .slides-btn{font-size:11px;padding:12px}.card-body{padding:16px 14px}th,td{padding:8px}.piece{padding:12px}.sec-head{gap:10px}.sec-head .num{font-size:12px}.expand-all{margin-left:0}}@media print{.card-body{display:block!important}.materials,.lesson-nav,.page-footer,.card-chevron{display:none!important}.card{break-inside:auto}.wrap{max-width:none}.masthead{padding-top:0}body::before{display:none}}
+</style></head><body><main class="wrap"><header class="masthead"><p class="eyebrow">Prática Jurídica Trabalhista <span class="dot">·</span> Defesa do reclamado</p><div class="title-row"><h1><span class="art">2ª Peça · Capítulo 1.7</span>Contestação trabalhista</h1></div><p class="deadline">PRAZO DE ENTREGA · 30/10/2026</p><div class="materials"><a class="slides-btn" href="https://drive.google.com/file/d/1cD8PnQiriCWo6VnVft5_3GWZfkP6FaWW/view?usp=sharing" target="_blank" rel="noopener">Slides da aula <span class="arw">→</span></a><a class="slides-btn" href="https://drive.google.com/file/d/1PPf0s0WWlOwghwBhi5e3_P4KEEdZ7dPD/view?usp=sharing" target="_blank" rel="noopener">Enunciado da peça <span class="arw">→</span></a></div><div class="verbete"><span class="tag">Art. 847 da CLT · Arts. 336 a 341 do CPC</span><p>Defender exige <strong>impugnação específica</strong>, organização das teses e pedidos coerentes. Da identificação da peça aos casos práticos, um roteiro para construir a contestação.</p></div></header><nav class="lesson-nav" aria-label="Navegação da aula"><a href="#conceito">Teoria</a><a href="#modelo">Modelo da peça</a><a href="#pratica">Casos práticos</a><button class="expand-all" type="button" aria-pressed="false">Expandir tudo</button></nav><section id="conceito"><div class="sec-head"><span class="num">§ 2.1</span><h2>Conceito e identificação da peça</h2></div><div class="cards"><div class="card open"><button type="button" class="card-btn" aria-expanded="true" aria-controls="lesson-1"><span class="card-icon">01</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Conceito e identificação da peça</span></span><span class="card-chevron" aria-hidden="true">▾</span></button><div class="card-body" id="lesson-1">
+<p>A <strong>contestação</strong> é uma modalidade de defesa do reclamado, fundamentada no <strong>art. 847 da CLT</strong> e, subsidiária e supletivamente, nos <strong>arts. 336 a 341 do CPC</strong>.</p>
+<p>No enunciado, procure dois sinais: seu cliente é, em regra, o empregador e <strong>já existe reclamação trabalhista ajuizada</strong>, com indicação de notificação para a audiência ou necessidade de defesa.</p>
+<ul><li><strong>Eventualidade ou concentração:</strong> reúna as teses defensivas na mesma peça. Se uma tese não for acolhida, as demais ainda poderão ser examinadas.</li><li><strong>Impugnação especificada:</strong> enfrente os fatos e os pedidos individualmente, observadas as regras do art. 341 do CPC.</li></ul>
+<div class="box artigo"><strong>Ordem de estudo:</strong> preliminares processuais → prejudiciais de mérito → defesa de mérito → pedidos e requerimentos.</div></div></div></div></section>
+<section id="estrutura"><div class="sec-head"><span class="num">§ 2.2</span><h2>Estrutura passo a passo</h2></div><div class="cards"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-2"><span class="card-icon">02</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Estrutura passo a passo</span></span><span class="card-chevron" aria-hidden="true">▾</span></button><div class="card-body" id="lesson-2"><ol>
+<li><strong>Endereçamento:</strong> indique o juízo em que a reclamação tramita. Exemplo: AO JUÍZO DA 1ª VARA DO TRABALHO DE PORTO ALEGRE.</li>
+<li><strong>Número do processo:</strong> reproduza o número informado; se ausente, use “Processo n. ...”.</li>
+<li><strong>Qualificação do reclamado:</strong> utilize os dados fornecidos. Se faltarem, escreva “qualificação e endereço completos”.</li>
+<li><strong>Representação:</strong> mencione o advogado e a procuração anexa.</li>
+<li><strong>Fundamento:</strong> art. 847 da CLT e arts. 336 a 341 do CPC.</li>
+<li><strong>Verbo e nome:</strong> “apresentar” ou “oferecer” <strong>CONTESTAÇÃO</strong>.</li>
+<li><strong>Reclamante:</strong> identifique-o como “já qualificado nos autos”.</li>
+<li><strong>Justiça gratuita, quando cabível:</strong> o PDF orienta requerê-la quando o enunciado trouxer elementos de insuficiência econômica, com fundamento no art. 790, § 4º, da CLT, observada a necessidade de comprovação.</li>
+<li><strong>Fundamentos da defesa:</strong> organize preliminares, prejudiciais e mérito em tópicos próprios.</li>
+<li><strong>Conclusão:</strong> retome os pedidos, requeira provas e honorários sucumbenciais e encerre com local, data, advogado e OAB.</li></ol>
+<div class="box oab"><strong>Na prova:</strong> não invente dados nem assine com seu nome. Use os campos de identificação indicados no enunciado.</div></div></div></div></section>
+<section id="teses"><div class="sec-head"><span class="num">§ 2.3</span><h2>Preliminares processuais</h2></div><div class="cards"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-3"><span class="card-icon">03</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Preliminares processuais</span></span><span class="card-chevron" aria-hidden="true">▾</span></button><div class="card-body" id="lesson-3"><p>As preliminares enfrentam vícios processuais. O PDF apresenta o rol do <strong>art. 337 do CPC</strong> e distingue as <strong>peremptórias</strong>, voltadas à extinção, das <strong>dilatórias</strong>, voltadas à correção de vícios. O pedido deve corresponder ao efeito de cada preliminar.</p>
+<div class="table-scroll"><table><thead><tr><th>Preliminar</th><th>Efeito a requerer, conforme o caso</th></tr></thead><tbody>
+<tr><td>Inexistência ou nulidade de citação</td><td>Regularização da notificação e nova audiência, respeitado o intervalo mínimo do art. 841 da CLT.</td></tr>
+<tr><td>Incompetência absoluta</td><td>Em regra, remessa ao juízo competente (art. 64, § 3º, CPC).</td></tr>
+<tr><td>Incorreção do valor da causa</td><td>Correção do valor e eventual adequação do rito (art. 293, CPC).</td></tr>
+<tr><td>Inépcia da inicial</td><td>Extinção sem resolução do mérito do pedido atingido (arts. 330 e 485, I, CPC).</td></tr>
+<tr><td>Perempção, litispendência ou coisa julgada</td><td>Extinção sem resolução do mérito (art. 485, V, CPC).</td></tr>
+<tr><td>Conexão</td><td>Reunião dos processos, observadas as condições do art. 55, § 1º, CPC.</td></tr>
+<tr><td>Incapacidade, defeito de representação ou falta de autorização</td><td>Regularização do vício (art. 76, CPC).</td></tr>
+<tr><td>Convenção de arbitragem</td><td>Extinção sem resolução do mérito, quando aplicável (art. 485, VII, CPC).</td></tr>
+<tr><td>Ilegitimidade ou ausência de interesse processual</td><td>Extinção sem resolução do mérito (art. 485, VI, CPC).</td></tr>
+<tr><td>Falta de caução ou de outra prestação exigida por lei</td><td>Regularização da exigência processual, quando cabível.</td></tr>
+<tr><td>Gratuidade indevidamente concedida</td><td>Revogação do benefício.</td></tr></tbody></table></div>
+<div class="box obs"><strong>Atenção:</strong> a impugnação ao valor da causa é apresentada em preliminar da contestação. Nem toda preliminar leva à extinção do processo.</div>
+<h3>Exemplo trabalhado no PDF</h3><p>O pedido de recolhimento de contribuições previdenciárias de todo o contrato, desvinculadas de condenação ou acordo judicial, é usado para discutir a competência material da Justiça do Trabalho. O material indica o art. 114, VIII, da Constituição, o art. 876, parágrafo único, da CLT, a Súmula 368, I, do TST e a Súmula Vinculante 53 do STF.</p></div></div></div></section>
+<section id="sec-4"><div class="sec-head"><span class="num">§ 2.4</span><h2>Prejudiciais de mérito</h2></div><div class="cards"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-4"><span class="card-icon">04</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Prejudiciais de mérito</span></span><span class="card-chevron" aria-hidden="true">▾</span></button><div class="card-body" id="lesson-4"><p>O material destaca a <strong>prescrição</strong> e a <strong>decadência</strong>, quando pertinentes. A prescrição deve ser articulada com as datas efetivamente fornecidas no enunciado.</p><ul><li><strong>Bienal:</strong> prazo de dois anos após a extinção do contrato para ajuizar a reclamação.</li><li><strong>Quinquenal:</strong> alcança, em regra, pretensões anteriores aos cinco anos contados retroativamente do ajuizamento.</li></ul>
+<div class="box artigo"><strong>Exemplo do PDF:</strong> ação ajuizada em 03/05/2016 → arguição de prescrição das parcelas anteriores a 03/05/2011. Fundamentos: art. 7º, XXIX, da Constituição e art. 11 da CLT. Requerer resolução do mérito quanto às pretensões prescritas, conforme art. 487, II, do CPC.</div></div></div></div></section>
+<section id="sec-5"><div class="sec-head"><span class="num">§ 2.5</span><h2>Defesa de mérito: fato, fundamento e pedido</h2></div><div class="cards"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-5"><span class="card-icon">05</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Defesa de mérito: fato, fundamento e pedido</span></span><span class="card-chevron" aria-hidden="true">▾</span></button><div class="card-body" id="lesson-5"><p>Abra um tópico para cada pretensão impugnada. Na <strong>defesa direta</strong>, conteste os fatos constitutivos do direito alegado; na <strong>indireta</strong>, apresente fatos impeditivos, modificativos ou extintivos.</p><ol><li><strong>Fato:</strong> descreva o ponto relevante do enunciado.</li><li><strong>Fundamento:</strong> explique a regra aplicável e indique o dispositivo, súmula ou orientação pertinente.</li><li><strong>Pedido:</strong> conclua expressamente pela consequência pretendida.</li></ol>
+<div class="box sumula"><strong>Exemplo do PDF — adicional noturno urbano:</strong><br><strong>Fato:</strong> jornada iniciada às 5h e encerrada às 15h.<br><strong>Fundamento:</strong> o período noturno urbano do art. 73, § 2º, da CLT é das 22h às 5h.<br><strong>Pedido:</strong> improcedência do adicional noturno e reflexos, diante da jornada descrita.</div></div></div></div></section>
+<section id="sec-6"><div class="sec-head"><span class="num">§ 2.6</span><h2>Compensação</h2></div><div class="cards"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-6"><span class="card-icon">06</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Compensação</span></span><span class="card-chevron" aria-hidden="true">▾</span></button><div class="card-body" id="lesson-6"><p>A compensação pressupõe que reclamante e reclamado sejam, simultaneamente, credores e devedores. Segundo o PDF, deve ser requerida na contestação, restringir-se a <strong>dívidas trabalhistas</strong> e respeitar o limite da condenação.</p><div class="box artigo"><strong>Referências do material:</strong> art. 767 da CLT e Súmulas 18 e 48 do TST. Identifique no enunciado o crédito que fundamenta a compensação.</div></div></div></div></section>
+<section id="reconvencao"><div class="sec-head"><span class="num">§ 2.7</span><h2>Contestação com reconvenção</h2></div><div class="cards"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-7"><span class="card-icon">07</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Contestação com reconvenção</span></span><span class="card-chevron" aria-hidden="true">▾</span></button><div class="card-body" id="lesson-7"><p>A reconvenção permite ao reclamado formular uma <strong>pretensão própria contra o reclamante</strong> no mesmo processo. O PDF adota o <strong>art. 343 do CPC</strong>, aplicado subsidiariamente, e orienta desenvolver tópico próprio quando apresentada junto da contestação.</p><ul><li>Verifique competência, compatibilidade procedimental e legitimidade.</li><li>Identifique a conexão da pretensão reconvencional com a ação ou com o fundamento da defesa.</li><li>Apresente fatos, fundamentos, pedido e valor da reconvenção.</li><li>Observe o contraditório do reclamante reconvindo.</li><li>O material também aborda a participação de terceiros nos polos ativo ou passivo, conforme os §§ 3º e 4º do art. 343.</li></ul><div class="box oab"><strong>Exemplo do PDF:</strong> no caso Estela, a empresa pretende ressarcimento de R$ 300,00 por uma vidraça quebrada. Além de contestar os pedidos, formula reconvenção indenizatória.</div></div></div></div></section>
+<section id="sec-8"><div class="sec-head"><span class="num">§ 2.8</span><h2>Pedidos, provas e encerramento</h2></div><div class="cards"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-8"><span class="card-icon">08</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Pedidos, provas e encerramento</span></span><span class="card-chevron" aria-hidden="true">▾</span></button><div class="card-body" id="lesson-8"><ul><li>Acolhimento das preliminares, com a consequência adequada a cada vício.</li><li>Acolhimento das prejudiciais de mérito, quando existentes.</li><li>Improcedência dos pedidos contestados.</li><li>Compensação e procedência da reconvenção, se cabíveis no caso.</li><li>Produção de todos os meios de prova admitidos em direito.</li><li>Honorários sucumbenciais, nos termos do art. 791-A da CLT, inclusive na reconvenção quando apresentada.</li></ul><p>Finalize com “Nestes termos, pede deferimento”, local, data, advogado e OAB em campos genéricos, conforme as regras da prova.</p></div></div></div></section>
+<section id="modelo"><div class="sec-head"><span class="num">§ 2.9</span><h2>Modelo de organização da peça</h2></div><div class="cards"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-9"><span class="card-icon">09</span><span class="card-head"><span class="card-num">Roteiro de redação</span><span class="card-title">Modelo de organização da peça</span></span><span class="card-chevron" aria-hidden="true">▾</span></button><div class="card-body" id="lesson-9"><p>Roteiro editável de estudo, baseado na estrutura do PDF. Inclua somente as teses amparadas pelo caso concreto.</p><div class="piece">AO JUÍZO DA ... VARA DO TRABALHO DE ...
 
-<!-- ── Dois botões lado a lado ── -->
-<div class="btns-area">
+Processo n. ...
 
-  <!-- Botão Slides -->
-  <a class="drive-btn" href="https://drive.google.com/file/d/1cD8PnQiriCWo6VnVft5_3GWZfkP6FaWW/view?usp=sharing" target="_blank" rel="noopener">
-    <div class="btn-top">
-      <span class="icon-slides" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none">
-          <rect x="3" y="4" width="18" height="12" rx="2" stroke="#1f4fd8" stroke-width="1.8"/>
-          <path d="M8 20h8M12 16v4" stroke="#1f4fd8" stroke-width="1.8" stroke-linecap="round"/>
-          <path d="M7 9h10M7 12h7" stroke="#1f4fd8" stroke-width="1.8" stroke-linecap="round"/>
-        </svg>
-      </span>
-      <span class="btn-text">
-        <strong>Slides</strong>
-        <span>Abrir no Google Drive</span>
-      </span>
-    </div>
-    <span class="btn-label">Material de apoio em slides</span>
-  </a>
+RECLAMADO, qualificação e endereço completos, por seu advogado com procuração anexa, vem à presença de Vossa Excelência, com fundamento no art. 847 da CLT e nos arts. 336 a 341 do CPC, apresentar
 
-  <!-- Botão Enunciado da Peça -->
-  <a class="drive-btn" href="https://drive.google.com/file/d/1PPf0s0WWlOwghwBhi5e3_P4KEEdZ7dPD/view?usp=sharing" target="_blank" rel="noopener">
-    <div class="btn-top">
-      <span class="icon-enunciado" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none">
-          <rect x="4" y="3" width="16" height="18" rx="2" stroke="#16a34a" stroke-width="1.8"/>
-          <path d="M8 8h8M8 12h8M8 16h5" stroke="#16a34a" stroke-width="1.8" stroke-linecap="round"/>
-        </svg>
-      </span>
-      <span class="btn-text">
-        <strong>Enunciado da Peça</strong>
-        <span>Abrir no Google Drive</span>
-      </span>
-    </div>
-    <span class="btn-label">Questão oficial da prova</span>
-  </a>
+CONTESTAÇÃO
 
-</div>
+à reclamação trabalhista movida por RECLAMANTE, já qualificado nos autos, pelos fundamentos a seguir.
 
-<!-- ══════════════════════════════════════════════════ -->
-<!-- CARD 1 — O que é a Contestação Trabalhista        -->
-<!-- ══════════════════════════════════════════════════ -->
-<div class="card section-blue">
-<h2>1. O que é a Contestação Trabalhista?</h2>
+I — JUSTIÇA GRATUITA [se cabível]
+Fato, fundamento e pedido, com indicação da comprovação pertinente.
 
-<p>A contestação é a <strong>principal forma de defesa do reclamado</strong> no processo do trabalho. Ela encontra seu fundamento legal no <strong>art. 847 da CLT</strong> e, de forma subsidiária e supletiva, nos <strong>arts. 336 a 341 do CPC</strong>.</p>
+II — PRELIMINARES PROCESSUAIS [se cabíveis]
+Um tópico para cada vício, seguido do pedido correspondente.
 
-<p>Para dominar esta peça, você deve conhecer dois princípios básicos:</p>
+III — PREJUDICIAIS DE MÉRITO [se cabíveis]
+Identificar as datas, fundamentar e delimitar as pretensões atingidas.
 
-<ul class="bullet">
-  <li>
-    <strong>Princípio da Eventualidade (ou Concentração):</strong> o réu deve apresentar <strong>todas as suas teses defensivas em uma única peça</strong>, pois esta é sua única oportunidade de defesa.
-  </li>
-  <li>
-    <strong>Princípio da Impugnação Especificada dos Fatos:</strong> o réu tem o dever de impugnar <strong>cada fato alegado pelo reclamante de forma específica</strong>, sob pena de serem presumidos verdadeiros.
-  </li>
-</ul>
+IV — DEFESA DE MÉRITO
+Um tópico para cada pedido: fato → fundamento → pedido de improcedência.
 
-<div class="box artigo">
-  <strong>Base legal:</strong> art. 847 da CLT (contestação no processo do trabalho) — arts. 336 a 341 do CPC (contestação, aplicação subsidiária e supletiva).
-</div>
-</div>
+V — COMPENSAÇÃO [se cabível]
+Identificar o crédito trabalhista e requerer a compensação.
 
-<!-- ══════════════════════════════════════════════════ -->
-<!-- CARD 2 — Estrutura Passo a Passo da Peça          -->
-<!-- ══════════════════════════════════════════════════ -->
-<div class="card section-orange">
-<h2>2. Estrutura Passo a Passo da Peça</h2>
+VI — RECONVENÇÃO [se cabível]
+Qualificação pertinente, fatos, fundamentos, pedido e valor da reconvenção.
 
-<p>Siga este roteiro para garantir que nenhum requisito obrigatório fique de fora:</p>
+VII — PEDIDOS E REQUERIMENTOS
+Requer o acolhimento das preliminares e prejudiciais suscitadas, com os efeitos especificados, e a improcedência dos pedidos impugnados.
+[Acrescentar pedidos de compensação e reconvenção, se formulados.]
+Requer a produção de todos os meios de prova admitidos e honorários sucumbenciais, na forma do art. 791-A da CLT.
 
-<ol class="letter-list">
-  <li>
-    <strong>A) Endereçamento e Número do Processo</strong><br>
-    O endereçamento deve ser feito ao juízo onde a ação <strong>já tramita</strong>. Se o enunciado indicar a vara, você deve mencioná-la; caso contrário, deixe a lacuna.<br>
-    <em>Exemplo:</em> AO JUÍZO DA ... VARA DO TRABALHO DE....
-  </li>
-  <li>
-    <strong>B) Qualificação e Fundamentação</strong><br>
-    Aqui, você qualifica a empresa (reclamada) e indica a base legal da peça.<br>
-    — <strong>Atenção:</strong> nunca crie dados que não estejam no enunciado.<br>
-    — <strong>Fundamento:</strong> art. 847 da CLT e arts. 336 a 341 do CPC.<br>
-    — <strong>Verbo correto:</strong> o réu vem <em>apresentar</em> ou <em>oferecer</em> a contestação.
-  </li>
-  <li>
-    <strong>C) Benefícios da Justiça Gratuita</strong><br>
-    O reclamado também pode solicitar a gratuidade de justiça se comprovar insuficiência econômica, conforme autorizado pelo <strong>art. 790, § 4º, da CLT</strong>.
-  </li>
-</ol>
-
-<div class="box oab">
-  <strong>Caixa OAB:</strong> nunca invente dados que não estejam no enunciado na qualificação das partes. O verbo de apresentação da peça é sempre <em>apresentar</em> ou <em>oferecer</em> — nunca <em>interpor</em>, que é verbo próprio de recurso.
-</div>
-</div>
-
-<!-- ══════════════════════════════════════════════════ -->
-<!-- CARD 3 — Teses Jurídicas e Silogismo              -->
-<!-- ══════════════════════════════════════════════════ -->
-<div class="card section-purple">
-<h2>3. Teses Jurídicas e Silogismo</h2>
-
-<p>A <strong>ordem de apresentação das teses</strong> é fundamental para a lógica processual. Utilize sempre o <strong>silogismo jurídico: Fato, Fundamento e Pedido</strong>.</p>
-
-<ul class="bullet">
-  <li>
-    <strong>Preliminares de Mérito (art. 337 do CPC):</strong> servem para atacar vícios processuais, como inépcia da inicial, incompetência absoluta ou litispendência. O objetivo é a <strong>extinção do processo sem resolução do mérito</strong>.
-  </li>
-  <li>
-    <strong>Prejudiciais de Mérito (Prescrição):</strong> ocorrem quando o tempo para exercer o direito expirou. Pode ser a:
-    <ul style="margin:8px 0 0 18px; list-style:disc;">
-      <li style="margin:4px 0;"><strong>Prescrição bienal:</strong> 2 anos após o fim do contrato.</li>
-      <li style="margin:4px 0;"><strong>Prescrição quinquenal:</strong> 5 anos anteriores ao ajuizamento da ação.</li>
-    </ul>
-  </li>
-  <li>
-    <strong>Teses de Defesa de Mérito:</strong> é o momento de rebater os pedidos do autor (ex.: horas extras, adicionais, verbas rescisórias). Sugere-se <strong>abrir um tópico para cada pedido</strong> contestado.
-  </li>
-</ul>
-
-<div class="box artigo">
-  <strong>Ordem lógica das teses:</strong> 1º Preliminares (vícios processuais) → 2º Prejudiciais de mérito (prescrição) → 3º Mérito propriamente dito (impugnação dos pedidos). Inverter essa ordem pode comprometer a coerência processual da peça.
-</div>
-</div>
-
-<!-- ══════════════════════════════════════════════════ -->
-<!-- CARD 4 — Pedidos e Requerimentos Finais            -->
-<!-- ══════════════════════════════════════════════════ -->
-<div class="card section-green">
-<h2>4. Pedidos e Requerimentos Finais</h2>
-
-<p>Ao final da peça, você deve consolidar suas solicitações:</p>
-
-<ul class="bullet">
-  <li>Acolhimento das <strong>preliminares e prejudiciais de mérito</strong>.</li>
-  <li><strong>Improcedência total</strong> dos pedidos do reclamante.</li>
-  <li>Condenação do autor em <strong>honorários advocatícios de sucumbência</strong> (5% a 15%), nos termos do <strong>art. 791-A da CLT</strong>.</li>
-  <li>Requerimento de <strong>produção de todas as provas</strong> admitidas em direito.</li>
-</ul>
-
-<div class="box artigo">
-  <strong>Art. 791-A da CLT:</strong> ao advogado, ainda que atue em causa própria, serão devidos honorários de sucumbência, fixados entre o mínimo de 5% e o máximo de 15% sobre o valor que resultar da liquidação da sentença, do proveito econômico obtido ou, não sendo possível mensurá-lo, sobre o valor atualizado da causa.
-</div>
-</div>
-
-<!-- ══════════════════════════════════════════════════ -->
-<!-- CARD 5 — Dicas de Ouro para a Prova               -->
-<!-- ══════════════════════════════════════════════════ -->
-<div class="card section-amber">
-<h2>5. Dicas de Ouro para a Prova</h2>
-
-<ul class="bullet">
-  <li>
-    <strong>Compensação:</strong> se houver dívidas de natureza trabalhista do autor para com a empresa, peça a compensação no limite da condenação, conforme o <strong>art. 767 da CLT</strong>.
-  </li>
-  <li>
-    <strong>Reconvenção:</strong> se a empresa quiser processar o empregado por algo conexo ao contrato no mesmo processo, utilize a reconvenção (<strong>art. 343 do CPC</strong>).
-  </li>
-  <li>
-    <strong>Não se identifique:</strong> no encerramento (Local, Data, Advogado...), <strong>nunca assine ou invente nomes</strong>, para não anular sua prova.
-  </li>
-</ul>
-
-<div class="box oab">
-  <strong>Caixa OAB:</strong> lembre-se — a prática leva à perfeição. Estude os gabaritos anteriores para entender o que a banca FGV costuma pontuar com mais peso. A compensação (art. 767, CLT) e a reconvenção (art. 343, CPC) são institutos que aparecem com frequência nos enunciados e devem ser identificados com agilidade.
-</div>
-</div>
-
-<div class="back">
-  <a href="../index.html">← Voltar ao índice da disciplina</a>
-</div>
-
-</div>
-</div>
-</body>
-</html>
+Nestes termos, pede deferimento.
+Local e data.
+Advogado ...
+OAB n. ...</div></div></div></div></section>
+<section id="pratica"><div class="sec-head"><span class="num">§ 2.10</span><h2>Questões do Exame da OAB</h2></div><div class="cards"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-10"><span class="card-icon">10</span><span class="card-head"><span class="card-num">Prática profissional</span><span class="card-title">Questões do Exame da OAB</span></span><span class="card-chevron" aria-hidden="true">▾</span></button><div class="card-body" id="lesson-10"><p>Leia a síntese, organize as teses e abra o roteiro de resposta para conferir. Os gabaritos representam o tratamento dos casos no material fornecido.</p>
+<details><summary>1. XXIII Exame — Hamilton × Loteria Alfa Ltda.</summary><p><strong>Síntese:</strong> ação ajuizada em 30/04/2017, processo 1234, na 50ª Vara do Trabalho de João Pessoa. Contrato de 13/01/2010 a 25/03/2017. Jornada de segunda a sexta, das 7h às 14h, com uma hora de intervalo. Candidatura sindical durante o aviso-prévio. Exposição à subestação por dez minutos semanais. O empregado pede periculosidade, vantagens dos bancários, reintegração, horas extras e de sobreaviso, ticket de acordo de outra empresa, vale-transporte no trabalho domiciliar e integração do vale-cultura.</p><details><summary>Conferir roteiro de resposta</summary><ul><li><strong>Peça:</strong> contestação, art. 847 da CLT.</li><li><strong>Preliminar:</strong> inépcia do pedido de sobreaviso por ausência de causa de pedir (arts. 330, § 1º, I, e 485, I, CPC).</li><li><strong>Prescrição:</strong> pretensões anteriores a 30/04/2012.</li><li><strong>Periculosidade:</strong> o gabarito sustenta exposição por tempo extremamente reduzido, com referência à Súmula 364, I, TST.</li><li><strong>Categoria:</strong> a empregadora explora loteria; afastar vantagens dos bancários (art. 511, CLT).</li><li><strong>Estabilidade:</strong> candidatura no aviso-prévio (Súmula 369, V, TST).</li><li><strong>Horas extras:</strong> jornada descrita não excede os limites legais.</li><li><strong>Ticket:</strong> acordo coletivo firmado por outra empresa (art. 611, § 1º, CLT).</li><li><strong>Vale-transporte:</strong> ausência de deslocamento no período domiciliar.</li><li><strong>Vale-cultura:</strong> ausência de natureza salarial (art. 458, § 2º, VIII, CLT).</li></ul></details></details>
+<details><summary>2. XXV Exame — Estela × Floricultura Flores Belas Ltda.</summary><p><strong>Síntese:</strong> ação de 27/02/2018, processo 98.765, na 50ª Vara do Trabalho de João Pessoa/PB. Contrato de 25/10/2012 a 29/12/2017. Pedidos de penalidade criminal aos sócios, penosidade, horas extras, multa rescisória e restituição de descontos do plano de saúde. Jornada de segunda a sexta, das 10h às 20h, com duas horas de intervalo, e sábado das 16h às 20h. Há autorização escrita de desconto. Após o aviso, Estela quebrou uma vidraça, cujo reparo custou R$ 300,00, comprovado por nota fiscal.</p><details><summary>Conferir roteiro de resposta</summary><ul><li><strong>Peça:</strong> contestação com reconvenção.</li><li><strong>Preliminar:</strong> incompetência material para condenação criminal.</li><li><strong>Prescrição:</strong> pretensões anteriores a 27/02/2013.</li><li><strong>Plano de saúde:</strong> impugnar a coação e indicar a autorização; o gabarito remete ao art. 818, I, CLT, Súmula 342 e OJ 160 do TST.</li><li><strong>Penosidade:</strong> o gabarito aponta ausência de regulamentação do adicional.</li><li><strong>Jornada:</strong> oito horas de segunda a sexta e quatro no sábado, totalizando 44 horas semanais.</li><li><strong>Reconvenção:</strong> ressarcimento de R$ 300,00 (art. 343, CPC; arts. 186 e 927, CC), com honorários na ação e na reconvenção.</li></ul><div class="box alerta"><strong>Divergência no PDF:</strong> o enunciado informa pagamento das verbas rescisórias vinte dias após a comunicação do aviso indenizado, mas o gabarito afirma cumprimento do prazo legal para afastar a multa do art. 477. O material não explica essa conclusão; esse ponto exige conferência e não deve ser reproduzido como regra geral.</div></details></details>
+<details><summary>3. XXVIII Exame — Joana × Tecelagem Fio de Ouro S.A.</summary><p><strong>Síntese:</strong> ação de 15/10/2018, processo 1000/2018, na 80ª Vara do Trabalho de Cuiabá. Contrato de 10/05/2008 a 29/09/2018. A cozinheira pede dano moral por doença, integração de plano odontológico, cestas básicas após o término da convenção, horas por culto voluntário, anulação do pedido de demissão, acréscimo por servir refeições e periculosidade sem causa de pedir. Apresenta laudo de doença degenerativa. A empresa possui pedido de demissão escrito.</p><details><summary>Conferir roteiro de resposta</summary><ul><li><strong>Preliminar:</strong> inépcia do pedido de periculosidade.</li><li><strong>Prescrição:</strong> pretensões anteriores a 15/10/2013.</li><li><strong>Doença:</strong> o gabarito afasta o caráter ocupacional com base no diagnóstico degenerativo (art. 20, § 1º, a, Lei 8.213/91).</li><li><strong>Plano odontológico:</strong> não integra o salário (art. 458, § 2º, IV, e § 5º, CLT).</li><li><strong>Cestas:</strong> ausência de ultratividade da norma coletiva expirada (art. 614, § 3º, CLT).</li><li><strong>Culto voluntário:</strong> não caracteriza tempo à disposição (art. 4º, § 2º, I, CLT).</li><li><strong>Demissão:</strong> negar a coação e discutir o ônus da prova do vício.</li><li><strong>Acúmulo:</strong> atividades compatíveis com a condição pessoal (art. 456, parágrafo único, CLT).</li></ul></details></details>
+<details><summary>4. XXXII Exame — Érica × Auditoria Pente Fino S.A.</summary><p><strong>Síntese:</strong> ação de 30/01/2020, processo 0101010-50.2020.5.02.0200, na 200ª Vara do Trabalho de São Paulo. Contrato de 29/09/2011 a 07/01/2020. Gerente com 25 subordinados, salário de R$ 20 mil e gratificação de R$ 10 mil. Pediu demissão. Postula horas extras, indenização de 40% do FGTS, recolhimentos previdenciários do contrato, integração de prêmios, periculosidade pela violência no entorno e honorários de 20%. Narra comparação salarial com gerente admitida em 15/01/2009, sem formular pedido correspondente.</p><details><summary>Conferir roteiro de resposta</summary><ul><li><strong>Preliminares:</strong> incompetência material quanto aos recolhimentos previdenciários descritos e inépcia pela ausência de pedido de equiparação.</li><li><strong>Prescrição:</strong> pretensões anteriores a 30/01/2015.</li><li><strong>Horas extras:</strong> cargo de gestão e gratificação superior a 40% (art. 62, II e parágrafo único, CLT).</li><li><strong>FGTS:</strong> pedido de demissão afasta a indenização de 40% do caso (art. 18, § 1º, Lei 8.036/90).</li><li><strong>Prêmios:</strong> o gabarito invoca o art. 457, § 2º, CLT para afastar a integração.</li><li><strong>Equiparação, por eventualidade:</strong> diferença superior a dois anos na função (art. 461, § 1º, CLT).</li><li><strong>Periculosidade:</strong> a situação narrada não caracteriza atividade perigosa do art. 193 da CLT, segundo o gabarito.</li><li><strong>Honorários:</strong> impugnar o percentual de 20%, observando a faixa de 5% a 15% do art. 791-A da CLT.</li></ul></details></details>
+</div></div></div></section>
+<section id="sec-11"><div class="sec-head"><span class="num">§ 2.11</span><h2>Incompetência territorial</h2></div><div class="cards"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-11"><span class="card-icon">11</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Incompetência territorial</span></span><span class="card-chevron" aria-hidden="true">▾</span></button><div class="card-body" id="lesson-11"><p>O PDF encerra o tema com a <strong>exceção de incompetência territorial</strong>, remetendo ao procedimento próprio do <strong>art. 800 da CLT</strong> e à <strong>OJ 149 da SDI-2 do TST</strong>. Diferencie essa matéria da incompetência absoluta tratada nas preliminares.</p><div class="box obs">A última página inicia um caso simulado de Valmir, mas o enunciado está incompleto no arquivo e contém uma sequência de datas inconsistente. Por isso, ele não foi convertido em exercício com resposta.</div></div></div></div></section>
+<section id="sec-12"><div class="sec-head"><span class="num">§ 2.12</span><h2>Checklist de revisão</h2></div><div class="cards"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-12"><span class="card-icon">12</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Checklist de revisão</span></span><span class="card-chevron" aria-hidden="true">▾</span></button><div class="card-body" id="lesson-12"><ul class="checklist"><li><label><input type="checkbox"> Identifiquei o juízo, o processo e as partes corretamente.</label></li><li><label><input type="checkbox"> Indiquei o art. 847 da CLT e o nome da peça.</label></li><li><label><input type="checkbox"> Separei preliminares, prejudiciais e mérito.</label></li><li><label><input type="checkbox"> Impugnei cada pedido e indiquei o efeito de cada tese.</label></li><li><label><input type="checkbox"> Examinei compensação e reconvenção à luz do enunciado.</label></li><li><label><input type="checkbox"> Incluí provas, honorários e encerramento sem identificação pessoal.</label></li></ul><p class="source">Fonte: Contestação.pdf, capítulo 1.7, itens 1.7.1 a 1.7.7. Síntese para estudo; casos identificados pelos exames indicados no próprio material. As referências à inépcia e aos honorários seguem os gabaritos do capítulo, corrigindo lapsos de remissão dos modelos.</p></div></div></div></section><footer class="page-footer"><a href="../index.html">← Voltar ao índice da disciplina</a></footer></main><script>
+const cards=[...document.querySelectorAll('.card')];
+function setCard(card,open){card.classList.toggle('open',open);card.querySelector('.card-btn').setAttribute('aria-expanded',String(open));}
+function syncAll(){const all=cards.every(c=>c.classList.contains('open'));const b=document.querySelector('.expand-all');b.textContent=all?'Recolher tudo':'Expandir tudo';b.setAttribute('aria-pressed',String(all));}
+cards.forEach(card=>card.querySelector('.card-btn').addEventListener('click',()=>{setCard(card,!card.classList.contains('open'));syncAll();}));
+document.querySelector('.expand-all').addEventListener('click',()=>{const open=!cards.every(c=>c.classList.contains('open'));cards.forEach(c=>setCard(c,open));syncAll();});
+document.querySelectorAll('.lesson-nav a').forEach(a=>a.addEventListener('click',()=>{const c=document.querySelector(a.getAttribute('href')+' .card');if(c){setCard(c,true);syncAll();}}));
+let printDetails=[];window.addEventListener('beforeprint',()=>{printDetails=[...document.querySelectorAll('details')].map(d=>[d,d.open]);printDetails.forEach(([d])=>d.open=true);});window.addEventListener('afterprint',()=>printDetails.forEach(([d,open])=>d.open=open));
+</script></body></html>
