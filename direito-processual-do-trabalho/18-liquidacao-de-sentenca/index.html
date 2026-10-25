@@ -1,398 +1,298 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>18. Liquidação de Sentença</title>
-
-<style>
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>18. Liquidação de Sentença</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"><style>
 :root{
-  --bg:#eaf3ff;
-  --panel:#f8fbff;
-  --card:#ffffff;
-  --title:#1f4fd8;
-  --text:#0f172a;
-  --muted:#475569;
-  --border:rgba(15,23,42,.14);
-  --shadow:0 14px 34px rgba(15,23,42,.12);
-  --blueSoft:#e8f0ff;
-  --greenSoft:#ecfdf5;
-  --orangeSoft:#fff7ed;
-  --purpleSoft:#f5f3ff;
-  --redSoft:#fef2f2;
+  --ink:#1b2436;--ink-soft:#414a5c;--paper:#edece5;--surface:#fbfaf7;
+  --accent:#7a2e37;--accent-soft:#a2545f;--iron:#8b8579;
+  --line:rgba(27,36,54,.13);--line-strong:rgba(27,36,54,.22);
+  --green:#166534;--green-bg:#f0fdf4;--green-line:#bbf7d0;
+  --red:#991b1b;--red-bg:#fef2f2;--red-line:#fecaca;
+  --display:"Fraunces",Georgia,serif;--body:"Spectral",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:19px;line-height:1.78;-webkit-font-smoothing:antialiased;}
+body::before{content:"";position:fixed;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 34%,var(--ink) 34%,var(--ink) 100%);z-index:50;}
+.wrap{max-width:760px;margin:0 auto;padding:0 22px 72px;}
+
+/* CABEÇALHO */
+.masthead{padding:56px 0 30px;border-bottom:1px solid var(--line-strong);animation:rise .7s cubic-bezier(.2,.7,.2,1) both;}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--accent);display:inline-block;}
+.eyebrow .dot{color:var(--line-strong);}
+.title-row{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;flex-wrap:wrap;}
+h1{font-family:var(--display);font-weight:500;font-size:clamp(2.3rem,6.5vw,3.8rem);line-height:1.04;letter-spacing:-.015em;max-width:14ch;}
+h1 .art{display:block;font-size:.42em;font-weight:600;letter-spacing:.02em;color:var(--accent);font-family:var(--mono);text-transform:uppercase;margin-bottom:.5em;}
+.slides-btn{flex-shrink:0;display:inline-flex;align-items:center;gap:12px;text-decoration:none;background:var(--ink);color:#f4f2ec;border-radius:4px;padding:13px 18px;font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;box-shadow:0 8px 22px -12px rgba(27,36,54,.7);transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s,background .25s;}
+.slides-btn:hover{background:var(--accent);transform:translateY(-2px);}
+.slides-btn .arw{transition:transform .25s;}
+.slides-btn:hover .arw{transform:translateX(4px);}
+
+/* VERBETE */
+.verbete{margin:44px 0 8px;padding:6px 0 6px 30px;border-left:3px solid var(--accent);}
+.verbete .tag{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:14px;}
+.verbete p{font-family:var(--display);font-weight:400;font-size:clamp(1.15rem,2.8vw,1.45rem);line-height:1.45;color:var(--ink);margin:0;}
+
+/* REF */
+.ref{font-family:var(--mono);font-size:.8em;color:var(--iron);background:rgba(139,133,121,.12);padding:2px 7px;border-radius:3px;white-space:nowrap;}
+
+/* SEÇÕES */
+.sec-head{display:flex;gap:16px;align-items:baseline;margin:44px 0 14px;padding-top:26px;border-top:1px solid var(--line);}
+.sec-head .num{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--accent);flex-shrink:0;padding-top:.35em;}
+h2{font-family:var(--display);font-weight:500;font-size:clamp(1.55rem,4vw,1.95rem);line-height:1.14;letter-spacing:-.01em;color:var(--ink);}
+h3{font-family:var(--display);font-weight:600;font-size:1.15rem;color:var(--ink);margin:22px 0 8px;}
+p{margin-bottom:14px;color:var(--ink-soft);}
+
+/* LISTA */
+.blist{list-style:none;padding:0;margin:10px 0 12px;display:flex;flex-direction:column;gap:3px;}
+.blist li{display:grid;grid-template-columns:22px 1fr;gap:8px;font-size:.93em;color:var(--ink-soft);line-height:1.65;padding:8px 0;border-bottom:1px solid var(--line);}
+.blist li:last-child{border-bottom:none;}
+.blist li .bul{color:var(--accent);font-family:var(--mono);font-size:.85em;padding-top:2px;}
+
+/* SUMULA */
+.sumula{margin:10px 0 6px;padding:12px 16px;border-left:2px solid var(--iron);background:var(--paper);border-radius:0 4px 4px 0;font-size:.89em;color:var(--ink-soft);line-height:1.65;}
+.sumula strong{font-family:var(--mono);font-size:.86em;letter-spacing:.08em;text-transform:uppercase;color:var(--iron);display:block;margin-bottom:4px;}
+
+/* NOTA / ALERTA */
+.nota{margin:10px 0 6px;padding:13px 17px;background:rgba(122,46,55,.06);border-left:3px solid var(--accent);border-radius:0 5px 5px 0;font-size:.91em;color:var(--ink-soft);line-height:1.65;}
+.nota strong{color:var(--ink);}
+
+/* TABELA */
+.tbl{margin:12px 0 6px;border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:.9em;}
+.tbl-head{display:grid;background:var(--ink);color:#f4f2ec;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;}
+.tbl-head div,.tbl-row div{padding:9px 14px;}
+.tbl-head div:not(:last-child){border-right:1px solid rgba(255,255,255,.15);}
+.tbl-row{display:grid;border-top:1px solid var(--line);}
+.tbl-row:nth-child(even) div{background:rgba(139,133,121,.04);}
+.tbl-row div{color:var(--ink-soft);display:flex;align-items:center;line-height:1.5;}
+.tbl-row div:not(:last-child){border-right:1px solid var(--line);}
+.tbl-3{grid-template-columns:1fr 1fr 1fr;}
+.tbl-2{grid-template-columns:1fr 1fr;}
+.tbl-head.tbl-3{grid-template-columns:1fr 1fr 1fr;}
+.tbl-head.tbl-2{grid-template-columns:1fr 1fr;}
+
+/* CARDS ACCORDION */
+.cards{display:flex;flex-direction:column;gap:3px;}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;transition:box-shadow .2s;}
+.card:hover{box-shadow:0 4px 18px -8px rgba(27,36,54,.2);}
+.card-btn{width:100%;background:none;border:none;cursor:pointer;display:grid;grid-template-columns:52px 1fr 34px;align-items:center;padding:0;text-align:left;color:inherit;}
+.card-icon{display:flex;align-items:center;justify-content:center;min-height:60px;border-right:1px solid var(--line);font-family:var(--mono);font-weight:700;font-size:11px;color:var(--accent);background:rgba(122,46,55,.05);text-align:center;padding:4px;line-height:1.3;}
+.card-head{padding:13px 16px;}
+.card-num{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--iron);display:block;margin-bottom:3px;}
+.card-title{font-family:var(--display);font-weight:600;font-size:1rem;line-height:1.2;color:var(--ink);}
+.card-chevron{display:flex;align-items:center;justify-content:center;padding-right:14px;color:var(--iron);font-size:13px;transition:transform .3s cubic-bezier(.2,.7,.2,1),color .2s;}
+.card.open .card-chevron{transform:rotate(180deg);color:var(--accent);}
+.card-body{display:none;padding:16px 20px 20px;border-top:1px solid var(--line);}
+.card.open .card-body{display:block;}
+.card-body p{color:var(--ink-soft);font-size:.93em;line-height:1.72;}
+
+/* ===== PLACAR ===== */
+.scoreboard{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:18px 22px;background:var(--surface);border:1px solid var(--line-strong);border-radius:8px;margin-bottom:8px;}
+.score-label{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--iron);}
+.score-nums{display:flex;align-items:baseline;gap:6px;}
+.score-current{font-family:var(--display);font-size:2.6rem;font-weight:600;color:var(--ink);line-height:1;}
+.score-total{font-family:var(--mono);font-size:1rem;color:var(--iron);}
+.score-bar-wrap{flex:1;min-width:120px;height:8px;background:var(--line);border-radius:99px;overflow:hidden;}
+.score-bar{height:100%;width:0%;background:var(--accent);border-radius:99px;transition:width .5s cubic-bezier(.2,.7,.2,1),background .3s;}
+.score-msg{font-family:var(--mono);font-size:12px;color:var(--iron);min-width:80px;}
+.btn-reset{margin-left:auto;border:1px solid var(--line-strong);background:none;color:var(--ink-soft);border-radius:4px;padding:7px 14px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:border-color .2s,color .2s;}
+.btn-reset:hover{border-color:var(--accent);color:var(--accent);}
+
+/* CARD DE QUESTÃO */
+.q-card{background:var(--surface);border:1px solid var(--line);border-radius:8px;margin:14px 0;overflow:hidden;transition:border-color .25s,box-shadow .25s;}
+.q-card.answered-correct{border-color:var(--green-line);box-shadow:0 0 0 2px rgba(22,101,52,.12);}
+.q-card.answered-wrong{border-color:var(--red-line);box-shadow:0 0 0 2px rgba(153,27,27,.10);}
+.q-header{display:flex;align-items:flex-start;gap:12px;padding:16px 18px 12px;}
+.q-badge{flex-shrink:0;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--accent);background:rgba(122,46,55,.09);border:1px solid rgba(122,46,55,.18);border-radius:4px;padding:3px 9px;margin-top:3px;white-space:nowrap;}
+.q-text{font-family:var(--body);font-size:.96em;color:var(--ink);line-height:1.72;flex:1;margin:0;}
+.options{padding:0 18px 16px;display:flex;flex-direction:column;gap:7px;}
+.opt{display:flex;align-items:flex-start;gap:11px;padding:10px 13px;border:1px solid var(--line);border-radius:6px;cursor:pointer;background:var(--paper);transition:border-color .18s,background .18s;text-align:left;width:100%;font-family:var(--body);font-size:.92em;color:var(--ink-soft);line-height:1.6;}
+.opt:hover:not(:disabled){border-color:var(--accent-soft);background:#f7f3f1;}
+.opt-letter{flex-shrink:0;font-family:var(--mono);font-size:.8em;font-weight:700;color:var(--accent);width:20px;padding-top:2px;}
+.opt.selected{border-color:var(--accent);background:rgba(122,46,55,.06);}
+.opt.correct-final{border-color:var(--green);background:var(--green-bg);cursor:default;}
+.opt.correct-final .opt-letter{color:var(--green);}
+.opt.wrong-final{border-color:var(--red);background:var(--red-bg);cursor:default;}
+.opt.wrong-final .opt-letter{color:var(--red);}
+.opt.dimmed{opacity:.42;cursor:default;}
+.q-actions{padding:0 18px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.btn-confirm{display:inline-flex;align-items:center;gap:8px;padding:9px 20px;background:var(--ink);color:#f4f2ec;border:none;border-radius:4px;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;transition:background .2s,transform .2s;}
+.btn-confirm:hover:not(:disabled){background:var(--accent);transform:translateY(-1px);}
+.btn-confirm:disabled{opacity:.35;cursor:default;transform:none;}
+.toggle-gabarito{display:none;align-items:center;gap:7px;border:none;background:none;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--iron);cursor:pointer;transition:color .2s;padding:0;}
+.toggle-gabarito:hover{color:var(--accent);}
+.toggle-gabarito .chev{display:inline-block;font-size:10px;transition:transform .3s cubic-bezier(.2,.7,.2,1);}
+.toggle-gabarito.open .chev{transform:rotate(180deg);}
+.gabarito{border-top:1px solid var(--line);overflow:hidden;max-height:0;transition:max-height .45s cubic-bezier(.2,.7,.2,1);}
+.gabarito.open{max-height:1800px;}
+.gabarito-inner{padding:16px 18px 18px;}
+.gabarito-title{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--iron);margin-bottom:10px;}
+.gabarito-correct{display:flex;align-items:center;gap:10px;padding:9px 13px;background:var(--green-bg);border:1px solid var(--green-line);border-radius:6px;font-family:var(--mono);font-size:.84em;font-weight:700;color:var(--green);margin-bottom:12px;}
+.gabarito-body{font-size:.9em;color:var(--ink-soft);line-height:1.72;}
+.gabarito-body strong{color:var(--ink);}
+.gabarito-body .ref{font-family:var(--mono);font-size:.8em;color:var(--iron);background:rgba(139,133,121,.12);padding:2px 7px;border-radius:3px;white-space:nowrap;}
+.gabarito-body p{margin-bottom:9px;}
+.gabarito-body p:last-child{margin-bottom:0;}
+
+/* RESULTADO */
+.result-banner{display:none;margin:28px 0 0;padding:26px 22px;border:1px solid var(--line-strong);border-radius:8px;background:var(--surface);text-align:center;}
+.result-banner.show{display:block;}
+.result-score{font-family:var(--display);font-size:3.2rem;font-weight:600;color:var(--accent);line-height:1;margin-bottom:6px;}
+.result-label{font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--iron);}
+.result-msg{margin-top:10px;font-size:.94em;color:var(--ink-soft);}
+
+/* VOLTAR */
+.back{margin-top:52px;display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line-strong);border-radius:6px;padding:20px 22px;font-family:var(--mono);font-size:14px;letter-spacing:.04em;transition:border-color .25s,transform .25s;}
+.back .arw{color:var(--accent);transition:transform .25s;font-size:18px;}
+.back:hover{border-color:var(--accent);transform:translateY(-2px);}
+.back:hover .arw{transform:translateX(-4px);}
+
+@keyframes rise{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
+.reveal{opacity:0;transform:translateY(14px);}
+.reveal.in{opacity:1;transform:none;transition:opacity .5s ease,transform .5s cubic-bezier(.2,.7,.2,1);}
+
+@media(max-width:560px){
+  body{font-size:17.5px;}
+  .masthead{padding:40px 0 24px;}
+  .title-row{align-items:stretch;}
+  .slides-btn{width:100%;justify-content:center;}
+  .verbete{padding-left:18px;}
+  .scoreboard{flex-direction:column;align-items:flex-start;gap:10px;}
+  .btn-reset{margin-left:0;}
+  .tbl-3{grid-template-columns:1fr 1fr;}
+  .tbl-head.tbl-3 div:last-child,.tbl-3 .tbl-row div:last-child{display:none;}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;scroll-behavior:auto;}
+  .reveal{opacity:1;transform:none;}
+  .reveal.in{transition:none;}
 }
 
-*{
-  box-sizing:border-box;
+.q-header{flex-wrap:wrap}.q-text{flex-basis:100%}.q-badge{white-space:normal}
+.card-body ul{padding-left:24px}.card-body li{margin-bottom:12px}
+.card-body .nota p:last-child{margin-bottom:0}
+.score-msg{white-space:nowrap}.source{font-size:.8em;margin-top:20px}
+@media(max-width:560px){.score-bar-wrap{width:100%;flex:auto}.ref{white-space:normal}}
+
+.compare-table{width:100%;border-collapse:collapse;background:var(--surface);font-size:.9em;margin:22px 0}
+.compare-table th,.compare-table td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;overflow-wrap:anywhere}
+.compare-table th{color:var(--accent);font-family:var(--display)}
+@media(max-width:560px){.compare-table{font-size:.8em}.compare-table th,.compare-table td{padding:9px 6px}}
+.q-header{flex-direction:column;align-items:stretch;min-width:0}.q-badge{align-self:flex-start;max-width:100%;white-space:normal;overflow-wrap:anywhere}.q-text{flex:none;width:100%;min-width:0;overflow-wrap:break-word}.opt>span:last-child{min-width:0;overflow-wrap:break-word}@media(max-width:560px){.q-header{padding:16px 14px;gap:10px}.q-text{font-size:1rem;line-height:1.7}.q-actions{flex-wrap:wrap}}.lesson{margin-top:24px}
+</style></head><body><div class="wrap"><header class="masthead"><p class="eyebrow">Direito Processual do Trabalho <span class="dot">·</span> Preparação da execução</p><div class="title-row"><h1><span class="art">Item 18</span>Liquidação de sentença</h1><a class="slides-btn" href="https://drive.google.com/file/d/1aEvGnhECmNJN3_1az6OCo0kPEtkRXg00/view?usp=sharing" target="_blank" rel="noopener"><span>Slides da aula</span><span class="arw">→</span></a></div><div class="verbete"><span class="tag">Art. 879 da CLT</span><p>Apurar o <strong>valor da condenação</strong>, respeitar os limites da decisão e assegurar o <strong>contraditório sobre os cálculos</strong>.</p></div></header><section class="lesson"><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-1"><span class="card-icon">01</span><span class="card-head"><span class="card-num">§ 18.1 · Conteúdo da aula</span><span class="card-title">Conceito e finalidade</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-1"><p>O procedimento de liquidação de sentença, previsto no art. 879 da CLT, mostra-se indispensável para se proceder ao início do processo de execução, uma vez que o título executivo deve ser certo, líquido e exigível, devendo a decisão já afirmar o que é devido e a quantidade devida. Por vezes a decisão é proferida afirmando apenas o que é devido (3 horas extras por dia), sem trazer desde logo o valor devido. Na hipótese a sentença é ilíquida, devendo ser objeto de liquidação, para, na hipótese, através de cálculos aritméticos, apurar-se o quantum debeatur (MOURA, 2015).</p><p>Ocorre que a liquidação não será realizada em todos os procedimentos, pois no rito sumaríssimo a sentença tem que ser obrigatoriamente líquida, uma vez que o autor da ação tem que formular pedido certo, determinado e líquido. Não faria sentido impor ao autor da ação tal obrigação e permitir ao Juiz o proferimento de sentença ilíquida.</p></div></div></div></section>
+<section class="lesson"><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-2"><span class="card-icon">02</span><span class="card-head"><span class="card-num">§ 18.2 · Conteúdo da aula</span><span class="card-title">Limites da liquidação e coisa julgada</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-2"><p>Como pode ser percebido, a liquidação é um procedimento preparatório à execução, realizado após o processo de conhecimento. Assim sendo, não possui por finalidade rediscutir matérias que foram objeto de questionamento e provas no processo de conhecimento, sendo vedada pelo § 1º do art. 879 da CLT tal rediscussão. Se a sentença proferida condenou a empresa ao pagamento de 3 horas extras diárias, na liquidação não poderá ser discutido se foram 3 ou 2 horas, pois tal matéria já foi objeto de análise pelo Poder Judiciário, estando decidida, não cabendo rediscussão, a não ser pela via recursal.</p><p>Dependendo da situação encontrada nos autos, a liquidação seguirá um procedimento diverso, já que várias são as modalidades previstas para a liquidação, a saber:</p></div></div></div></section>
+<section class="lesson"><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-3"><span class="card-icon">03</span><span class="card-head"><span class="card-num">§ 18.3 · Conteúdo da aula</span><span class="card-title">Modalidades de liquidação</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-3"><ul class="bullet"><li>Cálculos: é a modalidade mais simples de liquidação, sendo realizada na grande maioria das vezes na Justiça do Trabalho, pois a fixação do valor final da condenação depende apenas de cálculos aritméticos, apresentados pelas partes ou feitos por serventuário da própria Justiça do Trabalho.</li></ul><ul class="bullet"><li>Arbitramento: na hipótese, há a necessidade de realização de perícia para se apurar o valor da condenação, sendo uma situação mais complexa, prevista no art. 509 do CPC/2015. O dispositivo afirma que será realizada a liquidação desta forma quando determinado por sentença, convencionado entre as partes e quando a natureza do objeto exigir, ou seja, quando somente por perícia for possível encontrar o valor devido.</li></ul><ul class="bullet"><li>Artigos: por fim, a liquidação mais complexa e menos usual do processo do trabalho será realizada quando houver a necessidade de se provar fatos novos (os denominados “artigos de liquidação”), que serão objeto de conhecimento e prova perante o Poder Judiciário, em verdadeira “segunda ação dentro da primeira”, já que a liquidação seguirá o procedimento ordinário, com contraditório, instrução e decisão sobre os fatos novos. Prevista no art. 509, II, do CPC/2015, é a única forma de liquidação que não pode ser iniciada de ofício, dependendo sempre de requerimento do credor.</li></ul></div></div></div></section>
+<section class="lesson"><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-4"><span class="card-icon">04</span><span class="card-head"><span class="card-num">§ 18.4 · Conteúdo da aula</span><span class="card-title">Forma de liquidação, juros e correção monetária</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-4"><p>Antes de adentrarmos no procedimento da liquidação por cálculos, mais importantes para o Exame da OAB, vamos lembrar dois pontos fundamentais. Em primeiro lugar, há o entendimento da Súmula 344 do STJ no sentido de que não fere a coisa julgada a alteração de forma de liquidação que foi estabelecida em sentença. Assim, mesmo que a sentença fixe que a futura liquidação será realizada por arbitramento, não obsta que o Magistrado, ao liquidar, o faço por cálculos. O trânsito em julgado da decisão não incide sobre a forma de liquidação, que pode ser modificada. Além disso, mesmo que a sentença não tenha condenado o réu explicitamente ao pagamento de juros e correção monetária, os valores podem ser incluídos na liquidação, por serem considerados pedido e condenação implícitos (MIESSA, 2016). Vamos aos exemplos:</p><ul class="bullet"><li>Pedido implícito: João ajuizou reclamação trabalhista em face da empresa Alfa, pedindo a condenação tão somente ao pagamento das horas extraordinárias trabalhadas. O Juiz, ao reconhecer o direito ao recebimento daquela parcela, condenará ao seguinte: horas extras + juros + correção monetária, pois as duas últimas parcelas são pedidos implícitos.</li></ul><ul class="bullet"><li>Condenação implícita: se o Juiz condenar apenas ao pagamento das horas extraordinárias, poderia incluir na liquidação os valores relacionados a: horas extras + juros + correção monetária, pois também são considerados como parcelas implícitas da condenação, nos termos da Súmula 211 do TST. Vejamos a transcrição da súmula:</li></ul><p>Súmula 211 do TST</p><p>Os juros de mora e a correção monetária incluem-se na liquidação, ainda que omisso o pedido inicial ou a condenação.</p></div></div></div></section>
+<section class="lesson"><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-5"><span class="card-icon">05</span><span class="card-head"><span class="card-num">§ 18.5 · Conteúdo da aula</span><span class="card-title">Manifestação das partes</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-5"><p>A respeito do procedimento da liquidação por cálculos, temos que analisar alguns aspectos do art. 879 da CLT, especialmente os §§ 2º e 3º, principalmente em relação ao § 2º, alterado substancialmente pela reforma trabalhista – Lei n. 13.467/2017. Vejamos:</p><ul class="bullet"><li>Em relação às partes – § 2º: no tocante às partes, a reforma trabalhista retirou a possibilidade de homologação dos cálculos sem oitiva prévia das partes, como ocorria anteriormente. O atual texto legal afirma que o Juiz deverá intimar as partes para manifestação acerca dos cálculos apresentados, não mais havendo a possibilidade de intimar ou não. A intimação é obrigatória. Esta é a primeira alteração, mas não a única. O prazo para manifestação das partes também foi alterado, cabendo a impugnação no prazo de 8 dias. Caso não seja apresentada a manifestação no prazo legal, haverá preclusão, tornando impossível qualquer discussão posterior sobre o assunto.</li></ul><p>Segundo dispõe a IN n. 41/2018 do TST, a redução do prazo para a manifestação das partes somente se aplica às liquidações iniciadas após o dia 11-11-2017, data da entrada em vigor da reforma trabalhista.</p></div></div></div></section>
+<section class="lesson"><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-6"><span class="card-icon">06</span><span class="card-head"><span class="card-num">§ 18.6 · Conteúdo da aula</span><span class="card-title">Manifestação da União</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-6"><ul class="bullet"><li>Em relação à União – § 3º: em relação à União, o legislador agiu de maneira diversa, determinando a intimação obrigatória do ente para manifestação, no mesmo prazo de 10 dias, sob pena de preclusão. Não há, portanto, a faculdade de o Juiz intimar ou não a União, sendo obrigatória a comunicação ao ente público, que possui interesse na análise dos cálculos de liquidação, uma vez que neles constam os valores de contribuições previdenciárias decorrentes da condenação imposta (LEITE, 2015).</li></ul></div></div></div></section>
+<section class="lesson"><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-7"><span class="card-icon">07</span><span class="card-head"><span class="card-num">§ 18.7 · Conteúdo da aula</span><span class="card-title">Decisão de liquidação e impugnação</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-7"><p>Por fim, cabe a análise sobre a recorribilidade da decisão de liquidação. Por tratar-se de decisão interlocutória, não cabe impugnação imediata por recurso, podendo aquela ser discutida posteriormente, em momento oportuno previsto no art. 884 da CLT. O executado poderá discutir o conteúdo da decisão de liquidação nos embargos à execução, alegando equívocos na realização do cálculo, excesso de execução e outras matérias. Já o exequente poderá manifestar-se nos termos do § 3º do mesmo artigo, que permite àquele, no prazo dos embargos, impugnar a decisão de liquidação. Mas há um detalhe: as partes somente poderão impugnar a decisão posteriormente se o Juiz as tiver intimado nos termos do § 2º do art. 879 da CLT, tendo sido apresentada manifestação naquele momento adequado.</p></div></div></div></section><section><div class="sec-head reveal"><span class="num">REVISÃO</span><h2>Questões do Exame da OAB</h2></div><p>Questões 89 a 92 do tópico 22 — Liquidação de sentença. Selecione uma alternativa e confirme para conferir o gabarito comentado.</p><div class="scoreboard reveal" aria-live="polite"><div><div class="score-label">Pontuação</div><div class="score-nums"><span class="score-current" id="sc-current">0</span><span class="score-total">/ 4</span></div></div><div class="score-bar-wrap"><div class="score-bar" id="sc-bar"></div></div><div class="score-msg" id="sc-msg">0 respondidas</div><button class="btn-reset" onclick="resetQuiz()">Reiniciar</button></div>
+<div class="q-card" id="q1"><div class="q-header"><span class="q-badge">Questão 89 · XXI Exame de Ordem Unificado/FGV</span><p class="q-text">O juiz, em ação trabalhista proposta por Carlos em face da sociedade empresária ABCD Ltda., julgou procedente, em parte, o rol de pedidos. Nenhuma das partes apresentou qualquer recurso. O pedido versava exclusivamente sobre horas extras e reflexos, estando nos autos todos os controles de horário, recibos salariais, o termo de rescisão de contrato de trabalho (TRCT) e demais documentos inerentes ao contrato de trabalho em referência. Todos os documentos eram incontroversos. Com base no caso apresentado, como advogado(a) de Carlos, assinale a opção que indica a modalidade a ser adotada para promover a liquidação de sentença.</p></div><div class="options"><button type="button" class="opt" data-q="1" data-val="A" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Por cálculos.</span></button><button type="button" class="opt" data-q="1" data-val="B" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Por arbitramento.</span></button><button type="button" class="opt" data-q="1" data-val="C" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Por artigos.</span></button><button type="button" class="opt" data-q="1" data-val="D" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Por execução por quantia certa.</span></button></div><div class="q-actions"><button class="btn-confirm" id="q1-btn" disabled onclick="confirmAnswer(1,'A')">Confirmar →</button><button class="toggle-gabarito" id="q1-tog" aria-expanded="false" aria-controls="q1-gab" onclick="toggleGabarito(1)">Gabarito comentado <span class="chev">▾</span></button></div><div class="gabarito" id="q1-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Alternativa A</div><div class="gabarito-body"><p><strong>A — correta.</strong> Os documentos necessários já constam dos autos e são incontroversos. Basta apurar o valor por operações aritméticas: liquidação por cálculos, na forma do art. 879 da CLT.</p><p><strong>B:</strong> não há necessidade de arbitramento pericial. <strong>C:</strong> não há fatos novos a provar. <strong>D:</strong> execução por quantia certa não é modalidade de liquidação.</p></div></div></div></div><div class="q-card" id="q2"><div class="q-header"><span class="q-badge">Questão 90 · XXV Exame de Ordem Unificado/FGV</span><p class="q-text">Em reclamação trabalhista já na fase de execução, o juiz determinou que o autor apresentasse os cálculos de liquidação, determinação esta que foi cumprida pelo exequente em fevereiro de 2018. Então, o calculista do juízo analisou as contas e entendeu que elas estavam corretas, pelo que o juiz homologou os cálculos ofertados e determinou a citação do executado para pagamento em 48 horas, sob pena de execução. Considerando a narrativa apresentada e os termos da CLT, assinale a afirmativa correta.</p></div><div class="options"><button type="button" class="opt" data-q="2" data-val="A" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Agiu corretamente o juiz, porque as contas foram atestadas pelo calculista como corretas.</span></button><button type="button" class="opt" data-q="2" data-val="B" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Equivocou-se o magistrado, porque deveria obrigatoriamente conferir vista dos cálculos ao executado.</span></button><button type="button" class="opt" data-q="2" data-val="C" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Uma vez que o juiz do Trabalho tem amplo poder de direção e controle do processo, sua decisão está amparada na norma cogente.</span></button><button type="button" class="opt" data-q="2" data-val="D" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>O juiz tem a faculdade de abrir vista ao executado por 10 dias, mas não obrigação de fazê-lo.</span></button></div><div class="q-actions"><button class="btn-confirm" id="q2-btn" disabled onclick="confirmAnswer(2,'B')">Confirmar →</button><button class="toggle-gabarito" id="q2-tog" aria-expanded="false" aria-controls="q2-gab" onclick="toggleGabarito(2)">Gabarito comentado <span class="chev">▾</span></button></div><div class="gabarito" id="q2-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Alternativa B</div><div class="gabarito-body"><p><strong>B — correta.</strong> O art. 879, § 2º, da CLT exige a abertura de prazo às partes para impugnação fundamentada dos cálculos. A conferência pelo calculista não substitui o contraditório.</p><p><strong>A:</strong> o cálculo atestado não dispensa a intimação. <strong>C:</strong> o poder de direção do processo não afasta a exigência legal. <strong>D:</strong> a abertura de vista é obrigatória e o prazo das partes é de oito dias, não dez.</p></div></div></div></div><div class="q-card" id="q3"><div class="q-header"><span class="q-badge">Questão 91 · XXX Exame de Ordem Unificado/FGV</span><p class="q-text">No decorrer de uma reclamação trabalhista, que transitou em julgado e que se encontra na fase executória, o juiz intimou o autor a apresentar os cálculos de liquidação respectivos, o que foi feito. Então, o juiz determinou que o cálculo fosse levado ao setor de Contadoria da Vara para conferência, tendo o calculista confirmado que os cálculos estavam adequados e em consonância com a coisa julgada. Diante disso, o juiz homologou a conta e determinou que o executado depositasse voluntariamente a quantia, sob pena de execução forçada. Diante dessa narrativa e dos termos da CLT, assinale a afirmativa correta.</p></div><div class="options"><button type="button" class="opt" data-q="3" data-val="A" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Equivocou-se o juiz, porque ele não poderia homologar o cálculo sem antes conceder vista ao executado pelo prazo de 8 dias.</span></button><button type="button" class="opt" data-q="3" data-val="B" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Correta a atitude do magistrado, porque as contas foram conferidas e foi impressa celeridade ao processo do trabalho, observando a duração razoável do processo.</span></button><button type="button" class="opt" data-q="3" data-val="C" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>A Lei não fixa a dinâmica específica para a liquidação, daí por que cada juiz tem liberdade para criar a forma que melhor atenda aos anseios da justiça.</span></button><button type="button" class="opt" data-q="3" data-val="D" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>O juiz deveria conceder vista dos cálculos ao executado e ao INSS pelo prazo de 5 dias úteis, pelo que o procedimento adotado está errado.</span></button></div><div class="q-actions"><button class="btn-confirm" id="q3-btn" disabled onclick="confirmAnswer(3,'A')">Confirmar →</button><button class="toggle-gabarito" id="q3-tog" aria-expanded="false" aria-controls="q3-gab" onclick="toggleGabarito(3)">Gabarito comentado <span class="chev">▾</span></button></div><div class="gabarito" id="q3-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Alternativa A</div><div class="gabarito-body"><p><strong>A — correta.</strong> Antes da homologação, o juiz deve abrir prazo comum de oito dias às partes para impugnação fundamentada, com indicação dos itens e valores objeto de discordância, sob pena de preclusão (art. 879, § 2º, CLT).</p><p><strong>B:</strong> a celeridade não autoriza suprimir o contraditório. <strong>C:</strong> existe procedimento legal. <strong>D:</strong> confunde os prazos: oito dias para as partes e dez dias para a União, segundo os §§ 2º e 3º do art. 879.</p></div></div></div></div><div class="q-card" id="q4"><div class="q-header"><span class="q-badge">Questão 92 · 40º Exame de Ordem Unificado/FGV</span><p class="q-text">Você advoga para o empregado, credor em uma reclamação trabalhista cuja decisão transitou em julgado. A liquidação de sentença foi promovida e, após manifestações das partes, foi homologado o cálculo da parte ré. Você continua entendendo que há erro nos cálculos homologados e pretende continuar a discutir a matéria. Diante disso, assinale a opção que apresenta a medida a ser adotada no interesse do seu cliente.</p></div><div class="options"><button type="button" class="opt" data-q="4" data-val="A" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Deverá ser apresentado embargos à execução no prazo de cinco dias independentemente da garantia da execução ou da penhora.</span></button><button type="button" class="opt" data-q="4" data-val="B" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Não cabe qualquer medida, uma vez que se operou a preclusão, pois já houve manifestação sobre a conta de liquidação.</span></button><button type="button" class="opt" data-q="4" data-val="C" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Na sua manifestação, a ser feita em dez dias após a garantia do juízo, não há restrição de matéria, podendo ser discutido não só os cálculos, mas também a sentença de conhecimento.</span></button><button type="button" class="opt" data-q="4" data-val="D" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Após a garantia da execução ou penhorados os bens, você poderá apresentar impugnação à sentença de liquidação em cinco dias.</span></button></div><div class="q-actions"><button class="btn-confirm" id="q4-btn" disabled onclick="confirmAnswer(4,'D')">Confirmar →</button><button class="toggle-gabarito" id="q4-tog" aria-expanded="false" aria-controls="q4-gab" onclick="toggleGabarito(4)">Gabarito comentado <span class="chev">▾</span></button></div><div class="gabarito" id="q4-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Alternativa D</div><div class="gabarito-body"><p><strong>D — correta.</strong> Após a garantia da execução ou a penhora, o exequente pode apresentar impugnação à sentença de liquidação em cinco dias, nos termos do art. 884, § 3º, da CLT, observada a manifestação oportuna sobre a conta.</p><p><strong>A:</strong> embargos à execução são a defesa do executado. <strong>B:</strong> a manifestação anterior oportuna não impede a discussão nessa etapa. <strong>C:</strong> o prazo é de cinco dias, e a liquidação não permite rediscutir o mérito da sentença de conhecimento.</p></div></div></div></div><div class="result-banner" id="result-banner"><div class="result-score" id="result-score">0/4</div><div class="result-label">Resultado final</div><div class="result-msg" id="result-msg"></div></div></section><p class="source">Conteúdo integral do arquivo 18.Liquidação de sentença.docx. Questões 89 a 92 de Questões Processo.pdf, tópico 22. Enunciados, alternativas e gabaritos preservados; comentários organizados para estudo.</p><a class="back" href="../index.html"><span class="arw">←</span><span>Voltar ao índice da disciplina</span></a></div><script>
+/* accordion de conteúdo */
+(function(){
+  var cards = document.querySelectorAll('.card');
+  cards.forEach(function(card){
+    var btn = card.querySelector('.card-btn');
+    if(!btn) return;
+    btn.addEventListener('click', function(){
+      var isOpen = card.classList.contains('open');
+      cards.forEach(function(c){c.classList.remove('open');var b=c.querySelector('.card-btn');if(b)b.setAttribute('aria-expanded','false');});
+      if(!isOpen){card.classList.add('open');btn.setAttribute('aria-expanded','true');}
+    });
+  });
+})();
+
+/* reveal on scroll */
+(function(){
+  var items=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){items.forEach(function(el){el.classList.add('in');});return;}
+  var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.08,rootMargin:'0px 0px -3% 0px'});
+  items.forEach(function(el,i){el.style.transitionDelay=(Math.min(i,6)*30)+'ms';io.observe(el);});
+})();
+
+/* ── QUIZ ── */
+var TOTAL=4, answered={};
+
+function selectOpt(el){
+  var q=el.dataset.q;
+  if(answered[q]!==undefined) return;
+  document.querySelectorAll('[data-q="'+q+'"]').forEach(function(o){o.classList.remove('selected');o.setAttribute('aria-pressed','false');});
+  el.classList.add('selected');el.setAttribute('aria-pressed','true');
+  document.getElementById('q'+q+'-btn').disabled=false;
 }
 
-body{
-  margin:0;
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  background:radial-gradient(900px 420px at 30% 0%, #d8ecff 0%, var(--bg) 60%);
-  color:var(--text);
-  font-size:19px;
-  line-height:1.8;
+function confirmAnswer(qNum,correctVal){
+  if(answered[qNum]!==undefined) return;
+  var opts=document.querySelectorAll('[data-q="'+qNum+'"]');
+  var btn=document.getElementById('q'+qNum+'-btn');
+  var card=document.getElementById('q'+qNum);
+  var tog=document.getElementById('q'+qNum+'-tog');
+  var chosen=null;
+  opts.forEach(function(o){if(o.classList.contains('selected'))chosen=o;});
+  if(!chosen) return;
+  var isCorrect=chosen.dataset.val===correctVal;
+  answered[qNum]=isCorrect;
+  opts.forEach(function(o){
+    o.disabled=true;
+    if(o.dataset.val===correctVal){o.classList.add('correct-final');}
+    else if(o.classList.contains('selected')&&!isCorrect){o.classList.add('wrong-final');}
+    else{o.classList.add('dimmed');}
+    o.classList.remove('selected');
+  });
+  card.classList.add(isCorrect?'answered-correct':'answered-wrong');
+  btn.disabled=true; btn.style.display='none';
+  tog.style.display='inline-flex';
+  updateScore(); checkAllDone();
 }
 
-.wrap{
-  max-width:980px;
-  margin:auto;
-  padding:18px 14px 40px;
+function toggleGabarito(qNum){
+  var gab=document.getElementById('q'+qNum+'-gab');
+  var tog=document.getElementById('q'+qNum+'-tog');
+  var open=gab.classList.toggle('open');
+  tog.classList.toggle('open',open);tog.setAttribute('aria-expanded',String(open));
 }
 
-.panel{
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:24px;
-  box-shadow:var(--shadow);
-  padding:18px;
+function updateScore(){
+  var done=Object.keys(answered).length;
+  var correct=Object.values(answered).filter(Boolean).length;
+  var pct=TOTAL>0?(correct/TOTAL)*100:0;
+  document.getElementById('sc-current').textContent=correct;
+  document.getElementById('sc-bar').style.width=pct+'%';
+  document.getElementById('sc-bar').style.background=pct>=70?'#166534':pct>=40?'#d97706':'#991b1b';
+  document.getElementById('sc-msg').textContent=done+' respondida'+(done!==1?'s':'');
 }
 
-h1{
-  color:var(--title);
-  font-size:34px;
-  line-height:1.15;
-  margin:6px 0 14px;
-  text-align:center;
+function checkAllDone(){
+  if(Object.keys(answered).length<TOTAL) return;
+  var correct=Object.values(answered).filter(Boolean).length;
+  var banner=document.getElementById('result-banner');
+  var score=document.getElementById('result-score');
+  var msg=document.getElementById('result-msg');
+  score.textContent=correct+'/'+TOTAL;
+  var pct=correct/TOTAL;
+  if(pct===1) msg.textContent='🎉 Parabéns! Gabarito perfeito — você domina o tema.';
+  else if(pct>=.75) msg.textContent='✅ Muito bem! Revise os pontos que errou e estará pronto.';
+  else if(pct>=.5) msg.textContent='📖 Resultado razoável. Revise os comentários com atenção.';
+  else msg.textContent='🔁 Reforce o estudo e tente novamente. Os comentários ajudam!';
+  banner.classList.add('show');
+  banner.scrollIntoView({behavior:'smooth',block:'center'});
 }
 
-h2{
-  color:#0b2fb3;
-  font-size:24px;
-  margin:22px 0 12px;
-}
-
-p{
-  margin:0 0 14px;
-  text-align:justify;
-}
-
-.card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:18px;
-  box-shadow:0 8px 20px rgba(15,23,42,.08);
-  padding:18px;
-  margin:14px 0;
-}
-
-.section-blue{
-  border-left:7px solid #2563eb;
-}
-
-.section-green{
-  border-left:7px solid #16a34a;
-}
-
-.section-orange{
-  border-left:7px solid #f97316;
-}
-
-.section-purple{
-  border-left:7px solid #7c3aed;
-}
-
-.section-red{
-  border-left:7px solid #dc2626;
-}
-
-.box{
-  padding:14px;
-  border-radius:14px;
-  margin:14px 0;
-  border:1px solid var(--border);
-}
-
-.oab{
-  background:var(--orangeSoft);
-  border-left:6px solid #f97316;
-}
-
-.sumula{
-  background:var(--greenSoft);
-  border-left:6px solid #16a34a;
-}
-
-.artigo{
-  background:var(--blueSoft);
-  border-left:6px solid #2563eb;
-}
-
-.obs{
-  background:var(--purpleSoft);
-  border-left:6px solid #7c3aed;
-}
-
-.alerta{
-  background:var(--redSoft);
-  border-left:6px solid #dc2626;
-}
-
-.bullet{
-  margin:10px 0 14px;
-  padding-left:0;
-  list-style:none;
-}
-
-.bullet li{
-  margin:10px 0;
-  padding:12px 14px;
-  background:#fff;
-  border-radius:14px;
-  border:1px solid var(--border);
-  box-shadow:0 5px 12px rgba(15,23,42,.05);
-}
-
-.bullet li::before{
-  content:"■ ";
-  color:#1f4fd8;
-  font-weight:900;
-}
-
-.letter-list{
-  margin:10px 0 14px;
-  padding-left:0;
-  list-style:none;
-}
-
-.letter-list li{
-  margin:10px 0;
-  padding:12px 14px;
-  background:#fff;
-  border-radius:14px;
-  border:1px solid var(--border);
-  box-shadow:0 5px 12px rgba(15,23,42,.05);
-}
-
-.slides-area{
-  display:flex;
-  justify-content:center;
-  margin:10px 0 22px;
-}
-
-.slides-btn{
-  text-decoration:none;
-  color:var(--text);
-  background:#fff;
-  border:1px solid rgba(37,99,235,.22);
-  border-radius:22px;
-  box-shadow:var(--shadow);
-  padding:16px 22px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:14px;
-  min-width:min(420px,100%);
-  font-weight:900;
-  transition:.18s;
-}
-
-.slides-btn:hover{
-  transform:translateY(-2px);
-  box-shadow:0 20px 42px rgba(15,23,42,.16);
-}
-
-.icon{
-  width:54px;
-  height:54px;
-  border-radius:18px;
-  display:grid;
-  place-items:center;
-  background:linear-gradient(135deg,#dbeafe,#ffffff);
-  border:1px solid rgba(37,99,235,.24);
-}
-
-.icon svg{
-  width:30px;
-  height:30px;
-}
-
-.slides-text{
-  display:flex;
-  flex-direction:column;
-  line-height:1.15;
-}
-
-.slides-text strong{
-  font-size:20px;
-}
-
-.slides-text span{
-  font-size:14px;
-  color:var(--muted);
-}
-
-.back{
-  display:flex;
-  justify-content:center;
-  margin-top:20px;
-}
-
-.back a{
-  width:min(560px,100%);
-  text-align:center;
-  text-decoration:none;
-  background:#fff;
-  padding:16px 18px;
-  border-radius:16px;
-  border:1px solid var(--border);
-  box-shadow:0 8px 20px rgba(15,23,42,.08);
-  color:var(--text);
-  font-weight:900;
-}
-
-@media(max-width:520px){
-  body{
-    font-size:17px;
+function resetQuiz(){
+  answered={};
+  for(var q=1;q<=TOTAL;q++){
+    document.querySelectorAll('[data-q="'+q+'"]').forEach(function(o){
+      o.disabled=false;o.setAttribute('aria-pressed','false'); o.classList.remove('selected','correct-final','wrong-final','dimmed');
+    });
+    document.getElementById('q'+q).classList.remove('answered-correct','answered-wrong');
+    var btn=document.getElementById('q'+q+'-btn');
+    btn.disabled=true; btn.style.display='';
+    var tog=document.getElementById('q'+q+'-tog');
+    tog.style.display='none'; tog.classList.remove('open');tog.setAttribute('aria-expanded','false');
+    document.getElementById('q'+q+'-gab').classList.remove('open');
   }
-
-  h1{
-    font-size:28px;
-  }
-
-  h2{
-    font-size:21px;
-  }
-
-  .slides-btn{
-    padding:14px;
-  }
+  document.getElementById('sc-current').textContent='0';
+  document.getElementById('sc-bar').style.width='0%';
+  document.getElementById('sc-msg').textContent='0 respondidas';
+  document.getElementById('result-banner').classList.remove('show');
+  window.scrollTo({top:0,behavior:'smooth'});
 }
-</style>
-</head>
-
-<body>
-<div class="wrap">
-<div class="panel">
-
-<h1>18. Liquidação de Sentença</h1>
-
-<div class="slides-area">
-  <a class="slides-btn" href="https://drive.google.com/file/d/1aEvGnhECmNJN3_1az6OCo0kPEtkRXg00/view?usp=sharing" target="_blank" rel="noopener">
-    <span class="icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none">
-        <rect x="3" y="4" width="18" height="12" rx="2" stroke="#1f4fd8" stroke-width="1.8"/>
-        <path d="M8 20h8M12 16v4" stroke="#1f4fd8" stroke-width="1.8" stroke-linecap="round"/>
-        <path d="M7 9h10M7 12h7" stroke="#1f4fd8" stroke-width="1.8" stroke-linecap="round"/>
-      </svg>
-    </span>
-    <span class="slides-text">
-      <strong>Slides</strong>
-      <span>Abrir no Google Drive</span>
-    </span>
-  </a>
-</div>
-
-<!-- CARD 1: Conceito e Cabimento -->
-<div class="card section-blue">
-<h2>Conceito e Cabimento</h2>
-
-<p>O procedimento de liquidação de sentença, previsto no art. 879 da CLT, mostra-se indispensável para se proceder ao início do processo de execução, uma vez que o título executivo deve ser certo, líquido e exigível, devendo a decisão já afirmar o que é devido e a quantidade devida. Por vezes a decisão é proferida afirmando apenas o que é devido (3 horas extras por dia), sem trazer desde logo o valor devido. Na hipótese a sentença é ilíquida, devendo ser objeto de liquidação, para, na hipótese, através de cálculos aritméticos, apurar-se o <em>quantum debeatur</em> (MOURA, 2015).</p>
-
-<div class="box artigo">
-<strong>Referência da legislação:</strong> art. 879 da CLT.
-</div>
-
-<p>Ocorre que a liquidação não será realizada em todos os procedimentos, pois no rito sumaríssimo a sentença tem que ser obrigatoriamente líquida, uma vez que o autor da ação tem que formular pedido certo, determinado e líquido. Não faria sentido impor ao autor da ação tal obrigação e permitir ao Juiz o proferimento de sentença ilíquida.</p>
-
-<p>Como pode ser percebido, a liquidação é um procedimento preparatório à execução, realizado após o processo de conhecimento. Assim sendo, não possui por finalidade rediscutir matérias que foram objeto de questionamento e provas no processo de conhecimento, sendo vedada pelo § 1º do art. 879 da CLT tal rediscussão. Se a sentença proferida condenou a empresa ao pagamento de 3 horas extras diárias, na liquidação não poderá ser discutido se foram 3 ou 2 horas, pois tal matéria já foi objeto de análise pelo Poder Judiciário, estando decidida, não cabendo rediscussão, a não ser pela via recursal.</p>
-
-<div class="box oab">
-<strong>Caixa OAB:</strong> a liquidação é procedimento preparatório da execução e é vedada a rediscussão de matérias já decididas no processo de conhecimento (§ 1º do art. 879 da CLT). Atenção especial ao rito sumaríssimo, onde a sentença deve ser obrigatoriamente líquida.
-</div>
-</div>
-
-<!-- CARD 2: Modalidades de Liquidação -->
-<div class="card section-orange">
-<h2>Modalidades de Liquidação</h2>
-
-<p>Dependendo da situação encontrada nos autos, a liquidação seguirá um procedimento diverso, já que várias são as modalidades previstas para a liquidação, a saber:</p>
-
-<ul class="bullet">
-  <li><strong>Cálculos:</strong> é a modalidade mais simples de liquidação, sendo realizada na grande maioria das vezes na Justiça do Trabalho, pois a fixação do valor final da condenação depende apenas de cálculos aritméticos, apresentados pelas partes ou feitos por serventuário da própria Justiça do Trabalho.</li>
-  <li><strong>Arbitramento:</strong> na hipótese, há a necessidade de realização de perícia para se apurar o valor da condenação, sendo uma situação mais complexa, prevista no art. 509 do CPC/2015. O dispositivo afirma que será realizada a liquidação desta forma quando determinado por sentença, convencionado entre as partes e quando a natureza do objeto exigir, ou seja, quando somente por perícia for possível encontrar o valor devido.</li>
-  <li><strong>Artigos:</strong> a liquidação mais complexa e menos usual do processo do trabalho será realizada quando houver a necessidade de se provar fatos novos (os denominados "artigos de liquidação"), que serão objeto de conhecimento e prova perante o Poder Judiciário, em verdadeira "segunda ação dentro da primeira", já que a liquidação seguirá o procedimento ordinário, com contraditório, instrução e decisão sobre os fatos novos. Prevista no art. 509, II, do CPC/2015, é a <strong>única forma de liquidação que não pode ser iniciada de ofício</strong>, dependendo sempre de requerimento do credor.</li>
-</ul>
-
-<div class="box artigo">
-<strong>Referência da legislação:</strong> art. 509, II, do CPC/2015 — liquidação por artigos; art. 509 do CPC/2015 — liquidação por arbitramento.
-</div>
-</div>
-
-<!-- CARD 3: Pedido e Condenação Implícitos -->
-<div class="card section-green">
-<h2>Pontos Fundamentais: Súmulas e Pedido Implícito</h2>
-
-<p>Antes de adentrarmos no procedimento da liquidação por cálculos, mais importantes para o Exame da OAB, vamos lembrar dois pontos fundamentais.</p>
-
-<p>Em primeiro lugar, há o entendimento da <strong>Súmula 344 do STJ</strong> no sentido de que não fere a coisa julgada a alteração de forma de liquidação que foi estabelecida em sentença. Assim, mesmo que a sentença fixe que a futura liquidação será realizada por arbitramento, não obsta que o Magistrado, ao liquidar, o faça por cálculos. O trânsito em julgado da decisão não incide sobre a forma de liquidação, que pode ser modificada.</p>
-
-<p>Além disso, mesmo que a sentença não tenha condenado o réu explicitamente ao pagamento de juros e correção monetária, os valores podem ser incluídos na liquidação, por serem considerados pedido e condenação implícitos (MIESSA, 2016). Vejamos os exemplos:</p>
-
-<ul class="bullet">
-  <li><strong>Pedido implícito:</strong> João ajuizou reclamação trabalhista em face da empresa Alfa, pedindo a condenação tão somente ao pagamento das horas extraordinárias trabalhadas. O Juiz, ao reconhecer o direito ao recebimento daquela parcela, condenará ao seguinte: horas extras + juros + correção monetária, pois as duas últimas parcelas são pedidos implícitos.</li>
-  <li><strong>Condenação implícita:</strong> se o Juiz condenar apenas ao pagamento das horas extraordinárias, poderá incluir na liquidação os valores relacionados a: horas extras + juros + correção monetária, pois também são considerados como parcelas implícitas da condenação, nos termos da Súmula 211 do TST.</li>
-</ul>
-
-<div class="box sumula">
-  <strong>Súmula 211 do TST:</strong> Os juros de mora e a correção monetária incluem-se na liquidação, ainda que omisso o pedido inicial ou a condenação.
-</div>
-
-<div class="box sumula">
-  <strong>Súmula 344 do STJ:</strong> Não fere a coisa julgada a alteração da forma de liquidação estabelecida em sentença. A forma de liquidação pode ser modificada pelo Magistrado, mesmo após o trânsito em julgado.
-</div>
-</div>
-
-<!-- CARD 4: Procedimento da Liquidação por Cálculos -->
-<div class="card section-purple">
-<h2>Procedimento da Liquidação por Cálculos (Art. 879 da CLT)</h2>
-
-<p>A respeito do procedimento da liquidação por cálculos, temos que analisar alguns aspectos do art. 879 da CLT, especialmente os §§ 2º e 3º, com destaque para o § 2º, alterado substancialmente pela reforma trabalhista – Lei n. 13.467/2017.</p>
-
-<ul class="bullet">
-  <li>
-    <strong>Em relação às partes – § 2º:</strong> a reforma trabalhista retirou a possibilidade de homologação dos cálculos sem oitiva prévia das partes, como ocorria anteriormente. O atual texto legal afirma que o Juiz <strong>deverá intimar as partes para manifestação</strong> acerca dos cálculos apresentados, não mais havendo a possibilidade de intimar ou não. A intimação é obrigatória. O prazo para manifestação das partes também foi alterado, cabendo a impugnação no prazo de <strong>8 dias</strong>. Caso não seja apresentada a manifestação no prazo legal, haverá <strong>preclusão</strong>, tornando impossível qualquer discussão posterior sobre o assunto.
-  </li>
-  <li>
-    <strong>Em relação à União – § 3º:</strong> em relação à União, o legislador agiu de maneira diversa, determinando a intimação obrigatória do ente para manifestação, no mesmo prazo de <strong>10 dias</strong>, sob pena de preclusão. Não há, portanto, a faculdade de o Juiz intimar ou não a União, sendo obrigatória a comunicação ao ente público, que possui interesse na análise dos cálculos de liquidação, uma vez que neles constam os valores de contribuições previdenciárias decorrentes da condenação imposta (LEITE, 2015).
-  </li>
-</ul>
-
-<div class="box obs">
-  <strong>Atenção — IN n. 41/2018 do TST:</strong> a redução do prazo para a manifestação das partes somente se aplica às liquidações iniciadas após o dia 11-11-2017, data da entrada em vigor da reforma trabalhista.
-</div>
-
-<div class="box oab">
-  <strong>Caixa OAB:</strong> atenção aos prazos — 8 dias para as partes (§ 2º) e 10 dias para a União (§ 3º), ambos sob pena de preclusão. A intimação das partes é obrigatória com a reforma trabalhista (Lei n. 13.467/2017).
-</div>
-</div>
-
-<!-- CARD 5: Recorribilidade -->
-<div class="card section-red">
-<h2>Recorribilidade da Decisão de Liquidação</h2>
-
-<p>Por fim, cabe a análise sobre a recorribilidade da decisão de liquidação. Por tratar-se de <strong>decisão interlocutória</strong>, não cabe impugnação imediata por recurso, podendo aquela ser discutida posteriormente, em momento oportuno previsto no art. 884 da CLT.</p>
-
-<ul class="bullet">
-  <li><strong>Executado:</strong> poderá discutir o conteúdo da decisão de liquidação nos <strong>embargos à execução</strong>, alegando equívocos na realização do cálculo, excesso de execução e outras matérias.</li>
-  <li><strong>Exequente:</strong> poderá manifestar-se nos termos do § 3º do art. 884 da CLT, que permite àquele, no prazo dos embargos, impugnar a decisão de liquidação.</li>
-</ul>
-
-<div class="box alerta">
-  <strong>Importante:</strong> as partes somente poderão impugnar a decisão de liquidação posteriormente se o Juiz as tiver intimado nos termos do § 2º do art. 879 da CLT, <strong>e</strong> se a manifestação tiver sido apresentada naquele momento adequado. Sem prévia intimação e manifestação, perde-se o direito à impugnação.
-</div>
-
-<div class="box artigo">
-  <strong>Referência da legislação:</strong> art. 884 e §§ da CLT — recorribilidade e embargos à execução; art. 879, §§ 2º e 3º, da CLT — intimação das partes e da União.
-</div>
-</div>
-
-<div class="back">
-  <a href="../index.html">← Voltar ao índice da disciplina</a>
-</div>
-
-</div>
-</div>
-</body>
-</html>
+</script></body></html>
