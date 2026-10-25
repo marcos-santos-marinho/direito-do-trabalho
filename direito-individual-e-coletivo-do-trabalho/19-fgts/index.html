@@ -1,368 +1,298 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>19. FGTS</title>
-
-<style>
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>19. FGTS</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"><style>
 :root{
-  --bg:#eaf3ff;
-  --panel:#f8fbff;
-  --card:#ffffff;
-  --title:#1f4fd8;
-  --text:#0f172a;
-  --muted:#475569;
-  --border:rgba(15,23,42,.14);
-  --shadow:0 14px 34px rgba(15,23,42,.12);
-  --blueSoft:#e8f0ff;
-  --greenSoft:#ecfdf5;
-  --orangeSoft:#fff7ed;
-  --purpleSoft:#f5f3ff;
-  --redSoft:#fef2f2;
+  --ink:#1b2436;--ink-soft:#414a5c;--paper:#edece5;--surface:#fbfaf7;
+  --accent:#7a2e37;--accent-soft:#a2545f;--iron:#8b8579;
+  --line:rgba(27,36,54,.13);--line-strong:rgba(27,36,54,.22);
+  --green:#166534;--green-bg:#f0fdf4;--green-line:#bbf7d0;
+  --red:#991b1b;--red-bg:#fef2f2;--red-line:#fecaca;
+  --display:"Fraunces",Georgia,serif;--body:"Spectral",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:19px;line-height:1.78;-webkit-font-smoothing:antialiased;}
+body::before{content:"";position:fixed;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 34%,var(--ink) 34%,var(--ink) 100%);z-index:50;}
+.wrap{max-width:760px;margin:0 auto;padding:0 22px 72px;}
+
+/* CABEÇALHO */
+.masthead{padding:56px 0 30px;border-bottom:1px solid var(--line-strong);animation:rise .7s cubic-bezier(.2,.7,.2,1) both;}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--accent);display:inline-block;}
+.eyebrow .dot{color:var(--line-strong);}
+.title-row{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;flex-wrap:wrap;}
+h1{font-family:var(--display);font-weight:500;font-size:clamp(2.3rem,6.5vw,3.8rem);line-height:1.04;letter-spacing:-.015em;max-width:14ch;}
+h1 .art{display:block;font-size:.42em;font-weight:600;letter-spacing:.02em;color:var(--accent);font-family:var(--mono);text-transform:uppercase;margin-bottom:.5em;}
+.slides-btn{flex-shrink:0;display:inline-flex;align-items:center;gap:12px;text-decoration:none;background:var(--ink);color:#f4f2ec;border-radius:4px;padding:13px 18px;font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;box-shadow:0 8px 22px -12px rgba(27,36,54,.7);transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s,background .25s;}
+.slides-btn:hover{background:var(--accent);transform:translateY(-2px);}
+.slides-btn .arw{transition:transform .25s;}
+.slides-btn:hover .arw{transform:translateX(4px);}
+
+/* VERBETE */
+.verbete{margin:44px 0 8px;padding:6px 0 6px 30px;border-left:3px solid var(--accent);}
+.verbete .tag{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:14px;}
+.verbete p{font-family:var(--display);font-weight:400;font-size:clamp(1.15rem,2.8vw,1.45rem);line-height:1.45;color:var(--ink);margin:0;}
+
+/* REF */
+.ref{font-family:var(--mono);font-size:.8em;color:var(--iron);background:rgba(139,133,121,.12);padding:2px 7px;border-radius:3px;white-space:nowrap;}
+
+/* SEÇÕES */
+.sec-head{display:flex;gap:16px;align-items:baseline;margin:44px 0 14px;padding-top:26px;border-top:1px solid var(--line);}
+.sec-head .num{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--accent);flex-shrink:0;padding-top:.35em;}
+h2{font-family:var(--display);font-weight:500;font-size:clamp(1.55rem,4vw,1.95rem);line-height:1.14;letter-spacing:-.01em;color:var(--ink);}
+h3{font-family:var(--display);font-weight:600;font-size:1.15rem;color:var(--ink);margin:22px 0 8px;}
+p{margin-bottom:14px;color:var(--ink-soft);}
+
+/* LISTA */
+.blist{list-style:none;padding:0;margin:10px 0 12px;display:flex;flex-direction:column;gap:3px;}
+.blist li{display:grid;grid-template-columns:22px 1fr;gap:8px;font-size:.93em;color:var(--ink-soft);line-height:1.65;padding:8px 0;border-bottom:1px solid var(--line);}
+.blist li:last-child{border-bottom:none;}
+.blist li .bul{color:var(--accent);font-family:var(--mono);font-size:.85em;padding-top:2px;}
+
+/* SUMULA */
+.sumula{margin:10px 0 6px;padding:12px 16px;border-left:2px solid var(--iron);background:var(--paper);border-radius:0 4px 4px 0;font-size:.89em;color:var(--ink-soft);line-height:1.65;}
+.sumula strong{font-family:var(--mono);font-size:.86em;letter-spacing:.08em;text-transform:uppercase;color:var(--iron);display:block;margin-bottom:4px;}
+
+/* NOTA / ALERTA */
+.nota{margin:10px 0 6px;padding:13px 17px;background:rgba(122,46,55,.06);border-left:3px solid var(--accent);border-radius:0 5px 5px 0;font-size:.91em;color:var(--ink-soft);line-height:1.65;}
+.nota strong{color:var(--ink);}
+
+/* TABELA */
+.tbl{margin:12px 0 6px;border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:.9em;}
+.tbl-head{display:grid;background:var(--ink);color:#f4f2ec;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;}
+.tbl-head div,.tbl-row div{padding:9px 14px;}
+.tbl-head div:not(:last-child){border-right:1px solid rgba(255,255,255,.15);}
+.tbl-row{display:grid;border-top:1px solid var(--line);}
+.tbl-row:nth-child(even) div{background:rgba(139,133,121,.04);}
+.tbl-row div{color:var(--ink-soft);display:flex;align-items:center;line-height:1.5;}
+.tbl-row div:not(:last-child){border-right:1px solid var(--line);}
+.tbl-3{grid-template-columns:1fr 1fr 1fr;}
+.tbl-2{grid-template-columns:1fr 1fr;}
+.tbl-head.tbl-3{grid-template-columns:1fr 1fr 1fr;}
+.tbl-head.tbl-2{grid-template-columns:1fr 1fr;}
+
+/* CARDS ACCORDION */
+.cards{display:flex;flex-direction:column;gap:3px;}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;transition:box-shadow .2s;}
+.card:hover{box-shadow:0 4px 18px -8px rgba(27,36,54,.2);}
+.card-btn{width:100%;background:none;border:none;cursor:pointer;display:grid;grid-template-columns:52px 1fr 34px;align-items:center;padding:0;text-align:left;color:inherit;}
+.card-icon{display:flex;align-items:center;justify-content:center;min-height:60px;border-right:1px solid var(--line);font-family:var(--mono);font-weight:700;font-size:11px;color:var(--accent);background:rgba(122,46,55,.05);text-align:center;padding:4px;line-height:1.3;}
+.card-head{padding:13px 16px;}
+.card-num{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--iron);display:block;margin-bottom:3px;}
+.card-title{font-family:var(--display);font-weight:600;font-size:1rem;line-height:1.2;color:var(--ink);}
+.card-chevron{display:flex;align-items:center;justify-content:center;padding-right:14px;color:var(--iron);font-size:13px;transition:transform .3s cubic-bezier(.2,.7,.2,1),color .2s;}
+.card.open .card-chevron{transform:rotate(180deg);color:var(--accent);}
+.card-body{display:none;padding:16px 20px 20px;border-top:1px solid var(--line);}
+.card.open .card-body{display:block;}
+.card-body p{color:var(--ink-soft);font-size:.93em;line-height:1.72;}
+
+/* ===== PLACAR ===== */
+.scoreboard{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:18px 22px;background:var(--surface);border:1px solid var(--line-strong);border-radius:8px;margin-bottom:8px;}
+.score-label{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--iron);}
+.score-nums{display:flex;align-items:baseline;gap:6px;}
+.score-current{font-family:var(--display);font-size:2.6rem;font-weight:600;color:var(--ink);line-height:1;}
+.score-total{font-family:var(--mono);font-size:1rem;color:var(--iron);}
+.score-bar-wrap{flex:1;min-width:120px;height:8px;background:var(--line);border-radius:99px;overflow:hidden;}
+.score-bar{height:100%;width:0%;background:var(--accent);border-radius:99px;transition:width .5s cubic-bezier(.2,.7,.2,1),background .3s;}
+.score-msg{font-family:var(--mono);font-size:12px;color:var(--iron);min-width:80px;}
+.btn-reset{margin-left:auto;border:1px solid var(--line-strong);background:none;color:var(--ink-soft);border-radius:4px;padding:7px 14px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:border-color .2s,color .2s;}
+.btn-reset:hover{border-color:var(--accent);color:var(--accent);}
+
+/* CARD DE QUESTÃO */
+.q-card{background:var(--surface);border:1px solid var(--line);border-radius:8px;margin:14px 0;overflow:hidden;transition:border-color .25s,box-shadow .25s;}
+.q-card.answered-correct{border-color:var(--green-line);box-shadow:0 0 0 2px rgba(22,101,52,.12);}
+.q-card.answered-wrong{border-color:var(--red-line);box-shadow:0 0 0 2px rgba(153,27,27,.10);}
+.q-header{display:flex;align-items:flex-start;gap:12px;padding:16px 18px 12px;}
+.q-badge{flex-shrink:0;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--accent);background:rgba(122,46,55,.09);border:1px solid rgba(122,46,55,.18);border-radius:4px;padding:3px 9px;margin-top:3px;white-space:nowrap;}
+.q-text{font-family:var(--body);font-size:.96em;color:var(--ink);line-height:1.72;flex:1;margin:0;}
+.options{padding:0 18px 16px;display:flex;flex-direction:column;gap:7px;}
+.opt{display:flex;align-items:flex-start;gap:11px;padding:10px 13px;border:1px solid var(--line);border-radius:6px;cursor:pointer;background:var(--paper);transition:border-color .18s,background .18s;text-align:left;width:100%;font-family:var(--body);font-size:.92em;color:var(--ink-soft);line-height:1.6;}
+.opt:hover:not(:disabled){border-color:var(--accent-soft);background:#f7f3f1;}
+.opt-letter{flex-shrink:0;font-family:var(--mono);font-size:.8em;font-weight:700;color:var(--accent);width:20px;padding-top:2px;}
+.opt.selected{border-color:var(--accent);background:rgba(122,46,55,.06);}
+.opt.correct-final{border-color:var(--green);background:var(--green-bg);cursor:default;}
+.opt.correct-final .opt-letter{color:var(--green);}
+.opt.wrong-final{border-color:var(--red);background:var(--red-bg);cursor:default;}
+.opt.wrong-final .opt-letter{color:var(--red);}
+.opt.dimmed{opacity:.42;cursor:default;}
+.q-actions{padding:0 18px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.btn-confirm{display:inline-flex;align-items:center;gap:8px;padding:9px 20px;background:var(--ink);color:#f4f2ec;border:none;border-radius:4px;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;transition:background .2s,transform .2s;}
+.btn-confirm:hover:not(:disabled){background:var(--accent);transform:translateY(-1px);}
+.btn-confirm:disabled{opacity:.35;cursor:default;transform:none;}
+.toggle-gabarito{display:none;align-items:center;gap:7px;border:none;background:none;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--iron);cursor:pointer;transition:color .2s;padding:0;}
+.toggle-gabarito:hover{color:var(--accent);}
+.toggle-gabarito .chev{display:inline-block;font-size:10px;transition:transform .3s cubic-bezier(.2,.7,.2,1);}
+.toggle-gabarito.open .chev{transform:rotate(180deg);}
+.gabarito{border-top:1px solid var(--line);overflow:hidden;max-height:0;transition:max-height .45s cubic-bezier(.2,.7,.2,1);}
+.gabarito.open{max-height:1800px;}
+.gabarito-inner{padding:16px 18px 18px;}
+.gabarito-title{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--iron);margin-bottom:10px;}
+.gabarito-correct{display:flex;align-items:center;gap:10px;padding:9px 13px;background:var(--green-bg);border:1px solid var(--green-line);border-radius:6px;font-family:var(--mono);font-size:.84em;font-weight:700;color:var(--green);margin-bottom:12px;}
+.gabarito-body{font-size:.9em;color:var(--ink-soft);line-height:1.72;}
+.gabarito-body strong{color:var(--ink);}
+.gabarito-body .ref{font-family:var(--mono);font-size:.8em;color:var(--iron);background:rgba(139,133,121,.12);padding:2px 7px;border-radius:3px;white-space:nowrap;}
+.gabarito-body p{margin-bottom:9px;}
+.gabarito-body p:last-child{margin-bottom:0;}
+
+/* RESULTADO */
+.result-banner{display:none;margin:28px 0 0;padding:26px 22px;border:1px solid var(--line-strong);border-radius:8px;background:var(--surface);text-align:center;}
+.result-banner.show{display:block;}
+.result-score{font-family:var(--display);font-size:3.2rem;font-weight:600;color:var(--accent);line-height:1;margin-bottom:6px;}
+.result-label{font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--iron);}
+.result-msg{margin-top:10px;font-size:.94em;color:var(--ink-soft);}
+
+/* VOLTAR */
+.back{margin-top:52px;display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line-strong);border-radius:6px;padding:20px 22px;font-family:var(--mono);font-size:14px;letter-spacing:.04em;transition:border-color .25s,transform .25s;}
+.back .arw{color:var(--accent);transition:transform .25s;font-size:18px;}
+.back:hover{border-color:var(--accent);transform:translateY(-2px);}
+.back:hover .arw{transform:translateX(-4px);}
+
+@keyframes rise{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
+.reveal{opacity:0;transform:translateY(14px);}
+.reveal.in{opacity:1;transform:none;transition:opacity .5s ease,transform .5s cubic-bezier(.2,.7,.2,1);}
+
+@media(max-width:560px){
+  body{font-size:17.5px;}
+  .masthead{padding:40px 0 24px;}
+  .title-row{align-items:stretch;}
+  .slides-btn{width:100%;justify-content:center;}
+  .verbete{padding-left:18px;}
+  .scoreboard{flex-direction:column;align-items:flex-start;gap:10px;}
+  .btn-reset{margin-left:0;}
+  .tbl-3{grid-template-columns:1fr 1fr;}
+  .tbl-head.tbl-3 div:last-child,.tbl-3 .tbl-row div:last-child{display:none;}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;scroll-behavior:auto;}
+  .reveal{opacity:1;transform:none;}
+  .reveal.in{transition:none;}
 }
 
-*{ box-sizing:border-box; }
+.q-header{flex-wrap:wrap}.q-text{flex-basis:100%}.q-badge{white-space:normal}
+.card-body ul{padding-left:24px}.card-body li{margin-bottom:12px}
+.card-body .nota p:last-child{margin-bottom:0}
+.score-msg{white-space:nowrap}.source{font-size:.8em;margin-top:20px}
+@media(max-width:560px){.score-bar-wrap{width:100%;flex:auto}.ref{white-space:normal}}
 
-body{
-  margin:0;
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  background:radial-gradient(900px 420px at 30% 0%, #d8ecff 0%, var(--bg) 60%);
-  color:var(--text);
-  font-size:19px;
-  line-height:1.8;
+.compare-table{width:100%;border-collapse:collapse;background:var(--surface);font-size:.9em;margin:22px 0}
+.compare-table th,.compare-table td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;overflow-wrap:anywhere}
+.compare-table th{color:var(--accent);font-family:var(--display)}
+@media(max-width:560px){.compare-table{font-size:.8em}.compare-table th,.compare-table td{padding:9px 6px}}
+</style></head><body><div class="wrap"><header class="masthead"><p class="eyebrow">Direito do Trabalho <span class="dot">·</span> Proteção do trabalhador</p><div class="title-row"><h1><span class="art">Item 19</span>FGTS</h1><a class="slides-btn" href="https://drive.google.com/file/d/1sXHh5miBWW6T9fVcLhYNUrkSyB8q-z8F/view?usp=sharing" target="_blank" rel="noopener"><span>▮</span><span>Slides da aula</span><span class="arw">→</span></a></div><div class="verbete"><span class="tag">Art. 7º, III, CF · Lei nº 8.036/1990</span><p>Entenda os <strong>depósitos mensais</strong>, as <strong>hipóteses de saque</strong> e as <strong>indenizações rescisórias</strong> do Fundo de Garantia do Tempo de Serviço.</p></div></header><section><div class="sec-head reveal"><span class="num">§ 19.1</span><h2>Fundamento constitucional e evolução</h2></div><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-1"><span class="card-icon">01</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Fundamento constitucional e evolução</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-1"><p>O art. 7º, III, da Constituição Federal indica o Fundo de Garantia do Tempo de Serviço – FGTS como um dos direitos dos trabalhadores.</p><p>Com a CF/88, o FGTS deixou de ser o regime jurídico do trabalhador que por ele optasse para transformar-se no regime genérico de garantia do tempo de serviço para todos os trabalhadores urbanos e rurais. Ao assim prever, a Constituição extinguiu definitivamente o regime de estabilidade definitiva no emprego, que era alcançada aos dez anos de serviço (estabilidade decenal).</p><p>A partir da Emenda Constitucional n. 72/2013 o FGTS passou a ser previsto como direito dos trabalhadores domésticos, tendo sido regulamentada sua concessão pela Lei Complementar n. 150/2015.</p><p>O FGTS é regulamentado pela Lei n. 8.036/90, que prevê as seguintes regras:</p></div></div></div></section>
+<section><div class="sec-head reveal"><span class="num">§ 19.2</span><h2>Valor, prazo e forma de recolhimento</h2></div><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-2"><span class="card-icon">02</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Valor, prazo e forma de recolhimento</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-2"><p>Valor do FGTS: 8% da remuneração mensal do empregado, incluídas todas as parcelas que têm natureza salarial. O FGTS incide também sobre a gratificação de Natal (13º salário) – (art. 15).</p><p>Forma de pagamento: depósito pelo empregador em conta vinculada do empregado junto à Caixa Econômica Federal, até o vigésimo dia de cada mês, considerando-se a remuneração do mês anterior (art. 15). O pagamento que não for efetuado pelo empregador no prazo sofrerá incidência de juros, correção monetária e de multa (art. 22).</p><div class="nota"><strong>Aprendizagem:</strong> as questões do PDF destacam a alíquota de 2% para o aprendiz (art. 15, § 7º). O depósito é obrigação do empregador e não pode ser descontado do salário.</div></div></div></div></section>
+<section><div class="sec-head reveal"><span class="num">§ 19.3</span><h2>Afastamentos e trabalho no exterior</h2></div><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-3"><span class="card-icon">03</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Afastamentos e trabalho no exterior</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-3"><p>Observação: no caso de suspensão do contrato de trabalho em decorrência de prestação de serviço militar e de acidente do trabalho, o empregador permanece com a obrigação de depositar FGTS (art. 15, § 5º, Lei n. 8.036/90).</p><p>O FGTS incide sobre todas as parcelas de natureza salarial pagas ao empregado em virtude de prestação de serviços no exterior (OJ SDI-1 232, TST).</p></div></div></div></section>
+<section><div class="sec-head reveal"><span class="num">§ 19.4</span><h2>Cobrança dos depósitos</h2></div><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-4"><span class="card-icon">04</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Cobrança dos depósitos</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-4"><p>O trabalhador, seus dependentes e sucessores ou, ainda, o Sindicato a que estiver vinculado o trabalhador, poderão ajuizar ação perante a Justiça do Trabalho para o fim de compelir o empregador a efetuar os depósitos do FGTS. A Caixa Econômica Federal e o Ministério do Trabalho deverão ser notificados da propositura da reclamação, para que tomem as medidas administrativas cabíveis contra o empregador (art. 25).</p></div></div></div></section>
+<section><div class="sec-head reveal"><span class="num">§ 19.5</span><h2>Movimentação: término do vínculo e aposentadoria</h2></div><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-5"><span class="card-icon">05</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Movimentação: término do vínculo e aposentadoria</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-5"><p>A conta vinculada do FGTS poderá ser movimentada pelo trabalhador somente nas hipóteses expressamente previstas em lei (art. 20):</p><ul class="bullet"><li>dispensa sem justa causa;</li></ul><ul class="bullet"><li>extinção do contrato de trabalho por acordo entre empregado e empregador (limitada a até 80% do valor dos depósitos – art. 484-A, § 1º, CLT);</li></ul><ul class="bullet"><li>dispensa indireta;</li></ul><ul class="bullet"><li>rescisão do contrato por culpa recíproca ou por força maior;</li></ul><ul class="bullet"><li>extinção total da empresa, fechamento de quaisquer de seus estabelecimentos, filiais ou agências ou supressão de parte de suas atividades, sempre que destas situações decorra a extinção do contrato de trabalho;</li></ul><ul class="bullet"><li>morte do empregador individual, se dela decorrer a extinção do contrato de trabalho do empregado;</li></ul><ul class="bullet"><li>declaração de nulidade do contrato de trabalho de empregado contratado pela Administração Pública sem prévia aprovação em concurso público (art. 37, § 2º, CF, e Súmula 363, TST);</li></ul><ul class="bullet"><li>aposentadoria;</li></ul><ul class="bullet"><li>falecimento do empregado (pagamento será feito aos dependentes indicados perante a Previdência Social ou, na falta destes, aos herdeiros na forma da lei civil);</li></ul></div></div></div></section>
+<section><div class="sec-head reveal"><span class="num">§ 19.6</span><h2>Movimentação: moradia e outras hipóteses</h2></div><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-6"><span class="card-icon">06</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Movimentação: moradia e outras hipóteses</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-6"><p>para pagamento de parte das prestações decorrentes de financiamento habitacional concedido no âmbito do Sistema Financeiro da Habitação – SFH, de acordo com os limites previstos na Lei n. 8.036/90;</p><ul class="bullet"><li>para liquidação ou amortização extraordinária do saldo devedor de financiamento imobiliário, na forma prevista na Lei n. 8.036/90;</li></ul><ul class="bullet"><li>para pagamento total ou parcial do preço da aquisição de moradia própria, observadas as condições previstas na Lei n. 8.036/90;</li></ul><ul class="bullet"><li>quando o trabalhador permanecer 3 anos ininterruptos fora do regime do FGTS;</li></ul><ul class="bullet"><li>extinção normal do contrato por prazo determinado;</li></ul><ul class="bullet"><li>supressão total do trabalho avulso por período superior a 90 dias;</li></ul></div></div></div></section>
+<section><div class="sec-head reveal"><span class="num">§ 19.7</span><h2>Movimentação: saúde, idade e situações especiais</h2></div><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-7"><span class="card-icon">07</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Movimentação: saúde, idade e situações especiais</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-7"><p>quando o trabalhador ou qualquer de seus dependentes for acometido de neoplasia maligna (câncer);</p><ul class="bullet"><li>quando o trabalhador ou qualquer de seus dependentes for portador do vírus HIV;</li></ul><ul class="bullet"><li>quando o trabalhador ou qualquer dos seus dependentes estiver em estágio terminal, em razão de doença grave;</li></ul><ul class="bullet"><li>quando o trabalhador tiver idade igual ou superior a 70 anos;</li></ul><ul class="bullet"><li>necessidade pessoal, cuja urgência decorra de desastre natural, de acordo com as condições estabelecidas pela Lei n. 8.036/90;</li></ul><ul class="bullet"><li>para aplicação em quotas de Fundos Mútuos de Privatização ou para integralização de cotas do FI-FGTS (hipóteses de aplicação financeira do valor FGTS);</li></ul><ul class="bullet"><li>quando o trabalhador com deficiência, por prescrição, necessite adquirir órtese ou prótese para promoção de acessibilidade e de inclusão social;</li></ul><ul class="bullet"><li>anualmente, no mês de aniversário do trabalhador, por meio da aplicação dos valores constantes do Anexo da Lei, observado o disposto no art. 20-D da Lei;</li></ul><ul class="bullet"><li>a qualquer tempo, quando seu saldo for inferior a R$ 80,00 e não houver ocorrido depósitos ou saques por, no mínimo, 1 ano, exceto na hipótese prevista no inciso I do § 5º do art. 13 da Lei;</li></ul><ul class="bullet"><li>quando o trabalhador ou qualquer de seus dependentes for, nos termos do regulamento, pessoa com doença rara, consideradas doenças raras aquelas assim reconhecidas pelo Ministério da Saúde, que apresentará, em seu sítio na internet, a relação atualizada dessas doenças.</li></ul></div></div></div></section>
+<section><div class="sec-head reveal"><span class="num">§ 19.8</span><h2>Pedido de demissão, justa causa e indenização rescisória</h2></div><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-8"><span class="card-icon">08</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Pedido de demissão, justa causa e indenização rescisória</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-8"><p>O empregado que pede demissão ou que é dispensado por justa causa não pode levantar o FGTS por ocasião da rescisão do contrato de trabalho. Nestas hipóteses a conta do FGTS do empregado se torna inativa e o valor nela existente passa a ser corrigido monetariamente, até que possa ser levantado pelo trabalhador (p. ex. quando este ficar por mais de 3 anos fora do sistema do FGTS, quando se aposentar, quando completar 70 anos etc.).</p><p>Nas hipóteses de dispensa sem justa causa e de dispensa indireta, o empregador depositará na conta vinculada do trabalhador no FGTS importância igual a 40% do montante de todos os depósitos feitos na conta vinculada durante a vigência do contrato de trabalho, devidamente atualizados (indenização decorrente do art. 7º, I, CF). No caso de culpa recíproca ou de força maior, o percentual será de 20% (art. 18, §§ 1º e 2º, Lei n. 8.036/90). Tratando-se de extinção do contrato de trabalho por acordo entre empregado e empregador, a indenização será de 20% dos depósitos atualizados do FGTS (art. 484-A, I, b, CLT).</p></div></div></div></section><section><div class="sec-head reveal"><span class="num">REVISÃO</span><h2>Questões do Exame da OAB</h2></div><p class="reveal">Questões 116 a 123 do tópico 33 — FGTS. Selecione uma alternativa e confirme para ver a correção. O placar segue os gabaritos do material; os comentários esclarecem os pontos de cada alternativa.</p><div class="scoreboard reveal" aria-live="polite"><div><div class="score-label">Pontuação</div><div class="score-nums"><span class="score-current" id="sc-current">0</span><span class="score-total">/ 8</span></div></div><div class="score-bar-wrap"><div class="score-bar" id="sc-bar"></div></div><div class="score-msg" id="sc-msg">0 respondidas</div><button class="btn-reset" onclick="resetQuiz()">Reiniciar</button></div>
+<div class="q-card" id="q1"><div class="q-header"><span class="q-badge">Questão 116 · XX Exame de Ordem Unificado/FGV</span><p class="q-text">Após ter sofrido um acidente do trabalho reconhecido pela empresa, que emitiu a competente CAT, um empregado afastou-se do serviço e passou a receber auxílio-doença acidentário. Sobre a situação descrita, em relação ao período no qual o empregado recebeu benefício previdenciário, assinale a afirmativa correta.</p></div><div class="options"><button type="button" class="opt" data-q="1" data-val="A" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>A situação retrata caso de suspensão contratual e a empresa ficará desobrigada de depositar o FGTS na conta vinculada do trabalhador.</span></button><button type="button" class="opt" data-q="1" data-val="B" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Ocorrerá interrupção contratual e a empresa continua com a obrigação de depositar o FGTS para o empregado junto à CEF.</span></button><button type="button" class="opt" data-q="1" data-val="C" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Ter-se-á suspensão contratual e a empresa continuará obrigada a depositar o FGTS na conta vinculada do trabalhador.</span></button><button type="button" class="opt" data-q="1" data-val="D" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Haverá interrupção contratual e a empresa estará dispensada de depositar o FGTS na conta vinculada do trabalhador.</span></button></div><div class="q-actions"><button class="btn-confirm" id="q1-btn" disabled onclick="confirmAnswer(1,'C')">Confirmar →</button><button class="toggle-gabarito" id="q1-tog" aria-expanded="false" aria-controls="q1-gab" onclick="toggleGabarito(1)">Gabarito comentado <span class="chev">▾</span></button></div><div class="gabarito" id="q1-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Alternativa C</div><div class="gabarito-body"><p><strong>C — correta.</strong> Durante o recebimento do benefício acidentário há suspensão contratual, mas permanece a obrigação de recolher FGTS, por exceção legal expressa (art. 15, § 5º, Lei nº 8.036/1990).</p><p><strong>A:</strong> acerta a suspensão, mas afasta indevidamente o depósito. <strong>B:</strong> acerta a obrigação de recolher, mas classifica incorretamente o período como interrupção. <strong>D:</strong> erra tanto a classificação quanto a obrigação de depósito. Os primeiros 15 dias de afastamento são distintos do período de percepção do benefício previdenciário tratado na questão.</p></div></div></div></div><div class="q-card" id="q2"><div class="q-header"><span class="q-badge">Questão 117 · XX Exame de Ordem Unificado/FGV</span><p class="q-text">Lúcia trabalha na sede de uma estatal brasileira que fica em Brasília. Seu contrato vigora há 12 anos e, em razão de sua capacidade e experiência, Lúcia foi designada para trabalhar na nova filial do empregador que está sendo instalada na cidade do México, o que foi imediatamente aceito. Em relação à situação retratada e ao FGTS, à luz do entendimento consolidado do TST, assinale a afirmativa correta.</p></div><div class="options"><button type="button" class="opt" data-q="2" data-val="A" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Lúcia terá direito ao depósito do FGTS enquanto estiver trabalhando no México, que deverá continuar sendo depositado na sua conta vinculada no Brasil.</span></button><button type="button" class="opt" data-q="2" data-val="B" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Usando-se a teoria atomista, chega-se à conclusão que Lúcia terá direito à metade do FGTS, que será depositado na sua conta vinculada.</span></button><button type="button" class="opt" data-q="2" data-val="C" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Uma vez que na legislação do México não há previsão de FGTS, Lúcia não terá esse direito assegurado.</span></button><button type="button" class="opt" data-q="2" data-val="D" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Para que Lúcia tenha direito ao FGTS, deverá assinar documento próprio para tal fim, devidamente traduzido.</span></button></div><div class="q-actions"><button class="btn-confirm" id="q2-btn" disabled onclick="confirmAnswer(2,'A')">Confirmar →</button><button class="toggle-gabarito" id="q2-tog" aria-expanded="false" aria-controls="q2-gab" onclick="toggleGabarito(2)">Gabarito comentado <span class="chev">▾</span></button></div><div class="gabarito" id="q2-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Alternativa A</div><div class="gabarito-body"><p><strong>A — correta.</strong> A prestação de serviços no exterior não afasta os depósitos na situação narrada. O FGTS incide sobre as parcelas salariais pagas pelo trabalho no exterior (OJ 232 da SDI-1 do TST).</p><p><strong>B:</strong> não existe redução à metade por esse motivo. <strong>C:</strong> a inexistência de FGTS na lei mexicana não elimina o direito de Lúcia nas condições descritas. <strong>D:</strong> não se exige documento traduzido específico para reconhecer esse direito.</p></div></div></div></div><div class="q-card" id="q3"><div class="q-header"><span class="q-badge">Questão 118 · XXI Exame de Ordem Unificado/FGV</span><p class="q-text">O empregado Júlio foi vítima de um assalto, fora do local de trabalho, sem qualquer relação com a prestação das suas atividades, sendo baleado e vindo a falecer logo após. O empregado deixou viúva e quatro filhos, sendo dois menores impúberes e dois maiores e capazes. Dos direitos abaixo listados, indique aquele que não é devido pela empresa e, de acordo com a lei de regência, a quem a empresa deve pagar os valores devidos ao falecido.</p></div><div class="options"><button type="button" class="opt" data-q="3" data-val="A" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>A indenização de 40% sobre o FGTS não é devida e os valores devidos ao falecido serão pagos aos dependentes habilitados perante a Previdência Social.</span></button><button type="button" class="opt" data-q="3" data-val="B" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>As férias proporcionais não são devidas e os valores devidos ao falecido serão pagos aos herdeiros.</span></button><button type="button" class="opt" data-q="3" data-val="C" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>O aviso-prévio não é devido e os valores devidos ao falecido serão pagos aos herdeiros.</span></button><button type="button" class="opt" data-q="3" data-val="D" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>O 13º salário proporcional não é devido e os valores devidos ao falecido serão pagos aos dependentes habilitados perante a Previdência Social.</span></button></div><div class="q-actions"><button class="btn-confirm" id="q3-btn" disabled onclick="confirmAnswer(3,'A')">Confirmar →</button><button class="toggle-gabarito" id="q3-tog" aria-expanded="false" aria-controls="q3-gab" onclick="toggleGabarito(3)">Gabarito comentado <span class="chev">▾</span></button></div><div class="gabarito" id="q3-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Alternativa A</div><div class="gabarito-body"><p><strong>A — correta.</strong> A morte do empregado, sem relação com o trabalho, não gera indenização rescisória de 40% do FGTS. Os valores devidos devem ser pagos aos dependentes habilitados perante a Previdência Social; na falta deles, aos sucessores na forma da Lei nº 6.858/1980.</p><p><strong>B:</strong> férias proporcionais são devidas e há preferência dos dependentes habilitados. <strong>C:</strong> embora o aviso-prévio não seja devido, a alternativa erra ao indicar diretamente os herdeiros. <strong>D:</strong> o 13º salário proporcional é devido.</p><div class="nota"><strong>Leitura do gabarito:</strong> o pagamento aos dependentes refere-se às verbas efetivamente devidas, não à indenização de 40%, que não é devida neste caso. O comentário do PDF contém uma construção ambígua nesse ponto.</div></div></div></div></div><div class="q-card" id="q4"><div class="q-header"><span class="q-badge">Questão 119 · XXII Exame de Ordem Unificado/FGV</span><p class="q-text">Um aprendiz de marcenaria procura um advogado para se inteirar sobre o FGTS que vem sendo depositado mensalmente pelo empregador na sua conta vinculada junto à CEF, na razão de 2% do salário, e cujo valor é descontado juntamente com o INSS. Com relação ao desconto do FGTS, assinale a afirmativa correta.</p></div><div class="options"><button type="button" class="opt" data-q="4" data-val="A" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>O FGTS deveria ser depositado na ordem de 8% e não poderia ser descontado.</span></button><button type="button" class="opt" data-q="4" data-val="B" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>A empresa, por se tratar de aprendiz, somente poderia descontar metade do FGTS depositado.</span></button><button type="button" class="opt" data-q="4" data-val="C" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>A empresa está equivocada em relação ao desconto, pois o FGTS é obrigação do empregador.</span></button><button type="button" class="opt" data-q="4" data-val="D" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>A conduta da empresa é regular, tanto em relação ao percentual quanto ao desconto.</span></button></div><div class="q-actions"><button class="btn-confirm" id="q4-btn" disabled onclick="confirmAnswer(4,'C')">Confirmar →</button><button class="toggle-gabarito" id="q4-tog" aria-expanded="false" aria-controls="q4-gab" onclick="toggleGabarito(4)">Gabarito comentado <span class="chev">▾</span></button></div><div class="gabarito" id="q4-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Alternativa C</div><div class="gabarito-body"><p><strong>C — correta.</strong> A alíquota de 2% é adequada ao contrato de aprendizagem (art. 15, § 7º, Lei nº 8.036/1990), mas o empregador não pode descontar o depósito do salário.</p><p><strong>A:</strong> erra ao exigir 8% para o aprendiz. <strong>B:</strong> não é permitido descontar nem a metade. <strong>D:</strong> o percentual está correto, mas o desconto é irregular.</p></div></div></div></div><div class="q-card" id="q5"><div class="q-header"><span class="q-badge">Questão 120 · XXIII Exame de Ordem Unificado/FGV</span><p class="q-text">Os irmãos Pedro e Júlio Cesar foram contratados como empregados pela sociedade empresária Arco Doce S/A e lá permaneceram por dois anos. Como foram aprovados em diferentes concursos públicos da administração direta, eles pediram demissão e, agora, com a possibilidade concedida pelo Governo, dirigiram-se à Caixa Econômica Federal (CEF) para sacar o FGTS. Na agência da CEF foram informados que só havia o depósito de FGTS de 1 ano, motivo por que procuraram o contador da Arco Doce para uma explicação. O contador informou que não havia o depósito porque, no último ano, Pedro afastara-se para prestar serviço militar obrigatório e Júlio Cesar afastara-se pelo INSS, recebendo auxílio-doença comum (código B-31). Diante desses fatos, confirmados pelos ex-empregados, o contador ponderou que não havia obrigação de a empresa depositar o FGTS durante 1 ano para ambos. Sobre a questão retratada e de acordo com a legislação em vigor, assinale a afirmativa correta.</p></div><div class="options"><button type="button" class="opt" data-q="5" data-val="A" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>A sociedade empresária tem razão na justificativa de Júlio Cesar, mas está errada em relação a Pedro.</span></button><button type="button" class="opt" data-q="5" data-val="B" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>A sociedade empresária está errada em relação a ambos os empregados.</span></button><button type="button" class="opt" data-q="5" data-val="C" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>No que tange a Pedro, a sociedade empresária está certa, mas, no tocante a Julio Cesar, não tem razão.</span></button><button type="button" class="opt" data-q="5" data-val="D" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>A pessoa jurídica está correta em relação a Pedro e a Júlio Cesar.</span></button></div><div class="q-actions"><button class="btn-confirm" id="q5-btn" disabled onclick="confirmAnswer(5,'A')">Confirmar →</button><button class="toggle-gabarito" id="q5-tog" aria-expanded="false" aria-controls="q5-gab" onclick="toggleGabarito(5)">Gabarito comentado <span class="chev">▾</span></button></div><div class="gabarito" id="q5-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Alternativa A</div><div class="gabarito-body"><p><strong>A — correta.</strong> A empresa deve depositar FGTS no afastamento de Pedro para serviço militar obrigatório. No período de benefício por doença comum de Júlio Cesar, não há essa obrigação, conforme a distinção do art. 15, § 5º, da Lei nº 8.036/1990.</p><p><strong>B:</strong> a empresa não está errada quanto aos dois. <strong>C:</strong> inverte a situação de cada trabalhador. <strong>D:</strong> ignora os depósitos obrigatórios de Pedro.</p><div class="nota"><strong>Correção do comentário:</strong> as justificativas das alternativas C e D no PDF invertem os nomes. A conclusão coerente com o enunciado e com o gabarito A é: empresa errada quanto a Pedro e certa quanto a Júlio Cesar.</div></div></div></div></div><div class="q-card" id="q6"><div class="q-header"><span class="q-badge">Questão 121 · XXVII Exame de Ordem Unificado/FGV</span><p class="q-text">O sindicato dos empregados em tinturaria de determinado município celebrou, em 2018, acordo coletivo com uma tinturaria, no qual, reconhecendo-se a condição financeira difícil da empresa, aceitou a redução do percentual de FGTS para 3% durante 2 anos. Sobre o caso apresentado, de acordo com a previsão da CLT, assinale a afirmativa correta.</p></div><div class="options"><button type="button" class="opt" data-q="6" data-val="A" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>É válido o acerto realizado porque fruto de negociação coletiva, ao qual a reforma trabalhista conferiu força legal.</span></button><button type="button" class="opt" data-q="6" data-val="B" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Somente se houver homologação do acordo coletivo pela Justiça do Trabalho é que ele terá validade em relação ao FGTS.</span></button><button type="button" class="opt" data-q="6" data-val="C" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>A cláusula normativa em questão é nula, porque constitui objeto ilícito negociar percentual de FGTS.</span></button><button type="button" class="opt" data-q="6" data-val="D" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>A negociação acerca do FGTS exigiria que, ao menos, fosse pago metade do valor devido, o que não aconteceu no caso apresentado.</span></button></div><div class="q-actions"><button class="btn-confirm" id="q6-btn" disabled onclick="confirmAnswer(6,'C')">Confirmar →</button><button class="toggle-gabarito" id="q6-tog" aria-expanded="false" aria-controls="q6-gab" onclick="toggleGabarito(6)">Gabarito comentado <span class="chev">▾</span></button></div><div class="gabarito" id="q6-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Alternativa C</div><div class="gabarito-body"><p><strong>C — correta.</strong> A redução dos depósitos mensais do FGTS por negociação coletiva constitui objeto ilícito, conforme o art. 611-B, III, da CLT.</p><p><strong>A:</strong> a força da negociação coletiva não afasta a proibição expressa. <strong>B:</strong> homologação judicial não torna lícita a redução vedada. <strong>D:</strong> não há permissão para reduzir os depósitos à metade.</p></div></div></div></div><div class="q-card" id="q7"><div class="q-header"><span class="q-badge">Questão 122 · 38º Exame de Ordem Unificado/FGV</span><p class="q-text">Anne é diretora não empregada de uma grande multinacional. Ela tem contraprestação pecuniária elevada e algumas vantagens pelo cargo que ocupa como, por exemplo, veículo com motorista e o aluguel de uma espaçosa residência. Na última assembleia, no entanto, Anne levou a debate sua pretensão de receber mensalmente FGTS em conta vinculada. Sobre a pretensão de Anne, de acordo com a lei de regência, assinale a afirmativa correta.</p></div><div class="options"><button type="button" class="opt" data-q="7" data-val="A" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>A pretensão é inviável, porque Anne não tem o contrato regido pela CLT e, assim, não pode ter FGTS.</span></button><button type="button" class="opt" data-q="7" data-val="B" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Se a sociedade empresária desejar, poderá equiparar, para fins de FGTS, o diretor não empregado aos demais trabalhadores.</span></button><button type="button" class="opt" data-q="7" data-val="C" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>A Lei permite atender ao pedido, mas Anne terá creditada metade do percentual do FGTS de um empregado regular.</span></button><button type="button" class="opt" data-q="7" data-val="D" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Para ter direito ao FGTS, Anne terá que renunciar ao cargo que ocupa e passar a ser diretora empregada.</span></button></div><div class="q-actions"><button class="btn-confirm" id="q7-btn" disabled onclick="confirmAnswer(7,'B')">Confirmar →</button><button class="toggle-gabarito" id="q7-tog" aria-expanded="false" aria-controls="q7-gab" onclick="toggleGabarito(7)">Gabarito comentado <span class="chev">▾</span></button></div><div class="gabarito" id="q7-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Alternativa B</div><div class="gabarito-body"><p><strong>B — correta.</strong> O art. 16 da Lei nº 8.036/1990 permite à empresa equiparar seus diretores não empregados aos trabalhadores sujeitos ao regime do FGTS.</p><p><strong>A:</strong> não ter vínculo celetista não impede a equiparação legal. <strong>C:</strong> a lei não estabelece recolhimento pela metade. <strong>D:</strong> Anne não precisa renunciar ao cargo e tornar-se empregada para que a empresa utilize essa faculdade.</p></div></div></div></div><div class="q-card" id="q8"><div class="q-header"><span class="q-badge">Questão 123 · 40º Exame de Ordem Unificado/FGV</span><p class="q-text">Alexandre, Reginaldo e Maurício eram empregados da mesma sociedade empresária, mas em períodos distintos. Alexandre pediu demissão após 2 (dois) anos de trabalho, pois já estava cansado de trabalhar para o mesmo empregador e já era idoso contando com 71 (setenta e um) anos de idade. Reginaldo se aposentou após 3 (três) anos, pois já contava com idade e tempo de serviço anterior, apesar de ter 62 (sessenta e dois) anos. Maurício foi dispensado sem justa causa, após quatro meses, mesmo sendo jovem e contando com 25 (vinte e cinco) anos de idade. Os três consultaram você, como advogado(a), acerca da possibilidade de levantamento imediato dos valores depositados a título de FGTS dos contratos terminados. Observando a legislação em vigor e adstrito aos dados do enunciado, assinale a afirmativa que apresenta, corretamente, sua orientação.</p></div><div class="options"><button type="button" class="opt" data-q="8" data-val="A" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Os três poderão receber, imediatamente, os valores do FGTS.</span></button><button type="button" class="opt" data-q="8" data-val="B" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Alexandre e Maurício não poderão receber os valores imediatamente, pois um pediu demissão e o outro teve contrato inferior a seis meses.</span></button><button type="button" class="opt" data-q="8" data-val="C" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Apenas Alexandre não poderá movimentar sua conta vinculada e receber os valores imediatamente.</span></button><button type="button" class="opt" data-q="8" data-val="D" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Apenas Maurício, por haver sido dispensado sem justa causa, tem direito ao recebimento imediato do FGTS.</span></button></div><div class="q-actions"><button class="btn-confirm" id="q8-btn" disabled onclick="confirmAnswer(8,'A')">Confirmar →</button><button class="toggle-gabarito" id="q8-tog" aria-expanded="false" aria-controls="q8-gab" onclick="toggleGabarito(8)">Gabarito comentado <span class="chev">▾</span></button></div><div class="gabarito" id="q8-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Alternativa A</div><div class="gabarito-body"><p><strong>A — correta.</strong> Adstrito aos dados do enunciado, os três possuem hipótese de movimentação: Alexandre tem mais de 70 anos; Reginaldo se aposentou; Maurício foi dispensado sem justa causa (art. 20, XV, III e I, Lei nº 8.036/1990).</p><p><strong>B:</strong> o pedido de demissão não elimina a hipótese autônoma de saque por idade e não se exige contrato mínimo de seis meses para a dispensa descrita. <strong>C:</strong> Alexandre pode movimentar pela idade. <strong>D:</strong> desconsidera as hipóteses de idade e aposentadoria.</p></div></div></div></div><div class="result-banner" id="result-banner"><div class="result-score" id="result-score">0/9</div><div class="result-label">Resultado final</div><div class="result-msg" id="result-msg"></div></div></section><p class="source">Conteúdo integral: 19.FGTS.docx. Questões 116 a 123: Questões Trabalho(2).pdf, tópico 33 — FGTS. Enunciados, alternativas e gabaritos preservados; comentários organizados para estudo, com esclarecimentos identificados.</p><a class="back" href="../index.html"><span class="arw">←</span><span>Voltar ao índice da disciplina</span></a></div><script>
+/* accordion de conteúdo */
+(function(){
+  var cards = document.querySelectorAll('.card');
+  cards.forEach(function(card){
+    var btn = card.querySelector('.card-btn');
+    if(!btn) return;
+    btn.addEventListener('click', function(){
+      var isOpen = card.classList.contains('open');
+      cards.forEach(function(c){c.classList.remove('open');var b=c.querySelector('.card-btn');if(b)b.setAttribute('aria-expanded','false');});
+      if(!isOpen){card.classList.add('open');btn.setAttribute('aria-expanded','true');}
+    });
+  });
+})();
+
+/* reveal on scroll */
+(function(){
+  var items=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){items.forEach(function(el){el.classList.add('in');});return;}
+  var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.08,rootMargin:'0px 0px -3% 0px'});
+  items.forEach(function(el,i){el.style.transitionDelay=(Math.min(i,6)*30)+'ms';io.observe(el);});
+})();
+
+/* ── QUIZ ── */
+var TOTAL=8, answered={};
+
+function selectOpt(el){
+  var q=el.dataset.q;
+  if(answered[q]!==undefined) return;
+  document.querySelectorAll('[data-q="'+q+'"]').forEach(function(o){o.classList.remove('selected');o.setAttribute('aria-pressed','false');});
+  el.classList.add('selected');el.setAttribute('aria-pressed','true');
+  document.getElementById('q'+q+'-btn').disabled=false;
 }
 
-.wrap{
-  max-width:980px;
-  margin:auto;
-  padding:18px 14px 40px;
+function confirmAnswer(qNum,correctVal){
+  if(answered[qNum]!==undefined) return;
+  var opts=document.querySelectorAll('[data-q="'+qNum+'"]');
+  var btn=document.getElementById('q'+qNum+'-btn');
+  var card=document.getElementById('q'+qNum);
+  var tog=document.getElementById('q'+qNum+'-tog');
+  var chosen=null;
+  opts.forEach(function(o){if(o.classList.contains('selected'))chosen=o;});
+  if(!chosen) return;
+  var isCorrect=chosen.dataset.val===correctVal;
+  answered[qNum]=isCorrect;
+  opts.forEach(function(o){
+    o.disabled=true;
+    if(o.dataset.val===correctVal){o.classList.add('correct-final');}
+    else if(o.classList.contains('selected')&&!isCorrect){o.classList.add('wrong-final');}
+    else{o.classList.add('dimmed');}
+    o.classList.remove('selected');
+  });
+  card.classList.add(isCorrect?'answered-correct':'answered-wrong');
+  btn.disabled=true; btn.style.display='none';
+  tog.style.display='inline-flex';
+  updateScore(); checkAllDone();
 }
 
-.panel{
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:24px;
-  box-shadow:var(--shadow);
-  padding:18px;
+function toggleGabarito(qNum){
+  var gab=document.getElementById('q'+qNum+'-gab');
+  var tog=document.getElementById('q'+qNum+'-tog');
+  var open=gab.classList.toggle('open');
+  tog.classList.toggle('open',open);tog.setAttribute('aria-expanded',String(open));
 }
 
-h1{
-  color:var(--title);
-  font-size:34px;
-  line-height:1.15;
-  margin:6px 0 14px;
-  text-align:center;
+function updateScore(){
+  var done=Object.keys(answered).length;
+  var correct=Object.values(answered).filter(Boolean).length;
+  var pct=TOTAL>0?(correct/TOTAL)*100:0;
+  document.getElementById('sc-current').textContent=correct;
+  document.getElementById('sc-bar').style.width=pct+'%';
+  document.getElementById('sc-bar').style.background=pct>=70?'#166534':pct>=40?'#d97706':'#991b1b';
+  document.getElementById('sc-msg').textContent=done+' respondida'+(done!==1?'s':'');
 }
 
-h2{
-  color:#0b2fb3;
-  font-size:24px;
-  margin:22px 0 12px;
+function checkAllDone(){
+  if(Object.keys(answered).length<TOTAL) return;
+  var correct=Object.values(answered).filter(Boolean).length;
+  var banner=document.getElementById('result-banner');
+  var score=document.getElementById('result-score');
+  var msg=document.getElementById('result-msg');
+  score.textContent=correct+'/'+TOTAL;
+  var pct=correct/TOTAL;
+  if(pct===1) msg.textContent='🎉 Parabéns! Gabarito perfeito — você domina o tema.';
+  else if(pct>=.75) msg.textContent='✅ Muito bem! Revise os pontos que errou e estará pronto.';
+  else if(pct>=.5) msg.textContent='📖 Resultado razoável. Revise os comentários com atenção.';
+  else msg.textContent='🔁 Reforce o estudo e tente novamente. Os comentários ajudam!';
+  banner.classList.add('show');
+  banner.scrollIntoView({behavior:'smooth',block:'center'});
 }
 
-p{ margin:0 0 14px; text-align:justify; }
-
-.card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:18px;
-  box-shadow:0 8px 20px rgba(15,23,42,.08);
-  padding:18px;
-  margin:14px 0;
+function resetQuiz(){
+  answered={};
+  for(var q=1;q<=TOTAL;q++){
+    document.querySelectorAll('[data-q="'+q+'"]').forEach(function(o){
+      o.disabled=false;o.setAttribute('aria-pressed','false'); o.classList.remove('selected','correct-final','wrong-final','dimmed');
+    });
+    document.getElementById('q'+q).classList.remove('answered-correct','answered-wrong');
+    var btn=document.getElementById('q'+q+'-btn');
+    btn.disabled=true; btn.style.display='';
+    var tog=document.getElementById('q'+q+'-tog');
+    tog.style.display='none'; tog.classList.remove('open');tog.setAttribute('aria-expanded','false');
+    document.getElementById('q'+q+'-gab').classList.remove('open');
+  }
+  document.getElementById('sc-current').textContent='0';
+  document.getElementById('sc-bar').style.width='0%';
+  document.getElementById('sc-msg').textContent='0 respondidas';
+  document.getElementById('result-banner').classList.remove('show');
+  window.scrollTo({top:0,behavior:'smooth'});
 }
-
-.section-blue   { border-left:7px solid #2563eb; }
-.section-green  { border-left:7px solid #16a34a; }
-.section-orange { border-left:7px solid #f97316; }
-.section-purple { border-left:7px solid #7c3aed; }
-.section-red    { border-left:7px solid #dc2626; }
-.section-teal   { border-left:7px solid #0d9488; }
-.section-indigo { border-left:7px solid #4f46e5; }
-.section-amber  { border-left:7px solid #d97706; }
-
-.box{
-  padding:14px;
-  border-radius:14px;
-  margin:14px 0;
-  border:1px solid var(--border);
-}
-
-.oab    { background:var(--orangeSoft); border-left:6px solid #f97316; }
-.sumula { background:var(--greenSoft);  border-left:6px solid #16a34a; }
-.artigo { background:var(--blueSoft);   border-left:6px solid #2563eb; }
-.obs    { background:var(--purpleSoft); border-left:6px solid #7c3aed; }
-.alerta { background:var(--redSoft);    border-left:6px solid #dc2626; }
-
-.bullet{
-  margin:10px 0 14px;
-  padding-left:0;
-  list-style:none;
-}
-
-.bullet li{
-  margin:10px 0;
-  padding:12px 14px;
-  background:#fff;
-  border-radius:14px;
-  border:1px solid var(--border);
-  box-shadow:0 5px 12px rgba(15,23,42,.05);
-}
-
-.bullet li::before{
-  content:"■ ";
-  color:#1f4fd8;
-  font-weight:900;
-}
-
-.bullet-green li::before{ color:#16a34a; }
-.bullet-orange li::before{ color:#f97316; }
-.bullet-red li::before{ color:#dc2626; }
-.bullet-purple li::before{ color:#7c3aed; }
-
-.slides-area{
-  display:flex;
-  justify-content:center;
-  margin:10px 0 22px;
-}
-
-.slides-btn{
-  text-decoration:none;
-  color:var(--text);
-  background:#fff;
-  border:1px solid rgba(37,99,235,.22);
-  border-radius:22px;
-  box-shadow:var(--shadow);
-  padding:16px 22px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:14px;
-  min-width:min(420px,100%);
-  font-weight:900;
-  transition:.18s;
-}
-
-.slides-btn:hover{
-  transform:translateY(-2px);
-  box-shadow:0 20px 42px rgba(15,23,42,.16);
-}
-
-.icon{
-  width:54px; height:54px;
-  border-radius:18px;
-  display:grid; place-items:center;
-  background:linear-gradient(135deg,#dbeafe,#ffffff);
-  border:1px solid rgba(37,99,235,.24);
-}
-
-.icon svg{ width:30px; height:30px; }
-
-.slides-text{ display:flex; flex-direction:column; line-height:1.15; }
-.slides-text strong{ font-size:20px; }
-.slides-text span{ font-size:14px; color:var(--muted); }
-
-.back{
-  display:flex;
-  justify-content:center;
-  margin-top:20px;
-}
-
-.back a{
-  width:min(560px,100%);
-  text-align:center;
-  text-decoration:none;
-  background:#fff;
-  padding:16px 18px;
-  border-radius:16px;
-  border:1px solid var(--border);
-  box-shadow:0 8px 20px rgba(15,23,42,.08);
-  color:var(--text);
-  font-weight:900;
-}
-
-@media(max-width:520px){
-  body{ font-size:17px; }
-  h1{ font-size:28px; }
-  h2{ font-size:21px; }
-  .slides-btn{ padding:14px; }
-}
-</style>
-</head>
-
-<body>
-<div class="wrap">
-<div class="panel">
-
-<h1>19. FGTS</h1>
-
-<div class="slides-area">
-  <a class="slides-btn" href="https://drive.google.com/file/d/1sXHh5miBWW6T9fVcLhYNUrkSyB8q-z8F/view?usp=sharing" target="_blank" rel="noopener">
-    <span class="icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none">
-        <rect x="3" y="4" width="18" height="12" rx="2" stroke="#1f4fd8" stroke-width="1.8"/>
-        <path d="M8 20h8M12 16v4" stroke="#1f4fd8" stroke-width="1.8" stroke-linecap="round"/>
-        <path d="M7 9h10M7 12h7" stroke="#1f4fd8" stroke-width="1.8" stroke-linecap="round"/>
-      </svg>
-    </span>
-    <span class="slides-text">
-      <strong>Slides</strong>
-      <span>Abrir no Google Drive</span>
-    </span>
-  </a>
-</div>
-
-<!-- ═══════════════════════════════════════════════════ -->
-<!-- CARD 1 — Conceito, Base Legal e Regulamentação     -->
-<!-- ═══════════════════════════════════════════════════ -->
-<div class="card section-blue">
-<h2>Conceito, Base Legal e Regulamentação</h2>
-
-<p>O <strong>art. 7º, III, da Constituição Federal</strong> indica o Fundo de Garantia do Tempo de Serviço – FGTS como um dos direitos dos trabalhadores.</p>
-
-<p>Com a CF/88, o FGTS deixou de ser o regime jurídico do trabalhador que por ele optasse para transformar-se no <strong>regime genérico de garantia do tempo de serviço para todos os trabalhadores urbanos e rurais</strong>. Ao assim prever, a Constituição extinguiu definitivamente o regime de estabilidade definitiva no emprego, que era alcançada aos dez anos de serviço (estabilidade decenal).</p>
-
-<p>A partir da <strong>Emenda Constitucional n. 72/2013</strong> o FGTS passou a ser previsto como direito dos <strong>trabalhadores domésticos</strong>, tendo sido regulamentada sua concessão pela <strong>Lei Complementar n. 150/2015</strong>.</p>
-
-<p>O FGTS é regulamentado pela <strong>Lei n. 8.036/90</strong>, que prevê as seguintes regras:</p>
-
-<ul class="bullet">
-  <li>
-    <strong>Valor do FGTS:</strong> <strong>8% da remuneração mensal</strong> do empregado, incluídas todas as parcelas que têm natureza salarial. O FGTS incide também sobre a <strong>gratificação de Natal (13º salário)</strong> (art. 15).
-  </li>
-  <li>
-    <strong>Forma de pagamento:</strong> depósito pelo empregador em <strong>conta vinculada do empregado junto à Caixa Econômica Federal</strong>, até o <strong>vigésimo dia de cada mês</strong>, considerando-se a remuneração do mês anterior (art. 15). O pagamento não efetuado no prazo sofrerá incidência de <strong>juros, correção monetária e multa</strong> (art. 22).
-  </li>
-</ul>
-
-<div class="box obs">
-  <strong>Observação (art. 15, § 5º, Lei n. 8.036/90):</strong> no caso de <strong>suspensão do contrato de trabalho em decorrência de prestação de serviço militar e de acidente do trabalho</strong>, o empregador permanece com a obrigação de depositar o FGTS.
-</div>
-
-<div class="box sumula">
-  <strong>OJ SDI-1 232 do TST:</strong> o FGTS incide sobre todas as parcelas de natureza salarial pagas ao empregado em virtude de prestação de serviços no exterior.
-</div>
-
-<div class="box artigo">
-  <strong>Art. 25 da Lei n. 8.036/90:</strong> o trabalhador, seus dependentes e sucessores ou, ainda, o Sindicato a que estiver vinculado, poderão ajuizar ação perante a Justiça do Trabalho para compelir o empregador a efetuar os depósitos do FGTS. A Caixa Econômica Federal e o Ministério do Trabalho deverão ser notificados da propositura da reclamação, para que tomem as medidas administrativas cabíveis.
-</div>
-
-<div class="box oab">
-  <strong>Caixa OAB:</strong> atenção à alíquota de <strong>8%</strong> sobre a remuneração (incluído o 13º salário) e ao prazo de depósito: até o <strong>20º dia do mês seguinte</strong>. O atraso gera juros, correção monetária e multa. A suspensão por serviço militar ou acidente do trabalho <strong>não exime</strong> o empregador de depositar o FGTS.
-</div>
-</div>
-
-<!-- ═══════════════════════════════════════════════════════ -->
-<!-- CARD 2 — Hipóteses de Movimentação da Conta Vinculada  -->
-<!-- ═══════════════════════════════════════════════════════ -->
-<div class="card section-green">
-<h2>Hipóteses de Movimentação da Conta Vinculada</h2>
-
-<p>A conta vinculada do FGTS somente poderá ser movimentada pelo trabalhador nas <strong>hipóteses expressamente previstas em lei</strong> (art. 20, Lei n. 8.036/90). São elas:</p>
-
-<p><strong>Hipóteses relacionadas ao contrato de trabalho:</strong></p>
-<ul class="bullet bullet-green">
-  <li>Dispensa <strong>sem justa causa</strong>.</li>
-  <li>Extinção do contrato de trabalho por <strong>acordo entre empregado e empregador</strong> (limitada a até <strong>80% do valor dos depósitos</strong> – art. 484-A, § 1º, CLT).</li>
-  <li><strong>Dispensa indireta</strong>.</li>
-  <li>Rescisão do contrato por <strong>culpa recíproca ou por força maior</strong>.</li>
-  <li>Extinção total da empresa, fechamento de quaisquer de seus estabelecimentos, filiais ou agências ou supressão de parte de suas atividades, sempre que destas situações decorra a <strong>extinção do contrato de trabalho</strong>.</li>
-  <li><strong>Morte do empregador individual</strong>, se dela decorrer a extinção do contrato de trabalho do empregado.</li>
-  <li>Declaração de <strong>nulidade do contrato de trabalho</strong> de empregado contratado pela Administração Pública sem prévia aprovação em concurso público (art. 37, § 2º, CF, e Súmula 363, TST).</li>
-  <li><strong>Aposentadoria</strong>.</li>
-  <li><strong>Falecimento do empregado</strong> (pagamento será feito aos dependentes indicados perante a Previdência Social ou, na falta destes, aos herdeiros na forma da lei civil).</li>
-  <li>Extinção normal do <strong>contrato por prazo determinado</strong>.</li>
-  <li>Supressão total do <strong>trabalho avulso</strong> por período superior a <strong>90 dias</strong>.</li>
-  <li>Quando o trabalhador permanecer <strong>3 anos ininterruptos fora do regime do FGTS</strong>.</li>
-</ul>
-
-<p><strong>Hipóteses relacionadas à moradia:</strong></p>
-<ul class="bullet bullet-orange">
-  <li>Para pagamento de parte das prestações decorrentes de <strong>financiamento habitacional concedido no âmbito do SFH</strong> – Sistema Financeiro da Habitação, de acordo com os limites previstos na Lei n. 8.036/90.</li>
-  <li>Para <strong>liquidação ou amortização extraordinária do saldo devedor</strong> de financiamento imobiliário, na forma prevista na Lei n. 8.036/90.</li>
-  <li>Para pagamento total ou parcial do <strong>preço da aquisição de moradia própria</strong>, observadas as condições previstas na Lei n. 8.036/90.</li>
-</ul>
-
-<p><strong>Hipóteses relacionadas à saúde:</strong></p>
-<ul class="bullet bullet-red">
-  <li>Quando o trabalhador ou qualquer de seus dependentes for acometido de <strong>neoplasia maligna (câncer)</strong>.</li>
-  <li>Quando o trabalhador ou qualquer de seus dependentes for <strong>portador do vírus HIV</strong>.</li>
-  <li>Quando o trabalhador ou qualquer dos seus dependentes estiver em <strong>estágio terminal, em razão de doença grave</strong>.</li>
-  <li>Quando o trabalhador com deficiência, por prescrição, necessite adquirir <strong>órtese ou prótese</strong> para promoção de acessibilidade e de inclusão social.</li>
-  <li>Quando o trabalhador ou qualquer de seus dependentes for, nos termos do regulamento, <strong>pessoa com doença rara</strong>, consideradas doenças raras aquelas assim reconhecidas pelo Ministério da Saúde.</li>
-</ul>
-
-<p><strong>Hipóteses diversas:</strong></p>
-<ul class="bullet bullet-purple">
-  <li>Quando o trabalhador tiver <strong>idade igual ou superior a 70 anos</strong>.</li>
-  <li>Necessidade pessoal, cuja urgência decorra de <strong>desastre natural</strong>, de acordo com as condições estabelecidas pela Lei n. 8.036/90.</li>
-  <li>Para aplicação em <strong>quotas de Fundos Mútuos de Privatização</strong> ou para integralização de cotas do <strong>FI-FGTS</strong> (hipóteses de aplicação financeira do valor do FGTS).</li>
-  <li><strong>Anualmente, no mês de aniversário do trabalhador</strong>, por meio da aplicação dos valores constantes do Anexo da Lei, observado o disposto no art. 20-D da Lei.</li>
-  <li>A qualquer tempo, quando seu saldo for <strong>inferior a R$ 80,00</strong> e não houver ocorrido depósitos ou saques por, no mínimo, <strong>1 ano</strong>, exceto na hipótese prevista no inciso I do § 5º do art. 13 da Lei.</li>
-</ul>
-
-<div class="box oab">
-  <strong>Caixa OAB:</strong> o rol de hipóteses de movimentação é <strong>taxativo</strong> — somente nas situações previstas em lei o trabalhador pode sacar o FGTS. O empregado que pede demissão ou é dispensado por justa causa <strong>não pode levantar o FGTS</strong> na rescisão: a conta se torna inativa e o valor é corrigido monetariamente até que surja uma hipótese legal de saque.
-</div>
-</div>
-
-<!-- ══════════════════════════════════════════════════════════ -->
-<!-- CARD 3 — Conta Inativa: Demissão e Justa Causa            -->
-<!-- ══════════════════════════════════════════════════════════ -->
-<div class="card section-orange">
-<h2>Conta Inativa: Pedido de Demissão e Justa Causa</h2>
-
-<p>O empregado que <strong>pede demissão</strong> ou que é <strong>dispensado por justa causa</strong> não pode levantar o FGTS por ocasião da rescisão do contrato de trabalho.</p>
-
-<p>Nestas hipóteses, a conta do FGTS do empregado se torna <strong>inativa</strong> e o valor nela existente passa a ser <strong>corrigido monetariamente</strong>, até que possa ser levantado pelo trabalhador — por exemplo:</p>
-
-<ul class="bullet">
-  <li>Quando o trabalhador ficar por mais de <strong>3 anos fora do sistema do FGTS</strong>.</li>
-  <li>Quando o trabalhador <strong>se aposentar</strong>.</li>
-  <li>Quando o trabalhador <strong>completar 70 anos</strong>.</li>
-  <li>Demais hipóteses previstas no art. 20 da Lei n. 8.036/90.</li>
-</ul>
-</div>
-
-<!-- ══════════════════════════════════════════════════════════════ -->
-<!-- CARD 4 — Multa Rescisória (Indenização do FGTS)               -->
-<!-- ══════════════════════════════════════════════════════════════ -->
-<div class="card section-red">
-<h2>Multa Rescisória (Indenização do FGTS)</h2>
-
-<p>Nas hipóteses de <strong>dispensa sem justa causa</strong> e de <strong>dispensa indireta</strong>, o empregador depositará na conta vinculada do trabalhador importância igual a <strong>40% do montante de todos os depósitos feitos na conta vinculada durante a vigência do contrato de trabalho</strong>, devidamente atualizados. Trata-se da <strong>indenização decorrente do art. 7º, I, da CF</strong>.</p>
-
-<p>Os percentuais variam conforme a hipótese de rescisão:</p>
-
-<ul class="bullet">
-  <li>
-    <strong>Dispensa sem justa causa / Dispensa indireta:</strong> multa de <strong>40%</strong> sobre os depósitos atualizados do FGTS (art. 18, § 1º, Lei n. 8.036/90).
-  </li>
-  <li>
-    <strong>Culpa recíproca ou força maior:</strong> multa de <strong>20%</strong> sobre os depósitos atualizados do FGTS (art. 18, § 2º, Lei n. 8.036/90).
-  </li>
-  <li>
-    <strong>Extinção do contrato por acordo entre empregado e empregador (art. 484-A, CLT):</strong> indenização de <strong>20%</strong> dos depósitos atualizados do FGTS (art. 484-A, I, b, CLT).
-  </li>
-</ul>
-
-<div class="box artigo">
-  <strong>Art. 18, §§ 1º e 2º, da Lei n. 8.036/90 c/c art. 484-A, I, b, CLT:</strong><br>
-  — Dispensa sem justa causa e dispensa indireta → <strong>40%</strong><br>
-  — Culpa recíproca ou força maior → <strong>20%</strong><br>
-  — Distrato (acordo mútuo) → <strong>20%</strong> + saque limitado a 80% dos depósitos
-</div>
-
-<div class="box oab">
-  <strong>Caixa OAB:</strong> a multa rescisória é calculada sobre o <strong>total dos depósitos atualizados</strong>, não sobre o saldo atual da conta (que pode ter sofrido saques anteriores). A tabela dos percentuais é ponto frequente em provas: <strong>40%</strong> na dispensa sem justa causa e dispensa indireta; <strong>20%</strong> na culpa recíproca, força maior e distrato (art. 484-A, CLT).
-</div>
-</div>
-
-<div class="back">
-  <a href="../index.html">← Voltar ao índice da disciplina</a>
-</div>
-
-</div>
-</div>
-</body>
-</html>
+</script></body></html>
