@@ -4,438 +4,373 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Prática Jurídica Trabalhista</title>
+<meta name="description" content="Prática Jurídica Trabalhista — atividades, prazos e materiais da disciplina. Prof. Marcos Marinho." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
+  :root{
+    --bg:#f7f5f0;
+    --surface:#ffffff;
+    --ink:#14213d;
+    --ink-soft:#4a5568;
+    --muted:#8a8f98;
+    --line:#e3dfd5;
+    --navy:#14213d;
+    --gold:#b08d57;
+    --accent:#1f5f4a;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0f141d;
+      --surface:#161d29;
+      --ink:#e8e6e1;
+      --ink-soft:#b4b8c0;
+      --muted:#7d838e;
+      --line:#262f3e;
+      --navy:#0b1019;
+      --gold:#c9a66b;
+      --accent:#6fc3a3;
+    }
+  }
+
   *{ box-sizing:border-box; margin:0; padding:0; }
   html{ scroll-behavior:smooth; }
 
   body{
-    font-family:"Inter", system-ui, sans-serif;
-    background:#f1f5f9;
-    color:#0f172a;
-    font-size:16px;
-    line-height:1.6;
+    font-family:"Inter", system-ui, -apple-system, sans-serif;
+    background:var(--bg);
+    color:var(--ink);
     min-height:100vh;
-  }
-
-  body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    background:
-      radial-gradient(ellipse 700px 500px at 10% -10%, rgba(5,150,105,.11) 0%, transparent 70%),
-      radial-gradient(ellipse 600px 400px at 90% 100%, rgba(217,119,6,.09) 0%, transparent 70%),
-      radial-gradient(ellipse 500px 300px at 50% 50%, rgba(37,99,235,.06) 0%, transparent 70%);
-    pointer-events:none;
-    z-index:0;
-  }
-
-  .container{
-    position:relative;
-    z-index:1;
-    max-width:680px;
-    margin:0 auto;
-    padding:28px 18px 48px;
-  }
-
-  /* ===== HERO ===== */
-  .hero{
-    text-align:center;
-    padding:36px 0 28px;
-  }
-
-  .hero h1{
-    font-family:"Fraunces", Georgia, serif;
-    font-size:clamp(2rem,7vw,3.2rem);
-    font-weight:700;
-    line-height:1.05;
-    letter-spacing:-.02em;
-    background:linear-gradient(135deg, #059669 0%, #d97706 60%, #2563eb 100%);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-    background-clip:text;
-    margin-bottom:12px;
-  }
-
-  .hero p{
-    font-size:15px;
-    color:#475569;
-    max-width:420px;
-    margin:0 auto;
-  }
-
-  /* ===== BOTÕES TOPO ===== */
-  .top-buttons{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-    margin:24px 0 32px;
-  }
-
-  .top-btn{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    padding:16px;
-    border-radius:16px;
-    text-decoration:none;
-    color:#ffffff;
-    font-weight:700;
-    font-size:14px;
-    transition:transform .2s cubic-bezier(.2,.7,.2,1), box-shadow .2s;
-    position:relative;
-    overflow:hidden;
-  }
-  .top-btn::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:rgba(255,255,255,.12);
-    opacity:0;
-    transition:opacity .2s;
-  }
-  .top-btn:hover{ transform:translateY(-3px); }
-  .top-btn:hover::before{ opacity:1; }
-
-  .top-btn.plano{
-    background:linear-gradient(135deg,#059669,#047857);
-    box-shadow:0 8px 24px rgba(5,150,105,.35);
-  }
-  .top-btn.plano:hover{ box-shadow:0 14px 32px rgba(5,150,105,.45); }
-
-  .top-btn.livro{
-    background:linear-gradient(135deg,#d97706,#b45309);
-    box-shadow:0 8px 24px rgba(217,119,6,.35);
-  }
-  .top-btn.livro:hover{ box-shadow:0 14px 32px rgba(217,119,6,.45); }
-
-  .top-btn .btn-icon{
-    width:40px; height:40px;
-    border-radius:10px;
-    background:rgba(255,255,255,.2);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-shrink:0;
-    font-size:18px;
-  }
-  .top-btn .btn-text{ display:flex; flex-direction:column; gap:1px; }
-  .top-btn .btn-label{ font-size:13px; font-weight:900; letter-spacing:.05em; text-transform:uppercase; }
-  .top-btn .btn-desc{ font-size:11px; font-weight:500; opacity:.85; }
-
-  /* ===== TABELA DE AVALIAÇÕES ===== */
-  .section-label{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    margin-bottom:16px;
-  }
-  .section-label span{
-    font-size:11px;
-    font-weight:700;
-    letter-spacing:.2em;
-    text-transform:uppercase;
-    color:#475569;
-    white-space:nowrap;
-  }
-  .section-label::after{
-    content:"";
-    flex:1;
-    height:1px;
-    background:rgba(15,23,42,.1);
-  }
-
-  .avaliacoes{
-    background:#ffffff;
-    border:1px solid rgba(15,23,42,.1);
-    border-radius:16px;
-    overflow:hidden;
-    box-shadow:0 2px 8px rgba(15,23,42,.06);
-    margin-bottom:28px;
-  }
-
-  .aval-head{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    background:linear-gradient(135deg,#059669,#047857);
-    color:#fff;
-  }
-  .aval-head div{
-    padding:12px 18px;
-    font-size:11px;
-    font-weight:800;
-    letter-spacing:.15em;
-    text-transform:uppercase;
-  }
-  .aval-head div:first-child{
-    border-right:1px solid rgba(255,255,255,.2);
-  }
-
-  .aval-row{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    border-top:1px solid rgba(15,23,42,.08);
-  }
-  .aval-row:first-child{ border-top:none; }
-
-  .aval-row div{
-    padding:14px 18px;
-    font-size:14px;
-    line-height:1.4;
-    display:flex;
-    align-items:center;
-  }
-  .aval-row div:first-child{
-    font-weight:600;
-    color:#0f172a;
-    border-right:1px solid rgba(15,23,42,.08);
-  }
-  .aval-row div:last-child{
-    color:#475569;
-    font-variant-numeric:tabular-nums;
-  }
-  .aval-row:nth-child(odd){ background:#f8fafc; }
-
-  /* prazo em destaque */
-  .prazo-pill{
-    display:inline-flex;
-    align-items:center;
-    gap:5px;
-    font-family:"Inter", sans-serif;
-    font-size:13px;
-    font-weight:700;
-    padding:3px 10px;
-    border-radius:99px;
-    background:rgba(5,150,105,.1);
-    color:#065f46;
-  }
-  .prazo-pill.indefinido{
-    background:rgba(15,23,42,.07);
-    color:#64748b;
-    font-weight:500;
-  }
-
-  /* ===== ATIVIDADES ===== */
-  .list{
     display:flex;
     flex-direction:column;
-    gap:8px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
   }
+
+  a{ color:inherit; }
+  a:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
+
+  .wrap{
+    max-width:760px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  /* ===== CABEÇALHO ===== */
+  header{
+    background:var(--navy);
+    color:#f3f1ec;
+    border-bottom:3px solid var(--gold);
+  }
+  .topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    padding:22px 0;
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .monogram{
+    font-family:"Fraunces", Georgia, serif;
+    font-weight:600;
+    font-size:15px;
+    letter-spacing:.08em;
+    width:40px; height:40px;
+    border:1px solid rgba(201,166,107,.6);
+    color:#d8bb88;
+    display:flex; align-items:center; justify-content:center;
+    border-radius:50%;
+    flex-shrink:0;
+  }
+  .topbar .prof{
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:rgba(243,241,236,.55);
+  }
+
+  .hero{ padding:52px 0 56px; }
+  .eyebrow{
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:#d8bb88;
+    margin-bottom:16px;
+  }
+  .hero h1{
+    font-family:"Fraunces", Georgia, serif;
+    font-weight:400;
+    font-size:clamp(2.1rem, 6vw, 3.4rem);
+    line-height:1.08;
+    letter-spacing:-.015em;
+    margin-bottom:14px;
+  }
+  .hero p{
+    font-size:16px;
+    color:rgba(243,241,236,.7);
+    margin-bottom:32px;
+  }
+
+  .actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    padding:12px 18px;
+    border:1px solid rgba(243,241,236,.3);
+    border-radius:6px;
+    transition:background .2s, border-color .2s;
+  }
+  .btn:hover{
+    background:rgba(255,255,255,.06);
+    border-color:#d8bb88;
+  }
+  .btn svg{ width:18px; height:18px; color:#d8bb88; flex-shrink:0; }
+  .btn-text{ display:flex; flex-direction:column; line-height:1.3; }
+  .btn-label{ font-size:14px; font-weight:600; }
+  .btn-desc{ font-size:12px; color:rgba(243,241,236,.6); }
+
+  /* ===== TÓPICOS ===== */
+  main{ flex:1; padding:56px 0 64px; }
+
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:16px;
+    padding-bottom:14px;
+    border-bottom:1px solid var(--line);
+  }
+  .section-head h2{
+    font-family:"Fraunces", Georgia, serif;
+    font-weight:600;
+    font-size:1.5rem;
+  }
+  .section-head span{
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+
+  .list{ list-style:none; }
 
   .item{
-    display:flex;
+    display:grid;
+    grid-template-columns:48px 1fr auto;
     align-items:center;
+    gap:16px;
     text-decoration:none;
-    background:#ffffff;
-    border-radius:14px;
-    border:1px solid rgba(15,23,42,.1);
-    color:#0f172a;
-    overflow:hidden;
-    transition:transform .18s cubic-bezier(.2,.7,.2,1), box-shadow .18s;
-    box-shadow:0 2px 8px rgba(15,23,42,.06);
-    opacity:0;
-    transform:translateY(12px);
-    animation:fadeUp .45s ease forwards;
+    padding:18px 4px 18px 0;
+    border-bottom:1px solid var(--line);
+    position:relative;
+    transition:padding-left .22s ease;
   }
-  .item:hover{
-    transform:translateY(-2px);
-    box-shadow:0 8px 20px rgba(15,23,42,.12);
+  .item::before{
+    content:"";
+    position:absolute;
+    left:-24px; top:0; bottom:0;
+    width:3px;
+    background:var(--accent);
+    transform:scaleY(0);
+    transition:transform .22s ease;
   }
+  .item:hover::before,
+  .item:focus-visible::before{ transform:scaleY(1); }
+  .item:hover{ padding-left:8px; }
 
   .item-num{
-    width:52px;
-    min-height:68px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:15px;
-    font-weight:800;
-    color:#fff;
-    flex-shrink:0;
+    font-family:"Fraunces", Georgia, serif;
+    font-size:1.35rem;
+    color:var(--accent);
+    line-height:1;
+    font-variant-numeric:tabular-nums;
   }
-
-  .item-body{
-    flex:1;
-    padding:14px 16px;
-  }
-  .item-body .i-titulo{
-    font-weight:700;
-    font-size:15px;
-    color:#0f172a;
-    display:block;
-    margin-bottom:2px;
-  }
-  .item-body .i-prazo{
-    font-size:12px;
-    color:#64748b;
-    font-weight:500;
-  }
-  .item-body .i-prazo strong{
-    color:#065f46;
-    font-weight:700;
-  }
-
-  .item-chev{
-    padding-right:16px;
+  .item-text{
     font-size:16px;
-    font-weight:900;
-    color:rgba(15,23,42,.25);
-    flex-shrink:0;
+    font-weight:500;
+    line-height:1.35;
+  }
+  .item-arrow{
+    width:32px; height:32px;
+    border:1px solid var(--line);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--muted);
+    transition:all .22s ease;
+  }
+  .item-arrow svg{ width:14px; height:14px; }
+  .item:hover .item-arrow{
+    background:var(--accent);
+    border-color:var(--accent);
+    color:#fff;
   }
 
-  .c-1{ border-left:3px solid #059669; } .c-1 .item-num{ background:linear-gradient(160deg,#059669,#047857); }
-  .c-2{ border-left:3px solid #d97706; } .c-2 .item-num{ background:linear-gradient(160deg,#d97706,#b45309); }
-  .c-3{ border-left:3px solid #2563eb; } .c-3 .item-num{ background:linear-gradient(160deg,#2563eb,#1d4ed8); }
-  .c-4{ border-left:3px solid #9333ea; } .c-4 .item-num{ background:linear-gradient(160deg,#9333ea,#7e22ce); }
 
-  .item:nth-child(1){ animation-delay:.06s; }
-  .item:nth-child(2){ animation-delay:.12s; }
-  .item:nth-child(3){ animation-delay:.18s; }
-  .item:nth-child(4){ animation-delay:.24s; }
-
-  @keyframes fadeUp{
-    to{ opacity:1; transform:none; }
+  /* ===== AVALIAÇÕES ===== */
+  .aval{
+    width:100%;
+    border-collapse:collapse;
+    margin:8px 0 56px;
+    font-size:15px;
   }
+  .aval th{
+    text-align:left;
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--muted);
+    padding:14px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .aval td{
+    padding:16px 0;
+    border-bottom:1px solid var(--line);
+    vertical-align:middle;
+  }
+  .aval td:first-child{ font-weight:500; padding-right:16px; }
+  .aval th:last-child, .aval td:last-child{ text-align:right; }
+  .prazo{
+    font-variant-numeric:tabular-nums;
+    font-weight:600;
+    color:var(--accent);
+  }
+  .prazo.indef{ font-weight:400; color:var(--ink-soft); }
+  .i-prazo{ font-size:13px; color:var(--ink-soft); }
+  .i-prazo strong{ color:var(--accent); font-weight:600; }
 
   /* ===== VOLTAR ===== */
-  .back{
-    margin-top:28px;
-    text-align:center;
-  }
+  .back{ margin-top:40px; }
   .back a{
     display:inline-flex;
     align-items:center;
-    gap:8px;
+    gap:10px;
     text-decoration:none;
-    background:#ffffff;
-    border:1px solid rgba(15,23,42,.1);
-    border-radius:12px;
-    padding:14px 28px;
-    font-weight:700;
     font-size:14px;
-    color:#0f172a;
-    box-shadow:0 2px 8px rgba(15,23,42,.06);
-    transition:transform .18s, box-shadow .18s;
+    font-weight:500;
+    color:var(--ink-soft);
+    padding:12px 18px;
+    border:1px solid var(--line);
+    border-radius:6px;
+    background:var(--surface);
+    transition:border-color .2s, color .2s;
   }
-  .back a:hover{
-    transform:translateY(-2px);
-    box-shadow:0 8px 20px rgba(15,23,42,.12);
+  .back a:hover{ border-color:var(--gold); color:var(--ink); }
+  .back svg{ width:16px; height:16px; }
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:24px 0;
+    font-size:13px;
+    color:var(--muted);
   }
 
-  @media (max-width:480px){
-    .top-buttons{ grid-template-columns:1fr; }
-    .hero h1{ font-size:1.9rem; }
+  @media (max-width:560px){
+    .wrap{ padding:0 16px; }
+    .hero{ padding:40px 0 44px; }
+    .btn{ width:100%; }
+    .item{ grid-template-columns:36px 1fr auto; gap:12px; padding:16px 0; }
+    .item::before{ left:-16px; }
+    .item:hover{ padding-left:0; }
+    .item-num{ font-size:1.15rem; }
+    .item-text{ font-size:15px; }
   }
+
   @media (prefers-reduced-motion:reduce){
-    .item{ animation:none; opacity:1; transform:none; }
+    *{ transition:none !important; }
   }
 </style>
 </head>
 
 <body>
-<div class="container">
 
-  <div class="hero">
-    <h1>Prática Jurídica Trabalhista</h1>
-    <p>Atividades, prazos e materiais da disciplina</p>
-  </div>
-
-  <div class="top-buttons">
-    <a class="top-btn plano"
-       href="https://drive.google.com/file/d/1IDH4sJENsGtwPy-x4OHKBZusVX-OUM3f/view?usp=sharing"
-       target="_blank" rel="noopener">
-      <div class="btn-icon">📋</div>
-      <div class="btn-text">
-        <div class="btn-label">Plano de Ensino</div>
-        <div class="btn-desc">Acesse o plano e cronograma</div>
+  <header>
+    <div class="wrap">
+      <div class="topbar">
+        <div class="monogram" aria-hidden="true">MM</div>
+        <div class="prof">Prof. Marcos Marinho</div>
       </div>
-    </a>
-    <a class="top-btn livro"
-       href="https://drive.google.com/file/d/1ek3gZWWOBZ_kjk-0WEWk6BfQCmCjxxLo/view?usp=sharing"
-       target="_blank" rel="noopener">
-      <div class="btn-icon">📘</div>
-      <div class="btn-text">
-        <div class="btn-label">Livro</div>
-        <div class="btn-desc">Leitura e materiais de apoio</div>
+
+      <div class="hero">
+        <p class="eyebrow">Disciplina 03</p>
+        <h1>Prática Jurídica Trabalhista</h1>
+        <p>Atividades, prazos e materiais da disciplina</p>
+
+        <div class="actions">
+          <a class="btn"
+             href="https://drive.google.com/file/d/1IDH4sJENsGtwPy-x4OHKBZusVX-OUM3f/view?usp=sharing"
+             target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M9 10h6M9 14h6M9 18h3"/></svg>
+            <span class="btn-text">
+              <span class="btn-label">Plano de Ensino</span>
+              <span class="btn-desc">Acesse o plano e cronograma</span>
+            </span>
+          </a>
+          <a class="btn"
+             href="https://drive.google.com/file/d/1ek3gZWWOBZ_kjk-0WEWk6BfQCmCjxxLo/view?usp=sharing"
+             target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5.5C5 4.5 8.5 4.3 12 6c3.5-1.7 7-1.5 9-.5V19c-2-1-5.5-1.2-9 .5-3.5-1.7-7-1.5-9-.5z"/><path d="M12 6v13.5"/></svg>
+            <span class="btn-text">
+              <span class="btn-label">Livro</span>
+              <span class="btn-desc">Leitura e materiais de apoio</span>
+            </span>
+          </a>
+        </div>
       </div>
-    </a>
-  </div>
-
-  <!-- AVALIAÇÕES -->
-  <div class="section-label"><span>Sistema de avaliação</span></div>
-
-  <div class="avaliacoes">
-    <div class="aval-head">
-      <div>Avaliação</div>
-      <div>Prazo</div>
     </div>
-    <div class="aval-row">
-      <div>1ª Peça Jurídica</div>
-      <div><span class="prazo-pill">📅 28/09/2026</span></div>
-    </div>
-    <div class="aval-row">
-      <div>2ª Peça Jurídica</div>
-      <div><span class="prazo-pill">📅 30/10/2026</span></div>
-    </div>
-    <div class="aval-row">
-      <div>Apresentações</div>
-      <div><span class="prazo-pill indefinido">No decorrer do semestre</span></div>
-    </div>
-    <div class="aval-row">
-      <div>Audiência Simulada</div>
-      <div><span class="prazo-pill indefinido">A definir</span></div>
-    </div>
-  </div>
+  </header>
 
-  <!-- ATIVIDADES -->
-  <div class="section-label"><span>Atividades</span></div>
-
-  <div class="list">
-    <a class="item c-1" href="01-primeira-peca/index.html">
-      <div class="item-num">01</div>
-      <div class="item-body">
-        <span class="i-titulo">Primeira Peça</span>
-        <span class="i-prazo">Prazo: <strong>28/09/2026</strong></span>
+  <main>
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Sistema de avaliação</h2>
+        <span>4 avaliações</span>
       </div>
-      <div class="item-chev">›</div>
-    </a>
 
-    <a class="item c-2" href="02-segunda-peca/index.html">
-      <div class="item-num">02</div>
-      <div class="item-body">
-        <span class="i-titulo">Segunda Peça</span>
-        <span class="i-prazo">Prazo: <strong>30/10/2026</strong></span>
+      <table class="aval">
+        <thead><tr><th scope="col">Avaliação</th><th scope="col">Prazo</th></tr></thead>
+        <tbody>
+          <tr><td>1ª Peça Jurídica</td><td><span class="prazo">28/09/2026</span></td></tr>
+          <tr><td>2ª Peça Jurídica</td><td><span class="prazo">30/10/2026</span></td></tr>
+          <tr><td>Apresentações</td><td><span class="prazo indef">No decorrer do semestre</span></td></tr>
+          <tr><td>Audiência Simulada</td><td><span class="prazo indef">A definir</span></td></tr>
+        </tbody>
+      </table>
+
+      <div class="section-head">
+        <h2>Atividades</h2>
+        <span>4 atividades</span>
       </div>
-      <div class="item-chev">›</div>
-    </a>
 
-    <a class="item c-3" href="03-apresentacoes/index.html">
-      <div class="item-num">03</div>
-      <div class="item-body">
-        <span class="i-titulo">Apresentações</span>
-        <span class="i-prazo">No decorrer do semestre</span>
+      <ul class="list">
+        <li><a class="item" href="https://marcos-santos-marinho.github.io/direito-do-trabalho/pratica-juridica-trabalhista/01-primeira-peca/"><span class="item-num">01</span><span><span class="item-text" style="display:block">Primeira Peça</span><span class="i-prazo">Prazo: <strong>28/09/2026</strong></span></span><span class="item-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+        <li><a class="item" href="https://marcos-santos-marinho.github.io/direito-do-trabalho/pratica-juridica-trabalhista/02-segunda-peca/"><span class="item-num">02</span><span><span class="item-text" style="display:block">Segunda Peça</span><span class="i-prazo">Prazo: <strong>30/10/2026</strong></span></span><span class="item-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+        <li><a class="item" href="https://marcos-santos-marinho.github.io/direito-do-trabalho/pratica-juridica-trabalhista/03-apresentacoes/"><span class="item-num">03</span><span><span class="item-text" style="display:block">Apresentações</span><span class="i-prazo">No decorrer do semestre</span></span><span class="item-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+        <li><a class="item" href="https://marcos-santos-marinho.github.io/direito-do-trabalho/pratica-juridica-trabalhista/04-audiencia-simulada/"><span class="item-num">04</span><span><span class="item-text" style="display:block">Audiência Simulada</span><span class="i-prazo">Data a definir</span></span><span class="item-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+      </ul>
+
+      <div class="back">
+        <a href="https://marcos-santos-marinho.github.io/direito-do-trabalho/">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+          Voltar ao curso
+        </a>
       </div>
-      <div class="item-chev">›</div>
-    </a>
+    </div>
+  </main>
 
-    <a class="item c-4" href="04-audiencia-simulada/index.html">
-      <div class="item-num">04</div>
-      <div class="item-body">
-        <span class="i-titulo">Audiência Simulada</span>
-        <span class="i-prazo">Data a definir</span>
-      </div>
-      <div class="item-chev">›</div>
-    </a>
-  </div>
+  <footer>
+    <div class="wrap">marcos-santos-marinho.github.io/direito-do-trabalho</div>
+  </footer>
 
-  <div class="back">
-    <a href="../index.html">← Voltar ao curso</a>
-  </div>
-
-</div>
 </body>
 </html>
