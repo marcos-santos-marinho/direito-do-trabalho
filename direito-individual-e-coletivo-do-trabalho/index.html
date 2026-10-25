@@ -4,425 +4,340 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Direito do Trabalho</title>
+<meta name="description" content="Direito do Trabalho — materiais e tópicos da disciplina. Prof. Marcos Marinho." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
   :root{
-    --c1:#2563eb;   /* azul */
-    --c2:#7c3aed;   /* violeta */
-    --c3:#dc2626;   /* vermelho */
-    --c4:#059669;   /* verde */
-    --c5:#d97706;   /* âmbar */
-    --c6:#0891b2;   /* ciano */
-    --ink:#0f172a;
-    --ink-soft:#475569;
+    --bg:#f7f5f0;
     --surface:#ffffff;
-    --paper:#f1f5f9;
-    --line:rgba(15,23,42,.1);
+    --ink:#14213d;
+    --ink-soft:#4a5568;
+    --muted:#8a8f98;
+    --line:#e3dfd5;
+    --navy:#14213d;
+    --gold:#b08d57;
+    --accent:#1e3a8a;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0f141d;
+      --surface:#161d29;
+      --ink:#e8e6e1;
+      --ink-soft:#b4b8c0;
+      --muted:#7d838e;
+      --line:#262f3e;
+      --navy:#0b1019;
+      --gold:#c9a66b;
+      --accent:#7f9cf5;
+    }
   }
 
   *{ box-sizing:border-box; margin:0; padding:0; }
   html{ scroll-behavior:smooth; }
 
   body{
-    font-family:"Inter", system-ui, sans-serif;
-    background:var(--paper);
+    font-family:"Inter", system-ui, -apple-system, sans-serif;
+    background:var(--bg);
     color:var(--ink);
-    font-size:16px;
-    line-height:1.6;
     min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
   }
 
-  /* fundo com gradiente */
-  body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    background:
-      radial-gradient(ellipse 700px 500px at 10% -10%, rgba(37,99,235,.12) 0%, transparent 70%),
-      radial-gradient(ellipse 600px 400px at 90% 100%, rgba(124,58,237,.10) 0%, transparent 70%),
-      radial-gradient(ellipse 500px 300px at 50% 50%, rgba(5,150,105,.06) 0%, transparent 70%);
-    pointer-events:none;
-    z-index:0;
-  }
+  a{ color:inherit; }
+  a:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
 
-  .container{
-    position:relative;
-    z-index:1;
-    max-width:680px;
+  .wrap{
+    max-width:760px;
     margin:0 auto;
-    padding:28px 18px 48px;
+    padding:0 24px;
   }
 
-  /* ===== HERO ===== */
-  .hero{
-    text-align:center;
-    padding:36px 0 28px;
+  /* ===== CABEÇALHO ===== */
+  header{
+    background:var(--navy);
+    color:#f3f1ec;
+    border-bottom:3px solid var(--gold);
   }
-
-  .hero-badge{
-    display:inline-flex;
+  .topbar{
+    display:flex;
     align-items:center;
-    gap:8px;
-    background:linear-gradient(135deg, var(--c1), var(--c2));
-    color:#fff;
-    font-size:11px;
-    font-weight:700;
-    letter-spacing:.2em;
-    text-transform:uppercase;
-    padding:6px 16px;
-    border-radius:99px;
-    margin-bottom:18px;
+    justify-content:space-between;
+    gap:16px;
+    padding:22px 0;
+    border-bottom:1px solid rgba(255,255,255,.08);
   }
-
-  .hero h1{
+  .monogram{
     font-family:"Fraunces", Georgia, serif;
-    font-size:clamp(2.4rem,8vw,3.6rem);
-    font-weight:700;
-    line-height:1.05;
-    letter-spacing:-.02em;
-    background:linear-gradient(135deg, var(--c1) 0%, var(--c2) 50%, var(--c3) 100%);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-    background-clip:text;
-    margin-bottom:12px;
-  }
-
-  .hero p{
-    font-size:15px;
-    color:var(--ink-soft);
-    max-width:420px;
-    margin:0 auto;
-  }
-
-  /* ===== BOTÕES TOPO ===== */
-  .top-buttons{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-    margin:24px 0 32px;
-  }
-
-  .top-btn{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    padding:16px;
-    border-radius:16px;
-    text-decoration:none;
-    color:var(--surface);
-    font-weight:700;
-    font-size:14px;
-    transition:transform .2s cubic-bezier(.2,.7,.2,1), box-shadow .2s;
-    position:relative;
-    overflow:hidden;
-  }
-  .top-btn::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:rgba(255,255,255,.12);
-    opacity:0;
-    transition:opacity .2s;
-  }
-  .top-btn:hover{ transform:translateY(-3px); }
-  .top-btn:hover::before{ opacity:1; }
-
-  .top-btn.plano{
-    background:linear-gradient(135deg, #2563eb, #1d4ed8);
-    box-shadow:0 8px 24px rgba(37,99,235,.35);
-  }
-  .top-btn.plano:hover{ box-shadow:0 14px 32px rgba(37,99,235,.45); }
-
-  .top-btn.livro{
-    background:linear-gradient(135deg, #7c3aed, #6d28d9);
-    box-shadow:0 8px 24px rgba(124,58,237,.35);
-  }
-  .top-btn.livro:hover{ box-shadow:0 14px 32px rgba(124,58,237,.45); }
-
-  .top-btn .btn-icon{
-    width:40px;
-    height:40px;
-    border-radius:10px;
-    background:rgba(255,255,255,.2);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-shrink:0;
-    font-size:18px;
-  }
-  .top-btn .btn-text{
-    display:flex;
-    flex-direction:column;
-    gap:1px;
-  }
-  .top-btn .btn-label{
-    font-size:13px;
-    font-weight:900;
-    letter-spacing:.05em;
-    text-transform:uppercase;
-  }
-  .top-btn .btn-desc{
-    font-size:11px;
-    font-weight:500;
-    opacity:.85;
-  }
-
-  /* ===== DIVISOR DE SEÇÃO ===== */
-  .section-label{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    margin-bottom:16px;
-  }
-  .section-label span{
-    font-size:11px;
-    font-weight:700;
-    letter-spacing:.2em;
-    text-transform:uppercase;
-    color:var(--ink-soft);
-    white-space:nowrap;
-  }
-  .section-label::after{
-    content:"";
-    flex:1;
-    height:1px;
-    background:var(--line);
-  }
-
-  /* ===== LISTA DE TÓPICOS ===== */
-  .list{
-    display:flex;
-    flex-direction:column;
-    gap:8px;
-  }
-
-  .item{
-    display:flex;
-    align-items:center;
-    gap:0;
-    text-decoration:none;
-    background:var(--surface);
-    border-radius:14px;
-    border:1px solid var(--line);
-    color:var(--ink);
-    overflow:hidden;
-    transition:transform .18s cubic-bezier(.2,.7,.2,1), box-shadow .18s;
-    box-shadow:0 2px 8px rgba(15,23,42,.06);
-  }
-  .item:hover{
-    transform:translateY(-2px);
-    box-shadow:0 8px 20px rgba(15,23,42,.12);
-  }
-
-  .item-num{
-    width:52px;
-    height:100%;
-    min-height:60px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:13px;
-    font-weight:800;
-    color:#fff;
-    flex-shrink:0;
-    letter-spacing:.03em;
-  }
-
-  .item-text{
-    flex:1;
-    padding:14px 16px;
     font-weight:600;
     font-size:15px;
-    line-height:1.3;
-  }
-
-  .item-chev{
-    padding-right:16px;
-    font-size:16px;
-    font-weight:900;
-    color:rgba(15,23,42,.25);
+    letter-spacing:.08em;
+    width:40px; height:40px;
+    border:1px solid rgba(201,166,107,.6);
+    color:#d8bb88;
+    display:flex; align-items:center; justify-content:center;
+    border-radius:50%;
     flex-shrink:0;
   }
-
-  /* cores rotativas por grupos de 4 */
-  .c-1  .item-num{ background:linear-gradient(160deg,#2563eb,#1d4ed8); }
-  .c-2  .item-num{ background:linear-gradient(160deg,#7c3aed,#6d28d9); }
-  .c-3  .item-num{ background:linear-gradient(160deg,#dc2626,#b91c1c); }
-  .c-4  .item-num{ background:linear-gradient(160deg,#059669,#047857); }
-  .c-5  .item-num{ background:linear-gradient(160deg,#d97706,#b45309); }
-  .c-6  .item-num{ background:linear-gradient(160deg,#0891b2,#0e7490); }
-  .c-7  .item-num{ background:linear-gradient(160deg,#be185d,#9d174d); }
-  .c-8  .item-num{ background:linear-gradient(160deg,#16a34a,#15803d); }
-  .c-9  .item-num{ background:linear-gradient(160deg,#9333ea,#7e22ce); }
-  .c-10 .item-num{ background:linear-gradient(160deg,#ea580c,#c2410c); }
-  .c-11 .item-num{ background:linear-gradient(160deg,#2563eb,#1d4ed8); }
-  .c-12 .item-num{ background:linear-gradient(160deg,#7c3aed,#6d28d9); }
-  .c-13 .item-num{ background:linear-gradient(160deg,#dc2626,#b91c1c); }
-  .c-14 .item-num{ background:linear-gradient(160deg,#059669,#047857); }
-  .c-15 .item-num{ background:linear-gradient(160deg,#d97706,#b45309); }
-  .c-16 .item-num{ background:linear-gradient(160deg,#0891b2,#0e7490); }
-  .c-17 .item-num{ background:linear-gradient(160deg,#be185d,#9d174d); }
-  .c-18 .item-num{ background:linear-gradient(160deg,#16a34a,#15803d); }
-  .c-19 .item-num{ background:linear-gradient(160deg,#9333ea,#7e22ce); }
-  .c-20 .item-num{ background:linear-gradient(160deg,#ea580c,#c2410c); }
-
-  /* borda esquerda colorida */
-  .c-1  { border-left:3px solid #2563eb; }
-  .c-2  { border-left:3px solid #7c3aed; }
-  .c-3  { border-left:3px solid #dc2626; }
-  .c-4  { border-left:3px solid #059669; }
-  .c-5  { border-left:3px solid #d97706; }
-  .c-6  { border-left:3px solid #0891b2; }
-  .c-7  { border-left:3px solid #be185d; }
-  .c-8  { border-left:3px solid #16a34a; }
-  .c-9  { border-left:3px solid #9333ea; }
-  .c-10 { border-left:3px solid #ea580c; }
-  .c-11 { border-left:3px solid #2563eb; }
-  .c-12 { border-left:3px solid #7c3aed; }
-  .c-13 { border-left:3px solid #dc2626; }
-  .c-14 { border-left:3px solid #059669; }
-  .c-15 { border-left:3px solid #d97706; }
-  .c-16 { border-left:3px solid #0891b2; }
-  .c-17 { border-left:3px solid #be185d; }
-  .c-18 { border-left:3px solid #16a34a; }
-  .c-19 { border-left:3px solid #9333ea; }
-  .c-20 { border-left:3px solid #ea580c; }
-
-  /* ===== BOTÃO VOLTAR ===== */
-  .back{
-    margin-top:28px;
-    text-align:center;
+  .topbar .prof{
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:rgba(243,241,236,.55);
   }
+
+  .hero{ padding:52px 0 56px; }
+  .eyebrow{
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:#d8bb88;
+    margin-bottom:16px;
+  }
+  .hero h1{
+    font-family:"Fraunces", Georgia, serif;
+    font-weight:400;
+    font-size:clamp(2.1rem, 6vw, 3.4rem);
+    line-height:1.08;
+    letter-spacing:-.015em;
+    margin-bottom:14px;
+  }
+  .hero p{
+    font-size:16px;
+    color:rgba(243,241,236,.7);
+    margin-bottom:32px;
+  }
+
+  .actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    padding:12px 18px;
+    border:1px solid rgba(243,241,236,.3);
+    border-radius:6px;
+    transition:background .2s, border-color .2s;
+  }
+  .btn:hover{
+    background:rgba(255,255,255,.06);
+    border-color:#d8bb88;
+  }
+  .btn svg{ width:18px; height:18px; color:#d8bb88; flex-shrink:0; }
+  .btn-text{ display:flex; flex-direction:column; line-height:1.3; }
+  .btn-label{ font-size:14px; font-weight:600; }
+  .btn-desc{ font-size:12px; color:rgba(243,241,236,.6); }
+
+  /* ===== TÓPICOS ===== */
+  main{ flex:1; padding:56px 0 64px; }
+
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:16px;
+    padding-bottom:14px;
+    border-bottom:1px solid var(--line);
+  }
+  .section-head h2{
+    font-family:"Fraunces", Georgia, serif;
+    font-weight:600;
+    font-size:1.5rem;
+  }
+  .section-head span{
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+
+  .list{ list-style:none; }
+
+  .item{
+    display:grid;
+    grid-template-columns:48px 1fr auto;
+    align-items:center;
+    gap:16px;
+    text-decoration:none;
+    padding:18px 4px 18px 0;
+    border-bottom:1px solid var(--line);
+    position:relative;
+    transition:padding-left .22s ease;
+  }
+  .item::before{
+    content:"";
+    position:absolute;
+    left:-24px; top:0; bottom:0;
+    width:3px;
+    background:var(--accent);
+    transform:scaleY(0);
+    transition:transform .22s ease;
+  }
+  .item:hover::before,
+  .item:focus-visible::before{ transform:scaleY(1); }
+  .item:hover{ padding-left:8px; }
+
+  .item-num{
+    font-family:"Fraunces", Georgia, serif;
+    font-size:1.35rem;
+    color:var(--accent);
+    line-height:1;
+    font-variant-numeric:tabular-nums;
+  }
+  .item-text{
+    font-size:16px;
+    font-weight:500;
+    line-height:1.35;
+  }
+  .item-arrow{
+    width:32px; height:32px;
+    border:1px solid var(--line);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--muted);
+    transition:all .22s ease;
+  }
+  .item-arrow svg{ width:14px; height:14px; }
+  .item:hover .item-arrow{
+    background:var(--accent);
+    border-color:var(--accent);
+    color:#fff;
+  }
+
+  /* ===== VOLTAR ===== */
+  .back{ margin-top:40px; }
   .back a{
     display:inline-flex;
     align-items:center;
-    gap:8px;
+    gap:10px;
     text-decoration:none;
-    background:var(--surface);
-    border:1px solid var(--line);
-    border-radius:12px;
-    padding:14px 28px;
-    font-weight:700;
     font-size:14px;
-    color:var(--ink);
-    box-shadow:0 2px 8px rgba(15,23,42,.06);
-    transition:transform .18s, box-shadow .18s;
+    font-weight:500;
+    color:var(--ink-soft);
+    padding:12px 18px;
+    border:1px solid var(--line);
+    border-radius:6px;
+    background:var(--surface);
+    transition:border-color .2s, color .2s;
   }
-  .back a:hover{
-    transform:translateY(-2px);
-    box-shadow:0 8px 20px rgba(15,23,42,.12);
+  .back a:hover{ border-color:var(--gold); color:var(--ink); }
+  .back svg{ width:16px; height:16px; }
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:24px 0;
+    font-size:13px;
+    color:var(--muted);
   }
 
-  /* ===== ANIMAÇÃO ===== */
-  .item{
-    opacity:0;
-    transform:translateY(12px);
-    animation:fadeUp .45s ease forwards;
-  }
-  @keyframes fadeUp{
-    to{ opacity:1; transform:none; }
-  }
-  .item:nth-child(1) { animation-delay:.04s; }
-  .item:nth-child(2) { animation-delay:.07s; }
-  .item:nth-child(3) { animation-delay:.10s; }
-  .item:nth-child(4) { animation-delay:.13s; }
-  .item:nth-child(5) { animation-delay:.16s; }
-  .item:nth-child(6) { animation-delay:.19s; }
-  .item:nth-child(7) { animation-delay:.22s; }
-  .item:nth-child(8) { animation-delay:.25s; }
-  .item:nth-child(9) { animation-delay:.28s; }
-  .item:nth-child(10){ animation-delay:.31s; }
-  .item:nth-child(11){ animation-delay:.34s; }
-  .item:nth-child(12){ animation-delay:.37s; }
-  .item:nth-child(13){ animation-delay:.40s; }
-  .item:nth-child(14){ animation-delay:.43s; }
-  .item:nth-child(15){ animation-delay:.46s; }
-  .item:nth-child(16){ animation-delay:.49s; }
-  .item:nth-child(17){ animation-delay:.52s; }
-  .item:nth-child(18){ animation-delay:.55s; }
-  .item:nth-child(19){ animation-delay:.58s; }
-  .item:nth-child(20){ animation-delay:.61s; }
-
-  @media (max-width:480px){
-    .top-buttons{ grid-template-columns:1fr; }
-    .hero h1{ font-size:2.2rem; }
-    .item-text{ font-size:14px; }
+  @media (max-width:560px){
+    .wrap{ padding:0 16px; }
+    .hero{ padding:40px 0 44px; }
+    .btn{ width:100%; }
+    .item{ grid-template-columns:36px 1fr auto; gap:12px; padding:16px 0; }
+    .item::before{ left:-16px; }
+    .item:hover{ padding-left:0; }
+    .item-num{ font-size:1.15rem; }
+    .item-text{ font-size:15px; }
   }
 
   @media (prefers-reduced-motion:reduce){
-    .item{ animation:none; opacity:1; transform:none; }
+    *{ transition:none !important; }
   }
 </style>
 </head>
 
 <body>
-<div class="container">
 
-  <!-- HERO -->
-  <div class="hero">
-    <h1>Direito do Trabalho</h1>
-    <p>Materiais e tópicos organizados para leitura e estudo</p>
-  </div>
-
-  <!-- BOTÕES TOPO -->
-  <div class="top-buttons">
-    <a class="top-btn plano"
-       href="https://drive.google.com/drive/folders/1HmTzwsQF3cw1N1YNwJ_OoEm6IyrNdWkI?usp=sharing"
-       target="_blank" rel="noopener">
-      <div class="btn-icon">📋</div>
-      <div class="btn-text">
-        <div class="btn-label">Plano de Ensino</div>
-        <div class="btn-desc">Acesse o plano e cronograma</div>
+  <header>
+    <div class="wrap">
+      <div class="topbar">
+        <div class="monogram" aria-hidden="true">MM</div>
+        <div class="prof">Prof. Marcos Marinho</div>
       </div>
-    </a>
-    <a class="top-btn livro"
-       href="https://drive.google.com/file/d/1JINdbnnWbQNVh1X6y8SZnZxC2PhCOun-/view?usp=sharing"
-       target="_blank" rel="noopener">
-      <div class="btn-icon">📖</div>
-      <div class="btn-text">
-        <div class="btn-label">Livro</div>
-        <div class="btn-desc">Leitura e materiais de apoio</div>
+
+      <div class="hero">
+        <p class="eyebrow">Disciplina 01</p>
+        <h1>Direito do Trabalho</h1>
+        <p>Materiais e tópicos organizados para leitura e estudo</p>
+
+        <div class="actions">
+          <a class="btn"
+             href="https://drive.google.com/drive/folders/1HmTzwsQF3cw1N1YNwJ_OoEm6IyrNdWkI?usp=sharing"
+             target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M9 10h6M9 14h6M9 18h3"/></svg>
+            <span class="btn-text">
+              <span class="btn-label">Plano de Ensino</span>
+              <span class="btn-desc">Acesse o plano e cronograma</span>
+            </span>
+          </a>
+          <a class="btn"
+             href="https://drive.google.com/file/d/1JINdbnnWbQNVh1X6y8SZnZxC2PhCOun-/view?usp=sharing"
+             target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5.5C5 4.5 8.5 4.3 12 6c3.5-1.7 7-1.5 9-.5V19c-2-1-5.5-1.2-9 .5-3.5-1.7-7-1.5-9-.5z"/><path d="M12 6v13.5"/></svg>
+            <span class="btn-text">
+              <span class="btn-label">Livro</span>
+              <span class="btn-desc">Leitura e materiais de apoio</span>
+            </span>
+          </a>
+        </div>
       </div>
-    </a>
-  </div>
+    </div>
+  </header>
 
-  <!-- LISTA -->
-  <div class="section-label">
-    <span>Tópicos da disciplina</span>
-  </div>
+  <main>
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Tópicos da disciplina</h2>
+        <span>20 tópicos</span>
+      </div>
 
-  <div class="list">
-    <a class="item c-1"  href="01-conceito-de-direito-do-trabalho/index.html"><div class="item-num">01</div><div class="item-text">Conceito de Direito do Trabalho</div><div class="item-chev">›</div></a>
-    <a class="item c-2"  href="02-principios-do-direito-do-trabalho/index.html"><div class="item-num">02</div><div class="item-text">Princípios do Direito do Trabalho</div><div class="item-chev">›</div></a>
-    <a class="item c-3"  href="03-fontes-do-direito-do-trabalho/index.html"><div class="item-num">03</div><div class="item-text">Fontes do Direito do Trabalho</div><div class="item-chev">›</div></a>
-    <a class="item c-4"  href="04-relacao-de-emprego/index.html"><div class="item-num">04</div><div class="item-text">Relação de Emprego</div><div class="item-chev">›</div></a>
-    <a class="item c-5"  href="05-relacao-de-trabalho/index.html"><div class="item-num">05</div><div class="item-text">Relação de Trabalho</div><div class="item-chev">›</div></a>
-    <a class="item c-6"  href="06-empregado/index.html"><div class="item-num">06</div><div class="item-text">Empregado</div><div class="item-chev">›</div></a>
-    <a class="item c-7"  href="07-empregador/index.html"><div class="item-num">07</div><div class="item-text">Empregador</div><div class="item-chev">›</div></a>
-    <a class="item c-8"  href="08-empregado-domestico/index.html"><div class="item-num">08</div><div class="item-text">Empregado Doméstico</div><div class="item-chev">›</div></a>
-    <a class="item c-9"  href="09-empregado-rural/index.html"><div class="item-num">09</div><div class="item-text">Empregado Rural</div><div class="item-chev">›</div></a>
-    <a class="item c-10" href="10-contrato-de-trabalho/index.html"><div class="item-num">10</div><div class="item-text">Contrato de Trabalho</div><div class="item-chev">›</div></a>
-    <a class="item c-11" href="11-duracao-do-trabalho/index.html"><div class="item-num">11</div><div class="item-text">Duração do Trabalho</div><div class="item-chev">›</div></a>
-    <a class="item c-12" href="12-ferias/index.html"><div class="item-num">12</div><div class="item-text">Férias</div><div class="item-chev">›</div></a>
-    <a class="item c-13" href="13-salario-e-remuneracao/index.html"><div class="item-num">13</div><div class="item-text">Salário e Remuneração</div><div class="item-chev">›</div></a>
-    <a class="item c-14" href="14-alteracao-do-contrato/index.html"><div class="item-num">14</div><div class="item-text">Alteração do Contrato de Trabalho</div><div class="item-chev">›</div></a>
-    <a class="item c-15" href="15-suspensao-e-interrupcao-do-contrato/index.html"><div class="item-num">15</div><div class="item-text">Suspensão e Interrupção do Contrato de Trabalho</div><div class="item-chev">›</div></a>
-    <a class="item c-16" href="16-extincao-do-contrato/index.html"><div class="item-num">16</div><div class="item-text">Extinção do Contrato de Trabalho</div><div class="item-chev">›</div></a>
-    <a class="item c-17" href="17-aviso-previo/index.html"><div class="item-num">17</div><div class="item-text">Aviso-Prévio</div><div class="item-chev">›</div></a>
-    <a class="item c-18" href="18-estabilidade/index.html"><div class="item-num">18</div><div class="item-text">Estabilidade no Emprego</div><div class="item-chev">›</div></a>
-    <a class="item c-19" href="19-fgts/index.html"><div class="item-num">19</div><div class="item-text">FGTS</div><div class="item-chev">›</div></a>
-    <a class="item c-20" href="20-rescisao/index.html"><div class="item-num">20</div><div class="item-text">Rescisão do Contrato de Trabalho</div><div class="item-chev">›</div></a>
-  </div>
+      <ul class="list">
+        <li><a class="item" href="https://marcos-santos-marinho.github.io/direito-do-trabalho/direito-individual-e-coletivo-do-trabalho/01-conceito-de-direito-do-trabalho/"><span class="item-num">01</span><span class="item-text">Conceito de Direito do Trabalho</span><span class="item-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+        <li><a class="item" href="https://marcos-santos-marinho.github.io/direito-do-trabalho/direito-individual-e-coletivo-do-trabalho/02-principios-do-direito-do-trabalho/"><span class="item-num">02</span><span class="item-text">Princípios do Direito do Trabalho</span><span class="item-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+        <li><a class="item" href="https://marcos-santos-marinho.github.io/direito-do-trabalho/direito-individual-e-coletivo-do-trabalho/03-fontes-do-direito-do-trabalho/"><span class="item-num">03</span><span class="item-text">Fontes do Direito do Trabalho</span><span class="item-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+        <li><a class="item" href="https://marcos-santos-marinho.github.io/direito-do-trabalho/direito-individual-e-coletivo-do-trabalho/04-relacao-de-emprego/"><span class="item-num">04</span><span class="item-text">Relação de Emprego</span><span class="item-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+        <li><a class="item" href="https://marcos-santos-marinho.github.io/direito-do-trabalho/direito-individual-e-coletivo-do-trabalho/05-relacao-de-trabalho/"><span class="item-num">05</span><span class="item-text">Relação de Trabalho</span><span class="item-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+        <li><a class="item" href="https://marcos-santos-marinho.github.io/direito-do-trabalho/direito-individual-e-coletivo-do-trabalho/06-empregado/"><span class="item-num">06</span><span class="item-text">Empregado</span><span class="item-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+        <li><a class="item" href="https://marcos-santos-marinho.github.io/direito-do-trabalho/direito-individual-e-coletivo-do-trabalho/07-empregador/"><span class="item-num">07</span><span class="item-text">Empregador</span><span class="item-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+        <li><a class="item" href="https://marcos-santos-marinho.github.io/direito-do-trabalho/direito-individual-e-coletivo-do-trabalho/08-empregado-domestico/"><span class="item-num">08</span><span class="item-text">Empregado Doméstico</span><span class="item-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+        <li><a class="item" href="https://marcos-santos-marinho.github.io/direito-do-trabalho/direito-individual-e-coletivo-do-trabalho/09-empregado-rural/"><span class="item-num">09</span><span class="item-text">Empregado Rural</span><span class="item-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+        <li><a class="item" href="https://marcos-santos-marinho.github.io/direito-do-trabalho/direito-individual-e-coletivo-do-trabalho/10-contrato-de-trabalho/"><span class="item-num">10</span><span class="item-text">Contrato de Trabalho</span><span class="item-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+        <li><a class="item" href="https://marcos-santos-marinho.github.io/direito-do-trabalho/direito-individual-e-coletivo-do-trabalho/11-duracao-do-trabalho/"><span class="item-num">11</span><span class="item-text">Duração do Trabalho</span><span class="item-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+        <li><a class="item" href="https://marcos-santos-marinho.github.io/direito-do-trabalho/direito-individual-e-coletivo-do-trabalho/12-ferias/"><span class="item-num">12</span><span class="item-text">Férias</span><span class="item-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+        <li><a class="item" href="https://marcos-santos-marinho.github.io/direito-do-trabalho/direito-individual-e-coletivo-do-trabalho/13-salario-e-remuneracao/"><span class="item-num">13</span><span class="item-text">Salário e Remuneração</span><span class="item-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+        <li><a class="item" href="https://marcos-santos-marinho.github.io/direito-do-trabalho/direito-individual-e-coletivo-do-trabalho/14-alteracao-do-contrato/"><span class="item-num">14</span><span class="item-text">Alteração do Contrato de Trabalho</span><span class="item-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+        <li><a class="item" href="https://marcos-santos-marinho.github.io/direito-do-trabalho/direito-individual-e-coletivo-do-trabalho/15-suspensao-e-interrupcao-do-contrato/"><span class="item-num">15</span><span class="item-text">Suspensão e Interrupção do Contrato de Trabalho</span><span class="item-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+        <li><a class="item" href="https://marcos-santos-marinho.github.io/direito-do-trabalho/direito-individual-e-coletivo-do-trabalho/16-extincao-do-contrato/"><span class="item-num">16</span><span class="item-text">Extinção do Contrato de Trabalho</span><span class="item-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+        <li><a class="item" href="https://marcos-santos-marinho.github.io/direito-do-trabalho/direito-individual-e-coletivo-do-trabalho/17-aviso-previo/"><span class="item-num">17</span><span class="item-text">Aviso-Prévio</span><span class="item-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+        <li><a class="item" href="https://marcos-santos-marinho.github.io/direito-do-trabalho/direito-individual-e-coletivo-do-trabalho/18-estabilidade/"><span class="item-num">18</span><span class="item-text">Estabilidade no Emprego</span><span class="item-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+        <li><a class="item" href="https://marcos-santos-marinho.github.io/direito-do-trabalho/direito-individual-e-coletivo-do-trabalho/19-fgts/"><span class="item-num">19</span><span class="item-text">FGTS</span><span class="item-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+        <li><a class="item" href="https://marcos-santos-marinho.github.io/direito-do-trabalho/direito-individual-e-coletivo-do-trabalho/20-rescisao/"><span class="item-num">20</span><span class="item-text">Rescisão do Contrato de Trabalho</span><span class="item-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+      </ul>
 
-  <!-- VOLTAR -->
-  <div class="back">
-    <a href="https://marcos-santos-marinho.github.io/direito-do-trabalho/">← Voltar ao curso</a>
-  </div>
+      <div class="back">
+        <a href="https://marcos-santos-marinho.github.io/direito-do-trabalho/">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+          Voltar ao curso
+        </a>
+      </div>
+    </div>
+  </main>
 
-</div>
+  <footer>
+    <div class="wrap">marcos-santos-marinho.github.io/direito-do-trabalho</div>
+  </footer>
+
 </body>
 </html>
