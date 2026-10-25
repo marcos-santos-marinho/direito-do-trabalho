@@ -1,431 +1,300 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>17. Aviso-Prévio</title>
-
-<style>
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>17. Aviso-prévio</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"><style>
 :root{
-  --bg:#eaf3ff;
-  --panel:#f8fbff;
-  --card:#ffffff;
-  --title:#1f4fd8;
-  --text:#0f172a;
-  --muted:#475569;
-  --border:rgba(15,23,42,.14);
-  --shadow:0 14px 34px rgba(15,23,42,.12);
-  --blueSoft:#e8f0ff;
-  --greenSoft:#ecfdf5;
-  --orangeSoft:#fff7ed;
-  --purpleSoft:#f5f3ff;
-  --redSoft:#fef2f2;
+  --ink:#1b2436;--ink-soft:#414a5c;--paper:#edece5;--surface:#fbfaf7;
+  --accent:#7a2e37;--accent-soft:#a2545f;--iron:#8b8579;
+  --line:rgba(27,36,54,.13);--line-strong:rgba(27,36,54,.22);
+  --green:#166534;--green-bg:#f0fdf4;--green-line:#bbf7d0;
+  --red:#991b1b;--red-bg:#fef2f2;--red-line:#fecaca;
+  --display:"Fraunces",Georgia,serif;--body:"Spectral",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:19px;line-height:1.78;-webkit-font-smoothing:antialiased;}
+body::before{content:"";position:fixed;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 34%,var(--ink) 34%,var(--ink) 100%);z-index:50;}
+.wrap{max-width:760px;margin:0 auto;padding:0 22px 72px;}
+
+/* CABEÇALHO */
+.masthead{padding:56px 0 30px;border-bottom:1px solid var(--line-strong);animation:rise .7s cubic-bezier(.2,.7,.2,1) both;}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--accent);display:inline-block;}
+.eyebrow .dot{color:var(--line-strong);}
+.title-row{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;flex-wrap:wrap;}
+h1{font-family:var(--display);font-weight:500;font-size:clamp(2.3rem,6.5vw,3.8rem);line-height:1.04;letter-spacing:-.015em;max-width:14ch;}
+h1 .art{display:block;font-size:.42em;font-weight:600;letter-spacing:.02em;color:var(--accent);font-family:var(--mono);text-transform:uppercase;margin-bottom:.5em;}
+.slides-btn{flex-shrink:0;display:inline-flex;align-items:center;gap:12px;text-decoration:none;background:var(--ink);color:#f4f2ec;border-radius:4px;padding:13px 18px;font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;box-shadow:0 8px 22px -12px rgba(27,36,54,.7);transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s,background .25s;}
+.slides-btn:hover{background:var(--accent);transform:translateY(-2px);}
+.slides-btn .arw{transition:transform .25s;}
+.slides-btn:hover .arw{transform:translateX(4px);}
+
+/* VERBETE */
+.verbete{margin:44px 0 8px;padding:6px 0 6px 30px;border-left:3px solid var(--accent);}
+.verbete .tag{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:14px;}
+.verbete p{font-family:var(--display);font-weight:400;font-size:clamp(1.15rem,2.8vw,1.45rem);line-height:1.45;color:var(--ink);margin:0;}
+
+/* REF */
+.ref{font-family:var(--mono);font-size:.8em;color:var(--iron);background:rgba(139,133,121,.12);padding:2px 7px;border-radius:3px;white-space:nowrap;}
+
+/* SEÇÕES */
+.sec-head{display:flex;gap:16px;align-items:baseline;margin:44px 0 14px;padding-top:26px;border-top:1px solid var(--line);}
+.sec-head .num{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--accent);flex-shrink:0;padding-top:.35em;}
+h2{font-family:var(--display);font-weight:500;font-size:clamp(1.55rem,4vw,1.95rem);line-height:1.14;letter-spacing:-.01em;color:var(--ink);}
+h3{font-family:var(--display);font-weight:600;font-size:1.15rem;color:var(--ink);margin:22px 0 8px;}
+p{margin-bottom:14px;color:var(--ink-soft);}
+
+/* LISTA */
+.blist{list-style:none;padding:0;margin:10px 0 12px;display:flex;flex-direction:column;gap:3px;}
+.blist li{display:grid;grid-template-columns:22px 1fr;gap:8px;font-size:.93em;color:var(--ink-soft);line-height:1.65;padding:8px 0;border-bottom:1px solid var(--line);}
+.blist li:last-child{border-bottom:none;}
+.blist li .bul{color:var(--accent);font-family:var(--mono);font-size:.85em;padding-top:2px;}
+
+/* SUMULA */
+.sumula{margin:10px 0 6px;padding:12px 16px;border-left:2px solid var(--iron);background:var(--paper);border-radius:0 4px 4px 0;font-size:.89em;color:var(--ink-soft);line-height:1.65;}
+.sumula strong{font-family:var(--mono);font-size:.86em;letter-spacing:.08em;text-transform:uppercase;color:var(--iron);display:block;margin-bottom:4px;}
+
+/* NOTA / ALERTA */
+.nota{margin:10px 0 6px;padding:13px 17px;background:rgba(122,46,55,.06);border-left:3px solid var(--accent);border-radius:0 5px 5px 0;font-size:.91em;color:var(--ink-soft);line-height:1.65;}
+.nota strong{color:var(--ink);}
+
+/* TABELA */
+.tbl{margin:12px 0 6px;border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:.9em;}
+.tbl-head{display:grid;background:var(--ink);color:#f4f2ec;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;}
+.tbl-head div,.tbl-row div{padding:9px 14px;}
+.tbl-head div:not(:last-child){border-right:1px solid rgba(255,255,255,.15);}
+.tbl-row{display:grid;border-top:1px solid var(--line);}
+.tbl-row:nth-child(even) div{background:rgba(139,133,121,.04);}
+.tbl-row div{color:var(--ink-soft);display:flex;align-items:center;line-height:1.5;}
+.tbl-row div:not(:last-child){border-right:1px solid var(--line);}
+.tbl-3{grid-template-columns:1fr 1fr 1fr;}
+.tbl-2{grid-template-columns:1fr 1fr;}
+.tbl-head.tbl-3{grid-template-columns:1fr 1fr 1fr;}
+.tbl-head.tbl-2{grid-template-columns:1fr 1fr;}
+
+/* CARDS ACCORDION */
+.cards{display:flex;flex-direction:column;gap:3px;}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;transition:box-shadow .2s;}
+.card:hover{box-shadow:0 4px 18px -8px rgba(27,36,54,.2);}
+.card-btn{width:100%;background:none;border:none;cursor:pointer;display:grid;grid-template-columns:52px 1fr 34px;align-items:center;padding:0;text-align:left;color:inherit;}
+.card-icon{display:flex;align-items:center;justify-content:center;min-height:60px;border-right:1px solid var(--line);font-family:var(--mono);font-weight:700;font-size:11px;color:var(--accent);background:rgba(122,46,55,.05);text-align:center;padding:4px;line-height:1.3;}
+.card-head{padding:13px 16px;}
+.card-num{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--iron);display:block;margin-bottom:3px;}
+.card-title{font-family:var(--display);font-weight:600;font-size:1rem;line-height:1.2;color:var(--ink);}
+.card-chevron{display:flex;align-items:center;justify-content:center;padding-right:14px;color:var(--iron);font-size:13px;transition:transform .3s cubic-bezier(.2,.7,.2,1),color .2s;}
+.card.open .card-chevron{transform:rotate(180deg);color:var(--accent);}
+.card-body{display:none;padding:16px 20px 20px;border-top:1px solid var(--line);}
+.card.open .card-body{display:block;}
+.card-body p{color:var(--ink-soft);font-size:.93em;line-height:1.72;}
+
+/* ===== PLACAR ===== */
+.scoreboard{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:18px 22px;background:var(--surface);border:1px solid var(--line-strong);border-radius:8px;margin-bottom:8px;}
+.score-label{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--iron);}
+.score-nums{display:flex;align-items:baseline;gap:6px;}
+.score-current{font-family:var(--display);font-size:2.6rem;font-weight:600;color:var(--ink);line-height:1;}
+.score-total{font-family:var(--mono);font-size:1rem;color:var(--iron);}
+.score-bar-wrap{flex:1;min-width:120px;height:8px;background:var(--line);border-radius:99px;overflow:hidden;}
+.score-bar{height:100%;width:0%;background:var(--accent);border-radius:99px;transition:width .5s cubic-bezier(.2,.7,.2,1),background .3s;}
+.score-msg{font-family:var(--mono);font-size:12px;color:var(--iron);min-width:80px;}
+.btn-reset{margin-left:auto;border:1px solid var(--line-strong);background:none;color:var(--ink-soft);border-radius:4px;padding:7px 14px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:border-color .2s,color .2s;}
+.btn-reset:hover{border-color:var(--accent);color:var(--accent);}
+
+/* CARD DE QUESTÃO */
+.q-card{background:var(--surface);border:1px solid var(--line);border-radius:8px;margin:14px 0;overflow:hidden;transition:border-color .25s,box-shadow .25s;}
+.q-card.answered-correct{border-color:var(--green-line);box-shadow:0 0 0 2px rgba(22,101,52,.12);}
+.q-card.answered-wrong{border-color:var(--red-line);box-shadow:0 0 0 2px rgba(153,27,27,.10);}
+.q-header{display:flex;align-items:flex-start;gap:12px;padding:16px 18px 12px;}
+.q-badge{flex-shrink:0;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--accent);background:rgba(122,46,55,.09);border:1px solid rgba(122,46,55,.18);border-radius:4px;padding:3px 9px;margin-top:3px;white-space:nowrap;}
+.q-text{font-family:var(--body);font-size:.96em;color:var(--ink);line-height:1.72;flex:1;margin:0;}
+.options{padding:0 18px 16px;display:flex;flex-direction:column;gap:7px;}
+.opt{display:flex;align-items:flex-start;gap:11px;padding:10px 13px;border:1px solid var(--line);border-radius:6px;cursor:pointer;background:var(--paper);transition:border-color .18s,background .18s;text-align:left;width:100%;font-family:var(--body);font-size:.92em;color:var(--ink-soft);line-height:1.6;}
+.opt:hover:not(:disabled){border-color:var(--accent-soft);background:#f7f3f1;}
+.opt-letter{flex-shrink:0;font-family:var(--mono);font-size:.8em;font-weight:700;color:var(--accent);width:20px;padding-top:2px;}
+.opt.selected{border-color:var(--accent);background:rgba(122,46,55,.06);}
+.opt.correct-final{border-color:var(--green);background:var(--green-bg);cursor:default;}
+.opt.correct-final .opt-letter{color:var(--green);}
+.opt.wrong-final{border-color:var(--red);background:var(--red-bg);cursor:default;}
+.opt.wrong-final .opt-letter{color:var(--red);}
+.opt.dimmed{opacity:.42;cursor:default;}
+.q-actions{padding:0 18px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.btn-confirm{display:inline-flex;align-items:center;gap:8px;padding:9px 20px;background:var(--ink);color:#f4f2ec;border:none;border-radius:4px;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;transition:background .2s,transform .2s;}
+.btn-confirm:hover:not(:disabled){background:var(--accent);transform:translateY(-1px);}
+.btn-confirm:disabled{opacity:.35;cursor:default;transform:none;}
+.toggle-gabarito{display:none;align-items:center;gap:7px;border:none;background:none;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--iron);cursor:pointer;transition:color .2s;padding:0;}
+.toggle-gabarito:hover{color:var(--accent);}
+.toggle-gabarito .chev{display:inline-block;font-size:10px;transition:transform .3s cubic-bezier(.2,.7,.2,1);}
+.toggle-gabarito.open .chev{transform:rotate(180deg);}
+.gabarito{border-top:1px solid var(--line);overflow:hidden;max-height:0;transition:max-height .45s cubic-bezier(.2,.7,.2,1);}
+.gabarito.open{max-height:1800px;}
+.gabarito-inner{padding:16px 18px 18px;}
+.gabarito-title{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--iron);margin-bottom:10px;}
+.gabarito-correct{display:flex;align-items:center;gap:10px;padding:9px 13px;background:var(--green-bg);border:1px solid var(--green-line);border-radius:6px;font-family:var(--mono);font-size:.84em;font-weight:700;color:var(--green);margin-bottom:12px;}
+.gabarito-body{font-size:.9em;color:var(--ink-soft);line-height:1.72;}
+.gabarito-body strong{color:var(--ink);}
+.gabarito-body .ref{font-family:var(--mono);font-size:.8em;color:var(--iron);background:rgba(139,133,121,.12);padding:2px 7px;border-radius:3px;white-space:nowrap;}
+.gabarito-body p{margin-bottom:9px;}
+.gabarito-body p:last-child{margin-bottom:0;}
+
+/* RESULTADO */
+.result-banner{display:none;margin:28px 0 0;padding:26px 22px;border:1px solid var(--line-strong);border-radius:8px;background:var(--surface);text-align:center;}
+.result-banner.show{display:block;}
+.result-score{font-family:var(--display);font-size:3.2rem;font-weight:600;color:var(--accent);line-height:1;margin-bottom:6px;}
+.result-label{font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--iron);}
+.result-msg{margin-top:10px;font-size:.94em;color:var(--ink-soft);}
+
+/* VOLTAR */
+.back{margin-top:52px;display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line-strong);border-radius:6px;padding:20px 22px;font-family:var(--mono);font-size:14px;letter-spacing:.04em;transition:border-color .25s,transform .25s;}
+.back .arw{color:var(--accent);transition:transform .25s;font-size:18px;}
+.back:hover{border-color:var(--accent);transform:translateY(-2px);}
+.back:hover .arw{transform:translateX(-4px);}
+
+@keyframes rise{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
+.reveal{opacity:0;transform:translateY(14px);}
+.reveal.in{opacity:1;transform:none;transition:opacity .5s ease,transform .5s cubic-bezier(.2,.7,.2,1);}
+
+@media(max-width:560px){
+  body{font-size:17.5px;}
+  .masthead{padding:40px 0 24px;}
+  .title-row{align-items:stretch;}
+  .slides-btn{width:100%;justify-content:center;}
+  .verbete{padding-left:18px;}
+  .scoreboard{flex-direction:column;align-items:flex-start;gap:10px;}
+  .btn-reset{margin-left:0;}
+  .tbl-3{grid-template-columns:1fr 1fr;}
+  .tbl-head.tbl-3 div:last-child,.tbl-3 .tbl-row div:last-child{display:none;}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;scroll-behavior:auto;}
+  .reveal{opacity:1;transform:none;}
+  .reveal.in{transition:none;}
 }
 
-*{ box-sizing:border-box; }
+.q-header{flex-wrap:wrap}.q-text{flex-basis:100%}.q-badge{white-space:normal}
+.card-body ul{padding-left:24px}.card-body li{margin-bottom:12px}
+.card-body .nota p:last-child{margin-bottom:0}
+.score-msg{white-space:nowrap}.source{font-size:.8em;margin-top:20px}
+@media(max-width:560px){.score-bar-wrap{width:100%;flex:auto}.ref{white-space:normal}}
 
-body{
-  margin:0;
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  background:radial-gradient(900px 420px at 30% 0%, #d8ecff 0%, var(--bg) 60%);
-  color:var(--text);
-  font-size:19px;
-  line-height:1.8;
+.compare-table{width:100%;border-collapse:collapse;background:var(--surface);font-size:.9em;margin:22px 0}
+.compare-table th,.compare-table td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;overflow-wrap:anywhere}
+.compare-table th{color:var(--accent);font-family:var(--display)}
+@media(max-width:560px){.compare-table{font-size:.8em}.compare-table th,.compare-table td{padding:9px 6px}}
+</style></head><body><div class="wrap"><header class="masthead"><p class="eyebrow">Direito do Trabalho <span class="dot">·</span> Término do vínculo</p><div class="title-row"><h1><span class="art">Item 17</span>Aviso-prévio</h1><a class="slides-btn" href="https://drive.google.com/file/d/1A9eGVVQMx2TDL4Nocx_VbVrYhsiuldYR/view?usp=sharing" target="_blank" rel="noopener"><span>▮</span><span>Slides da aula</span><span class="arw">→</span></a></div><div class="verbete"><span class="tag">Art. 7º, XXI, CF · Arts. 487 a 491, CLT</span><p>A comunicação prévia da ruptura evita a surpresa e produz efeitos sobre o <strong>tempo de serviço</strong>, a <strong>remuneração</strong> e a <strong>data de término do contrato</strong>.</p></div></header><section><div class="sec-head reveal"><span class="num">§ 17.1</span><h2>Conceito, finalidade e cabimento</h2></div><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-1"><span class="card-icon">01</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Conceito, finalidade e cabimento</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-1"><p>Aviso-prévio é a notificação dada por uma das partes do contrato de trabalho à outra parte, comunicando sua intenção de rescindir o contrato de trabalho sem justa causa, de acordo com o prazo previsto em lei, sob pena de pagar indenização substitutiva. É direito do empregado, previsto no art. 7º, XXI, da Constituição Federal.</p><p>É figura típica dos contratos por prazo indeterminado e tem por finalidade evitar a surpresa da ruptura abrupta do contrato de trabalho.</p><p>Deve ser dado pelo empregador quando este rescinde o contrato sem justa causa, e pelo empregado quando este pede demissão (reciprocidade – art. 487, CLT). É devido no caso de dispensa indireta (art. 487, § 4º, CLT) e de rescisão do contrato por factum principis. Devido também no caso de cessação das atividades da empresa (Súmula 44, TST).</p></div></div></div></section>
+<section><div class="sec-head reveal"><span class="num">§ 17.2</span><h2>Duração e contagem do prazo</h2></div><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-2"><span class="card-icon">02</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Duração e contagem do prazo</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-2"><p>Duração do aviso-prévio: proporcional ao tempo de serviço, sendo, no mínimo, de 30 dias (art. 7º, XXI, CF).</p><p>A proporcionalidade da duração do aviso prévio foi regulamentada pela Lei n. 12.506/2011, que prevê:</p><p>a) o aviso prévio será concedido na proporção de 30 dias aos empregados que tenham até um ano de serviço na empresa;</p><p>b) ao aviso prévio de 30 dias serão acrescidos 3 dias por ano de serviço prestado à empresa, até o máximo de mais 60 dias, perfazendo uma duração total de até 90 dias.</p><p>Aplica-se a regra prevista no caput do art. 132 do Código Civil à contagem do prazo do aviso-prévio, excluindo-se o dia do começo e incluindo-se o dia do vencimento (Súmula 380, TST).</p></div></div></div></section>
+<section><div class="sec-head reveal"><span class="num">§ 17.3</span><h2>Forma do aviso-prévio</h2></div><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-3"><span class="card-icon">03</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Forma do aviso-prévio</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-3"><p>Forma: não há formalidade prevista em lei, mas como é necessário que seja provada sua concessão, é conveniente que seja dado por escrito.</p></div></div></div></section>
+<section><div class="sec-head reveal"><span class="num">§ 17.4</span><h2>Efeitos e redução da jornada</h2></div><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-4"><span class="card-icon">04</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Efeitos e redução da jornada</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-4"><p>Efeitos:</p><p>a) A rescisão do contrato de trabalho torna-se efetiva depois de expirado o prazo do aviso-prévio (art. 489, CLT). Em decorrência disto:</p><p>■ integra o tempo de serviço para todos os efeitos legais, ainda que indenizado;</p><p>■ a data de saída a ser anotada na CTPS do empregado deve corresponder à data do término do aviso-prévio, ainda que indenizado (OJ SDI-1 82, TST);</p><p>■ a prescrição começa a fluir no final da data do término do aviso-prévio, ainda que indenizado (OJ SDI-1 83, TST).</p><p>b) Se no curso do aviso-prévio houver reajuste salarial coletivo, o empregado deve receber tal reajuste (§ 6º, art. 487, CLT).</p><p>c) Redução do horário de trabalho quando o aviso-prévio for concedido pelo empregador: duas horas por dia ou sete dias corridos (art. 488, CLT). Não se aplica à hipótese de aviso-prévio dado pelo empregado.</p><p>É ilegal substituir o período que se reduz da jornada de trabalho, no aviso-prévio, pelo pagamento das horas correspondentes (Súmula 230, TST).</p></div></div></div></section>
+<section><div class="sec-head reveal"><span class="num">§ 17.5</span><h2>Falta do aviso-prévio</h2></div><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-5"><span class="card-icon">05</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Falta do aviso-prévio</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-5"><p>Falta do aviso-prévio:</p><p>a) A falta do aviso-prévio pelo empregador dá ao empregado o direito aos salários correspondentes ao prazo do aviso (aviso-prévio indenizado), garantida sempre a integração deste período ao seu tempo de serviço (art. 487, § 1º, CLT).</p><p>b) A falta de aviso-prévio pelo empregado dá ao empregador o direito de descontar os salários correspondentes ao prazo respectivo (art. 487, § 2º, CLT).</p></div></div></div></section>
+<section><div class="sec-head reveal"><span class="num">§ 17.6</span><h2>Reconsideração</h2></div><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-6"><span class="card-icon">06</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Reconsideração</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-6"><p>Reconsideração:</p><p>A parte que deu o aviso-prévio à outra pode reconsiderar o ato antes do seu término, mas tal reconsideração somente vai gerar efeito se a outra parte aceitar. É faculdade da outra parte aceitar ou não a reconsideração: se aceitar, o contrato volta ao seu curso normal e não será extinto; se não aceitar, o aviso-prévio chegará ao seu termo e o contrato de trabalho será rescindido (art. 489, CLT).</p></div></div></div></section>
+<section><div class="sec-head reveal"><span class="num">§ 17.7</span><h2>Valor do aviso-prévio e FGTS</h2></div><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-7"><span class="card-icon">07</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Valor do aviso-prévio e FGTS</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-7"><p>Valor do aviso-prévio:</p><p>A remuneração do aviso-prévio equivale à remuneração normal do empregado no respectivo período.</p><p>Em se tratando de salário pago por produção ou por tarefa, o cálculo do aviso-prévio será feito de acordo com a média dos últimos 12 meses (art. 487, § 3º, CLT).</p><p>O valor das horas extras habituais integra o aviso-prévio indenizado (art. 487, § 5º, CLT).</p><p>Reajustamentos salariais coletivos no curso do aviso-prévio beneficiam o empregado, ainda que o aviso seja indenizado (§ 6º, art. 487, CLT).</p><p>Sobre a remuneração do aviso-prévio, ainda que indenizado, incide FGTS (Súmula 305, TST).</p></div></div></div></section>
+<section><div class="sec-head reveal"><span class="num">§ 17.8</span><h2>Justa causa durante o aviso</h2></div><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-8"><span class="card-icon">08</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Justa causa durante o aviso</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-8"><p>Justa causa no curso do aviso-prévio:</p><p>a) praticada pelo empregado – implica a perda do direito ao restante do aviso-prévio (art. 491, CLT) e de qualquer direito às verbas rescisórias de natureza indenizatória (Súmula 73, TST);</p><p>b) praticada pelo empregador – implica o pagamento ao empregado da remuneração correspondente ao período do aviso-prévio, sem prejuízo da indenização que for devida (art. 490, CLT).</p></div></div></div></section>
+<section><div class="sec-head reveal"><span class="num">§ 17.9</span><h2>Aviso-prévio e estabilidade</h2></div><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-9"><span class="card-icon">09</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Aviso-prévio e estabilidade</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-9"><p>Aviso-prévio e estabilidade no emprego:</p><p>■ É inválida a concessão de aviso-prévio na fluência de garantia de emprego, ante a incompatibilidade dos dois institutos (Súmula 348, TST).</p><p>■ O registro da candidatura do empregado a cargo de dirigente sindical durante o período de aviso-prévio, ainda que indenizado, não lhe assegura a estabilidade (Súmula 369, V, TST).</p><p>■ A confirmação da gravidez durante o aviso-prévio trabalhado ou indenizado, garante à empregada a estabilidade (art. 391-A, CLT).</p></div></div></div></section>
+<section><div class="sec-head reveal"><span class="num">§ 17.10</span><h2>Doença, acidente e aviso indenizado</h2></div><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-10"><span class="card-icon">10</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Doença, acidente e aviso indenizado</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-10"><p>Aviso-prévio e doença ou acidente do trabalho:</p><p>■ A projeção para o futuro do contrato de trabalho, pela concessão do aviso-prévio indenizado, tem efeitos limitados às vantagens econômicas obtidas no período do pré-aviso, ou seja, salário, reflexos e verbas rescisórias. No caso de concessão de auxílio-doença no curso do aviso-prévio, todavia, só se concretizam os efeitos da dispensa depois de expirado o benefício previdenciário (Súmula 371, TST).</p><p>Caso o empregador não queira que o empregado trabalhe no período do aviso-prévio, deverá indenizar o mesmo.</p></div></div></div></section><section><div class="sec-head reveal"><span class="num">REVISÃO</span><h2>Questões do Exame da OAB</h2></div><p class="reveal">Questões 105 a 107 do tópico 28 — Aviso-prévio. Selecione uma alternativa e confirme para ver a correção. O placar segue os gabaritos originais; a questão 105 cobra a legislação anterior à Reforma Trabalhista.</p><div class="scoreboard reveal" aria-live="polite"><div><div class="score-label">Pontuação</div><div class="score-nums"><span class="score-current" id="sc-current">0</span><span class="score-total">/ 3</span></div></div><div class="score-bar-wrap"><div class="score-bar" id="sc-bar"></div></div><div class="score-msg" id="sc-msg">0 respondidas</div><button class="btn-reset" onclick="resetQuiz()">Reiniciar</button></div>
+<div class="q-card" id="q1"><div class="q-header"><span class="q-badge">Questão 105 · XX Exame de Ordem Unificado/FGV</span><div class="nota"><strong>Questão histórica:</strong> responda segundo a legislação vigente no XX Exame. Consulte a atualização no gabarito comentado.</div><p class="q-text">Ramiro e João trabalharam para a sociedade empresária Braço Forte Ltda. Ramiro foi dispensado e cumpriu o aviso prévio trabalhando. João pediu demissão e a sociedade empresária o dispensou do cumprimento do aviso prévio. Sobre o prazo de pagamento das verbas rescisórias, a partir do caso descrito, assinale a afirmativa correta.</p></div><div class="options"><button type="button" class="opt" data-q="1" data-val="A" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>No caso de Ramiro, as verbas deverão ser pagas no primeiro dia útil seguinte ao término do contrato; e, no caso de João, até dez dias após a dispensa do cumprimento do aviso prévio.</span></button><button type="button" class="opt" data-q="1" data-val="B" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>No caso de Ramiro, as verbas deverão ser pagas até dez dias após o término do contrato; e, no caso de João, até dez dias após a projeção do aviso prévio.</span></button><button type="button" class="opt" data-q="1" data-val="C" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>No caso de Ramiro, as verbas deverão ser pagas no primeiro dia útil seguinte ao término do contrato; e, no caso de João, até dez dias após a projeção do aviso prévio, mesmo dispensado de seu cumprimento.</span></button><button type="button" class="opt" data-q="1" data-val="D" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Em ambos os casos, as verbas rescisórias deverão ser pagas no primeiro dia útil seguinte ao término dos respectivos contratos.</span></button></div><div class="q-actions"><button class="btn-confirm" id="q1-btn" disabled onclick="confirmAnswer(1,'A')">Confirmar →</button><button class="toggle-gabarito" id="q1-tog" aria-expanded="false" aria-controls="q1-gab" onclick="toggleGabarito(1)">Gabarito comentado <span class="chev">▾</span></button></div><div class="gabarito" id="q1-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Alternativa A</div><div class="gabarito-body"><p><strong>A — correta no gabarito histórico.</strong> O XX Exame aplicava a redação anterior do art. 477, § 6º, da CLT: primeiro dia útil após o término para o aviso trabalhado de Ramiro e até dez dias após a dispensa do cumprimento para João.</p><p><strong>B:</strong> não corresponde aos marcos e prazos então aplicáveis. <strong>C:</strong> o prazo atribuído a João é incorreto. <strong>D:</strong> o prazo indicado aplicava-se somente a Ramiro naquele regime.</p><div class="nota"><strong>Atualização legislativa:</strong> esta questão é histórica. A Lei nº 13.467/2017 alterou o art. 477, § 6º: o pagamento e a entrega dos documentos rescisórios devem ocorrer em até dez dias contados do término do contrato. A distinção antiga entre primeiro dia útil e dez dias não representa a regra atual. <a href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/l13467.htm" target="_blank" rel="noopener">Consultar a alteração legal</a>.</div></div></div></div></div><div class="q-card" id="q2"><div class="q-header"><span class="q-badge">Questão 106 · XXV Exame de Ordem Unificado/FGV</span><p class="q-text">Em março de 2015, Lívia foi contratada por um estabelecimento comercial para exercer a função de caixa, cumprindo jornada de segunda-feira a sábado das 8h às 18h, com intervalo de 30 minutos para refeição. Em 10 de março de 2017, Lívia foi dispensada sem justa causa, com aviso prévio indenizado, afastando-se de imediato. Em 30 de março de 2017, Lívia registrou sua candidatura a dirigente sindical e, em 8 de abril de 2017, foi eleita vice-presidente do sindicato dos comerciários da sua região. Diante desse fato, Lívia ponderou com a direção da empresa que não seria possível a sua dispensa, mas o empregador insistiu na manutenção da dispensa afirmando que o aviso prévio não poderia ser considerado para fins de garantia no emprego. Sobre a hipótese narrada, de acordo com a CLT e com o entendimento consolidado do TST, assinale a afirmativa correta.</p></div><div class="options"><button type="button" class="opt" data-q="2" data-val="A" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>O período do aviso prévio é integrado ao contrato para todos os fins, daí porque Lívia, que foi eleita enquanto o pacto laboral estava em vigor, não poderá ser dispensada sem justa causa.</span></button><button type="button" class="opt" data-q="2" data-val="B" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Não se computa o aviso prévio para fins de tempo de serviço nem anotação na CTPS do empregado e, em razão disso, Lívia não terá direito à estabilidade oriunda da eleição para dirigente sindical.</span></button><button type="button" class="opt" data-q="2" data-val="C" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>O aviso prévio é computado para todos os fins, mas, como a candidatura da empregada ocorreu no decorrer do aviso prévio, Lívia não terá garantia no emprego.</span></button><button type="button" class="opt" data-q="2" data-val="D" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>A Lei e a jurisprudência não tratam dessa situação especial, razão pela qual caberá ao magistrado, no caso concreto, decidir se o aviso prévio será computado ao contrato.</span></button></div><div class="q-actions"><button class="btn-confirm" id="q2-btn" disabled onclick="confirmAnswer(2,'C')">Confirmar →</button><button class="toggle-gabarito" id="q2-tog" aria-expanded="false" aria-controls="q2-gab" onclick="toggleGabarito(2)">Gabarito comentado <span class="chev">▾</span></button></div><div class="gabarito" id="q2-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Alternativa C</div><div class="gabarito-body"><p><strong>C — correta.</strong> O aviso-prévio indenizado integra o tempo de serviço (art. 487, § 1º, CLT), mas a candidatura a dirigente sindical registrada durante o aviso não assegura estabilidade (Súmula 369, V, TST).</p><p><strong>A:</strong> ignora a regra específica sobre candidatura no aviso. <strong>B:</strong> nega incorretamente a integração do período ao tempo de serviço. <strong>D:</strong> há disciplina legal e entendimento consolidado sobre a situação.</p></div></div></div></div><div class="q-card" id="q3"><div class="q-header"><span class="q-badge">Questão 107 · XXXI Exame de Ordem Unificado/FGV</span><p class="q-text">Eduardo e Carla são empregados do Supermercado Praiano Ltda., exercendo a função de caixa. Após 10 meses de vigência do contrato, ambos receberam aviso prévio em setembro de 2019, para ser cumprido com trabalho. Contudo, 17 dias após, o Supermercado resolveu reconsiderar a sua decisão e manter Eduardo e Carla no seu quadro de empregados. Ocorre que ambos não desejam prosseguir, porque, nesse período, distribuíram seus currículos e conseguiram a promessa de outras colocações num concorrente do Supermercado Praiano, com salário um pouco superior. Diante da situação posta e dos termos da CLT, assinale a afirmativa correta.</p></div><div class="options"><button type="button" class="opt" data-q="3" data-val="A" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Os empregados não são obrigados a aceitar a retratação, que só gera efeito se houver consenso entre empregado e empregador.</span></button><button type="button" class="opt" data-q="3" data-val="B" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>Os empregados são obrigados a aceitá-la, uma vez que a retratação foi feita pelo empregador ainda no período do aviso prévio.</span></button><button type="button" class="opt" data-q="3" data-val="C" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>A retratação deve ser obrigatoriamente aceita pela parte contrária se o aviso prévio for trabalhado, e, se for indenizado, há necessidade de concordância das partes.</span></button><button type="button" class="opt" data-q="3" data-val="D" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>O empregador jamais poderia ter feito isso, porque a CLT não prevê a possibilidade de reconsideração de aviso prévio, que se torna irreversível a partir da concessão.</span></button></div><div class="q-actions"><button class="btn-confirm" id="q3-btn" disabled onclick="confirmAnswer(3,'A')">Confirmar →</button><button class="toggle-gabarito" id="q3-tog" aria-expanded="false" aria-controls="q3-gab" onclick="toggleGabarito(3)">Gabarito comentado <span class="chev">▾</span></button></div><div class="gabarito" id="q3-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Alternativa A</div><div class="gabarito-body"><p><strong>A — correta.</strong> Conforme o art. 489 da CLT, a parte notificada pode aceitar ou recusar a reconsideração. Eduardo e Carla não são obrigados a continuar no emprego.</p><p><strong>B:</strong> a reconsideração dentro do prazo não impõe aceitação. <strong>C:</strong> a necessidade de concordância não depende de o aviso ser trabalhado ou indenizado. <strong>D:</strong> a CLT admite reconsideração, desde que aceita pela outra parte.</p></div></div></div></div><div class="result-banner" id="result-banner"><div class="result-score" id="result-score">0/9</div><div class="result-label">Resultado final</div><div class="result-msg" id="result-msg"></div></div></section><p class="source">Conteúdo integral do arquivo 17.AVISO-PRÉVIO.docx, organizado por assunto. O título interno do Word está numerado como 18; nesta página foi adotado o item 17, conforme o nome do arquivo. Questões 105 a 107: Questões Trabalho(2).pdf, tópico 28 — Aviso-prévio. Enunciados e alternativas preservados; comentários organizados para estudo.</p><a class="back" href="../index.html"><span class="arw">←</span><span>Voltar ao índice da disciplina</span></a></div><script>
+/* accordion de conteúdo */
+(function(){
+  var cards = document.querySelectorAll('.card');
+  cards.forEach(function(card){
+    var btn = card.querySelector('.card-btn');
+    if(!btn) return;
+    btn.addEventListener('click', function(){
+      var isOpen = card.classList.contains('open');
+      cards.forEach(function(c){c.classList.remove('open');var b=c.querySelector('.card-btn');if(b)b.setAttribute('aria-expanded','false');});
+      if(!isOpen){card.classList.add('open');btn.setAttribute('aria-expanded','true');}
+    });
+  });
+})();
+
+/* reveal on scroll */
+(function(){
+  var items=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){items.forEach(function(el){el.classList.add('in');});return;}
+  var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.08,rootMargin:'0px 0px -3% 0px'});
+  items.forEach(function(el,i){el.style.transitionDelay=(Math.min(i,6)*30)+'ms';io.observe(el);});
+})();
+
+/* ── QUIZ ── */
+var TOTAL=3, answered={};
+
+function selectOpt(el){
+  var q=el.dataset.q;
+  if(answered[q]!==undefined) return;
+  document.querySelectorAll('[data-q="'+q+'"]').forEach(function(o){o.classList.remove('selected');o.setAttribute('aria-pressed','false');});
+  el.classList.add('selected');el.setAttribute('aria-pressed','true');
+  document.getElementById('q'+q+'-btn').disabled=false;
 }
 
-.wrap{
-  max-width:980px;
-  margin:auto;
-  padding:18px 14px 40px;
+function confirmAnswer(qNum,correctVal){
+  if(answered[qNum]!==undefined) return;
+  var opts=document.querySelectorAll('[data-q="'+qNum+'"]');
+  var btn=document.getElementById('q'+qNum+'-btn');
+  var card=document.getElementById('q'+qNum);
+  var tog=document.getElementById('q'+qNum+'-tog');
+  var chosen=null;
+  opts.forEach(function(o){if(o.classList.contains('selected'))chosen=o;});
+  if(!chosen) return;
+  var isCorrect=chosen.dataset.val===correctVal;
+  answered[qNum]=isCorrect;
+  opts.forEach(function(o){
+    o.disabled=true;
+    if(o.dataset.val===correctVal){o.classList.add('correct-final');}
+    else if(o.classList.contains('selected')&&!isCorrect){o.classList.add('wrong-final');}
+    else{o.classList.add('dimmed');}
+    o.classList.remove('selected');
+  });
+  card.classList.add(isCorrect?'answered-correct':'answered-wrong');
+  btn.disabled=true; btn.style.display='none';
+  tog.style.display='inline-flex';
+  updateScore(); checkAllDone();
 }
 
-.panel{
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:24px;
-  box-shadow:var(--shadow);
-  padding:18px;
+function toggleGabarito(qNum){
+  var gab=document.getElementById('q'+qNum+'-gab');
+  var tog=document.getElementById('q'+qNum+'-tog');
+  var open=gab.classList.toggle('open');
+  tog.classList.toggle('open',open);tog.setAttribute('aria-expanded',String(open));
 }
 
-h1{
-  color:var(--title);
-  font-size:34px;
-  line-height:1.15;
-  margin:6px 0 14px;
-  text-align:center;
+function updateScore(){
+  var done=Object.keys(answered).length;
+  var correct=Object.values(answered).filter(Boolean).length;
+  var pct=TOTAL>0?(correct/TOTAL)*100:0;
+  document.getElementById('sc-current').textContent=correct;
+  document.getElementById('sc-bar').style.width=pct+'%';
+  document.getElementById('sc-bar').style.background=pct>=70?'#166534':pct>=40?'#d97706':'#991b1b';
+  document.getElementById('sc-msg').textContent=done+' respondida'+(done!==1?'s':'');
 }
 
-h2{
-  color:#0b2fb3;
-  font-size:24px;
-  margin:22px 0 12px;
+function checkAllDone(){
+  if(Object.keys(answered).length<TOTAL) return;
+  var correct=Object.values(answered).filter(Boolean).length;
+  var banner=document.getElementById('result-banner');
+  var score=document.getElementById('result-score');
+  var msg=document.getElementById('result-msg');
+  score.textContent=correct+'/'+TOTAL;
+  var pct=correct/TOTAL;
+  if(pct===1) msg.textContent='🎉 Parabéns! Gabarito perfeito — você domina o tema.';
+  else if(pct>=.75) msg.textContent='✅ Muito bem! Revise os pontos que errou e estará pronto.';
+  else if(pct>=.5) msg.textContent='📖 Resultado razoável. Revise os comentários com atenção.';
+  else msg.textContent='🔁 Reforce o estudo e tente novamente. Os comentários ajudam!';
+  banner.classList.add('show');
+  banner.scrollIntoView({behavior:'smooth',block:'center'});
 }
 
-p{ margin:0 0 14px; text-align:justify; }
-
-.card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:18px;
-  box-shadow:0 8px 20px rgba(15,23,42,.08);
-  padding:18px;
-  margin:14px 0;
+function resetQuiz(){
+  answered={};
+  for(var q=1;q<=TOTAL;q++){
+    document.querySelectorAll('[data-q="'+q+'"]').forEach(function(o){
+      o.disabled=false;o.setAttribute('aria-pressed','false'); o.classList.remove('selected','correct-final','wrong-final','dimmed');
+    });
+    document.getElementById('q'+q).classList.remove('answered-correct','answered-wrong');
+    var btn=document.getElementById('q'+q+'-btn');
+    btn.disabled=true; btn.style.display='';
+    var tog=document.getElementById('q'+q+'-tog');
+    tog.style.display='none'; tog.classList.remove('open');tog.setAttribute('aria-expanded','false');
+    document.getElementById('q'+q+'-gab').classList.remove('open');
+  }
+  document.getElementById('sc-current').textContent='0';
+  document.getElementById('sc-bar').style.width='0%';
+  document.getElementById('sc-msg').textContent='0 respondidas';
+  document.getElementById('result-banner').classList.remove('show');
+  window.scrollTo({top:0,behavior:'smooth'});
 }
-
-.section-blue   { border-left:7px solid #2563eb; }
-.section-green  { border-left:7px solid #16a34a; }
-.section-orange { border-left:7px solid #f97316; }
-.section-purple { border-left:7px solid #7c3aed; }
-.section-red    { border-left:7px solid #dc2626; }
-.section-teal   { border-left:7px solid #0d9488; }
-.section-indigo { border-left:7px solid #4f46e5; }
-.section-rose   { border-left:7px solid #e11d48; }
-.section-amber  { border-left:7px solid #d97706; }
-
-.box{
-  padding:14px;
-  border-radius:14px;
-  margin:14px 0;
-  border:1px solid var(--border);
-}
-
-.oab    { background:var(--orangeSoft); border-left:6px solid #f97316; }
-.sumula { background:var(--greenSoft);  border-left:6px solid #16a34a; }
-.artigo { background:var(--blueSoft);   border-left:6px solid #2563eb; }
-.obs    { background:var(--purpleSoft); border-left:6px solid #7c3aed; }
-.alerta { background:var(--redSoft);    border-left:6px solid #dc2626; }
-
-.bullet{
-  margin:10px 0 14px;
-  padding-left:0;
-  list-style:none;
-}
-
-.bullet li{
-  margin:10px 0;
-  padding:12px 14px;
-  background:#fff;
-  border-radius:14px;
-  border:1px solid var(--border);
-  box-shadow:0 5px 12px rgba(15,23,42,.05);
-}
-
-.bullet li::before{
-  content:"■ ";
-  color:#1f4fd8;
-  font-weight:900;
-}
-
-.letter-list{
-  margin:10px 0 14px;
-  padding-left:0;
-  list-style:none;
-}
-
-.letter-list li{
-  margin:10px 0;
-  padding:12px 14px;
-  background:#fff;
-  border-radius:14px;
-  border:1px solid var(--border);
-  box-shadow:0 5px 12px rgba(15,23,42,.05);
-}
-
-.slides-area{
-  display:flex;
-  justify-content:center;
-  margin:10px 0 22px;
-}
-
-.slides-btn{
-  text-decoration:none;
-  color:var(--text);
-  background:#fff;
-  border:1px solid rgba(37,99,235,.22);
-  border-radius:22px;
-  box-shadow:var(--shadow);
-  padding:16px 22px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:14px;
-  min-width:min(420px,100%);
-  font-weight:900;
-  transition:.18s;
-}
-
-.slides-btn:hover{
-  transform:translateY(-2px);
-  box-shadow:0 20px 42px rgba(15,23,42,.16);
-}
-
-.icon{
-  width:54px; height:54px;
-  border-radius:18px;
-  display:grid; place-items:center;
-  background:linear-gradient(135deg,#dbeafe,#ffffff);
-  border:1px solid rgba(37,99,235,.24);
-}
-
-.icon svg{ width:30px; height:30px; }
-
-.slides-text{ display:flex; flex-direction:column; line-height:1.15; }
-.slides-text strong{ font-size:20px; }
-.slides-text span{ font-size:14px; color:var(--muted); }
-
-.back{
-  display:flex;
-  justify-content:center;
-  margin-top:20px;
-}
-
-.back a{
-  width:min(560px,100%);
-  text-align:center;
-  text-decoration:none;
-  background:#fff;
-  padding:16px 18px;
-  border-radius:16px;
-  border:1px solid var(--border);
-  box-shadow:0 8px 20px rgba(15,23,42,.08);
-  color:var(--text);
-  font-weight:900;
-}
-
-@media(max-width:520px){
-  body{ font-size:17px; }
-  h1{ font-size:28px; }
-  h2{ font-size:21px; }
-  .slides-btn{ padding:14px; }
-}
-</style>
-</head>
-
-<body>
-<div class="wrap">
-<div class="panel">
-
-<h1>17. Aviso-Prévio</h1>
-
-<div class="slides-area">
-  <a class="slides-btn" href="https://drive.google.com/file/d/1A9eGVVQMx2TDL4Nocx_VbVrYhsiuldYR/view?usp=sharing" target="_blank" rel="noopener">
-    <span class="icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none">
-        <rect x="3" y="4" width="18" height="12" rx="2" stroke="#1f4fd8" stroke-width="1.8"/>
-        <path d="M8 20h8M12 16v4" stroke="#1f4fd8" stroke-width="1.8" stroke-linecap="round"/>
-        <path d="M7 9h10M7 12h7" stroke="#1f4fd8" stroke-width="1.8" stroke-linecap="round"/>
-      </svg>
-    </span>
-    <span class="slides-text">
-      <strong>Slides</strong>
-      <span>Abrir no Google Drive</span>
-    </span>
-  </a>
-</div>
-
-<!-- ═══════════════════════════════════════════ -->
-<!-- CARD 1 — Conceito e Cabimento              -->
-<!-- ═══════════════════════════════════════════ -->
-<div class="card section-blue">
-<h2>Conceito e Cabimento</h2>
-
-<p>Aviso-prévio é a notificação dada por uma das partes do contrato de trabalho à outra parte, comunicando sua intenção de rescindir o contrato de trabalho sem justa causa, de acordo com o prazo previsto em lei, sob pena de pagar indenização substitutiva. É direito do empregado, previsto no <strong>art. 7º, XXI, da Constituição Federal</strong>.</p>
-
-<p>É figura típica dos <strong>contratos por prazo indeterminado</strong> e tem por finalidade evitar a surpresa da ruptura abrupta do contrato de trabalho.</p>
-
-<p>Deve ser dado pelo empregador quando este rescinde o contrato sem justa causa, e pelo empregado quando este pede demissão (<strong>reciprocidade – art. 487, CLT</strong>). É devido nos seguintes casos:</p>
-
-<ul class="bullet">
-  <li>Dispensa indireta (art. 487, § 4º, CLT).</li>
-  <li>Rescisão do contrato por <em>factum principis</em>.</li>
-  <li>Cessação das atividades da empresa (Súmula 44, TST).</li>
-</ul>
-
-<div class="box artigo">
-  <strong>Base legal:</strong> art. 7º, XXI, CF — art. 487, CLT (reciprocidade, dispensa indireta, desconto por falta do empregado) — art. 488, CLT (redução de jornada) — art. 489, CLT (reconsideração e efetividade da rescisão) — art. 490 e 491, CLT (justa causa no curso do aviso).
-</div>
-
-<div class="box oab">
-  <strong>Caixa OAB:</strong> o aviso-prévio é obrigação <em>recíproca</em> — tanto o empregador quanto o empregado devem concedê-lo. A falta de aviso gera consequências distintas para cada parte.
-</div>
-</div>
-
-<!-- ═══════════════════════════════════════════ -->
-<!-- CARD 2 — Duração e Proporcionalidade       -->
-<!-- ═══════════════════════════════════════════ -->
-<div class="card section-orange">
-<h2>Duração e Proporcionalidade</h2>
-
-<p>A duração do aviso-prévio é <strong>proporcional ao tempo de serviço</strong>, sendo, no mínimo, de <strong>30 dias</strong> (art. 7º, XXI, CF). A proporcionalidade foi regulamentada pela <strong>Lei n. 12.506/2011</strong>, que prevê:</p>
-
-<ol class="letter-list">
-  <li><strong>a)</strong> o aviso prévio será concedido na proporção de <strong>30 dias</strong> aos empregados que tenham até um ano de serviço na empresa;</li>
-  <li><strong>b)</strong> ao aviso prévio de 30 dias serão acrescidos <strong>3 dias por ano de serviço</strong> prestado à empresa, até o máximo de mais 60 dias, perfazendo uma duração total de até <strong>90 dias</strong>.</li>
-</ol>
-
-<div class="box sumula">
-  <strong>Súmula 380 do TST:</strong> aplica-se a regra prevista no caput do art. 132 do Código Civil à contagem do prazo do aviso-prévio, <strong>excluindo-se o dia do começo e incluindo-se o dia do vencimento</strong>.
-</div>
-
-<p><strong>Forma:</strong> não há formalidade prevista em lei, mas como é necessário que seja provada sua concessão, é conveniente que seja dado <strong>por escrito</strong>.</p>
-</div>
-
-<!-- ═══════════════════════════════════════════ -->
-<!-- CARD 3 — Efeitos do Aviso-Prévio           -->
-<!-- ═══════════════════════════════════════════ -->
-<div class="card section-green">
-<h2>Efeitos do Aviso-Prévio</h2>
-
-<p>A rescisão do contrato de trabalho torna-se efetiva <strong>depois de expirado o prazo do aviso-prévio</strong> (art. 489, CLT). Em decorrência disso:</p>
-
-<ul class="bullet">
-  <li>Integra o <strong>tempo de serviço</strong> para todos os efeitos legais, ainda que indenizado.</li>
-  <li>A <strong>data de saída</strong> a ser anotada na CTPS do empregado deve corresponder à data do término do aviso-prévio, ainda que indenizado (OJ SDI-1 82, TST).</li>
-  <li>A <strong>prescrição</strong> começa a fluir no final da data do término do aviso-prévio, ainda que indenizado (OJ SDI-1 83, TST).</li>
-</ul>
-
-<p>Outros efeitos relevantes:</p>
-
-<ol class="letter-list">
-  <li>
-    <strong>b)</strong> Se no curso do aviso-prévio houver <strong>reajuste salarial coletivo</strong>, o empregado deve receber tal reajuste (§ 6º, art. 487, CLT).
-  </li>
-  <li>
-    <strong>c) Redução do horário de trabalho</strong> quando o aviso-prévio for concedido pelo empregador: <strong>duas horas por dia</strong> ou <strong>sete dias corridos</strong> (art. 488, CLT). Não se aplica à hipótese de aviso-prévio dado pelo empregado.
-  </li>
-</ol>
-
-<div class="box sumula">
-  <strong>Súmula 230 do TST:</strong> é <strong>ilegal</strong> substituir o período que se reduz da jornada de trabalho, no aviso-prévio, pelo pagamento das horas correspondentes.
-</div>
-
-<div class="box oab">
-  <strong>Caixa OAB:</strong> a redução de jornada durante o aviso-prévio (2h/dia ou 7 dias corridos) é um direito do empregado quando o aviso é dado pelo <strong>empregador</strong>. Se o aviso for dado pelo próprio empregado, não há redução. A substituição por pagamento das horas é ilegal — Súmula 230 do TST.
-</div>
-</div>
-
-<!-- ═══════════════════════════════════════════ -->
-<!-- CARD 4 — Falta do Aviso-Prévio             -->
-<!-- ═══════════════════════════════════════════ -->
-<div class="card section-red">
-<h2>Falta do Aviso-Prévio</h2>
-
-<ol class="letter-list">
-  <li>
-    <strong>a) Falta do aviso-prévio pelo empregador:</strong> dá ao empregado o direito aos salários correspondentes ao prazo do aviso (<strong>aviso-prévio indenizado</strong>), garantida sempre a integração deste período ao seu tempo de serviço (art. 487, § 1º, CLT).
-  </li>
-  <li>
-    <strong>b) Falta de aviso-prévio pelo empregado:</strong> dá ao empregador o direito de <strong>descontar os salários correspondentes</strong> ao prazo respectivo (art. 487, § 2º, CLT).
-  </li>
-</ol>
-
-<div class="box artigo">
-  <strong>Art. 487, § 1º e § 2º, CLT:</strong> as consequências da falta do aviso-prévio são assimétricas — enquanto o empregador deve pagar o equivalente ao período, o empregado tem o valor descontado de suas verbas rescisórias.
-</div>
-</div>
-
-<!-- ═══════════════════════════════════════════ -->
-<!-- CARD 5 — Reconsideração                    -->
-<!-- ═══════════════════════════════════════════ -->
-<div class="card section-teal">
-<h2>Reconsideração do Aviso-Prévio</h2>
-
-<p>A parte que deu o aviso-prévio à outra pode <strong>reconsiderar o ato antes do seu término</strong>, mas tal reconsideração somente vai gerar efeito se a <strong>outra parte aceitar</strong>. É faculdade da outra parte aceitar ou não a reconsideração (art. 489, CLT):</p>
-
-<ul class="bullet">
-  <li>Se <strong>aceitar</strong>: o contrato volta ao seu curso normal e não será extinto.</li>
-  <li>Se <strong>não aceitar</strong>: o aviso-prévio chegará ao seu termo e o contrato de trabalho será rescindido.</li>
-</ul>
-</div>
-
-<!-- ═══════════════════════════════════════════ -->
-<!-- CARD 6 — Valor do Aviso-Prévio             -->
-<!-- ═══════════════════════════════════════════ -->
-<div class="card section-purple">
-<h2>Valor do Aviso-Prévio</h2>
-
-<p>A remuneração do aviso-prévio equivale à <strong>remuneração normal do empregado</strong> no respectivo período. Regras específicas de cálculo:</p>
-
-<ul class="bullet">
-  <li>Em se tratando de <strong>salário pago por produção ou por tarefa</strong>, o cálculo do aviso-prévio será feito de acordo com a <strong>média dos últimos 12 meses</strong> (art. 487, § 3º, CLT).</li>
-  <li>O valor das <strong>horas extras habituais integra</strong> o aviso-prévio indenizado (art. 487, § 5º, CLT).</li>
-  <li><strong>Reajustamentos salariais coletivos</strong> no curso do aviso-prévio beneficiam o empregado, <strong>ainda que o aviso seja indenizado</strong> (§ 6º, art. 487, CLT).</li>
-</ul>
-
-<div class="box sumula">
-  <strong>Súmula 305 do TST:</strong> sobre a remuneração do aviso-prévio, <strong>ainda que indenizado</strong>, incide <strong>FGTS</strong>.
-</div>
-
-<div class="box oab">
-  <strong>Caixa OAB:</strong> atenção ao aviso-prévio indenizado — mesmo sem trabalho efetivo no período, há incidência de FGTS (Súmula 305/TST), integração das horas extras habituais (art. 487, § 5º, CLT) e aproveitamento de reajuste coletivo concedido no curso do prazo (art. 487, § 6º, CLT).
-</div>
-</div>
-
-<!-- ═══════════════════════════════════════════════ -->
-<!-- CARD 7 — Justa Causa no Curso do Aviso-Prévio  -->
-<!-- ═══════════════════════════════════════════════ -->
-<div class="card section-amber">
-<h2>Justa Causa no Curso do Aviso-Prévio</h2>
-
-<ol class="letter-list">
-  <li>
-    <strong>a) Justa causa praticada pelo empregado:</strong> implica a <strong>perda do direito ao restante do aviso-prévio</strong> (art. 491, CLT) e de qualquer direito às verbas rescisórias de natureza indenizatória (Súmula 73, TST).
-  </li>
-  <li>
-    <strong>b) Justa causa praticada pelo empregador:</strong> implica o <strong>pagamento ao empregado da remuneração correspondente ao período do aviso-prévio</strong>, sem prejuízo da indenização que for devida (art. 490, CLT).
-  </li>
-</ol>
-
-<div class="box sumula">
-  <strong>Súmula 73 do TST:</strong> a prática de justa causa pelo empregado no curso do aviso-prévio dado pelo empregador implica a perda do direito às verbas rescisórias de natureza indenizatória.
-</div>
-</div>
-
-<!-- ═══════════════════════════════════════════════════ -->
-<!-- CARD 8 — Aviso-Prévio e Estabilidade no Emprego    -->
-<!-- ═══════════════════════════════════════════════════ -->
-<div class="card section-indigo">
-<h2>Aviso-Prévio e Estabilidade no Emprego</h2>
-
-<ul class="bullet">
-  <li>
-    É <strong>inválida</strong> a concessão de aviso-prévio na fluência de garantia de emprego, ante a incompatibilidade dos dois institutos (<strong>Súmula 348, TST</strong>).
-  </li>
-  <li>
-    O <strong>registro da candidatura</strong> do empregado a cargo de dirigente sindical durante o período de aviso-prévio, ainda que indenizado, <strong>não lhe assegura a estabilidade</strong> (<strong>Súmula 369, V, TST</strong>).
-  </li>
-  <li>
-    A <strong>confirmação da gravidez</strong> durante o aviso-prévio trabalhado ou indenizado <strong>garante à empregada a estabilidade</strong> (art. 391-A, CLT).
-  </li>
-</ul>
-
-<div class="box oab">
-  <strong>Caixa OAB:</strong> aviso-prévio e estabilidade são institutos <strong>incompatíveis</strong> (Súmula 348/TST). Exceção importante: a confirmação de gravidez durante o aviso-prévio — trabalhado ou indenizado — garante a estabilidade gestante (art. 391-A, CLT). Candidatura sindical no aviso-prévio não gera estabilidade (Súmula 369, V/TST).
-</div>
-</div>
-
-<!-- ══════════════════════════════════════════════════════════ -->
-<!-- CARD 9 — Aviso-Prévio e Doença ou Acidente do Trabalho   -->
-<!-- ══════════════════════════════════════════════════════════ -->
-<div class="card section-rose">
-<h2>Aviso-Prévio e Doença ou Acidente do Trabalho</h2>
-
-<p>A projeção para o futuro do contrato de trabalho, pela concessão do aviso-prévio indenizado, tem <strong>efeitos limitados às vantagens econômicas</strong> obtidas no período do pré-aviso, ou seja, salário, reflexos e verbas rescisórias.</p>
-
-<div class="box sumula">
-  <strong>Súmula 371 do TST:</strong> no caso de concessão de <strong>auxílio-doença</strong> no curso do aviso-prévio, todavia, só se concretizam os efeitos da dispensa <strong>depois de expirado o benefício previdenciário</strong>. Ou seja, o aviso-prévio fica suspenso enquanto durar o auxílio-doença, e a rescisão somente se efetiva ao término do benefício.
-</div>
-
-<div class="box obs">
-  <strong>Observação prática:</strong> caso o empregador não queira que o empregado trabalhe no período do aviso-prévio, deverá <strong>indenizá-lo</strong>, pagando os salários correspondentes ao prazo, sem a exigência de prestação de serviços.
-</div>
-</div>
-
-<div class="back">
-  <a href="../index.html">← Voltar ao índice da disciplina</a>
-</div>
-
-</div>
-</div>
-</body>
-</html>
+</script></body></html>
