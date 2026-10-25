@@ -4,332 +4,336 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Professor Marcos Marinho</title>
+<meta name="description" content="Materiais de aula do Prof. Dr. Marcos dos Santos Marinho — Direito do Trabalho, Direito Processual do Trabalho e Prática Jurídica Trabalhista." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
+  :root{
+    --bg:#f7f5f0;
+    --surface:#ffffff;
+    --ink:#14213d;
+    --ink-soft:#4a5568;
+    --muted:#8a8f98;
+    --line:#e3dfd5;
+    --navy:#14213d;
+    --gold:#b08d57;
+    --a1:#1e3a8a;
+    --a2:#8b1e2d;
+    --a3:#1f5f4a;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0f141d;
+      --surface:#161d29;
+      --ink:#e8e6e1;
+      --ink-soft:#b4b8c0;
+      --muted:#7d838e;
+      --line:#262f3e;
+      --navy:#0b1019;
+      --gold:#c9a66b;
+      --a1:#7f9cf5;
+      --a2:#e07a87;
+      --a3:#6fc3a3;
+    }
+  }
+
   *{ box-sizing:border-box; margin:0; padding:0; }
   html{ scroll-behavior:smooth; }
 
   body{
-    font-family:"Inter", system-ui, sans-serif;
-    background:#f1f5f9;
-    color:#0f172a;
+    font-family:"Inter", system-ui, -apple-system, sans-serif;
+    background:var(--bg);
+    color:var(--ink);
     min-height:100vh;
     display:flex;
     flex-direction:column;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
   }
 
-  /* fundo animado */
-  body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    background:
-      radial-gradient(ellipse 800px 600px at 0% 0%,   rgba(37,99,235,.13) 0%, transparent 65%),
-      radial-gradient(ellipse 700px 500px at 100% 100%, rgba(124,58,237,.11) 0%, transparent 65%),
-      radial-gradient(ellipse 600px 400px at 50% 60%,  rgba(5,150,105,.08) 0%, transparent 65%);
-    pointer-events:none;
-    z-index:0;
-  }
+  a{ color:inherit; }
+  a:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
 
   /* ===== CABEÇALHO ===== */
   header{
-    position:relative;
-    z-index:1;
-    background:linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
-    color:#fff;
-    text-align:center;
-    padding:48px 24px 40px;
-    box-shadow:0 4px 30px rgba(0,0,0,.25);
+    background:var(--navy);
+    color:#f3f1ec;
+    border-bottom:3px solid var(--gold);
   }
-
-  /* fio decorativo superior */
-  header::before{
-    content:"";
-    position:absolute;
-    inset:0 0 auto 0;
-    height:4px;
-    background:linear-gradient(90deg, #2563eb, #7c3aed, #dc2626, #059669, #d97706);
-  }
-
-  .header-inner{
-    max-width:680px;
+  .wrap{
+    max-width:760px;
     margin:0 auto;
+    padding:0 24px;
   }
-
-  header h1{
+  .topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:22px 0;
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .monogram{
     font-family:"Fraunces", Georgia, serif;
-    font-size:clamp(1.9rem, 6vw, 3.2rem);
-    font-weight:700;
-    letter-spacing:-.02em;
-    line-height:1.1;
-    margin-bottom:6px;
-    background:linear-gradient(135deg, #e2e8f0, #ffffff);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-    background-clip:text;
+    font-weight:600;
+    font-size:15px;
+    letter-spacing:.08em;
+    width:40px; height:40px;
+    border:1px solid rgba(201,166,107,.6);
+    color:#d8bb88;
+    display:flex; align-items:center; justify-content:center;
+    border-radius:50%;
   }
-
-  header .sub{
-    font-size:13px;
-    font-weight:500;
-    letter-spacing:.18em;
+  .topbar .inst{
+    font-size:12px;
+    letter-spacing:.14em;
     text-transform:uppercase;
-    color:rgba(255,255,255,.5);
-    margin-bottom:24px;
+    color:rgba(243,241,236,.55);
   }
 
-  header a.lattes{
+  .hero{ padding:56px 0 60px; }
+  .eyebrow{
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:#d8bb88;
+    margin-bottom:16px;
+  }
+  .hero h1{
+    font-family:"Fraunces", Georgia, serif;
+    font-weight:400;
+    font-size:clamp(2.1rem, 6vw, 3.4rem);
+    line-height:1.08;
+    letter-spacing:-.015em;
+    margin-bottom:32px;
+  }
+  .hero p.role{
+    max-width:520px;
+    font-size:16px;
+    color:rgba(243,241,236,.72);
+    margin-bottom:32px;
+  }
+
+  .btn-lattes{
     display:inline-flex;
     align-items:center;
-    gap:8px;
+    gap:10px;
     text-decoration:none;
-    background:rgba(255,255,255,.1);
-    border:1px solid rgba(255,255,255,.2);
-    border-radius:99px;
-    padding:10px 22px;
     font-size:14px;
-    font-weight:700;
-    color:#fff;
-    letter-spacing:.03em;
-    transition:background .2s, transform .2s;
-    backdrop-filter:blur(4px);
+    font-weight:500;
+    padding:12px 20px;
+    border:1px solid rgba(243,241,236,.3);
+    border-radius:6px;
+    transition:background .2s, border-color .2s;
   }
-  header a.lattes:hover{
-    background:rgba(255,255,255,.18);
-    transform:translateY(-2px);
+  .btn-lattes:hover{
+    background:rgba(255,255,255,.06);
+    border-color:#d8bb88;
   }
-  header a.lattes .lattes-icon{
-    font-size:16px;
-  }
+  .btn-lattes svg{ width:16px; height:16px; }
 
-  /* ===== MAIN ===== */
-  main{
-    position:relative;
-    z-index:1;
-    flex:1;
-    max-width:680px;
-    width:100%;
-    margin:0 auto;
-    padding:36px 18px 56px;
-  }
+  /* ===== CONTEÚDO ===== */
+  main{ flex:1; padding:56px 0 72px; }
 
-  .section-label{
+  .section-head{
     display:flex;
-    align-items:center;
-    gap:12px;
-    margin-bottom:20px;
-  }
-  .section-label span{
-    font-size:11px;
-    font-weight:700;
-    letter-spacing:.2em;
-    text-transform:uppercase;
-    color:#475569;
-    white-space:nowrap;
-  }
-  .section-label::after{
-    content:"";
-    flex:1;
-    height:1px;
-    background:rgba(15,23,42,.1);
-  }
-
-  /* ===== CARTÕES DAS DISCIPLINAS ===== */
-  .menu{
-    display:flex;
-    flex-direction:column;
+    align-items:baseline;
+    justify-content:space-between;
     gap:16px;
+    padding-bottom:14px;
+    margin-bottom:8px;
+    border-bottom:1px solid var(--line);
   }
+  .section-head h2{
+    font-family:"Fraunces", Georgia, serif;
+    font-weight:600;
+    font-size:1.5rem;
+  }
+  .section-head span{
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+
+  .disc-list{ list-style:none; }
 
   .disc{
-    display:flex;
+    --accent:var(--a1);
+    display:grid;
+    grid-template-columns:56px 1fr auto;
     align-items:center;
-    text-decoration:none;
-    border-radius:22px;
-    overflow:hidden;
-    border:none;
-    box-shadow:0 8px 28px rgba(15,23,42,.18);
-    transition:transform .22s cubic-bezier(.2,.7,.2,1), box-shadow .22s;
-    opacity:0;
-    transform:translateY(14px);
-    animation:fadeUp .5s ease forwards;
-    position:relative;
-    min-height:130px;
-    padding:28px 26px 28px 30px;
     gap:20px;
+    text-decoration:none;
+    padding:26px 8px 26px 0;
+    border-bottom:1px solid var(--line);
+    position:relative;
+    transition:padding-left .25s ease, background .25s ease;
   }
-  .disc:hover{
-    transform:translateY(-5px);
-    box-shadow:0 22px 48px rgba(15,23,42,.25);
-  }
-
-  /* brilho interno */
-  .disc::after{
+  .disc::before{
     content:"";
     position:absolute;
-    inset:0;
-    background:linear-gradient(160deg, rgba(255,255,255,.18) 0%, transparent 55%);
-    pointer-events:none;
-    border-radius:22px;
+    left:-24px; top:0; bottom:0;
+    width:3px;
+    background:var(--accent);
+    transform:scaleY(0);
+    transform-origin:center;
+    transition:transform .25s ease;
   }
+  .disc:hover::before,
+  .disc:focus-visible::before{ transform:scaleY(1); }
+  .disc:hover{ padding-left:8px; }
 
-  .disc-bar{ display:none; }
-
-  .disc-icon{
-    width:72px;
-    height:72px;
-    border-radius:20px;
-    background:rgba(255,255,255,.22);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:34px;
-    flex-shrink:0;
-    backdrop-filter:blur(4px);
-    border:1px solid rgba(255,255,255,.3);
-  }
-
-  .disc-text{ flex:1; }
   .disc-num{
-    font-size:11px;
-    font-weight:700;
-    letter-spacing:.2em;
-    text-transform:uppercase;
-    color:rgba(255,255,255,.7);
-    margin-bottom:4px;
-    display:block;
+    font-family:"Fraunces", Georgia, serif;
+    font-size:1.9rem;
+    font-weight:400;
+    color:var(--accent);
+    line-height:1;
   }
   .disc-nome{
     font-family:"Fraunces", Georgia, serif;
-    font-weight:700;
-    font-size:clamp(1.6rem, 5vw, 2.1rem);
-    line-height:1.15;
-    color:#ffffff;
+    font-weight:600;
+    font-size:clamp(1.2rem, 3.6vw, 1.45rem);
+    line-height:1.25;
+    margin-bottom:4px;
   }
-
-  .disc-chev{
-    font-size:22px;
-    font-weight:900;
-    color:rgba(255,255,255,.5);
+  .disc-desc{
+    font-size:14.5px;
+    color:var(--ink-soft);
+  }
+  .disc-arrow{
+    width:40px; height:40px;
+    border:1px solid var(--line);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--muted);
+    transition:all .25s ease;
     flex-shrink:0;
-    transition:transform .2s, color .2s;
   }
-  .disc:hover .disc-chev{
+  .disc-arrow svg{ width:16px; height:16px; }
+  .disc:hover .disc-arrow{
+    background:var(--accent);
+    border-color:var(--accent);
     color:#fff;
-    transform:translateX(5px);
+    transform:translateX(3px);
   }
 
-  /* Cores por disciplina — fundos gradiente cheios */
-  .d1{
-    background:linear-gradient(135deg, #1d4ed8 0%, #2563eb 40%, #7c3aed 100%);
-    box-shadow:0 8px 28px rgba(37,99,235,.45);
-  }
-  .d1:hover{ box-shadow:0 22px 48px rgba(37,99,235,.55); }
-
-  .d2{
-    background:linear-gradient(135deg, #b91c1c 0%, #dc2626 40%, #ea580c 100%);
-    box-shadow:0 8px 28px rgba(220,38,38,.45);
-  }
-  .d2:hover{ box-shadow:0 22px 48px rgba(220,38,38,.55); }
-
-  .d3{
-    background:linear-gradient(135deg, #047857 0%, #059669 40%, #0891b2 100%);
-    box-shadow:0 8px 28px rgba(5,150,105,.45);
-  }
-  .d3:hover{ box-shadow:0 22px 48px rgba(5,150,105,.55); }
-
-  /* animações escalonadas */
-  .disc:nth-child(1){ animation-delay:.08s; }
-  .disc:nth-child(2){ animation-delay:.16s; }
-  .disc:nth-child(3){ animation-delay:.24s; }
-
-  @keyframes fadeUp{
-    to{ opacity:1; transform:none; }
-  }
+  .d1{ --accent:var(--a1); }
+  .d2{ --accent:var(--a2); }
+  .d3{ --accent:var(--a3); }
 
   /* ===== RODAPÉ ===== */
   footer{
-    position:relative;
-    z-index:1;
-    text-align:center;
-    padding:20px;
-    font-size:12px;
-    color:#94a3b8;
-    letter-spacing:.05em;
+    border-top:1px solid var(--line);
+    padding:24px 0;
+    font-size:13px;
+    color:var(--muted);
+  }
+  footer .wrap{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
   }
 
-  @media (max-width:480px){
-    header{ padding:36px 18px 32px; }
-    .disc-icon{ width:48px; height:48px; font-size:22px; }
-    .disc-nome{ font-size:1.1rem; }
-    .disc-body{ padding:18px 16px 18px 16px; }
+  @media (max-width:560px){
+    .wrap{ padding:0 16px; }
+    .topbar .inst{ display:none; }
+    .hero{ padding:40px 0 44px; }
+    .disc{ grid-template-columns:40px 1fr auto; gap:14px; padding:22px 0; }
+    .disc::before{ left:-16px; }
+    .disc:hover{ padding-left:0; }
+    .disc-num{ font-size:1.5rem; }
+    .disc-arrow{ width:34px; height:34px; }
   }
 
   @media (prefers-reduced-motion:reduce){
-    .disc{ animation:none; opacity:1; transform:none; }
+    *{ transition:none !important; }
   }
 </style>
 </head>
 
 <body>
 
-  <!-- CABEÇALHO -->
   <header>
-    <div class="header-inner">
-      <p class="sub">Materiais de aula</p>
-      <h1>Professor Marcos Marinho</h1>
-      <a class="lattes"
-         href="http://lattes.cnpq.br/9869114671337490"
-         target="_blank" rel="noopener">
-        <span class="lattes-icon">🎓</span>
-        Currículo Lattes
-      </a>
+    <div class="wrap">
+      <div class="topbar">
+        <div class="monogram" aria-hidden="true">MM</div>
+        <div class="inst">Centro de Ensino Superior do Amapá</div>
+      </div>
+
+      <div class="hero">
+        <p class="eyebrow">Materiais de aula</p>
+        <h1>Prof. Marcos Marinho</h1>
+
+        <a class="btn-lattes"
+           href="http://lattes.cnpq.br/9869114671337490"
+           target="_blank" rel="noopener">
+          Currículo Lattes
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+        </a>
+      </div>
     </div>
   </header>
 
-  <!-- CONTEÚDO -->
   <main>
-    <div class="section-label">
-      <span>Disciplinas</span>
-    </div>
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Disciplinas</h2>
+        <span>3 cursos</span>
+      </div>
 
-    <div class="menu">
-
-      <a class="disc d1" href="direito-individual-e-coletivo-do-trabalho/">
-        <div class="disc-icon">⚖️</div>
-        <div class="disc-text">
-          <div class="disc-num">Disciplina 1</div>
-          <div class="disc-nome">Direito do Trabalho</div>
-        </div>
-        <div class="disc-chev">›</div>
-      </a>
-
-      <a class="disc d2" href="direito-processual-do-trabalho/">
-        <div class="disc-icon">🏛️</div>
-        <div class="disc-text">
-          <div class="disc-num">Disciplina 2</div>
-          <div class="disc-nome">Direito Processual do Trabalho</div>
-        </div>
-        <div class="disc-chev">›</div>
-      </a>
-
-      <a class="disc d3" href="pratica-juridica-trabalhista/">
-        <div class="disc-icon">📝</div>
-        <div class="disc-text">
-          <div class="disc-num">Disciplina 3</div>
-          <div class="disc-nome">Prática Jurídica Trabalhista</div>
-        </div>
-        <div class="disc-chev">›</div>
-      </a>
-
+      <ul class="disc-list">
+        <li>
+          <a class="disc d1" href="https://marcos-santos-marinho.github.io/direito-do-trabalho/direito-individual-e-coletivo-do-trabalho/">
+            <span class="disc-num">01</span>
+            <span>
+              <span class="disc-nome" style="display:block">Direito do Trabalho</span>
+              <span class="disc-desc">Relações individuais e coletivas de trabalho</span>
+            </span>
+            <span class="disc-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="disc d2" href="https://marcos-santos-marinho.github.io/direito-do-trabalho/direito-processual-do-trabalho/">
+            <span class="disc-num">02</span>
+            <span>
+              <span class="disc-nome" style="display:block">Direito Processual do Trabalho</span>
+              <span class="disc-desc">Processo e procedimento na Justiça do Trabalho</span>
+            </span>
+            <span class="disc-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="disc d3" href="https://marcos-santos-marinho.github.io/direito-do-trabalho/pratica-juridica-trabalhista/">
+            <span class="disc-num">03</span>
+            <span>
+              <span class="disc-nome" style="display:block">Prática Jurídica Trabalhista</span>
+              <span class="disc-desc">Peças processuais, audiências e casos práticos</span>
+            </span>
+            <span class="disc-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </a>
+        </li>
+      </ul>
     </div>
   </main>
 
-  <footer>marcos-santos-marinho.github.io</footer>
+  <footer>
+    <div class="wrap">
+      <span>marcos-santos-marinho.github.io/direito-do-trabalho</span>
+      <span>Prof. Marcos Marinho</span>
+    </div>
+  </footer>
 
 </body>
 </html>
