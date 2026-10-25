@@ -1,208 +1,428 @@
-<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>20. Rescisão do contrato de trabalho — Formalidades</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"><style>
-:root{
-  --ink:#1b2436;--ink-soft:#414a5c;--paper:#edece5;--surface:#fbfaf7;
-  --accent:#7a2e37;--accent-soft:#a2545f;--iron:#8b8579;
-  --line:rgba(27,36,54,.13);--line-strong:rgba(27,36,54,.22);
-  --green:#166534;--green-bg:#f0fdf4;--green-line:#bbf7d0;
-  --red:#991b1b;--red-bg:#fef2f2;--red-line:#fecaca;
-  --display:"Fraunces",Georgia,serif;--body:"Spectral",Georgia,serif;
-  --mono:"IBM Plex Mono",ui-monospace,monospace;
-}
-*{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:19px;line-height:1.78;-webkit-font-smoothing:antialiased;}
-body::before{content:"";position:fixed;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 34%,var(--ink) 34%,var(--ink) 100%);z-index:50;}
-.wrap{max-width:760px;margin:0 auto;padding:0 22px 72px;}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Direito do Trabalho</title>
 
-/* CABEÇALHO */
-.masthead{padding:56px 0 30px;border-bottom:1px solid var(--line-strong);animation:rise .7s cubic-bezier(.2,.7,.2,1) both;}
-.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
-.eyebrow::before{content:"";width:26px;height:2px;background:var(--accent);display:inline-block;}
-.eyebrow .dot{color:var(--line-strong);}
-.title-row{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;flex-wrap:wrap;}
-h1{font-family:var(--display);font-weight:500;font-size:clamp(2.3rem,6.5vw,3.8rem);line-height:1.04;letter-spacing:-.015em;max-width:14ch;}
-h1 .art{display:block;font-size:.42em;font-weight:600;letter-spacing:.02em;color:var(--accent);font-family:var(--mono);text-transform:uppercase;margin-bottom:.5em;}
-.slides-btn{flex-shrink:0;display:inline-flex;align-items:center;gap:12px;text-decoration:none;background:var(--ink);color:#f4f2ec;border-radius:4px;padding:13px 18px;font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;box-shadow:0 8px 22px -12px rgba(27,36,54,.7);transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s,background .25s;}
-.slides-btn:hover{background:var(--accent);transform:translateY(-2px);}
-.slides-btn .arw{transition:transform .25s;}
-.slides-btn:hover .arw{transform:translateX(4px);}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-/* VERBETE */
-.verbete{margin:44px 0 8px;padding:6px 0 6px 30px;border-left:3px solid var(--accent);}
-.verbete .tag{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:14px;}
-.verbete p{font-family:var(--display);font-weight:400;font-size:clamp(1.15rem,2.8vw,1.45rem);line-height:1.45;color:var(--ink);margin:0;}
+<style>
+  :root{
+    --c1:#2563eb;   /* azul */
+    --c2:#7c3aed;   /* violeta */
+    --c3:#dc2626;   /* vermelho */
+    --c4:#059669;   /* verde */
+    --c5:#d97706;   /* âmbar */
+    --c6:#0891b2;   /* ciano */
+    --ink:#0f172a;
+    --ink-soft:#475569;
+    --surface:#ffffff;
+    --paper:#f1f5f9;
+    --line:rgba(15,23,42,.1);
+  }
 
-/* REF */
-.ref{font-family:var(--mono);font-size:.8em;color:var(--iron);background:rgba(139,133,121,.12);padding:2px 7px;border-radius:3px;white-space:nowrap;}
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
 
-/* SEÇÕES */
-.sec-head{display:flex;gap:16px;align-items:baseline;margin:44px 0 14px;padding-top:26px;border-top:1px solid var(--line);}
-.sec-head .num{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--accent);flex-shrink:0;padding-top:.35em;}
-h2{font-family:var(--display);font-weight:500;font-size:clamp(1.55rem,4vw,1.95rem);line-height:1.14;letter-spacing:-.01em;color:var(--ink);}
-h3{font-family:var(--display);font-weight:600;font-size:1.15rem;color:var(--ink);margin:22px 0 8px;}
-p{margin-bottom:14px;color:var(--ink-soft);}
+  body{
+    font-family:"Inter", system-ui, sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    font-size:16px;
+    line-height:1.6;
+    min-height:100vh;
+  }
 
-/* LISTA */
-.blist{list-style:none;padding:0;margin:10px 0 12px;display:flex;flex-direction:column;gap:3px;}
-.blist li{display:grid;grid-template-columns:22px 1fr;gap:8px;font-size:.93em;color:var(--ink-soft);line-height:1.65;padding:8px 0;border-bottom:1px solid var(--line);}
-.blist li:last-child{border-bottom:none;}
-.blist li .bul{color:var(--accent);font-family:var(--mono);font-size:.85em;padding-top:2px;}
+  /* fundo com gradiente */
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+      radial-gradient(ellipse 700px 500px at 10% -10%, rgba(37,99,235,.12) 0%, transparent 70%),
+      radial-gradient(ellipse 600px 400px at 90% 100%, rgba(124,58,237,.10) 0%, transparent 70%),
+      radial-gradient(ellipse 500px 300px at 50% 50%, rgba(5,150,105,.06) 0%, transparent 70%);
+    pointer-events:none;
+    z-index:0;
+  }
 
-/* SUMULA */
-.sumula{margin:10px 0 6px;padding:12px 16px;border-left:2px solid var(--iron);background:var(--paper);border-radius:0 4px 4px 0;font-size:.89em;color:var(--ink-soft);line-height:1.65;}
-.sumula strong{font-family:var(--mono);font-size:.86em;letter-spacing:.08em;text-transform:uppercase;color:var(--iron);display:block;margin-bottom:4px;}
+  .container{
+    position:relative;
+    z-index:1;
+    max-width:680px;
+    margin:0 auto;
+    padding:28px 18px 48px;
+  }
 
-/* NOTA / ALERTA */
-.nota{margin:10px 0 6px;padding:13px 17px;background:rgba(122,46,55,.06);border-left:3px solid var(--accent);border-radius:0 5px 5px 0;font-size:.91em;color:var(--ink-soft);line-height:1.65;}
-.nota strong{color:var(--ink);}
+  /* ===== HERO ===== */
+  .hero{
+    text-align:center;
+    padding:36px 0 28px;
+  }
 
-/* TABELA */
-.tbl{margin:12px 0 6px;border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:.9em;}
-.tbl-head{display:grid;background:var(--ink);color:#f4f2ec;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;}
-.tbl-head div,.tbl-row div{padding:9px 14px;}
-.tbl-head div:not(:last-child){border-right:1px solid rgba(255,255,255,.15);}
-.tbl-row{display:grid;border-top:1px solid var(--line);}
-.tbl-row:nth-child(even) div{background:rgba(139,133,121,.04);}
-.tbl-row div{color:var(--ink-soft);display:flex;align-items:center;line-height:1.5;}
-.tbl-row div:not(:last-child){border-right:1px solid var(--line);}
-.tbl-3{grid-template-columns:1fr 1fr 1fr;}
-.tbl-2{grid-template-columns:1fr 1fr;}
-.tbl-head.tbl-3{grid-template-columns:1fr 1fr 1fr;}
-.tbl-head.tbl-2{grid-template-columns:1fr 1fr;}
+  .hero-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:linear-gradient(135deg, var(--c1), var(--c2));
+    color:#fff;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    padding:6px 16px;
+    border-radius:99px;
+    margin-bottom:18px;
+  }
 
-/* CARDS ACCORDION */
-.cards{display:flex;flex-direction:column;gap:3px;}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;transition:box-shadow .2s;}
-.card:hover{box-shadow:0 4px 18px -8px rgba(27,36,54,.2);}
-.card-btn{width:100%;background:none;border:none;cursor:pointer;display:grid;grid-template-columns:52px 1fr 34px;align-items:center;padding:0;text-align:left;color:inherit;}
-.card-icon{display:flex;align-items:center;justify-content:center;min-height:60px;border-right:1px solid var(--line);font-family:var(--mono);font-weight:700;font-size:11px;color:var(--accent);background:rgba(122,46,55,.05);text-align:center;padding:4px;line-height:1.3;}
-.card-head{padding:13px 16px;}
-.card-num{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--iron);display:block;margin-bottom:3px;}
-.card-title{font-family:var(--display);font-weight:600;font-size:1rem;line-height:1.2;color:var(--ink);}
-.card-chevron{display:flex;align-items:center;justify-content:center;padding-right:14px;color:var(--iron);font-size:13px;transition:transform .3s cubic-bezier(.2,.7,.2,1),color .2s;}
-.card.open .card-chevron{transform:rotate(180deg);color:var(--accent);}
-.card-body{display:none;padding:16px 20px 20px;border-top:1px solid var(--line);}
-.card.open .card-body{display:block;}
-.card-body p{color:var(--ink-soft);font-size:.93em;line-height:1.72;}
+  .hero h1{
+    font-family:"Fraunces", Georgia, serif;
+    font-size:clamp(2.4rem,8vw,3.6rem);
+    font-weight:700;
+    line-height:1.05;
+    letter-spacing:-.02em;
+    background:linear-gradient(135deg, var(--c1) 0%, var(--c2) 50%, var(--c3) 100%);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+    margin-bottom:12px;
+  }
 
-/* ===== PLACAR ===== */
-.scoreboard{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:18px 22px;background:var(--surface);border:1px solid var(--line-strong);border-radius:8px;margin-bottom:8px;}
-.score-label{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--iron);}
-.score-nums{display:flex;align-items:baseline;gap:6px;}
-.score-current{font-family:var(--display);font-size:2.6rem;font-weight:600;color:var(--ink);line-height:1;}
-.score-total{font-family:var(--mono);font-size:1rem;color:var(--iron);}
-.score-bar-wrap{flex:1;min-width:120px;height:8px;background:var(--line);border-radius:99px;overflow:hidden;}
-.score-bar{height:100%;width:0%;background:var(--accent);border-radius:99px;transition:width .5s cubic-bezier(.2,.7,.2,1),background .3s;}
-.score-msg{font-family:var(--mono);font-size:12px;color:var(--iron);min-width:80px;}
-.btn-reset{margin-left:auto;border:1px solid var(--line-strong);background:none;color:var(--ink-soft);border-radius:4px;padding:7px 14px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:border-color .2s,color .2s;}
-.btn-reset:hover{border-color:var(--accent);color:var(--accent);}
+  .hero p{
+    font-size:15px;
+    color:var(--ink-soft);
+    max-width:420px;
+    margin:0 auto;
+  }
 
-/* CARD DE QUESTÃO */
-.q-card{background:var(--surface);border:1px solid var(--line);border-radius:8px;margin:14px 0;overflow:hidden;transition:border-color .25s,box-shadow .25s;}
-.q-card.answered-correct{border-color:var(--green-line);box-shadow:0 0 0 2px rgba(22,101,52,.12);}
-.q-card.answered-wrong{border-color:var(--red-line);box-shadow:0 0 0 2px rgba(153,27,27,.10);}
-.q-header{display:flex;align-items:flex-start;gap:12px;padding:16px 18px 12px;}
-.q-badge{flex-shrink:0;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--accent);background:rgba(122,46,55,.09);border:1px solid rgba(122,46,55,.18);border-radius:4px;padding:3px 9px;margin-top:3px;white-space:nowrap;}
-.q-text{font-family:var(--body);font-size:.96em;color:var(--ink);line-height:1.72;flex:1;margin:0;}
-.options{padding:0 18px 16px;display:flex;flex-direction:column;gap:7px;}
-.opt{display:flex;align-items:flex-start;gap:11px;padding:10px 13px;border:1px solid var(--line);border-radius:6px;cursor:pointer;background:var(--paper);transition:border-color .18s,background .18s;text-align:left;width:100%;font-family:var(--body);font-size:.92em;color:var(--ink-soft);line-height:1.6;}
-.opt:hover:not(:disabled){border-color:var(--accent-soft);background:#f7f3f1;}
-.opt-letter{flex-shrink:0;font-family:var(--mono);font-size:.8em;font-weight:700;color:var(--accent);width:20px;padding-top:2px;}
-.opt.selected{border-color:var(--accent);background:rgba(122,46,55,.06);}
-.opt.correct-final{border-color:var(--green);background:var(--green-bg);cursor:default;}
-.opt.correct-final .opt-letter{color:var(--green);}
-.opt.wrong-final{border-color:var(--red);background:var(--red-bg);cursor:default;}
-.opt.wrong-final .opt-letter{color:var(--red);}
-.opt.dimmed{opacity:.42;cursor:default;}
-.q-actions{padding:0 18px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
-.btn-confirm{display:inline-flex;align-items:center;gap:8px;padding:9px 20px;background:var(--ink);color:#f4f2ec;border:none;border-radius:4px;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;transition:background .2s,transform .2s;}
-.btn-confirm:hover:not(:disabled){background:var(--accent);transform:translateY(-1px);}
-.btn-confirm:disabled{opacity:.35;cursor:default;transform:none;}
-.toggle-gabarito{display:none;align-items:center;gap:7px;border:none;background:none;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--iron);cursor:pointer;transition:color .2s;padding:0;}
-.toggle-gabarito:hover{color:var(--accent);}
-.toggle-gabarito .chev{display:inline-block;font-size:10px;transition:transform .3s cubic-bezier(.2,.7,.2,1);}
-.toggle-gabarito.open .chev{transform:rotate(180deg);}
-.gabarito{border-top:1px solid var(--line);overflow:hidden;max-height:0;transition:max-height .45s cubic-bezier(.2,.7,.2,1);}
-.gabarito.open{max-height:1800px;}
-.gabarito-inner{padding:16px 18px 18px;}
-.gabarito-title{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--iron);margin-bottom:10px;}
-.gabarito-correct{display:flex;align-items:center;gap:10px;padding:9px 13px;background:var(--green-bg);border:1px solid var(--green-line);border-radius:6px;font-family:var(--mono);font-size:.84em;font-weight:700;color:var(--green);margin-bottom:12px;}
-.gabarito-body{font-size:.9em;color:var(--ink-soft);line-height:1.72;}
-.gabarito-body strong{color:var(--ink);}
-.gabarito-body .ref{font-family:var(--mono);font-size:.8em;color:var(--iron);background:rgba(139,133,121,.12);padding:2px 7px;border-radius:3px;white-space:nowrap;}
-.gabarito-body p{margin-bottom:9px;}
-.gabarito-body p:last-child{margin-bottom:0;}
+  /* ===== BOTÕES TOPO ===== */
+  .top-buttons{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin:24px 0 32px;
+  }
 
-/* RESULTADO */
-.result-banner{display:none;margin:28px 0 0;padding:26px 22px;border:1px solid var(--line-strong);border-radius:8px;background:var(--surface);text-align:center;}
-.result-banner.show{display:block;}
-.result-score{font-family:var(--display);font-size:3.2rem;font-weight:600;color:var(--accent);line-height:1;margin-bottom:6px;}
-.result-label{font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--iron);}
-.result-msg{margin-top:10px;font-size:.94em;color:var(--ink-soft);}
+  .top-btn{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:16px;
+    border-radius:16px;
+    text-decoration:none;
+    color:var(--surface);
+    font-weight:700;
+    font-size:14px;
+    transition:transform .2s cubic-bezier(.2,.7,.2,1), box-shadow .2s;
+    position:relative;
+    overflow:hidden;
+  }
+  .top-btn::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(255,255,255,.12);
+    opacity:0;
+    transition:opacity .2s;
+  }
+  .top-btn:hover{ transform:translateY(-3px); }
+  .top-btn:hover::before{ opacity:1; }
 
-/* VOLTAR */
-.back{margin-top:52px;display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line-strong);border-radius:6px;padding:20px 22px;font-family:var(--mono);font-size:14px;letter-spacing:.04em;transition:border-color .25s,transform .25s;}
-.back .arw{color:var(--accent);transition:transform .25s;font-size:18px;}
-.back:hover{border-color:var(--accent);transform:translateY(-2px);}
-.back:hover .arw{transform:translateX(-4px);}
+  .top-btn.plano{
+    background:linear-gradient(135deg, #2563eb, #1d4ed8);
+    box-shadow:0 8px 24px rgba(37,99,235,.35);
+  }
+  .top-btn.plano:hover{ box-shadow:0 14px 32px rgba(37,99,235,.45); }
 
-@keyframes rise{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
-.reveal{opacity:0;transform:translateY(14px);}
-.reveal.in{opacity:1;transform:none;transition:opacity .5s ease,transform .5s cubic-bezier(.2,.7,.2,1);}
+  .top-btn.livro{
+    background:linear-gradient(135deg, #7c3aed, #6d28d9);
+    box-shadow:0 8px 24px rgba(124,58,237,.35);
+  }
+  .top-btn.livro:hover{ box-shadow:0 14px 32px rgba(124,58,237,.45); }
 
-@media(max-width:560px){
-  body{font-size:17.5px;}
-  .masthead{padding:40px 0 24px;}
-  .title-row{align-items:stretch;}
-  .slides-btn{width:100%;justify-content:center;}
-  .verbete{padding-left:18px;}
-  .scoreboard{flex-direction:column;align-items:flex-start;gap:10px;}
-  .btn-reset{margin-left:0;}
-  .tbl-3{grid-template-columns:1fr 1fr;}
-  .tbl-head.tbl-3 div:last-child,.tbl-3 .tbl-row div:last-child{display:none;}
-}
-@media(prefers-reduced-motion:reduce){
-  *{animation:none!important;scroll-behavior:auto;}
-  .reveal{opacity:1;transform:none;}
-  .reveal.in{transition:none;}
-}
+  .top-btn .btn-icon{
+    width:40px;
+    height:40px;
+    border-radius:10px;
+    background:rgba(255,255,255,.2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+    font-size:18px;
+  }
+  .top-btn .btn-text{
+    display:flex;
+    flex-direction:column;
+    gap:1px;
+  }
+  .top-btn .btn-label{
+    font-size:13px;
+    font-weight:900;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+  }
+  .top-btn .btn-desc{
+    font-size:11px;
+    font-weight:500;
+    opacity:.85;
+  }
 
-.q-header{flex-wrap:wrap}.q-text{flex-basis:100%}.q-badge{white-space:normal}
-.card-body ul{padding-left:24px}.card-body li{margin-bottom:12px}
-.card-body .nota p:last-child{margin-bottom:0}
-.score-msg{white-space:nowrap}.source{font-size:.8em;margin-top:20px}
-@media(max-width:560px){.score-bar-wrap{width:100%;flex:auto}.ref{white-space:normal}}
+  /* ===== DIVISOR DE SEÇÃO ===== */
+  .section-label{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:16px;
+  }
+  .section-label span{
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    white-space:nowrap;
+  }
+  .section-label::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:var(--line);
+  }
 
-.compare-table{width:100%;border-collapse:collapse;background:var(--surface);font-size:.9em;margin:22px 0}
-.compare-table th,.compare-table td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;overflow-wrap:anywhere}
-.compare-table th{color:var(--accent);font-family:var(--display)}
-@media(max-width:560px){.compare-table{font-size:.8em}.compare-table th,.compare-table td{padding:9px 6px}}
-</style><style>.material-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}.course-nav{margin-top:40px;border-top:1px solid var(--line-strong);padding-top:20px}.course-nav summary{cursor:pointer;font-family:var(--display);font-size:1.25rem;color:var(--accent)}.course-nav ul{padding-left:22px;margin-top:16px}.course-nav a{color:var(--ink-soft)}.course-nav li{margin:8px 0}button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px}@media print{.card-body{display:block!important}.reveal{opacity:1!important;transform:none!important}.material-links,.course-nav,.back{display:none}}
-</style></head><body><div class="wrap"><header class="masthead"><p class="eyebrow">Direito do Trabalho <span class="dot">·</span> Encerramento do vínculo</p><div class="title-row"><h1><span class="art">Item 20</span>Rescisão do contrato de trabalho</h1></div><div class="verbete"><span class="tag">Formalidades · Arts. 467, 477 e 500 da CLT</span><p>Da discriminação das parcelas no <strong>TRCT</strong> à entrega dos documentos e ao <strong>pagamento das verbas rescisórias</strong>: conheça as formalidades e as consequências do atraso.</p></div><div class="material-links"><a class="slides-btn" href="https://drive.google.com/file/d/1rleKNsq_vtGTLZY2SSv83rLmKabptqxK/view" target="_blank" rel="noopener"><span>Slides da aula</span><span class="arw">→</span></a></div></header><section><div class="sec-head reveal"><span class="num">§ 20.1</span><h2>Recibo de quitação e TRCT</h2></div><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-1"><span class="card-icon">01</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Recibo de quitação e TRCT</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-1"><p>1) Recibo de quitação / termo de rescisão do contrato de trabalho (TRCT) – a extinção do contrato de trabalho, qualquer que seja sua causa, gera para o empregado o direito de recebimento das verbas rescisórias.</p><p>As verbas rescisórias devidas serão diferentes conforme o tipo de rescisão da qual se trate. Os valores das referidas verbas deverão ser apurados considerando-se a remuneração do empregado à data da rescisão do contrato.</p><p>Assim, quando da rescisão do contrato de trabalho é necessário que seja feita a especificação de cada parcela rescisória paga ao empregado, com a discriminação de seus respectivos valores, em instrumento de rescisão ou recibo de quitação.</p><p>Qualquer compensação de valores a ser feita em relação às verbas rescisórias não poderá exceder do valor correspondente a um mês de remuneração do empregado (art. 477, § 5º, CLT).</p></div></div></div></section>
-<section><div class="sec-head reveal"><span class="num">§ 20.2</span><h2>Formalidades do empregador</h2></div><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-2"><span class="card-icon">02</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Formalidades do empregador</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-2"><p>2) Formalidades a serem cumpridas pelo empregador – o empregador deverá proceder à anotação na CTPS, comunicar a dispensa aos órgãos competentes, realizar o pagamento das verbas rescisórias no prazo e na forma previstos em lei (art. 477, caput, da CLT) e entregar ao empregado os documentos respectivos no prazo de até dez dias contados a partir do término do contrato (art. 477, § 6º, da CLT).</p><p>O pedido de demissão de empregado estável só será válido quanto feito com assistência do respectivo sindicato ou, se não houver, perante o órgão do Ministério do Trabalho (art. 500, CLT).</p></div></div></div></section>
-<section><div class="sec-head reveal"><span class="num">§ 20.3</span><h2>Prazo e formas de pagamento</h2></div><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-3"><span class="card-icon">03</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Prazo e formas de pagamento</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-3"><p>3) Pagamento das verbas rescisórias – deve ser realizado no prazo de até dez dias contados a partir do término do contrato (art. 477, § 6º, CLT).</p><p>O pagamento deve ser feito (art. 477, § 4º, da CLT):</p><ul class="bullet"><li>em dinheiro, depósito bancário ou cheque visado, conforme acordarem as partes;</li></ul><ul class="bullet"><li>em dinheiro ou depósito bancário quando o empregado for analfabeto.</li></ul><p>A contagem do prazo de dez dias para quitação das verbas rescisórias exclui necessariamente o dia da notificação da dispensa e inclui o dia do vencimento, conforme o disposto no art. 132 do Código Civil (OJ SDI-1 162, TST).</p></div></div></div></section>
-<section><div class="sec-head reveal"><span class="num">§ 20.4</span><h2>Multa pelo atraso</h2></div><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-4"><span class="card-icon">04</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Multa pelo atraso</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-4"><p>4) Multa pelo atraso no pagamento das verbas rescisórias – não sendo respeitado pelo empregador o prazo para pagamento das verbas rescisórias previsto no § 6º, art. 477, da CLT, este deverá pagar ao empregado multa no valor equivalente ao seu salário, devidamente corrigido, salvo quando comprovadamente o trabalhador der causa à mora (art. 477, § 8º, CLT).</p><p>O empregador deverá pagar, ainda, multa administrativa imposta pelo Ministério do Trabalho, que não reverte ao empregado.</p><p>Havendo decretação da falência do empregador, não será devida a multa do § 8º, art. 477, da CLT (Súmula 388, TST).</p><p>A multa do § 8º, art. 477, da CLT aplica-se à pessoa jurídica de direito público que não observa o prazo para pagamento das verbas rescisórias, pois nivela-se a qualquer particular, em direitos e obrigações, despojando-se do jus imperii ao celebrar um contrato de emprego (OJ SDI-1 238, TST).</p></div></div></div></section>
-<section><div class="sec-head reveal"><span class="num">§ 20.5</span><h2>Pagamento das parcelas incontroversas em juízo</h2></div><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-5"><span class="card-icon">05</span><span class="card-head"><span class="card-num">Conteúdo da aula</span><span class="card-title">Pagamento das parcelas incontroversas em juízo</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-5"><p>5) Pagamento das verbas rescisórias em juízo – em caso de rescisão do contrato de trabalho, havendo controvérsia sobre o montante das verbas rescisórias, o empregador é obrigado a pagar ao trabalhador, à data do comparecimento à Justiça do Trabalho, a parte incontroversa dessas verbas, sob pena de pagá-las acrescidas de 50% (art. 467, CLT).</p></div></div></div></section><details class="course-nav"><summary>Índice da disciplina — todos os tópicos</summary><ul><li><a href="01-conceito-de-direito-do-trabalho/index.html">01. Conceito de Direito do Trabalho</a></li><li><a href="02-principios-do-direito-do-trabalho/index.html">02. Princípios do Direito do Trabalho</a></li><li><a href="03-fontes-do-direito-do-trabalho/index.html">03. Fontes do Direito do Trabalho</a></li><li><a href="04-relacao-de-emprego/index.html">04. Relação de emprego</a></li><li><a href="05-relacao-de-trabalho/index.html">05. Relação de trabalho</a></li><li><a href="06-empregado/index.html">06. Empregado</a></li><li><a href="07-empregador/index.html">07. Empregador</a></li><li><a href="08-empregado-domestico/index.html">08. Empregado doméstico</a></li><li><a href="09-empregado-rural/index.html">09. Empregado rural</a></li><li><a href="10-contrato-de-trabalho/index.html">10. Contrato de trabalho</a></li><li><a href="11-duracao-do-trabalho/index.html">11. Duração do trabalho</a></li><li><a href="12-ferias/index.html">12. Férias</a></li><li><a href="13-salario-e-remuneracao/index.html">13. Salário e remuneração</a></li><li><a href="14-alteracao-do-contrato/index.html">14. Alteração do contrato</a></li><li><a href="15-suspensao-e-interrupcao-do-contrato/index.html">15. Suspensão e interrupção do contrato</a></li><li><a href="16-extincao-do-contrato/index.html">16. Extinção do contrato</a></li><li><a href="17-aviso-previo/index.html">17. Aviso-prévio</a></li><li><a href="18-estabilidade/index.html">18. Estabilidade</a></li><li><a href="19-fgts/index.html">19. FGTS</a></li><li><a href="20-rescisao/index.html">20. Rescisão do contrato — Formalidades</a></li></ul></details><p class="source" style="margin-top:28px">Conteúdo integral: 20. Rescisão do contrato de trabalho – Formalidades.</p><a class="back" href="https://marcos-santos-marinho.github.io/direito-do-trabalho/"><span class="arw">←</span><span>Índice da disciplina</span></a></div><script>
-/* accordion de conteúdo */
-(function(){
-  var cards = document.querySelectorAll('.card');
-  cards.forEach(function(card){
-    var btn = card.querySelector('.card-btn');
-    if(!btn) return;
-    btn.addEventListener('click', function(){
-      var isOpen = card.classList.contains('open');
-      cards.forEach(function(c){c.classList.remove('open');var b=c.querySelector('.card-btn');if(b)b.setAttribute('aria-expanded','false');});
-      if(!isOpen){card.classList.add('open');btn.setAttribute('aria-expanded','true');}
-    });
-  });
-})();
+  /* ===== LISTA DE TÓPICOS ===== */
+  .list{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
 
-/* reveal on scroll */
-(function(){
-  var items=document.querySelectorAll('.reveal');
-  if(!('IntersectionObserver' in window)){items.forEach(function(el){el.classList.add('in');});return;}
-  var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.08,rootMargin:'0px 0px -3% 0px'});
-  items.forEach(function(el,i){el.style.transitionDelay=(Math.min(i,6)*30)+'ms';io.observe(el);});
-})();
+  .item{
+    display:flex;
+    align-items:center;
+    gap:0;
+    text-decoration:none;
+    background:var(--surface);
+    border-radius:14px;
+    border:1px solid var(--line);
+    color:var(--ink);
+    overflow:hidden;
+    transition:transform .18s cubic-bezier(.2,.7,.2,1), box-shadow .18s;
+    box-shadow:0 2px 8px rgba(15,23,42,.06);
+  }
+  .item:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(15,23,42,.12);
+  }
 
-</script></body></html>
+  .item-num{
+    width:52px;
+    height:100%;
+    min-height:60px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:13px;
+    font-weight:800;
+    color:#fff;
+    flex-shrink:0;
+    letter-spacing:.03em;
+  }
+
+  .item-text{
+    flex:1;
+    padding:14px 16px;
+    font-weight:600;
+    font-size:15px;
+    line-height:1.3;
+  }
+
+  .item-chev{
+    padding-right:16px;
+    font-size:16px;
+    font-weight:900;
+    color:rgba(15,23,42,.25);
+    flex-shrink:0;
+  }
+
+  /* cores rotativas por grupos de 4 */
+  .c-1  .item-num{ background:linear-gradient(160deg,#2563eb,#1d4ed8); }
+  .c-2  .item-num{ background:linear-gradient(160deg,#7c3aed,#6d28d9); }
+  .c-3  .item-num{ background:linear-gradient(160deg,#dc2626,#b91c1c); }
+  .c-4  .item-num{ background:linear-gradient(160deg,#059669,#047857); }
+  .c-5  .item-num{ background:linear-gradient(160deg,#d97706,#b45309); }
+  .c-6  .item-num{ background:linear-gradient(160deg,#0891b2,#0e7490); }
+  .c-7  .item-num{ background:linear-gradient(160deg,#be185d,#9d174d); }
+  .c-8  .item-num{ background:linear-gradient(160deg,#16a34a,#15803d); }
+  .c-9  .item-num{ background:linear-gradient(160deg,#9333ea,#7e22ce); }
+  .c-10 .item-num{ background:linear-gradient(160deg,#ea580c,#c2410c); }
+  .c-11 .item-num{ background:linear-gradient(160deg,#2563eb,#1d4ed8); }
+  .c-12 .item-num{ background:linear-gradient(160deg,#7c3aed,#6d28d9); }
+  .c-13 .item-num{ background:linear-gradient(160deg,#dc2626,#b91c1c); }
+  .c-14 .item-num{ background:linear-gradient(160deg,#059669,#047857); }
+  .c-15 .item-num{ background:linear-gradient(160deg,#d97706,#b45309); }
+  .c-16 .item-num{ background:linear-gradient(160deg,#0891b2,#0e7490); }
+  .c-17 .item-num{ background:linear-gradient(160deg,#be185d,#9d174d); }
+  .c-18 .item-num{ background:linear-gradient(160deg,#16a34a,#15803d); }
+  .c-19 .item-num{ background:linear-gradient(160deg,#9333ea,#7e22ce); }
+  .c-20 .item-num{ background:linear-gradient(160deg,#ea580c,#c2410c); }
+
+  /* borda esquerda colorida */
+  .c-1  { border-left:3px solid #2563eb; }
+  .c-2  { border-left:3px solid #7c3aed; }
+  .c-3  { border-left:3px solid #dc2626; }
+  .c-4  { border-left:3px solid #059669; }
+  .c-5  { border-left:3px solid #d97706; }
+  .c-6  { border-left:3px solid #0891b2; }
+  .c-7  { border-left:3px solid #be185d; }
+  .c-8  { border-left:3px solid #16a34a; }
+  .c-9  { border-left:3px solid #9333ea; }
+  .c-10 { border-left:3px solid #ea580c; }
+  .c-11 { border-left:3px solid #2563eb; }
+  .c-12 { border-left:3px solid #7c3aed; }
+  .c-13 { border-left:3px solid #dc2626; }
+  .c-14 { border-left:3px solid #059669; }
+  .c-15 { border-left:3px solid #d97706; }
+  .c-16 { border-left:3px solid #0891b2; }
+  .c-17 { border-left:3px solid #be185d; }
+  .c-18 { border-left:3px solid #16a34a; }
+  .c-19 { border-left:3px solid #9333ea; }
+  .c-20 { border-left:3px solid #ea580c; }
+
+  /* ===== BOTÃO VOLTAR ===== */
+  .back{
+    margin-top:28px;
+    text-align:center;
+  }
+  .back a{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    text-decoration:none;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px 28px;
+    font-weight:700;
+    font-size:14px;
+    color:var(--ink);
+    box-shadow:0 2px 8px rgba(15,23,42,.06);
+    transition:transform .18s, box-shadow .18s;
+  }
+  .back a:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(15,23,42,.12);
+  }
+
+  /* ===== ANIMAÇÃO ===== */
+  .item{
+    opacity:0;
+    transform:translateY(12px);
+    animation:fadeUp .45s ease forwards;
+  }
+  @keyframes fadeUp{
+    to{ opacity:1; transform:none; }
+  }
+  .item:nth-child(1) { animation-delay:.04s; }
+  .item:nth-child(2) { animation-delay:.07s; }
+  .item:nth-child(3) { animation-delay:.10s; }
+  .item:nth-child(4) { animation-delay:.13s; }
+  .item:nth-child(5) { animation-delay:.16s; }
+  .item:nth-child(6) { animation-delay:.19s; }
+  .item:nth-child(7) { animation-delay:.22s; }
+  .item:nth-child(8) { animation-delay:.25s; }
+  .item:nth-child(9) { animation-delay:.28s; }
+  .item:nth-child(10){ animation-delay:.31s; }
+  .item:nth-child(11){ animation-delay:.34s; }
+  .item:nth-child(12){ animation-delay:.37s; }
+  .item:nth-child(13){ animation-delay:.40s; }
+  .item:nth-child(14){ animation-delay:.43s; }
+  .item:nth-child(15){ animation-delay:.46s; }
+  .item:nth-child(16){ animation-delay:.49s; }
+  .item:nth-child(17){ animation-delay:.52s; }
+  .item:nth-child(18){ animation-delay:.55s; }
+  .item:nth-child(19){ animation-delay:.58s; }
+  .item:nth-child(20){ animation-delay:.61s; }
+
+  @media (max-width:480px){
+    .top-buttons{ grid-template-columns:1fr; }
+    .hero h1{ font-size:2.2rem; }
+    .item-text{ font-size:14px; }
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    .item{ animation:none; opacity:1; transform:none; }
+  }
+</style>
+</head>
+
+<body>
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>Direito do Trabalho</h1>
+    <p>Materiais e tópicos organizados para leitura e estudo</p>
+  </div>
+
+  <!-- BOTÕES TOPO -->
+  <div class="top-buttons">
+    <a class="top-btn plano"
+       href="https://drive.google.com/drive/folders/1HmTzwsQF3cw1N1YNwJ_OoEm6IyrNdWkI?usp=sharing"
+       target="_blank" rel="noopener">
+      <div class="btn-icon">📋</div>
+      <div class="btn-text">
+        <div class="btn-label">Plano de Ensino</div>
+        <div class="btn-desc">Acesse o plano e cronograma</div>
+      </div>
+    </a>
+    <a class="top-btn livro"
+       href="https://drive.google.com/file/d/1JINdbnnWbQNVh1X6y8SZnZxC2PhCOun-/view?usp=sharing"
+       target="_blank" rel="noopener">
+      <div class="btn-icon">📖</div>
+      <div class="btn-text">
+        <div class="btn-label">Livro</div>
+        <div class="btn-desc">Leitura e materiais de apoio</div>
+      </div>
+    </a>
+  </div>
+
+  <!-- LISTA -->
+  <div class="section-label">
+    <span>Tópicos da disciplina</span>
+  </div>
+
+  <div class="list">
+    <a class="item c-1"  href="01-conceito-de-direito-do-trabalho/index.html"><div class="item-num">01</div><div class="item-text">Conceito de Direito do Trabalho</div><div class="item-chev">›</div></a>
+    <a class="item c-2"  href="02-principios-do-direito-do-trabalho/index.html"><div class="item-num">02</div><div class="item-text">Princípios do Direito do Trabalho</div><div class="item-chev">›</div></a>
+    <a class="item c-3"  href="03-fontes-do-direito-do-trabalho/index.html"><div class="item-num">03</div><div class="item-text">Fontes do Direito do Trabalho</div><div class="item-chev">›</div></a>
+    <a class="item c-4"  href="04-relacao-de-emprego/index.html"><div class="item-num">04</div><div class="item-text">Relação de Emprego</div><div class="item-chev">›</div></a>
+    <a class="item c-5"  href="05-relacao-de-trabalho/index.html"><div class="item-num">05</div><div class="item-text">Relação de Trabalho</div><div class="item-chev">›</div></a>
+    <a class="item c-6"  href="06-empregado/index.html"><div class="item-num">06</div><div class="item-text">Empregado</div><div class="item-chev">›</div></a>
+    <a class="item c-7"  href="07-empregador/index.html"><div class="item-num">07</div><div class="item-text">Empregador</div><div class="item-chev">›</div></a>
+    <a class="item c-8"  href="08-empregado-domestico/index.html"><div class="item-num">08</div><div class="item-text">Empregado Doméstico</div><div class="item-chev">›</div></a>
+    <a class="item c-9"  href="09-empregado-rural/index.html"><div class="item-num">09</div><div class="item-text">Empregado Rural</div><div class="item-chev">›</div></a>
+    <a class="item c-10" href="10-contrato-de-trabalho/index.html"><div class="item-num">10</div><div class="item-text">Contrato de Trabalho</div><div class="item-chev">›</div></a>
+    <a class="item c-11" href="11-duracao-do-trabalho/index.html"><div class="item-num">11</div><div class="item-text">Duração do Trabalho</div><div class="item-chev">›</div></a>
+    <a class="item c-12" href="12-ferias/index.html"><div class="item-num">12</div><div class="item-text">Férias</div><div class="item-chev">›</div></a>
+    <a class="item c-13" href="13-salario-e-remuneracao/index.html"><div class="item-num">13</div><div class="item-text">Salário e Remuneração</div><div class="item-chev">›</div></a>
+    <a class="item c-14" href="14-alteracao-do-contrato/index.html"><div class="item-num">14</div><div class="item-text">Alteração do Contrato de Trabalho</div><div class="item-chev">›</div></a>
+    <a class="item c-15" href="15-suspensao-e-interrupcao-do-contrato/index.html"><div class="item-num">15</div><div class="item-text">Suspensão e Interrupção do Contrato de Trabalho</div><div class="item-chev">›</div></a>
+    <a class="item c-16" href="16-extincao-do-contrato/index.html"><div class="item-num">16</div><div class="item-text">Extinção do Contrato de Trabalho</div><div class="item-chev">›</div></a>
+    <a class="item c-17" href="17-aviso-previo/index.html"><div class="item-num">17</div><div class="item-text">Aviso-Prévio</div><div class="item-chev">›</div></a>
+    <a class="item c-18" href="18-estabilidade/index.html"><div class="item-num">18</div><div class="item-text">Estabilidade no Emprego</div><div class="item-chev">›</div></a>
+    <a class="item c-19" href="19-fgts/index.html"><div class="item-num">19</div><div class="item-text">FGTS</div><div class="item-chev">›</div></a>
+    <a class="item c-20" href="20-rescisao/index.html"><div class="item-num">20</div><div class="item-text">Rescisão do Contrato de Trabalho</div><div class="item-chev">›</div></a>
+  </div>
+
+  <!-- VOLTAR -->
+  <div class="back">
+    <a href="https://marcos-santos-marinho.github.io/direito-do-trabalho/">← Voltar ao curso</a>
+  </div>
+
+</div>
+</body>
+</html>
