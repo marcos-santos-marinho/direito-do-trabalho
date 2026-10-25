@@ -1,667 +1,303 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>19. Processo de Execução Trabalhista</title>
-
-<style>
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>19. Execução Trabalhista</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"><style>
 :root{
-  --bg:#eaf3ff;
-  --panel:#f8fbff;
-  --card:#ffffff;
-  --title:#1f4fd8;
-  --text:#0f172a;
-  --muted:#475569;
-  --border:rgba(15,23,42,.14);
-  --shadow:0 14px 34px rgba(15,23,42,.12);
-  --blueSoft:#e8f0ff;
-  --greenSoft:#ecfdf5;
-  --orangeSoft:#fff7ed;
-  --purpleSoft:#f5f3ff;
-  --redSoft:#fef2f2;
+  --ink:#1b2436;--ink-soft:#414a5c;--paper:#edece5;--surface:#fbfaf7;
+  --accent:#7a2e37;--accent-soft:#a2545f;--iron:#8b8579;
+  --line:rgba(27,36,54,.13);--line-strong:rgba(27,36,54,.22);
+  --green:#166534;--green-bg:#f0fdf4;--green-line:#bbf7d0;
+  --red:#991b1b;--red-bg:#fef2f2;--red-line:#fecaca;
+  --display:"Fraunces",Georgia,serif;--body:"Spectral",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:19px;line-height:1.78;-webkit-font-smoothing:antialiased;}
+body::before{content:"";position:fixed;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,var(--accent) 0%,var(--accent) 34%,var(--ink) 34%,var(--ink) 100%);z-index:50;}
+.wrap{max-width:760px;margin:0 auto;padding:0 22px 72px;}
+
+/* CABEÇALHO */
+.masthead{padding:56px 0 30px;border-bottom:1px solid var(--line-strong);animation:rise .7s cubic-bezier(.2,.7,.2,1) both;}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--accent);display:inline-block;}
+.eyebrow .dot{color:var(--line-strong);}
+.title-row{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;flex-wrap:wrap;}
+h1{font-family:var(--display);font-weight:500;font-size:clamp(2.3rem,6.5vw,3.8rem);line-height:1.04;letter-spacing:-.015em;max-width:14ch;}
+h1 .art{display:block;font-size:.42em;font-weight:600;letter-spacing:.02em;color:var(--accent);font-family:var(--mono);text-transform:uppercase;margin-bottom:.5em;}
+.slides-btn{flex-shrink:0;display:inline-flex;align-items:center;gap:12px;text-decoration:none;background:var(--ink);color:#f4f2ec;border-radius:4px;padding:13px 18px;font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;box-shadow:0 8px 22px -12px rgba(27,36,54,.7);transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s,background .25s;}
+.slides-btn:hover{background:var(--accent);transform:translateY(-2px);}
+.slides-btn .arw{transition:transform .25s;}
+.slides-btn:hover .arw{transform:translateX(4px);}
+
+/* VERBETE */
+.verbete{margin:44px 0 8px;padding:6px 0 6px 30px;border-left:3px solid var(--accent);}
+.verbete .tag{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:14px;}
+.verbete p{font-family:var(--display);font-weight:400;font-size:clamp(1.15rem,2.8vw,1.45rem);line-height:1.45;color:var(--ink);margin:0;}
+
+/* REF */
+.ref{font-family:var(--mono);font-size:.8em;color:var(--iron);background:rgba(139,133,121,.12);padding:2px 7px;border-radius:3px;white-space:nowrap;}
+
+/* SEÇÕES */
+.sec-head{display:flex;gap:16px;align-items:baseline;margin:44px 0 14px;padding-top:26px;border-top:1px solid var(--line);}
+.sec-head .num{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--accent);flex-shrink:0;padding-top:.35em;}
+h2{font-family:var(--display);font-weight:500;font-size:clamp(1.55rem,4vw,1.95rem);line-height:1.14;letter-spacing:-.01em;color:var(--ink);}
+h3{font-family:var(--display);font-weight:600;font-size:1.15rem;color:var(--ink);margin:22px 0 8px;}
+p{margin-bottom:14px;color:var(--ink-soft);}
+
+/* LISTA */
+.blist{list-style:none;padding:0;margin:10px 0 12px;display:flex;flex-direction:column;gap:3px;}
+.blist li{display:grid;grid-template-columns:22px 1fr;gap:8px;font-size:.93em;color:var(--ink-soft);line-height:1.65;padding:8px 0;border-bottom:1px solid var(--line);}
+.blist li:last-child{border-bottom:none;}
+.blist li .bul{color:var(--accent);font-family:var(--mono);font-size:.85em;padding-top:2px;}
+
+/* SUMULA */
+.sumula{margin:10px 0 6px;padding:12px 16px;border-left:2px solid var(--iron);background:var(--paper);border-radius:0 4px 4px 0;font-size:.89em;color:var(--ink-soft);line-height:1.65;}
+.sumula strong{font-family:var(--mono);font-size:.86em;letter-spacing:.08em;text-transform:uppercase;color:var(--iron);display:block;margin-bottom:4px;}
+
+/* NOTA / ALERTA */
+.nota{margin:10px 0 6px;padding:13px 17px;background:rgba(122,46,55,.06);border-left:3px solid var(--accent);border-radius:0 5px 5px 0;font-size:.91em;color:var(--ink-soft);line-height:1.65;}
+.nota strong{color:var(--ink);}
+
+/* TABELA */
+.tbl{margin:12px 0 6px;border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:.9em;}
+.tbl-head{display:grid;background:var(--ink);color:#f4f2ec;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;}
+.tbl-head div,.tbl-row div{padding:9px 14px;}
+.tbl-head div:not(:last-child){border-right:1px solid rgba(255,255,255,.15);}
+.tbl-row{display:grid;border-top:1px solid var(--line);}
+.tbl-row:nth-child(even) div{background:rgba(139,133,121,.04);}
+.tbl-row div{color:var(--ink-soft);display:flex;align-items:center;line-height:1.5;}
+.tbl-row div:not(:last-child){border-right:1px solid var(--line);}
+.tbl-3{grid-template-columns:1fr 1fr 1fr;}
+.tbl-2{grid-template-columns:1fr 1fr;}
+.tbl-head.tbl-3{grid-template-columns:1fr 1fr 1fr;}
+.tbl-head.tbl-2{grid-template-columns:1fr 1fr;}
+
+/* CARDS ACCORDION */
+.cards{display:flex;flex-direction:column;gap:3px;}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;transition:box-shadow .2s;}
+.card:hover{box-shadow:0 4px 18px -8px rgba(27,36,54,.2);}
+.card-btn{width:100%;background:none;border:none;cursor:pointer;display:grid;grid-template-columns:52px 1fr 34px;align-items:center;padding:0;text-align:left;color:inherit;}
+.card-icon{display:flex;align-items:center;justify-content:center;min-height:60px;border-right:1px solid var(--line);font-family:var(--mono);font-weight:700;font-size:11px;color:var(--accent);background:rgba(122,46,55,.05);text-align:center;padding:4px;line-height:1.3;}
+.card-head{padding:13px 16px;}
+.card-num{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--iron);display:block;margin-bottom:3px;}
+.card-title{font-family:var(--display);font-weight:600;font-size:1rem;line-height:1.2;color:var(--ink);}
+.card-chevron{display:flex;align-items:center;justify-content:center;padding-right:14px;color:var(--iron);font-size:13px;transition:transform .3s cubic-bezier(.2,.7,.2,1),color .2s;}
+.card.open .card-chevron{transform:rotate(180deg);color:var(--accent);}
+.card-body{display:none;padding:16px 20px 20px;border-top:1px solid var(--line);}
+.card.open .card-body{display:block;}
+.card-body p{color:var(--ink-soft);font-size:.93em;line-height:1.72;}
+
+/* ===== PLACAR ===== */
+.scoreboard{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:18px 22px;background:var(--surface);border:1px solid var(--line-strong);border-radius:8px;margin-bottom:8px;}
+.score-label{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--iron);}
+.score-nums{display:flex;align-items:baseline;gap:6px;}
+.score-current{font-family:var(--display);font-size:2.6rem;font-weight:600;color:var(--ink);line-height:1;}
+.score-total{font-family:var(--mono);font-size:1rem;color:var(--iron);}
+.score-bar-wrap{flex:1;min-width:120px;height:8px;background:var(--line);border-radius:99px;overflow:hidden;}
+.score-bar{height:100%;width:0%;background:var(--accent);border-radius:99px;transition:width .5s cubic-bezier(.2,.7,.2,1),background .3s;}
+.score-msg{font-family:var(--mono);font-size:12px;color:var(--iron);min-width:80px;}
+.btn-reset{margin-left:auto;border:1px solid var(--line-strong);background:none;color:var(--ink-soft);border-radius:4px;padding:7px 14px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:border-color .2s,color .2s;}
+.btn-reset:hover{border-color:var(--accent);color:var(--accent);}
+
+/* CARD DE QUESTÃO */
+.q-card{background:var(--surface);border:1px solid var(--line);border-radius:8px;margin:14px 0;overflow:hidden;transition:border-color .25s,box-shadow .25s;}
+.q-card.answered-correct{border-color:var(--green-line);box-shadow:0 0 0 2px rgba(22,101,52,.12);}
+.q-card.answered-wrong{border-color:var(--red-line);box-shadow:0 0 0 2px rgba(153,27,27,.10);}
+.q-header{display:flex;align-items:flex-start;gap:12px;padding:16px 18px 12px;}
+.q-badge{flex-shrink:0;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--accent);background:rgba(122,46,55,.09);border:1px solid rgba(122,46,55,.18);border-radius:4px;padding:3px 9px;margin-top:3px;white-space:nowrap;}
+.q-text{font-family:var(--body);font-size:.96em;color:var(--ink);line-height:1.72;flex:1;margin:0;}
+.options{padding:0 18px 16px;display:flex;flex-direction:column;gap:7px;}
+.opt{display:flex;align-items:flex-start;gap:11px;padding:10px 13px;border:1px solid var(--line);border-radius:6px;cursor:pointer;background:var(--paper);transition:border-color .18s,background .18s;text-align:left;width:100%;font-family:var(--body);font-size:.92em;color:var(--ink-soft);line-height:1.6;}
+.opt:hover:not(:disabled){border-color:var(--accent-soft);background:#f7f3f1;}
+.opt-letter{flex-shrink:0;font-family:var(--mono);font-size:.8em;font-weight:700;color:var(--accent);width:20px;padding-top:2px;}
+.opt.selected{border-color:var(--accent);background:rgba(122,46,55,.06);}
+.opt.correct-final{border-color:var(--green);background:var(--green-bg);cursor:default;}
+.opt.correct-final .opt-letter{color:var(--green);}
+.opt.wrong-final{border-color:var(--red);background:var(--red-bg);cursor:default;}
+.opt.wrong-final .opt-letter{color:var(--red);}
+.opt.dimmed{opacity:.42;cursor:default;}
+.q-actions{padding:0 18px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.btn-confirm{display:inline-flex;align-items:center;gap:8px;padding:9px 20px;background:var(--ink);color:#f4f2ec;border:none;border-radius:4px;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;transition:background .2s,transform .2s;}
+.btn-confirm:hover:not(:disabled){background:var(--accent);transform:translateY(-1px);}
+.btn-confirm:disabled{opacity:.35;cursor:default;transform:none;}
+.toggle-gabarito{display:none;align-items:center;gap:7px;border:none;background:none;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--iron);cursor:pointer;transition:color .2s;padding:0;}
+.toggle-gabarito:hover{color:var(--accent);}
+.toggle-gabarito .chev{display:inline-block;font-size:10px;transition:transform .3s cubic-bezier(.2,.7,.2,1);}
+.toggle-gabarito.open .chev{transform:rotate(180deg);}
+.gabarito{border-top:1px solid var(--line);overflow:hidden;max-height:0;transition:max-height .45s cubic-bezier(.2,.7,.2,1);}
+.gabarito.open{max-height:1800px;}
+.gabarito-inner{padding:16px 18px 18px;}
+.gabarito-title{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--iron);margin-bottom:10px;}
+.gabarito-correct{display:flex;align-items:center;gap:10px;padding:9px 13px;background:var(--green-bg);border:1px solid var(--green-line);border-radius:6px;font-family:var(--mono);font-size:.84em;font-weight:700;color:var(--green);margin-bottom:12px;}
+.gabarito-body{font-size:.9em;color:var(--ink-soft);line-height:1.72;}
+.gabarito-body strong{color:var(--ink);}
+.gabarito-body .ref{font-family:var(--mono);font-size:.8em;color:var(--iron);background:rgba(139,133,121,.12);padding:2px 7px;border-radius:3px;white-space:nowrap;}
+.gabarito-body p{margin-bottom:9px;}
+.gabarito-body p:last-child{margin-bottom:0;}
+
+/* RESULTADO */
+.result-banner{display:none;margin:28px 0 0;padding:26px 22px;border:1px solid var(--line-strong);border-radius:8px;background:var(--surface);text-align:center;}
+.result-banner.show{display:block;}
+.result-score{font-family:var(--display);font-size:3.2rem;font-weight:600;color:var(--accent);line-height:1;margin-bottom:6px;}
+.result-label{font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--iron);}
+.result-msg{margin-top:10px;font-size:.94em;color:var(--ink-soft);}
+
+/* VOLTAR */
+.back{margin-top:52px;display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line-strong);border-radius:6px;padding:20px 22px;font-family:var(--mono);font-size:14px;letter-spacing:.04em;transition:border-color .25s,transform .25s;}
+.back .arw{color:var(--accent);transition:transform .25s;font-size:18px;}
+.back:hover{border-color:var(--accent);transform:translateY(-2px);}
+.back:hover .arw{transform:translateX(-4px);}
+
+@keyframes rise{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
+.reveal{opacity:0;transform:translateY(14px);}
+.reveal.in{opacity:1;transform:none;transition:opacity .5s ease,transform .5s cubic-bezier(.2,.7,.2,1);}
+
+@media(max-width:560px){
+  body{font-size:17.5px;}
+  .masthead{padding:40px 0 24px;}
+  .title-row{align-items:stretch;}
+  .slides-btn{width:100%;justify-content:center;}
+  .verbete{padding-left:18px;}
+  .scoreboard{flex-direction:column;align-items:flex-start;gap:10px;}
+  .btn-reset{margin-left:0;}
+  .tbl-3{grid-template-columns:1fr 1fr;}
+  .tbl-head.tbl-3 div:last-child,.tbl-3 .tbl-row div:last-child{display:none;}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;scroll-behavior:auto;}
+  .reveal{opacity:1;transform:none;}
+  .reveal.in{transition:none;}
 }
 
-*{ box-sizing:border-box; }
+.q-header{flex-wrap:wrap}.q-text{flex-basis:100%}.q-badge{white-space:normal}
+.card-body ul{padding-left:24px}.card-body li{margin-bottom:12px}
+.card-body .nota p:last-child{margin-bottom:0}
+.score-msg{white-space:nowrap}.source{font-size:.8em;margin-top:20px}
+@media(max-width:560px){.score-bar-wrap{width:100%;flex:auto}.ref{white-space:normal}}
 
-body{
-  margin:0;
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  background:radial-gradient(900px 420px at 30% 0%, #d8ecff 0%, var(--bg) 60%);
-  color:var(--text);
-  font-size:19px;
-  line-height:1.8;
+.compare-table{width:100%;border-collapse:collapse;background:var(--surface);font-size:.9em;margin:22px 0}
+.compare-table th,.compare-table td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;overflow-wrap:anywhere}
+.compare-table th{color:var(--accent);font-family:var(--display)}
+@media(max-width:560px){.compare-table{font-size:.8em}.compare-table th,.compare-table td{padding:9px 6px}}
+.q-header{flex-direction:column;align-items:stretch;min-width:0}.q-badge{align-self:flex-start;max-width:100%;white-space:normal;overflow-wrap:anywhere}.q-text{flex:none;width:100%;min-width:0;overflow-wrap:break-word}.opt>span:last-child{min-width:0;overflow-wrap:break-word}@media(max-width:560px){.q-header{padding:16px 14px;gap:10px}.q-text{font-size:1rem;line-height:1.7}.q-actions{flex-wrap:wrap}}.lesson{margin-top:24px}
+</style></head><body><div class="wrap"><header class="masthead"><p class="eyebrow">Direito Processual do Trabalho <span class="dot">·</span> Processo de execução</p><div class="title-row"><h1><span class="art">Item 19</span>Execução trabalhista</h1><a class="slides-btn" href="https://drive.google.com/file/d/1x5OXasoa567BXlnWsrQp8Y89OFCbhFqG/view?usp=sharing" target="_blank" rel="noopener"><span>Slides da aula</span><span class="arw">→</span></a></div><div class="verbete"><span class="tag">Processo de execução</span><p>Da formação do <strong>título executivo</strong> à satisfação da obrigação: procedimentos, defesa e atos de execução.</p></div></header><section class="lesson"><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-1"><span class="card-icon">01</span><span class="card-head"><span class="card-num">§ 19.1 · Conteúdo da aula</span><span class="card-title">Conceito e normas aplicáveis</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-1"><p>O processo de execução ou fase satisfativa pode ser entendido como a fase do processo em que se busca a efetivação da decisão, tornando real aquilo que foi reconhecido pelo Poder Judiciário.</p><p>O ideal é que a fase executiva não precise ser realizada, pois espera-se que o devedor cumpra a obrigação de forma voluntária, mas havendo o inadimplemento, os atos executórios serão realizados de acordo com a espécie de obrigação que foi criada: pecuniária (obrigação de pagar quantia), de fazer, não fazer ou entrega de coisa. Para cada espécie de obrigação é adotada uma técnica específica, como retirada de bens do patrimônio do devedor, busca e apreensão de bens, aplicação de multa para forçar o cumprimento da obrigação de fazer, dentre outras (SARAIVA; MANFREDINI, 2016).</p><p>Antes de entrarmos na análise das técnicas e formas de execução, devemos tratar das normas que são aplicáveis ao processo de execução subsidiariamente. A CLT possui poucas normas que tratam da execução, cerca de 20 artigos, sendo que há uma real necessidade de complementação por outras normas. A dúvida que reside é a seguinte: havendo lacuna na CLT, que norma aplicar? A resposta não é o CPC, mas a Lei de Execução Fiscal (Lei n. 6.830/80). Somente na lacuna da LEF é que será utilizado o CPC.</p></div></div></div></section>
+<section class="lesson"><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-2"><span class="card-icon">02</span><span class="card-head"><span class="card-num">§ 19.2 · Conteúdo da aula</span><span class="card-title">Títulos executivos</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-2"><p>A execução deve ser embasada em algum documento que reconheça a existência da obrigação. A esse documento dá-se o nome de título executivo, que pode ser judicial ou extrajudicial, ou seja, pode ser oriundo do Poder Judiciário, como uma sentença, ou criado fora daquele Poder, como um TAC – termo de ajustamento de conduta, firmado pelo Ministério Público do Trabalho e uma empresa, por exemplo.</p><p>As obrigações criadas nas duas situações – sentença e TAC – serão executadas na Justiça do Trabalho, mas por procedimentos distintos. Antes de estudarmos os procedimentos, vamos analisar os títulos executivos previstos no art. 876 da CLT:</p><ul class="bullet"><li>Títulos executivos judiciais:</li></ul><ul class="bullet"><li>Decisão com trânsito em julgado: diante da definitividade da decisão, possibilitam o início da execução definitiva.</li></ul><ul class="bullet"><li>Decisão objeto de recurso sem efeito suspensivo: a regra geral no processo do trabalho é a utilização de recursos sem efeito suspensivo, ou seja, apenas com efeito devolutivo. A situação possibilita a execução provisória, na medida em que a decisão ainda é passível de modificação.</li></ul><ul class="bullet"><li>Acordo não cumprido: enseja o início da execução definitiva, na medida em que não cabe recurso e o trânsito em julgado é imediato ao proferimento da decisão que homologa o acordo.</li></ul><ul class="bullet"><li>Títulos executivos extrajudiciais:</li></ul><ul class="bullet"><li>Termos de Ajustamento de Conduta – TAC – firmado com o MPT: o TAC geralmente impõe multas pelo descumprimento de suas cláusulas, além de criar obrigações de fazer e não fazer, que podem ser executadas perante a Justiça do Trabalho.</li></ul><ul class="bullet"><li>Termos de conciliação da Comissão de Conciliação Prévia: prevista no art. 625-E da CLT, o termo de conciliação da CCP enseja o início da execução daquele, caso não seja voluntariamente cumprida nos prazos e modos nele previstos.</li></ul><ul class="bullet"><li>Cheque e nota promissória emitidos em reconhecimento de dívida trabalhista – art. 13 da IN n. 39/16 do TST: o TST entendeu por meio da instrução normativa que o cheque e a nota promissória, que não eram títulos executivos trabalhistas, passam a ser se houver prova de que eles foram emitidos para pagamento de dívida trabalhista.</li></ul><p>O cheque e a nota promissória passaram a ser considerados títulos executivos extrajudiciais a partir da IN n. 39/16 do TST, quando demonstrado que há relação entre o crédito trabalhista e os títulos referidos.</p></div></div></div></section>
+<section class="lesson"><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-3"><span class="card-icon">03</span><span class="card-head"><span class="card-num">§ 19.3 · Conteúdo da aula</span><span class="card-title">Execução provisória</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-3"><p>Como já foi visto na parte sobre recursos trabalhistas, estes não possuem efeito suspensivo imediato, ou seja, são recebidos apenas no efeito devolutivo, nos termos do art. 899 da CLT, o que permite o início da execução provisória da sentença, que pode ser considerada como o procedimento em que serão realizados atos de constrição patrimonial do devedor, apesar de ainda não haver trânsito em julgado. Na execução provisória não são realizados atos de expropriação, isto é, de retirada de bens do patrimônio do devedor, mas apenas de constrição patrimonial, como a penhora (SCHIAVI, 2015).</p><p>A disciplina da execução provisória encontra-se no Código de Processo Civil, em seus arts. 520 e s., que afirma que tal espécie de execução será realizada nos mesmos moldes que a definitiva, mas com algumas peculiaridades, a saber:</p><ul class="bullet"><li>Não há execução provisória de ofício, não se aplicando o art. 878 da CLT na hipótese. Portanto, a execução provisória sempre depende de requerimento do exequente.</li></ul><ul class="bullet"><li>Se a execução provisória gerar prejuízos ao executado, caberá ao exequente indenizar aquele pelos prejuízos causados.</li></ul><p>Como já dito, não há expropriação de bens, mas apenas de constrição, de imobilização do patrimônio. A razão é muito simples: há possibilidade de a decisão ser modificada em grau recursal, sendo muito arriscado transferir patrimônio do executado para o exequente na hipótese. Assim, o inciso II do art. 520 do CPC/2015 afirma que ficará sem efeito a execução provisória quando a decisão que a embasa for reformada ou anulada.</p><p>A execução em estudo será realizada através da juntada de documentos que constam no art. 522 do CPC/2015, já que os autos originais seguem para o Tribunal para julgamento do recurso. Assim, autos criados para a hipótese seguirão no juízo de origem, onde tramitou o processo em primeiro grau de jurisdição para a realização dos atos processuais.</p><p>Em relação à prática de atos processuais, é importante destacar que o art. 899 da CLT afirma que a execução provisória seguirá até a penhora, parando após tal ato para aguardar que a decisão transite em julgado. Contudo, doutrina e jurisprudência majoritárias afirmam que ainda cabe a apresentação de embargos à execução (art. 884 da CLT), com a garantia do juízo, bem como o cabimento de recurso de agravo de petição (art. 897, a, CLT) da decisão que julgar os embargos do executado (MOURA, 2015).</p><p>Por fim, o TST alterou em 2016 a Súmula 417 e cancelou o seu item III, que tratava da possibilidade/impossibilidade de penhora de dinheiro em execução provisória. Com o cancelamento desse item, o entendimento é o de que a penhora em dinheiro pode ser realizada mesmo na execução provisória, pois é a forma prioritária de satisfação do crédito.</p><p>Súmula 417 do TST</p><p>I – Não fere direito líquido e certo do impetrante o ato judicial que determina penhora em dinheiro do executado para garantir crédito exequendo, pois é prioritária e obedece à gradação prevista no art. 835 do CPC de 2015 (art. 655 do CPC de 1973).</p><p>II – Havendo discordância do credor, em execução definitiva, não tem o executado direito líquido e certo a que os valores penhorados em dinheiro fiquem depositados no próprio banco, ainda que atenda aos requisitos do art. 840, I, do CPC de 2015 (art. 666, I, do CPC de 1973) (ex-OJ n. 61 da SBDI-2 – inserida em 20-9-2000).</p></div></div></div></section>
+<section class="lesson"><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-4"><span class="card-icon">04</span><span class="card-head"><span class="card-num">§ 19.4 · Conteúdo da aula</span><span class="card-title">Execução por quantia certa contra devedor solvente</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-4"><p>A execução mais normal na Justiça do Trabalho, que até poderíamos dizer que se trata da execução “por excelência” diante de sua importância, tem início com o art. 880 da CLT, que prevê a citação do executado para pagamento da quantia devida. Se houver condenação ao pagamento de quantia, será seguido o procedimento aqui analisado.</p><p>Em primeiro lugar, o art. 880 da CLT, ao prever como se dá o início do processo executivo, excluiu a aplicação do art. 523, § 1º, do CPC/2015, que prevê a multa de 10% sobre o montante devido, previsto no Código de Processo Civil no procedimento do cumprimento de sentença. Apesar de diversos juízes aplicarem o dispositivo desde a vigência do CPC/73, em 2005, quando o instituto foi inserido, o TST vem entendendo por não o aplicar, já que a aplicação subsidiária do processo civil depende da existência de lacuna e compatibilidade e não há lacuna normativa na hipótese, pois o art. 880 da CLT, apesar de antigo e defasado, na visão de diversos doutrinadores, está em vigor e regula o início do processo satisfativo, como também é conhecida a execução.</p><p>Segundo dispõe o dispositivo celetista, o executado será citado pelo Oficial de Justiça, em citação pessoal, para que em 48 horas realize alguma das seguintes condutas, que estão atreladas à garantia do juízo e apresentação de embargos à execução, como será visto agora:</p><ul class="bullet"><li>Pagamento da quantia devida: gerando a extinção do processo diante da satisfação da obrigação.</li></ul><ul class="bullet"><li>Depósito da quantia devida: acarretando a garantia do juízo e a possibilidade de prosseguimento do processo, com a apresentação dos embargos à execução (art. 884 da CLT).</li></ul><ul class="bullet"><li>Nomeação de bens à penhora: se em valor igual ou superior ao débito, haverá a garantia do juízo e a possibilidade de apresentação dos embargos à execução (art. 884 da CLT).</li></ul><p>Na hipótese de inércia, ou seja, não realização de qualquer das condutas previstas anteriormente, caberá ao Oficial de Justiça realizar a penhora de bens do executado, com as restrições impostas pelo art. 833 do CPC/2015, que trata dos bens absolutamente impenhoráveis. Se penhorados os bens em valor igual ou superior ao devido, também poderão ser apresentados os embargos, pois garantido o juízo, um dos requisitos do art. 884 da CLT para a apresentação da referida defesa (SARAIVA; MANFREDINI, 2016).</p></div></div></div></section>
+<section class="lesson"><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-5"><span class="card-icon">05</span><span class="card-head"><span class="card-num">§ 19.5 · Conteúdo da aula</span><span class="card-title">Defesa na execução</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-5"><p>Quando se fala em “defesa na execução”, pode-se fazer a seguinte classificação:</p><ul class="bullet"><li>Defesa típica – embargos à execução, previstos no art. 884 da CLT: Os embargos à execução são a forma de defesa típica do executado, previstos no art. 884 da CLT como a forma adequada para o executado demonstrar que existem vícios processuais que devem ser corrigidos. Contudo, para que seja utilizado como defesa, devem ser preenchidos dois requisitos, em especial:</li></ul><ul class="bullet"><li>Garantia do juízo: conforme o art. 884 da CLT, ocorre através do depósito da quantia devida, pela nomeação de bens à penhora ou pela penhora de bens pelo Oficial de Justiça.</li></ul><ul class="bullet"><li>Prazo: os embargos devem ser apresentados no prazo de 5 dias a contar da garantia do juízo, cabendo o mesmo prazo para o embargado impugnar os fundamentos do embargante.</li></ul><p>Ponto importante sobre os embargos à execução consta no § 1º do art. 884 da CLT, complementado pelo art. 525 do CPC/2015, que trata das matérias (vícios) que podem ser alegadas pelo embargante. O § 1º do artigo celetista não é exaustivo ao dizer que podem ser alegados o cumprimento da decisão ou de acordo, quitação ou prescrição da dívida, uma vez que o art. 525 do CPC/2015 trata de outras matérias de ordem pública, como a penhora incorreta ou a avaliação errônea, muito utilizado no cotidiano trabalhista, para demonstrar que um bem absolutamente impenhorável foi penhorado ou que o bem não foi corretamente avaliado, trazendo prejuízo ao executado.</p><p>Os embargos são processados nos autos da ação trabalhista, sendo recebidos sempre com efeito suspensivo, paralisando o processo até que o incidente seja julgado. A IN n. 39/16 do TST diz ser aplicável o art. 918 do CPC/2015 que trata das hipóteses de indeferimento liminar dos embargos, a saber:</p><ul class="bullet"><li>Intempestividade.</li></ul><ul class="bullet"><li>Indeferimento da petição inicial e improcedência liminar do pedido.</li></ul><ul class="bullet"><li>Manifestamente protelatórios.</li></ul><p>Caso necessário, podem ser produzidas provas no procedimento dos embargos à execução, pois prevista no art. 884, § 2º, da CLT a possibilidade de ser designada audiência para produção daquela. Após a instrução, ou caso não haja prova a ser produzida, o Juiz julgará os embargos, cabendo o recurso de agravo de petição da decisão, conforme art. 897, a, da CLT, por se tratar de decisão na execução. Trata-se da decisão típica para o cabimento do recurso de agravo de petição. A Lei n. 13.467/2017 – reforma trabalhista – incluiu o § 6º do art. 884 da CLT, retirando a necessidade de garantia do juízo para a apresentação dos embargos pelas entidades filantrópicas e os membros de sua diretoria.</p><ul class="bullet"><li>Defesa atípica – exceção de pré-executividade, também denominada objeção de não executividade, que apesar de não estar prevista em lei, é considerada pela doutrina e jurisprudência, por sua formação histórica no direito processual.</li></ul><p>A exceção de pré-executividade não se encontra prevista em lei, sendo uma construção doutrinária e jurisprudencial que passou a ser admitida no processo do trabalho como uma forma alternativa de defesa, que dispensa a garantia do juízo, sendo tal dispensa considerada a grande vantagem do instrumento. Contudo, grande desvantagem também pode ser encontrada, que é a impossibilidade de produção de provas, ou seja, a ausência de dilação probatória, sendo toda a prova pré-constituída (documental).</p><p>Mas o que pode ser alegado em sede de exceção de pré-executividade? A doutrina e a jurisprudência pátrias destacam que as matérias de ordem pública, como a nulidade do título, incompetência absoluta, ausência de citação no processo de conhecimento, dentre outras, podem ser objeto de questionamento.</p><p>Não há prazo para a apresentação da exceção, não se exigindo também a garantia do juízo, razão pela qual não se admite que a Fazenda Pública apresente a defesa, na medida em que possui a prorrogativa de apresentar embargos sem a referida garantia.</p><p>Ponto importante em relação à exceção é a possibilidade de ser interposto recurso da decisão que julga a exceção. Vejamos:</p><ul class="bullet"><li>Improcedência: não cabe recurso, na medida em que o processo continua e a decisão é considerada, por isso, como interlocutória.</li></ul><ul class="bullet"><li>Procedência: com a procedência da exceção e a anulação do processo, tem-se uma decisão “final” do processo, cabendo recurso de agravo de petição na hipótese, já que se trata de decisão na execução.</li></ul></div></div></div></section>
+<section class="lesson"><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-6"><span class="card-icon">06</span><span class="card-head"><span class="card-num">§ 19.6 · Conteúdo da aula</span><span class="card-title">Expropriação de bens</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-6"><p>A expropriação de bens no processo de execução contempla a penhora, a avaliação, arrematação, adjudicação, remição e alienação por iniciativa particular, que serão analisados a partir de agora.</p><ul class="bullet"><li>Penhora:</li></ul><p>Como já visto, se não efetuado o pagamento, depósito ou nomeação de bens no prazo de 48 horas (art. 880 da CLT), serão os bens do devedor penhorados pelo Oficial de Justiça, com as restrições do art. 833 do CPC/2015, que trata dos bens que não podem ser objeto de penhora. Como exemplos de bens impenhoráveis, temos:</p><ul class="bullet"><li>Móveis, pertences e utilidades domésticas que guarnecem a residência do executado, salvo os de elevado valor.</li></ul><ul class="bullet"><li>Vestuários e pertences de uso pessoal, salvo os de elevado valor.</li></ul><ul class="bullet"><li>Salários, desde que não sejam superiores a 50 salários mínimos e a dívida não seja de alimentos, hipóteses em que a penhora é válida.</li></ul><ul class="bullet"><li>Seguro de vida.</li></ul><ul class="bullet"><li>Materiais necessários para obras em andamento etc.</li></ul><p>Importante frisar três aspectos relacionados à penhora:</p><ul class="bullet"><li>Carta de fiança bancária: a OJ n. 59 da SDI-2 do TST, alterada em 2016 para adequar-se ao atual CPC, dispõe que a carta de fiança bancários equivale a dinheiro quando apresentada no valor de débito acrescido de 30%. Assim, se o débito é de R$ 100.000,00, a carta deve ser apresentada com valor de R$ 130.000,00. Assim, no valor correto, será equivalente a dinheiro (LEITE, 2015).</li></ul><p>A carta de fiança bancária e o seguro garantia judicial, desde que em valor não inferior ao do débito em execução, acrescido de trinta por cento, equivalem a dinheiro para efeito da gradação dos bens penhoráveis, estabelecida no art. 835 do CPC de 2015 (art. 655 do CPC de 1973).</p><ul class="bullet"><li>Penhora de salário: com o atual CPC, deve ser permitida a penhora de salário quando o valor do mesmo for superior a 50 salários mínimos, já que o art. 833, § 2º do CPC/2015 diz não ser impenhorável o excedente da quantia acima referida.</li></ul><ul class="bullet"><li>Penhora de renda/faturamento da empresa: a OJ n. 93 da SDI-2 do TST permite a penhora sobre a renda/faturamento da empresa, desde que seja um percentual razoável e que não existam outros bens passíveis de penhora, sejam insuficientes ou de difícil alienação.</li></ul><ul class="bullet"><li>Avaliação:</li></ul><p>No processo do trabalho a avaliação é realizada pelo Oficial de Justiça, cujo cargo é denominado “Oficial de Justiça Avaliador”. Assim, penhorado um “veículo Volkswagen Gol, 1.0, ano 2015”, no auto de penhora constará o valor do mesmo, sendo possível a sua contestação posterior por meio dos embargos à execução, por aplicação do art. 525 do CPC/2015, que traz a avaliação errônea como uma das matérias que podem ser arguidas na oportunidade.</p><p>Se pensarmos no procedimento normal, teremos a possibilidade de apresentação de embargos à execução, julgamento da defesa, preparação do bem para arrematação (venda em leilão). Contudo, pode acontecer que grande lapso de tempo se passe entre a avaliação realizada e o leilão, colocando a primeira avaliação realizada em desconformidade com o valor do bem no momento atual, que pode ter sofrido valorização ou desvalorização, como é comum nos veículos. Assim, caberia uma reavaliação do bem, determinada pelo Magistrado com base no art. 873 do CPC/2015.</p><ul class="bullet"><li>Arrematação:</li></ul><p>A arrematação dos bens será realizada em leilão, ao qual se dará publicidade nos termos do art. 888 da CLT, que dispõe sobre a necessidade de publicação de edital com antecedência mínima de 20 dias, de forma a que o maior número de pessoas possa vir ao ato, elevando a possibilidade de arrematação por um bom preço. A regra prevista no mesmo artigo acerca da arrematação é no sentido de que o arrematante deve garantir o lance com entrada equivalente a 20% do valor da compra, pagando o restante em 24 horas, sob pena de perda da entrada e retorno do bem para novo leilão (LEITE, 2015).</p><p>O CPC/2015 traz nova possibilidade de aquisição do bem, de forma parcelada, sendo que o art. 895 do atual Código, aplicável ao processo do trabalho por determinação da IN n. 39/16 do TST, dispõe que o interessado apresentará a sua proposta, contendo entrada de pelo menos 30% e o restante em até 30 parcelas, garantido o pagamento por caução (garantia) idônea, no caso de bens móveis e hipoteca na hipótese de imóveis.</p><p>Num primeiro momento, o bem será alienado pelo valor da avaliação, que é considerado o valor justo, que realmente vale o bem. Ocorre que pode o bem ser vendido por valor inferior àquele, desde que não seja considerado um preço vil, muito inferior ao que realmente vale, situação prevista no art. 891 do CPC/2015, que foi definido pelo legislador como o valor inferior ao mínimo estipulado pelo Juiz, ou, na falta de tal estipulação, inferior a 50% da avaliação. Assim, um bem avaliado em R$ 100.000,00, não pode ser vendido por valor inferior a R$ 50.000,00, pois traria grande prejuízo para o executado e poderia não ser tão útil ao processo de execução. Deve-se lembrar sempre que o processo de execução não serve para sacrificar o devedor, mas para que seja legitimamente paga a quantia devida ao exequente.</p><ul class="bullet"><li>Adjudicação:</li></ul><p>Escolhida pelo legislador processual civil como a forma prioritária de execução, a adjudicação pode ser entendida como o “recebimento da coisa penhorada como forma de pagamento da execução”, isto é, em vez do bem ser vendido em leilão e transformado em dinheiro para pagamento do credor, entrega-se o próprio bem objeto da penhora.</p><p>Prevista no art. 876 do CPC/2015, a adjudicação será feita pelo valor da avaliação, sendo o exequente notificado após a garantia do juízo e decisão sobre os embargos, para manifestar o seu interesse em adjudicar, evitando-se que o bem seja levado a leilão, situação custosa e demorada. A adjudicação, portanto, é uma forma rápida de satisfação da obrigação. Duas situações podem ocorrer. Vejamos:</p><ul class="bullet"><li>Valor do bem penhorado: R$ 50.000,00</li></ul><ul class="bullet"><li>Valor do crédito: R$ 70.000,00 – o credor receberá o bem em pagamento, adjudicando-o e a execução prosseguirá para cobrança dos R$ 20.000,00 restantes.</li></ul><ul class="bullet"><li>Valor do crédito: R$ 30.000,00 – o credor receberá o bem em pagamento, adjudicando-o, depositando de imediato a diferença de R$ 20.000,00, que ficará à disposição do Juiz da execução, que posteriormente entregará a quantia ao devedor.</li></ul><ul class="bullet"><li>Remição:</li></ul><p>A remição encontra-se prevista no art. 13 da Lei n. 5.584/70, consistindo no pagamento do valor total da condenação para extinguir a execução e livrar os bens constritos, ou seja, objeto de penhora. A remição, portanto, deve ser total, não podendo remir um ou alguns bens, depositando o seu valor. O devedor deve depositar a quantia integral, extinguindo-se a execução, como dito (SCHIAVI, 2015).</p></div></div></div></section>
+<section class="lesson"><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-7"><span class="card-icon">07</span><span class="card-head"><span class="card-num">§ 19.7 · Conteúdo da aula</span><span class="card-title">Prescrição intercorrente</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-7"><p>O tema prescrição intercorrente sofreu grande alteração por meio da Lei n. 13.467/2017 – reforma trabalhista – com a inclusão do art. 11-A da CLT, que afirma ser cabível a prescrição intercorrente no processo do trabalho, sendo reconhecida de ofício ou a requerimento da parte, quando o processo permanecer parado, por inércia do exequente, por mais de 2 anos, que deixa de cumprir determinação judicial que lhe cabia.</p><p>Assim, não mais se aplica a Súmula 114 do TST, que afirma o contrário.</p></div></div></div></section>
+<section class="lesson"><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-8"><span class="card-icon">08</span><span class="card-head"><span class="card-num">§ 19.8 · Conteúdo da aula</span><span class="card-title">Execução de obrigação de fazer, não fazer e entrega de coisa</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-8"><p>A execução das obrigações de fazer, não fazer e entrega de coisa segue as normas constantes nos arts. 497 e 501 do CPC/2015, que tratam da concessão da tutela específica para determinar que o devedor cumpra a obrigação do modo como foi formalizada, sem conversão em perdas e danos em um primeiro momento. Salienta-se que os dispositivos do CPC/2015 se aplicam ao processo do trabalho por determinação do art. 3º, XII, da IN n. 39/16 do TST.</p><p>A ideia do legislador, ao afirmar que será concedida a tutela específica, é entregar ao credor da obrigação, exatamente o que ele teria caso a obrigação tivesse sido cumprida de forma voluntária. Assim, se a obrigação de entrega tivesse sido cumprida, o devedor teria entregue ao credor um veículo Gol. Se descumprida a obrigação e acionado o Poder Judiciário para a execução daquela, deve o credor “sair do processo” de posse do veículo Gol, ou seja, no processo será concedida a tutela específica para entregar ao credor o bem da vida que está sendo discutido no processo.</p><p>Assim, a conversão em perdas e danos aparece como situação excepcional, prevista no art. 499 do CPC/2015, ao dispor que “a obrigação somente será convertida em perdas e danos se o autor o requerer ou se impossível a tutela específica ou a obtenção do resultado prático equivalente”.</p><p>Em relação às obrigações de fazer, mais comuns no processo do trabalho, determina o Poder Judiciário a reintegração do empregado, a anotação da CTPS, reenquadramento funcional, entrega de guias de seguro-desemprego, dentre outras.</p><p>Em relação às “providências que assegurem o resultado prático equivalente”, temos a multa diária como a mais comum e conhecida. Determina o Juiz do Trabalho a reintegração do obreiro sob pena de multa diária de R$ 1.000,00, que pode levar o empregador a realizar a conduta para não ser obrigado a pagar uma multa de valor alto. A referida multa está regulamentada pelo art. 536 do CPC/2015, que deixa clara a possibilidade de o Juiz alterar o valor e a periodicidade, de forma a adequá-la à realidade.</p><p>Detalhe importante é que o Juiz poderá valer-se de diversas técnicas para impor o cumprimento da obrigação, como consta no § 1º do art. 536 do CPC/2015, como a busca e apreensão, remoção de pessoas e coisas, o desfazimento de obras, impedimento de atividade nociva, podendo utilizar de força policial, caso necessário.</p></div></div></div></section>
+<section class="lesson"><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-9"><span class="card-icon">09</span><span class="card-head"><span class="card-num">§ 19.9 · Conteúdo da aula</span><span class="card-title">Execução contra a massa falida</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-9"><p>Em relação à execução contra a massa falida, que já foi objeto de cobrança em Exame da OAB, o único ponto que temos que lembrar é relacionado à competência da Justiça do Trabalho para a prática de atos processuais quando é decretada a falência de empresa executada. Dependendo do momento em que se encontra o processo de execução, a Justiça do Trabalho continuará competente para a prática de atos de expropriação e pagamento ou deverá remeter a quantia objeto de alienação para a Vara da Falência. Vejamos:</p><ul class="bullet"><li>Falência decretada antes da prática de atos de constrição patrimonial: será entregue ao credor uma certidão de crédito trabalhista para a realização de habilitação perante o Juízo Falimentar.</li></ul><ul class="bullet"><li>Falência decretada após a penhora dos bens, mas antes da alienação: os bens serão alienados em leilão da Justiça do Trabalho, que não efetuará o pagamento ao credor, pois o valor será remetido para o Juízo da Falência, devendo o credor habilitar o seu crédito naquele juízo, que pagará a todos de acordo com as normas da falência e concordata.</li></ul><ul class="bullet"><li>Falência decretada após a alienação dos bens pela Justiça do Trabalho: será efetuado o pagamento do crédito pela Justiça do Trabalho, sendo remetido ao Juízo da falência apenas o eventual resíduo após a efetivação do pagamento. Assim, se foi apurado o valor de R$ 100.000,00 e o débito trabalhista era de R$ 75.000,00, os R$ 25.000,00 que sobraram serão remetidos à Justiça Comum (Vara da Falência) (MIESSA, 2016).</li></ul><ul class="bullet"><li>Por fim, vale a pena destacar o disposto no art. 6º da Lei n. 11.101/2005, que trata da falência e recuperação judicial e prevê a suspensão do processo de execução trabalhista. Percebam que o § 2º do mesmo dispositivo deixa claro que o processo de conhecimento continuará normalmente mesmo após a decretação da falência, até a apuração do crédito devido, suspendendo-se tão somente o processo de execução.</li></ul></div></div></div></section>
+<section class="lesson"><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-10"><span class="card-icon">10</span><span class="card-head"><span class="card-num">§ 19.10 · Conteúdo da aula</span><span class="card-title">Execução contra a Fazenda Pública</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-10"><p>Ao se falar em “execução contra a Fazenda Pública”, lembra-se imediatamente de precatório e RPV (requisição de pequeno valor), que são meios alternativos de pagamento de dívidas reconhecidas pelo Poder Judiciário. Não se pensa em penhora de bens para pagamento de dívidas da Fazenda Pública, como se faz com as pessoas físicas e jurídicas de direito privado, uma vez que a execução dos entes públicos segue um procedimento diferenciado em virtude da impenhorabilidade dos seus bens (LEITE, 2015).</p><p>Mas quais são os entes públicos que se submetem ao regime do precatório e RPV, constante no art. 100 da CF/88? Apenas os entes com natureza jurídica de direito público, ou seja, União, Estados, Municípios, DF, autarquias e Fundações de Direito Público, o que significa dizer que as sociedades de economia mista e as empresas públicas não se submetem ao regime diferenciado, mas às regras normais previstas no art. 880 da CLT, que determina o pagamento ou outras ações, sob pena de penhora de bens.</p><p>Seguindo-se o procedimento, tem-se que o ente público, uma vez citado, poderá oferecer embargos no prazo de 30 dias, conforme prevê o art. 910 do CPC/2015, bem como a Lei n. 9.494/97, art. 1º-B. Além de diferente em relação ao prazo, já que o art. 884 da CLT prevê o prazo de 5 dias, não há necessidade de garantia do juízo, o que difere dos embargos apresentados pelos entes privados, que tem no art. 884 da CLT a previsão da garantia integral por penhora ou depósito.</p><p>Após o julgamento dos embargos, o Juiz da execução determinará a formação de um “pequeno processo” chamado de precatório, formado com as principais peças do processo, para que o Presidente do Tribunal competente remeta os autos ao Poder Executivo, determinando que seja incluso o valor no orçamento para pagamento, conforme a ordem cronológica de apresentação, seguindo-se as seguintes regras:</p><ul class="bullet"><li>Se o precatório for apresentado até o dia 2 de abril, o pagamento deverá ocorrer até o final do próximo ano (exercício financeiro subsequente). Exemplos:</li></ul><ul class="bullet"><li>Apresentação até 2 de abril de 2022: pagamento até o final de 2023.</li></ul><ul class="bullet"><li>Apresentação após 2 de abril de 2022, pagamento até o final de 2024.</li></ul><p>A depender do valor do débito do ente público, dois procedimentos podem ser seguidos, a saber: precatório e RPV – requisição de pequeno valor. Dispõe o art. 100, §§ 3º e 4º, da CF/88 que as obrigações de pequeno valor seguem procedimento simplificado, sem a necessidade de expedição de ordem de pagamento por intermédio do TRT, aplicando-se a Lei n. 10.259/2001 em relação à União Federal. Mas qual é o valor considerado para fins de distinção entre precatório e RPV? Os arts. 86 e 87 da ADCT – Atos das Disposições Constitucionais Transitórias – afirmam que, enquanto não forem criadas leis específicas para Estados e Municípios, serão levados em consideração os seguintes valores:</p><div class="table-scroll"><table><thead><tr><th>Ente público</th><th>Valor-limite para RPV</th></tr></thead><tbody><tr><td>União</td><td>Até 60 salários mínimos</td></tr><tr><td>Estados</td><td>Até 40 salários mínimos</td></tr><tr><td>Municípios</td><td>Até 30 salários mínimos</td></tr></tbody></table></div><p>Caso reconhecida a obrigação como Requisição de Pequeno Valor – RPV, será aplicado o art. 17 da Lei n. 10.259/2001, que em síntese afirma que o Juiz da Execução (Juiz do Trabalho) intimará o ente público para pagar em 60 dias, depositando a quantia em conta bancária do Banco do Brasil ou Caixa Econômica Federal. Após o decurso do prazo sem pagamento, poderá ser determinado o sequestro de numerário para pagamento da obrigação (GARCIA, 2012).</p></div></div></div></section>
+<section class="lesson"><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-11"><span class="card-icon">11</span><span class="card-head"><span class="card-num">§ 19.11 · Conteúdo da aula</span><span class="card-title">Certidão negativa de débitos trabalhistas</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-11"><p>O tema está regulamentado no art. 642-A da CLT, que trata da “prova de inexistência de débitos trabalhistas” e tem por finalidade, como o próprio nome esclarece, provar que inexistem débitos da empresa perante a Justiça do Trabalho, ou seja, que a empresa não foi condenada e possui débitos em aberto perante a Justiça do Trabalho, o que presume ser uma empresa cumpridora de suas obrigações (MOURA, 2015).</p><p>A importância da CNDT é vista em diversas situações, como nas contratações com empresa terceirizada, em que a tomadora dos serviços exige a apresentação da certidão ou para participação em licitações. Pode ser importante também para a concessão de empréstimos e financiamentos.</p><p>Além da certidão negativa, temos também a previsão, no § 2º do mesmo artigo, da certidão positiva com efeito de negativa, que é a certidão que afirma a existência de débitos trabalhistas, mas que estão garantidos por penhora suficiente ou com a exigibilidade suspensa.</p><p>Importante salientar que o art. 883-A da CLT prevê que a inclusão no BNDT somente pode ocorrer após o prazo de 45 dias e desde que não haja garantia do juízo.</p><p>Por fim, a CNDT possui prazo de validade de 180 dias, devendo ser extraída nova certidão após tal prazo, já que naquele período pode a empresa ter sofrido alguma condenação trabalhista e não mais possuir direito à CNDT.</p></div></div></div></section>
+<section class="lesson"><div class="cards reveal"><div class="card"><button type="button" class="card-btn" aria-expanded="false" aria-controls="lesson-12"><span class="card-icon">12</span><span class="card-head"><span class="card-num">§ 19.12 · Conteúdo da aula</span><span class="card-title">Desconsideração da personalidade jurídica</span></span><span class="card-chevron">▾</span></button><div class="card-body" id="lesson-12"><p>O CPC/2015 trouxe uma importante modificação em relação ao tema “desconsideração da personalidade jurídica” ao criar um procedimento para aplicação da teoria e realização da penhora dos bens dos sócios, o que não havia até o advento do atual Código. Sob a égide do CPC/73, os Juízes do Trabalho desconsideravam a personalidade jurídica e penhoravam os bens dos sócios sem qualquer procedimento, sem oitiva prévia dos sócios, sem qualquer respeito ao contraditório, o que não poderá mais ocorrer sob pena de ilegalidade, já que a IN n. 39/16 do TST diz serem aplicáveis os arts. 133 a 137 do CPC/2015, que tratam do necessário procedimento (SARAIVA; MANFREDINI, 2016). Mas o que fez a Lei n. 13.467/2017 – reforma trabalhista – em relação ao tema? O art. 855-A da CLT afirma serem cabíveis os dispositivos do CPC ao processo do trabalho, reafirmando o que já havia sido dito pela IN n. 39/16 do TST.</p><p>Antes de tratamos do procedimento em si, temos que explicitar que no processo do trabalho sempre foi aplicada a teoria menor da desconsideração, prevista no art. 28 do Código de Defesa do Consumidor, que não prevê a necessidade de demonstração de desvio de finalidade ou confusão patrimonial, requisitos necessários à luz do art. 50 do Código Civil (teoria maior). No processo do trabalho o único requisito para a desconsideração é a ausência de patrimônio da pessoa jurídica. Tal situação já autoriza a desconsideração e constrição/expropriação de bens dos sócios como forma de efetivação da obrigação (MIESSA, 2016).</p><p>Em relação ao procedimento em contraditório previsto nos arts. 133 a 137 do CPC/2015, podemos destacar que:</p><ul class="bullet"><li>O seu início pode se dar de ofício pelo Magistrado, conforme dispõe a IN n. 39/16 do TST.</li></ul><ul class="bullet"><li>O procedimento, apesar de mais comum no processo de execução, também pode ocorrer no processo de conhecimento, principalmente quando houver risco de esvaziamento do patrimônio da empresa e sócios.</li></ul><ul class="bullet"><li>A instauração do incidente (procedimento) suspende o processo.</li></ul><ul class="bullet"><li>O sócio será notificado para apresentar defesa e provas em 15 dias.</li></ul><p>Sobre a recorribilidade da decisão que acolhe ou rejeita o incidente, diz o § 1º do art. 855-A da CLT que:</p><ul class="bullet"><li>O incidente será decidido por decisão interlocutória, não cabendo recurso no processo do trabalho, conforme IN n. 39/16 do TST e inciso I do § 1º do artigo em destaque, se no curso do processo de conhecimento.</li></ul><ul class="bullet"><li>Se realizado no processo de execução, da decisão caberá agravo de petição, conforme o art. 897, a, da CLT, sem necessidade de garantia do juízo, conforme o inciso II do § 1º do art. 855-A da CLT.</li></ul><ul class="bullet"><li>Por fim, se realizado no Tribunal, pelo Relator, caberá da decisão o recurso de agravo interno, nos termos do art. 932, VI, do CPC/2015, por se tratar de decisão monocrática, conforme inciso III do § 1º do art. 855-A da CLT.</li></ul><p>O art. 855-A da CLT reafirmou o entendimento exposto pela IN n. 39/16 do TST, aplicando os arts. 133 a 137 do CPC ao processo do trabalho. Assim, a desconsideração da personalidade jurídica passa a ser um procedimento em contraditório, que suspende o processo principal e que pode ser impugnada por recurso, salvo se proferida no processo de conhecimento.</p></div></div></div></section><section><div class="sec-head reveal"><span class="num">REVISÃO</span><h2>Questões do Exame da OAB</h2></div><p>Questões 93 a 97 do tópico 23 — Processo de execução. Selecione uma alternativa e confirme para conferir o gabarito comentado.</p><div class="scoreboard reveal" aria-live="polite"><div><div class="score-label">Pontuação</div><div class="score-nums"><span class="score-current" id="sc-current">0</span><span class="score-total">/ 5</span></div></div><div class="score-bar-wrap"><div class="score-bar" id="sc-bar"></div></div><div class="score-msg" id="sc-msg">0 respondidas</div><button class="btn-reset" onclick="resetQuiz()">Reiniciar</button></div>
+<div class="q-card" id="q1"><div class="q-header"><span class="q-badge">Questão 93 · XXII Exame de Ordem Unificado/FGV</span><p class="q-text">Expedida carta precatória executória numa demanda trabalhista, o juízo deprecante cita o devedor para pagamento, mas ele permanece inerte. Então, o oficial de justiça retorna e penhora um dos imóveis do executado, avaliando-o e garantindo o juízo. Imediatamente o executado ajuíza embargos de devedor, alegando que o bem penhorado foi subavaliado, apresentando a documentação que entende provar que o valor de mercado do bem é muito superior àquele lançado no auto pelo oficial de justiça. Sobre a hipótese apresentada, de acordo com a legislação em vigor e o entendimento consolidado do TST, assinale a opção que, justificadamente, indica o juízo competente para apreciar os embargos.</p></div><div class="options"><button type="button" class="opt" data-q="1" data-val="A" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>O juízo deprecante é competente, pois dele se origina a execução.</span></button><button type="button" class="opt" data-q="1" data-val="B" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>O julgamento poderá competir aos juízos deprecante ou ao deprecado, porque a Lei não traz previsão.</span></button><button type="button" class="opt" data-q="1" data-val="C" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>O juízo deprecado será competente, porque a matéria se refere a suposto vício na penhora.</span></button><button type="button" class="opt" data-q="1" data-val="D" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>A Lei e a jurisprudência são omissas a respeito, daí porque a parte poderá escolher qual dos juízos apreciará os embargos.</span></button></div><div class="q-actions"><button class="btn-confirm" id="q1-btn" disabled onclick="confirmAnswer(1,'C')">Confirmar →</button><button class="toggle-gabarito" id="q1-tog" aria-expanded="false" aria-controls="q1-gab" onclick="toggleGabarito(1)">Gabarito comentado <span class="chev">▾</span></button></div><div class="gabarito" id="q1-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Alternativa C</div><div class="gabarito-body"><p><strong>C — correta.</strong> Conforme o comentário do PDF, o juízo deprecado aprecia os embargos quando a discussão se refere a vício na penhora ou na avaliação por ele realizada, nos termos do art. 20 da Lei nº 6.830/80.</p><p>A origem da execução no juízo deprecante não altera essa competência. Há previsão legal, portanto não cabe escolha pela parte.</p></div></div></div></div><div class="q-card" id="q2"><div class="q-header"><span class="q-badge">Questão 94 · XXV Exame de Ordem Unificado/FGV</span><p class="q-text">Jéssica trabalhou na sociedade empresária Móveis Perfeitos Ltda. por 4 (quatro) anos, quando foi dispensada sem justa causa, sem receber as verbas resilitórias. Em razão disso, ajuizou reclamação trabalhista pelo rito ordinário postulando os direitos relativos à sua saída, além de horas extras, equiparação salarial, adicional de insalubridade e indenização por dano moral porque foi privada da indenização que serviria para pagar as suas contas regulares. Na audiência designada, após feito o pregão, a sociedade empresária informou, e comprovou documentalmente, que conseguira no mês anterior a sua recuperação judicial, motivo pelo qual requereu a suspensão da reclamação trabalhista por 180 dias, conforme previsto em Lei, sob pena de o prosseguimento acarretar a nulidade do feito. Diante da situação concreta e dos termos da legislação em vigor, assinale a afirmativa correta.</p></div><div class="options"><button type="button" class="opt" data-q="2" data-val="A" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>A sociedade empresária está correta, porque, em havendo concessão de recuperação judicial, a Lei determina a suspensão de todas as ações.</span></button><button type="button" class="opt" data-q="2" data-val="B" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>A Lei não traz nenhuma previsão a respeito, daí porque ficará a critério do prudente arbítrio do juiz deferir a suspensão processual requerida.</span></button><button type="button" class="opt" data-q="2" data-val="C" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>A sociedade empresária está equivocada, pois a suspensão da reclamação trabalhista somente ocorreria na fase executória, o que não é o caso.</span></button><button type="button" class="opt" data-q="2" data-val="D" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>O Juiz do Trabalho, tendo sido deferida a recuperação judicial, deve suspender o processo, declarar sua incompetência e enviar os autos à Justiça Estadual.</span></button></div><div class="q-actions"><button class="btn-confirm" id="q2-btn" disabled onclick="confirmAnswer(2,'C')">Confirmar →</button><button class="toggle-gabarito" id="q2-tog" aria-expanded="false" aria-controls="q2-gab" onclick="toggleGabarito(2)">Gabarito comentado <span class="chev">▾</span></button></div><div class="gabarito" id="q2-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Alternativa C</div><div class="gabarito-body"><p><strong>C — correta.</strong> A reclamação está na fase de conhecimento. Segundo o comentário do PDF, a recuperação judicial não impede que essa fase prossiga para apuração do crédito; a suspensão mencionada alcança a execução, nos termos do art. 6º da Lei nº 11.101/2005.</p><p>Não há suspensão automática de todas as ações nem remessa da reclamação à Justiça Estadual.</p></div></div></div></div><div class="q-card" id="q3"><div class="q-header"><span class="q-badge">Questão 95 · XXVII Exame de Ordem Unificado/FGV</span><p class="q-text">A sociedade empresária Alfa S. A. está sendo executada na Justiça do Trabalho e, em 13/03/2018, recebeu citação para pagamento da dívida que possui em relação a um processo. Mesmo citada, a sociedade empresária permaneceu inerte, pelo que, no 10º dia contado da citação, o juízo iniciou, a requerimento do exequente a tentativa de bloqueio pelo sistema Bacen-Jud e, paralelamente, inscreveu o nome do executado no Banco Nacional de Devedores Trabalhistas (BNDT). Diante da situação apresentada e dos termos da CLT, assinale a afirmativa correta.</p></div><div class="options"><button type="button" class="opt" data-q="3" data-val="A" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>A atitude do magistrado está correta, eis que não houve o pagamento voluntário da dívida no prazo legal, sendo a inserção imediata no BNDT uma adequada medida coercitiva judicial.</span></button><button type="button" class="opt" data-q="3" data-val="B" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>A Lei deixa ao arbítrio do juiz determinar a partir de quando o nome do devedor deve ser inserido em cadastro restritivo de crédito, inclusive no BNDT.</span></button><button type="button" class="opt" data-q="3" data-val="C" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>A Justiça do Trabalho não atua mais com inserção e retirada do nome de devedores no BNDT, pelo que a atitude do magistrado é inócua e contrária às regras da CLT.</span></button><button type="button" class="opt" data-q="3" data-val="D" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>A decisão que determinou a inserção do nome do devedor no BNDT está equivocada, porque somente poderia ocorrer 45 dias depois de ele não pagar, nem garantir o juízo.</span></button></div><div class="q-actions"><button class="btn-confirm" id="q3-btn" disabled onclick="confirmAnswer(3,'D')">Confirmar →</button><button class="toggle-gabarito" id="q3-tog" aria-expanded="false" aria-controls="q3-gab" onclick="toggleGabarito(3)">Gabarito comentado <span class="chev">▾</span></button></div><div class="gabarito" id="q3-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Alternativa D</div><div class="gabarito-body"><p><strong>D — correta.</strong> O PDF destaca os requisitos do art. 883-A da CLT: decurso de 45 dias e ausência de garantia do juízo. A inscrição no décimo dia é prematura.</p><p>O prazo é legal, não fica ao arbítrio do magistrado, e a CLT prevê a inclusão no BNDT.</p></div></div></div></div><div class="q-card" id="q4"><div class="q-header"><span class="q-badge">Questão 96 · XXXII Exame de Ordem Unificado/FGV</span><p class="q-text">Após ser alvo de um inquérito civil junto ao Ministério Público do Trabalho – MPT, tendo sido investigada pela prática de suposta irregularidade, a sociedade empresária Vida Global assinou um Termo de Ajuste de Conduta (TAC) com o MPT para sanar o problema e evitar a judicialização daquela situação, o que poderia abalar sua credibilidade perante os investidores nacionais e estrangeiros. Ocorre que a sociedade empresária não cumpriu o que foi estipulado no TAC, seja no tocante à obrigação de fazer, seja no pagamento de multa pelo dano moral coletivo. Diante dessa situação, e de acordo com os termos da CLT, assinale a afirmativa correta.</p></div><div class="options"><button type="button" class="opt" data-q="4" data-val="A" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>O parquet deverá propor execução de título judicial.</span></button><button type="button" class="opt" data-q="4" data-val="B" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>O MPT deverá ajuizar execução de título extrajudicial.</span></button><button type="button" class="opt" data-q="4" data-val="C" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>A ação própria para a cobrança será o inquérito judicial.</span></button><button type="button" class="opt" data-q="4" data-val="D" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>O MPT deverá propor reclamação trabalhista pelo rito ordinário.</span></button></div><div class="q-actions"><button class="btn-confirm" id="q4-btn" disabled onclick="confirmAnswer(4,'B')">Confirmar →</button><button class="toggle-gabarito" id="q4-tog" aria-expanded="false" aria-controls="q4-gab" onclick="toggleGabarito(4)">Gabarito comentado <span class="chev">▾</span></button></div><div class="gabarito" id="q4-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Alternativa B</div><div class="gabarito-body"><p><strong>B — correta.</strong> O TAC firmado perante o Ministério Público do Trabalho constitui título executivo extrajudicial, conforme o art. 876 da CLT, citado no PDF.</p><p>Seu descumprimento permite a execução do título. Não é necessário ajuizar nova ação de conhecimento ou inquérito judicial, nem se trata de título judicial.</p></div></div></div></div><div class="q-card" id="q5"><div class="q-header"><span class="q-badge">Questão 97 · 41º Exame de Ordem Unificado/FGV</span><p class="q-text">Em determinada reclamação trabalhista, o recurso ordinário interposto pela ex-empregadora encontra-se pendente de julgamento e alcança todo o objeto da condenação. Para agilizar o procedimento, o reclamante iniciou a execução provisória do julgado, apresentando os cálculos de liquidação pertinentes, que foram submetidos à análise do adversário, da contadoria do juízo e, depois, homologados por serem reputados corretos. O juiz concedeu 48 horas para que a sociedade empresária depositasse a quantia nos autos, o que foi cumprido. Logo depois o exequente peticionou a liberação do valor homologado a seu favor. Diante desses fatos e do disposto na CLT, assinale a afirmativa correta.</p></div><div class="options"><button type="button" class="opt" data-q="5" data-val="A" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">A)</span><span>Inviável a pretensão, porque a execução provisória fica limitada ao bloqueio ou à penhora.</span></button><button type="button" class="opt" data-q="5" data-val="B" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">B)</span><span>É possível a liberação, desde que o trabalhador assine um termo de compromisso garantindo que devolverá a quantia caso a decisão seja revertida pelo Tribunal.</span></button><button type="button" class="opt" data-q="5" data-val="C" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">C)</span><span>Tendo o crédito trabalhista natureza alimentar, o juiz poderá liberar o valor sem qualquer condição.</span></button><button type="button" class="opt" data-q="5" data-val="D" aria-pressed="false" onclick="selectOpt(this)"><span class="opt-letter">D)</span><span>Na Justiça do Trabalho, como regra, os recursos têm efeito suspensivo, de modo que não é possível a execução provisória, havendo evidente falha do juiz.</span></button></div><div class="q-actions"><button class="btn-confirm" id="q5-btn" disabled onclick="confirmAnswer(5,'A')">Confirmar →</button><button class="toggle-gabarito" id="q5-tog" aria-expanded="false" aria-controls="q5-gab" onclick="toggleGabarito(5)">Gabarito comentado <span class="chev">▾</span></button></div><div class="gabarito" id="q5-gab"><div class="gabarito-inner"><div class="gabarito-title">Gabarito comentado</div><div class="gabarito-correct">✓ Alternativa A</div><div class="gabarito-body"><p><strong>A — correta.</strong> Na situação da questão, o PDF aplica o art. 899 da CLT: a execução provisória segue até a penhora, sem liberação do valor ao exequente.</p><p>Um compromisso de devolução ou a natureza alimentar do crédito não autorizam a liberação pretendida nessa hipótese. Os recursos trabalhistas têm, como regra, efeito devolutivo, permitindo a execução provisória.</p></div></div></div></div><div class="result-banner" id="result-banner"><div class="result-score" id="result-score">0/5</div><div class="result-label">Resultado final</div><div class="result-msg" id="result-msg"></div></div></section><p class="source">Conteúdo integral do arquivo 19.Execução Trabalhista.docx. Questões 93 a 97 de Questões Processo.pdf, tópico 23. Enunciados, alternativas e gabaritos preservados; comentários organizados para estudo.</p><a class="back" href="../index.html"><span class="arw">←</span><span>Voltar ao índice da disciplina</span></a></div><script>
+/* accordion de conteúdo */
+(function(){
+  var cards = document.querySelectorAll('.card');
+  cards.forEach(function(card){
+    var btn = card.querySelector('.card-btn');
+    if(!btn) return;
+    btn.addEventListener('click', function(){
+      var isOpen = card.classList.contains('open');
+      cards.forEach(function(c){c.classList.remove('open');var b=c.querySelector('.card-btn');if(b)b.setAttribute('aria-expanded','false');});
+      if(!isOpen){card.classList.add('open');btn.setAttribute('aria-expanded','true');}
+    });
+  });
+})();
+
+/* reveal on scroll */
+(function(){
+  var items=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){items.forEach(function(el){el.classList.add('in');});return;}
+  var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.08,rootMargin:'0px 0px -3% 0px'});
+  items.forEach(function(el,i){el.style.transitionDelay=(Math.min(i,6)*30)+'ms';io.observe(el);});
+})();
+
+/* ── QUIZ ── */
+var TOTAL=5, answered={};
+
+function selectOpt(el){
+  var q=el.dataset.q;
+  if(answered[q]!==undefined) return;
+  document.querySelectorAll('[data-q="'+q+'"]').forEach(function(o){o.classList.remove('selected');o.setAttribute('aria-pressed','false');});
+  el.classList.add('selected');el.setAttribute('aria-pressed','true');
+  document.getElementById('q'+q+'-btn').disabled=false;
 }
 
-.wrap{
-  max-width:980px;
-  margin:auto;
-  padding:18px 14px 40px;
+function confirmAnswer(qNum,correctVal){
+  if(answered[qNum]!==undefined) return;
+  var opts=document.querySelectorAll('[data-q="'+qNum+'"]');
+  var btn=document.getElementById('q'+qNum+'-btn');
+  var card=document.getElementById('q'+qNum);
+  var tog=document.getElementById('q'+qNum+'-tog');
+  var chosen=null;
+  opts.forEach(function(o){if(o.classList.contains('selected'))chosen=o;});
+  if(!chosen) return;
+  var isCorrect=chosen.dataset.val===correctVal;
+  answered[qNum]=isCorrect;
+  opts.forEach(function(o){
+    o.disabled=true;
+    if(o.dataset.val===correctVal){o.classList.add('correct-final');}
+    else if(o.classList.contains('selected')&&!isCorrect){o.classList.add('wrong-final');}
+    else{o.classList.add('dimmed');}
+    o.classList.remove('selected');
+  });
+  card.classList.add(isCorrect?'answered-correct':'answered-wrong');
+  btn.disabled=true; btn.style.display='none';
+  tog.style.display='inline-flex';
+  updateScore(); checkAllDone();
 }
 
-.panel{
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:24px;
-  box-shadow:var(--shadow);
-  padding:18px;
+function toggleGabarito(qNum){
+  var gab=document.getElementById('q'+qNum+'-gab');
+  var tog=document.getElementById('q'+qNum+'-tog');
+  var open=gab.classList.toggle('open');
+  tog.classList.toggle('open',open);tog.setAttribute('aria-expanded',String(open));
 }
 
-h1{
-  color:var(--title);
-  font-size:34px;
-  line-height:1.15;
-  margin:6px 0 14px;
-  text-align:center;
+function updateScore(){
+  var done=Object.keys(answered).length;
+  var correct=Object.values(answered).filter(Boolean).length;
+  var pct=TOTAL>0?(correct/TOTAL)*100:0;
+  document.getElementById('sc-current').textContent=correct;
+  document.getElementById('sc-bar').style.width=pct+'%';
+  document.getElementById('sc-bar').style.background=pct>=70?'#166534':pct>=40?'#d97706':'#991b1b';
+  document.getElementById('sc-msg').textContent=done+' respondida'+(done!==1?'s':'');
 }
 
-h2{
-  color:#0b2fb3;
-  font-size:24px;
-  margin:22px 0 12px;
+function checkAllDone(){
+  if(Object.keys(answered).length<TOTAL) return;
+  var correct=Object.values(answered).filter(Boolean).length;
+  var banner=document.getElementById('result-banner');
+  var score=document.getElementById('result-score');
+  var msg=document.getElementById('result-msg');
+  score.textContent=correct+'/'+TOTAL;
+  var pct=correct/TOTAL;
+  if(pct===1) msg.textContent='🎉 Parabéns! Gabarito perfeito — você domina o tema.';
+  else if(pct>=.75) msg.textContent='✅ Muito bem! Revise os pontos que errou e estará pronto.';
+  else if(pct>=.5) msg.textContent='📖 Resultado razoável. Revise os comentários com atenção.';
+  else msg.textContent='🔁 Reforce o estudo e tente novamente. Os comentários ajudam!';
+  banner.classList.add('show');
+  banner.scrollIntoView({behavior:'smooth',block:'center'});
 }
 
-p{ margin:0 0 14px; text-align:justify; }
-
-.card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:18px;
-  box-shadow:0 8px 20px rgba(15,23,42,.08);
-  padding:18px;
-  margin:14px 0;
+function resetQuiz(){
+  answered={};
+  for(var q=1;q<=TOTAL;q++){
+    document.querySelectorAll('[data-q="'+q+'"]').forEach(function(o){
+      o.disabled=false;o.setAttribute('aria-pressed','false'); o.classList.remove('selected','correct-final','wrong-final','dimmed');
+    });
+    document.getElementById('q'+q).classList.remove('answered-correct','answered-wrong');
+    var btn=document.getElementById('q'+q+'-btn');
+    btn.disabled=true; btn.style.display='';
+    var tog=document.getElementById('q'+q+'-tog');
+    tog.style.display='none'; tog.classList.remove('open');tog.setAttribute('aria-expanded','false');
+    document.getElementById('q'+q+'-gab').classList.remove('open');
+  }
+  document.getElementById('sc-current').textContent='0';
+  document.getElementById('sc-bar').style.width='0%';
+  document.getElementById('sc-msg').textContent='0 respondidas';
+  document.getElementById('result-banner').classList.remove('show');
+  window.scrollTo({top:0,behavior:'smooth'});
 }
-
-.section-blue   { border-left:7px solid #2563eb; }
-.section-green  { border-left:7px solid #16a34a; }
-.section-orange { border-left:7px solid #f97316; }
-.section-purple { border-left:7px solid #7c3aed; }
-.section-red    { border-left:7px solid #dc2626; }
-.section-teal   { border-left:7px solid #0d9488; }
-.section-indigo { border-left:7px solid #4f46e5; }
-.section-rose   { border-left:7px solid #e11d48; }
-.section-amber  { border-left:7px solid #d97706; }
-.section-cyan   { border-left:7px solid #0891b2; }
-.section-lime   { border-left:7px solid #65a30d; }
-
-.box{
-  padding:14px;
-  border-radius:14px;
-  margin:14px 0;
-  border:1px solid var(--border);
-}
-
-.oab     { background:var(--orangeSoft); border-left:6px solid #f97316; }
-.sumula  { background:var(--greenSoft);  border-left:6px solid #16a34a; }
-.artigo  { background:var(--blueSoft);   border-left:6px solid #2563eb; }
-.obs     { background:var(--purpleSoft); border-left:6px solid #7c3aed; }
-.alerta  { background:var(--redSoft);    border-left:6px solid #dc2626; }
-
-.bullet{
-  margin:10px 0 14px;
-  padding-left:0;
-  list-style:none;
-}
-
-.bullet li{
-  margin:10px 0;
-  padding:12px 14px;
-  background:#fff;
-  border-radius:14px;
-  border:1px solid var(--border);
-  box-shadow:0 5px 12px rgba(15,23,42,.05);
-}
-
-.bullet li::before{
-  content:"■ ";
-  color:#1f4fd8;
-  font-weight:900;
-}
-
-.sub-bullet{
-  margin:8px 0 4px 20px;
-  padding-left:0;
-  list-style:none;
-}
-
-.sub-bullet li{
-  margin:6px 0;
-  padding:10px 14px;
-  background:#f8fbff;
-  border-radius:12px;
-  border:1px solid var(--border);
-  box-shadow:0 3px 8px rgba(15,23,42,.04);
-}
-
-.sub-bullet li::before{
-  content:"◆ ";
-  color:#7c3aed;
-  font-weight:900;
-  font-size:0.8em;
-}
-
-table.custom{
-  width:100%;
-  border-collapse:collapse;
-  margin:14px 0;
-  font-size:0.95em;
-}
-
-table.custom th{
-  background:#1f4fd8;
-  color:#fff;
-  padding:10px 14px;
-  text-align:left;
-  font-weight:700;
-}
-
-table.custom td{
-  padding:10px 14px;
-  border-bottom:1px solid var(--border);
-}
-
-table.custom tr:nth-child(even) td{
-  background:#f0f5ff;
-}
-
-table.custom tr:last-child td{
-  border-bottom:none;
-}
-
-.slides-area{
-  display:flex;
-  justify-content:center;
-  margin:10px 0 22px;
-}
-
-.slides-btn{
-  text-decoration:none;
-  color:var(--text);
-  background:#fff;
-  border:1px solid rgba(37,99,235,.22);
-  border-radius:22px;
-  box-shadow:var(--shadow);
-  padding:16px 22px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:14px;
-  min-width:min(420px,100%);
-  font-weight:900;
-  transition:.18s;
-}
-
-.slides-btn:hover{
-  transform:translateY(-2px);
-  box-shadow:0 20px 42px rgba(15,23,42,.16);
-}
-
-.icon{
-  width:54px; height:54px;
-  border-radius:18px;
-  display:grid; place-items:center;
-  background:linear-gradient(135deg,#dbeafe,#ffffff);
-  border:1px solid rgba(37,99,235,.24);
-}
-
-.icon svg{ width:30px; height:30px; }
-
-.slides-text{ display:flex; flex-direction:column; line-height:1.15; }
-.slides-text strong{ font-size:20px; }
-.slides-text span{ font-size:14px; color:var(--muted); }
-
-.back{
-  display:flex;
-  justify-content:center;
-  margin-top:20px;
-}
-
-.back a{
-  width:min(560px,100%);
-  text-align:center;
-  text-decoration:none;
-  background:#fff;
-  padding:16px 18px;
-  border-radius:16px;
-  border:1px solid var(--border);
-  box-shadow:0 8px 20px rgba(15,23,42,.08);
-  color:var(--text);
-  font-weight:900;
-}
-
-@media(max-width:520px){
-  body{ font-size:17px; }
-  h1{ font-size:28px; }
-  h2{ font-size:21px; }
-  .slides-btn{ padding:14px; }
-}
-</style>
-</head>
-
-<body>
-<div class="wrap">
-<div class="panel">
-
-<h1>19. Processo de Execução Trabalhista</h1>
-
-<div class="slides-area">
-  <a class="slides-btn" href="https://drive.google.com/file/d/1x5OXasoa567BXlnWsrQp8Y89OFCbhFqG/view?usp=sharing" target="_blank" rel="noopener">
-    <span class="icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none">
-        <rect x="3" y="4" width="18" height="12" rx="2" stroke="#1f4fd8" stroke-width="1.8"/>
-        <path d="M8 20h8M12 16v4" stroke="#1f4fd8" stroke-width="1.8" stroke-linecap="round"/>
-        <path d="M7 9h10M7 12h7" stroke="#1f4fd8" stroke-width="1.8" stroke-linecap="round"/>
-      </svg>
-    </span>
-    <span class="slides-text">
-      <strong>Slides</strong>
-      <span>Abrir no Google Drive</span>
-    </span>
-  </a>
-</div>
-
-<!-- ═══════════════════════════════════════════ -->
-<!-- CARD 1 — Conceito e Normas Aplicáveis      -->
-<!-- ═══════════════════════════════════════════ -->
-<div class="card section-blue">
-<h2>Conceito e Normas Aplicáveis</h2>
-
-<p>O processo de execução ou <strong>fase satisfativa</strong> pode ser entendido como a fase do processo em que se busca a efetivação da decisão, tornando real aquilo que foi reconhecido pelo Poder Judiciário.</p>
-
-<p>O ideal é que a fase executiva não precise ser realizada, pois espera-se que o devedor cumpra a obrigação de forma voluntária, mas havendo o inadimplemento, os atos executórios serão realizados de acordo com a espécie de obrigação que foi criada: pecuniária (obrigação de pagar quantia), de fazer, não fazer ou entrega de coisa. Para cada espécie de obrigação é adotada uma técnica específica, como retirada de bens do patrimônio do devedor, busca e apreensão de bens, aplicação de multa para forçar o cumprimento da obrigação de fazer, dentre outras (SARAIVA; MANFREDINI, 2016).</p>
-
-<div class="box artigo">
-  <strong>Normas subsidiárias aplicáveis à execução trabalhista:</strong> a CLT possui cerca de 20 artigos sobre execução, sendo insuficiente para regular todas as situações. Na lacuna da CLT, aplica-se a <strong>Lei de Execução Fiscal – LEF (Lei n. 6.830/80)</strong>. Apenas na lacuna da LEF é que se utiliza o CPC. Portanto, a ordem de subsidiariedade é: <strong>CLT → LEF → CPC</strong>.
-</div>
-
-<div class="box oab">
-  <strong>Caixa OAB:</strong> atenção à ordem de aplicação subsidiária — na lacuna da CLT, aplica-se a LEF e não o CPC diretamente. O CPC só é utilizado na ausência de norma na LEF.
-</div>
-</div>
-
-<!-- ═══════════════════════════════════════════ -->
-<!-- CARD 2 — 19.1. Títulos Executivos          -->
-<!-- ═══════════════════════════════════════════ -->
-<div class="card section-orange">
-<h2>19.1. Títulos Executivos</h2>
-
-<p>A execução deve ser embasada em algum documento que reconheça a existência da obrigação. A esse documento dá-se o nome de <strong>título executivo</strong>, que pode ser judicial ou extrajudicial, ou seja, pode ser oriundo do Poder Judiciário, como uma sentença, ou criado fora daquele Poder, como um TAC – termo de ajustamento de conduta, firmado pelo Ministério Público do Trabalho e uma empresa, por exemplo.</p>
-
-<p>As obrigações criadas nas duas situações serão executadas na Justiça do Trabalho, mas por procedimentos distintos. Os títulos executivos estão previstos no <strong>art. 876 da CLT</strong>.</p>
-
-<p><strong>Títulos executivos judiciais:</strong></p>
-<ul class="bullet">
-  <li><strong>Decisão com trânsito em julgado:</strong> diante da definitividade da decisão, possibilitam o início da execução <strong>definitiva</strong>.</li>
-  <li><strong>Decisão objeto de recurso sem efeito suspensivo:</strong> a regra geral no processo do trabalho é a utilização de recursos sem efeito suspensivo (apenas com efeito devolutivo). A situação possibilita a <strong>execução provisória</strong>, na medida em que a decisão ainda é passível de modificação.</li>
-  <li><strong>Acordo não cumprido:</strong> enseja o início da execução <strong>definitiva</strong>, na medida em que não cabe recurso e o trânsito em julgado é imediato ao proferimento da decisão que homologa o acordo.</li>
-</ul>
-
-<p><strong>Títulos executivos extrajudiciais:</strong></p>
-<ul class="bullet">
-  <li><strong>Termos de Ajustamento de Conduta – TAC – firmado com o MPT:</strong> o TAC geralmente impõe multas pelo descumprimento de suas cláusulas, além de criar obrigações de fazer e não fazer, que podem ser executadas perante a Justiça do Trabalho.</li>
-  <li><strong>Termos de conciliação da Comissão de Conciliação Prévia (CCP):</strong> previsto no art. 625-E da CLT, o termo de conciliação da CCP enseja o início da execução, caso não seja voluntariamente cumprido nos prazos e modos nele previstos.</li>
-  <li><strong>Cheque e nota promissória emitidos em reconhecimento de dívida trabalhista:</strong> nos termos do art. 13 da IN n. 39/16 do TST, o cheque e a nota promissória passam a ser títulos executivos extrajudiciais trabalhistas quando houver prova de que foram emitidos para pagamento de dívida trabalhista.</li>
-</ul>
-
-<div class="box obs">
-  <strong>Atenção — IN n. 39/16 do TST:</strong> o cheque e a nota promissória somente são considerados títulos executivos extrajudiciais quando demonstrada a relação entre o crédito trabalhista e os títulos referidos. A simples apresentação dos documentos não é suficiente.
-</div>
-</div>
-
-<!-- ═══════════════════════════════════════════ -->
-<!-- CARD 3 — 19.2. Execução Provisória         -->
-<!-- ═══════════════════════════════════════════ -->
-<div class="card section-green">
-<h2>19.2. Execução Provisória</h2>
-
-<p>Como já foi visto na parte sobre recursos trabalhistas, estes não possuem efeito suspensivo imediato — são recebidos apenas no efeito devolutivo, nos termos do <strong>art. 899 da CLT</strong> —, o que permite o início da execução provisória da sentença. A execução provisória é o procedimento em que serão realizados atos de <strong>constrição patrimonial</strong> do devedor, apesar de ainda não haver trânsito em julgado. Na execução provisória <strong>não</strong> são realizados atos de expropriação (retirada de bens do patrimônio), mas apenas de constrição, como a <strong>penhora</strong> (SCHIAVI, 2015).</p>
-
-<p>A disciplina da execução provisória encontra-se nos <strong>arts. 520 e seguintes do CPC</strong>, com as seguintes peculiaridades:</p>
-
-<ul class="bullet">
-  <li><strong>Não há execução provisória de ofício</strong> — não se aplica o art. 878 da CLT na hipótese. Portanto, a execução provisória sempre depende de <strong>requerimento do exequente</strong>.</li>
-  <li>Se a execução provisória gerar prejuízos ao executado, caberá ao <strong>exequente indenizar</strong> aquele pelos prejuízos causados.</li>
-</ul>
-
-<p>A razão de não haver expropriação é simples: existe possibilidade de a decisão ser modificada em grau recursal, sendo muito arriscado transferir patrimônio do executado para o exequente nessa hipótese. O <strong>inciso II do art. 520 do CPC/2015</strong> afirma que ficará sem efeito a execução provisória quando a decisão que a embasa for reformada ou anulada.</p>
-
-<p>A execução provisória será realizada através da juntada de documentos do <strong>art. 522 do CPC/2015</strong>, já que os autos originais seguem para o Tribunal para julgamento do recurso. O art. 899 da CLT afirma que a execução provisória seguirá até a <strong>penhora</strong>. Contudo, doutrina e jurisprudência majoritárias admitem ainda a apresentação de embargos à execução (art. 884 da CLT) e recurso de <strong>agravo de petição</strong> (art. 897, a, CLT) da decisão que julgar os embargos.</p>
-
-<div class="box sumula">
-  <strong>Súmula 417, I, do TST:</strong> Não fere direito líquido e certo do impetrante o ato judicial que determina penhora em dinheiro do executado para garantir crédito exequendo, pois é prioritária e obedece à gradação prevista no art. 835 do CPC de 2015.<br><br>
-  <strong>Súmula 417, II, do TST:</strong> Havendo discordância do credor, em execução definitiva, não tem o executado direito líquido e certo a que os valores penhorados em dinheiro fiquem depositados no próprio banco, ainda que atenda aos requisitos do art. 840, I, do CPC de 2015.
-</div>
-
-<div class="box oab">
-  <strong>Caixa OAB:</strong> o TST cancelou o item III da Súmula 417 em 2016, consolidando que a <strong>penhora em dinheiro pode ser realizada mesmo na execução provisória</strong>, por ser a forma prioritária de satisfação do crédito.
-</div>
-</div>
-
-<!-- ═════════════════════════════════════════════════════════ -->
-<!-- CARD 4 — 19.3. Execução por Quantia Certa               -->
-<!-- ═════════════════════════════════════════════════════════ -->
-<div class="card section-purple">
-<h2>19.3. Execução por Quantia Certa contra Devedor Solvente</h2>
-
-<p>A execução mais comum na Justiça do Trabalho tem início com o <strong>art. 880 da CLT</strong>, que prevê a <strong>citação pessoal</strong> do executado pelo Oficial de Justiça para que, em <strong>48 horas</strong>, realize uma das seguintes condutas:</p>
-
-<ul class="bullet">
-  <li><strong>Pagamento da quantia devida:</strong> gerando a extinção do processo diante da satisfação da obrigação.</li>
-  <li><strong>Depósito da quantia devida:</strong> acarretando a garantia do juízo e a possibilidade de prosseguimento do processo, com a apresentação dos embargos à execução (art. 884 da CLT).</li>
-  <li><strong>Nomeação de bens à penhora:</strong> se em valor igual ou superior ao débito, haverá a garantia do juízo e a possibilidade de apresentação dos embargos à execução (art. 884 da CLT).</li>
-</ul>
-
-<div class="box artigo">
-  <strong>Inaplicabilidade do art. 523, § 1º, do CPC/2015:</strong> o art. 880 da CLT exclui a aplicação da multa de 10% prevista no CPC no cumprimento de sentença. O TST entende não haver lacuna normativa na hipótese, pois o art. 880 da CLT, apesar de antigo, está em vigor e regula o início do processo satisfativo.
-</div>
-
-<p>Na hipótese de <strong>inércia</strong> do executado — não realização de qualquer das condutas no prazo de 48 horas —, caberá ao <strong>Oficial de Justiça realizar a penhora</strong> de bens do executado, com as restrições do art. 833 do CPC/2015, que trata dos bens absolutamente impenhoráveis. Penhorados bens em valor igual ou superior ao devido, também poderão ser apresentados os embargos à execução.</p>
-</div>
-
-<!-- ═══════════════════════════════════════════ -->
-<!-- CARD 5 — 19.4. Defesa na Execução         -->
-<!-- ═══════════════════════════════════════════ -->
-<div class="card section-red">
-<h2>19.4. Defesa na Execução</h2>
-
-<p>Quando se fala em "defesa na execução", pode-se fazer a seguinte classificação:</p>
-
-<p><strong>A) Defesa típica — Embargos à execução (art. 884 da CLT)</strong></p>
-
-<p>Os embargos à execução são a forma de defesa típica do executado, previstos no art. 884 da CLT. Para que sejam utilizados, devem ser preenchidos dois requisitos:</p>
-
-<ul class="bullet">
-  <li><strong>Garantia do juízo:</strong> ocorre através do depósito da quantia devida, pela nomeação de bens à penhora ou pela penhora de bens pelo Oficial de Justiça.</li>
-  <li><strong>Prazo:</strong> os embargos devem ser apresentados no prazo de <strong>5 dias</strong> a contar da garantia do juízo, cabendo o mesmo prazo para o embargado impugnar os fundamentos do embargante.</li>
-</ul>
-
-<p>As matérias alegáveis nos embargos constam no <strong>§ 1º do art. 884 da CLT</strong> (cumprimento da decisão, quitação, prescrição) e no <strong>art. 525 do CPC/2015</strong> (matérias de ordem pública, como penhora incorreta ou avaliação errônea). Os embargos são processados nos autos da ação trabalhista e são recebidos <strong>sempre com efeito suspensivo</strong>.</p>
-
-<p>A <strong>IN n. 39/16 do TST</strong> admite o indeferimento liminar dos embargos nas seguintes hipóteses (art. 918 do CPC/2015):</p>
-
-<ul class="bullet">
-  <li>Intempestividade.</li>
-  <li>Indeferimento da petição inicial e improcedência liminar do pedido.</li>
-  <li>Embargos manifestamente protelatórios.</li>
-</ul>
-
-<p>Da decisão que julgar os embargos cabe o recurso de <strong>agravo de petição</strong> (art. 897, a, da CLT). A <strong>Lei n. 13.467/2017 – reforma trabalhista</strong> incluiu o <strong>§ 6º do art. 884 da CLT</strong>, dispensando a garantia do juízo para a apresentação dos embargos pelas <strong>entidades filantrópicas e os membros de sua diretoria</strong>.</p>
-
-<div class="box obs">
-  <strong>Produção de provas nos embargos:</strong> o art. 884, § 2º, da CLT prevê a possibilidade de ser designada audiência para produção de provas no procedimento dos embargos à execução, caso necessário.
-</div>
-
-<p><strong>B) Defesa atípica — Exceção de pré-executividade (objeção de não executividade)</strong></p>
-
-<p>A exceção de pré-executividade é uma construção doutrinária e jurisprudencial admitida no processo do trabalho como forma alternativa de defesa. Suas principais características são:</p>
-
-<ul class="bullet">
-  <li><strong>Dispensa a garantia do juízo</strong> — principal vantagem do instrumento.</li>
-  <li><strong>Impossibilidade de produção de provas</strong> (dilação probatória) — toda a prova deve ser pré-constituída (documental) — principal desvantagem.</li>
-  <li><strong>Sem prazo</strong> para apresentação.</li>
-  <li>Somente admite <strong>matérias de ordem pública</strong> (nulidade do título, incompetência absoluta, ausência de citação no processo de conhecimento etc.).</li>
-  <li>A <strong>Fazenda Pública não pode</strong> apresentar a exceção, pois já possui a prerrogativa de apresentar embargos sem garantia do juízo.</li>
-</ul>
-
-<p><strong>Recorribilidade da decisão da exceção de pré-executividade:</strong></p>
-<ul class="bullet">
-  <li><strong>Improcedência:</strong> não cabe recurso — o processo continua e a decisão é considerada interlocutória.</li>
-  <li><strong>Procedência:</strong> com a procedência e a anulação do processo, cabe <strong>agravo de petição</strong> (art. 897, a, da CLT), por ser decisão "final" na execução.</li>
-</ul>
-</div>
-
-<!-- ═══════════════════════════════════════════ -->
-<!-- CARD 6 — 19.5. Expropriação de Bens        -->
-<!-- ═══════════════════════════════════════════ -->
-<div class="card section-teal">
-<h2>19.5. Expropriação de Bens</h2>
-
-<p>A expropriação de bens no processo de execução contempla a penhora, a avaliação, arrematação, adjudicação, remição e alienação por iniciativa particular.</p>
-
-<p><strong>A) Penhora</strong></p>
-
-<p>Se não efetuado o pagamento, depósito ou nomeação de bens no prazo de 48 horas (art. 880 da CLT), serão os bens do devedor penhorados pelo Oficial de Justiça. São bens <strong>impenhoráveis</strong>, nos termos do art. 833 do CPC/2015:</p>
-
-<ul class="bullet">
-  <li>Móveis, pertences e utilidades domésticas que guarnecem a residência do executado, salvo os de elevado valor.</li>
-  <li>Vestuários e pertences de uso pessoal, salvo os de elevado valor.</li>
-  <li>Salários, desde que não superiores a 50 salários mínimos e a dívida não seja de alimentos (hipóteses em que a penhora é válida).</li>
-  <li>Seguro de vida.</li>
-  <li>Materiais necessários para obras em andamento.</li>
-</ul>
-
-<p><strong>Aspectos importantes sobre a penhora:</strong></p>
-
-<ul class="bullet">
-  <li>
-    <strong>Carta de fiança bancária (OJ n. 59 da SDI-2 do TST, alterada em 2016):</strong> a carta de fiança bancária e o seguro garantia judicial equivalem a dinheiro para efeito da gradação dos bens penhoráveis, desde que apresentados em valor <strong>não inferior ao débito acrescido de 30%</strong>. Exemplo: débito de R$ 100.000,00 → carta deve ser de R$ 130.000,00.
-  </li>
-  <li>
-    <strong>Penhora de salário:</strong> com o CPC/2015, é permitida a penhora de salário quando o valor for <strong>superior a 50 salários mínimos</strong>, sendo impenhorável apenas até esse limite (art. 833, § 2º, do CPC/2015).
-  </li>
-  <li>
-    <strong>Penhora de renda/faturamento da empresa (OJ n. 93 da SDI-2 do TST):</strong> é permitida, desde que seja um <strong>percentual razoável</strong> e que não existam outros bens passíveis de penhora, sejam insuficientes ou de difícil alienação.
-  </li>
-</ul>
-
-<p><strong>B) Avaliação</strong></p>
-
-<p>No processo do trabalho, a avaliação é realizada pelo <strong>Oficial de Justiça Avaliador</strong>. A contestação do valor avaliado pode ser feita posteriormente por meio dos embargos à execução, com base no art. 525 do CPC/2015 (avaliação errônea). Se grande lapso de tempo decorrer entre a avaliação e o leilão, o Magistrado pode determinar uma <strong>reavaliação</strong> do bem, com base no art. 873 do CPC/2015.</p>
-
-<p><strong>C) Arrematação</strong></p>
-
-<p>A arrematação dos bens é realizada em <strong>leilão</strong>, com publicidade nos termos do <strong>art. 888 da CLT</strong>:</p>
-
-<ul class="bullet">
-  <li>Publicação de edital com antecedência mínima de <strong>20 dias</strong>.</li>
-  <li>O arrematante deve garantir o lance com entrada equivalente a <strong>20% do valor da compra</strong>, pagando o restante em <strong>24 horas</strong>, sob pena de perda da entrada e retorno do bem para novo leilão.</li>
-</ul>
-
-<p>O CPC/2015 traz ainda a possibilidade de aquisição parcelada (art. 895): entrada de pelo menos <strong>30%</strong> e o restante em até <strong>30 parcelas</strong>, com caução idônea (bens móveis) ou hipoteca (imóveis).</p>
-
-<div class="box alerta">
-  <strong>Preço vil (art. 891 do CPC/2015):</strong> o bem pode ser vendido por valor inferior ao da avaliação, desde que não seja <strong>preço vil</strong> — definido como valor inferior ao mínimo estipulado pelo Juiz ou, na falta desse, inferior a <strong>50% da avaliação</strong>. Exemplo: bem avaliado em R$ 100.000,00 não pode ser vendido por menos de R$ 50.000,00.
-</div>
-
-<p><strong>D) Adjudicação</strong></p>
-
-<p>Escolhida pelo legislador processual civil como a <strong>forma prioritária de execução</strong>, a adjudicação consiste no "recebimento da coisa penhorada como forma de pagamento da execução" — em vez do bem ser vendido em leilão, entrega-se o próprio bem ao credor. Prevista no art. 876 do CPC/2015, é feita pelo <strong>valor da avaliação</strong>. Situações possíveis:</p>
-
-<ul class="bullet">
-  <li><strong>Valor do bem (R$ 50.000,00) &lt; Crédito (R$ 70.000,00):</strong> o credor adjudica o bem e a execução prossegue para cobrança dos R$ 20.000,00 restantes.</li>
-  <li><strong>Valor do bem (R$ 50.000,00) &gt; Crédito (R$ 30.000,00):</strong> o credor adjudica o bem e deposita de imediato a diferença de R$ 20.000,00, que ficará à disposição do Juiz para entrega ao devedor.</li>
-</ul>
-
-<p><strong>E) Remição</strong></p>
-
-<p>Prevista no <strong>art. 13 da Lei n. 5.584/70</strong>, consiste no pagamento do <strong>valor total</strong> da condenação para extinguir a execução e liberar os bens penhorados. A remição deve ser <strong>total</strong> — não é possível remir apenas um ou alguns bens depositando o seu valor isolado. O devedor deve depositar a quantia integral, extinguindo-se a execução (SCHIAVI, 2015).</p>
-</div>
-
-<!-- ═══════════════════════════════════════════════ -->
-<!-- CARD 7 — 19.6. Prescrição Intercorrente        -->
-<!-- ═══════════════════════════════════════════════ -->
-<div class="card section-indigo">
-<h2>19.6. Prescrição Intercorrente</h2>
-
-<p>O tema sofreu grande alteração por meio da <strong>Lei n. 13.467/2017 – reforma trabalhista</strong>, com a inclusão do <strong>art. 11-A da CLT</strong>, que afirma ser <strong>cabível a prescrição intercorrente no processo do trabalho</strong>, reconhecida de ofício ou a requerimento da parte.</p>
-
-<div class="box artigo">
-  <strong>Art. 11-A da CLT:</strong> a prescrição intercorrente é cabível no processo do trabalho quando o processo permanecer parado, por inércia do exequente, por mais de <strong>2 anos</strong>, quando este deixa de cumprir determinação judicial que lhe cabia.
-</div>
-
-<div class="box alerta">
-  <strong>Atenção:</strong> com a inclusão do art. 11-A da CLT, a <strong>Súmula 114 do TST</strong> — que afirmava não ser cabível a prescrição intercorrente no processo do trabalho — <strong>não mais se aplica</strong>.
-</div>
-
-<div class="box oab">
-  <strong>Caixa OAB:</strong> a reforma trabalhista (Lei n. 13.467/2017) tornou cabível a prescrição intercorrente no processo do trabalho. Prazo: 2 anos de inércia do exequente. Reconhecida de ofício ou a requerimento. A Súmula 114 do TST perdeu a aplicação.
-</div>
-</div>
-
-<!-- ══════════════════════════════════════════════════════════════ -->
-<!-- CARD 8 — 19.7. Execução de Obrigação de Fazer, Não Fazer e   -->
-<!--           Entrega de Coisa                                    -->
-<!-- ══════════════════════════════════════════════════════════════ -->
-<div class="card section-amber">
-<h2>19.7. Execução de Obrigação de Fazer, Não Fazer e Entrega de Coisa</h2>
-
-<p>A execução dessas obrigações segue as normas dos <strong>arts. 497 a 501 do CPC/2015</strong>, aplicáveis ao processo do trabalho por determinação do art. 3º, XII, da IN n. 39/16 do TST. A ideia central é a concessão da <strong>tutela específica</strong>: entregar ao credor exatamente o que ele teria caso a obrigação tivesse sido cumprida voluntariamente.</p>
-
-<div class="box artigo">
-  <strong>Art. 499 do CPC/2015:</strong> a obrigação somente será convertida em perdas e danos se o autor o requerer ou se for <strong>impossível</strong> a tutela específica ou a obtenção do resultado prático equivalente. A conversão é, portanto, situação <strong>excepcional</strong>.
-</div>
-
-<p>As obrigações de fazer mais comuns no processo do trabalho incluem: <strong>reintegração do empregado</strong>, anotação da CTPS, reenquadramento funcional, entrega de guias de seguro-desemprego, dentre outras.</p>
-
-<p>Em relação às "<strong>providências que assegurem o resultado prático equivalente</strong>", a <strong>multa diária (astreintes)</strong> é a mais comum, regulamentada pelo art. 536 do CPC/2015. O Juiz pode alterar o valor e a periodicidade para adequá-la à realidade. Nos termos do <strong>§ 1º do art. 536 do CPC/2015</strong>, o Juiz pode valer-se de diversas técnicas para impor o cumprimento, como:</p>
-
-<ul class="bullet">
-  <li>Busca e apreensão.</li>
-  <li>Remoção de pessoas e coisas.</li>
-  <li>Desfazimento de obras.</li>
-  <li>Impedimento de atividade nociva.</li>
-  <li>Uso de força policial, se necessário.</li>
-</ul>
-</div>
-
-<!-- ═══════════════════════════════════════════════════ -->
-<!-- CARD 9 — 19.8. Execução contra a Massa Falida      -->
-<!-- ═══════════════════════════════════════════════════ -->
-<div class="card section-rose">
-<h2>19.8. Execução contra a Massa Falida</h2>
-
-<p>O ponto central sobre a execução contra a massa falida é a definição da <strong>competência da Justiça do Trabalho</strong> para a prática de atos processuais após a decretação da falência, a depender do momento em que se encontra o processo:</p>
-
-<ul class="bullet">
-  <li><strong>Falência decretada antes de atos de constrição patrimonial:</strong> será entregue ao credor uma <strong>certidão de crédito trabalhista</strong> para habilitação perante o Juízo Falimentar.</li>
-  <li><strong>Falência decretada após a penhora dos bens, mas antes da alienação:</strong> os bens serão alienados em leilão pela Justiça do Trabalho, mas o valor arrecadado será <strong>remetido ao Juízo da Falência</strong>. O credor deverá habilitar seu crédito naquele juízo.</li>
-  <li><strong>Falência decretada após a alienação dos bens pela Justiça do Trabalho:</strong> a Justiça do Trabalho <strong>efetuará o pagamento</strong> do crédito trabalhista, remetendo ao Juízo da Falência apenas o eventual resíduo. Exemplo: apurados R$ 100.000,00 e o débito trabalhista era de R$ 75.000,00 → os R$ 25.000,00 restantes são remetidos à Vara da Falência.</li>
-</ul>
-
-<div class="box artigo">
-  <strong>Art. 6º, § 2º, da Lei n. 11.101/2005 (Lei de Falências):</strong> o processo de <strong>conhecimento</strong> continuará normalmente mesmo após a decretação da falência, até a apuração do crédito devido. Apenas o processo de <strong>execução</strong> é suspenso.
-</div>
-
-<div class="box oab">
-  <strong>Caixa OAB:</strong> tema já cobrado em Exame da OAB. A competência da Justiça do Trabalho varia conforme o estágio do processo: (1) antes da penhora → certidão de crédito; (2) após a penhora, antes da alienação → Justiça do Trabalho aliena, mas remete o valor à Vara da Falência; (3) após a alienação → Justiça do Trabalho paga e remete o resíduo.
-</div>
-</div>
-
-<!-- ═══════════════════════════════════════════════════ -->
-<!-- CARD 10 — 19.9. Execução contra a Fazenda Pública  -->
-<!-- ═══════════════════════════════════════════════════ -->
-<div class="card section-cyan">
-<h2>19.9. Execução contra a Fazenda Pública</h2>
-
-<p>A execução dos entes públicos segue procedimento diferenciado em virtude da <strong>impenhorabilidade dos bens públicos</strong>, com pagamento por meio de <strong>precatório</strong> ou <strong>RPV – Requisição de Pequeno Valor</strong>, nos termos do <strong>art. 100 da CF/88</strong>.</p>
-
-<div class="box artigo">
-  <strong>Quais entes se submetem ao regime do precatório/RPV:</strong> apenas os de natureza jurídica de <strong>direito público</strong> — União, Estados, Municípios, DF, autarquias e Fundações de Direito Público. As <strong>sociedades de economia mista e empresas públicas NÃO</strong> se submetem ao regime diferenciado, seguindo as regras normais do art. 880 da CLT.
-</div>
-
-<p><strong>Prazo para embargos do ente público:</strong> o ente público pode oferecer embargos no prazo de <strong>30 dias</strong> (art. 910 do CPC/2015 e Lei n. 9.494/97, art. 1º-B), sem necessidade de garantia do juízo — diferente dos entes privados (5 dias + garantia integral).</p>
-
-<p><strong>Regras do precatório (art. 100 da CF/88):</strong> o Juiz da execução determina a formação de um precatório, que é remetido ao Presidente do Tribunal competente para que determine a inclusão do valor no orçamento para pagamento em ordem cronológica:</p>
-
-<ul class="bullet">
-  <li>Precatório apresentado até <strong>2 de abril</strong>: pagamento até o final do <strong>próximo ano</strong> (exercício financeiro subsequente). <em>Exemplo: apresentado até 2/4/2022 → pagamento até o final de 2023.</em></li>
-  <li>Precatório apresentado <strong>após 2 de abril</strong>: pagamento até o final do <strong>ano seguinte ao subsequente</strong>. <em>Exemplo: apresentado após 2/4/2022 → pagamento até o final de 2024.</em></li>
-</ul>
-
-<p><strong>Distinção entre Precatório e RPV (arts. 86 e 87 do ADCT):</strong></p>
-
-<table class="custom">
-  <thead>
-    <tr>
-      <th>Ente público</th>
-      <th>Valor-limite para RPV</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>União</td>
-      <td>Até 60 salários mínimos</td>
-    </tr>
-    <tr>
-      <td>Estados</td>
-      <td>Até 40 salários mínimos</td>
-    </tr>
-    <tr>
-      <td>Municípios</td>
-      <td>Até 30 salários mínimos</td>
-    </tr>
-  </tbody>
-</table>
-
-<div class="box obs">
-  <strong>Procedimento da RPV (art. 17 da Lei n. 10.259/2001):</strong> o Juiz do Trabalho intimará o ente público para pagar em <strong>60 dias</strong>, depositando a quantia em conta no Banco do Brasil ou Caixa Econômica Federal. Após o decurso do prazo sem pagamento, poderá ser determinado o <strong>sequestro de numerário</strong> para pagamento da obrigação.
-</div>
-</div>
-
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!-- CARD 11 — 19.10. Certidão Negativa de Débitos Trabalhistas -->
-<!-- ═══════════════════════════════════════════════════════════ -->
-<div class="card section-lime">
-<h2>19.10. Certidão Negativa de Débitos Trabalhistas (CNDT)</h2>
-
-<p>Regulamentada no <strong>art. 642-A da CLT</strong>, a CNDT tem por finalidade provar que a empresa não possui débitos em aberto perante a Justiça do Trabalho. É exigida em situações como:</p>
-
-<ul class="bullet">
-  <li>Contratações com empresas terceirizadas (tomadora dos serviços exige apresentação).</li>
-  <li>Participação em <strong>licitações</strong>.</li>
-  <li>Concessão de empréstimos e financiamentos.</li>
-</ul>
-
-<p>Além da certidão negativa, o <strong>§ 2º do art. 642-A</strong> prevê a <strong>certidão positiva com efeito de negativa</strong>, que afirma a existência de débitos trabalhistas, mas que estão <strong>garantidos por penhora suficiente</strong> ou com a <strong>exigibilidade suspensa</strong>.</p>
-
-<div class="box artigo">
-  <strong>Art. 883-A da CLT:</strong> a inclusão no BNDT (Banco Nacional de Devedores Trabalhistas) somente pode ocorrer após o prazo de <strong>45 dias</strong> e desde que não haja garantia do juízo.
-</div>
-
-<div class="box obs">
-  <strong>Prazo de validade da CNDT:</strong> <strong>180 dias</strong>. Após esse período, deve ser extraída nova certidão, pois a empresa pode ter sofrido alguma condenação trabalhista nesse intervalo.
-</div>
-</div>
-
-<!-- ══════════════════════════════════════════════════════════════ -->
-<!-- CARD 12 — 19.11. Desconsideração da Personalidade Jurídica   -->
-<!-- ══════════════════════════════════════════════════════════════ -->
-<div class="card section-purple">
-<h2>19.11. Desconsideração da Personalidade Jurídica</h2>
-
-<p>O CPC/2015 criou um <strong>procedimento em contraditório</strong> para aplicação da desconsideração da personalidade jurídica (arts. 133 a 137 do CPC/2015), confirmado pela IN n. 39/16 do TST e reafirmado pelo <strong>art. 855-A da CLT</strong>, inserido pela <strong>Lei n. 13.467/2017 – reforma trabalhista</strong>. Antes disso, os Juízes do Trabalho desconsideravam a personalidade jurídica e penhoravam bens dos sócios sem qualquer procedimento prévio, o que não mais é possível.</p>
-
-<div class="box artigo">
-  <strong>Teoria aplicada no processo do trabalho — Teoria Menor (art. 28 do CDC):</strong> não exige demonstração de desvio de finalidade ou confusão patrimonial (requisitos da teoria maior do art. 50 do CC). No processo do trabalho, o <strong>único requisito</strong> para a desconsideração é a <strong>ausência de patrimônio da pessoa jurídica</strong>.
-</div>
-
-<p><strong>Procedimento do incidente (arts. 133 a 137 do CPC/2015):</strong></p>
-
-<ul class="bullet">
-  <li>Pode ser iniciado <strong>de ofício</strong> pelo Magistrado (IN n. 39/16 do TST).</li>
-  <li>Pode ocorrer tanto no processo de <strong>execução</strong> como no processo de <strong>conhecimento</strong> (especialmente quando há risco de esvaziamento do patrimônio).</li>
-  <li>A instauração do incidente <strong>suspende o processo</strong>.</li>
-  <li>O sócio será notificado para apresentar defesa e provas em <strong>15 dias</strong>.</li>
-</ul>
-
-<p><strong>Recorribilidade da decisão do incidente (art. 855-A, § 1º, da CLT):</strong></p>
-
-<ul class="bullet">
-  <li><strong>Se no curso do processo de conhecimento:</strong> decisão interlocutória — <strong>não cabe recurso imediato</strong> no processo do trabalho (IN n. 39/16 do TST e art. 855-A, § 1º, I, da CLT).</li>
-  <li><strong>Se no processo de execução:</strong> cabe <strong>agravo de petição</strong> (art. 897, a, da CLT), <strong>sem necessidade de garantia do juízo</strong> (art. 855-A, § 1º, II, da CLT).</li>
-  <li><strong>Se realizado no Tribunal pelo Relator:</strong> cabe <strong>agravo interno</strong> (art. 932, VI, do CPC/2015), por se tratar de decisão monocrática (art. 855-A, § 1º, III, da CLT).</li>
-</ul>
-
-<div class="box oab">
-  <strong>Caixa OAB:</strong> a desconsideração da personalidade jurídica no processo do trabalho exige procedimento em contraditório (arts. 133 a 137 do CPC) — sem mais desconsideração de ofício sem oitiva dos sócios. A teoria menor se aplica: basta a ausência de patrimônio da pessoa jurídica para justificar a desconsideração. O recurso cabível varia conforme o momento processual: conhecimento (sem recurso imediato), execução (agravo de petição sem garantia do juízo) ou Tribunal (agravo interno).
-</div>
-</div>
-
-<div class="back">
-  <a href="../index.html">← Voltar ao índice da disciplina</a>
-</div>
-
-</div>
-</div>
-</body>
-</html>
+</script></body></html>
