@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Audiência Trabalhista</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#eaf3ff;
@@ -298,6 +301,92 @@ p{ margin:0 0 14px; text-align:justify; }
   .personagem{ flex-direction:column; gap:8px; }
   .campo{ min-width:140px; }
 }
+
+/* Identidade editorial unificada com Direito Individual e Processual */
+:root{
+  --bg:#edece5;--panel:#fbfaf7;--card:#fbfaf7;--title:#7a2e37;
+  --text:#1b2436;--muted:#414a5c;--border:rgba(27,36,54,.13);
+  --shadow:none;--blueSoft:#f0eee9;--greenSoft:#f0fdf4;
+  --orangeSoft:#faf4e9;--purpleSoft:#f4f0f1;--redSoft:#fef2f2;
+  --tealSoft:#eef5f2;
+  --accent:#7a2e37;--ink:#1b2436;--iron:#8b8579;
+  --display:"Fraunces",Georgia,"Times New Roman",serif;
+  --reading:"Spectral",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:var(--reading);font-size:19px;line-height:1.75;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+body::before{content:"";position:fixed;inset:0 0 auto;height:4px;
+  background:linear-gradient(90deg,var(--accent) 0 34%,var(--ink) 34% 100%);z-index:20}
+.wrap{max-width:800px;padding:0 22px 72px}
+.panel{background:transparent;border:0;box-shadow:none;border-radius:0;padding:0}
+.masthead{padding:56px 0 30px;border-bottom:1px solid rgba(27,36,54,.22);margin-bottom:35px}
+.eyebrow{font:600 12px/1.5 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--accent);
+  display:flex;align-items:center;gap:12px;margin:0 0 18px}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--accent);display:inline-block}
+h1{font-family:var(--display);color:var(--ink);font-weight:500;font-size:clamp(2.5rem,7vw,4rem);
+  line-height:1.06;letter-spacing:-.02em;text-align:left;margin:0 0 16px}
+.subtitle{text-align:left;font-family:var(--reading);font-size:20px;font-weight:400;
+  line-height:1.5;color:var(--muted);letter-spacing:0;margin:0}
+h2{font-family:var(--display);font-size:clamp(1.45rem,3.5vw,1.85rem);
+  line-height:1.3;font-weight:500;color:var(--ink);margin:0 0 18px}
+p{text-align:left}
+.btns-area{justify-content:stretch;gap:12px;margin:0 0 42px}
+.drive-btn{max-width:none;flex:1 1 270px;align-items:flex-start;text-align:left;
+  background:var(--panel);box-shadow:none;border:1px solid var(--border);
+  border-radius:5px;padding:16px 18px;gap:8px;font-family:var(--mono);
+  transition:border-color .2s,transform .2s,background .2s}
+.drive-btn:hover{border-color:var(--accent);background:#fff;transform:translateY(-2px);box-shadow:none}
+.drive-btn .btn-label{font:400 11px/1.5 var(--mono);color:var(--iron)}
+.btn-text strong{font:600 12px/1.5 var(--mono);letter-spacing:.02em}
+.btn-text span{font:400 11px/1.5 var(--mono)}
+.icon-blue,.icon-green{background:#f3eee9;border-color:var(--border);
+  width:42px;height:42px;border-radius:4px}
+.icon-blue svg,.icon-green svg{width:23px;height:23px}
+.icon-blue svg *,.icon-green svg *{stroke:var(--accent)}
+.card{background:transparent;border:0;border-top:1px solid rgba(27,36,54,.22);
+  border-radius:0;box-shadow:none;padding:30px 0 20px;margin:0}
+.card.section-blue,.card.section-green,.card.section-orange,.card.section-purple,
+.card.section-red,.card.section-teal,.card.section-indigo,.card.section-amber,
+.card.section-rose{border-left:0}
+.etapa-num{font:600 12px/1 var(--mono);letter-spacing:0;width:36px;height:36px;
+  background:var(--accent);border-radius:4px;margin-right:12px}
+.box{background:#f5f2ec;border:1px solid var(--border);border-left:3px solid var(--accent);
+  border-radius:4px;padding:16px 18px;margin:18px 0}
+.box.obs,.box.alerta,.box.dica,.box.info,.box.destaque{border-left-color:var(--accent)}
+.box.alerta{background:#fbf1ef;border-left-color:#991b1b}
+.box.dica{background:#f1f5ef;border-left-color:#166534}
+.personagem{background:var(--panel);border:1px solid var(--border);box-shadow:none;
+  border-radius:5px;margin:12px 0;padding:16px}
+.persona-tag{font:600 10px/1.5 var(--mono);letter-spacing:.06em;
+  border-radius:3px;padding:5px 9px;margin-top:2px}
+.tag-juiz,.tag-escrivao,.tag-recl-adv,.tag-recl,.tag-recl-d,.tag-preposto,.tag-test{
+  background:#f0e9e5;color:var(--accent);border:1px solid rgba(122,46,55,.18)}
+.persona-content{font-family:var(--reading);font-size:1em;line-height:1.65}
+.bullet{padding:0}
+.bullet li{background:var(--panel);border:1px solid var(--border);
+  box-shadow:none;border-radius:4px;padding:12px 16px}
+.bullet li::before{content:"— ";color:var(--accent)}
+.campo{border-bottom:1px solid var(--iron)}
+.back{justify-content:flex-start;margin-top:32px}
+.back a{width:auto;background:transparent;border:1px solid var(--border);
+  box-shadow:none;border-radius:4px;color:var(--accent);font:600 12px/1.5 var(--mono);
+  letter-spacing:.04em;padding:13px 18px}
+.back a:hover{border-color:var(--accent);background:var(--panel)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media(max-width:560px){
+  body{font-size:18px}.wrap{padding:0 17px 48px}.masthead{padding:42px 0 22px}
+  h1{font-size:2.6rem}h2{font-size:1.4rem}.subtitle{font-size:18px}
+  .card{padding:26px 0 16px}.drive-btn{padding:14px;max-width:none}
+  .personagem{flex-direction:column;gap:10px}.campo{min-width:140px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+@media print{body::before{display:none}.wrap{max-width:none}.card{break-inside:avoid}.drive-btn{box-shadow:none}}
+
 </style>
 </head>
 
@@ -305,8 +394,11 @@ p{ margin:0 0 14px; text-align:justify; }
 <div class="wrap">
 <div class="panel">
 
+<header class="masthead">
+<p class="eyebrow">Prática Jurídica Trabalhista <span aria-hidden="true">·</span> Atividade 04</p>
 <h1>Audiência Trabalhista</h1>
 <p class="subtitle">Audiência de Instrução e Julgamento — Roteiro para Atividade Simulada</p>
+</header>
 
 <!-- ── Dois botões lado a lado ── -->
 <div class="btns-area">
