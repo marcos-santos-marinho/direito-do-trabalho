@@ -387,6 +387,22 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
 @media print{body::before{display:none}.wrap{max-width:none}.card{break-inside:avoid}.drive-btn{box-shadow:none}}
 
+
+/* Grupos da audiência simulada */
+.grupos-audiencia{margin:0 0 40px;border-top:1px solid rgba(27,36,54,.22);padding-top:27px}
+.grupos-audiencia>h2{margin-bottom:5px}
+.grupos-audiencia .grupos-intro{font-size:16px;color:var(--muted);margin-bottom:19px}
+.grupos-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.grupo-col{border:1px solid var(--border);background:var(--panel);border-radius:5px;min-width:0;overflow:hidden}
+.grupo-col h3{display:flex;gap:8px;align-items:center;margin:0;padding:13px 12px;font:600 12px/1.5 var(--mono);letter-spacing:.02em;border-bottom:1px solid var(--border)}
+.grupo-col h3::before{content:"";display:inline-block;width:10px;height:10px;flex-shrink:0;border-radius:2px;background:var(--group-color)}
+.grupo-col.green{--group-color:#16a34a}.grupo-col.blue{--group-color:#2563eb}.grupo-col.yellow{--group-color:#d4a017}
+.grupo-col ol{list-style:none;padding:9px 12px 13px;margin:0;counter-reset:aluno}
+.grupo-col li{counter-increment:aluno;font:400 12px/1.55 var(--mono);padding:8px 0;border-bottom:1px solid var(--border);overflow-wrap:anywhere}
+.grupo-col li:last-child{border-bottom:0}
+.grupo-col li::before{content:counter(aluno,decimal-leading-zero) "  ";color:var(--iron)}
+@media(max-width:700px){.grupos-grid{grid-template-columns:1fr}.grupo-col li{font-size:13px}}
+@media print{.grupo-col{break-inside:avoid}}
 </style>
 </head>
 
@@ -436,6 +452,51 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
   </a>
 
 </div>
+
+
+<!-- Grupos definidos no arquivo GRUPOS.xlsx -->
+<section class="grupos-audiencia" aria-labelledby="grupos-titulo">
+  <h2 id="grupos-titulo">Grupos da audiência simulada</h2>
+  <p class="grupos-intro">Distribuição dos alunos por função, conforme a identificação por cores.</p>
+  <div class="grupos-grid">
+    <div class="grupo-col green">
+      <h3>Grupo Reclamante · 7 alunos</h3>
+      <ol>
+        <li>ANDRESSA NASCIMENTO QUINTAS CAVALCANTE</li>
+        <li>EDIVAN DOS SANTOS JÚNIOR</li>
+        <li>ISABELA LETICIA GOMES BARROS</li>
+        <li>ISABELLY CRISTINE CARDOSO DIAS</li>
+        <li>LUCAS MATHEUS CASTILLO DEL CASTILO FERREIRA</li>
+        <li>MAIRA DAMACENA LUZ</li>
+        <li>RIAN CARDOSO VIDEIRA</li>
+      </ol>
+    </div>
+    <div class="grupo-col blue">
+      <h3>Grupo Reclamada · 7 alunos</h3>
+      <ol>
+        <li>BRENO HENRIQUE GONÇALVES DE JESUS</li>
+        <li>EDUARDA PIEDADE SILVA</li>
+        <li>GABRIELA D TARSO GONÇALVES BARRETO</li>
+        <li>MARCELA CARDOSO DE MORAES</li>
+        <li>MIGUEL SANTOS FONSÊCA SIMOES</li>
+        <li>OSVALDO FLEXA DO NASCIMENTO NETO</li>
+        <li>RANNA VITORIA DE ARAUJO PEREIRA</li>
+      </ol>
+    </div>
+    <div class="grupo-col yellow">
+      <h3>Grupo Juiz · 7 alunos</h3>
+      <ol>
+        <li>ARDINA SOSINHO DE ARAUJO NETA</li>
+        <li>JACKELINE DO ESPIRITO SANTO DA COSTA</li>
+        <li>JOAO VICTOR COSTA SILVA ARAUJO</li>
+        <li>LAURA SANTOS DAS CHAGAS</li>
+        <li>MARIA EDUARDA ANTUNES ROCHA</li>
+        <li>RAFAEL BATISTA DE ALMEIDA</li>
+        <li>RYAN PABLO PINHEIRO MORAIS</li>
+      </ol>
+    </div>
+  </div>
+</section>
 
 <!-- ══════════════════════════════════════════════════ -->
 <!-- CARD 1 — ETAPA 1: PREGÃO                          -->
